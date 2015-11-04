@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+/* TEST Stephan */
 namespace NWAT
 {
     static class Program
@@ -14,9 +16,11 @@ namespace NWAT
         [STAThread]
         static void Main()
         {
+            // bla blubb
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-        }
+        }/* ADRIAN TEST*/
     }
 }
+// test von Veit
