@@ -11,7 +11,7 @@ namespace NWAT
     static class Program
     {
         /// <summary>
-        /// Der Haupteinstiegspunkt für die Anwendung.
+        /// Der Haupteinstiegspunkt für die Anwendung.commmmmmmmmmefsfskdflksdlfsldfjlksdf
         /// </summary>
         [STAThread]
         static void Main()
