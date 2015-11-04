@@ -14,6 +14,7 @@ namespace NWAT
         [STAThread]
         static void Main()
         {
+            // bla blubb
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
