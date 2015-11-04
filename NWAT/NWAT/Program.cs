@@ -20,6 +20,7 @@ namespace NWAT
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+            return 1; /* 04.11.2015 Return eingefügt Stephan Strissel
         }/* ADRIAN TEST*/
     }
 }
