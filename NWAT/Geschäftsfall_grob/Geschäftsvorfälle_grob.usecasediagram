@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="1e45d17a-2bfd-4d43-aba9-a139d585729c" name="UMLUseCaseDiagram1" linkedPackageId="d09c301c-6b21-4ac3-be47-7867468852d5" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <profileInstances>
+    <packageHasProfileInstances Id="1ab7f4f5-8ccf-498a-8500-f29cb78de1df">
+      <profileInstance Id="0a16cc58-5f1f-488e-bb31-f80f77b36d06" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="a02416f0-7193-4191-afb0-ab744e0d1633">
+      <profileInstance Id="96995ac8-d43c-4a8a-a251-a6e358cc9afb" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="b851b14e-2547-4a76-a081-bb74c0909a56" name="Kunde" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="87b3d3a2-e714-43d0-bc29-7148ba67867c" />
+        <targetEnds>
+          <association Id="222f7046-2aca-487c-bf96-58914a5d016f" isDerived="false" sourceEndRoleName="Kunde" targetEndRoleName="Nutzwertanalyse durchführen" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="51179d10-3a07-454d-972d-badeea08742e" LastKnownName="Nutzwertanalyse durchführen" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="b630d40a-51c5-4fcd-945a-5108cbb958b8" name="Kunde" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="7a41d2e9-c064-43e1-810a-c273032330d7" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5dbb0cc8-a249-4394-99b6-f3d4a27ea4ae" name="Nutzwertanalyse durchführen" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="cd48956f-e4db-46f7-baba-cdf26a38e715" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="25bfcd60-14be-4433-9712-e5b1c243c86d" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="f8e34947-de0f-4cc0-8422-b0361018cdb0" name="Hersteller" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="5e555af7-73b1-42c7-ac2c-0610a6c28651" />
+        <targetEnds>
+          <association Id="165df83d-4550-4bdf-adb0-f7217b4ee4b8" isDerived="false" sourceEndRoleName="Hersteller" targetEndRoleName="Nutzwertanalyse durchführen" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="51179d10-3a07-454d-972d-badeea08742e" LastKnownName="Nutzwertanalyse durchführen" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="fca3b90a-8184-4855-aac1-0c9c3baae737" name="Hersteller" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="60d96ff0-10b7-4f3e-be7c-1e6e20f648ee" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f925d6e8-f41d-4d7c-920f-5de84fd4f4e5" name="Nutzwertanalyse durchführen" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="8c7f93ad-7342-4715-bc4c-d9bd740f3e3f" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="5096904d-6097-4255-adf7-95e3e199bb73" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="7d76dfc4-af1c-43eb-af31-7c98d609df70" name="Berater" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="e1ed1c26-efbd-4f2c-89a1-2e791f64ccf9" />
+        <targetEnds>
+          <association Id="5a1c9f06-57ed-4a59-9834-38b2737fcac6" isDerived="false" sourceEndRoleName="Berater" targetEndRoleName="Nutzwertanalyse durchführen" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="51179d10-3a07-454d-972d-badeea08742e" LastKnownName="Nutzwertanalyse durchführen" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ae83b950-5bce-4588-9cd4-ffdc53bb72ba" name="Berater" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="21437d27-4a90-442f-ba10-421ae7d81527" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8ac9d7fa-867b-429f-b341-2206e3efad45" name="Nutzwertanalyse durchführen" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="9e33cce5-4f97-4307-9e9b-a693f18fc3e1" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="75498e63-e7cd-4e88-9172-d580162c6938" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="51179d10-3a07-454d-972d-badeea08742e" name="Nutzwertanalyse durchführen" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="8e2157cc-fcff-4d62-b5f9-3900bbb3396f" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="d09c301c-6b21-4ac3-be47-7867468852d5" name="Geschäftsfall_grob">
+    <elementDefinition Id="76828dc0-6fc3-4cc5-94fb-4da7f9a1284b" />
+  </package>
+</useCaseModelRoot>
