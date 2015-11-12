@@ -176,6 +176,10 @@ Rot: Nicht relevant</body>
                 <opaqueActionMoniker Id="5a447129-7ec4-4bc8-8eda-48513d2a4670" LastKnownName="logisches Datenmodell" />
                 <elementDefinition Id="835ac7e0-bcec-4e64-adee-09458f2d5b3c" />
               </controlFlow>
+              <controlFlow Id="c97ddec9-83bf-4fd2-85e5-0278b7c29b27" isLeaf="false">
+                <opaqueActionMoniker Id="d485e4f7-76da-4775-96fa-cebe9f594a79" LastKnownName="Funktions-beschreibung" />
+                <elementDefinition Id="a74cf396-b8b7-4200-b609-36e0f858b4f4" />
+              </controlFlow>
             </flowNodeTargets>
           </opaqueAction>
           <opaqueAction Id="3bebcee3-5ae3-40e0-ac5c-19307bc0f734" name="Stammdaten" isLeaf="false">
