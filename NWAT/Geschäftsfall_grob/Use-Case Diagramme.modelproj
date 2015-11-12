@@ -22,19 +22,33 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
   <ItemGroup>
-    <Content Include="Geschäftsvorfälle.usecasediagram">
+    <Content Include="Geschäftsprozess.usecasediagram">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Geschäftsvorfälle.usecasediagram.layout">
+    <Content Include="Geschäftsprozess.usecasediagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>Geschäftsvorfälle.usecasediagram</DependentUpon>
+      <DependentUpon>Geschäftsprozess.usecasediagram</DependentUpon>
     </Content>
-    <Content Include="Geschäftsvorfälle - Prozessschritte.usecasediagram">
+    <Content Include="Geschäftsprozess - Prozessschritte.usecasediagram">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Geschäftsvorfälle - Prozessschritte.usecasediagram.layout">
+    <Content Include="Geschäftsprozess - Prozessschritte.usecasediagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>Geschäftsvorfälle - Prozessschritte.usecasediagram</DependentUpon>
+      <DependentUpon>Geschäftsprozess - Prozessschritte.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="Prozessschritte - Funktionale Anforderungen.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Prozessschritte - Funktionale Anforderungen.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Prozessschritte - Funktionale Anforderungen.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="RoadMap.activitydiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="RoadMap.activitydiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>RoadMap.activitydiagram</DependentUpon>
     </Content>
     <Folder Include="ModelDefinition\" />
     <Content Include="ModelDefinition\Geschäftsfall_grob.uml">

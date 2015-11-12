@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NWAT", "NWAT\NWAT.csproj", "{A2ACD3C6-2F5C-4503-B5FE-E8817E44327D}"
 EndProject
-Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "Geschäftsfall_grob", "Geschäftsfall_grob\Geschäftsfall_grob.modelproj", "{CFE67EF4-BC59-430A-8B3E-6BA5D6724041}"
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "Use-Case Diagramme", "Geschäftsfall_grob\Use-Case Diagramme.modelproj", "{CFE67EF4-BC59-430A-8B3E-6BA5D6724041}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
