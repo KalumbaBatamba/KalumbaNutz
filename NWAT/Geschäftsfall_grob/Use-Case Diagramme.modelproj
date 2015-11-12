@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{cfe67ef4-bc59-430a-8b3e-6ba5d6724041}</ProjectGuid>
     <ArchitectureToolsVersion>2.0.0.0</ArchitectureToolsVersion>
-    <Name>Geschäftsfall_grob</Name>
+    <Name>Use-Case Diagramme</Name>
     <RootNamespace>Geschäftsfall_grob</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -22,12 +22,19 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
   <ItemGroup>
-    <Content Include="Geschäftsvorfälle_grob.usecasediagram">
+    <Content Include="Geschäftsvorfälle.usecasediagram">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Geschäftsvorfälle_grob.usecasediagram.layout">
+    <Content Include="Geschäftsvorfälle.usecasediagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>Geschäftsvorfälle_grob.usecasediagram</DependentUpon>
+      <DependentUpon>Geschäftsvorfälle.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="Geschäftsvorfälle - Prozessschritte.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Geschäftsvorfälle - Prozessschritte.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Geschäftsvorfälle - Prozessschritte.usecasediagram</DependentUpon>
     </Content>
     <Folder Include="ModelDefinition\" />
     <Content Include="ModelDefinition\Geschäftsfall_grob.uml">

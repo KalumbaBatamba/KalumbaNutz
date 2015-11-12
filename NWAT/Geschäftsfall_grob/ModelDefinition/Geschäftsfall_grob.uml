@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm9="http://schemas.microsoft.com/dsltools/UseCaseModel"
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm9="http://schemas.microsoft.com/dsltools/UseCaseModel"
   dslVersion="1.0.0.0"
   Id="76828dc0-6fc3-4cc5-94fb-4da7f9a1284b"
   name="Geschäftsfall_grob" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -169,6 +169,881 @@
       <useCase
         Id="8e2157cc-fcff-4d62-b5f9-3900bbb3396f"
         name="Nutzwertanalyse durchführen"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="c35093de-d900-4144-a19a-e4300f0b4df4"
+        name="Berater"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="5e073942-eb26-4344-9292-1f3ed701687e"
+            isDerived="false"
+            sourceEndRoleName="Berater"
+            targetEndRoleName="Projekt erstellen"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="51a1fea9-de4b-44e4-a413-aa9cc1d1443f"
+              LastKnownName="Projekt erstellen"
+              LastKnownLocation="Geschäftsfall_grob.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="8605eb40-746f-4fba-ade5-9530ba1dead4"
+                  name="Berater"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b4dac8c6-2903-4d5d-85bd-77a3505fc6f9"
+                  name="Projekt erstellen"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="b331394d-897e-48df-813a-1ee7b8285f1e"
+            isDerived="false"
+            sourceEndRoleName="Berater"
+            targetEndRoleName="Kriterien einpflegen"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="9322cd76-ecf7-4f8a-8407-c9935c1bf372"
+              LastKnownName="Kriterien in System einpflegen"
+              LastKnownLocation="Geschäftsfall_grob.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b0c32e5f-7cac-43a4-9e69-a3ecc7c5973a"
+                  name="Berater"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="0cfaf92a-a2d0-4eb0-8278-6189643f12f0"
+                  name="Kriterien einpflegen"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="ea45cf9f-8f26-45cd-a2f0-8666bce39691"
+            isDerived="false"
+            sourceEndRoleName="Berater"
+            targetEndRoleName="Produkt erstellen"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="b832829b-0d65-4011-ab6a-223d3a2d7d03"
+              LastKnownName="Produkt im System erstellen"
+              LastKnownLocation="Geschäftsfall_grob.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="bb8c8650-4edd-4cae-b3b0-cbd1f570b39c"
+                  name="Berater"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="10a1c04f-476e-4f0d-82cc-8dcdfe9cece5"
+                  name="Produkt erstellen"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="f8b5792e-4e48-40f3-9b86-c85e61be5959"
+            isDerived="false"
+            sourceEndRoleName="Berater"
+            targetEndRoleName="Kriterien ausdrucken"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="5330324f-e82c-4934-a061-812ee50a15ac"
+              LastKnownName="Kriterien zur Kontrolle ausdrucken"
+              LastKnownLocation="Geschäftsfall_grob.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="041de3bb-2ca3-4b06-805e-d4ecd76ee99a"
+                  name="Berater"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="6a872121-0b35-4483-bfa2-d6384aea4630"
+                  name="Kriterien ausdrucken"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="be35fffe-0537-4036-95a9-787b81c692a5"
+            isDerived="false"
+            sourceEndRoleName="Berater"
+            targetEndRoleName="Kriterien abändern "
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="da58715a-5cd0-4c8b-b85d-eafc9e9ce8ae"
+              LastKnownName="Kriterien abändern "
+              LastKnownLocation="Geschäftsfall_grob.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="cdf1f1d6-c124-41da-992e-6b44ade16fc0"
+                  name="Berater"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ff19b1d9-5a96-465b-b6a0-16e3937e09e4"
+                  name="Kriterien abändern "
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="fbe5be14-d16b-40d3-a86a-b07c4c3d7d6d"
+            isDerived="false"
+            sourceEndRoleName="Berater"
+            targetEndRoleName="Kriterien für Hersteller ausdrucken"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="7f7a1de3-7469-49eb-9c35-653535c6dc94"
+              LastKnownName="Kriterien für Hersteller ausdrucken"
+              LastKnownLocation="Geschäftsfall_grob.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ed1ac15f-d693-4c6a-a2f5-a25f0ddfbc1c"
+                  name="Berater"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b363ef64-f864-4476-b3f1-a7bf32df5c3c"
+                  name="Kriterien für Hersteller ausdrucken"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="87dedc3b-024d-47f5-84e4-d0d222a6ac01"
+            isDerived="false"
+            sourceEndRoleName="Berater"
+            targetEndRoleName="Kriterienbewrtung zu Produkt einpflegen"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="e9625b4e-1df2-4c0d-b0f5-adde6270102f"
+              LastKnownName="Kriterienbewrtung zu Produkt einpflegen"
+              LastKnownLocation="Geschäftsfall_grob.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="aefddaf4-efdb-4604-9af4-65f7ab6e7567"
+                  name="Berater"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ab65c8df-f456-4f08-90ac-926804fe1f0c"
+                  name="Kriterienbewrtung zu Produkt einpflegen"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="249ed58c-f647-4f01-8e02-97c1d56305f0"
+            isDerived="false"
+            sourceEndRoleName="Berater"
+            targetEndRoleName="Kriteriengewichtung einpflegen"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="5511ef06-678f-49ba-b576-329bbd8dd77e"
+              LastKnownName="Kriteriengewichtung einpflegen"
+              LastKnownLocation="Geschäftsfall_grob.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="394fabbd-b569-4573-9890-01f4ab37389b"
+                  name="Berater"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7bcf8d45-3566-4d66-ad78-415af40c74d2"
+                  name="Kriteriengewichtung einpflegen"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="1d89d9ae-2eb5-4bb3-bcdf-5bb681c3dec0"
+            isDerived="false"
+            sourceEndRoleName="Berater"
+            targetEndRoleName="Kriterien mit Kriteriengewichtung zur Kontrolle ausdrucken"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="8595dadc-562a-42c6-81e1-d0f9fcc245a4"
+              LastKnownName="Kriterien mit Kriteriengewichtung ausdrucken und an Kunden übergeben"
+              LastKnownLocation="Geschäftsfall_grob.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a306b9fc-3cc4-43ab-976b-59fcfcc1e94a"
+                  name="Berater"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="5fd670bd-a01b-4764-8f46-01934247420c"
+                  name="Kriterien mit Kriteriengewichtung zur Kontrolle ausdrucken"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="6662383b-dec1-4973-8d82-27f69858bd53"
+            isDerived="false"
+            sourceEndRoleName="Berater"
+            targetEndRoleName="Kriteriengewichtung abändern"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="ee3fa4f2-d1ea-4c54-aa17-5a7d535b3c71"
+              LastKnownName="Kriteriengewichtung abändern"
+              LastKnownLocation="Geschäftsfall_grob.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d8064945-8006-4b48-9e1e-0b9e20ef7c15"
+                  name="Berater"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="02ef85df-8861-4fef-b6fc-f5dec569f0bf"
+                  name="Kriteriengewichtung abändern"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="e6a6dce5-0632-49c9-aeb1-9dddd9298830"
+            isDerived="false"
+            sourceEndRoleName="Berater"
+            targetEndRoleName="Nutzwertanalyse durchführen"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="837a6fa1-ff1a-4981-9dd5-5bc8f6e486d5"
+              LastKnownName="Analyse ausdrucken und an Kunden übergeben"
+              LastKnownLocation="Geschäftsfall_grob.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="477deca6-7057-45f1-8c3c-b344979a97dc"
+                  name="Berater"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="8de59f3e-af0d-43cd-bd13-6589805b1ef9"
+                  name="Nutzwertanalyse durchführen"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="db6627d4-484e-4de7-9c70-a2c5e0eed36e"
+        name="Hersteller"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="9f0a52ce-cf0d-49de-8b69-96615dadc14a"
+            isDerived="false"
+            sourceEndRoleName="Hersteller"
+            targetEndRoleName="Kriterien beantworten (ja/nein)"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="b2abd8e8-1e82-47e6-bbfa-e1085113f869"
+              LastKnownName="Kriterien beantworten (Kriterienbewertung)"
+              LastKnownLocation="Geschäftsfall_grob.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="152e2e18-031c-4982-b669-a76c9b2ca56b"
+                  name="Hersteller"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="aca2a646-28b3-4e33-8cd8-f67de741ce5b"
+                  name="Kriterien beantworten (ja/nein)"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="ad948ef9-172f-4e51-b016-99a90594d258"
+        name="Kunde"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="050a7090-a2a2-402e-a254-45c8226a394d"
+            isDerived="false"
+            sourceEndRoleName="Kunde"
+            targetEndRoleName="Entscheidungsproblem"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="e2394ce9-c4a6-46ab-8089-0814339441eb"
+              LastKnownName="Entscheidungsproblem"
+              LastKnownLocation="Geschäftsfall_grob.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d734d676-d03f-46fc-aa9a-5b7fcb39f4e7"
+                  name="Kunde"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b1776473-6bd2-41f0-ae28-0ddfbda040f5"
+                  name="Entscheidungsproblem"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="5172ed85-af55-4121-b118-b70161e41088"
+            isDerived="false"
+            sourceEndRoleName="Kunde"
+            targetEndRoleName="Kriterien festlegen"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="aecb70c5-9ebb-4875-a994-d20d9521faed"
+              LastKnownName="Kriterien festlegen"
+              LastKnownLocation="Geschäftsfall_grob.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ac473466-136f-4553-84e0-6844c20ef4a3"
+                  name="Kunde"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b1517aae-ee2f-434c-9c0c-1586e7c023b7"
+                  name="Kriterien festlegen"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="78e76074-fe5c-4fca-b6eb-d3928e20f4a2"
+            isDerived="false"
+            sourceEndRoleName="Kunde"
+            targetEndRoleName="Produkte auswählen"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="7250ca1d-c973-4756-b9c3-ded8f3a8ff5a"
+              LastKnownName="Produkte auswählen"
+              LastKnownLocation="Geschäftsfall_grob.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="0265df54-adbc-4863-b15f-b50c1ed88db0"
+                  name="Kunde"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="0519a071-1059-417a-987c-59dcb1e04e1a"
+                  name="Produkte auswählen"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="8f828ba0-88a7-410e-980b-fec499ff462c"
+            isDerived="false"
+            sourceEndRoleName="Kunde"
+            targetEndRoleName="Kriterien kontrollieren"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="5ed626c2-3a0b-48dc-a431-6f93a31ebee7"
+              LastKnownName="Kriterien kontrollieren"
+              LastKnownLocation="Geschäftsfall_grob.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="bc10e1fc-4884-459f-b01e-9f2f2d3ae474"
+                  name="Kunde"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e18e0b61-82fc-4c6b-a220-c9252d9efd3b"
+                  name="Kriterien kontrollieren"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="51a1fea9-de4b-44e4-a413-aa9cc1d1443f"
+        name="Projekt erstellen"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="aecb70c5-9ebb-4875-a994-d20d9521faed"
+        name="Kriterien festlegen"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="9322cd76-ecf7-4f8a-8407-c9935c1bf372"
+        name="Kriterien in System einpflegen"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="e2394ce9-c4a6-46ab-8089-0814339441eb"
+        name="Entscheidungsproblem"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="b832829b-0d65-4011-ab6a-223d3a2d7d03"
+        name="Produkt im System erstellen"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="5330324f-e82c-4934-a061-812ee50a15ac"
+        name="Kriterien zur Kontrolle ausdrucken"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="7250ca1d-c973-4756-b9c3-ded8f3a8ff5a"
+        name="Produkte auswählen"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="b2abd8e8-1e82-47e6-bbfa-e1085113f869"
+        name="Kriterien beantworten (Kriterienbewertung)"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="50f3d682-20d4-4ad2-8245-fbbb1a15dfb8"
+        name="UseCase1"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="5ed626c2-3a0b-48dc-a431-6f93a31ebee7"
+        name="Kriterien kontrollieren"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="da58715a-5cd0-4c8b-b85d-eafc9e9ce8ae"
+        name="Kriterien abändern "
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="7f7a1de3-7469-49eb-9c35-653535c6dc94"
+        name="Kriterien für Hersteller ausdrucken"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="e9625b4e-1df2-4c0d-b0f5-adde6270102f"
+        name="Kriterienbewrtung zu Produkt einpflegen"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="4b30762a-7d42-4d83-adc5-7c419bd7e393"
+        name="Kriteriengewichtung festlegen"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="0ab02e10-d997-4de3-8520-9c5c6e6fe989"
+        name="Kunde"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="a3c7b09a-db83-4c39-82d8-c9654d71a827"
+            isDerived="false"
+            sourceEndRoleName="Kunde"
+            targetEndRoleName="Kriteriengewichtung festlegen"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="4b30762a-7d42-4d83-adc5-7c419bd7e393"
+              LastKnownName="Kriteriengewichtung festlegen"
+              LastKnownLocation="Geschäftsfall_grob.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="eb531757-ad5f-4231-bdd3-215e4ccb2d47"
+                  name="Kunde"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="90f1c480-92af-47a1-8bf9-035715a902d5"
+                  name="Kriteriengewichtung festlegen"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="1302aaeb-81b4-4257-9fdb-09c9321de953"
+            isDerived="false"
+            sourceEndRoleName="Kunde"
+            targetEndRoleName="Kriteriengewichtung kontrollieren"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="a4d79b4c-70d0-44c9-95b0-32c724cf2af3"
+              LastKnownName="Kriteriengewichtung kontrollieren"
+              LastKnownLocation="Geschäftsfall_grob.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ecd9a2e1-416e-48dd-b38b-e1f0383ab98c"
+                  name="Kunde"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="05c34cb7-ae77-4657-8f3a-5ded4592207c"
+                  name="Kriteriengewichtung kontrollieren"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="5511ef06-678f-49ba-b576-329bbd8dd77e"
+        name="Kriteriengewichtung einpflegen"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="8595dadc-562a-42c6-81e1-d0f9fcc245a4"
+        name="Kriterien mit Kriteriengewichtung ausdrucken und an Kunden übergeben"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="a4d79b4c-70d0-44c9-95b0-32c724cf2af3"
+        name="Kriteriengewichtung kontrollieren"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="ee3fa4f2-d1ea-4c54-aa17-5a7d535b3c71"
+        name="Kriteriengewichtung abändern"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="837a6fa1-ff1a-4981-9dd5-5bc8f6e486d5"
+        name="Analyse ausdrucken und an Kunden übergeben"
         isAbstract="false"
         isLeaf="false" />
     </packageHasNamedElement>
