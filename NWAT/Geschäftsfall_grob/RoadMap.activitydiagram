@@ -109,6 +109,16 @@ Rot: Nicht relevant</body>
           </opaqueAction>
           <opaqueAction Id="58fcb584-f8b0-4c67-b57d-132e1ed44b99" name="Ablauffolge (EPK)" isLeaf="false">
             <elementDefinition Id="ba4bb4a5-c308-41a4-8fad-ad30dee73f04" />
+            <flowNodeTargets>
+              <controlFlow Id="a4f83ceb-f9a5-4716-8b53-63a2ce60d345" isLeaf="false">
+                <opaqueActionMoniker Id="46418478-0c0c-45ca-9fe7-a28d5703e312" LastKnownName="Ablauffolge Stufe 2 (eEPK)" />
+                <elementDefinition Id="9f5b66c4-5c08-431a-a5d3-ddd0fcb0cb42" />
+              </controlFlow>
+              <controlFlow Id="ea846fde-b701-4823-908d-161c5ab512ea" isLeaf="false">
+                <opaqueActionMoniker Id="12293b18-6c72-4110-a33a-43f58878f103" LastKnownName="Prozess (im BWL-Sinn!)" />
+                <elementDefinition Id="9acda21d-4ad9-4e94-a6dd-d99a0bee40a8" />
+              </controlFlow>
+            </flowNodeTargets>
           </opaqueAction>
           <opaqueAction Id="5a447129-7ec4-4bc8-8eda-48513d2a4670" name="logisches Datenmodell" isLeaf="false">
             <elementDefinition Id="fab66ec5-5465-40dd-9909-692286ccc8e8" />
@@ -117,9 +127,9 @@ Rot: Nicht relevant</body>
                 <opaqueActionMoniker Id="3bebcee3-5ae3-40e0-ac5c-19307bc0f734" LastKnownName="Stammdaten" />
                 <elementDefinition Id="95d4e306-2c2c-4090-9221-ff63bf78786e" />
               </controlFlow>
-              <controlFlow Id="cecdf415-4392-479a-b730-ccbcd183af98" isLeaf="false">
-                <opaqueActionMoniker Id="58fcb584-f8b0-4c67-b57d-132e1ed44b99" LastKnownName="Ablauffolge (EPK)" />
-                <elementDefinition Id="434885f1-321a-42ba-8b5b-b997456b1573" />
+              <controlFlow Id="4a6c9552-b932-4b08-9a89-59ab9290f58e" isLeaf="false">
+                <opaqueActionMoniker Id="46418478-0c0c-45ca-9fe7-a28d5703e312" LastKnownName="Ablauffolge Stufe 2 (eEPK)" />
+                <elementDefinition Id="43fb1329-454d-477a-9c07-447f62f6e070" />
               </controlFlow>
             </flowNodeTargets>
           </opaqueAction>
@@ -236,6 +246,24 @@ Rot: Nicht relevant</body>
                 <elementDefinition Id="a7f28cc3-2b71-49e1-befd-ab754ff8db89" />
               </controlFlow>
             </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="ee84ed25-7584-4278-b5d9-32c466c833b3" name="verwendete und erzeugte Daten" isLeaf="false">
+            <elementDefinition Id="3c010300-0bb1-4107-8589-c3517b2a8cc2" />
+          </opaqueAction>
+          <opaqueAction Id="46418478-0c0c-45ca-9fe7-a28d5703e312" name="Ablauffolge Stufe 2 (eEPK)" isLeaf="false">
+            <elementDefinition Id="ab086c30-0932-413e-b6b1-03fea7b14096" />
+            <flowNodeTargets>
+              <controlFlow Id="cae9a686-120f-48f7-9451-f89e789c7d47" isLeaf="false">
+                <opaqueActionMoniker Id="ee84ed25-7584-4278-b5d9-32c466c833b3" LastKnownName="verwendete und erzeugte Daten" />
+                <elementDefinition Id="77bc2ac5-b9f2-488c-8b65-d701225eacc4" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="12293b18-6c72-4110-a33a-43f58878f103" name="Prozess (im BWL-Sinn!)" isLeaf="false">
+            <elementDefinition Id="9ebad73a-5ca7-4dab-9924-1305edfacf63" />
+          </opaqueAction>
+          <opaqueAction Id="902f4365-c35e-4727-893c-e79b3a927f4b" name="Informationsobjekte" isLeaf="false">
+            <elementDefinition Id="d0fb641c-5931-4fc2-8392-28d43b83b6db" />
           </opaqueAction>
         </nodes>
       </activity>
