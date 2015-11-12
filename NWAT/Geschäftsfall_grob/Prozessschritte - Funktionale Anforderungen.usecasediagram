@@ -1,0 +1,662 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="e83e07b4-f279-43eb-b606-a2a627c9e140" name="UMLUseCaseDiagram1" linkedPackageId="5347a6b2-8ad2-4b0a-ac4d-ca5f3d4b9b30" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <profileInstances>
+    <packageHasProfileInstances Id="70508085-4273-46f7-8a83-1e63963791c4">
+      <profileInstance Id="62e48f81-fa46-44d6-b4da-7cb6a8546ee9" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="61d7645d-5b6e-4b6b-b74a-0446c370016e">
+      <profileInstance Id="65212607-6b6f-4ff6-b3b5-29fd948621b8" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="1334a132-c1f4-4eca-b9d7-2928d99aecaa" name="Hauptprozess1" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="629ccd90-d2d5-4bcf-a8c9-96c696b42d99" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="b1f7d3f6-b4a2-4978-946f-b103c021b621" name="Projekt erstellen" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="bcf4daaa-224c-4dfa-b0d7-e0ad00343395" />
+        <targetEnds>
+          <association Id="2c29eb75-3d5c-42df-bae5-84187ac40a00" isDerived="false" sourceEndRoleName="Projekt erstellen" targetEndRoleName="&#xD;&#xA;Projekt erstellen" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="49de6a71-f63f-4364-86fb-3b0513283d61" LastKnownName="&#xD;&#xA;Projekt anlegen" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0c6b2852-53ca-4560-8fb8-5ed622e5ff3c" name="Projekt erstellen" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="cae6018c-9837-4c2f-bc6e-ae94701f52e1" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="68ea5c81-0b14-4e21-a3e0-b55d67eeacd9" name="&#xD;&#xA;Projekt erstellen" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="dbef208c-f82a-44ef-b1ef-7daf0958b189" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="8fe4ca80-497c-4e70-9907-d4df98697a94" />
+          </association>
+          <association Id="9db39207-027b-4afd-8cce-e091649416d1" isDerived="false" sourceEndRoleName="Projekt erstellen" targetEndRoleName="&#xD;&#xA;Projekt anzeigen" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="6e7b1807-b1e2-44d0-a58f-11b6182a9a76" LastKnownName="&#xD;&#xA;Projekt anzeigen" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="2ff350f5-d5bd-4f6b-b1e1-14b3ded2abd4" name="Projekt erstellen" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="2284e705-059c-45ff-af04-e21c35aa3626" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e48f8baf-d582-4696-b9d8-7b355f9559fb" name="&#xD;&#xA;Projekt anzeigen" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="b841b57e-5dfd-42f3-b69a-00ac619fd39a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="07f4800d-db51-4f8a-a49a-2339f733b482" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="1334a132-c1f4-4eca-b9d7-2928d99aecaa" LastKnownName="Hauptprozess1" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="09c770af-dfd9-4dc4-b151-59b55b259e89" name="Kriterien festlegen" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="62f7218f-76b4-4e0f-92bc-73a4d4ca703b" />
+        <subjects>
+          <subsystemMoniker Id="1334a132-c1f4-4eca-b9d7-2928d99aecaa" LastKnownName="Hauptprozess1" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="8c6d1144-f461-4051-b861-33365f309646" name="Kriterien in System einpflegen" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="2fa5de7b-755f-4c9e-a8ac-dabb4dd97019" />
+        <targetEnds>
+          <association Id="96137e97-763f-4485-8a9b-a5414c4b2d14" isDerived="false" sourceEndRoleName="Kriterien in System einpflegen" targetEndRoleName="Kriterien anlegen" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="45caf658-1d6d-44bc-8b0d-642bacd511fe" LastKnownName="Kriterien anlegen" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="189f1043-82ff-4470-90f0-4767099b790b" name="Kriterien in System einpflegen" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="7d07f5be-876f-43ba-ad98-5f57bf826097" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0edfa6ca-4919-4df3-b229-7a098e8b8ead" name="Kriterien anlegen" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="c035f608-5027-4207-9cde-368919df6848" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="29cabbfe-1784-4bc5-981f-720187d6a7f1" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="1334a132-c1f4-4eca-b9d7-2928d99aecaa" LastKnownName="Hauptprozess1" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="880961c1-72d1-4e52-99af-3c63d74e16c8" name="Entscheidungsproblem" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="c28fedd0-5adf-4f0a-bffa-36eab9671ace" />
+        <subjects>
+          <subsystemMoniker Id="1334a132-c1f4-4eca-b9d7-2928d99aecaa" LastKnownName="Hauptprozess1" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="3d9862fa-8cff-4f27-a157-87aea68631c3" name="Produkt im System erstellen" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="c8e01581-bcc8-4726-a9a1-0cc1a2c47c5a" />
+        <targetEnds>
+          <association Id="d4f93648-bbc3-4480-8fa2-91c0825e9077" isDerived="false" sourceEndRoleName="Produkt im System erstellen" targetEndRoleName="Produkt anlegen" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="164ca186-d2a5-4dff-9ec5-1f31aebef344" LastKnownName="Produkt anlegen" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="993ab235-a110-4624-94c9-303217427873" name="Produkt im System erstellen" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="454440c8-90b1-4a83-b6b3-e03e7592fe0e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="4124046d-a14b-44c2-ba1a-79d0915ddd4f" name="Produkt anlegen" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="9c459b87-f338-4279-ae77-38ad7a07c99e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="d1a8c5f6-11aa-4003-839a-c1fb6f3eb80a" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="1334a132-c1f4-4eca-b9d7-2928d99aecaa" LastKnownName="Hauptprozess1" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="d50cc8b8-7f45-4aa1-99c1-8977fd01177e" name="Produkte auswählen" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="56166aee-4c16-4d8c-bb1c-759699cefb29" />
+        <subjects>
+          <subsystemMoniker Id="1334a132-c1f4-4eca-b9d7-2928d99aecaa" LastKnownName="Hauptprozess1" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="8ef02f16-58c8-40e8-aa6a-393246b17dac" name="Kriterien beantworten (Kriterienbewertung)" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="bf240dec-cb2b-4274-bf1b-2dae2049b5cd" />
+        <subjects>
+          <subsystemMoniker Id="1334a132-c1f4-4eca-b9d7-2928d99aecaa" LastKnownName="Hauptprozess1" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="8bec8104-7e53-446b-b168-9ca9718a86a3" name="Kriterien für Hersteller ausdrucken" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="9660c22f-3ad9-42b8-9860-ea9f2db28c4c" />
+        <targetEnds>
+          <association Id="5615d0ba-e618-41e6-9401-ac82b707db05" isDerived="false" sourceEndRoleName="Kriterien für Hersteller ausdrucken" targetEndRoleName="Kriterien ausdrucken (Hersteller)" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="52052805-6752-4701-92e6-ee28092eefa5" LastKnownName="Kriterien ausdrucken (Hersteller)" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="3093090b-5911-4509-8d7c-ab5d987cb07c" name="Kriterien für Hersteller ausdrucken" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="2c7cb47b-df76-4685-ae07-323a95385d49" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="a60e5519-3252-4d21-ad12-b4651bf96ee9" name="Kriterien ausdrucken (Hersteller)" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="8d9884ea-5e22-4134-933a-4f9644d86921" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="6354423f-19d9-4ba7-97ea-af50db97cd8f" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="1334a132-c1f4-4eca-b9d7-2928d99aecaa" LastKnownName="Hauptprozess1" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="e1c4bf55-d038-4c38-bcb4-24e581fac06e" name="Kriterienbewertung zu Produkt einpflegen" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="de317f40-9aa3-425c-a13f-03eb13bb71d7" />
+        <targetEnds>
+          <association Id="f44545ca-491a-40cd-b7c7-bf7a8f347373" isDerived="false" sourceEndRoleName="Kriterienbewrtung zu Produkt einpflegen" targetEndRoleName="Kriterienbewertung anlegen" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="11285e63-ff71-40fa-90e0-1e4a6f7bfe10" LastKnownName="Kriterienbewertung anlegen" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c531104a-2671-4a46-ab27-25e97d298c3b" name="Kriterienbewrtung zu Produkt einpflegen" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="a524b3ee-8255-4bf4-bcd7-7a7f2c106269" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="2888ef39-02ca-42f2-8acc-c3ce0a252d9c" name="Kriterienbewertung anlegen" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="147c9586-88bb-45aa-b896-810b7583151d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="9fbc4282-58f6-4c3f-9705-4945ed23fb30" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="1334a132-c1f4-4eca-b9d7-2928d99aecaa" LastKnownName="Hauptprozess1" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="ce430e5e-7325-4881-be33-3254dbd65e70" name="Kriteriengewichtung festlegen" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="f9dc5592-e9c1-482c-b29c-a229645242b1" />
+        <subjects>
+          <subsystemMoniker Id="1334a132-c1f4-4eca-b9d7-2928d99aecaa" LastKnownName="Hauptprozess1" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="6311c090-8d96-4539-8fbd-d625d2f56a8b" name="Kriteriengewichtung einpflegen" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="50f5064e-ed1c-4e5c-90b5-eba54b735760" />
+        <targetEnds>
+          <association Id="0ee9439b-4804-4067-aab5-b1c7f343033c" isDerived="false" sourceEndRoleName="Kriteriengewichtung einpflegen" targetEndRoleName="Kriteriengewichtung anlegen" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="f712e771-fa2c-44a9-823b-e2733a9b8314" LastKnownName="Kriteriengewichtung anlegen" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="3839c3e4-67fc-4667-9f5c-d7ca73cfe12c" name="Kriteriengewichtung einpflegen" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="2a2f8aff-870f-44e9-aada-d7d9204a51ea" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="b7724a2e-fc0b-4a74-aa68-52496810094e" name="Kriteriengewichtung anlegen" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="e933a875-565e-4dcd-9185-37d553221510" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="e2f82d9a-cfd5-4578-9907-a72cec7893dc" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="1334a132-c1f4-4eca-b9d7-2928d99aecaa" LastKnownName="Hauptprozess1" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="56513b15-4cb5-46b1-91b4-f1b308bbd451" name="Analyse ausdrucken und an Kunden übergeben" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="257bc19b-0d6d-4236-8367-2dbd4d7f71e6" />
+        <targetEnds>
+          <association Id="c3ed3443-1e7e-4083-b339-3661932c28e8" isDerived="false" sourceEndRoleName="Analyse ausdrucken und an Kunden übergeben" targetEndRoleName="Analyse  ausdrucken" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="72be1fd7-3ba3-4b75-a27a-da96dbade689" LastKnownName="Analyse  ausdrucken" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e6bf43c5-db0f-4a82-98e2-e54a288bd93c" name="Analyse ausdrucken und an Kunden übergeben" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="a505b98c-b40f-47c8-9a1a-759d67471075" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ca038cc4-7a9b-42a4-a077-595a9489fff9" name="Analyse  ausdrucken" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="24ea1637-63a3-43c3-a344-0b14fb46df1e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="1cf6ea26-35ae-4693-904d-b8e9eb3f993c" />
+          </association>
+          <association Id="5fd8f95a-bac8-4ee6-a375-5ad3dd948e56" isDerived="false" sourceEndRoleName="Analyse ausdrucken und an Kunden übergeben" targetEndRoleName="&#xD;&#xA;Analyse anzeigen" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="d91e7e26-d0a6-4e15-abf7-a39349e3e73f" LastKnownName="&#xD;&#xA;Analyse anzeigen" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="b79c2065-47cd-4fd3-8fbf-aa347b635224" name="Analyse ausdrucken und an Kunden übergeben" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="b1748c79-c52b-4a12-b8ea-32abc6cde3bd" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7e556159-31e9-43d9-a555-472bd3c2659c" name="&#xD;&#xA;Analyse anzeigen" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="28e7720e-f500-40b3-83cf-d5a0cce3bc74" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="2c3d8174-32d5-4ae4-b7a4-6b98a2ec2adc" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="1334a132-c1f4-4eca-b9d7-2928d99aecaa" LastKnownName="Hauptprozess1" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="2e06b348-0be5-4a8a-ae89-8dbd340a4595" name="Kontrolle1" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="b4c4f95b-3d25-480f-ab37-9a58dfe76ec1" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="8289691c-ca23-450b-b68f-c1cb25109852" name="Kriterien für Kunden ausdrucken" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="e79aa438-e6ba-46c7-b7e6-dc6014d839e4" />
+        <targetEnds>
+          <association Id="3ecd4e1b-c639-42ee-98c9-8a5d8c416365" isDerived="false" sourceEndRoleName="Kriterien für Kunden ausdrucken" targetEndRoleName="Kriterien drucken" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="d2f24b35-05f3-4b82-be49-7e431ca36595" LastKnownName="Kriterien drucken (Kunde)" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0740ce26-ebee-4fc6-afa5-2b8856bd88a7" name="Kriterien für Kunden ausdrucken" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="e62fd8de-3797-480c-a920-83a892cabb31" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5d93c9ba-bbef-408d-a81e-053277ec0dd3" name="Kriterien drucken" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="268b856c-ff79-4953-921c-7b6327bee6fb" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="9a9a257a-c42e-456f-b8ad-80cac0f70066" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="2e06b348-0be5-4a8a-ae89-8dbd340a4595" LastKnownName="Kontrolle1" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="3a87eabb-8159-41d7-8d88-fe9fe688acf9" name="Kriterien kontrollieren" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="0e6333b7-9ad7-401f-aa40-5207cf200f65" />
+        <subjects>
+          <subsystemMoniker Id="2e06b348-0be5-4a8a-ae89-8dbd340a4595" LastKnownName="Kontrolle1" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="2d31a399-538b-48ac-ae99-b7a60efb7544" name="Kritierien abändern" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="7a52a92c-8e42-44bb-871e-eca2e79e466a" />
+        <targetEnds>
+          <association Id="db1b7a62-dbf4-476e-866c-e55f722e155c" isDerived="false" sourceEndRoleName="Kritierien abändern" targetEndRoleName="Kriterien ändern" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="ede341fd-f841-4774-9928-ea526a11aac2" LastKnownName="Kriterien ändern" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0ba9e51e-e1e4-49e3-b133-bacd2865472e" name="Kritierien abändern" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="71c88b3f-d8bf-47b6-8bf1-323865096614" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="50eec220-db9d-4cba-8e6c-9e801200ac65" name="Kriterien ändern" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="a02d727f-7221-48cd-b94a-adfbe2b91b03" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="d94ddfb1-5207-4b7d-a800-2c92e9e86997" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="2e06b348-0be5-4a8a-ae89-8dbd340a4595" LastKnownName="Kontrolle1" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="fdbd9b24-87cc-447c-990d-eb7fa1a9e62c" name="Kontrolle2" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="56bfd8d7-d03b-4810-aaf3-5c5c5c8de210" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="1bcaece2-ed87-41eb-a9a9-28ee95f0641a" name="Kriterienbewertung für Hersteller ausdrucken" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="0f40190e-303f-4a42-811c-456d055ddf7d" />
+        <targetEnds>
+          <association Id="0bbbb993-f183-45ed-8441-e8dc3065274c" isDerived="false" sourceEndRoleName="Kriterienbewertung für Hersteller ausdrucken" targetEndRoleName="Kriterienbewertung drucken (Hersteller)" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="5452e6ed-e0e0-485a-b998-44c28bdd672d" LastKnownName="Kriterienbewertung drucken (Hersteller)" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5f9751a3-c23b-44be-a2f7-8dee7e571201" name="Kriterienbewertung für Hersteller ausdrucken" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="507bc82e-42a0-4832-805d-e2fe3f1a4691" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d31f3470-10c4-4597-b38d-13c1bca4b656" name="Kriterienbewertung drucken (Hersteller)" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="5c5c488e-18d9-4c78-ac27-ca4e32ec511d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="8bd11d70-da64-46ea-b50c-34008989601d" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="fdbd9b24-87cc-447c-990d-eb7fa1a9e62c" LastKnownName="Kontrolle2" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="5e5e5668-c0c1-49bb-b766-fda5327b55b7" name="kontrollieren" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="e6ca97ed-37c6-4162-95d1-a651d8cc5aaa" />
+        <subjects>
+          <subsystemMoniker Id="fdbd9b24-87cc-447c-990d-eb7fa1a9e62c" LastKnownName="Kontrolle2" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="0551bddb-2b6a-405c-b2f8-d22dbd2eecfd" name="Kritierienbewertung abändern" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="7ff4dc6b-29d2-437c-ab68-cdf5c768d867" />
+        <targetEnds>
+          <association Id="7912066e-c357-4a23-a3cf-0807a4e1fa81" isDerived="false" sourceEndRoleName="Kritierienbewertung abändern" targetEndRoleName="Kriterienbewertung ändern" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="9f389786-b1af-45b1-9dae-2ef182f28433" LastKnownName="Kriterienbewertung ändern" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="4dc13ffb-5d31-4997-8214-47122abf6c16" name="Kritierienbewertung abändern" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="cdef3915-a152-46f3-a52d-0aa5f39903df" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="4485b7a6-df1a-4815-b0e9-428fb5eb060d" name="Kriterienbewertung ändern" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="d1112334-b0f2-46e6-a5be-0385cda890f2" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="16ab6d38-f4a1-4c29-9238-4c3b7c4e4565" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="fdbd9b24-87cc-447c-990d-eb7fa1a9e62c" LastKnownName="Kontrolle2" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="04873cee-b2af-45a0-8516-dd5114191a62" name="Kontrolle3" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="eadbaae8-6fba-4579-8ea5-f55699c080b7" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="373defbf-efff-4452-b8df-47be024debf9" name="Kriteriengewichtung für Kunde ausdrucken" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="e1a58386-5f16-4d65-801b-c6663fce4173" />
+        <targetEnds>
+          <association Id="cda9ac6a-db8c-4887-a691-6531a3090783" isDerived="false" sourceEndRoleName="Kriteriengewichtung für Kunde ausdrucken" targetEndRoleName="Kriteriengewichtung drucken (Kunden)" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="6a4a5646-c391-4535-b440-ccc0976cb605" LastKnownName="Kriteriengewichtung drucken (Kunden)" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d1cd1a93-e715-440b-9bca-7b77084d78dd" name="Kriteriengewichtung für Kunde ausdrucken" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="99f835f0-72a1-4c23-9c10-960ceb0ff47f" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e6e09894-abb4-4f41-8cd2-dc06cd807028" name="Kriteriengewichtung drucken (Kunden)" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="45cd98b8-f4d1-4778-a0a4-8489bd44b07a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="0dca4676-d9f2-4778-b64a-243783326020" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="04873cee-b2af-45a0-8516-dd5114191a62" LastKnownName="Kontrolle3" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="94ea1416-42c9-4aa6-ba18-e0fb7be75a69" name="kontrollieren" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="3b8e9c01-9521-45ae-8630-737222a55d5a" />
+        <subjects>
+          <subsystemMoniker Id="04873cee-b2af-45a0-8516-dd5114191a62" LastKnownName="Kontrolle3" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="3a2029bf-7329-4064-b3df-c8d7b79b069d" name="Kritieriengewichtung abändern" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="e11a7356-acc3-4481-a94c-cdfece1d09b7" />
+        <targetEnds>
+          <association Id="58f54efa-2167-4c22-9f48-5a9249eee164" isDerived="false" sourceEndRoleName="Kritieriengewichtung abändern" targetEndRoleName="Kriteriengewichtung ändern" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="bb8bcf77-a60d-471c-a388-a2028c7c815a" LastKnownName="Kriteriengewichtung ändern" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ee8a65d5-fa69-4883-9430-7bcc40cc4e21" name="Kritieriengewichtung abändern" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="1d98ae18-bd39-401a-b5e2-6805f78d5850" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="503e1dd4-0ed2-4fe6-bf66-327e69d57036" name="Kriteriengewichtung ändern" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="f977d3a1-0eb3-4c8f-93bb-a5f92f1d9738" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="ec9876a1-1b7a-49b1-b429-43908b6d5739" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="04873cee-b2af-45a0-8516-dd5114191a62" LastKnownName="Kontrolle3" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="08796d17-814b-4b0c-9111-300117168b0a" name="Archivierung1" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="9187bccf-0eb0-4a00-b750-76f63faf727d" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="9ddfaaf7-989a-4799-9367-9c1064c2ff8a" name="Projekt archivieren" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="4db94585-5b2a-4c50-a8ac-3149722f02f3" />
+        <targetEnds>
+          <association Id="1faa707a-af15-4c23-aeb8-491282faf4a9" isDerived="false" sourceEndRoleName="Projekt archivieren" targetEndRoleName="Projekt archivieren" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="7c76db36-26b2-4a4a-bf4d-1706d7691389" LastKnownName="Projekt archivieren" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f4651354-df0b-445d-8be6-e2b94d431bfe" name="Projekt archivieren" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="bc8c02bc-5c0f-4f23-8b72-e1cbbee88f76" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="63721b95-871e-482b-bd98-e2c80d49ff47" name="Projekt archivieren" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="598d717b-bd44-4be0-820e-cbd539db4edd" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="5c60ff1c-d2f7-47b0-85d0-787c26540ff2" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="08796d17-814b-4b0c-9111-300117168b0a" LastKnownName="Archivierung1" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="beb67145-a89d-4863-87f0-cb068fb63750" name="Projekt importieren" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="b9183d0c-a1dd-41b2-b12b-6df8aae3f3d7" />
+        <targetEnds>
+          <association Id="0b7a8542-1c8a-4c80-a387-e1dccccd7b0a" isDerived="false" sourceEndRoleName="Projekt importieren" targetEndRoleName="Projekt importieren" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="1d5025f3-fbbf-423c-b300-1675c5f61ec2" LastKnownName="Projekt importieren" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="241af810-8ec1-4830-ba00-51993d784648" name="Projekt importieren" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="201e51b2-1aff-4b3b-899e-4e05f1e52d29" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8b70d107-fbb7-46db-a22b-033b85a2f6a3" name="Projekt importieren" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="856fab18-0a67-427c-89ce-0f84a91635b7" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="91d036ae-4153-4b63-875c-2d7ae801b196" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="08796d17-814b-4b0c-9111-300117168b0a" LastKnownName="Archivierung1" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="7c76db36-26b2-4a4a-bf4d-1706d7691389" name="Projekt archivieren" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="ade9c827-398f-4c92-8c6f-2d70912d26ce" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="1d5025f3-fbbf-423c-b300-1675c5f61ec2" name="Projekt importieren" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="4477f1b8-9a38-4357-b58d-986d115d6d3c" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="49de6a71-f63f-4364-86fb-3b0513283d61" name="&#xD;&#xA;Projekt anlegen" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="566ab029-a7f1-4281-b94c-b99ff2e7adbc" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="45caf658-1d6d-44bc-8b0d-642bacd511fe" name="Kriterien anlegen" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="159d0495-fda9-4449-ad73-675d25c33a6a" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="52052805-6752-4701-92e6-ee28092eefa5" name="Kriterien ausdrucken (Hersteller)" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="66750ad8-fe91-475e-ad8b-9c0572af45a0" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="164ca186-d2a5-4dff-9ec5-1f31aebef344" name="Produkt anlegen" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="531e52b5-f7df-45f1-a4c9-50d474ad16a6" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="11285e63-ff71-40fa-90e0-1e4a6f7bfe10" name="Kriterienbewertung anlegen" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="dd25537c-bfd7-4e45-9d1c-d9cc84806ee3" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="f712e771-fa2c-44a9-823b-e2733a9b8314" name="Kriteriengewichtung anlegen" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="3fdf5c64-b0dc-448e-8082-f57cb4e8e130" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="72be1fd7-3ba3-4b75-a27a-da96dbade689" name="Analyse  ausdrucken" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="0618b291-f866-41bd-a7ba-bb54f223fcb8" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="d2f24b35-05f3-4b82-be49-7e431ca36595" name="Kriterien drucken (Kunde)" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="80458f96-6125-4a15-ab0e-775eb685d3d9" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="ede341fd-f841-4774-9928-ea526a11aac2" name="Kriterien ändern" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="87063648-4285-4779-ba83-5da4dffe658a" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="5452e6ed-e0e0-485a-b998-44c28bdd672d" name="Kriterienbewertung drucken (Hersteller)" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="738765d4-f3de-488c-bfd2-6eda1f99bba1" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="9f389786-b1af-45b1-9dae-2ef182f28433" name="Kriterienbewertung ändern" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="68b0ae93-8955-4341-bf2b-d60a87bfc4a9" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="6a4a5646-c391-4535-b440-ccc0976cb605" name="Kriteriengewichtung drucken (Kunden)" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="2aed454c-2e49-491e-9b9d-7f53b4dfbcc0" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="bb8bcf77-a60d-471c-a388-a2028c7c815a" name="Kriteriengewichtung ändern" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="44652452-216f-4655-a09e-964aaa109d79" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="f04f82da-3a0a-4838-aaf9-d4637ad40c9a" name="Krtierien ausblenden" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="a12f7c1d-ece4-4e73-b371-e65f17502a8a" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="01ebb67d-a958-47b0-a297-269cdd768d22" name="Analysen vergleichen" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="fd894707-c54c-4cba-8fef-aaac527115c8" />
+        <subjects>
+          <subsystemMoniker Id="f04f82da-3a0a-4838-aaf9-d4637ad40c9a" LastKnownName="Krtierien ausblenden" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="88ee620e-ac51-4a7c-b6fd-67bdc0aa2958" name="Kriterien ausblenden" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="e591df09-1c48-4de7-bde5-9d8951d445f5" />
+        <targetEnds>
+          <association Id="23d64964-d862-4b65-9342-5edc9943afb3" isDerived="false" sourceEndRoleName="Kriterien ausblenden" targetEndRoleName="Kriterien ausblenden" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="f0af1072-7cd2-44bc-97d8-db31fc37126d" LastKnownName="Kriterien ausblenden" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="32554f68-7827-431f-a7fe-22b2d1ae5d11" name="Kriterien ausblenden" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="2e55e898-a16b-4620-beaf-6ce6be58dd19" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="88a81b28-893c-4ce4-abbe-32d16ee0158c" name="Kriterien ausblenden" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="57e37080-5fea-47f7-8d4f-701600efb381" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="0fdde395-85b6-44f8-a3d4-f599cbc91543" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="f04f82da-3a0a-4838-aaf9-d4637ad40c9a" LastKnownName="Krtierien ausblenden" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="f0af1072-7cd2-44bc-97d8-db31fc37126d" name="Kriterien ausblenden" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="4112c2b7-42c0-429f-a915-626f5b12d43c" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="6e7b1807-b1e2-44d0-a58f-11b6182a9a76" name="&#xD;&#xA;Projekt anzeigen" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="cb82dcd4-f297-42e3-9fec-b6cfd2c28b46" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="d91e7e26-d0a6-4e15-abf7-a39349e3e73f" name="&#xD;&#xA;Analyse anzeigen" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="52fa3ecb-2157-4a7e-ada6-df6656ab7f15" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="5347a6b2-8ad2-4b0a-ac4d-ca5f3d4b9b30" name="Geschäftsfall_grob">
+    <elementDefinition Id="76828dc0-6fc3-4cc5-94fb-4da7f9a1284b" />
+  </package>
+</useCaseModelRoot>
