@@ -287,7 +287,7 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Criterion_Tab_Erfüllung", Storage="_Tab_Kriterium", ThisKey="Kriterium_Id", OtherKey="Kriterium_Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Criterion_Fulfillment", Storage="_Tab_Kriterium", ThisKey="Kriterium_Id", OtherKey="Kriterium_Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Criterion Criterion
 		{
 			get
@@ -321,7 +321,7 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tab_Produkt_Tab_Erfüllung", Storage="_Tab_Produkt", ThisKey="Produkt_Id", OtherKey="Produkt_Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_Fulfillment", Storage="_Tab_Produkt", ThisKey="Produkt_Id", OtherKey="Produkt_Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Product Product
 		{
 			get
@@ -355,7 +355,7 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Tab_Erfüllung", Storage="_Tab_Projekt", ThisKey="Projekt_Id", OtherKey="Projekt_Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Fulfillment", Storage="_Tab_Projekt", ThisKey="Projekt_Id", OtherKey="Projekt_Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Project Project
 		{
 			get
@@ -489,7 +489,7 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tab_Produkt_Tab_Projektprodukt", Storage="_Tab_Produkt", ThisKey="Produkt_Id", OtherKey="Produkt_Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_ProjectProduct", Storage="_Tab_Produkt", ThisKey="Produkt_Id", OtherKey="Produkt_Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Product Product
 		{
 			get
@@ -523,7 +523,7 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Tab_Projektprodukt", Storage="_Tab_Projekt", ThisKey="Projekt_Id", OtherKey="Projekt_Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_ProjectProduct", Storage="_Tab_Projekt", ThisKey="Projekt_Id", OtherKey="Projekt_Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Project Project
 		{
 			get
@@ -700,7 +700,7 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Criterion_Tab_Erfüllung", Storage="_Tab_Erfüllung", ThisKey="Kriterium_Id", OtherKey="Kriterium_Id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Criterion_Fulfillment", Storage="_Tab_Erfüllung", ThisKey="Kriterium_Id", OtherKey="Kriterium_Id")]
 		public EntitySet<Fulfillment> Fulfillment
 		{
 			get
@@ -713,7 +713,7 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Criterion_Tab_Projektkriterium", Storage="_Tab_Projektkriterium", ThisKey="Kriterium_Id", OtherKey="Kriterium_Id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Criterion_ProjectCriterion", Storage="_Tab_Projektkriterium", ThisKey="Kriterium_Id", OtherKey="Kriterium_Id")]
 		public EntitySet<ProjectCriterion> Tab_Projektkriterium
 		{
 			get
@@ -726,7 +726,7 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Criterion_Tab_Projektkriterium1", Storage="_Tab_Projektkriterium1", ThisKey="Kriterium_Id", OtherKey="Parent_Kriterium_Id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Criterion_ProjectCriterion1", Storage="_Tab_Projektkriterium1", ThisKey="Kriterium_Id", OtherKey="Parent_Kriterium_Id")]
 		public EntitySet<ProjectCriterion> ProjectCriterion
 		{
 			get
@@ -891,7 +891,7 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tab_Produkt_Tab_Erfüllung", Storage="_Tab_Erfüllung", ThisKey="Produkt_Id", OtherKey="Produkt_Id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_Fulfillment", Storage="_Tab_Erfüllung", ThisKey="Produkt_Id", OtherKey="Produkt_Id")]
 		public EntitySet<Fulfillment> Fulfillment
 		{
 			get
@@ -904,7 +904,7 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tab_Produkt_Tab_Projektprodukt", Storage="_Tab_Projektprodukt", ThisKey="Produkt_Id", OtherKey="Produkt_Id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_ProjectProduct", Storage="_Tab_Projektprodukt", ThisKey="Produkt_Id", OtherKey="Produkt_Id")]
 		public EntitySet<ProjectProduct> ProjectProduct
 		{
 			get
@@ -1060,7 +1060,7 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Tab_Erfüllung", Storage="_Tab_Erfüllung", ThisKey="Projekt_Id", OtherKey="Projekt_Id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Fulfillment", Storage="_Tab_Erfüllung", ThisKey="Projekt_Id", OtherKey="Projekt_Id")]
 		public EntitySet<Fulfillment> Fulfillment
 		{
 			get
@@ -1073,7 +1073,7 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Tab_Projektprodukt", Storage="_Tab_Projektprodukt", ThisKey="Projekt_Id", OtherKey="Projekt_Id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_ProjectProduct", Storage="_Tab_Projektprodukt", ThisKey="Projekt_Id", OtherKey="Projekt_Id")]
 		public EntitySet<ProjectProduct> ProjectProduct
 		{
 			get
@@ -1086,7 +1086,7 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Tab_Projektkriterium", Storage="_Tab_Projektkriterium", ThisKey="Projekt_Id", OtherKey="Projekt_Id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_ProjectCriterion", Storage="_Tab_Projektkriterium", ThisKey="Projekt_Id", OtherKey="Projekt_Id")]
 		public EntitySet<ProjectCriterion> ProjectCriterion
 		{
 			get
@@ -1338,7 +1338,7 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Criterion_Tab_Projektkriterium", Storage="_Tab_Kriterium", ThisKey="Kriterium_Id", OtherKey="Kriterium_Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Criterion_ProjectCriterion", Storage="_Tab_Kriterium", ThisKey="Kriterium_Id", OtherKey="Kriterium_Id", IsForeignKey=true)]
 		public Criterion Tab_Kriterium
 		{
 			get
@@ -1372,7 +1372,7 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Criterion_Tab_Projektkriterium1", Storage="_Tab_Kriterium1", ThisKey="Parent_Kriterium_Id", OtherKey="Kriterium_Id", IsForeignKey=true, DeleteRule="CASCADE")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Criterion_ProjectCriterion1", Storage="_Tab_Kriterium1", ThisKey="Parent_Kriterium_Id", OtherKey="Kriterium_Id", IsForeignKey=true, DeleteRule="CASCADE")]
 		public Criterion Criterion
 		{
 			get
@@ -1406,7 +1406,7 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Tab_Projektkriterium", Storage="_Tab_Projekt", ThisKey="Projekt_Id", OtherKey="Projekt_Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_ProjectCriterion", Storage="_Tab_Projekt", ThisKey="Projekt_Id", OtherKey="Projekt_Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Project Project
 		{
 			get

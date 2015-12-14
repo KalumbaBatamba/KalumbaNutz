@@ -7,17 +7,17 @@
       <Column Name="Kriterium_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Erfüllungsgrad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Kommentar" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="Criterion_Tab_Erfüllung" Member="Criterion" Storage="_Tab_Kriterium" ThisKey="Kriterium_Id" OtherKey="Kriterium_Id" Type="Criterion" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="Tab_Produkt_Tab_Erfüllung" Member="Product" Storage="_Tab_Produkt" ThisKey="Produkt_Id" OtherKey="Produkt_Id" Type="Product" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="Project_Tab_Erfüllung" Member="Project" Storage="_Tab_Projekt" ThisKey="Projekt_Id" OtherKey="Projekt_Id" Type="Project" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Criterion_Fulfillment" Member="Criterion" Storage="_Tab_Kriterium" ThisKey="Kriterium_Id" OtherKey="Kriterium_Id" Type="Criterion" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Product_Fulfillment" Member="Product" Storage="_Tab_Produkt" ThisKey="Produkt_Id" OtherKey="Produkt_Id" Type="Product" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Project_Fulfillment" Member="Project" Storage="_Tab_Projekt" ThisKey="Projekt_Id" OtherKey="Projekt_Id" Type="Project" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Tab_Projektprodukt" Member="ProjectProduct">
     <Type Name="ProjectProduct">
       <Column Name="Projekt_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Produkt_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Tab_Produkt_Tab_Projektprodukt" Member="Product" Storage="_Tab_Produkt" ThisKey="Produkt_Id" OtherKey="Produkt_Id" Type="Product" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="Project_Tab_Projektprodukt" Member="Project" Storage="_Tab_Projekt" ThisKey="Projekt_Id" OtherKey="Projekt_Id" Type="Project" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Product_ProjectProduct" Member="Product" Storage="_Tab_Produkt" ThisKey="Produkt_Id" OtherKey="Produkt_Id" Type="Product" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Project_ProjectProduct" Member="Project" Storage="_Tab_Projekt" ThisKey="Projekt_Id" OtherKey="Projekt_Id" Type="Project" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Tab_Kriterium" Member="Criterion">
@@ -26,9 +26,9 @@
       <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Beschreibung" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="Skalar" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="Criterion_Tab_Erfüllung" Member="Fulfillment" Storage="_Tab_Erfüllung" ThisKey="Kriterium_Id" OtherKey="Kriterium_Id" Type="Fulfillment" />
-      <Association Name="Criterion_Tab_Projektkriterium" Member="Tab_Projektkriterium" ThisKey="Kriterium_Id" OtherKey="Kriterium_Id" Type="ProjectCriterion" />
-      <Association Name="Criterion_Tab_Projektkriterium1" Member="ProjectCriterion" Storage="_Tab_Projektkriterium1" ThisKey="Kriterium_Id" OtherKey="Parent_Kriterium_Id" Type="ProjectCriterion" />
+      <Association Name="Criterion_Fulfillment" Member="Fulfillment" Storage="_Tab_Erfüllung" ThisKey="Kriterium_Id" OtherKey="Kriterium_Id" Type="Fulfillment" />
+      <Association Name="Criterion_ProjectCriterion" Member="Tab_Projektkriterium" ThisKey="Kriterium_Id" OtherKey="Kriterium_Id" Type="ProjectCriterion" />
+      <Association Name="Criterion_ProjectCriterion1" Member="ProjectCriterion" Storage="_Tab_Projektkriterium1" ThisKey="Kriterium_Id" OtherKey="Parent_Kriterium_Id" Type="ProjectCriterion" />
     </Type>
   </Table>
   <Table Name="dbo.Tab_Produkt" Member="Product">
@@ -36,8 +36,8 @@
       <Column Name="Produkt_Id" AutoSync="Never" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Hersteller" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Tab_Produkt_Tab_Erfüllung" Member="Fulfillment" Storage="_Tab_Erfüllung" ThisKey="Produkt_Id" OtherKey="Produkt_Id" Type="Fulfillment" />
-      <Association Name="Tab_Produkt_Tab_Projektprodukt" Member="ProjectProduct" Storage="_Tab_Projektprodukt" ThisKey="Produkt_Id" OtherKey="Produkt_Id" Type="ProjectProduct" />
+      <Association Name="Product_Fulfillment" Member="Fulfillment" Storage="_Tab_Erfüllung" ThisKey="Produkt_Id" OtherKey="Produkt_Id" Type="Fulfillment" />
+      <Association Name="Product_ProjectProduct" Member="ProjectProduct" Storage="_Tab_Projektprodukt" ThisKey="Produkt_Id" OtherKey="Produkt_Id" Type="ProjectProduct" />
     </Type>
   </Table>
   <Table Name="dbo.Tab_Projekt" Member="Project">
@@ -45,9 +45,9 @@
       <Column Name="Projekt_Id" AutoSync="Never" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Beschreibung" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Association Name="Project_Tab_Erfüllung" Member="Fulfillment" Storage="_Tab_Erfüllung" ThisKey="Projekt_Id" OtherKey="Projekt_Id" Type="Fulfillment" />
-      <Association Name="Project_Tab_Projektprodukt" Member="ProjectProduct" Storage="_Tab_Projektprodukt" ThisKey="Projekt_Id" OtherKey="Projekt_Id" Type="ProjectProduct" />
-      <Association Name="Project_Tab_Projektkriterium" Member="ProjectCriterion" Storage="_Tab_Projektkriterium" ThisKey="Projekt_Id" OtherKey="Projekt_Id" Type="ProjectCriterion" />
+      <Association Name="Project_Fulfillment" Member="Fulfillment" Storage="_Tab_Erfüllung" ThisKey="Projekt_Id" OtherKey="Projekt_Id" Type="Fulfillment" />
+      <Association Name="Project_ProjectProduct" Member="ProjectProduct" Storage="_Tab_Projektprodukt" ThisKey="Projekt_Id" OtherKey="Projekt_Id" Type="ProjectProduct" />
+      <Association Name="Project_ProjectCriterion" Member="ProjectCriterion" Storage="_Tab_Projektkriterium" ThisKey="Projekt_Id" OtherKey="Projekt_Id" Type="ProjectCriterion" />
     </Type>
   </Table>
   <Table Name="dbo.Tab_Projektkriterium" Member="ProjectCriterion">
@@ -58,9 +58,9 @@
       <Column Name="Gewichtung_kardinal" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Gewichtung_Prozentural_Ebene" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Gewichtung_Prozentural_Projekt" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Criterion_Tab_Projektkriterium" Member="Tab_Kriterium" ThisKey="Kriterium_Id" OtherKey="Kriterium_Id" Type="Criterion" IsForeignKey="true" />
-      <Association Name="Criterion_Tab_Projektkriterium1" Member="Criterion" Storage="_Tab_Kriterium1" ThisKey="Parent_Kriterium_Id" OtherKey="Kriterium_Id" Type="Criterion" IsForeignKey="true" DeleteRule="CASCADE" />
-      <Association Name="Project_Tab_Projektkriterium" Member="Project" Storage="_Tab_Projekt" ThisKey="Projekt_Id" OtherKey="Projekt_Id" Type="Project" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Criterion_ProjectCriterion" Member="Tab_Kriterium" ThisKey="Kriterium_Id" OtherKey="Kriterium_Id" Type="Criterion" IsForeignKey="true" />
+      <Association Name="Criterion_ProjectCriterion1" Member="Criterion" Storage="_Tab_Kriterium1" ThisKey="Parent_Kriterium_Id" OtherKey="Kriterium_Id" Type="Criterion" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Project_ProjectCriterion" Member="Project" Storage="_Tab_Projekt" ThisKey="Projekt_Id" OtherKey="Projekt_Id" Type="Project" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
 </Database>
