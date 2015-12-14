@@ -30,24 +30,24 @@ namespace NWAT.DB
 		
     #region Definitionen der Erweiterungsmethoden
     partial void OnCreated();
-    partial void InsertTab_Erfüllung(Tab_Erfüllung instance);
-    partial void UpdateTab_Erfüllung(Tab_Erfüllung instance);
-    partial void DeleteTab_Erfüllung(Tab_Erfüllung instance);
-    partial void InsertTab_Projektprodukt(Tab_Projektprodukt instance);
-    partial void UpdateTab_Projektprodukt(Tab_Projektprodukt instance);
-    partial void DeleteTab_Projektprodukt(Tab_Projektprodukt instance);
-    partial void InsertTab_Kriterium(Tab_Kriterium instance);
-    partial void UpdateTab_Kriterium(Tab_Kriterium instance);
-    partial void DeleteTab_Kriterium(Tab_Kriterium instance);
-    partial void InsertTab_Produkt(Tab_Produkt instance);
-    partial void UpdateTab_Produkt(Tab_Produkt instance);
-    partial void DeleteTab_Produkt(Tab_Produkt instance);
-    partial void InsertTab_Projekt(Tab_Projekt instance);
-    partial void UpdateTab_Projekt(Tab_Projekt instance);
-    partial void DeleteTab_Projekt(Tab_Projekt instance);
-    partial void InsertTab_Projektkriterium(Tab_Projektkriterium instance);
-    partial void UpdateTab_Projektkriterium(Tab_Projektkriterium instance);
-    partial void DeleteTab_Projektkriterium(Tab_Projektkriterium instance);
+    partial void InsertFulfillment(Fulfillment instance);
+    partial void UpdateFulfillment(Fulfillment instance);
+    partial void DeleteFulfillment(Fulfillment instance);
+    partial void InsertProjectProduct(ProjectProduct instance);
+    partial void UpdateProjectProduct(ProjectProduct instance);
+    partial void DeleteProjectProduct(ProjectProduct instance);
+    partial void InsertCriterion(Criterion instance);
+    partial void UpdateCriterion(Criterion instance);
+    partial void DeleteCriterion(Criterion instance);
+    partial void InsertProduct(Product instance);
+    partial void UpdateProduct(Product instance);
+    partial void DeleteProduct(Product instance);
+    partial void InsertProject(Project instance);
+    partial void UpdateProject(Project instance);
+    partial void DeleteProject(Project instance);
+    partial void InsertProjectCriterion(ProjectCriterion instance);
+    partial void UpdateProjectCriterion(ProjectCriterion instance);
+    partial void DeleteProjectCriterion(ProjectCriterion instance);
     #endregion
 		
 		public NWATDataContext() : 
@@ -80,57 +80,57 @@ namespace NWAT.DB
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Tab_Erfüllung> Tab_Erfüllung
+		public System.Data.Linq.Table<Fulfillment> Fulfillment
 		{
 			get
 			{
-				return this.GetTable<Tab_Erfüllung>();
+				return this.GetTable<Fulfillment>();
 			}
 		}
 		
-		public System.Data.Linq.Table<Tab_Projektprodukt> Tab_Projektprodukt
+		public System.Data.Linq.Table<ProjectProduct> ProjectProduct
 		{
 			get
 			{
-				return this.GetTable<Tab_Projektprodukt>();
+				return this.GetTable<ProjectProduct>();
 			}
 		}
 		
-		public System.Data.Linq.Table<Tab_Kriterium> Tab_Kriterium
+		public System.Data.Linq.Table<Criterion> Criterion
 		{
 			get
 			{
-				return this.GetTable<Tab_Kriterium>();
+				return this.GetTable<Criterion>();
 			}
 		}
 		
-		public System.Data.Linq.Table<Tab_Produkt> Tab_Produkt
+		public System.Data.Linq.Table<Product> Product
 		{
 			get
 			{
-				return this.GetTable<Tab_Produkt>();
+				return this.GetTable<Product>();
 			}
 		}
 		
-		public System.Data.Linq.Table<Tab_Projekt> Tab_Projekt
+		public System.Data.Linq.Table<Project> Project
 		{
 			get
 			{
-				return this.GetTable<Tab_Projekt>();
+				return this.GetTable<Project>();
 			}
 		}
 		
-		public System.Data.Linq.Table<Tab_Projektkriterium> Tab_Projektkriterium
+		public System.Data.Linq.Table<ProjectCriterion> ProjectCriterion
 		{
 			get
 			{
-				return this.GetTable<Tab_Projektkriterium>();
+				return this.GetTable<ProjectCriterion>();
 			}
 		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tab_Erfüllung")]
-	public partial class Tab_Erfüllung : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Fulfillment : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -145,11 +145,11 @@ namespace NWAT.DB
 		
 		private string _Kommentar;
 		
-		private EntityRef<Tab_Kriterium> _Tab_Kriterium;
+		private EntityRef<Criterion> _Tab_Kriterium;
 		
-		private EntityRef<Tab_Produkt> _Tab_Produkt;
+		private EntityRef<Product> _Tab_Produkt;
 		
-		private EntityRef<Tab_Projekt> _Tab_Projekt;
+		private EntityRef<Project> _Tab_Projekt;
 		
     #region Definitionen der Erweiterungsmethoden
     partial void OnLoaded();
@@ -167,11 +167,11 @@ namespace NWAT.DB
     partial void OnKommentarChanged();
     #endregion
 		
-		public Tab_Erfüllung()
+		public Fulfillment()
 		{
-			this._Tab_Kriterium = default(EntityRef<Tab_Kriterium>);
-			this._Tab_Produkt = default(EntityRef<Tab_Produkt>);
-			this._Tab_Projekt = default(EntityRef<Tab_Projekt>);
+			this._Tab_Kriterium = default(EntityRef<Criterion>);
+			this._Tab_Produkt = default(EntityRef<Product>);
+			this._Tab_Projekt = default(EntityRef<Project>);
 			OnCreated();
 		}
 		
@@ -287,8 +287,8 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tab_Kriterium_Tab_Erfüllung", Storage="_Tab_Kriterium", ThisKey="Kriterium_Id", OtherKey="Kriterium_Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public Tab_Kriterium Tab_Kriterium
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Criterion_Tab_Erfüllung", Storage="_Tab_Kriterium", ThisKey="Kriterium_Id", OtherKey="Kriterium_Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public Criterion Criterion
 		{
 			get
 			{
@@ -296,7 +296,7 @@ namespace NWAT.DB
 			}
 			set
 			{
-				Tab_Kriterium previousValue = this._Tab_Kriterium.Entity;
+				Criterion previousValue = this._Tab_Kriterium.Entity;
 				if (((previousValue != value) 
 							|| (this._Tab_Kriterium.HasLoadedOrAssignedValue == false)))
 				{
@@ -304,25 +304,25 @@ namespace NWAT.DB
 					if ((previousValue != null))
 					{
 						this._Tab_Kriterium.Entity = null;
-						previousValue.Tab_Erfüllung.Remove(this);
+						previousValue.Fulfillment.Remove(this);
 					}
 					this._Tab_Kriterium.Entity = value;
 					if ((value != null))
 					{
-						value.Tab_Erfüllung.Add(this);
+						value.Fulfillment.Add(this);
 						this._Kriterium_Id = value.Kriterium_Id;
 					}
 					else
 					{
 						this._Kriterium_Id = default(int);
 					}
-					this.SendPropertyChanged("Tab_Kriterium");
+					this.SendPropertyChanged("Criterion");
 				}
 			}
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tab_Produkt_Tab_Erfüllung", Storage="_Tab_Produkt", ThisKey="Produkt_Id", OtherKey="Produkt_Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public Tab_Produkt Tab_Produkt
+		public Product Product
 		{
 			get
 			{
@@ -330,7 +330,7 @@ namespace NWAT.DB
 			}
 			set
 			{
-				Tab_Produkt previousValue = this._Tab_Produkt.Entity;
+				Product previousValue = this._Tab_Produkt.Entity;
 				if (((previousValue != value) 
 							|| (this._Tab_Produkt.HasLoadedOrAssignedValue == false)))
 				{
@@ -338,25 +338,25 @@ namespace NWAT.DB
 					if ((previousValue != null))
 					{
 						this._Tab_Produkt.Entity = null;
-						previousValue.Tab_Erfüllung.Remove(this);
+						previousValue.Fulfillment.Remove(this);
 					}
 					this._Tab_Produkt.Entity = value;
 					if ((value != null))
 					{
-						value.Tab_Erfüllung.Add(this);
+						value.Fulfillment.Add(this);
 						this._Produkt_Id = value.Produkt_Id;
 					}
 					else
 					{
 						this._Produkt_Id = default(int);
 					}
-					this.SendPropertyChanged("Tab_Produkt");
+					this.SendPropertyChanged("Product");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tab_Projekt_Tab_Erfüllung", Storage="_Tab_Projekt", ThisKey="Projekt_Id", OtherKey="Projekt_Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public Tab_Projekt Tab_Projekt
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Tab_Erfüllung", Storage="_Tab_Projekt", ThisKey="Projekt_Id", OtherKey="Projekt_Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public Project Project
 		{
 			get
 			{
@@ -364,7 +364,7 @@ namespace NWAT.DB
 			}
 			set
 			{
-				Tab_Projekt previousValue = this._Tab_Projekt.Entity;
+				Project previousValue = this._Tab_Projekt.Entity;
 				if (((previousValue != value) 
 							|| (this._Tab_Projekt.HasLoadedOrAssignedValue == false)))
 				{
@@ -372,19 +372,19 @@ namespace NWAT.DB
 					if ((previousValue != null))
 					{
 						this._Tab_Projekt.Entity = null;
-						previousValue.Tab_Erfüllung.Remove(this);
+						previousValue.Fulfillment.Remove(this);
 					}
 					this._Tab_Projekt.Entity = value;
 					if ((value != null))
 					{
-						value.Tab_Erfüllung.Add(this);
+						value.Fulfillment.Add(this);
 						this._Projekt_Id = value.Projekt_Id;
 					}
 					else
 					{
 						this._Projekt_Id = default(int);
 					}
-					this.SendPropertyChanged("Tab_Projekt");
+					this.SendPropertyChanged("Project");
 				}
 			}
 		}
@@ -411,7 +411,7 @@ namespace NWAT.DB
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tab_Projektprodukt")]
-	public partial class Tab_Projektprodukt : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class ProjectProduct : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -420,9 +420,9 @@ namespace NWAT.DB
 		
 		private int _Produkt_Id;
 		
-		private EntityRef<Tab_Produkt> _Tab_Produkt;
+		private EntityRef<Product> _Tab_Produkt;
 		
-		private EntityRef<Tab_Projekt> _Tab_Projekt;
+		private EntityRef<Project> _Tab_Projekt;
 		
     #region Definitionen der Erweiterungsmethoden
     partial void OnLoaded();
@@ -434,10 +434,10 @@ namespace NWAT.DB
     partial void OnProdukt_IdChanged();
     #endregion
 		
-		public Tab_Projektprodukt()
+		public ProjectProduct()
 		{
-			this._Tab_Produkt = default(EntityRef<Tab_Produkt>);
-			this._Tab_Projekt = default(EntityRef<Tab_Projekt>);
+			this._Tab_Produkt = default(EntityRef<Product>);
+			this._Tab_Projekt = default(EntityRef<Project>);
 			OnCreated();
 		}
 		
@@ -490,7 +490,7 @@ namespace NWAT.DB
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tab_Produkt_Tab_Projektprodukt", Storage="_Tab_Produkt", ThisKey="Produkt_Id", OtherKey="Produkt_Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public Tab_Produkt Tab_Produkt
+		public Product Product
 		{
 			get
 			{
@@ -498,7 +498,7 @@ namespace NWAT.DB
 			}
 			set
 			{
-				Tab_Produkt previousValue = this._Tab_Produkt.Entity;
+				Product previousValue = this._Tab_Produkt.Entity;
 				if (((previousValue != value) 
 							|| (this._Tab_Produkt.HasLoadedOrAssignedValue == false)))
 				{
@@ -506,25 +506,25 @@ namespace NWAT.DB
 					if ((previousValue != null))
 					{
 						this._Tab_Produkt.Entity = null;
-						previousValue.Tab_Projektprodukt.Remove(this);
+						previousValue.ProjectProduct.Remove(this);
 					}
 					this._Tab_Produkt.Entity = value;
 					if ((value != null))
 					{
-						value.Tab_Projektprodukt.Add(this);
+						value.ProjectProduct.Add(this);
 						this._Produkt_Id = value.Produkt_Id;
 					}
 					else
 					{
 						this._Produkt_Id = default(int);
 					}
-					this.SendPropertyChanged("Tab_Produkt");
+					this.SendPropertyChanged("Product");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tab_Projekt_Tab_Projektprodukt", Storage="_Tab_Projekt", ThisKey="Projekt_Id", OtherKey="Projekt_Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public Tab_Projekt Tab_Projekt
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Tab_Projektprodukt", Storage="_Tab_Projekt", ThisKey="Projekt_Id", OtherKey="Projekt_Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public Project Project
 		{
 			get
 			{
@@ -532,7 +532,7 @@ namespace NWAT.DB
 			}
 			set
 			{
-				Tab_Projekt previousValue = this._Tab_Projekt.Entity;
+				Project previousValue = this._Tab_Projekt.Entity;
 				if (((previousValue != value) 
 							|| (this._Tab_Projekt.HasLoadedOrAssignedValue == false)))
 				{
@@ -540,19 +540,19 @@ namespace NWAT.DB
 					if ((previousValue != null))
 					{
 						this._Tab_Projekt.Entity = null;
-						previousValue.Tab_Projektprodukt.Remove(this);
+						previousValue.ProjectProduct.Remove(this);
 					}
 					this._Tab_Projekt.Entity = value;
 					if ((value != null))
 					{
-						value.Tab_Projektprodukt.Add(this);
+						value.ProjectProduct.Add(this);
 						this._Projekt_Id = value.Projekt_Id;
 					}
 					else
 					{
 						this._Projekt_Id = default(int);
 					}
-					this.SendPropertyChanged("Tab_Projekt");
+					this.SendPropertyChanged("Project");
 				}
 			}
 		}
@@ -579,7 +579,7 @@ namespace NWAT.DB
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tab_Kriterium")]
-	public partial class Tab_Kriterium : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Criterion : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -592,11 +592,11 @@ namespace NWAT.DB
 		
 		private bool _Skalar;
 		
-		private EntitySet<Tab_Erfüllung> _Tab_Erfüllung;
+		private EntitySet<Fulfillment> _Tab_Erfüllung;
 		
-		private EntitySet<Tab_Projektkriterium> _Tab_Projektkriterium;
+		private EntitySet<ProjectCriterion> _Tab_Projektkriterium;
 		
-		private EntitySet<Tab_Projektkriterium> _Tab_Projektkriterium1;
+		private EntitySet<ProjectCriterion> _Tab_Projektkriterium1;
 		
     #region Definitionen der Erweiterungsmethoden
     partial void OnLoaded();
@@ -612,15 +612,15 @@ namespace NWAT.DB
     partial void OnSkalarChanged();
     #endregion
 		
-		public Tab_Kriterium()
+		public Criterion()
 		{
-			this._Tab_Erfüllung = new EntitySet<Tab_Erfüllung>(new Action<Tab_Erfüllung>(this.attach_Tab_Erfüllung), new Action<Tab_Erfüllung>(this.detach_Tab_Erfüllung));
-			this._Tab_Projektkriterium = new EntitySet<Tab_Projektkriterium>(new Action<Tab_Projektkriterium>(this.attach_Tab_Projektkriterium), new Action<Tab_Projektkriterium>(this.detach_Tab_Projektkriterium));
-			this._Tab_Projektkriterium1 = new EntitySet<Tab_Projektkriterium>(new Action<Tab_Projektkriterium>(this.attach_Tab_Projektkriterium1), new Action<Tab_Projektkriterium>(this.detach_Tab_Projektkriterium1));
+			this._Tab_Erfüllung = new EntitySet<Fulfillment>(new Action<Fulfillment>(this.attach_Tab_Erfüllung), new Action<Fulfillment>(this.detach_Tab_Erfüllung));
+			this._Tab_Projektkriterium = new EntitySet<ProjectCriterion>(new Action<ProjectCriterion>(this.attach_Tab_Projektkriterium), new Action<ProjectCriterion>(this.detach_Tab_Projektkriterium));
+			this._Tab_Projektkriterium1 = new EntitySet<ProjectCriterion>(new Action<ProjectCriterion>(this.attach_Tab_Projektkriterium1), new Action<ProjectCriterion>(this.detach_Tab_Projektkriterium1));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Kriterium_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Kriterium_Id", DbType="Int NOT NULL", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int Kriterium_Id
 		{
 			get
@@ -700,8 +700,8 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tab_Kriterium_Tab_Erfüllung", Storage="_Tab_Erfüllung", ThisKey="Kriterium_Id", OtherKey="Kriterium_Id")]
-		public EntitySet<Tab_Erfüllung> Tab_Erfüllung
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Criterion_Tab_Erfüllung", Storage="_Tab_Erfüllung", ThisKey="Kriterium_Id", OtherKey="Kriterium_Id")]
+		public EntitySet<Fulfillment> Fulfillment
 		{
 			get
 			{
@@ -713,8 +713,8 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tab_Kriterium_Tab_Projektkriterium", Storage="_Tab_Projektkriterium", ThisKey="Kriterium_Id", OtherKey="Kriterium_Id")]
-		public EntitySet<Tab_Projektkriterium> Tab_Projektkriterium
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Criterion_Tab_Projektkriterium", Storage="_Tab_Projektkriterium", ThisKey="Kriterium_Id", OtherKey="Kriterium_Id")]
+		public EntitySet<ProjectCriterion> Tab_Projektkriterium
 		{
 			get
 			{
@@ -726,8 +726,8 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tab_Kriterium_Tab_Projektkriterium1", Storage="_Tab_Projektkriterium1", ThisKey="Kriterium_Id", OtherKey="Parent_Kriterium_Id")]
-		public EntitySet<Tab_Projektkriterium> Tab_Projektkriterium1
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Criterion_Tab_Projektkriterium1", Storage="_Tab_Projektkriterium1", ThisKey="Kriterium_Id", OtherKey="Parent_Kriterium_Id")]
+		public EntitySet<ProjectCriterion> ProjectCriterion
 		{
 			get
 			{
@@ -759,45 +759,45 @@ namespace NWAT.DB
 			}
 		}
 		
-		private void attach_Tab_Erfüllung(Tab_Erfüllung entity)
+		private void attach_Tab_Erfüllung(Fulfillment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Criterion = this;
+		}
+		
+		private void detach_Tab_Erfüllung(Fulfillment entity)
+		{
+			this.SendPropertyChanging();
+			entity.Criterion = null;
+		}
+		
+		private void attach_Tab_Projektkriterium(ProjectCriterion entity)
 		{
 			this.SendPropertyChanging();
 			entity.Tab_Kriterium = this;
 		}
 		
-		private void detach_Tab_Erfüllung(Tab_Erfüllung entity)
+		private void detach_Tab_Projektkriterium(ProjectCriterion entity)
 		{
 			this.SendPropertyChanging();
 			entity.Tab_Kriterium = null;
 		}
 		
-		private void attach_Tab_Projektkriterium(Tab_Projektkriterium entity)
+		private void attach_Tab_Projektkriterium1(ProjectCriterion entity)
 		{
 			this.SendPropertyChanging();
-			entity.Tab_Kriterium = this;
+			entity.Criterion = this;
 		}
 		
-		private void detach_Tab_Projektkriterium(Tab_Projektkriterium entity)
+		private void detach_Tab_Projektkriterium1(ProjectCriterion entity)
 		{
 			this.SendPropertyChanging();
-			entity.Tab_Kriterium = null;
-		}
-		
-		private void attach_Tab_Projektkriterium1(Tab_Projektkriterium entity)
-		{
-			this.SendPropertyChanging();
-			entity.Tab_Kriterium1 = this;
-		}
-		
-		private void detach_Tab_Projektkriterium1(Tab_Projektkriterium entity)
-		{
-			this.SendPropertyChanging();
-			entity.Tab_Kriterium1 = null;
+			entity.Criterion = null;
 		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tab_Produkt")]
-	public partial class Tab_Produkt : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Product : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -808,9 +808,9 @@ namespace NWAT.DB
 		
 		private string _Hersteller;
 		
-		private EntitySet<Tab_Erfüllung> _Tab_Erfüllung;
+		private EntitySet<Fulfillment> _Tab_Erfüllung;
 		
-		private EntitySet<Tab_Projektprodukt> _Tab_Projektprodukt;
+		private EntitySet<ProjectProduct> _Tab_Projektprodukt;
 		
     #region Definitionen der Erweiterungsmethoden
     partial void OnLoaded();
@@ -824,14 +824,14 @@ namespace NWAT.DB
     partial void OnHerstellerChanged();
     #endregion
 		
-		public Tab_Produkt()
+		public Product()
 		{
-			this._Tab_Erfüllung = new EntitySet<Tab_Erfüllung>(new Action<Tab_Erfüllung>(this.attach_Tab_Erfüllung), new Action<Tab_Erfüllung>(this.detach_Tab_Erfüllung));
-			this._Tab_Projektprodukt = new EntitySet<Tab_Projektprodukt>(new Action<Tab_Projektprodukt>(this.attach_Tab_Projektprodukt), new Action<Tab_Projektprodukt>(this.detach_Tab_Projektprodukt));
+			this._Tab_Erfüllung = new EntitySet<Fulfillment>(new Action<Fulfillment>(this.attach_Tab_Erfüllung), new Action<Fulfillment>(this.detach_Tab_Erfüllung));
+			this._Tab_Projektprodukt = new EntitySet<ProjectProduct>(new Action<ProjectProduct>(this.attach_Tab_Projektprodukt), new Action<ProjectProduct>(this.detach_Tab_Projektprodukt));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Produkt_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Produkt_Id", DbType="Int NOT NULL", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int Produkt_Id
 		{
 			get
@@ -892,7 +892,7 @@ namespace NWAT.DB
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tab_Produkt_Tab_Erfüllung", Storage="_Tab_Erfüllung", ThisKey="Produkt_Id", OtherKey="Produkt_Id")]
-		public EntitySet<Tab_Erfüllung> Tab_Erfüllung
+		public EntitySet<Fulfillment> Fulfillment
 		{
 			get
 			{
@@ -905,7 +905,7 @@ namespace NWAT.DB
 		}
 		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tab_Produkt_Tab_Projektprodukt", Storage="_Tab_Projektprodukt", ThisKey="Produkt_Id", OtherKey="Produkt_Id")]
-		public EntitySet<Tab_Projektprodukt> Tab_Projektprodukt
+		public EntitySet<ProjectProduct> ProjectProduct
 		{
 			get
 			{
@@ -937,33 +937,33 @@ namespace NWAT.DB
 			}
 		}
 		
-		private void attach_Tab_Erfüllung(Tab_Erfüllung entity)
+		private void attach_Tab_Erfüllung(Fulfillment entity)
 		{
 			this.SendPropertyChanging();
-			entity.Tab_Produkt = this;
+			entity.Product = this;
 		}
 		
-		private void detach_Tab_Erfüllung(Tab_Erfüllung entity)
+		private void detach_Tab_Erfüllung(Fulfillment entity)
 		{
 			this.SendPropertyChanging();
-			entity.Tab_Produkt = null;
+			entity.Product = null;
 		}
 		
-		private void attach_Tab_Projektprodukt(Tab_Projektprodukt entity)
+		private void attach_Tab_Projektprodukt(ProjectProduct entity)
 		{
 			this.SendPropertyChanging();
-			entity.Tab_Produkt = this;
+			entity.Product = this;
 		}
 		
-		private void detach_Tab_Projektprodukt(Tab_Projektprodukt entity)
+		private void detach_Tab_Projektprodukt(ProjectProduct entity)
 		{
 			this.SendPropertyChanging();
-			entity.Tab_Produkt = null;
+			entity.Product = null;
 		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tab_Projekt")]
-	public partial class Tab_Projekt : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Project : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -974,11 +974,11 @@ namespace NWAT.DB
 		
 		private string _Beschreibung;
 		
-		private EntitySet<Tab_Erfüllung> _Tab_Erfüllung;
+		private EntitySet<Fulfillment> _Tab_Erfüllung;
 		
-		private EntitySet<Tab_Projektprodukt> _Tab_Projektprodukt;
+		private EntitySet<ProjectProduct> _Tab_Projektprodukt;
 		
-		private EntitySet<Tab_Projektkriterium> _Tab_Projektkriterium;
+		private EntitySet<ProjectCriterion> _Tab_Projektkriterium;
 		
     #region Definitionen der Erweiterungsmethoden
     partial void OnLoaded();
@@ -992,15 +992,15 @@ namespace NWAT.DB
     partial void OnBeschreibungChanged();
     #endregion
 		
-		public Tab_Projekt()
+		public Project()
 		{
-			this._Tab_Erfüllung = new EntitySet<Tab_Erfüllung>(new Action<Tab_Erfüllung>(this.attach_Tab_Erfüllung), new Action<Tab_Erfüllung>(this.detach_Tab_Erfüllung));
-			this._Tab_Projektprodukt = new EntitySet<Tab_Projektprodukt>(new Action<Tab_Projektprodukt>(this.attach_Tab_Projektprodukt), new Action<Tab_Projektprodukt>(this.detach_Tab_Projektprodukt));
-			this._Tab_Projektkriterium = new EntitySet<Tab_Projektkriterium>(new Action<Tab_Projektkriterium>(this.attach_Tab_Projektkriterium), new Action<Tab_Projektkriterium>(this.detach_Tab_Projektkriterium));
+			this._Tab_Erfüllung = new EntitySet<Fulfillment>(new Action<Fulfillment>(this.attach_Tab_Erfüllung), new Action<Fulfillment>(this.detach_Tab_Erfüllung));
+			this._Tab_Projektprodukt = new EntitySet<ProjectProduct>(new Action<ProjectProduct>(this.attach_Tab_Projektprodukt), new Action<ProjectProduct>(this.detach_Tab_Projektprodukt));
+			this._Tab_Projektkriterium = new EntitySet<ProjectCriterion>(new Action<ProjectCriterion>(this.attach_Tab_Projektkriterium), new Action<ProjectCriterion>(this.detach_Tab_Projektkriterium));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Projekt_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Projekt_Id", DbType="Int NOT NULL", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int Projekt_Id
 		{
 			get
@@ -1060,8 +1060,8 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tab_Projekt_Tab_Erfüllung", Storage="_Tab_Erfüllung", ThisKey="Projekt_Id", OtherKey="Projekt_Id")]
-		public EntitySet<Tab_Erfüllung> Tab_Erfüllung
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Tab_Erfüllung", Storage="_Tab_Erfüllung", ThisKey="Projekt_Id", OtherKey="Projekt_Id")]
+		public EntitySet<Fulfillment> Fulfillment
 		{
 			get
 			{
@@ -1073,8 +1073,8 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tab_Projekt_Tab_Projektprodukt", Storage="_Tab_Projektprodukt", ThisKey="Projekt_Id", OtherKey="Projekt_Id")]
-		public EntitySet<Tab_Projektprodukt> Tab_Projektprodukt
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Tab_Projektprodukt", Storage="_Tab_Projektprodukt", ThisKey="Projekt_Id", OtherKey="Projekt_Id")]
+		public EntitySet<ProjectProduct> ProjectProduct
 		{
 			get
 			{
@@ -1086,8 +1086,8 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tab_Projekt_Tab_Projektkriterium", Storage="_Tab_Projektkriterium", ThisKey="Projekt_Id", OtherKey="Projekt_Id")]
-		public EntitySet<Tab_Projektkriterium> Tab_Projektkriterium
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Tab_Projektkriterium", Storage="_Tab_Projektkriterium", ThisKey="Projekt_Id", OtherKey="Projekt_Id")]
+		public EntitySet<ProjectCriterion> ProjectCriterion
 		{
 			get
 			{
@@ -1119,45 +1119,45 @@ namespace NWAT.DB
 			}
 		}
 		
-		private void attach_Tab_Erfüllung(Tab_Erfüllung entity)
+		private void attach_Tab_Erfüllung(Fulfillment entity)
 		{
 			this.SendPropertyChanging();
-			entity.Tab_Projekt = this;
+			entity.Project = this;
 		}
 		
-		private void detach_Tab_Erfüllung(Tab_Erfüllung entity)
+		private void detach_Tab_Erfüllung(Fulfillment entity)
 		{
 			this.SendPropertyChanging();
-			entity.Tab_Projekt = null;
+			entity.Project = null;
 		}
 		
-		private void attach_Tab_Projektprodukt(Tab_Projektprodukt entity)
+		private void attach_Tab_Projektprodukt(ProjectProduct entity)
 		{
 			this.SendPropertyChanging();
-			entity.Tab_Projekt = this;
+			entity.Project = this;
 		}
 		
-		private void detach_Tab_Projektprodukt(Tab_Projektprodukt entity)
+		private void detach_Tab_Projektprodukt(ProjectProduct entity)
 		{
 			this.SendPropertyChanging();
-			entity.Tab_Projekt = null;
+			entity.Project = null;
 		}
 		
-		private void attach_Tab_Projektkriterium(Tab_Projektkriterium entity)
+		private void attach_Tab_Projektkriterium(ProjectCriterion entity)
 		{
 			this.SendPropertyChanging();
-			entity.Tab_Projekt = this;
+			entity.Project = this;
 		}
 		
-		private void detach_Tab_Projektkriterium(Tab_Projektkriterium entity)
+		private void detach_Tab_Projektkriterium(ProjectCriterion entity)
 		{
 			this.SendPropertyChanging();
-			entity.Tab_Projekt = null;
+			entity.Project = null;
 		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tab_Projektkriterium")]
-	public partial class Tab_Projektkriterium : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class ProjectCriterion : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1174,11 +1174,11 @@ namespace NWAT.DB
 		
 		private System.Nullable<int> _Gewichtung_Prozentural_Projekt;
 		
-		private EntityRef<Tab_Kriterium> _Tab_Kriterium;
+		private EntityRef<Criterion> _Tab_Kriterium;
 		
-		private EntityRef<Tab_Kriterium> _Tab_Kriterium1;
+		private EntityRef<Criterion> _Tab_Kriterium1;
 		
-		private EntityRef<Tab_Projekt> _Tab_Projekt;
+		private EntityRef<Project> _Tab_Projekt;
 		
     #region Definitionen der Erweiterungsmethoden
     partial void OnLoaded();
@@ -1198,11 +1198,11 @@ namespace NWAT.DB
     partial void OnGewichtung_Prozentural_ProjektChanged();
     #endregion
 		
-		public Tab_Projektkriterium()
+		public ProjectCriterion()
 		{
-			this._Tab_Kriterium = default(EntityRef<Tab_Kriterium>);
-			this._Tab_Kriterium1 = default(EntityRef<Tab_Kriterium>);
-			this._Tab_Projekt = default(EntityRef<Tab_Projekt>);
+			this._Tab_Kriterium = default(EntityRef<Criterion>);
+			this._Tab_Kriterium1 = default(EntityRef<Criterion>);
+			this._Tab_Projekt = default(EntityRef<Project>);
 			OnCreated();
 		}
 		
@@ -1338,8 +1338,8 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tab_Kriterium_Tab_Projektkriterium", Storage="_Tab_Kriterium", ThisKey="Kriterium_Id", OtherKey="Kriterium_Id", IsForeignKey=true)]
-		public Tab_Kriterium Tab_Kriterium
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Criterion_Tab_Projektkriterium", Storage="_Tab_Kriterium", ThisKey="Kriterium_Id", OtherKey="Kriterium_Id", IsForeignKey=true)]
+		public Criterion Tab_Kriterium
 		{
 			get
 			{
@@ -1347,7 +1347,7 @@ namespace NWAT.DB
 			}
 			set
 			{
-				Tab_Kriterium previousValue = this._Tab_Kriterium.Entity;
+				Criterion previousValue = this._Tab_Kriterium.Entity;
 				if (((previousValue != value) 
 							|| (this._Tab_Kriterium.HasLoadedOrAssignedValue == false)))
 				{
@@ -1372,8 +1372,8 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tab_Kriterium_Tab_Projektkriterium1", Storage="_Tab_Kriterium1", ThisKey="Parent_Kriterium_Id", OtherKey="Kriterium_Id", IsForeignKey=true, DeleteRule="CASCADE")]
-		public Tab_Kriterium Tab_Kriterium1
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Criterion_Tab_Projektkriterium1", Storage="_Tab_Kriterium1", ThisKey="Parent_Kriterium_Id", OtherKey="Kriterium_Id", IsForeignKey=true, DeleteRule="CASCADE")]
+		public Criterion Criterion
 		{
 			get
 			{
@@ -1381,7 +1381,7 @@ namespace NWAT.DB
 			}
 			set
 			{
-				Tab_Kriterium previousValue = this._Tab_Kriterium1.Entity;
+				Criterion previousValue = this._Tab_Kriterium1.Entity;
 				if (((previousValue != value) 
 							|| (this._Tab_Kriterium1.HasLoadedOrAssignedValue == false)))
 				{
@@ -1389,25 +1389,25 @@ namespace NWAT.DB
 					if ((previousValue != null))
 					{
 						this._Tab_Kriterium1.Entity = null;
-						previousValue.Tab_Projektkriterium1.Remove(this);
+						previousValue.ProjectCriterion.Remove(this);
 					}
 					this._Tab_Kriterium1.Entity = value;
 					if ((value != null))
 					{
-						value.Tab_Projektkriterium1.Add(this);
+						value.ProjectCriterion.Add(this);
 						this._Parent_Kriterium_Id = value.Kriterium_Id;
 					}
 					else
 					{
 						this._Parent_Kriterium_Id = default(Nullable<int>);
 					}
-					this.SendPropertyChanged("Tab_Kriterium1");
+					this.SendPropertyChanged("Criterion");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tab_Projekt_Tab_Projektkriterium", Storage="_Tab_Projekt", ThisKey="Projekt_Id", OtherKey="Projekt_Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public Tab_Projekt Tab_Projekt
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Project_Tab_Projektkriterium", Storage="_Tab_Projekt", ThisKey="Projekt_Id", OtherKey="Projekt_Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public Project Project
 		{
 			get
 			{
@@ -1415,7 +1415,7 @@ namespace NWAT.DB
 			}
 			set
 			{
-				Tab_Projekt previousValue = this._Tab_Projekt.Entity;
+				Project previousValue = this._Tab_Projekt.Entity;
 				if (((previousValue != value) 
 							|| (this._Tab_Projekt.HasLoadedOrAssignedValue == false)))
 				{
@@ -1423,19 +1423,19 @@ namespace NWAT.DB
 					if ((previousValue != null))
 					{
 						this._Tab_Projekt.Entity = null;
-						previousValue.Tab_Projektkriterium.Remove(this);
+						previousValue.ProjectCriterion.Remove(this);
 					}
 					this._Tab_Projekt.Entity = value;
 					if ((value != null))
 					{
-						value.Tab_Projektkriterium.Add(this);
+						value.ProjectCriterion.Add(this);
 						this._Projekt_Id = value.Projekt_Id;
 					}
 					else
 					{
 						this._Projekt_Id = default(int);
 					}
-					this.SendPropertyChanged("Tab_Projekt");
+					this.SendPropertyChanged("Project");
 				}
 			}
 		}
