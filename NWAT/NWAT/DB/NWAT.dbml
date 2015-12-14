@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="NWAT" Class="NWATDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=kalumba2\sqlexpress_2012;Initial Catalog=NWAT;Integrated Security=True" SettingsObjectName="NWAT.Properties.Settings" SettingsPropertyName="NWATConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Tab_Erfüllung" Member="Tab_Erfüllung">
+    <Type Name="Tab_Erfüllung">
+      <Column Name="Projekt_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Produkt_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Kriterium_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Erfüllungsgrad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Kommentar" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Tab_Kriterium_Tab_Erfüllung" Member="Tab_Kriterium" ThisKey="Kriterium_Id" OtherKey="Kriterium_Id" Type="Tab_Kriterium" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Tab_Produkt_Tab_Erfüllung" Member="Tab_Produkt" ThisKey="Produkt_Id" OtherKey="Produkt_Id" Type="Tab_Produkt" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Tab_Projekt_Tab_Erfüllung" Member="Tab_Projekt" ThisKey="Projekt_Id" OtherKey="Projekt_Id" Type="Tab_Projekt" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tab_Projektprodukt" Member="Tab_Projektprodukt">
+    <Type Name="Tab_Projektprodukt">
+      <Column Name="Projekt_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Produkt_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Tab_Produkt_Tab_Projektprodukt" Member="Tab_Produkt" ThisKey="Produkt_Id" OtherKey="Produkt_Id" Type="Tab_Produkt" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Tab_Projekt_Tab_Projektprodukt" Member="Tab_Projekt" ThisKey="Projekt_Id" OtherKey="Projekt_Id" Type="Tab_Projekt" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tab_Kriterium" Member="Tab_Kriterium">
+    <Type Name="Tab_Kriterium">
+      <Column Name="Kriterium_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Beschreibung" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Skalar" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Tab_Kriterium_Tab_Erfüllung" Member="Tab_Erfüllung" ThisKey="Kriterium_Id" OtherKey="Kriterium_Id" Type="Tab_Erfüllung" />
+      <Association Name="Tab_Kriterium_Tab_Projektkriterium" Member="Tab_Projektkriterium" ThisKey="Kriterium_Id" OtherKey="Kriterium_Id" Type="Tab_Projektkriterium" />
+      <Association Name="Tab_Kriterium_Tab_Projektkriterium1" Member="Tab_Projektkriterium1" ThisKey="Kriterium_Id" OtherKey="Parent_Kriterium_Id" Type="Tab_Projektkriterium" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tab_Produkt" Member="Tab_Produkt">
+    <Type Name="Tab_Produkt">
+      <Column Name="Produkt_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Hersteller" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Tab_Produkt_Tab_Erfüllung" Member="Tab_Erfüllung" ThisKey="Produkt_Id" OtherKey="Produkt_Id" Type="Tab_Erfüllung" />
+      <Association Name="Tab_Produkt_Tab_Projektprodukt" Member="Tab_Projektprodukt" ThisKey="Produkt_Id" OtherKey="Produkt_Id" Type="Tab_Projektprodukt" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tab_Projekt" Member="Tab_Projekt">
+    <Type Name="Tab_Projekt">
+      <Column Name="Projekt_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Beschreibung" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Tab_Projekt_Tab_Erfüllung" Member="Tab_Erfüllung" ThisKey="Projekt_Id" OtherKey="Projekt_Id" Type="Tab_Erfüllung" />
+      <Association Name="Tab_Projekt_Tab_Projektprodukt" Member="Tab_Projektprodukt" ThisKey="Projekt_Id" OtherKey="Projekt_Id" Type="Tab_Projektprodukt" />
+      <Association Name="Tab_Projekt_Tab_Projektkriterium" Member="Tab_Projektkriterium" ThisKey="Projekt_Id" OtherKey="Projekt_Id" Type="Tab_Projektkriterium" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tab_Projektkriterium" Member="Tab_Projektkriterium">
+    <Type Name="Tab_Projektkriterium">
+      <Column Name="Projekt_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Kriterium_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Parent_Kriterium_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Gewichtung_kardinal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Gewichtung_Prozentural_Ebene" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Gewichtung_Prozentural_Projekt" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Tab_Kriterium_Tab_Projektkriterium" Member="Tab_Kriterium" ThisKey="Kriterium_Id" OtherKey="Kriterium_Id" Type="Tab_Kriterium" IsForeignKey="true" />
+      <Association Name="Tab_Kriterium_Tab_Projektkriterium1" Member="Tab_Kriterium1" ThisKey="Parent_Kriterium_Id" OtherKey="Kriterium_Id" Type="Tab_Kriterium" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Tab_Projekt_Tab_Projektkriterium" Member="Tab_Projekt" ThisKey="Projekt_Id" OtherKey="Projekt_Id" Type="Tab_Projekt" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+</Database>
