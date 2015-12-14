@@ -145,11 +145,6 @@ namespace NWAT.DB
             }
         }
 
-
-
-
-
-
         /// <summary>
         /// Deletes the criterion from database.
         /// </summary>
@@ -165,10 +160,9 @@ namespace NWAT.DB
         {
             using (NWATDataContext dataContext = new NWATDataContext())
             {
-                Criterion delCriterion = dataContext.Criterion.SingleOrDefault(crit => crit.Kriterium_Id == criterionId);
-                //Criterion delCriterion = (from crit in dataContext.Criterion
-                //                          where crit.Kriterium_Id == criterionId
-                //                          select crit).FirstOrDefault();
+                Criterion delCriterion = (from crit in dataContext.Criterion
+                                          where crit.Kriterium_Id == criterionId
+                                          select crit).FirstOrDefault();
                 if (delCriterion != null)
                 {
                     dataContext.Criterion.DeleteOnSubmit(delCriterion);

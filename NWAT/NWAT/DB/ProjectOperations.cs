@@ -132,12 +132,37 @@ namespace NWAT.DB
             }
         }
 
-        
+        /// <summary>
+        /// Deletes the project from database.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <returns>
+        /// bool if deletion was successful
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 14.12.2015
+        /// <exception cref="DatabaseException">
+        /// "Das Projekt mit der Id X existiert nicht in der Datenbank."
+        /// </exception>
+        static public bool DeleteProjectFromDb(int projectId)
+        {
+            using (NWATDataContext dataContext = new NWATDataContext())
+            {
+                Project delProject = (from proj in dataContext.Project
+                                          where proj.Projekt_Id == projectId
+                                          select proj).FirstOrDefault();
+                if (delProject != null)
+                {
+                    dataContext.Project.DeleteOnSubmit(delProject);
+                    dataContext.SubmitChanges();
+                }
+                else
+                {
+                    throw (new DatabaseException(MessageProjectDoesNotExist(projectId)));
+                }
 
-       
-
-
-
+                return GetProjectById(projectId) == null;
+            }
+        }
 
         /*
          * Private Section
