@@ -100,11 +100,16 @@ namespace NWAT.DB
         /// or
         /// Das Projekt konnte nicht in der Datenbank angelegt werden. 
         /// Bitte überprüfen Sie das übergebene Projekt Objekt.
+        /// or 
+        /// Das Project Object besitzt keine ID. Bitte überprüfen Sie das übergebene Object
         /// </exception>
         static public bool UpdateProjectInDb(Project alteredProject)
         {
             using (NWATDataContext dataContext = new NWATDataContext())
             {
+                if (!CheckIfProjectHasAnId(alteredProject))
+                    throw (new DatabaseException(MessageProjectHasNoId()));
+
                 int projectId = alteredProject.Projekt_Id;
                 Project projToUpdateFromDb = dataContext.Project.SingleOrDefault(proj => proj.Projekt_Id == projectId);
 
@@ -123,7 +128,8 @@ namespace NWAT.DB
                 }
                 else
                 {
-                    throw (new DatabaseException(MessageProjectCouldNotBeSavedEmptyObject()));
+                    throw (new DatabaseException(MessageProjectDoesNotExist(projectId) + "\n" +
+                                                 MessageProjectCouldNotBeSavedEmptyObject()));
                 }
                 dataContext.SubmitChanges();
 
@@ -210,6 +216,23 @@ namespace NWAT.DB
         }
 
         /// <summary>
+        /// Checks if project has an identifier.
+        /// </summary>
+        /// <param name="proj">The proj.</param>
+        /// <returns>
+        /// bool if given Project has an id and it differs zero
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 15.12.2015
+        private static bool CheckIfProjectHasAnId(Project proj)
+        {
+            if (proj.Projekt_Id == null || proj.Projekt_Id == 0)
+                return false;
+            else
+                return true;
+        }
+
+
+        /// <summary>
         /// Checks if project name already exists.
         /// </summary>
         /// <param name="projectName">Name of the project.</param>
@@ -256,5 +279,9 @@ namespace NWAT.DB
                    "\" existiert nicht in der Datenbank.";
         }
 
+        private static string MessageProjectHasNoId()
+        {
+            return "Das Project Object besitzt keine ID. Bitte überprüfen Sie das übergebene Object";
+        }
     }
 }

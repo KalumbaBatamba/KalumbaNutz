@@ -43,11 +43,6 @@ namespace NWAT.DB
             {
                 criterions = dataContext.Criterion.ToList();
             }
-
-            foreach (Criterion crit in criterions)
-            {
-                Console.WriteLine(crit.Name);
-            }
             return criterions;
         }
 
@@ -112,11 +107,16 @@ namespace NWAT.DB
         /// or
         /// Das Kriterium konnte nicht in der Datenbank gespeichert werden. 
         /// Bitte überprüfen Sie das übergebene Kriterium Objekt.
+        /// or 
+        /// Das Criterion Object besitzt keine ID. Bitte überprüfen Sie das übergebene Object
         /// </exception>
         static public bool UpdateCriterionInDb(Criterion alteredCriterion)
         {
             using (NWATDataContext dataContext = new NWATDataContext())
             {
+                if (!CheckIfCriterionHasAnId(alteredCriterion))
+                    throw (new DatabaseException(MessageCriterionHasNoId()));
+
                 int criterionId = alteredCriterion.Kriterium_Id;
                 Criterion critToUpdateFromDb = dataContext.Criterion.SingleOrDefault(crit=>crit.Kriterium_Id==criterionId);
 
@@ -136,7 +136,8 @@ namespace NWAT.DB
                 }
                 else
                 {
-                    throw (new DatabaseException(MessageCriterionCouldNotBeSavedEmptyObject()));  
+                    throw (new DatabaseException(MessageCriterionDoesNotExist(criterionId) + "\n" + 
+                                                 MessageCriterionCouldNotBeSavedEmptyObject()));  
                 }
                 dataContext.SubmitChanges();
               
@@ -222,6 +223,22 @@ namespace NWAT.DB
         }
 
         /// <summary>
+        /// Checks if product has an identifier.
+        /// </summary>
+        /// <param name="prod">The product.</param>
+        /// <returns>
+        /// bool if Criterion has an id and it differs zero
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 15.12.2015
+        private static bool CheckIfCriterionHasAnId(Criterion crit)
+        {
+            if (crit.Kriterium_Id == null || crit.Kriterium_Id == 0)
+                return false;
+            else
+                return true;
+        }
+
+        /// <summary>
         /// Checks if criterion name already exists.
         /// </summary>
         /// <param name="criterionName">Name of the criterion.</param>
@@ -265,6 +282,11 @@ namespace NWAT.DB
         {
             return "Das Kriterium mit der Id \"" + criterionId +
                    "\" existiert nicht in der Datenbank.";
+        }
+
+        private static string MessageCriterionHasNoId()
+        {
+            return "Das Criterion Object besitzt keine ID. Bitte überprüfen Sie das übergebene Object";
         }
     }
 }
