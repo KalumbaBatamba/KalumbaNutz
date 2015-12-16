@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DB\ProductOperations.cs" />
     <Compile Include="DB\ProjectOperations.cs" />
     <Compile Include="DB\DatabaseException.cs" />
     <Compile Include="DB\CriterionOperations.cs" />

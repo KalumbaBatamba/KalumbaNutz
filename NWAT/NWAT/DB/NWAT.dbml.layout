@@ -38,56 +38,56 @@
         <elementListCompartment Id="1ca24032-b4d5-4e40-a72f-e5cf1d399f51" absoluteBounds="3.515, 7.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 6.87621330413662); (3.125 : 6.50121330413662); (3.125 : 1.63544840494792); (3.22916666666667 : 1.63544840494792 : JumpStart); (3.39583333333333 : 1.63544840494792 : JumpEnd); (3.5 : 1.63544840494792)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 6.87621330413662); (3.125 : 6.50121330413662); (3.125 : 1.63544840494792); (3.22916666666667 : 1.63544840494792 : JumpStart); (3.39583333333333 : 1.63544840494792 : JumpEnd); (3.5 : 1.63544840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NWATDataContext/Criterion/Criterion_Fulfillment" />
       <nodes>
         <classShapeMoniker Id="6ef7ca9d-9a6d-443e-9c44-3cc32d856a02" />
         <classShapeMoniker Id="341c7aa8-501d-488c-9478-b3832553e999" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 2.13544840494792); (3.04166666666667 : 2.13544840494792 : JumpStart); (3.20833333333333 : 2.13544840494792 : JumpEnd); (3.22916666666667 : 2.13544840494792 : JumpStart); (3.39583333333333 : 2.13544840494792 : JumpEnd); (3.5 : 2.13544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 2.13544840494792); (3.5 : 2.13544840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NWATDataContext/Product/Product_Fulfillment" />
       <nodes>
         <classShapeMoniker Id="dec19ef6-3a62-4c21-befd-c87fc7cda71b" />
         <classShapeMoniker Id="341c7aa8-501d-488c-9478-b3832553e999" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 4.0618490375601); (3.06607443490112 : 3.74577460265897 : JumpStart); (3.24642556509888 : 3.56542347246122 : JumpEnd); (3.3125 : 3.4993490375601); (3.3125 : 1.16147220247396); (3.5 : 1.16147220247396)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 4.0618490375601); (3.12857443490112 : 3.68327460265898 : JumpStart); (3.24642556509888 : 3.56542347246122 : JumpEnd); (3.3125 : 3.4993490375601); (3.3125 : 1.16147220247396); (3.5 : 1.16147220247396)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NWATDataContext/Project/Project_Fulfillment" />
       <nodes>
         <classShapeMoniker Id="13bec650-bd02-4dc0-8bc9-437ab12b1938" />
         <classShapeMoniker Id="341c7aa8-501d-488c-9478-b3832553e999" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 3.0744429077524); (3.06607443490112 : 3.39051734265352 : JumpStart); (3.18392556509888 : 3.50836847285128 : JumpEnd); (3.1875 : 3.5119429077524); (3.1875 : 4.59699625651042); (3.5 : 4.59699625651042)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 3.0744429077524); (3.1875 : 3.5119429077524); (3.1875 : 4.59699625651042); (3.5 : 4.59699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NWATDataContext/Product/Product_ProjectProduct" />
       <nodes>
         <classShapeMoniker Id="dec19ef6-3a62-4c21-befd-c87fc7cda71b" />
         <classShapeMoniker Id="48a466c2-9076-446b-9236-194b894818c8" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 4.95799438476562); (3.04166666666667 : 4.95799438476562 : JumpStart); (3.20833333333333 : 4.95799438476562 : JumpEnd); (3.5 : 4.95799438476562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 4.95799438476562); (3.5 : 4.95799438476562)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NWATDataContext/Project/Project_ProjectProduct" />
       <nodes>
         <classShapeMoniker Id="13bec650-bd02-4dc0-8bc9-437ab12b1938" />
         <classShapeMoniker Id="48a466c2-9076-446b-9236-194b894818c8" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 7.69615684087039); (3.22916666666667 : 7.69615684087039 : JumpStart); (3.39583333333333 : 7.69615684087039 : JumpEnd); (3.5 : 7.69615684087039)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 7.69615684087039); (3.22916666666667 : 7.69615684087039 : JumpStart); (3.39583333333333 : 7.69615684087039 : JumpEnd); (3.5 : 7.69615684087039)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NWATDataContext/Criterion/Criterion_ProjectCriterion" />
       <nodes>
         <classShapeMoniker Id="6ef7ca9d-9a6d-443e-9c44-3cc32d856a02" />
         <classShapeMoniker Id="aacbcb0b-5e11-4549-964f-23f1d50430ad" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 7.25493757250351); (3.22916666666667 : 7.2549375725035 : JumpStart); (3.39583333333333 : 7.25493757250351 : JumpEnd); (3.5 : 7.25493757250351)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 7.25493757250351); (3.22916666666667 : 7.25493757250351 : JumpStart); (3.39583333333333 : 7.25493757250351 : JumpEnd); (3.5 : 7.25493757250351)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NWATDataContext/Criterion/Criterion_ProjectCriterion1" />
       <nodes>
         <classShapeMoniker Id="6ef7ca9d-9a6d-443e-9c44-3cc32d856a02" />
         <classShapeMoniker Id="aacbcb0b-5e11-4549-964f-23f1d50430ad" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 5.3244429077524); (3.06607443490112 : 5.64051734265353 : JumpStart); (3.18392556509888 : 5.75836847285128 : JumpEnd); (3.3125 : 5.8869429077524); (3.3125 : 8.17342954152895); (3.5 : 8.17342954152895)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 5.3244429077524); (3.3125 : 5.8869429077524); (3.3125 : 8.17342954152895); (3.5 : 8.17342954152895)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NWATDataContext/Project/Project_ProjectCriterion" />
       <nodes>
         <classShapeMoniker Id="13bec650-bd02-4dc0-8bc9-437ab12b1938" />
