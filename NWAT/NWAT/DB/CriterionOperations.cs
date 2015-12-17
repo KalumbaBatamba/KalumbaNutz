@@ -24,7 +24,7 @@ namespace NWAT.DB
 
             using (NWATDataContext dataContext = new NWATDataContext())
             {
-                resultCriterion = dataContext.Criterion.SingleOrDefault(criterion => criterion.Kriterium_Id == id);
+                resultCriterion = dataContext.Criterion.SingleOrDefault(criterion => criterion.Criterion_Id == id);
             }
             return resultCriterion;
         }
@@ -84,8 +84,7 @@ namespace NWAT.DB
 
                 Criterion newCriterionFromDb = (from crit in dataContext.Criterion
                                                 where crit.Name == newCriterion.Name 
-                                                && crit.Beschreibung == newCriterion.Beschreibung
-                                                && crit.Skalar == newCriterion.Skalar 
+                                                && crit.Description == newCriterion.Description
                                                 select crit).FirstOrDefault();
 
                 return checkIfEqualCriterions(newCriterion, newCriterionFromDb);   
@@ -117,8 +116,8 @@ namespace NWAT.DB
                 if (!CheckIfCriterionHasAnId(alteredCriterion))
                     throw (new DatabaseException(MessageCriterionHasNoId()));
 
-                int criterionId = alteredCriterion.Kriterium_Id;
-                Criterion critToUpdateFromDb = dataContext.Criterion.SingleOrDefault(crit=>crit.Kriterium_Id==criterionId);
+                int criterionId = alteredCriterion.Criterion_Id;
+                Criterion critToUpdateFromDb = dataContext.Criterion.SingleOrDefault(crit=>crit.Criterion_Id==criterionId);
 
                 if (critToUpdateFromDb != null)
                 {
@@ -126,8 +125,7 @@ namespace NWAT.DB
                     if (!checkIfCriterionNameAlreadyExists(newCriterionName, criterionId))
                     {
                         critToUpdateFromDb.Name = alteredCriterion.Name;
-                        critToUpdateFromDb.Beschreibung = alteredCriterion.Beschreibung;
-                        critToUpdateFromDb.Skalar = alteredCriterion.Skalar;
+                        critToUpdateFromDb.Description = alteredCriterion.Description;
                     }
                     else
                     {
@@ -162,7 +160,7 @@ namespace NWAT.DB
             using (NWATDataContext dataContext = new NWATDataContext())
             {
                 Criterion delCriterion = (from crit in dataContext.Criterion
-                                          where crit.Kriterium_Id == criterionId
+                                          where crit.Criterion_Id == criterionId
                                           select crit).FirstOrDefault();
                 if (delCriterion != null)
                 {
@@ -194,10 +192,9 @@ namespace NWAT.DB
         static private bool checkIfEqualCriterions(Criterion critOne, Criterion critTwo)
         {
             bool equalName = critOne.Name == critTwo.Name;
-            bool equalDescription = critOne.Beschreibung == critTwo.Beschreibung;
-            bool equalSkalar = critOne.Skalar == critTwo.Skalar;
+            bool equalDescription = critOne.Description == critTwo.Description;
 
-            return equalName && equalDescription && equalSkalar;
+            return equalName && equalDescription;
         }
 
         /// <summary>
@@ -232,7 +229,7 @@ namespace NWAT.DB
         /// Erstellt von Joshua Frey, am 15.12.2015
         private static bool CheckIfCriterionHasAnId(Criterion crit)
         {
-            if (crit.Kriterium_Id == null || crit.Kriterium_Id == 0)
+            if (crit.Criterion_Id == 0)
                 return false;
             else
                 return true;
@@ -253,7 +250,7 @@ namespace NWAT.DB
             {
                 Criterion criterionWithExistingName = (from crit in dataContext.Criterion
                                                        where crit.Name == criterionName 
-                                                       && crit.Kriterium_Id != excludedId
+                                                       && crit.Criterion_Id != excludedId
                                                        select crit).FirstOrDefault();
                 if (criterionWithExistingName != null)
                     return true;

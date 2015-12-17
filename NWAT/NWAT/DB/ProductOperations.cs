@@ -22,7 +22,7 @@ namespace NWAT.DB
 
             using (NWATDataContext dataContext = new NWATDataContext())
             {
-                resultProduct = dataContext.Product.SingleOrDefault(product => product.Produkt_Id == id);
+                resultProduct = dataContext.Product.SingleOrDefault(product => product.Product_Id == id);
             }
             return resultProduct;
         }
@@ -82,7 +82,8 @@ namespace NWAT.DB
 
                 Product newProductFromDb = (from prod in dataContext.Product
                                                 where prod.Name == newProduct.Name 
-                                                && prod.Hersteller == newProduct.Hersteller
+                                                && prod.Producer == newProduct.Producer
+                                                && prod.Price == newProduct.Price 
                                                 select prod).FirstOrDefault();
 
                 return checkIfEqualProducts(newProduct, newProductFromDb);   
@@ -115,8 +116,8 @@ namespace NWAT.DB
                 if(!CheckIfProductHasAnId(alteredProduct))
                     throw (new DatabaseException(MessageProductHasNoId()));
 
-                int productId = alteredProduct.Produkt_Id;
-                Product prodToUpdateFromDb = dataContext.Product.SingleOrDefault(prod=>prod.Produkt_Id==productId);
+                int productId = alteredProduct.Product_Id;
+                Product prodToUpdateFromDb = dataContext.Product.SingleOrDefault(prod=>prod.Product_Id==productId);
 
                 if (prodToUpdateFromDb != null)
                 {
@@ -124,7 +125,8 @@ namespace NWAT.DB
                     if (!checkIfProductNameAlreadyExists(newProductName, productId))
                     {
                         prodToUpdateFromDb.Name = alteredProduct.Name;
-                        prodToUpdateFromDb.Hersteller = alteredProduct.Hersteller;
+                        prodToUpdateFromDb.Producer = alteredProduct.Producer;
+                        prodToUpdateFromDb.Price = alteredProduct.Price;
                     }
                     else
                     {
@@ -160,7 +162,7 @@ namespace NWAT.DB
             using (NWATDataContext dataContext = new NWATDataContext())
             {
                 Product delProduct = (from prod in dataContext.Product
-                                          where prod.Produkt_Id == productId
+                                          where prod.Product_Id == productId
                                           select prod).FirstOrDefault();
                 if (delProduct != null)
                 {
@@ -192,9 +194,10 @@ namespace NWAT.DB
         static private bool checkIfEqualProducts(Product prodOne, Product prodTwo)
         {
             bool equalName = prodOne.Name == prodTwo.Name;
-            bool equalManufacturer = prodOne.Hersteller == prodTwo.Hersteller;
+            bool equalProducer = prodOne.Producer == prodTwo.Producer;
+            bool equalPrice = prodOne.Price == prodTwo.Price;
 
-            return equalName && equalManufacturer;
+            return equalName && equalProducer && equalPrice;
         }
 
         /// <summary>
@@ -229,7 +232,7 @@ namespace NWAT.DB
         /// Erstellt von Joshua Frey, am 15.12.2015
         private static bool CheckIfProductHasAnId(Product prod)
         {
-            if (prod.Produkt_Id == null || prod.Produkt_Id == 0)
+            if (prod.Product_Id == 0)
                 return false;
             else
                 return true;
@@ -250,7 +253,7 @@ namespace NWAT.DB
             {
                 Product productWithExistingName = (from prod in dataContext.Product
                                                        where prod.Name == productName 
-                                                       && prod.Produkt_Id != excludedId
+                                                       && prod.Product_Id != excludedId
                                                        select prod).FirstOrDefault();
                 if (productWithExistingName != null)
                     return true;

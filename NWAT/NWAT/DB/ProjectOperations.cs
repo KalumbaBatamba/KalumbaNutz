@@ -24,7 +24,7 @@ namespace NWAT.DB
 
             using (NWATDataContext dataContext = new NWATDataContext())
             {
-                resultProject = dataContext.Project.SingleOrDefault(project => project.Projekt_Id == id);
+                resultProject = dataContext.Project.SingleOrDefault(project => project.Project_Id == id);
             }
             return resultProject;
         }
@@ -82,7 +82,7 @@ namespace NWAT.DB
 
                 Project newProjectFromDb = (from crit in dataContext.Project
                                                 where crit.Name == newProject.Name
-                                                && crit.Beschreibung == newProject.Beschreibung
+                                                && crit.Description == newProject.Description
                                                 select crit).FirstOrDefault();
 
                 return checkIfEqualProjects(newProject, newProjectFromDb);
@@ -110,8 +110,8 @@ namespace NWAT.DB
                 if (!CheckIfProjectHasAnId(alteredProject))
                     throw (new DatabaseException(MessageProjectHasNoId()));
 
-                int projectId = alteredProject.Projekt_Id;
-                Project projToUpdateFromDb = dataContext.Project.SingleOrDefault(proj => proj.Projekt_Id == projectId);
+                int projectId = alteredProject.Project_Id;
+                Project projToUpdateFromDb = dataContext.Project.SingleOrDefault(proj => proj.Project_Id == projectId);
 
                 if (projToUpdateFromDb != null)
                 {
@@ -119,7 +119,7 @@ namespace NWAT.DB
                     if (!checkIfProjectNameAlreadyExists(newProjectName, projectId))
                     {
                         projToUpdateFromDb.Name = alteredProject.Name;
-                        projToUpdateFromDb.Beschreibung = alteredProject.Beschreibung;
+                        projToUpdateFromDb.Description = alteredProject.Description;
                     }
                     else
                     {
@@ -154,7 +154,7 @@ namespace NWAT.DB
             using (NWATDataContext dataContext = new NWATDataContext())
             {
                 Project delProject = (from proj in dataContext.Project
-                                          where proj.Projekt_Id == projectId
+                                          where proj.Project_Id == projectId
                                           select proj).FirstOrDefault();
                 if (delProject != null)
                 {
@@ -187,7 +187,7 @@ namespace NWAT.DB
         static private bool checkIfEqualProjects(Project projOne, Project projTwo)
         {
             bool equalName = projOne.Name == projTwo.Name;
-            bool equalDescription = projOne.Beschreibung == projTwo.Beschreibung;
+            bool equalDescription = projOne.Description == projTwo.Description;
 
             return equalName && equalDescription;
         }
@@ -225,7 +225,7 @@ namespace NWAT.DB
         /// Erstellt von Joshua Frey, am 15.12.2015
         private static bool CheckIfProjectHasAnId(Project proj)
         {
-            if (proj.Projekt_Id == null || proj.Projekt_Id == 0)
+            if (proj.Project_Id == 0)
                 return false;
             else
                 return true;
@@ -247,7 +247,7 @@ namespace NWAT.DB
             {
                 Project projectWithExistingName = (from proj in dataContext.Project
                                                        where proj.Name == projectName
-                                                       && proj.Projekt_Id != excludedId
+                                                       && proj.Project_Id != excludedId
                                                        select proj).FirstOrDefault();
                 if (projectWithExistingName != null)
                     return true;
