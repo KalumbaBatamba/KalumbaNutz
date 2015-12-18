@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="NWAT" Class="NWATDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=NWAT;Integrated Security=True" SettingsObjectName="NWAT.Properties.Settings" SettingsPropertyName="NWATConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Criterion" Member="Criterion">
+    <Type Name="Criterion">
+      <Column Name="Criterion_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Criterion_Fulfillment" Member="Fulfillment" ThisKey="Criterion_Id" OtherKey="Criterion_Id" Type="Fulfillment" />
+      <Association Name="Criterion_ProjectCriterion" Member="ProjectCriterion" ThisKey="Criterion_Id" OtherKey="Criterion_Id" Type="ProjectCriterion" />
+      <Association Name="Criterion_ProjectCriterion1" Member="ProjectCriterion1" ThisKey="Criterion_Id" OtherKey="Parent_Criterion_Id" Type="ProjectCriterion" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProjectProduct" Member="ProjectProduct">
+    <Type Name="ProjectProduct">
+      <Column Name="Project_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Product_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Product_ProjectProduct" Member="Product" ThisKey="Product_Id" OtherKey="Product_Id" Type="Product" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Project_ProjectProduct" Member="Project" ThisKey="Project_Id" OtherKey="Project_Id" Type="Project" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Fulfillment" Member="Fulfillment">
+    <Type Name="Fulfillment">
+      <Column Name="Project_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Product_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Criterion_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Degree_Of_Fulfillment" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Comment" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Criterion_Fulfillment" Member="Criterion" ThisKey="Criterion_Id" OtherKey="Criterion_Id" Type="Criterion" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Product_Fulfillment" Member="Product" ThisKey="Product_Id" OtherKey="Product_Id" Type="Product" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Project_Fulfillment" Member="Project" ThisKey="Project_Id" OtherKey="Project_Id" Type="Project" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Product" Member="Product">
+    <Type Name="Product">
+      <Column Name="Product_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Producer" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="Product_ProjectProduct" Member="ProjectProduct" ThisKey="Product_Id" OtherKey="Product_Id" Type="ProjectProduct" />
+      <Association Name="Product_Fulfillment" Member="Fulfillment" ThisKey="Product_Id" OtherKey="Product_Id" Type="Fulfillment" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Project" Member="Project">
+    <Type Name="Project">
+      <Column Name="Project_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Project_ProjectProduct" Member="ProjectProduct" ThisKey="Project_Id" OtherKey="Project_Id" Type="ProjectProduct" />
+      <Association Name="Project_Fulfillment" Member="Fulfillment" ThisKey="Project_Id" OtherKey="Project_Id" Type="Fulfillment" />
+      <Association Name="Project_ProjectCriterion" Member="ProjectCriterion" ThisKey="Project_Id" OtherKey="Project_Id" Type="ProjectCriterion" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProjectCriterion" Member="ProjectCriterion">
+    <Type Name="ProjectCriterion">
+      <Column Name="Project_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Criterion_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Parent_Criterion_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Weighting_Cardinal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Weighting_Percentage_Layer" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Weighting_Percentage_Project" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Criterion_ProjectCriterion" Member="Criterion" ThisKey="Criterion_Id" OtherKey="Criterion_Id" Type="Criterion" IsForeignKey="true" />
+      <Association Name="Criterion_ProjectCriterion1" Member="Criterion1" ThisKey="Parent_Criterion_Id" OtherKey="Criterion_Id" Type="Criterion" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Project_ProjectCriterion" Member="Project" ThisKey="Project_Id" OtherKey="Project_Id" Type="Project" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+</Database>
