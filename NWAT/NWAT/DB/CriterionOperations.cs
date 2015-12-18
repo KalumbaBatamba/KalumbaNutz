@@ -10,6 +10,26 @@ namespace NWAT.DB
     class CriterionOperations
     {
 
+        private NWATDataContext _dataContext;
+
+        public NWATDataContext DataContext
+        {
+            get
+            {
+                return this._dataContext;
+            }
+            set
+            {
+                this._dataContext = value;
+            }
+        }
+
+        public CriterionOperations(NWATDataContext dataContext)
+        {
+            this._dataContext = dataContext;
+        }
+
+
         /// <summary>
         /// Gets the criterion by identifier from db.
         /// </summary>
@@ -18,14 +38,10 @@ namespace NWAT.DB
         /// An instance of 'Criterion'
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        public static Criterion GetCriterionById(int id)
+        public Criterion GetCriterionById(int id)
         {
-            Criterion resultCriterion;
-
-            using (NWATDataContext dataContext = new NWATDataContext())
-            {
-                resultCriterion = dataContext.Criterion.SingleOrDefault(criterion => criterion.Criterion_Id == id);
-            }
+            Criterion resultCriterion = this._dataContext.Criterion.SingleOrDefault(criterion => criterion.Criterion_Id == id);
+            
             return resultCriterion;
         }
 
@@ -36,13 +52,10 @@ namespace NWAT.DB
         /// A linq table object with all criterions from db
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        public static List<Criterion> GetAllCriterionsFromDb()
+        public List<Criterion> GetAllCriterionsFromDb()
         {
             List<Criterion> criterions;
-            using (NWATDataContext dataContext = new NWATDataContext())
-            {
-                criterions = dataContext.Criterion.ToList();
-            }
+            criterions = this._dataContext.Criterion.ToList();
             return criterions;
         }
 
@@ -60,38 +73,32 @@ namespace NWAT.DB
         /// Das Kriterium konnte nicht in der Datenbank angelegt werden. 
         /// Bitte überprüfen Sie das übergebene Kriterium Objekt.
         /// </exception>
-        public static bool InsertCriterionIntoDb(Criterion newCriterion)
+        public bool InsertCriterionIntoDb(Criterion newCriterion)
         {
-            using (NWATDataContext dataContext = new NWATDataContext())
+            if (newCriterion != null)
             {
-                if (newCriterion != null)
+                string newCriterionName = newCriterion.Name;
+                if (!checkIfCriterionNameAlreadyExists(newCriterionName))
                 {
-                    string newCriterionName = newCriterion.Name;
-                    if (!checkIfCriterionNameAlreadyExists(newCriterionName))
-                    {
-                        dataContext.Criterion.InsertOnSubmit(newCriterion);
-                        dataContext.SubmitChanges();
-                    }
-                    else
-                    {
-                        throw (new DatabaseException((MessageCriterionAlreadyExists(newCriterionName))));
-                    }
+                    this._dataContext.Criterion.InsertOnSubmit(newCriterion);
+                    this._dataContext.SubmitChanges();
                 }
                 else
                 {
-                    throw (new DatabaseException(MessageCriterionCouldNotBeSavedEmptyObject()));        
+                    throw (new DatabaseException((MessageCriterionAlreadyExists(newCriterionName))));
                 }
-
-                Criterion newCriterionFromDb = (from crit in dataContext.Criterion
-                                                where crit.Name == newCriterion.Name 
-                                                && crit.Description == newCriterion.Description
-                                                select crit).FirstOrDefault();
-
-                return checkIfEqualCriterions(newCriterion, newCriterionFromDb);   
             }
-            
-        }
+            else
+            {
+                throw (new DatabaseException(MessageCriterionCouldNotBeSavedEmptyObject()));        
+            }
 
+            Criterion newCriterionFromDb = (from crit in this._dataContext.Criterion
+                                            where crit.Name == newCriterion.Name
+                                            && crit.Description == newCriterion.Description
+                                            select crit).FirstOrDefault();
+            return checkIfEqualCriterions(newCriterion, newCriterionFromDb);   
+        }
 
         /// <summary>
         /// Updates the criterion in database.
@@ -109,39 +116,36 @@ namespace NWAT.DB
         /// or 
         /// Das Criterion Object besitzt keine ID. Bitte überprüfen Sie das übergebene Object
         /// </exception>
-        public static bool UpdateCriterionInDb(Criterion alteredCriterion)
+        public bool UpdateCriterionInDb(Criterion alteredCriterion)
         {
-            using (NWATDataContext dataContext = new NWATDataContext())
+            if (!CheckIfCriterionHasAnId(alteredCriterion))
+                throw (new DatabaseException(MessageCriterionHasNoId()));
+
+            int criterionId = alteredCriterion.Criterion_Id;
+            Criterion critToUpdateFromDb = this._dataContext.Criterion.SingleOrDefault(crit=>crit.Criterion_Id==criterionId);
+
+            if (critToUpdateFromDb != null)
             {
-                if (!CheckIfCriterionHasAnId(alteredCriterion))
-                    throw (new DatabaseException(MessageCriterionHasNoId()));
-
-                int criterionId = alteredCriterion.Criterion_Id;
-                Criterion critToUpdateFromDb = dataContext.Criterion.SingleOrDefault(crit=>crit.Criterion_Id==criterionId);
-
-                if (critToUpdateFromDb != null)
+                string newCriterionName = alteredCriterion.Name;
+                if (!checkIfCriterionNameAlreadyExists(newCriterionName, criterionId))
                 {
-                    string newCriterionName = alteredCriterion.Name;
-                    if (!checkIfCriterionNameAlreadyExists(newCriterionName, criterionId))
-                    {
-                        critToUpdateFromDb.Name = alteredCriterion.Name;
-                        critToUpdateFromDb.Description = alteredCriterion.Description;
-                    }
-                    else
-                    {
-                        throw (new DatabaseException(MessageCriterionAlreadyExists(newCriterionName)));
-                    }
+                    critToUpdateFromDb.Name = alteredCriterion.Name;
+                    critToUpdateFromDb.Description = alteredCriterion.Description;
                 }
                 else
                 {
-                    throw (new DatabaseException(MessageCriterionDoesNotExist(criterionId) + "\n" + 
-                                                 MessageCriterionCouldNotBeSavedEmptyObject()));  
+                    throw (new DatabaseException(MessageCriterionAlreadyExists(newCriterionName)));
                 }
-                dataContext.SubmitChanges();
-              
-                Criterion alteredCriterionFromDb = GetCriterionById(criterionId);
-                return checkIfEqualCriterions(alteredCriterion, alteredCriterionFromDb);
             }
+            else
+            {
+                throw (new DatabaseException(MessageCriterionDoesNotExist(criterionId) + "\n" + 
+                                                MessageCriterionCouldNotBeSavedEmptyObject()));  
+            }
+            this._dataContext.SubmitChanges();
+              
+            Criterion alteredCriterionFromDb = GetCriterionById(criterionId);
+            return checkIfEqualCriterions(alteredCriterion, alteredCriterionFromDb);
         }
 
         /// <summary>
@@ -155,25 +159,22 @@ namespace NWAT.DB
         /// <exception cref="DatabaseException">
         /// "Das Kriterium mit der Id X existiert nicht in der Datenbank."
         /// </exception>
-        public static bool DeleteCriterionFromDb(int criterionId)
+        public bool DeleteCriterionFromDb(int criterionId)
         {
-            using (NWATDataContext dataContext = new NWATDataContext())
+            Criterion delCriterion = (from crit in this._dataContext.Criterion
+                                        where crit.Criterion_Id == criterionId
+                                        select crit).FirstOrDefault();
+            if (delCriterion != null)
             {
-                Criterion delCriterion = (from crit in dataContext.Criterion
-                                          where crit.Criterion_Id == criterionId
-                                          select crit).FirstOrDefault();
-                if (delCriterion != null)
-                {
-                    dataContext.Criterion.DeleteOnSubmit(delCriterion);
-                    dataContext.SubmitChanges();
-                }
-                else
-                {
-                    throw(new DatabaseException(MessageCriterionDoesNotExist(criterionId)));
-                }
-
-                return GetCriterionById(criterionId) == null;
+                this._dataContext.Criterion.DeleteOnSubmit(delCriterion);
+                this._dataContext.SubmitChanges();
             }
+            else
+            {
+                throw(new DatabaseException(MessageCriterionDoesNotExist(criterionId)));
+            }
+
+            return GetCriterionById(criterionId) == null;
         }
 
         /*
@@ -189,7 +190,7 @@ namespace NWAT.DB
         /// bool if given criterions have equal properties
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        private static bool checkIfEqualCriterions(Criterion critOne, Criterion critTwo)
+        private bool checkIfEqualCriterions(Criterion critOne, Criterion critTwo)
         {
             bool equalName = critOne.Name == critTwo.Name;
             bool equalDescription = critOne.Description == critTwo.Description;
@@ -205,18 +206,15 @@ namespace NWAT.DB
         /// bool if criterion name already exists in db.
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        private static bool checkIfCriterionNameAlreadyExists(String criterionName)
+        private bool checkIfCriterionNameAlreadyExists(String criterionName)
         {
-            using (NWATDataContext dataContext = new NWATDataContext())
-            {
-                Criterion criterionWithExistingName = (from crit in dataContext.Criterion
-                                                       where crit.Name == criterionName
-                                                       select crit).FirstOrDefault();
-                if (criterionWithExistingName != null)
-                    return true;
-                else
-                    return false;
-            }
+            Criterion criterionWithExistingName = (from crit in this._dataContext.Criterion
+                                                        where crit.Name == criterionName
+                                                        select crit).FirstOrDefault();
+            if (criterionWithExistingName != null)
+                return true;
+            else
+                return false;
         }
 
         /// <summary>
@@ -227,7 +225,7 @@ namespace NWAT.DB
         /// bool if Criterion has an id and it differs zero
         /// </returns>
         /// Erstellt von Joshua Frey, am 15.12.2015
-        private static bool CheckIfCriterionHasAnId(Criterion crit)
+        private bool CheckIfCriterionHasAnId(Criterion crit)
         {
             if (crit.Criterion_Id == 0)
                 return false;
@@ -244,44 +242,41 @@ namespace NWAT.DB
         /// bool if other croterion exist with name to which user want to update given criterion to.
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        private static bool checkIfCriterionNameAlreadyExists(String criterionName, int excludedId)
+        private bool checkIfCriterionNameAlreadyExists(String criterionName, int excludedId)
         {
-            using (NWATDataContext dataContext = new NWATDataContext())
-            {
-                Criterion criterionWithExistingName = (from crit in dataContext.Criterion
-                                                       where crit.Name == criterionName 
-                                                       && crit.Criterion_Id != excludedId
-                                                       select crit).FirstOrDefault();
-                if (criterionWithExistingName != null)
-                    return true;
-                else
-                    return false;
-            }
+            Criterion criterionWithExistingName = (from crit in this._dataContext.Criterion
+                                                    where crit.Name == criterionName 
+                                                    && crit.Criterion_Id != excludedId
+                                                    select crit).FirstOrDefault();
+            if (criterionWithExistingName != null)
+                return true;
+            else
+                return false;
         }
 
 
         /*
          Messages
          */
-        private static string MessageCriterionCouldNotBeSavedEmptyObject()
+        private string MessageCriterionCouldNotBeSavedEmptyObject()
         {
             return "Das Kriterium konnte nicht in der Datenbank gespeichert werden." +
                    " Bitte überprüfen Sie das übergebene Kriterium Objekt.";
         }
 
-        private static string MessageCriterionAlreadyExists(string criterionName)
+        private string MessageCriterionAlreadyExists(string criterionName)
         {
             return "Das Kriterium mit dem Namen \"" + criterionName +
                    "\" existiert bereits in einem anderen Datensatz in der Datenbank.";
         }
 
-        private static string MessageCriterionDoesNotExist(int criterionId)
+        private string MessageCriterionDoesNotExist(int criterionId)
         {
             return "Das Kriterium mit der Id \"" + criterionId +
                    "\" existiert nicht in der Datenbank.";
         }
 
-        private static string MessageCriterionHasNoId()
+        private string MessageCriterionHasNoId()
         {
             return "Das Criterion Object besitzt keine ID. Bitte überprüfen Sie das übergebene Object";
         }
