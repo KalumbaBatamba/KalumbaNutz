@@ -18,7 +18,7 @@ namespace NWAT.DB
         /// An instance of 'Project'
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        static public Project GetProjectById(int id)
+        public static Project GetProjectById(int id)
         {
             Project resultProject;
 
@@ -36,7 +36,7 @@ namespace NWAT.DB
         ///  A linq table object with all projects from db
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        static public List<Project> GetAllProjectsFromDB()
+        public static List<Project> GetAllProjectsFromDB()
         {
             List<Project> projects;
             using (NWATDataContext dataContext = new NWATDataContext())
@@ -58,7 +58,7 @@ namespace NWAT.DB
         /// Das Projekt konnte nicht in der Datenbank angelegt werden. 
         /// Bitte überprüfen Sie das übergebene Projekt Objekt.
         /// </exception>
-        static public bool InsertProjectIntoDb(Project newProject)
+        public static bool InsertProjectIntoDb(Project newProject)
         {
             using (NWATDataContext dataContext = new NWATDataContext())
             {
@@ -103,7 +103,7 @@ namespace NWAT.DB
         /// or 
         /// Das Project Object besitzt keine ID. Bitte überprüfen Sie das übergebene Object
         /// </exception>
-        static public bool UpdateProjectInDb(Project alteredProject)
+        public static bool UpdateProjectInDb(Project alteredProject)
         {
             using (NWATDataContext dataContext = new NWATDataContext())
             {
@@ -149,7 +149,7 @@ namespace NWAT.DB
         /// <exception cref="DatabaseException">
         /// "Das Projekt mit der Id X existiert nicht in der Datenbank."
         /// </exception>
-        static public bool DeleteProjectFromDb(int projectId)
+        public static bool DeleteProjectFromDb(int projectId)
         {
             using (NWATDataContext dataContext = new NWATDataContext())
             {
@@ -184,7 +184,7 @@ namespace NWAT.DB
         /// bool if given projects are equal
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        static private bool checkIfEqualProjects(Project projOne, Project projTwo)
+        private static bool checkIfEqualProjects(Project projOne, Project projTwo)
         {
             bool equalName = projOne.Name == projTwo.Name;
             bool equalDescription = projOne.Description == projTwo.Description;
@@ -201,7 +201,7 @@ namespace NWAT.DB
         /// bool if project name already exists in db.
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        static private bool checkIfProjectNameAlreadyExists(String projectName)
+        private static bool checkIfProjectNameAlreadyExists(String projectName)
         {
             using (NWATDataContext dataContext = new NWATDataContext())
             {
@@ -241,7 +241,7 @@ namespace NWAT.DB
         /// bool if other project exist with name to which user want to update given project to.
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        static private bool checkIfProjectNameAlreadyExists(String projectName, int excludedId)
+        private static bool checkIfProjectNameAlreadyExists(String projectName, int excludedId)
         {
             using (NWATDataContext dataContext = new NWATDataContext())
             {

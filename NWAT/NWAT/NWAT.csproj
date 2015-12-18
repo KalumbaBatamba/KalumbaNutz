@@ -51,6 +51,7 @@
       <DependentUpon>NWAT.dbml</DependentUpon>
     </Compile>
     <Compile Include="DB\ProductOperations.cs" />
+    <Compile Include="DB\ProjectCriterionOperations.cs" />
     <Compile Include="DB\ProjectOperations.cs" />
     <Compile Include="DB\DatabaseException.cs" />
     <Compile Include="DB\CriterionOperations.cs" />

@@ -16,7 +16,7 @@ namespace NWAT.DB
         /// An instance of 'Product'
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        static public Product GetProductById(int id)
+        public static Product GetProductById(int id)
         {
             Product resultProduct;
 
@@ -34,7 +34,7 @@ namespace NWAT.DB
         /// A linq table object with all products from db
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        static public List<Product> GetAllProductsFromDb()
+        public static List<Product> GetAllProductsFromDb()
         {
             List<Product> products;
             using (NWATDataContext dataContext = new NWATDataContext())
@@ -58,7 +58,7 @@ namespace NWAT.DB
         /// Das Produkt konnte nicht in der Datenbank angelegt werden. 
         /// Bitte überprüfen Sie das übergebene Produkt Objekt.
         /// </exception>
-        static public bool InsertProductIntoDb(Product newProduct)
+        public static bool InsertProductIntoDb(Product newProduct)
         {
             using (NWATDataContext dataContext = new NWATDataContext())
             {
@@ -108,7 +108,7 @@ namespace NWAT.DB
         /// or 
         /// Das Product Object besitzt keine ID. Bitte überprüfen Sie das übergebene Object
         /// </exception>
-        static public bool UpdateProductInDb(Product alteredProduct)
+        public static bool UpdateProductInDb(Product alteredProduct)
         {
             using (NWATDataContext dataContext = new NWATDataContext())
             {
@@ -157,7 +157,7 @@ namespace NWAT.DB
         /// <exception cref="DatabaseException">
         /// "Das Produkt mit der Id X existiert nicht in der Datenbank."
         /// </exception>
-        static public bool DeleteProductFromDb(int productId)
+        public static bool DeleteProductFromDb(int productId)
         {
             using (NWATDataContext dataContext = new NWATDataContext())
             {
@@ -191,7 +191,7 @@ namespace NWAT.DB
         /// bool if given products have equal properties
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        static private bool checkIfEqualProducts(Product prodOne, Product prodTwo)
+        private static bool checkIfEqualProducts(Product prodOne, Product prodTwo)
         {
             bool equalName = prodOne.Name == prodTwo.Name;
             bool equalProducer = prodOne.Producer == prodTwo.Producer;
@@ -208,7 +208,7 @@ namespace NWAT.DB
         /// bool if product name already exists in db.
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        static private bool checkIfProductNameAlreadyExists(String productName)
+        private static bool checkIfProductNameAlreadyExists(String productName)
         {
             using (NWATDataContext dataContext = new NWATDataContext())
             {
@@ -247,7 +247,7 @@ namespace NWAT.DB
         /// bool if other product exist with name to which user want to update given product to.
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        static private bool checkIfProductNameAlreadyExists(String productName, int excludedId)
+        private static bool checkIfProductNameAlreadyExists(String productName, int excludedId)
         {
             using (NWATDataContext dataContext = new NWATDataContext())
             {

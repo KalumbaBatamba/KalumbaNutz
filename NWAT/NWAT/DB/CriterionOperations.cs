@@ -18,7 +18,7 @@ namespace NWAT.DB
         /// An instance of 'Criterion'
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        static public Criterion GetCriterionById(int id)
+        public static Criterion GetCriterionById(int id)
         {
             Criterion resultCriterion;
 
@@ -36,7 +36,7 @@ namespace NWAT.DB
         /// A linq table object with all criterions from db
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        static public List<Criterion> GetAllCriterionsFromDb()
+        public static List<Criterion> GetAllCriterionsFromDb()
         {
             List<Criterion> criterions;
             using (NWATDataContext dataContext = new NWATDataContext())
@@ -60,7 +60,7 @@ namespace NWAT.DB
         /// Das Kriterium konnte nicht in der Datenbank angelegt werden. 
         /// Bitte überprüfen Sie das übergebene Kriterium Objekt.
         /// </exception>
-        static public bool InsertCriterionIntoDb(Criterion newCriterion)
+        public static bool InsertCriterionIntoDb(Criterion newCriterion)
         {
             using (NWATDataContext dataContext = new NWATDataContext())
             {
@@ -109,7 +109,7 @@ namespace NWAT.DB
         /// or 
         /// Das Criterion Object besitzt keine ID. Bitte überprüfen Sie das übergebene Object
         /// </exception>
-        static public bool UpdateCriterionInDb(Criterion alteredCriterion)
+        public static bool UpdateCriterionInDb(Criterion alteredCriterion)
         {
             using (NWATDataContext dataContext = new NWATDataContext())
             {
@@ -155,7 +155,7 @@ namespace NWAT.DB
         /// <exception cref="DatabaseException">
         /// "Das Kriterium mit der Id X existiert nicht in der Datenbank."
         /// </exception>
-        static public bool DeleteCriterionFromDb(int criterionId)
+        public static bool DeleteCriterionFromDb(int criterionId)
         {
             using (NWATDataContext dataContext = new NWATDataContext())
             {
@@ -189,7 +189,7 @@ namespace NWAT.DB
         /// bool if given criterions have equal properties
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        static private bool checkIfEqualCriterions(Criterion critOne, Criterion critTwo)
+        private static bool checkIfEqualCriterions(Criterion critOne, Criterion critTwo)
         {
             bool equalName = critOne.Name == critTwo.Name;
             bool equalDescription = critOne.Description == critTwo.Description;
@@ -205,7 +205,7 @@ namespace NWAT.DB
         /// bool if criterion name already exists in db.
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        static private bool checkIfCriterionNameAlreadyExists(String criterionName)
+        private static bool checkIfCriterionNameAlreadyExists(String criterionName)
         {
             using (NWATDataContext dataContext = new NWATDataContext())
             {
@@ -244,7 +244,7 @@ namespace NWAT.DB
         /// bool if other croterion exist with name to which user want to update given criterion to.
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        static private bool checkIfCriterionNameAlreadyExists(String criterionName, int excludedId)
+        private static bool checkIfCriterionNameAlreadyExists(String criterionName, int excludedId)
         {
             using (NWATDataContext dataContext = new NWATDataContext())
             {
