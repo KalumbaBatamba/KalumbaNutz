@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="NWAT" Class="NWATDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=NWAT;Integrated Security=True" SettingsObjectName="NWAT.Properties.Settings" SettingsPropertyName="NWATConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\sqlexpress_2012;Initial Catalog=NWAT;Integrated Security=True" SettingsObjectName="NWAT.Properties.Settings" SettingsPropertyName="NWATConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Criterion" Member="Criterion">
     <Type Name="Criterion">
       <Column Name="Criterion_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -56,8 +56,8 @@
       <Column Name="Criterion_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Parent_Criterion_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Weighting_Cardinal" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Weighting_Percentage_Layer" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Weighting_Percentage_Project" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Weighting_Percentage_Layer" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Weighting_Percentage_Project" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Association Name="Criterion_ProjectCriterion" Member="Criterion" ThisKey="Criterion_Id" OtherKey="Criterion_Id" Type="Criterion" IsForeignKey="true" />
       <Association Name="Criterion_ProjectCriterion1" Member="Criterion1" ThisKey="Parent_Criterion_Id" OtherKey="Criterion_Id" Type="Criterion" IsForeignKey="true" DeleteRule="CASCADE" />
       <Association Name="Project_ProjectCriterion" Member="Project" ThisKey="Project_Id" OtherKey="Project_Id" Type="Project" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />

@@ -1170,9 +1170,9 @@ namespace NWAT.DB
 		
 		private System.Nullable<int> _Weighting_Cardinal;
 		
-		private System.Nullable<int> _Weighting_Percentage_Layer;
+		private System.Nullable<double> _Weighting_Percentage_Layer;
 		
-		private System.Nullable<int> _Weighting_Percentage_Project;
+		private System.Nullable<double> _Weighting_Percentage_Project;
 		
 		private EntityRef<Criterion> _Criterion;
 		
@@ -1192,9 +1192,9 @@ namespace NWAT.DB
     partial void OnParent_Criterion_IdChanged();
     partial void OnWeighting_CardinalChanging(System.Nullable<int> value);
     partial void OnWeighting_CardinalChanged();
-    partial void OnWeighting_Percentage_LayerChanging(System.Nullable<int> value);
+    partial void OnWeighting_Percentage_LayerChanging(System.Nullable<double> value);
     partial void OnWeighting_Percentage_LayerChanged();
-    partial void OnWeighting_Percentage_ProjectChanging(System.Nullable<int> value);
+    partial void OnWeighting_Percentage_ProjectChanging(System.Nullable<double> value);
     partial void OnWeighting_Percentage_ProjectChanged();
     #endregion
 		
@@ -1298,8 +1298,8 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weighting_Percentage_Layer", DbType="Int")]
-		public System.Nullable<int> Weighting_Percentage_Layer
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weighting_Percentage_Layer", DbType="Float")]
+		public System.Nullable<double> Weighting_Percentage_Layer
 		{
 			get
 			{
@@ -1318,8 +1318,8 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weighting_Percentage_Project", DbType="Int")]
-		public System.Nullable<int> Weighting_Percentage_Project
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weighting_Percentage_Project", DbType="Float")]
+		public System.Nullable<double> Weighting_Percentage_Project
 		{
 			get
 			{
