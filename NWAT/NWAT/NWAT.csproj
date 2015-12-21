@@ -45,16 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DB\DbController.cs" />
     <Compile Include="DB\NWAT.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NWAT.dbml</DependentUpon>
     </Compile>
-    <Compile Include="DB\ProductOperations.cs" />
-    <Compile Include="DB\ProjectCriterionOperations.cs" />
-    <Compile Include="DB\ProjectOperations.cs" />
+    <Compile Include="DB\ProductController.cs" />
+    <Compile Include="DB\ProjectCriterionController.cs" />
+    <Compile Include="DB\ProjectController.cs" />
     <Compile Include="DB\DatabaseException.cs" />
-    <Compile Include="DB\CriterionOperations.cs" />
+    <Compile Include="DB\CriterionController.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

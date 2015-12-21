@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace NWAT.DB
 {
-    class ProjectOperations
+    class ProjectController : DbController
     {
+
+        public ProjectController(NWATDataContext dataContext)
+            : base(dataContext)
+        { }
 
         /// <summary>
         /// Gets the project by identifier from db.
@@ -18,13 +22,13 @@ namespace NWAT.DB
         /// An instance of 'Project'
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        public static Project GetProjectById(int id)
+        public Project GetProjectById(int id)
         {
             Project resultProject;
 
             using (NWATDataContext dataContext = new NWATDataContext())
             {
-                resultProject = dataContext.Project.SingleOrDefault(project => project.Project_Id == id);
+                resultProject = base.DataContext.Project.SingleOrDefault(project => project.Project_Id == id);
             }
             return resultProject;
         }
@@ -36,13 +40,10 @@ namespace NWAT.DB
         ///  A linq table object with all projects from db
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        public static List<Project> GetAllProjectsFromDB()
+        public List<Project> GetAllProjectsFromDB()
         {
             List<Project> projects;
-            using (NWATDataContext dataContext = new NWATDataContext())
-            {
-                projects = dataContext.Project.ToList();
-            }
+            projects = base.DataContext.Project.ToList();
             return projects;
         }
 
@@ -58,35 +59,32 @@ namespace NWAT.DB
         /// Das Projekt konnte nicht in der Datenbank angelegt werden. 
         /// Bitte überprüfen Sie das übergebene Projekt Objekt.
         /// </exception>
-        public static bool InsertProjectIntoDb(Project newProject)
+        public bool InsertProjectIntoDb(Project newProject)
         {
-            using (NWATDataContext dataContext = new NWATDataContext())
+            if (newProject != null)
             {
-                if (newProject != null)
+                string newProjectName = newProject.Name;
+                if (!checkIfProjectNameAlreadyExists(newProjectName))
                 {
-                    string newProjectName = newProject.Name;
-                    if (!checkIfProjectNameAlreadyExists(newProjectName))
-                    {
-                        dataContext.Project.InsertOnSubmit(newProject);
-                        dataContext.SubmitChanges();
-                    }
-                    else
-                    {
-                        throw (new DatabaseException(MessageProjectAlreadyExists(newProjectName)));
-                    }
+                    base.DataContext.Project.InsertOnSubmit(newProject);
+                    base.DataContext.SubmitChanges();
                 }
                 else
                 {
-                    throw (new DatabaseException(MessageProjectCouldNotBeSavedEmptyObject()));
+                    throw (new DatabaseException(MessageProjectAlreadyExists(newProjectName)));
                 }
-
-                Project newProjectFromDb = (from crit in dataContext.Project
-                                                where crit.Name == newProject.Name
-                                                && crit.Description == newProject.Description
-                                                select crit).FirstOrDefault();
-
-                return checkIfEqualProjects(newProject, newProjectFromDb);
             }
+            else
+            {
+                throw (new DatabaseException(MessageProjectCouldNotBeSavedEmptyObject()));
+            }
+
+            Project newProjectFromDb = (from crit in base.DataContext.Project
+                                            where crit.Name == newProject.Name
+                                            && crit.Description == newProject.Description
+                                            select crit).FirstOrDefault();
+
+            return checkIfEqualProjects(newProject, newProjectFromDb);
         }
 
         /// <summary>
@@ -103,39 +101,36 @@ namespace NWAT.DB
         /// or 
         /// Das Project Object besitzt keine ID. Bitte überprüfen Sie das übergebene Object
         /// </exception>
-        public static bool UpdateProjectInDb(Project alteredProject)
+        public bool UpdateProjectInDb(Project alteredProject)
         {
-            using (NWATDataContext dataContext = new NWATDataContext())
+            if (!CheckIfProjectHasAnId(alteredProject))
+                throw (new DatabaseException(MessageProjectHasNoId()));
+
+            int projectId = alteredProject.Project_Id;
+            Project projToUpdateFromDb = base.DataContext.Project.SingleOrDefault(proj => proj.Project_Id == projectId);
+
+            if (projToUpdateFromDb != null)
             {
-                if (!CheckIfProjectHasAnId(alteredProject))
-                    throw (new DatabaseException(MessageProjectHasNoId()));
-
-                int projectId = alteredProject.Project_Id;
-                Project projToUpdateFromDb = dataContext.Project.SingleOrDefault(proj => proj.Project_Id == projectId);
-
-                if (projToUpdateFromDb != null)
+                string newProjectName = alteredProject.Name;
+                if (!checkIfProjectNameAlreadyExists(newProjectName, projectId))
                 {
-                    string newProjectName = alteredProject.Name;
-                    if (!checkIfProjectNameAlreadyExists(newProjectName, projectId))
-                    {
-                        projToUpdateFromDb.Name = alteredProject.Name;
-                        projToUpdateFromDb.Description = alteredProject.Description;
-                    }
-                    else
-                    {
-                        throw (new DatabaseException(MessageProjectAlreadyExists(newProjectName)));
-                    }
+                    projToUpdateFromDb.Name = alteredProject.Name;
+                    projToUpdateFromDb.Description = alteredProject.Description;
                 }
                 else
                 {
-                    throw (new DatabaseException(MessageProjectDoesNotExist(projectId) + "\n" +
-                                                 MessageProjectCouldNotBeSavedEmptyObject()));
+                    throw (new DatabaseException(MessageProjectAlreadyExists(newProjectName)));
                 }
-                dataContext.SubmitChanges();
-
-                Project alteredCriterionFromDb = GetProjectById(projectId);
-                return checkIfEqualProjects(alteredProject, alteredCriterionFromDb);
             }
+            else
+            {
+                throw (new DatabaseException(MessageProjectDoesNotExist(projectId) + "\n" +
+                                                MessageProjectCouldNotBeSavedEmptyObject()));
+            }
+            base.DataContext.SubmitChanges();
+
+            Project alteredCriterionFromDb = GetProjectById(projectId);
+            return checkIfEqualProjects(alteredProject, alteredCriterionFromDb);
         }
 
         /// <summary>
@@ -149,25 +144,22 @@ namespace NWAT.DB
         /// <exception cref="DatabaseException">
         /// "Das Projekt mit der Id X existiert nicht in der Datenbank."
         /// </exception>
-        public static bool DeleteProjectFromDb(int projectId)
+        public bool DeleteProjectFromDb(int projectId)
         {
-            using (NWATDataContext dataContext = new NWATDataContext())
+            Project delProject = (from proj in base.DataContext.Project
+                                        where proj.Project_Id == projectId
+                                        select proj).FirstOrDefault();
+            if (delProject != null)
             {
-                Project delProject = (from proj in dataContext.Project
-                                          where proj.Project_Id == projectId
-                                          select proj).FirstOrDefault();
-                if (delProject != null)
-                {
-                    dataContext.Project.DeleteOnSubmit(delProject);
-                    dataContext.SubmitChanges();
-                }
-                else
-                {
-                    throw (new DatabaseException(MessageProjectDoesNotExist(projectId)));
-                }
-
-                return GetProjectById(projectId) == null;
+                base.DataContext.Project.DeleteOnSubmit(delProject);
+                base.DataContext.SubmitChanges();
             }
+            else
+            {
+                throw (new DatabaseException(MessageProjectDoesNotExist(projectId)));
+            }
+
+            return GetProjectById(projectId) == null;
         }
 
         /*
@@ -184,7 +176,7 @@ namespace NWAT.DB
         /// bool if given projects are equal
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        private static bool checkIfEqualProjects(Project projOne, Project projTwo)
+        private bool checkIfEqualProjects(Project projOne, Project projTwo)
         {
             bool equalName = projOne.Name == projTwo.Name;
             bool equalDescription = projOne.Description == projTwo.Description;
@@ -201,18 +193,15 @@ namespace NWAT.DB
         /// bool if project name already exists in db.
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        private static bool checkIfProjectNameAlreadyExists(String projectName)
+        private bool checkIfProjectNameAlreadyExists(String projectName)
         {
-            using (NWATDataContext dataContext = new NWATDataContext())
-            {
-                Project projectWithExistingName = (from proj in dataContext.Project
-                                                       where proj.Name == projectName
-                                                       select proj).FirstOrDefault();
-                if (projectWithExistingName != null)
-                    return true;
-                else
-                    return false;
-            }
+            Project projectWithExistingName = (from proj in base.DataContext.Project
+                                                    where proj.Name == projectName
+                                                    select proj).FirstOrDefault();
+            if (projectWithExistingName != null)
+                return true;
+            else
+                return false;
         }
 
         /// <summary>
@@ -223,7 +212,7 @@ namespace NWAT.DB
         /// bool if given Project has an id and it differs zero
         /// </returns>
         /// Erstellt von Joshua Frey, am 15.12.2015
-        private static bool CheckIfProjectHasAnId(Project proj)
+        private bool CheckIfProjectHasAnId(Project proj)
         {
             if (proj.Project_Id == 0)
                 return false;
@@ -241,19 +230,16 @@ namespace NWAT.DB
         /// bool if other project exist with name to which user want to update given project to.
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        private static bool checkIfProjectNameAlreadyExists(String projectName, int excludedId)
+        private bool checkIfProjectNameAlreadyExists(String projectName, int excludedId)
         {
-            using (NWATDataContext dataContext = new NWATDataContext())
-            {
-                Project projectWithExistingName = (from proj in dataContext.Project
-                                                       where proj.Name == projectName
-                                                       && proj.Project_Id != excludedId
-                                                       select proj).FirstOrDefault();
-                if (projectWithExistingName != null)
-                    return true;
-                else
-                    return false;
-            }
+            Project projectWithExistingName = (from proj in base.DataContext.Project
+                                                    where proj.Name == projectName
+                                                    && proj.Project_Id != excludedId
+                                                    select proj).FirstOrDefault();
+            if (projectWithExistingName != null)
+                return true;
+            else
+                return false;
         }
 
 
@@ -261,25 +247,25 @@ namespace NWAT.DB
          Messages
          */
 
-        private static string MessageProjectCouldNotBeSavedEmptyObject()
+        private string MessageProjectCouldNotBeSavedEmptyObject()
         {
             return "Das Projekt konnte nicht in der Datenbank gespeichert werden." +
                    " Bitte überprüfen Sie das übergebene Projekt Objekt.";
         }
 
-        private static string MessageProjectAlreadyExists(string projectName)
+        private string MessageProjectAlreadyExists(string projectName)
         {
             return "Das Projekt mit dem Namen \"" + projectName +
                    "\" existiert bereits in einem anderen Datensatz in der Datenbank.";
         }
 
-        private static string MessageProjectDoesNotExist(int projectId)
+        private string MessageProjectDoesNotExist(int projectId)
         {
             return "Das Projekt mit der Id \"" + projectId +
                    "\" existiert nicht in der Datenbank.";
         }
 
-        private static string MessageProjectHasNoId()
+        private string MessageProjectHasNoId()
         {
             return "Das Project Object besitzt keine ID. Bitte überprüfen Sie das übergebene Object";
         }

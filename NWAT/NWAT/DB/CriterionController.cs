@@ -7,28 +7,13 @@ using System.Threading.Tasks;
 
 namespace NWAT.DB
 {
-    class CriterionOperations
+    class CriterionController : DbController
     {
 
-        private NWATDataContext _dataContext;
-
-        public NWATDataContext DataContext
+        public CriterionController(NWATDataContext dataContext)
+            : base(dataContext)
         {
-            get
-            {
-                return this._dataContext;
-            }
-            set
-            {
-                this._dataContext = value;
-            }
         }
-
-        public CriterionOperations(NWATDataContext dataContext)
-        {
-            this._dataContext = dataContext;
-        }
-
 
         /// <summary>
         /// Gets the criterion by identifier from db.
@@ -40,7 +25,7 @@ namespace NWAT.DB
         /// Erstellt von Joshua Frey, am 14.12.2015
         public Criterion GetCriterionById(int id)
         {
-            Criterion resultCriterion = this._dataContext.Criterion.SingleOrDefault(criterion => criterion.Criterion_Id == id);
+            Criterion resultCriterion = base.DataContext.Criterion.SingleOrDefault(criterion => criterion.Criterion_Id == id);
             
             return resultCriterion;
         }
@@ -55,7 +40,7 @@ namespace NWAT.DB
         public List<Criterion> GetAllCriterionsFromDb()
         {
             List<Criterion> criterions;
-            criterions = this._dataContext.Criterion.ToList();
+            criterions = base.DataContext.Criterion.ToList();
             return criterions;
         }
 
@@ -80,8 +65,8 @@ namespace NWAT.DB
                 string newCriterionName = newCriterion.Name;
                 if (!checkIfCriterionNameAlreadyExists(newCriterionName))
                 {
-                    this._dataContext.Criterion.InsertOnSubmit(newCriterion);
-                    this._dataContext.SubmitChanges();
+                    base.DataContext.Criterion.InsertOnSubmit(newCriterion);
+                    base.DataContext.SubmitChanges();
                 }
                 else
                 {
@@ -93,7 +78,7 @@ namespace NWAT.DB
                 throw (new DatabaseException(MessageCriterionCouldNotBeSavedEmptyObject()));        
             }
 
-            Criterion newCriterionFromDb = (from crit in this._dataContext.Criterion
+            Criterion newCriterionFromDb = (from crit in base.DataContext.Criterion
                                             where crit.Name == newCriterion.Name
                                             && crit.Description == newCriterion.Description
                                             select crit).FirstOrDefault();
@@ -122,7 +107,7 @@ namespace NWAT.DB
                 throw (new DatabaseException(MessageCriterionHasNoId()));
 
             int criterionId = alteredCriterion.Criterion_Id;
-            Criterion critToUpdateFromDb = this._dataContext.Criterion.SingleOrDefault(crit=>crit.Criterion_Id==criterionId);
+            Criterion critToUpdateFromDb = base.DataContext.Criterion.SingleOrDefault(crit=>crit.Criterion_Id==criterionId);
 
             if (critToUpdateFromDb != null)
             {
@@ -142,7 +127,7 @@ namespace NWAT.DB
                 throw (new DatabaseException(MessageCriterionDoesNotExist(criterionId) + "\n" + 
                                                 MessageCriterionCouldNotBeSavedEmptyObject()));  
             }
-            this._dataContext.SubmitChanges();
+            base.DataContext.SubmitChanges();
               
             Criterion alteredCriterionFromDb = GetCriterionById(criterionId);
             return checkIfEqualCriterions(alteredCriterion, alteredCriterionFromDb);
@@ -161,13 +146,13 @@ namespace NWAT.DB
         /// </exception>
         public bool DeleteCriterionFromDb(int criterionId)
         {
-            Criterion delCriterion = (from crit in this._dataContext.Criterion
+            Criterion delCriterion = (from crit in base.DataContext.Criterion
                                         where crit.Criterion_Id == criterionId
                                         select crit).FirstOrDefault();
             if (delCriterion != null)
             {
-                this._dataContext.Criterion.DeleteOnSubmit(delCriterion);
-                this._dataContext.SubmitChanges();
+                base.DataContext.Criterion.DeleteOnSubmit(delCriterion);
+                base.DataContext.SubmitChanges();
             }
             else
             {
@@ -208,7 +193,7 @@ namespace NWAT.DB
         /// Erstellt von Joshua Frey, am 14.12.2015
         private bool checkIfCriterionNameAlreadyExists(String criterionName)
         {
-            Criterion criterionWithExistingName = (from crit in this._dataContext.Criterion
+            Criterion criterionWithExistingName = (from crit in base.DataContext.Criterion
                                                         where crit.Name == criterionName
                                                         select crit).FirstOrDefault();
             if (criterionWithExistingName != null)
@@ -244,7 +229,7 @@ namespace NWAT.DB
         /// Erstellt von Joshua Frey, am 14.12.2015
         private bool checkIfCriterionNameAlreadyExists(String criterionName, int excludedId)
         {
-            Criterion criterionWithExistingName = (from crit in this._dataContext.Criterion
+            Criterion criterionWithExistingName = (from crit in base.DataContext.Criterion
                                                     where crit.Name == criterionName 
                                                     && crit.Criterion_Id != excludedId
                                                     select crit).FirstOrDefault();

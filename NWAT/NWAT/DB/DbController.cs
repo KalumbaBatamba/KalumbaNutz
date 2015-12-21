@@ -1,0 +1,30 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NWAT.DB
+{
+    abstract class DbController
+    {
+        private NWATDataContext _dataContext;
+
+        public NWATDataContext DataContext
+        {
+            get
+            {
+                return this._dataContext;
+            }
+            set
+            {
+                this._dataContext = value;
+            }
+        }
+
+        public DbController(NWATDataContext dataContext)
+        {
+            this._dataContext = dataContext;
+        }
+    }
+}

@@ -8,8 +8,11 @@ namespace NWAT.DB
 {
 
 
-    class ProjectCriterionOperations
+    class ProjectCriterionController : DbController
     {
+        public ProjectCriterionController(NWATDataContext dataContext)
+            : base(dataContext)
+        { }
 
         /// <summary>
         /// Gets the project criterion by ids.
@@ -17,19 +20,17 @@ namespace NWAT.DB
         /// <param name="projectId">The project identifier.</param>
         /// <param name="criterionId">The criterion identifier.</param>
         /// <returns>
-        /// An instance of 'ProjectCriterion'
+        /// An instance of 'ProjectCriterion' 
         /// </returns>
         /// Erstellt von Joshua Frey, am 18.12.2015
-        public static ProjectCriterion GetProjectCriterionByIds(NWATDataContext dataContext,  int projectId, int criterionId)
+        public ProjectCriterion GetProjectCriterionByIds(NWATDataContext dataContext,  int projectId, int criterionId)
         {
 
             ProjectCriterion resultProjectCriterion = dataContext.ProjectCriterion.SingleOrDefault(projectCriterion => projectCriterion.Criterion_Id == criterionId 
                                                                               && projectCriterion.Project_Id == projectId);
-
-              
-            
-            Console.WriteLine(resultProjectCriterion.Criterion.Name);
             return resultProjectCriterion;
         }
+
+
     }
 }
