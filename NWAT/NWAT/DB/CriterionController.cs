@@ -143,6 +143,8 @@ namespace NWAT.DB
         /// Erstellt von Joshua Frey, am 14.12.2015
         /// <exception cref="DatabaseException">
         /// "Das Kriterium mit der Id X existiert nicht in der Datenbank."
+        /// or
+        /// SqlException if you try to delete a criterion, which is a parent criterion in project criterion table
         /// </exception>
         public bool DeleteCriterionFromDb(int criterionId)
         {
