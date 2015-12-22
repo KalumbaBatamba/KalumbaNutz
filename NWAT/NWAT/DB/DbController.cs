@@ -22,9 +22,16 @@ namespace NWAT.DB
             }
         }
 
+
+        public DbController()
+        {
+            this._dataContext = new NWATDataContext();
+        }
+
         public DbController(NWATDataContext dataContext)
         {
             this._dataContext = dataContext;
         }
+
     }
 }

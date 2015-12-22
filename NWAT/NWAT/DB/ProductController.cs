@@ -8,10 +8,10 @@ namespace NWAT.DB
 {
     class ProductController : DbController
     {
- 
-        public ProductController(NWATDataContext dataContext) : base(dataContext)
-        {
-        }
+
+        public ProductController() : base() { }
+        public ProductController(NWATDataContext dataContext) : base(dataContext) { }
+
 
         /// <summary>
         /// Gets the product by identifier from db.

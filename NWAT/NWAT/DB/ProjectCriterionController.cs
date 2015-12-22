@@ -10,9 +10,10 @@ namespace NWAT.DB
 
     class ProjectCriterionController : DbController
     {
+        public ProjectCriterionController() : base() { }
         public ProjectCriterionController(NWATDataContext dataContext)
-            : base(dataContext)
-        { }
+            : base(dataContext) { }
+       
 
         /// <summary>
         /// Gets the project criterion by ids.

@@ -10,9 +10,11 @@ namespace NWAT.DB
     class ProjectController : DbController
     {
 
+        public ProjectController() : base() { }
         public ProjectController(NWATDataContext dataContext)
-            : base(dataContext)
-        { }
+            : base(dataContext) { }
+
+       
 
         /// <summary>
         /// Gets the project by identifier from db.

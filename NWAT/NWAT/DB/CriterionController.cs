@@ -9,11 +9,9 @@ namespace NWAT.DB
 {
     class CriterionController : DbController
     {
-
+        public CriterionController() : base() { }
         public CriterionController(NWATDataContext dataContext)
-            : base(dataContext)
-        {
-        }
+            : base(dataContext) { }
 
         /// <summary>
         /// Gets the criterion by identifier from db.
