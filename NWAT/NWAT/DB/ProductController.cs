@@ -62,7 +62,7 @@ namespace NWAT.DB
             if (newProduct != null)
             {
                 string newProductName = newProduct.Name;
-                if (!checkIfProductNameAlreadyExists(newProductName))
+                if (!CheckIfProductNameAlreadyExists(newProductName))
                 {
                     base.DataContext.Product.InsertOnSubmit(newProduct);
                     base.DataContext.SubmitChanges();
@@ -83,7 +83,7 @@ namespace NWAT.DB
                                             && prod.Price == newProduct.Price 
                                             select prod).FirstOrDefault();
 
-            return checkIfEqualProducts(newProduct, newProductFromDb);   
+            return CheckIfEqualProducts(newProduct, newProductFromDb);   
         }
 
 
@@ -115,7 +115,7 @@ namespace NWAT.DB
             if (prodToUpdateFromDb != null)
             {
                 string newProductName = alteredProduct.Name;
-                if (!checkIfProductNameAlreadyExists(newProductName, productId))
+                if (!CheckIfProductNameAlreadyExists(newProductName, productId))
                 {
                     prodToUpdateFromDb.Name = alteredProduct.Name;
                     prodToUpdateFromDb.Producer = alteredProduct.Producer;
@@ -134,7 +134,7 @@ namespace NWAT.DB
             base.DataContext.SubmitChanges();
               
             Product alteredProductFromDb = GetProductById(productId);
-            return checkIfEqualProducts(alteredProduct, alteredProductFromDb);
+            return CheckIfEqualProducts(alteredProduct, alteredProductFromDb);
         }
 
 
@@ -180,7 +180,7 @@ namespace NWAT.DB
         /// bool if given products have equal properties
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        private bool checkIfEqualProducts(Product prodOne, Product prodTwo)
+        private bool CheckIfEqualProducts(Product prodOne, Product prodTwo)
         {
             bool equalName = prodOne.Name == prodTwo.Name;
             bool equalProducer = prodOne.Producer == prodTwo.Producer;
@@ -197,7 +197,7 @@ namespace NWAT.DB
         /// bool if product name already exists in db.
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        private bool checkIfProductNameAlreadyExists(String productName)
+        private bool CheckIfProductNameAlreadyExists(String productName)
         {
             Product productWithExistingName = (from prod in base.DataContext.Product
                                                     where prod.Name == productName
@@ -233,7 +233,7 @@ namespace NWAT.DB
         /// bool if other product exist with name to which user want to update given product to.
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        private bool checkIfProductNameAlreadyExists(String productName, int excludedId)
+        private bool CheckIfProductNameAlreadyExists(String productName, int excludedId)
         {
             Product productWithExistingName = (from prod in base.DataContext.Product
                                                     where prod.Name == productName 

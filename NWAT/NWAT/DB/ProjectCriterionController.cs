@@ -78,7 +78,7 @@ namespace NWAT.DB
                 int projectId = newProjectCriterion.Project_Id;
                 int criterionId = newProjectCriterion.Criterion_Id;
 
-                // set equal weighting
+                // set equal weighting when inserting a new project criterion
                 newProjectCriterion.Weighting_Cardinal = 1;
 
                 ProjectCriterion alreadyExistingProjectCriterion = this.GetProjectCriterionByIds(projectId, criterionId);
@@ -97,7 +97,7 @@ namespace NWAT.DB
                     string criterionName = alreadyExistingProjectCriterion.Criterion.Name;
                     throw (new DatabaseException((MessageProjectCriterionAlreadyExists(projectName, criterionName))));
                 }
-                return checkIfEqualProjectCriterions(newProjectCriterion, this.GetProjectCriterionByIds(projectId, criterionId));   
+                return CheckIfEqualProjectCriterions(newProjectCriterion, this.GetProjectCriterionByIds(projectId, criterionId));   
             }
             else
             {
@@ -120,7 +120,7 @@ namespace NWAT.DB
         /// bool if same project criterions
         /// </returns>
         /// Erstellt von Joshua Frey, am 22.12.2015
-        private bool checkIfEqualProjectCriterions(ProjectCriterion projectCriterionOne, ProjectCriterion projectCriterionTwo)
+        private bool CheckIfEqualProjectCriterions(ProjectCriterion projectCriterionOne, ProjectCriterion projectCriterionTwo)
         {
             bool sameProjectId = projectCriterionOne.Project_Id == projectCriterionTwo.Project_Id;
             bool sameCriterionId = projectCriterionOne.Criterion_Id == projectCriterionTwo.Criterion_Id;
@@ -144,7 +144,7 @@ namespace NWAT.DB
         /// bool if project criterion already exists
         /// </returns>
         /// Erstellt von Joshua Frey, am 22.12.2015
-        private bool checkIfProjectCriterionAlreadyExists(int projectId, int criterionId)
+        private bool CheckIfProjectCriterionAlreadyExists(int projectId, int criterionId)
         {
             ProjectCriterion existingProjectCriterion = this.GetProjectCriterionByIds(projectId, criterionId);
             if(existingProjectCriterion != null)
@@ -162,7 +162,7 @@ namespace NWAT.DB
         /// bool which says if given parent is a projectCriterion
         /// </returns>
         /// Erstellt von Joshua Frey, am 22.12.2015
-        private bool checkIfParentExistsInProjectAsProjectCriteroin(int projectId, int parentCritId)
+        private bool CheckIfParentExistsInProjectAsProjectCriteroin(int projectId, int parentCritId)
         {
             ProjectCriterion resultProjectCriterion = base.DataContext.ProjectCriterion.FirstOrDefault(projectCriterion => projectCriterion.Project_Id == projectId && projectCriterion.Criterion_Id == parentCritId);
             if (resultProjectCriterion == null)

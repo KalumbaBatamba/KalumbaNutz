@@ -66,7 +66,7 @@ namespace NWAT.DB
             if (newProject != null)
             {
                 string newProjectName = newProject.Name;
-                if (!checkIfProjectNameAlreadyExists(newProjectName))
+                if (!CheckIfProjectNameAlreadyExists(newProjectName))
                 {
                     base.DataContext.Project.InsertOnSubmit(newProject);
                     base.DataContext.SubmitChanges();
@@ -86,7 +86,7 @@ namespace NWAT.DB
                                             && crit.Description == newProject.Description
                                             select crit).FirstOrDefault();
 
-            return checkIfEqualProjects(newProject, newProjectFromDb);
+            return CheckIfEqualProjects(newProject, newProjectFromDb);
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace NWAT.DB
             if (projToUpdateFromDb != null)
             {
                 string newProjectName = alteredProject.Name;
-                if (!checkIfProjectNameAlreadyExists(newProjectName, projectId))
+                if (!CheckIfProjectNameAlreadyExists(newProjectName, projectId))
                 {
                     projToUpdateFromDb.Name = alteredProject.Name;
                     projToUpdateFromDb.Description = alteredProject.Description;
@@ -132,7 +132,7 @@ namespace NWAT.DB
             base.DataContext.SubmitChanges();
 
             Project alteredCriterionFromDb = GetProjectById(projectId);
-            return checkIfEqualProjects(alteredProject, alteredCriterionFromDb);
+            return CheckIfEqualProjects(alteredProject, alteredCriterionFromDb);
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace NWAT.DB
         /// bool if given projects are equal
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        private bool checkIfEqualProjects(Project projOne, Project projTwo)
+        private bool CheckIfEqualProjects(Project projOne, Project projTwo)
         {
             bool equalName = projOne.Name == projTwo.Name;
             bool equalDescription = projOne.Description == projTwo.Description;
@@ -195,7 +195,7 @@ namespace NWAT.DB
         /// bool if project name already exists in db.
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        private bool checkIfProjectNameAlreadyExists(String projectName)
+        private bool CheckIfProjectNameAlreadyExists(String projectName)
         {
             Project projectWithExistingName = (from proj in base.DataContext.Project
                                                     where proj.Name == projectName
@@ -232,7 +232,7 @@ namespace NWAT.DB
         /// bool if other project exist with name to which user want to update given project to.
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        private bool checkIfProjectNameAlreadyExists(String projectName, int excludedId)
+        private bool CheckIfProjectNameAlreadyExists(String projectName, int excludedId)
         {
             Project projectWithExistingName = (from proj in base.DataContext.Project
                                                     where proj.Name == projectName

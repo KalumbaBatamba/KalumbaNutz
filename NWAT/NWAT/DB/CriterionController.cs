@@ -61,7 +61,7 @@ namespace NWAT.DB
             if (newCriterion != null)
             {
                 string newCriterionName = newCriterion.Name;
-                if (!checkIfCriterionNameAlreadyExists(newCriterionName))
+                if (!CheckIfCriterionNameAlreadyExists(newCriterionName))
                 {
                     base.DataContext.Criterion.InsertOnSubmit(newCriterion);
                     base.DataContext.SubmitChanges();
@@ -80,7 +80,7 @@ namespace NWAT.DB
                                             where crit.Name == newCriterion.Name
                                             && crit.Description == newCriterion.Description
                                             select crit).FirstOrDefault();
-            return checkIfEqualCriterions(newCriterion, newCriterionFromDb);   
+            return CheckIfEqualCriterions(newCriterion, newCriterionFromDb);   
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace NWAT.DB
             if (critToUpdateFromDb != null)
             {
                 string newCriterionName = alteredCriterion.Name;
-                if (!checkIfCriterionNameAlreadyExists(newCriterionName, criterionId))
+                if (!CheckIfCriterionNameAlreadyExists(newCriterionName, criterionId))
                 {
                     critToUpdateFromDb.Name = alteredCriterion.Name;
                     critToUpdateFromDb.Description = alteredCriterion.Description;
@@ -128,7 +128,7 @@ namespace NWAT.DB
             base.DataContext.SubmitChanges();
               
             Criterion alteredCriterionFromDb = GetCriterionById(criterionId);
-            return checkIfEqualCriterions(alteredCriterion, alteredCriterionFromDb);
+            return CheckIfEqualCriterions(alteredCriterion, alteredCriterionFromDb);
         }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace NWAT.DB
         /// bool if given criterions have equal properties
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        private bool checkIfEqualCriterions(Criterion critOne, Criterion critTwo)
+        private bool CheckIfEqualCriterions(Criterion critOne, Criterion critTwo)
         {
             bool equalName = critOne.Name == critTwo.Name;
             bool equalDescription = critOne.Description == critTwo.Description;
@@ -191,7 +191,7 @@ namespace NWAT.DB
         /// bool if criterion name already exists in db.
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        private bool checkIfCriterionNameAlreadyExists(String criterionName)
+        private bool CheckIfCriterionNameAlreadyExists(String criterionName)
         {
             Criterion criterionWithExistingName = (from crit in base.DataContext.Criterion
                                                         where crit.Name == criterionName
@@ -227,7 +227,7 @@ namespace NWAT.DB
         /// bool if other croterion exist with name to which user want to update given criterion to.
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        private bool checkIfCriterionNameAlreadyExists(String criterionName, int excludedId)
+        private bool CheckIfCriterionNameAlreadyExists(String criterionName, int excludedId)
         {
             Criterion criterionWithExistingName = (from crit in base.DataContext.Criterion
                                                     where crit.Name == criterionName 
