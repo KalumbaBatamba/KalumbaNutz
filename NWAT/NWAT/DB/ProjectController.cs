@@ -28,10 +28,7 @@ namespace NWAT.DB
         {
             Project resultProject;
 
-            using (NWATDataContext dataContext = new NWATDataContext())
-            {
-                resultProject = base.DataContext.Project.SingleOrDefault(project => project.Project_Id == id);
-            }
+            resultProject = base.DataContext.Project.SingleOrDefault(project => project.Project_Id == id);
             return resultProject;
         }
 
@@ -81,10 +78,10 @@ namespace NWAT.DB
                 throw (new DatabaseException(MessageProjectCouldNotBeSavedEmptyObject()));
             }
 
-            Project newProjectFromDb = (from crit in base.DataContext.Project
-                                            where crit.Name == newProject.Name
-                                            && crit.Description == newProject.Description
-                                            select crit).FirstOrDefault();
+            Project newProjectFromDb = (from proj in base.DataContext.Project
+                                            where proj.Name == newProject.Name
+                                            && proj.Description == newProject.Description
+                                            select proj).FirstOrDefault();
 
             return CheckIfEqualProjects(newProject, newProjectFromDb);
         }

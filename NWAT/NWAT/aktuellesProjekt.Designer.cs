@@ -263,6 +263,7 @@
             this.Controls.Add(this.label1);
             this.Name = "aktuellesProjekt";
             this.Text = "aktuelles Projekt";
+            this.Load += new System.EventHandler(this.aktuellesProjekt_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
