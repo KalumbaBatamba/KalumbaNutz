@@ -1,0 +1,1651 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="e2b87958-d6e9-4566-9599-a31ff9c0b1a8"
+  name="NWAT"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="f6c167fa-be20-4742-9a6d-fe264e619007"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DNWAT"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="e8cc804e-f5c0-432d-b532-834e1e2c19fe"
+        LastKnownName="DB"
+        LastKnownLocation="Package1_2217.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="450d0128-2fa8-44b0-894f-fa87a609ed88"
+        name="aktuellesProjekt"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="5603d1fa-0383-482f-bf88-002e3afd2593"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="00eeb2ca-2f9b-4bd1-8e3e-7b842ef4b0bf"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="afd546af-eff6-439b-ab9f-4a9c69073584">
+                <propertyInstance
+                  Id="36b4037e-7186-4772-be2f-1497118ed1a0"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="01288793-9169-4740-966c-227a2d0ace6b">
+                <propertyInstance
+                  Id="e8f8dd1c-dcf6-4de1-ac46-e2efab826bdb"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="13ba9bc5-b31d-4d16-aa19-466550f0c66d">
+                <propertyInstance
+                  Id="8be690c6-b06c-4d48-8f40-caeefadfe9d9"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ba28150e-8e68-4677-9f61-ebfd52bf8222">
+                <propertyInstance
+                  Id="6b61a01c-98ff-486f-afb9-9601d5a7b85b"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d464b210-3b3c-411c-975c-d81897f66790">
+                <propertyInstance
+                  Id="cd5d027b-e87a-4274-8e23-b012f2a91580"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="179185ae-343f-485c-82f6-27164d648168"
+            isSubstitutable="false">
+            <classMoniker
+              Id="dd56232f-82b2-4054-a624-7881356bfaf3"
+              LastKnownName="Form"
+              LastKnownLocation="Package1_2220.uml" />
+          </generalization>
+        </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="47eefda2-eaf1-4dde-98cb-6e1d2b190ea4"
+            name="button10"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="00fdd9df-f6fd-4b0c-adef-6fe273116d3b"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3Dbutton10"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="e2a9a412-87a6-4f15-80a6-3fc379fccb04"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="55e4e584-fda0-4463-9037-30e317299dcb">
+                    <propertyInstance
+                      Id="5a72f641-3502-480a-b41e-b4baec398d8a"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="301eee6b-ec29-4870-8af8-42ead9fc6576">
+                    <propertyInstance
+                      Id="1b6aef99-94cb-4caf-8322-ff9130aefd87"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0db36395-7dae-415b-acd3-995f9a1427b7">
+                    <propertyInstance
+                      Id="7c89eacd-8abd-4bd2-a806-2e2c22a84963"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d8f0e9b3-103c-407a-8a1e-5b372cc3ae32">
+                    <propertyInstance
+                      Id="72094cbe-6fc1-4814-b26c-4a1363f42e62"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="41da3bb1-9f1d-4ecc-afbf-2ea7f7f66c41">
+                    <propertyInstance
+                      Id="553d7f1a-24b5-4519-bdad-39ad6ce2ce58"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="cdc10187-1a25-4067-9ba4-9f8060c85569"
+                LastKnownName="Button"
+                LastKnownLocation="Package1_2220.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="17eceaa2-b483-4a65-bbe6-6b07702aafcd"
+            name="button11"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="61074e87-5951-4314-89b9-181ec961ae0e"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3Dbutton11"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="ed588bd2-bf1d-426b-ae89-4ab8f1458e31"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dc866272-3245-4e06-a02a-b57b800c4921">
+                    <propertyInstance
+                      Id="6f03609a-03df-4307-90fa-543d083d9a3c"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b40bf8aa-234e-42de-b67b-da6adb76af4b">
+                    <propertyInstance
+                      Id="78587d34-063c-41f8-8a15-7010380e4114"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1411d350-b1c2-4b9a-a7d0-f5dbbaef11a2">
+                    <propertyInstance
+                      Id="28e3a623-653a-47c3-b04d-b3df9194a75c"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b1ee0d6e-70c7-4b0e-979c-0cfa672b0a97">
+                    <propertyInstance
+                      Id="d53edf44-33b0-4d1e-821b-19d3dbee461c"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ee235691-eb22-4437-81dc-b9aaf23e772c">
+                    <propertyInstance
+                      Id="2e597b65-4403-4009-a3fd-8cbac1299329"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="cdc10187-1a25-4067-9ba4-9f8060c85569"
+                LastKnownName="Button"
+                LastKnownLocation="Package1_2220.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="88715f1c-ea29-4f4e-bc83-bed917ce1a19"
+            name="button12"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="47e981e4-b5fb-41ce-8cd2-829ae576bbd8"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3Dbutton12"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="6740f800-2116-4929-b228-4ac0048a199d"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0ac47d37-93db-42fd-8f7c-e69c144378db">
+                    <propertyInstance
+                      Id="64196547-97ec-4dfc-8e25-c3d7226ada8b"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="16292e6c-dbfa-4b85-abc7-d15052388733">
+                    <propertyInstance
+                      Id="423a70e1-296f-43f8-bde0-06c14ce98156"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d8ecfdd8-fa52-4f1e-bfa7-6fa0b55603c1">
+                    <propertyInstance
+                      Id="262baef3-5a61-43ba-83d1-e21fcda6e91f"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4c11e168-d049-440d-8b44-16438a829201">
+                    <propertyInstance
+                      Id="735f1fd6-de74-4136-b8da-b8b71981eae4"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2ea8e5e0-d022-4b47-8d4b-f8c9ff551596">
+                    <propertyInstance
+                      Id="bc573bca-25af-419d-93ad-c51185807f32"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="cdc10187-1a25-4067-9ba4-9f8060c85569"
+                LastKnownName="Button"
+                LastKnownLocation="Package1_2220.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="29c91a5c-af54-499f-bc34-321f065db2c1"
+            name="button13"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="828445e6-5e6a-4583-91e8-89b3208b18df"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3Dbutton13"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="c32cbd68-d10e-450a-baa2-bd30680830d3"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="43fb8704-4624-4713-aed9-751bf732fa37">
+                    <propertyInstance
+                      Id="d3280268-c1a2-4cd0-bf4f-f9855baaff65"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2bc89af9-1907-40cc-b672-4258c82827b8">
+                    <propertyInstance
+                      Id="08ecf741-87da-4de3-bf06-731eecb70490"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="57b72532-2f7a-44dd-ab8a-a9621ac7bd5e">
+                    <propertyInstance
+                      Id="8fb37889-0e2f-4227-ad64-ff94fde6286d"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1dd04600-1561-4e7d-8733-f25e15e48868">
+                    <propertyInstance
+                      Id="b8f86dd1-e083-490d-a4b7-fb3f2ae30162"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7f8aca82-c62f-4fd6-b163-0c199ac3ce5b">
+                    <propertyInstance
+                      Id="45bc759c-8e38-435e-9514-a4892924fa56"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="cdc10187-1a25-4067-9ba4-9f8060c85569"
+                LastKnownName="Button"
+                LastKnownLocation="Package1_2220.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="8e043ed4-dba9-4bb7-adc1-0e720aabc241"
+            name="button14"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="6f143e0a-300b-44ae-a30c-ff5961871fb7"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3Dbutton14"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="8026f818-b5ff-49c4-bd40-9494a844c72b"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ba01039a-e8d3-419c-bc15-137fab396fef">
+                    <propertyInstance
+                      Id="faab4738-8bfc-4910-b660-2a9399f01b50"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d329e8e4-82ae-4f1a-912d-1272ff436157">
+                    <propertyInstance
+                      Id="efab578c-9bec-44c8-bfe5-bdc41b53f9f3"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="693d44b9-56de-4dff-a021-eaaaf052e73a">
+                    <propertyInstance
+                      Id="318c717b-98c8-422a-b4a5-af413dee5b2d"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="44af72e2-442c-4125-8935-172795f28238">
+                    <propertyInstance
+                      Id="0a437e76-815c-4a55-a774-19a9c64d49f8"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a3386352-0e0c-40e5-b07e-0738a66b50b7">
+                    <propertyInstance
+                      Id="0d0c15d4-adac-42e0-a135-ff95f6bb9008"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="cdc10187-1a25-4067-9ba4-9f8060c85569"
+                LastKnownName="Button"
+                LastKnownLocation="Package1_2220.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="cd87ad03-596c-44b1-9578-d1621b555b93"
+            name="button15"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="76582b74-0437-43eb-8761-58e16a44f17e"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3Dbutton15"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="67d60f47-de9e-4d34-831d-38c86750a7d2"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1d25d01d-cf1e-42e0-9dc0-68359b44dda1">
+                    <propertyInstance
+                      Id="5baa2a1d-68d0-4425-8818-befbd3c89566"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="96460e50-6b18-4b43-918b-c442405d5058">
+                    <propertyInstance
+                      Id="4571f066-70df-4c19-93cb-c8bc70ce7fda"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8c630faa-91d8-499c-a971-3e3507261361">
+                    <propertyInstance
+                      Id="abb0e336-5541-4866-b5ee-50deb9005417"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4f39c1bb-80f1-4b99-9b70-940254301a52">
+                    <propertyInstance
+                      Id="53f29754-64a1-47d1-bb33-68858c8f0fac"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="08d2f045-35cf-47d5-a303-efa27b0d59f0">
+                    <propertyInstance
+                      Id="fc010b41-42bf-483c-a86c-5ab2ec461fdb"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="cdc10187-1a25-4067-9ba4-9f8060c85569"
+                LastKnownName="Button"
+                LastKnownLocation="Package1_2220.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="17e90187-d695-4c49-82ed-285a8d26b1f5"
+            name="button16"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="c97a7614-6589-4dc5-97d9-31e1a21e143c"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3Dbutton16"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="76ed77c4-4d71-431a-b3a8-cbba7a81ed4d"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5dc2b89f-6ede-442f-b889-a3167fa1621a">
+                    <propertyInstance
+                      Id="1261a7f9-9783-44d4-8aa7-fee74ba66337"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fd9f84d4-9150-425b-a46f-9a37eb8eba83">
+                    <propertyInstance
+                      Id="f59ff5ca-ffe0-4f53-a6bf-a6ec540840ec"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a60cd4d7-4752-46b4-8548-ae267ad54a5c">
+                    <propertyInstance
+                      Id="85b677da-f8ed-4786-8f17-160296fbbbfc"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="be154344-6df9-407e-82e8-9ebb1bfdd4bd">
+                    <propertyInstance
+                      Id="43b0b376-e9dc-408b-bd07-adf33bf2c184"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2c827a7b-dcaa-43fc-807d-37870bef1e1a">
+                    <propertyInstance
+                      Id="f235f436-6f4c-4a97-b0c6-78eca3cea0aa"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="cdc10187-1a25-4067-9ba4-9f8060c85569"
+                LastKnownName="Button"
+                LastKnownLocation="Package1_2220.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="0b60ade7-287e-4073-b07d-9700f3682e92"
+            name="button17"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="8272876c-db82-4df8-bd40-ee7950a2f7e3"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3Dbutton17"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="e6679dd1-365b-498c-adfb-d6e262d6f011"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fed03739-357a-4000-8968-be4a13379fa9">
+                    <propertyInstance
+                      Id="df93b241-2725-4058-8f57-b26ee17f2249"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3a56259a-6a8c-493a-89a3-8b5fa3235610">
+                    <propertyInstance
+                      Id="18bc8b32-85b6-423c-bc8a-452afce2fe03"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="116bc91f-6139-4d7e-846a-8c68fda945f7">
+                    <propertyInstance
+                      Id="3e38f621-faba-4a8d-929b-34d6883fc89f"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6d9ccee6-bfa2-4309-84af-ba24820dfa42">
+                    <propertyInstance
+                      Id="972a3cfe-891d-4b63-ad0c-49a9ba67b922"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="eac509e3-9ed3-4fd0-b4e4-54754f7a90fe">
+                    <propertyInstance
+                      Id="4d094bce-15d7-4620-a1a9-0b7adaa39d7e"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="cdc10187-1a25-4067-9ba4-9f8060c85569"
+                LastKnownName="Button"
+                LastKnownLocation="Package1_2220.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="418d5647-5aee-4cf3-86c4-5ab03e777cf1"
+            name="button18"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="a533c231-1730-452d-b726-db600f31bf7d"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3Dbutton18"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="94b99845-b193-4d98-b505-25d87089f045"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ad28ee3b-d6c3-4036-8538-ff54080e3361">
+                    <propertyInstance
+                      Id="574333aa-f968-4ab3-a967-b3d6e1572ee5"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c3ac0add-c868-4d7c-bcbd-ce548dea7573">
+                    <propertyInstance
+                      Id="54e5be32-17ab-4e28-9e74-8611d6a4ab8a"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2ca79752-09fe-489a-8e73-7268989291fa">
+                    <propertyInstance
+                      Id="3e638cf4-11bc-48d9-9627-923d0c4a569f"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e19a639b-e1f3-494d-ad8e-37046ffa145d">
+                    <propertyInstance
+                      Id="00a37166-2ee9-4476-8bb6-6303047bffbd"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="397073c0-1b9c-4906-974e-9cc0678ec417">
+                    <propertyInstance
+                      Id="1ea97159-c9cf-4936-80e4-cba11a4b90b3"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="cdc10187-1a25-4067-9ba4-9f8060c85569"
+                LastKnownName="Button"
+                LastKnownLocation="Package1_2220.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="e38e84d3-356c-45b5-b8a6-56358fd8ff67"
+            name="button7"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="416f7066-f9c3-44e0-a31c-a019141b0f77"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3Dbutton7"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="d132c19e-0462-4ba3-8fc0-642fe417628c"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3c14c3ad-de2e-47ad-9448-8a9535b7359d">
+                    <propertyInstance
+                      Id="2c319fc5-3f52-485f-98f9-76b25167241f"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dd017b81-6351-4803-810a-a91096e53c7c">
+                    <propertyInstance
+                      Id="8914bfe0-5a84-4362-8993-27da555855e5"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b6ff06c1-1665-49b6-85ba-d8605facfca3">
+                    <propertyInstance
+                      Id="64c1ca17-e6de-4d1c-b02f-8e549d596cba"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2a0ffc97-6d5b-487d-a09b-1e6145e3bd07">
+                    <propertyInstance
+                      Id="29a43b51-08fa-40c9-b5b7-0dc764262f6d"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="aa1223ba-3e35-4580-ad73-d2b6fd24a6da">
+                    <propertyInstance
+                      Id="3eec3339-51ae-4d53-9490-5ca4c7c04115"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="cdc10187-1a25-4067-9ba4-9f8060c85569"
+                LastKnownName="Button"
+                LastKnownLocation="Package1_2220.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="12c32407-8a1d-44f0-8495-af4941a35449"
+            name="button8"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="a3b0ab11-62ca-4e6f-98ce-d8498dec89b2"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3Dbutton8"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="9b681c8a-c84f-4082-947a-308c7b199383"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c4cf227a-2744-44de-bdd3-26bb6057568d">
+                    <propertyInstance
+                      Id="7adfcb05-59e7-4917-a630-6e3d14b9ffb0"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9ccf389b-600c-4309-9487-fcab5a182fe3">
+                    <propertyInstance
+                      Id="f28fd53e-930c-4e1b-9eb4-048682b196bc"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ec8033d1-3622-4dd3-81d0-9d347281db6d">
+                    <propertyInstance
+                      Id="ea571210-fa68-4eb7-9058-3d3a9573cd09"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b4804977-1a5d-47fe-ade8-5e2d69303321">
+                    <propertyInstance
+                      Id="7b6fb154-ab56-4f62-8b85-af7cd2fc06fa"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7add9ed2-6882-4ddf-bcb8-98e3d51c4ad6">
+                    <propertyInstance
+                      Id="698285ad-941f-43e0-85f8-7c0ce57cad22"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="cdc10187-1a25-4067-9ba4-9f8060c85569"
+                LastKnownName="Button"
+                LastKnownLocation="Package1_2220.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="39e51924-7cd0-4f9a-88f6-ce08af4fc72c"
+            name="button9"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="1adcb451-6c16-4fb6-b7d0-6ef136703419"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3Dbutton9"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="18b0dc00-897b-4b40-81d4-1334d4eaf720"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="807a81c9-f518-47d3-aafd-8b073dd8aa19">
+                    <propertyInstance
+                      Id="1979b159-da3e-4bb9-b6af-bd22f36fee66"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="94aad8fb-58c3-4758-96c0-1940682dd6c8">
+                    <propertyInstance
+                      Id="6455bf6e-1072-4baf-adab-6709445dc355"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="86bd1a86-84ea-417a-86cd-c816cbaff3b5">
+                    <propertyInstance
+                      Id="63df0744-3372-4461-91cf-95392c404b55"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9c85e7ac-fe93-4563-a41d-d17281163ba6">
+                    <propertyInstance
+                      Id="a0d54268-ea7a-46bd-a37e-b7ca8b100365"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="13e8f088-2cca-4f8d-8669-c7ccac19614a">
+                    <propertyInstance
+                      Id="4595e43f-f998-41b2-999d-5f92e91504f3"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="cdc10187-1a25-4067-9ba4-9f8060c85569"
+                LastKnownName="Button"
+                LastKnownLocation="Package1_2220.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="45d7ab55-214d-49d8-a134-8f62a960249c"
+            name="components"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="cc9896dd-1d93-4aa2-b8a6-d26b81ee7db2"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3Dcomponents"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="ebff28a0-e3e8-4edb-9853-773b9c3abac0"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7d81c659-3ade-4f78-b8ec-87d306c0f6fb">
+                    <propertyInstance
+                      Id="4d759f1a-82c4-4ce1-9d21-d518e83e8329"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="088c9f6c-c601-4dc2-953c-3b695bc4a19e">
+                    <propertyInstance
+                      Id="70a81ce6-b7c9-4e33-9d03-18d8ce27f688"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ebb15abb-ae47-432c-8b92-896e9dbfb0d1">
+                    <propertyInstance
+                      Id="31cedc67-6cc9-468e-8410-e91de9a3a869"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="df5ec319-1d98-4103-90e8-e30914eb6570">
+                    <propertyInstance
+                      Id="8a5830ff-e158-4c37-86aa-5e2e8afd72e6"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="88e0d247-ee53-4768-a34b-33f36c43e57c">
+                    <propertyInstance
+                      Id="8c7d1972-cdd6-458d-b387-bd078ba92b0d"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="3a8b61d9-204a-4761-ad77-241e5a89ef1c"
+                LastKnownName="IContainer"
+                LastKnownLocation="Package5_2217.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="3c92ec81-44f4-47fa-b3a4-dc92c3229522"
+            name="groupBox2"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="36cd60c7-3a67-42ea-96da-23facb81722b"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3DgroupBox2"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="3cb37390-61e2-40cb-9095-5f69cdc35123"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cdb3ff26-d9b5-456d-b107-be8bdea59502">
+                    <propertyInstance
+                      Id="c92c2c4d-dccb-4076-96df-d8bb73382628"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="578a8efe-1215-4720-914f-69a927c15549">
+                    <propertyInstance
+                      Id="90629029-7c5f-49b7-808c-ba6f261c7f5e"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="30e7f5aa-d043-4d7f-a30b-94ebefa5e1e8">
+                    <propertyInstance
+                      Id="26001653-d5a7-43fb-a591-b9e706c5e78b"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="911d3933-6bc8-4d75-b502-e69cd9303521">
+                    <propertyInstance
+                      Id="728bd679-f9aa-4b73-ab0e-4cda47788302"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d9864471-e5fe-46fa-bbd8-624106c05995">
+                    <propertyInstance
+                      Id="943f0fe2-9bfe-4f47-a63f-7ff243f9b9b6"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="d8690a93-18f2-424d-ad07-4b5a0c42b20b"
+                LastKnownName="GroupBox"
+                LastKnownLocation="Package1_2220.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="c0c22237-c99f-42e7-bb93-63d544516145"
+            name="groupBox3"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="d2e56845-b4c7-4638-a21b-12641bc27f20"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3DgroupBox3"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="f0aa10a7-d8dd-4365-8f5b-47bc4c125b6b"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8fa5f0d5-4571-421f-967b-700623f1f7f2">
+                    <propertyInstance
+                      Id="9b903ddc-d92b-4973-a511-1b16d8e8a4ed"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="aa8977eb-be11-4280-b58b-be8756e8ed4f">
+                    <propertyInstance
+                      Id="d00ccd79-6f61-4e6a-8257-540b75341b42"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7770f4e6-6ea6-4287-938b-1c5468838857">
+                    <propertyInstance
+                      Id="63b429b4-a9ed-48f4-8b91-4e40090433a0"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6df4017b-7035-432f-a621-aaed42148332">
+                    <propertyInstance
+                      Id="f585d8ca-788c-47e9-ae74-790e5411d19e"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cdae6f68-b94a-4f1b-b0f9-0508243d2b48">
+                    <propertyInstance
+                      Id="7f247b43-9fcf-4a8e-9872-e4e748ce0635"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="d8690a93-18f2-424d-ad07-4b5a0c42b20b"
+                LastKnownName="GroupBox"
+                LastKnownLocation="Package1_2220.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="16525cb3-a796-4c84-8814-027505378cdc"
+            name="groupBox4"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="c3b1bf92-2be6-43b4-a5b3-5760602780ce"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3DgroupBox4"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="705396fb-7762-4631-bdb3-5d1bff75bfde"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="92a2b929-2f5b-42c6-b793-28d74987fcc1">
+                    <propertyInstance
+                      Id="1bb76a70-178e-4ad7-b0d7-c283c750a428"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f23334f6-a73c-4d7b-96c9-2ce7cc892d9f">
+                    <propertyInstance
+                      Id="e8075b7b-8a78-4409-a7d2-f8e3a78d5e01"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="548f16be-9ce1-42a7-84e7-233e70c29a06">
+                    <propertyInstance
+                      Id="cb081b15-fe06-49e2-968d-f6ae44009287"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="56a3c326-2e09-4041-9bad-2ab716c2785c">
+                    <propertyInstance
+                      Id="b186a2c9-a3fd-4975-9e09-817d81d1985d"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="accdd838-4797-4a77-a5b1-b559d84fc351">
+                    <propertyInstance
+                      Id="c3da654f-e616-4464-ac09-4db742587379"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="d8690a93-18f2-424d-ad07-4b5a0c42b20b"
+                LastKnownName="GroupBox"
+                LastKnownLocation="Package1_2220.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="a692d09e-4e3b-4eab-bcb8-97a973ec0658"
+            name="label1"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="d8491fce-ab85-4600-8e0c-ffa92b064fd0"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3Dlabel1"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="ce93969c-06c4-48e9-93c2-93eb0ef1f532"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6d297d28-239d-44db-914b-17c98eb90e52">
+                    <propertyInstance
+                      Id="62d8756a-e310-4726-abf4-de408353df43"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="40fded14-7bfe-43d6-afde-b13c8340836d">
+                    <propertyInstance
+                      Id="2a78e7af-a28d-454d-a7a7-bed12c5a42f6"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="248dff51-d5d3-4af2-8a58-245abfbd5e0c">
+                    <propertyInstance
+                      Id="a6dc3084-e679-4f96-a8f5-61ae321fac1b"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bc01f7f9-5765-4bac-a271-491706c24d06">
+                    <propertyInstance
+                      Id="1dc4f7a0-b8a9-463f-bc92-68666ab4eeea"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="08aad3d5-a933-4cd0-af90-e6e49b8ffc01">
+                    <propertyInstance
+                      Id="8736b461-b10b-4874-a5a9-b29848b2758d"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="a479a399-41bc-4f0c-80cd-2fe5eb2c9b40"
+                LastKnownName="Label"
+                LastKnownLocation="Package1_2220.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="d0b6ef72-615e-40af-a186-9a2e9b19663e"
+            name="label2"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="50850bb3-bd0b-4719-825b-4feb405b87b4"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3Dlabel2"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="08d9ad14-d032-4a74-97ba-8dda7ccb56cf"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e71dbda4-a8a8-44e3-bea4-81385b727949">
+                    <propertyInstance
+                      Id="257135cb-2aac-4a68-bb33-9da692f4c2c9"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fd5f4bbc-0c7f-4821-9eb3-207b38152fe2">
+                    <propertyInstance
+                      Id="efc739a7-1045-4d2c-a5b6-57766d42cc40"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="461259d9-a6b6-4d32-b9be-cb22254d1982">
+                    <propertyInstance
+                      Id="debec779-d259-4f23-a955-72d1c6224565"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="60f55a49-8cec-47a2-9b51-c01ceaf5b3b6">
+                    <propertyInstance
+                      Id="723522b3-c357-49e1-9e96-844acc5e5adc"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="eaec90ac-c402-4e6f-8714-d7789ab1fee9">
+                    <propertyInstance
+                      Id="68f321a3-b142-477c-a4ba-14aad49d2213"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="a479a399-41bc-4f0c-80cd-2fe5eb2c9b40"
+                LastKnownName="Label"
+                LastKnownLocation="Package1_2220.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="050fc557-e21f-4117-91a2-47f7e4152161"
+            name="label3"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="278b3c94-8550-4f7f-89ce-20c423e36b5b"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3Dlabel3"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="a6fe5ac4-64eb-4ede-a444-4c9e5e93abbb"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b6526a52-664f-4785-9031-b3e6115e21d8">
+                    <propertyInstance
+                      Id="ce19d594-a1ce-4427-aebb-0e996b3b2f96"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="16b11bf6-37d6-4089-aa00-7b64e0413987">
+                    <propertyInstance
+                      Id="3adf9c50-aa12-4bf4-8aeb-e604b704ae9b"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="43791367-77ee-4f40-b332-1cce6ce5d869">
+                    <propertyInstance
+                      Id="402f6522-5210-412d-8309-8863408e0630"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="891b8869-aeed-4c85-b170-f4b3a3da7770">
+                    <propertyInstance
+                      Id="fef80b5b-edc8-432f-a3d2-581d24b42600"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d0844f67-ab79-42ce-929e-d859ffc9bf63">
+                    <propertyInstance
+                      Id="b70c23f9-4ced-4eb9-adbf-cc8d74e9b042"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="a479a399-41bc-4f0c-80cd-2fe5eb2c9b40"
+                LastKnownName="Label"
+                LastKnownLocation="Package1_2220.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="cb5cb158-1e71-40d0-9ad3-6ab2f6cd0885"
+            name="label4"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="e63130ca-ad61-487d-986e-47170ea82fe9"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3Dlabel4"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="9d8f37b6-9c05-45a3-ae28-d19ec73661f1"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c5a4d070-3bc3-4ead-bd51-734cd6bd5966">
+                    <propertyInstance
+                      Id="e057c5da-e7c5-4a92-ae8d-57dbcd4f20eb"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3683f324-cee5-4278-a9e2-52276bf58606">
+                    <propertyInstance
+                      Id="431fd0a1-463f-4e39-9d89-d5097d6b6272"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dcc71628-b5b0-4cc9-a616-0af254621f9c">
+                    <propertyInstance
+                      Id="1258b4d2-2ac1-42b5-b3ac-d1caa0d76032"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ce6fb511-a9e5-417b-8542-c30bee92f55e">
+                    <propertyInstance
+                      Id="92e1d206-bc0d-403b-94c8-4002e3c356ff"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fcf8d9fb-be6d-4b9a-89e3-226551a7b7c1">
+                    <propertyInstance
+                      Id="192d06c9-36af-400b-9b1d-18bfe5587e61"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="a479a399-41bc-4f0c-80cd-2fe5eb2c9b40"
+                LastKnownName="Label"
+                LastKnownLocation="Package1_2220.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="44e28bee-3f03-44af-9921-99d430535f6a"
+            name="Dispose"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="f59a96b7-5e61-4cdc-ad87-7e647ca8ef13"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3D(Name%3DDispose OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DBoolean)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="a930e416-4213-457b-ad2c-f4a45d8093f6"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="17577311-b97a-4547-8bde-c0d7849abfec">
+                    <propertyInstance
+                      Id="82b30ab1-9587-49ee-a28b-d9af6690bd12"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="07efc4b0-ee79-4d7d-be91-555bfac9037a">
+                    <propertyInstance
+                      Id="aeeff066-1a64-49ee-a931-1e9675f82965"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f204eca9-d599-4f7a-b592-ef39a1cb843e">
+                    <propertyInstance
+                      Id="56d67a0d-3b8f-44f4-8393-560b137f8040"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="11ec56e2-01f0-4a18-adaf-79da307a09d3">
+                    <propertyInstance
+                      Id="a1d11bed-c445-46bb-a9f2-69f2d8dc4ec3"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="09a3285a-1ffb-4c65-bab7-da2cf32c11f0">
+                    <propertyInstance
+                      Id="617e6594-cb48-4480-8490-d789fc047b4c"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e87c612c-c722-4b33-a00b-4ecb7862a5b3">
+                    <propertyInstance
+                      Id="ddc2e21a-923c-4290-af16-92153caa5803"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="86e18df4-101c-4de5-8cd7-a56f746f5d9c"
+                  name="disposing"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="10083412-f5f1-4b53-b48b-1e5f72f3af6e"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3D(Name%3DDispose OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DBoolean)]) ParameterIdentifier%3Ddisposing"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="NWAT_Modelling.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="803b1a62-098e-4aa2-8537-68946ed9ad9f"
+            name="aktuellesProjekt"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="45f7278c-8d47-4fd7-8056-ba15253597de"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="561bf8a6-2a6e-4bd8-be98-d84d21ece82d"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="15ac4978-ea7d-43cf-9a49-3933b15bfd3a">
+                    <propertyInstance
+                      Id="842dea1e-d042-4967-9caf-779d55a2861c"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fa58f367-eac9-4815-ad04-d4c5e97ceef1">
+                    <propertyInstance
+                      Id="73d0fe56-42fb-4e73-96ef-881c510907a3"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e11c870c-46c0-485f-abe0-25d56d21b69c">
+                    <propertyInstance
+                      Id="6bf97754-b46d-4906-b722-d8ff09200157"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="636c9027-348a-451b-8bbb-231389cfe5a3">
+                    <propertyInstance
+                      Id="b952a8ba-78cf-40f6-afd8-a307636a64b5"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e4547ec1-2454-471c-a785-42127e1e08bd">
+                    <propertyInstance
+                      Id="0e6c84eb-7d7b-48a3-a135-455f27378a7e"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b4a8695d-6f11-42e0-b7f7-c3eaa1c3a177">
+                    <propertyInstance
+                      Id="9996cd7c-ed1a-49e5-b1cd-2b16abcdbc46"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="f3d36cbc-7df7-4dda-b57d-0c740e9f6b9d"
+            name="InitializeComponent"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="b155f958-49fa-42e3-aa23-0c13669004ff"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJosh%2FSource%2FRepos%2FNWAT_SSA_WS_15_16%2FNWAT%2FNWAT%2Fbin%2FDebug%2FNWAT.exe Namespace%3DNWAT Type%3DaktuellesProjekt Member%3DInitializeComponent"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="092b7a40-7492-4661-bb59-47dc8793fd56"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="313b2c2f-b727-41f2-9110-b772782b3fd0">
+                    <propertyInstance
+                      Id="de1a3a45-6600-46cf-bbcd-d1d0c9a48552"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6a799a25-faca-4595-8e16-abac7945823e">
+                    <propertyInstance
+                      Id="f4a7dc87-f08a-4c8e-9954-07e886b881e3"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c25765fe-af51-40d4-b0dc-2f87b9dca47e">
+                    <propertyInstance
+                      Id="6db86147-a273-4a5a-b8c9-8ec00826db3b"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d56aad5c-8a41-4a78-b4ee-f1ac4af14c43">
+                    <propertyInstance
+                      Id="32259c66-6dfc-431b-8e2e-84049b7a9fb3"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3435c86f-9e55-4687-9f20-4b68687eccc9">
+                    <propertyInstance
+                      Id="6b20c0a8-6d4c-46fa-8f24-5b38f431e257"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8df6d048-9656-4adf-a29b-5cffb44475a3">
+                    <propertyInstance
+                      Id="7106c3ad-3479-4b27-9e05-d6e06fcfef5a"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

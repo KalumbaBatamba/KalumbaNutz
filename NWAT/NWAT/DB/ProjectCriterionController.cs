@@ -46,7 +46,7 @@ namespace NWAT.DB
         }
 
         /// <summary>
-        /// Gets the child criterions by parent identifier.
+        /// Gets the child criterions by project identifier and parent identifier.
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
         /// <param name="parentId">The parent identifier.</param>
@@ -59,6 +59,15 @@ namespace NWAT.DB
             List<ProjectCriterion> resultProjectCriterions = base.DataContext.ProjectCriterion.Where(projectCriterion => projectCriterion.Parent_Criterion_Id == parentId
                                                                                                      && projectCriterion.Project_Id == projectId).ToList();
             return resultProjectCriterions;
+        }
+
+        // TODO GetBaseProjectCriterions
+        // liefert eine Liste mit allen Basis Projektkriterien zurück
+        // d.h. die Kriterien die keine Eltern Kriterien haben
+        // Ist dies sinnvoll?
+        public List<ProjectCriterion> GetBaseProjectCriterions(int projectId)
+        {
+            return new List<ProjectCriterion>();
         }
 
         /// <summary>
@@ -105,6 +114,55 @@ namespace NWAT.DB
             }
         }
 
+
+        // TODO update ProjectCrit
+        public bool UpdateProjectCriterionInDb(ProjectCriterion alteredProjectCriterion)
+        { return true; }
+
+        // TODO Delete ProjectCrit
+        // aufpassen, hier wird ein object und nicht die Ids übergeben. 
+        // Ansatz für spätere Abstrakte Klasse
+        public bool DeleteProjectCriterionFromDb(ProjectCriterion projCritToDelete) { return true; }
+
+        
+        // TODO updateProjectCriterionListInDb 
+        // params: ProjectID und die aktuelle Liste die vom Benutzer zugeordnet wurde.
+        // Diese liste wird nun mit den Einträgen verglichen und die Db auf diese Liste aktualisiert
+        // --> lösche nicht mehr vorhandene Einträge
+        // --> füge neue Einträge hinzu
+        public bool UpdateProjectCriterionListInDb(int projectId, ProjectCriterion newProjectCriterionList)
+        {
+            /*
+             * listFromDb = GetAllProjectCriterionsForOneProject(projectId)
+             * 
+             * oldToDelete = getOldProjectCriterionsWhichWereDeallocated();
+             * foreach (crit in oldToDelete)
+             * {
+             *      DeleteSingleCriterion(crit)
+             * }
+             * 
+             * newToAdd = getNewProjectCriterionsWhichWereAllocated();
+             * foreach (crit in newToAdd)
+             * {
+             *      Insert(crit)
+             * }
+             * 
+             */
+            return true;
+        }
+
+
+
+
+
+
+        // TODO CalculatePercentageLayerWeighting
+        // sollte wieder die gleiche Liste zurückgeben, nur dass für jedes 
+        // ProjectCriterion das Member "Weighting_Percentage_Layer" ein Wert gesetzt ist
+        public IEnumerable<ProjectCriterion> CalculatePercentageLayerWeighting(IEnumerable<ProjectCriterion> projectCriterionsInOneLayer) 
+        {
+            return new List<ProjectCriterion>();
+        }
 
         /*
         * Private Section
