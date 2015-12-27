@@ -28,245 +28,247 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.label_CurrProjName = new System.Windows.Forms.Label();
+            this.label_CurrProjNameShow = new System.Windows.Forms.Label();
+            this.label_CurrProjDesc = new System.Windows.Forms.Label();
+            this.label_CurrProjDescShow = new System.Windows.Forms.Label();
+            this.groupBox_CurrProjCrits = new System.Windows.Forms.GroupBox();
+            this.btn_CurrProjKritAssign = new System.Windows.Forms.Button();
+            this.btn_CurrProjCritStruShow = new System.Windows.Forms.Button();
+            this.btn_CurrProjCritStruUpdate = new System.Windows.Forms.Button();
+            this.btn_CurrProjCritStruPrint = new System.Windows.Forms.Button();
+            this.btn_CurrProjCritStruBalance = new System.Windows.Forms.Button();
+            this.btn_CurrProjCritStruEval = new System.Windows.Forms.Button();
+            this.groupBox_CurrProjProds = new System.Windows.Forms.GroupBox();
+            this.btn_CurrProjProdAssign = new System.Windows.Forms.Button();
+            this.btn_CurrProjProdFulfCapt = new System.Windows.Forms.Button();
+            this.btnCurrProjProdFulfPrint = new System.Windows.Forms.Button();
+            this.groupBox_CurrProjAnalys = new System.Windows.Forms.GroupBox();
+            this.btn_CurrProjProdAnalShow = new System.Windows.Forms.Button();
+            this.btn_CurrProjProdAnalCritFadeOut = new System.Windows.Forms.Button();
+            this.btn_CurrProjProdAnalPrint = new System.Windows.Forms.Button();
+            this.groupBox_CurrProjCrits.SuspendLayout();
+            this.groupBox_CurrProjProds.SuspendLayout();
+            this.groupBox_CurrProjAnalys.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // label_CurrProjName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "aktuelles Projekt:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label_CurrProjName.AutoSize = true;
+            this.label_CurrProjName.Location = new System.Drawing.Point(13, 13);
+            this.label_CurrProjName.Name = "label_CurrProjName";
+            this.label_CurrProjName.Size = new System.Drawing.Size(69, 13);
+            this.label_CurrProjName.TabIndex = 0;
+            this.label_CurrProjName.Text = "Projektname:";
+            this.label_CurrProjName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label_CurrProjName.Click += new System.EventHandler(this.label1_Click);
             // 
-            // label2
+            // label_CurrProjNameShow
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(108, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "ProjektEinsName";
+            this.label_CurrProjNameShow.AutoSize = true;
+            this.label_CurrProjNameShow.Location = new System.Drawing.Point(108, 13);
+            this.label_CurrProjNameShow.Name = "label_CurrProjNameShow";
+            this.label_CurrProjNameShow.Size = new System.Drawing.Size(148, 13);
+            this.label_CurrProjNameShow.TabIndex = 1;
+            this.label_CurrProjNameShow.Text = "Name des aktuellen Projektes";
             // 
-            // label3
+            // label_CurrProjDesc
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 29);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(75, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Beschreibung:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label_CurrProjDesc.AutoSize = true;
+            this.label_CurrProjDesc.Location = new System.Drawing.Point(12, 29);
+            this.label_CurrProjDesc.Name = "label_CurrProjDesc";
+            this.label_CurrProjDesc.Size = new System.Drawing.Size(75, 13);
+            this.label_CurrProjDesc.TabIndex = 2;
+            this.label_CurrProjDesc.Text = "Beschreibung:";
+            this.label_CurrProjDesc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label4
+            // label_CurrProjDescShow
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(108, 29);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(185, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Beschreibung des aktuellen Projektes";
+            this.label_CurrProjDescShow.AutoSize = true;
+            this.label_CurrProjDescShow.Location = new System.Drawing.Point(108, 29);
+            this.label_CurrProjDescShow.Name = "label_CurrProjDescShow";
+            this.label_CurrProjDescShow.Size = new System.Drawing.Size(185, 13);
+            this.label_CurrProjDescShow.TabIndex = 3;
+            this.label_CurrProjDescShow.Text = "Beschreibung des aktuellen Projektes";
             // 
-            // groupBox2
+            // groupBox_CurrProjCrits
             // 
-            this.groupBox2.Controls.Add(this.button8);
-            this.groupBox2.Controls.Add(this.button9);
-            this.groupBox2.Controls.Add(this.button10);
-            this.groupBox2.Controls.Add(this.button11);
-            this.groupBox2.Controls.Add(this.button12);
-            this.groupBox2.Controls.Add(this.button13);
-            this.groupBox2.Location = new System.Drawing.Point(7, 299);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(164, 215);
-            this.groupBox2.TabIndex = 20;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Projektkriterien";
+            this.groupBox_CurrProjCrits.Controls.Add(this.btn_CurrProjKritAssign);
+            this.groupBox_CurrProjCrits.Controls.Add(this.btn_CurrProjCritStruShow);
+            this.groupBox_CurrProjCrits.Controls.Add(this.btn_CurrProjCritStruUpdate);
+            this.groupBox_CurrProjCrits.Controls.Add(this.btn_CurrProjCritStruPrint);
+            this.groupBox_CurrProjCrits.Controls.Add(this.btn_CurrProjCritStruBalance);
+            this.groupBox_CurrProjCrits.Controls.Add(this.btn_CurrProjCritStruEval);
+            this.groupBox_CurrProjCrits.Location = new System.Drawing.Point(7, 299);
+            this.groupBox_CurrProjCrits.Name = "groupBox_CurrProjCrits";
+            this.groupBox_CurrProjCrits.Size = new System.Drawing.Size(164, 215);
+            this.groupBox_CurrProjCrits.TabIndex = 20;
+            this.groupBox_CurrProjCrits.TabStop = false;
+            this.groupBox_CurrProjCrits.Text = "Projektkriterien";
             // 
-            // button8
+            // btn_CurrProjKritAssign
             // 
-            this.button8.Location = new System.Drawing.Point(6, 19);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(111, 23);
-            this.button8.TabIndex = 7;
-            this.button8.Text = "Kriterien zuordnen";
-            this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.UseVisualStyleBackColor = true;
+            this.btn_CurrProjKritAssign.Location = new System.Drawing.Point(6, 19);
+            this.btn_CurrProjKritAssign.Name = "btn_CurrProjKritAssign";
+            this.btn_CurrProjKritAssign.Size = new System.Drawing.Size(111, 23);
+            this.btn_CurrProjKritAssign.TabIndex = 7;
+            this.btn_CurrProjKritAssign.Text = "Kriterien zuordnen";
+            this.btn_CurrProjKritAssign.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_CurrProjKritAssign.UseVisualStyleBackColor = true;
             // 
-            // button9
+            // btn_CurrProjCritStruShow
             // 
-            this.button9.Location = new System.Drawing.Point(6, 48);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(142, 23);
-            this.button9.TabIndex = 8;
-            this.button9.Text = "Kriterienstruktur anzeigen";
-            this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button9.UseVisualStyleBackColor = true;
+            this.btn_CurrProjCritStruShow.Location = new System.Drawing.Point(6, 48);
+            this.btn_CurrProjCritStruShow.Name = "btn_CurrProjCritStruShow";
+            this.btn_CurrProjCritStruShow.Size = new System.Drawing.Size(142, 23);
+            this.btn_CurrProjCritStruShow.TabIndex = 8;
+            this.btn_CurrProjCritStruShow.Text = "Kriterienstruktur anzeigen";
+            this.btn_CurrProjCritStruShow.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_CurrProjCritStruShow.UseVisualStyleBackColor = true;
             // 
-            // button10
+            // btn_CurrProjCritStruUpdate
             // 
-            this.button10.Location = new System.Drawing.Point(6, 77);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(142, 23);
-            this.button10.TabIndex = 9;
-            this.button10.Text = "Kriterienstruktur ändern";
-            this.button10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button10.UseVisualStyleBackColor = true;
+            this.btn_CurrProjCritStruUpdate.Location = new System.Drawing.Point(6, 77);
+            this.btn_CurrProjCritStruUpdate.Name = "btn_CurrProjCritStruUpdate";
+            this.btn_CurrProjCritStruUpdate.Size = new System.Drawing.Size(142, 23);
+            this.btn_CurrProjCritStruUpdate.TabIndex = 9;
+            this.btn_CurrProjCritStruUpdate.Text = "Kriterienstruktur ändern";
+            this.btn_CurrProjCritStruUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_CurrProjCritStruUpdate.UseVisualStyleBackColor = true;
             // 
-            // button11
+            // btn_CurrProjCritStruPrint
             // 
-            this.button11.Location = new System.Drawing.Point(6, 106);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(142, 23);
-            this.button11.TabIndex = 10;
-            this.button11.Text = "Kriterienstruktur drucken";
-            this.button11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button11.UseVisualStyleBackColor = true;
+            this.btn_CurrProjCritStruPrint.Location = new System.Drawing.Point(6, 106);
+            this.btn_CurrProjCritStruPrint.Name = "btn_CurrProjCritStruPrint";
+            this.btn_CurrProjCritStruPrint.Size = new System.Drawing.Size(142, 23);
+            this.btn_CurrProjCritStruPrint.TabIndex = 10;
+            this.btn_CurrProjCritStruPrint.Text = "Kriterienstruktur drucken";
+            this.btn_CurrProjCritStruPrint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_CurrProjCritStruPrint.UseVisualStyleBackColor = true;
             // 
-            // button12
+            // btn_CurrProjCritStruBalance
             // 
-            this.button12.Location = new System.Drawing.Point(6, 135);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(111, 23);
-            this.button12.TabIndex = 11;
-            this.button12.Text = "Gleichgewichtung";
-            this.button12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button12.UseVisualStyleBackColor = true;
+            this.btn_CurrProjCritStruBalance.Location = new System.Drawing.Point(6, 135);
+            this.btn_CurrProjCritStruBalance.Name = "btn_CurrProjCritStruBalance";
+            this.btn_CurrProjCritStruBalance.Size = new System.Drawing.Size(111, 23);
+            this.btn_CurrProjCritStruBalance.TabIndex = 11;
+            this.btn_CurrProjCritStruBalance.Text = "Gleichgewichtung";
+            this.btn_CurrProjCritStruBalance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_CurrProjCritStruBalance.UseVisualStyleBackColor = true;
             // 
-            // button13
+            // btn_CurrProjCritStruEval
             // 
-            this.button13.Location = new System.Drawing.Point(6, 164);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(142, 23);
-            this.button13.TabIndex = 12;
-            this.button13.Text = "individuelle Gewichtung";
-            this.button13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button13.UseVisualStyleBackColor = true;
+            this.btn_CurrProjCritStruEval.Location = new System.Drawing.Point(6, 164);
+            this.btn_CurrProjCritStruEval.Name = "btn_CurrProjCritStruEval";
+            this.btn_CurrProjCritStruEval.Size = new System.Drawing.Size(142, 23);
+            this.btn_CurrProjCritStruEval.TabIndex = 12;
+            this.btn_CurrProjCritStruEval.Text = "individuelle Gewichtung";
+            this.btn_CurrProjCritStruEval.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_CurrProjCritStruEval.UseVisualStyleBackColor = true;
             // 
-            // groupBox3
+            // groupBox_CurrProjProds
             // 
-            this.groupBox3.Controls.Add(this.button7);
-            this.groupBox3.Controls.Add(this.button14);
-            this.groupBox3.Controls.Add(this.button15);
-            this.groupBox3.Location = new System.Drawing.Point(177, 299);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(163, 129);
-            this.groupBox3.TabIndex = 21;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Projektprodukte";
+            this.groupBox_CurrProjProds.Controls.Add(this.btn_CurrProjProdAssign);
+            this.groupBox_CurrProjProds.Controls.Add(this.btn_CurrProjProdFulfCapt);
+            this.groupBox_CurrProjProds.Controls.Add(this.btnCurrProjProdFulfPrint);
+            this.groupBox_CurrProjProds.Location = new System.Drawing.Point(177, 299);
+            this.groupBox_CurrProjProds.Name = "groupBox_CurrProjProds";
+            this.groupBox_CurrProjProds.Size = new System.Drawing.Size(163, 129);
+            this.groupBox_CurrProjProds.TabIndex = 21;
+            this.groupBox_CurrProjProds.TabStop = false;
+            this.groupBox_CurrProjProds.Text = "Projektprodukte";
+            this.groupBox_CurrProjProds.Enter += new System.EventHandler(this.groupBox_CurrProjProds_Enter);
             // 
-            // button7
+            // btn_CurrProjProdAssign
             // 
-            this.button7.Location = new System.Drawing.Point(6, 19);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(111, 23);
-            this.button7.TabIndex = 6;
-            this.button7.Text = "Produkte zuordnen";
-            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.UseVisualStyleBackColor = true;
+            this.btn_CurrProjProdAssign.Location = new System.Drawing.Point(6, 19);
+            this.btn_CurrProjProdAssign.Name = "btn_CurrProjProdAssign";
+            this.btn_CurrProjProdAssign.Size = new System.Drawing.Size(111, 23);
+            this.btn_CurrProjProdAssign.TabIndex = 6;
+            this.btn_CurrProjProdAssign.Text = "Produkte zuordnen";
+            this.btn_CurrProjProdAssign.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_CurrProjProdAssign.UseVisualStyleBackColor = true;
             // 
-            // button14
+            // btn_CurrProjProdFulfCapt
             // 
-            this.button14.Location = new System.Drawing.Point(6, 48);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(142, 23);
-            this.button14.TabIndex = 13;
-            this.button14.Text = "Erfüllung erfassen";
-            this.button14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button14.UseVisualStyleBackColor = true;
+            this.btn_CurrProjProdFulfCapt.Location = new System.Drawing.Point(6, 48);
+            this.btn_CurrProjProdFulfCapt.Name = "btn_CurrProjProdFulfCapt";
+            this.btn_CurrProjProdFulfCapt.Size = new System.Drawing.Size(142, 23);
+            this.btn_CurrProjProdFulfCapt.TabIndex = 13;
+            this.btn_CurrProjProdFulfCapt.Text = "Erfüllung erfassen";
+            this.btn_CurrProjProdFulfCapt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_CurrProjProdFulfCapt.UseVisualStyleBackColor = true;
             // 
-            // button15
+            // btnCurrProjProdFulfPrint
             // 
-            this.button15.Location = new System.Drawing.Point(6, 77);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(142, 23);
-            this.button15.TabIndex = 14;
-            this.button15.Text = "Erfüllung drucken";
-            this.button15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button15.UseVisualStyleBackColor = true;
+            this.btnCurrProjProdFulfPrint.Location = new System.Drawing.Point(6, 77);
+            this.btnCurrProjProdFulfPrint.Name = "btnCurrProjProdFulfPrint";
+            this.btnCurrProjProdFulfPrint.Size = new System.Drawing.Size(142, 23);
+            this.btnCurrProjProdFulfPrint.TabIndex = 14;
+            this.btnCurrProjProdFulfPrint.Text = "Erfüllung drucken";
+            this.btnCurrProjProdFulfPrint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCurrProjProdFulfPrint.UseVisualStyleBackColor = true;
             // 
-            // groupBox4
+            // groupBox_CurrProjAnalys
             // 
-            this.groupBox4.Controls.Add(this.button16);
-            this.groupBox4.Controls.Add(this.button17);
-            this.groupBox4.Controls.Add(this.button18);
-            this.groupBox4.Location = new System.Drawing.Point(346, 299);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(173, 109);
-            this.groupBox4.TabIndex = 22;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Analyse";
+            this.groupBox_CurrProjAnalys.Controls.Add(this.btn_CurrProjProdAnalShow);
+            this.groupBox_CurrProjAnalys.Controls.Add(this.btn_CurrProjProdAnalCritFadeOut);
+            this.groupBox_CurrProjAnalys.Controls.Add(this.btn_CurrProjProdAnalPrint);
+            this.groupBox_CurrProjAnalys.Location = new System.Drawing.Point(346, 299);
+            this.groupBox_CurrProjAnalys.Name = "groupBox_CurrProjAnalys";
+            this.groupBox_CurrProjAnalys.Size = new System.Drawing.Size(173, 109);
+            this.groupBox_CurrProjAnalys.TabIndex = 22;
+            this.groupBox_CurrProjAnalys.TabStop = false;
+            this.groupBox_CurrProjAnalys.Text = "Analyse";
             // 
-            // button16
+            // btn_CurrProjProdAnalShow
             // 
-            this.button16.Location = new System.Drawing.Point(6, 19);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(111, 23);
-            this.button16.TabIndex = 15;
-            this.button16.Text = "Analyse anzeigen";
-            this.button16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button16.UseVisualStyleBackColor = true;
+            this.btn_CurrProjProdAnalShow.Location = new System.Drawing.Point(6, 19);
+            this.btn_CurrProjProdAnalShow.Name = "btn_CurrProjProdAnalShow";
+            this.btn_CurrProjProdAnalShow.Size = new System.Drawing.Size(111, 23);
+            this.btn_CurrProjProdAnalShow.TabIndex = 15;
+            this.btn_CurrProjProdAnalShow.Text = "Analyse anzeigen";
+            this.btn_CurrProjProdAnalShow.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_CurrProjProdAnalShow.UseVisualStyleBackColor = true;
             // 
-            // button17
+            // btn_CurrProjProdAnalCritFadeOut
             // 
-            this.button17.Location = new System.Drawing.Point(6, 48);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(155, 23);
-            this.button17.TabIndex = 16;
-            this.button17.Text = "Analyse Kriterien Ausblenden";
-            this.button17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button17.UseVisualStyleBackColor = true;
+            this.btn_CurrProjProdAnalCritFadeOut.Location = new System.Drawing.Point(6, 48);
+            this.btn_CurrProjProdAnalCritFadeOut.Name = "btn_CurrProjProdAnalCritFadeOut";
+            this.btn_CurrProjProdAnalCritFadeOut.Size = new System.Drawing.Size(155, 23);
+            this.btn_CurrProjProdAnalCritFadeOut.TabIndex = 16;
+            this.btn_CurrProjProdAnalCritFadeOut.Text = "Analyse Kriterien Ausblenden";
+            this.btn_CurrProjProdAnalCritFadeOut.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_CurrProjProdAnalCritFadeOut.UseVisualStyleBackColor = true;
             // 
-            // button18
+            // btn_CurrProjProdAnalPrint
             // 
-            this.button18.Location = new System.Drawing.Point(6, 77);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(111, 23);
-            this.button18.TabIndex = 17;
-            this.button18.Text = "Analyse drucken";
-            this.button18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button18.UseVisualStyleBackColor = true;
+            this.btn_CurrProjProdAnalPrint.Location = new System.Drawing.Point(6, 77);
+            this.btn_CurrProjProdAnalPrint.Name = "btn_CurrProjProdAnalPrint";
+            this.btn_CurrProjProdAnalPrint.Size = new System.Drawing.Size(111, 23);
+            this.btn_CurrProjProdAnalPrint.TabIndex = 17;
+            this.btn_CurrProjProdAnalPrint.Text = "Analyse drucken";
+            this.btn_CurrProjProdAnalPrint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_CurrProjProdAnalPrint.UseVisualStyleBackColor = true;
             // 
             // aktuellesProjekt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(531, 526);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.groupBox_CurrProjAnalys);
+            this.Controls.Add(this.groupBox_CurrProjProds);
+            this.Controls.Add(this.groupBox_CurrProjCrits);
+            this.Controls.Add(this.label_CurrProjDescShow);
+            this.Controls.Add(this.label_CurrProjDesc);
+            this.Controls.Add(this.label_CurrProjNameShow);
+            this.Controls.Add(this.label_CurrProjName);
             this.Name = "aktuellesProjekt";
             this.Text = "aktuelles Projekt";
             this.Load += new System.EventHandler(this.aktuellesProjekt_Load);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox4.ResumeLayout(false);
+            this.groupBox_CurrProjCrits.ResumeLayout(false);
+            this.groupBox_CurrProjProds.ResumeLayout(false);
+            this.groupBox_CurrProjAnalys.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -274,24 +276,24 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.Label label_CurrProjName;
+        private System.Windows.Forms.Label label_CurrProjNameShow;
+        private System.Windows.Forms.Label label_CurrProjDesc;
+        private System.Windows.Forms.Label label_CurrProjDescShow;
+        private System.Windows.Forms.GroupBox groupBox_CurrProjCrits;
+        private System.Windows.Forms.Button btn_CurrProjKritAssign;
+        private System.Windows.Forms.Button btn_CurrProjCritStruShow;
+        private System.Windows.Forms.Button btn_CurrProjCritStruUpdate;
+        private System.Windows.Forms.Button btn_CurrProjCritStruPrint;
+        private System.Windows.Forms.Button btn_CurrProjCritStruBalance;
+        private System.Windows.Forms.Button btn_CurrProjCritStruEval;
+        private System.Windows.Forms.GroupBox groupBox_CurrProjProds;
+        private System.Windows.Forms.Button btn_CurrProjProdAssign;
+        private System.Windows.Forms.Button btn_CurrProjProdFulfCapt;
+        private System.Windows.Forms.Button btnCurrProjProdFulfPrint;
+        private System.Windows.Forms.GroupBox groupBox_CurrProjAnalys;
+        private System.Windows.Forms.Button btn_CurrProjProdAnalShow;
+        private System.Windows.Forms.Button btn_CurrProjProdAnalCritFadeOut;
+        private System.Windows.Forms.Button btn_CurrProjProdAnalPrint;
     }
 }

@@ -20,7 +20,12 @@ namespace NWAT
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            ProjectController criContr = new ProjectController();
+            List<Project> x = criContr.GetAllProjectsFromDB();
+            foreach(Project proj in x)
+            {
+                MessageBox.Show(proj.Name);
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
