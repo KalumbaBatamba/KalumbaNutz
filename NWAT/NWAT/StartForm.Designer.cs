@@ -36,7 +36,7 @@
             // btn_ProjAdm
             // 
             this.btn_ProjAdm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_ProjAdm.Location = new System.Drawing.Point(127, 91);
+            this.btn_ProjAdm.Location = new System.Drawing.Point(113, 30);
             this.btn_ProjAdm.Name = "btn_ProjAdm";
             this.btn_ProjAdm.Size = new System.Drawing.Size(203, 54);
             this.btn_ProjAdm.TabIndex = 0;
@@ -46,7 +46,7 @@
             // btn_CritAdm
             // 
             this.btn_CritAdm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_CritAdm.Location = new System.Drawing.Point(127, 180);
+            this.btn_CritAdm.Location = new System.Drawing.Point(113, 114);
             this.btn_CritAdm.Name = "btn_CritAdm";
             this.btn_CritAdm.Size = new System.Drawing.Size(203, 57);
             this.btn_CritAdm.TabIndex = 1;
@@ -57,7 +57,7 @@
             // btn_ProdAdm
             // 
             this.btn_ProdAdm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_ProdAdm.Location = new System.Drawing.Point(127, 268);
+            this.btn_ProdAdm.Location = new System.Drawing.Point(113, 199);
             this.btn_ProdAdm.Name = "btn_ProdAdm";
             this.btn_ProdAdm.Size = new System.Drawing.Size(203, 63);
             this.btn_ProdAdm.TabIndex = 2;
@@ -68,7 +68,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(463, 408);
+            this.ClientSize = new System.Drawing.Size(424, 291);
             this.Controls.Add(this.btn_ProdAdm);
             this.Controls.Add(this.btn_CritAdm);
             this.Controls.Add(this.btn_ProjAdm);

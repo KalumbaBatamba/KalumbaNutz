@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace NWAT
 {
-    public partial class Kriterienverwaltung : Form
+    public partial class ProjCritAssign : Form
     {
-        public Kriterienverwaltung()
+        public ProjCritAssign()
         {
             InitializeComponent();
-        }
-
-        private void Kriterienverwaltung_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

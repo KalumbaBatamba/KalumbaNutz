@@ -45,7 +45,6 @@
             this.btnCurrProjProdFulfPrint = new System.Windows.Forms.Button();
             this.groupBox_CurrProjAnalys = new System.Windows.Forms.GroupBox();
             this.btn_CurrProjProdAnalShow = new System.Windows.Forms.Button();
-            this.btn_CurrProjProdAnalCritFadeOut = new System.Windows.Forms.Button();
             this.btn_CurrProjProdAnalPrint = new System.Windows.Forms.Button();
             this.groupBox_CurrProjCrits.SuspendLayout();
             this.groupBox_CurrProjProds.SuspendLayout();
@@ -212,11 +211,10 @@
             // groupBox_CurrProjAnalys
             // 
             this.groupBox_CurrProjAnalys.Controls.Add(this.btn_CurrProjProdAnalShow);
-            this.groupBox_CurrProjAnalys.Controls.Add(this.btn_CurrProjProdAnalCritFadeOut);
             this.groupBox_CurrProjAnalys.Controls.Add(this.btn_CurrProjProdAnalPrint);
             this.groupBox_CurrProjAnalys.Location = new System.Drawing.Point(346, 299);
             this.groupBox_CurrProjAnalys.Name = "groupBox_CurrProjAnalys";
-            this.groupBox_CurrProjAnalys.Size = new System.Drawing.Size(173, 109);
+            this.groupBox_CurrProjAnalys.Size = new System.Drawing.Size(173, 80);
             this.groupBox_CurrProjAnalys.TabIndex = 22;
             this.groupBox_CurrProjAnalys.TabStop = false;
             this.groupBox_CurrProjAnalys.Text = "Analyse";
@@ -231,19 +229,9 @@
             this.btn_CurrProjProdAnalShow.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_CurrProjProdAnalShow.UseVisualStyleBackColor = true;
             // 
-            // btn_CurrProjProdAnalCritFadeOut
-            // 
-            this.btn_CurrProjProdAnalCritFadeOut.Location = new System.Drawing.Point(6, 48);
-            this.btn_CurrProjProdAnalCritFadeOut.Name = "btn_CurrProjProdAnalCritFadeOut";
-            this.btn_CurrProjProdAnalCritFadeOut.Size = new System.Drawing.Size(155, 23);
-            this.btn_CurrProjProdAnalCritFadeOut.TabIndex = 16;
-            this.btn_CurrProjProdAnalCritFadeOut.Text = "Analyse Kriterien Ausblenden";
-            this.btn_CurrProjProdAnalCritFadeOut.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_CurrProjProdAnalCritFadeOut.UseVisualStyleBackColor = true;
-            // 
             // btn_CurrProjProdAnalPrint
             // 
-            this.btn_CurrProjProdAnalPrint.Location = new System.Drawing.Point(6, 77);
+            this.btn_CurrProjProdAnalPrint.Location = new System.Drawing.Point(6, 48);
             this.btn_CurrProjProdAnalPrint.Name = "btn_CurrProjProdAnalPrint";
             this.btn_CurrProjProdAnalPrint.Size = new System.Drawing.Size(111, 23);
             this.btn_CurrProjProdAnalPrint.TabIndex = 17;
@@ -293,7 +281,6 @@
         private System.Windows.Forms.Button btnCurrProjProdFulfPrint;
         private System.Windows.Forms.GroupBox groupBox_CurrProjAnalys;
         private System.Windows.Forms.Button btn_CurrProjProdAnalShow;
-        private System.Windows.Forms.Button btn_CurrProjProdAnalCritFadeOut;
         private System.Windows.Forms.Button btn_CurrProjProdAnalPrint;
     }
 }
