@@ -93,7 +93,7 @@ namespace NWAT.DB
                 ProjectCriterion alreadyExistingProjectCriterion = this.GetProjectCriterionByIds(projectId, criterionId);
 
                 // if == null then this project criterion does not exist yet and it can be inserted into db
-                if (alreadyExistingProjectCriterion == null)
+                if (!CheckIfProjectCriterionAlreadyExists(projectId, criterionId))
                 {
                     base.DataContext.ProjectCriterion.InsertOnSubmit(newProjectCriterion);
                     base.DataContext.SubmitChanges();
@@ -116,23 +116,20 @@ namespace NWAT.DB
 
 
         // TODO update ProjectCrit
-        public bool UpdateProjectCriterionInDb(ProjectCriterion alteredProjectCriterion)
+        // Ist dafür da, die Parent Id und die Gewichtungen zu ändern. 
+        public bool UpdateProjectCriterionInDb(int projectId, ProjectProduct alteredProjectCriterion)
         {
 
             /*
-            * listFromDb = GetAllProjectCriterionsForOneProject(projectId)
-            * 
-            * oldToDelete = getOldProjectCriterionsWhichWereDeallocated();
-            * foreach (crot in oldToDelete)
-            * {
-            *      DeleteSingleCriterion(crit)
-            * }
-            * 
-            * newToAdd = getNewProjectCriterionsWhichWereAllocated();
-            * foreach (crit in newToAdd)
-            * {
-            *      Insert(crit)
-            * }
+             * int projectId = alteredProjectCriterion.ProjectId;
+             * int criterionId = alteredProjectCriterion.CriteriontId;
+             * ProjectCriterion resultProjectCriterion = base.DataContext.ProjectCriterion.SingleOrDefault(projectCriterion => projectCriterion.Criterion_Id == criterionId 
+                                                                              && projectCriterion.Project_Id == projectId);
+             * resultProjectCriterion.ParentId = alteredProjectCriterion.ParentId;
+             * resultProjectCriterion.WeightingCardinal = alteredProjectCriterion.WeightingCardinal;
+             * resultProjectCriterion.WeightingPercentage_Layer = alteredProjectCriterion.WeightingPercentage_Layer;
+             * resultProjectCriterion.WeightingPercentage_Project = alteredProjectCriterion.WeightingPercentage_Project;
+             * base.DataContext.SubmitChanges();
             * 
             */
             return true; 
@@ -149,18 +146,23 @@ namespace NWAT.DB
         // Diese liste wird nun mit den Einträgen verglichen und die Db auf diese Liste aktualisiert
         // --> lösche nicht mehr vorhandene Einträge
         // --> füge neue Einträge hinzu
-        public bool UpdateProjectCriterionListInDb(int projectId, ProjectCriterion newProjectCriterionList)
+        public bool ChangeAllocationOfProjectCriterionsInDb(int projectId, List<ProjectCriterion> newProjectCriterionList)
         {
             /*
              * listFromDb = GetAllProjectCriterionsForOneProject(projectId)
              * 
-             * oldToDelete = getOldProjectCriterionsWhichWereDeallocated();
+             * oldToDelete = GetOldProjectCriterionsWhichWereDeallocated(listFromDb, newProjectCriterionList);
              * foreach (crit in oldToDelete)
              * {
+             *      if(checkIfCriterionIsAParent(crit))
+             *      {
+             *          // hier wird der benutzer gefragt ob
+             *          MessageBox()
+             *      }
              *      DeleteSingleCriterion(crit)
              * }
              * 
-             * newToAdd = getNewProjectCriterionsWhichWereAllocated();
+             * newToAdd = GetNewProjectCriterionsWhichWereAllocated(listFromDb, newProjectCriterionList);
              * foreach (crit in newToAdd)
              * {
              *      Insert(crit)
@@ -231,7 +233,7 @@ namespace NWAT.DB
         }
         
         /// <summary>
-        /// Checks if parent exists in project as project criteroin.
+        /// Checks if parent exists in project as project criterion.
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
         /// <param name="parentCritId">The parent crit identifier.</param>
@@ -239,13 +241,49 @@ namespace NWAT.DB
         /// bool which says if given parent is a projectCriterion
         /// </returns>
         /// Erstellt von Joshua Frey, am 22.12.2015
-        private bool CheckIfParentExistsInProjectAsProjectCriteroin(int projectId, int parentCritId)
+        private bool CheckIfParentExistsInProjectAsProjectCriterion(int projectId, int parentCritId)
         {
             ProjectCriterion resultProjectCriterion = base.DataContext.ProjectCriterion.FirstOrDefault(projectCriterion => projectCriterion.Project_Id == projectId && projectCriterion.Criterion_Id == parentCritId);
             if (resultProjectCriterion == null)
                 return false;
             else
                 return true;
+        }
+
+        /// <summary>
+        /// Gets the old project criterions which were deallocated in a new list. This list contains all project criterions
+        /// which have to be deleted in the db table
+        /// </summary>
+        /// <param name="listFromDb">The list from database.</param>
+        /// <param name="newProjectCriterionList">The new project criterion list.</param>
+        /// <returns>
+        /// A list that contains all project criterions
+        /// which have to be deleted in the db table
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 28.12.2015
+        private List<ProjectCriterion> GetOldProjectCriterionsWhichWereDeallocated(List<ProjectCriterion> listFromDb, List<ProjectCriterion> newProjectCriterionList)
+        {
+            List<ProjectCriterion> resultProjCritList = new List<ProjectCriterion>();
+            resultProjCritList = listFromDb.Except(newProjectCriterionList).ToList();
+            return resultProjCritList;
+        }
+
+        /// <summary>
+        /// Gets the new project criterions which were allocated in a new list. This list contains all project criterions
+        /// which have to be inserted into the db table
+        /// </summary>
+        /// <param name="listFromDb">The list from database.</param>
+        /// <param name="newProjectCriterionList">The new project criterion list.</param>
+        /// <returns> 
+        /// A list that contains all project criterions
+        /// which have to be inserted in the db table
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 28.12.2015
+        private List<ProjectCriterion> GetNewProjectCriterionsWhichWereAllocated(List<ProjectCriterion> listFromDb, List<ProjectCriterion> newProjectCriterionList)
+        {
+            List<ProjectCriterion> resultProjCritList = new List<ProjectCriterion>();
+            resultProjCritList = newProjectCriterionList.Except(listFromDb).ToList();
+            return resultProjCritList;
         }
 
 
