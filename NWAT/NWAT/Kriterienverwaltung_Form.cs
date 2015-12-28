@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace NWAT
 {
-    public partial class Kriterienverwaltung_Form : Form
+    public partial class Criterion_Form : Form
     {
-        public Kriterienverwaltung_Form()
+        public Criterion_Form()
         {
             InitializeComponent();
         }

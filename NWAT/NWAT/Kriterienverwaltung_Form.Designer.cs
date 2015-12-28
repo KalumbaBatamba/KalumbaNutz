@@ -1,6 +1,6 @@
 ﻿namespace NWAT
 {
-    partial class Kriterienverwaltung_Form
+    partial class Criterion_Form
     {
         /// <summary>
         /// Required designer variable.
@@ -33,11 +33,11 @@
             this.btn_CritUpdate = new System.Windows.Forms.Button();
             this.btn_CritDelete = new System.Windows.Forms.Button();
             this.btn_CritCreate = new System.Windows.Forms.Button();
-            this.dataGridView_CritAll = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Beschreibung = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_CritAll)).BeginInit();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.CritID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CritName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CritDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // lable_CritChoose
@@ -85,51 +85,51 @@
             this.btn_CritCreate.Text = "Neu anlegen";
             this.btn_CritCreate.UseVisualStyleBackColor = true;
             // 
-            // dataGridView_CritAll
+            // dataGridView1
             // 
-            this.dataGridView_CritAll.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
-            this.Name,
-            this.Beschreibung});
-            this.dataGridView_CritAll.Location = new System.Drawing.Point(12, 30);
-            this.dataGridView_CritAll.Name = "dataGridView_CritAll";
-            this.dataGridView_CritAll.Size = new System.Drawing.Size(537, 519);
-            this.dataGridView_CritAll.TabIndex = 8;
-            this.dataGridView_CritAll.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CritID,
+            this.CritName,
+            this.CritDesc});
+            this.dataGridView1.Location = new System.Drawing.Point(13, 31);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(525, 518);
+            this.dataGridView1.TabIndex = 8;
             // 
-            // ID
+            // CritID
             // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.Width = 25;
+            this.CritID.HeaderText = "ID";
+            this.CritID.Name = "CritID";
+            this.CritID.Width = 25;
             // 
-            // Name
+            // CritName
             // 
-            this.Name.HeaderText = "Name";
-            this.Name.Name = "Name";
-            this.Name.Width = 150;
+            this.CritName.HeaderText = "Name";
+            this.CritName.Name = "CritName";
+            this.CritName.Width = 150;
             // 
-            // Beschreibung
+            // CritDesc
             // 
-            this.Beschreibung.HeaderText = "Beschreibung";
-            this.Beschreibung.Name = "Beschreibung";
-            this.Beschreibung.Width = 318;
+            this.CritDesc.HeaderText = "Beschreibung";
+            this.CritDesc.Name = "CritDesc";
+            this.CritDesc.Width = 300;
             // 
-            // Kriterienverwaltung
+            // Criterion_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 561);
-            this.Controls.Add(this.dataGridView_CritAll);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btn_CritCreate);
             this.Controls.Add(this.btn_CritDelete);
             this.Controls.Add(this.btn_CritUpdate);
             this.Controls.Add(this.btn_CritShow);
             this.Controls.Add(this.lable_CritChoose);
-            this.Name = "Kriterienverwaltung";
+            this.Name = "Criterion_Form";
             this.Text = "Kriterienverwaltung";
             this.Load += new System.EventHandler(this.Kriterienverwaltung_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_CritAll)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,9 +142,9 @@
         private System.Windows.Forms.Button btn_CritUpdate;
         private System.Windows.Forms.Button btn_CritDelete;
         private System.Windows.Forms.Button btn_CritCreate;
-        private System.Windows.Forms.DataGridView dataGridView_CritAll;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Beschreibung;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CritID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CritName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CritDesc;
     }
 }
