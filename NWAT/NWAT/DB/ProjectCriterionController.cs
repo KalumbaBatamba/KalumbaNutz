@@ -117,7 +117,26 @@ namespace NWAT.DB
 
         // TODO update ProjectCrit
         public bool UpdateProjectCriterionInDb(ProjectCriterion alteredProjectCriterion)
-        { return true; }
+        {
+
+            /*
+            * listFromDb = GetAllProjectCriterionsForOneProject(projectId)
+            * 
+            * oldToDelete = getOldProjectCriterionsWhichWereDeallocated();
+            * foreach (crot in oldToDelete)
+            * {
+            *      DeleteSingleCriterion(crit)
+            * }
+            * 
+            * newToAdd = getNewProjectCriterionsWhichWereAllocated();
+            * foreach (crit in newToAdd)
+            * {
+            *      Insert(crit)
+            * }
+            * 
+            */
+            return true; 
+        }
 
         // TODO Delete ProjectCrit
         // aufpassen, hier wird ein object und nicht die Ids übergeben. 
