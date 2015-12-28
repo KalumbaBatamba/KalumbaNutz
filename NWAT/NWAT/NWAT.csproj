@@ -51,6 +51,30 @@
     <Compile Include="aktuellesProjekt.Designer.cs">
       <DependentUpon>aktuellesProjekt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Criterion_Show.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Criterion_Show.Designer.cs">
+      <DependentUpon>Criterion_Show.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Criterion_Update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Criterion_Update.Designer.cs">
+      <DependentUpon>Criterion_Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Criterion_Delete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Criterion_Delete.Designer.cs">
+      <DependentUpon>Criterion_Delete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Criterion_Create.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Criterion_Create.Designer.cs">
+      <DependentUpon>Criterion_Create.cs</DependentUpon>
+    </Compile>
     <Compile Include="DB\AbsDbController.cs" />
     <Compile Include="DB\DbController.cs" />
     <Compile Include="DB\NWAT.designer.cs">
@@ -70,8 +94,128 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Kriterienverwaltung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kriterienverwaltung.Designer.cs">
+      <DependentUpon>Kriterienverwaltung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Product_Create.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Product_Create.Designer.cs">
+      <DependentUpon>Product_Create.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Product_Delete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Product_Delete.Designer.cs">
+      <DependentUpon>Product_Delete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Product_Show.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Product_Show.Designer.cs">
+      <DependentUpon>Product_Show.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Product_Update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Product_Update.Designer.cs">
+      <DependentUpon>Product_Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Produktverwaltung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Produktverwaltung.Designer.cs">
+      <DependentUpon>Produktverwaltung.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="Project_Create.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Project_Create.Designer.cs">
+      <DependentUpon>Project_Create.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Project_Print.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Project_Print.Designer.cs">
+      <DependentUpon>Project_Print.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Project_Show.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Project_Show.Designer.cs">
+      <DependentUpon>Project_Show.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Project_Update.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Project_Update.Designer.cs">
+      <DependentUpon>Project_Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Projektverwaltung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Projektverwaltung.Designer.cs">
+      <DependentUpon>Projektverwaltung.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StartForm.Designer.cs">
+      <DependentUpon>StartForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Criterion_Delete.resx">
+      <DependentUpon>Criterion_Delete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Criterion_Show.resx">
+      <DependentUpon>Criterion_Show.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Criterion_Update.resx">
+      <DependentUpon>Criterion_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Criterion_Create.resx">
+      <DependentUpon>Criterion_Create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kriterienverwaltung.resx">
+      <DependentUpon>Kriterienverwaltung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Product_Create.resx">
+      <DependentUpon>Product_Create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Product_Delete.resx">
+      <DependentUpon>Product_Delete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Product_Show.resx">
+      <DependentUpon>Product_Show.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Product_Update.resx">
+      <DependentUpon>Product_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Produktverwaltung.resx">
+      <DependentUpon>Produktverwaltung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Project_Create.resx">
+      <DependentUpon>Project_Create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Project_Print.resx">
+      <DependentUpon>Project_Print.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Project_Show.resx">
+      <DependentUpon>Project_Show.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Project_Update.resx">
+      <DependentUpon>Project_Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Projektverwaltung.resx">
+      <DependentUpon>Projektverwaltung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StartForm.resx">
+      <DependentUpon>StartForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="DB\NWAT.dbml.layout">
       <DependentUpon>NWAT.dbml</DependentUpon>
     </None>

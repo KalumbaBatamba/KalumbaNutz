@@ -25,5 +25,15 @@ namespace NWAT
         {
 
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox_CurrProjProds_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
