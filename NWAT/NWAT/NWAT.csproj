@@ -45,35 +45,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="aktuellesProjekt.cs">
+    <Compile Include="aktuellesProjekt_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="aktuellesProjekt.Designer.cs">
-      <DependentUpon>aktuellesProjekt.cs</DependentUpon>
+    <Compile Include="aktuellesProjekt_Form.Designer.cs">
+      <DependentUpon>aktuellesProjekt_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Criterion_Show.cs">
+    <Compile Include="Criterion_Show_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Criterion_Show.Designer.cs">
-      <DependentUpon>Criterion_Show.cs</DependentUpon>
+    <Compile Include="Criterion_Show_Form.Designer.cs">
+      <DependentUpon>Criterion_Show_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Criterion_Update.cs">
+    <Compile Include="Criterion_Update_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Criterion_Update.Designer.cs">
-      <DependentUpon>Criterion_Update.cs</DependentUpon>
+    <Compile Include="Criterion_Update_Form.Designer.cs">
+      <DependentUpon>Criterion_Update_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Criterion_Delete.cs">
+    <Compile Include="Criterion_Create_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Criterion_Delete.Designer.cs">
-      <DependentUpon>Criterion_Delete.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Criterion_Create.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Criterion_Create.Designer.cs">
-      <DependentUpon>Criterion_Create.cs</DependentUpon>
+    <Compile Include="Criterion_Create_Form.Designer.cs">
+      <DependentUpon>Criterion_Create_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="DB\AbsDbController.cs" />
     <Compile Include="DB\DbController.cs" />
@@ -94,187 +88,166 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Kriterienverwaltung.cs">
+    <Compile Include="Kriterienverwaltung_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Kriterienverwaltung.Designer.cs">
-      <DependentUpon>Kriterienverwaltung.cs</DependentUpon>
+    <Compile Include="Kriterienverwaltung_Form.Designer.cs">
+      <DependentUpon>Kriterienverwaltung_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Product_Create.cs">
+    <Compile Include="Product_Create_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Product_Create.Designer.cs">
-      <DependentUpon>Product_Create.cs</DependentUpon>
+    <Compile Include="Product_Create_Form.Designer.cs">
+      <DependentUpon>Product_Create_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Product_Delete.cs">
+    <Compile Include="Product_Show_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Product_Delete.Designer.cs">
-      <DependentUpon>Product_Delete.cs</DependentUpon>
+    <Compile Include="Product_Show_Form.Designer.cs">
+      <DependentUpon>Product_Show_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Product_Show.cs">
+    <Compile Include="Product_Update_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Product_Show.Designer.cs">
-      <DependentUpon>Product_Show.cs</DependentUpon>
+    <Compile Include="Product_Update_Form.Designer.cs">
+      <DependentUpon>Product_Update_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Product_Update.cs">
+    <Compile Include="Produktverwaltung_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Product_Update.Designer.cs">
-      <DependentUpon>Product_Update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Produktverwaltung.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Produktverwaltung.Designer.cs">
-      <DependentUpon>Produktverwaltung.cs</DependentUpon>
+    <Compile Include="Produktverwaltung_Form.Designer.cs">
+      <DependentUpon>Produktverwaltung_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="ProjCritAssign.cs">
+    <Compile Include="ProjCritAssign_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProjCritAssign.Designer.cs">
-      <DependentUpon>ProjCritAssign.cs</DependentUpon>
+    <Compile Include="ProjCritAssign_Form.Designer.cs">
+      <DependentUpon>ProjCritAssign_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProjCritBalaIndi.cs">
+    <Compile Include="ProjCritBalaIndi_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProjCritBalaIndi.Designer.cs">
-      <DependentUpon>ProjCritBalaIndi.cs</DependentUpon>
+    <Compile Include="ProjCritBalaIndi_Form.Designer.cs">
+      <DependentUpon>ProjCritBalaIndi_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProjCritBalance.cs">
+    <Compile Include="ProjCritBalance_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProjCritBalance.Designer.cs">
-      <DependentUpon>ProjCritBalance.cs</DependentUpon>
+    <Compile Include="ProjCritBalance_Form.Designer.cs">
+      <DependentUpon>ProjCritBalance_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProjCritProdFulfilment.cs">
+    <Compile Include="ProjCritProdFulfilment_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProjCritProdFulfilment.Designer.cs">
-      <DependentUpon>ProjCritProdFulfilment.cs</DependentUpon>
+    <Compile Include="ProjCritProdFulfilment_Form.Designer.cs">
+      <DependentUpon>ProjCritProdFulfilment_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProjCritStruUpdate.cs">
+    <Compile Include="ProjCritStruUpdate_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProjCritStruUpdate.Designer.cs">
-      <DependentUpon>ProjCritStruUpdate.cs</DependentUpon>
+    <Compile Include="ProjCritStruUpdate_Form.Designer.cs">
+      <DependentUpon>ProjCritStruUpdate_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Project_Create.cs">
+    <Compile Include="Project_Create_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Project_Create.Designer.cs">
-      <DependentUpon>Project_Create.cs</DependentUpon>
+    <Compile Include="Project_Create_Form.Designer.cs">
+      <DependentUpon>Project_Create_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Project_Print.cs">
+    <Compile Include="Project_Show_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Project_Print.Designer.cs">
-      <DependentUpon>Project_Print.cs</DependentUpon>
+    <Compile Include="Project_Show_Form.Designer.cs">
+      <DependentUpon>Project_Show_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Project_Show.cs">
+    <Compile Include="Project_Update_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Project_Show.Designer.cs">
-      <DependentUpon>Project_Show.cs</DependentUpon>
+    <Compile Include="Project_Update_Form.Designer.cs">
+      <DependentUpon>Project_Update_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Project_Update.cs">
+    <Compile Include="Projektverwaltung_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Project_Update.Designer.cs">
-      <DependentUpon>Project_Update.cs</DependentUpon>
+    <Compile Include="Projektverwaltung_Form.Designer.cs">
+      <DependentUpon>Projektverwaltung_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Projektverwaltung.cs">
+    <Compile Include="ProjProdAssign_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Projektverwaltung.Designer.cs">
-      <DependentUpon>Projektverwaltung.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ProjProdAssign.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ProjProdAssign.Designer.cs">
-      <DependentUpon>ProjProdAssign.cs</DependentUpon>
+    <Compile Include="ProjProdAssign_Form.Designer.cs">
+      <DependentUpon>ProjProdAssign_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StartForm.cs">
+    <Compile Include="NWA_Start_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="StartForm.Designer.cs">
-      <DependentUpon>StartForm.cs</DependentUpon>
+    <Compile Include="NWA_Start_Form.Designer.cs">
+      <DependentUpon>NWA_Start_Form.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Criterion_Delete.resx">
-      <DependentUpon>Criterion_Delete.cs</DependentUpon>
+    <EmbeddedResource Include="Criterion_Show_Form.resx">
+      <DependentUpon>Criterion_Show_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Criterion_Show.resx">
-      <DependentUpon>Criterion_Show.cs</DependentUpon>
+    <EmbeddedResource Include="Criterion_Update_Form.resx">
+      <DependentUpon>Criterion_Update_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Criterion_Update.resx">
-      <DependentUpon>Criterion_Update.cs</DependentUpon>
+    <EmbeddedResource Include="Criterion_Create_Form.resx">
+      <DependentUpon>Criterion_Create_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Criterion_Create.resx">
-      <DependentUpon>Criterion_Create.cs</DependentUpon>
+    <EmbeddedResource Include="Kriterienverwaltung_Form.resx">
+      <DependentUpon>Kriterienverwaltung_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Kriterienverwaltung.resx">
-      <DependentUpon>Kriterienverwaltung.cs</DependentUpon>
+    <EmbeddedResource Include="Product_Create_Form.resx">
+      <DependentUpon>Product_Create_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Product_Create.resx">
-      <DependentUpon>Product_Create.cs</DependentUpon>
+    <EmbeddedResource Include="Product_Show_Form.resx">
+      <DependentUpon>Product_Show_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Product_Delete.resx">
-      <DependentUpon>Product_Delete.cs</DependentUpon>
+    <EmbeddedResource Include="Product_Update_Form.resx">
+      <DependentUpon>Product_Update_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Product_Show.resx">
-      <DependentUpon>Product_Show.cs</DependentUpon>
+    <EmbeddedResource Include="Produktverwaltung_Form.resx">
+      <DependentUpon>Produktverwaltung_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Product_Update.resx">
-      <DependentUpon>Product_Update.cs</DependentUpon>
+    <EmbeddedResource Include="ProjCritAssign_Form.resx">
+      <DependentUpon>ProjCritAssign_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produktverwaltung.resx">
-      <DependentUpon>Produktverwaltung.cs</DependentUpon>
+    <EmbeddedResource Include="ProjCritBalaIndi_Form.resx">
+      <DependentUpon>ProjCritBalaIndi_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjCritAssign.resx">
-      <DependentUpon>ProjCritAssign.cs</DependentUpon>
+    <EmbeddedResource Include="ProjCritBalance_Form.resx">
+      <DependentUpon>ProjCritBalance_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjCritBalaIndi.resx">
-      <DependentUpon>ProjCritBalaIndi.cs</DependentUpon>
+    <EmbeddedResource Include="ProjCritProdFulfilment_Form.resx">
+      <DependentUpon>ProjCritProdFulfilment_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjCritBalance.resx">
-      <DependentUpon>ProjCritBalance.cs</DependentUpon>
+    <EmbeddedResource Include="ProjCritStruUpdate_Form.resx">
+      <DependentUpon>ProjCritStruUpdate_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjCritProdFulfilment.resx">
-      <DependentUpon>ProjCritProdFulfilment.cs</DependentUpon>
+    <EmbeddedResource Include="Project_Create_Form.resx">
+      <DependentUpon>Project_Create_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjCritStruUpdate.resx">
-      <DependentUpon>ProjCritStruUpdate.cs</DependentUpon>
+    <EmbeddedResource Include="Project_Show_Form.resx">
+      <DependentUpon>Project_Show_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Project_Create.resx">
-      <DependentUpon>Project_Create.cs</DependentUpon>
+    <EmbeddedResource Include="Project_Update_Form.resx">
+      <DependentUpon>Project_Update_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Project_Print.resx">
-      <DependentUpon>Project_Print.cs</DependentUpon>
+    <EmbeddedResource Include="Projektverwaltung_Form.resx">
+      <DependentUpon>Projektverwaltung_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Project_Show.resx">
-      <DependentUpon>Project_Show.cs</DependentUpon>
+    <EmbeddedResource Include="ProjProdAssign_Form.resx">
+      <DependentUpon>ProjProdAssign_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Project_Update.resx">
-      <DependentUpon>Project_Update.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Projektverwaltung.resx">
-      <DependentUpon>Projektverwaltung.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ProjProdAssign.resx">
-      <DependentUpon>ProjProdAssign.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="StartForm.resx">
-      <DependentUpon>StartForm.cs</DependentUpon>
+    <EmbeddedResource Include="NWA_Start_Form.resx">
+      <DependentUpon>NWA_Start_Form.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="DB\NWAT.dbml.layout">
       <DependentUpon>NWAT.dbml</DependentUpon>
     </None>
-    <EmbeddedResource Include="aktuellesProjekt.resx">
-      <DependentUpon>aktuellesProjekt.cs</DependentUpon>
+    <EmbeddedResource Include="aktuellesProjekt_Form.resx">
+      <DependentUpon>aktuellesProjekt_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
