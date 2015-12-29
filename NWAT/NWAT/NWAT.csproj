@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="DB\AbsDbController.cs" />
     <Compile Include="DB\DbController.cs" />
+    <Compile Include="DB\FulfillmentController.cs" />
     <Compile Include="DB\NWAT.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

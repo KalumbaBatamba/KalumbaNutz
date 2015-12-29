@@ -120,6 +120,7 @@ namespace NWAT.DB
                     prodToUpdateFromDb.Name = alteredProduct.Name;
                     prodToUpdateFromDb.Producer = alteredProduct.Producer;
                     prodToUpdateFromDb.Price = alteredProduct.Price;
+                    base.DataContext.SubmitChanges();
                 }
                 else
                 {
@@ -131,7 +132,7 @@ namespace NWAT.DB
                 throw (new DatabaseException(MessageProductDoesNotExist(productId) + "\n" + 
                                                 MessageProductCouldNotBeSavedEmptyObject()));  
             }
-            base.DataContext.SubmitChanges();
+           
               
             Product alteredProductFromDb = GetProductById(productId);
             return CheckIfEqualProducts(alteredProduct, alteredProductFromDb);
