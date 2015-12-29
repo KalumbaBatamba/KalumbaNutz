@@ -23,7 +23,7 @@
       <Column Name="Project_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Product_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Criterion_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Degree_Of_Fulfillment" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fulfilled" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="Comment" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="Criterion_Fulfillment" Member="Criterion" ThisKey="Criterion_Id" OtherKey="Criterion_Id" Type="Criterion" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Product_Fulfillment" Member="Product" ThisKey="Product_Id" OtherKey="Product_Id" Type="Product" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
@@ -58,8 +58,8 @@
       <Column Name="Weighting_Cardinal" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Weighting_Percentage_Layer" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="Weighting_Percentage_Project" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Association Name="Criterion_ProjectCriterion" Member="Criterion" ThisKey="Criterion_Id" OtherKey="Criterion_Id" Type="Criterion" IsForeignKey="true" />
-      <Association Name="Criterion_ProjectCriterion1" Member="Criterion1" ThisKey="Parent_Criterion_Id" OtherKey="Criterion_Id" Type="Criterion" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Criterion_ProjectCriterion" Member="Criterion" ThisKey="Criterion_Id" OtherKey="Criterion_Id" Type="Criterion" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Criterion_ProjectCriterion1" Member="Criterion1" ThisKey="Parent_Criterion_Id" OtherKey="Criterion_Id" Type="Criterion" IsForeignKey="true" />
       <Association Name="Project_ProjectCriterion" Member="Project" ThisKey="Project_Id" OtherKey="Project_Id" Type="Project" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>

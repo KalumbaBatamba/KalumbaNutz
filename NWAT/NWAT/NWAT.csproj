@@ -264,7 +264,6 @@
     </Compile>
     <None Include="DB\NWAT.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>NWAT.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">

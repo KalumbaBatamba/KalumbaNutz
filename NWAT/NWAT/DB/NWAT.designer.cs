@@ -503,7 +503,7 @@ namespace NWAT.DB
 		
 		private int _Criterion_Id;
 		
-		private int _Degree_Of_Fulfillment;
+		private bool _Fulfilled;
 		
 		private string _Comment;
 		
@@ -523,8 +523,8 @@ namespace NWAT.DB
     partial void OnProduct_IdChanged();
     partial void OnCriterion_IdChanging(int value);
     partial void OnCriterion_IdChanged();
-    partial void OnDegree_Of_FulfillmentChanging(int value);
-    partial void OnDegree_Of_FulfillmentChanged();
+    partial void OnFulfilledChanging(bool value);
+    partial void OnFulfilledChanged();
     partial void OnCommentChanging(string value);
     partial void OnCommentChanged();
     #endregion
@@ -609,22 +609,22 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Degree_Of_Fulfillment", DbType="Int NOT NULL")]
-		public int Degree_Of_Fulfillment
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fulfilled", DbType="Bit NOT NULL")]
+		public bool Fulfilled
 		{
 			get
 			{
-				return this._Degree_Of_Fulfillment;
+				return this._Fulfilled;
 			}
 			set
 			{
-				if ((this._Degree_Of_Fulfillment != value))
+				if ((this._Fulfilled != value))
 				{
-					this.OnDegree_Of_FulfillmentChanging(value);
+					this.OnFulfilledChanging(value);
 					this.SendPropertyChanging();
-					this._Degree_Of_Fulfillment = value;
-					this.SendPropertyChanged("Degree_Of_Fulfillment");
-					this.OnDegree_Of_FulfillmentChanged();
+					this._Fulfilled = value;
+					this.SendPropertyChanged("Fulfilled");
+					this.OnFulfilledChanged();
 				}
 			}
 		}
@@ -1338,7 +1338,7 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Criterion_ProjectCriterion", Storage="_Criterion", ThisKey="Criterion_Id", OtherKey="Criterion_Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Criterion_ProjectCriterion", Storage="_Criterion", ThisKey="Criterion_Id", OtherKey="Criterion_Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Criterion Criterion
 		{
 			get
@@ -1372,7 +1372,7 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Criterion_ProjectParentCriterion", Storage="_ParentCriterion", ThisKey="Parent_Criterion_Id", OtherKey="Criterion_Id", IsForeignKey=true, DeleteRule="CASCADE")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Criterion_ProjectParentCriterion", Storage="_ParentCriterion", ThisKey="Parent_Criterion_Id", OtherKey="Criterion_Id", IsForeignKey=true)]
 		public Criterion ParentCriterion
 		{
 			get
