@@ -97,7 +97,7 @@ namespace NWAT.DB
                 Fulfillment fulfillmentFromDb = base.DataContext.Fulfillment.SingleOrDefault(fulfillment => fulfillment.Project_Id == projectId
                                                                                                 && fulfillment.Product_Id == productId
                                                                                                 && fulfillment.Criterion_Id == criterionId);
-                fulfillmentFromDb.Degree_Of_Fulfillment = alteredFulfillment.Degree_Of_Fulfillment;
+                fulfillmentFromDb.Fulfilled = alteredFulfillment.Fulfilled;
                 fulfillmentFromDb.Comment = alteredFulfillment.Comment;
             }
             else
@@ -150,7 +150,7 @@ namespace NWAT.DB
             bool sameProjectId = fulfillmentOne.Project_Id == fulfillmentTwo.Project_Id;
             bool sameProductId = fulfillmentOne.Product_Id == fulfillmentTwo.Product_Id;
             bool sameCriterionId = fulfillmentOne.Criterion_Id == fulfillmentTwo.Criterion_Id;
-            bool sameDegreeOfFulfillment = fulfillmentOne.Degree_Of_Fulfillment == fulfillmentTwo.Degree_Of_Fulfillment;
+            bool sameDegreeOfFulfillment = fulfillmentOne.Fulfilled == fulfillmentTwo.Fulfilled;
             bool sameComment = fulfillmentOne.Comment == fulfillmentTwo.Comment;
 
             return sameComment &&
