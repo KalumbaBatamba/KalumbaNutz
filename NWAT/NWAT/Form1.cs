@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace NWAT
 {
@@ -22,10 +25,22 @@ namespace NWAT
         {
             ProjectController criContr = new ProjectController();
             List<Project> x = criContr.GetAllProjectsFromDB();
+
+            Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
+            PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream("Test_PDF.pdf", FileMode.Create));
+            doc.Open();
+
             foreach(Project proj in x)
-            {
-                MessageBox.Show(proj.Name);
+            { 
+            Paragraph name = new Paragraph(proj.Name);
+            Paragraph desc = new Paragraph(proj.Description);
+            doc.Add(desc);    
+            doc.Add(name);
             }
+
+            doc.Close();
+            MessageBox.Show("PDF erfolgreich angelegt");
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
