@@ -29,7 +29,7 @@ namespace NWAT.DB
 
         // TODO delete single Product wird in delete from list aufgerufen
         // private machen?
-        public bool DeleteProjectProductFromDb(ProjectProduct projectProductToDelete)
+        public bool DeleteProjectProductFromDb(int projectId, int productId)
         { return true; }
 
         // TODO updateProjectProductListInDb 

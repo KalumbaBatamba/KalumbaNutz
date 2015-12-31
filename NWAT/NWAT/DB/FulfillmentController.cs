@@ -30,6 +30,21 @@ namespace NWAT.DB
         }
 
         /// <summary>
+        /// Gets all fulfillments for single produkt.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="productId">The product identifier.</param>
+        /// <returns>
+        /// A list with all fulfillment entries for the product with the given id from the project with the given id
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 29.12.2015
+        public List<Fulfillment> GetAllFulfillmentsForSingleProdukt(int projectId, int productId)
+        {
+            return base.DataContext.Fulfillment.Where(fulfillment => fulfillment.Project_Id == projectId 
+                                                                  && fulfillment.Product_Id == productId).ToList();
+        }
+
+        /// <summary>
         /// Fills the fulfillment table initially.
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
@@ -109,6 +124,78 @@ namespace NWAT.DB
             return CheckIfEqualFulfillments(alteredFulfillment, newFulfillmentInDb);
         }
 
+        /// <summary>
+        /// Deletes the single fulfillment.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="productId">The product identifier.</param>
+        /// <param name="criterionId">The criterion identifier.</param>
+        /// <returns>
+        /// bool if deletion was successful
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 29.12.2015
+        public bool DeleteSingleFulfillment(int projectId, int productId, int criterionId)
+        {
+            Fulfillment fulfillmentToDelete = base.DataContext.Fulfillment.SingleOrDefault(fulfillment => 
+                                                                                            fulfillment.Project_Id == projectId
+                                                                                            && fulfillment.Project_Id == productId
+                                                                                            && fulfillment.Criterion_Id == criterionId);
+            base.DataContext.Fulfillment.DeleteOnSubmit(fulfillmentToDelete);
+            base.DataContext.SubmitChanges();
+
+            if (GetFulfillmentByIds(projectId, productId, criterionId) == null)
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// Deletes all fulfillments for one product.
+        /// </summary>
+        /// <param name="productId">The product identifier.</param>
+        /// Erstellt von Joshua Frey, am 29.12.2015
+        public void DeleteAllFulfillmentsForOneProduct(int productId)
+        {
+            var allFulfillmentsToDelete = base.DataContext.Fulfillment.Where(fulfillment => fulfillment.Product_Id == productId);
+
+            foreach (var fulfillmentToDelete in allFulfillmentsToDelete)
+            {
+                base.DataContext.Fulfillment.DeleteOnSubmit(fulfillmentToDelete);
+            }
+            base.DataContext.SubmitChanges();
+        }
+
+        /// <summary>
+        /// Deletes all fulfillments for one criterion.
+        /// </summary>
+        /// <param name="criterionId">The criterion identifier.</param>
+        /// Erstellt von Joshua Frey, am 29.12.2015
+        public void DeleteAllFulfillmentsForOneCriterion(int criterionId)
+        {
+            var allFulfillmentsToDelete = base.DataContext.Fulfillment.Where(fulfillment => fulfillment.Criterion_Id == criterionId);
+
+            foreach (var fulfillmentToDelete in allFulfillmentsToDelete)
+            {
+                base.DataContext.Fulfillment.DeleteOnSubmit(fulfillmentToDelete);
+            }
+            base.DataContext.SubmitChanges();
+        }
+
+        /// <summary>
+        /// Deletes all fulfillments for one project.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// Erstellt von Joshua Frey, am 29.12.2015
+        public void DeleteAllFulfillmentsForOneProject(int projectId)
+        {
+            var allFulfillmentsToDelete = base.DataContext.Fulfillment.Where(fulfillment => fulfillment.Project_Id == projectId);
+
+            foreach (var fulfillmentToDelete in allFulfillmentsToDelete)
+            {
+                base.DataContext.Fulfillment.DeleteOnSubmit(fulfillmentToDelete);
+            }
+            base.DataContext.SubmitChanges();
+        }
 
 
         /*
