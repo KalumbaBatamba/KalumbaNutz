@@ -136,9 +136,8 @@ namespace NWAT.DB
         }
 
         // TODO Delete ProjectCrit
-        // aufpassen, hier wird ein object und nicht die Ids übergeben. 
-        // Ansatz für spätere Abstrakte Klasse
-        public bool DeleteProjectCriterionFromDb(ProjectCriterion projCritToDelete) { return true; }
+        // eventuell private machen, da sie nur von der ChangeAllocation Methode aufgerufen wird
+        public bool DeleteProjectCriterionFromDb(int projectId, int criterionId) { return true; }
 
         
         // TODO updateProjectCriterionListInDb 
