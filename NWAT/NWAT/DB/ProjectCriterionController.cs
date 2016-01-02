@@ -67,7 +67,11 @@ namespace NWAT.DB
         // Ist dies sinnvoll?
         public List<ProjectCriterion> GetBaseProjectCriterions(int projectId)
         {
-            return new List<ProjectCriterion>();
+            List<ProjectCriterion> baseCriterions = base.DataContext.ProjectCriterion.Where(projectCrit => projectCrit.Project_Id == projectId 
+                                                                                                        && projectCrit.Parent_Criterion_Id == null).ToList();
+
+
+            return baseCriterions;
         }
 
         /// <summary>
