@@ -60,6 +60,7 @@
     <Compile Include="aktuellesProjekt_Form.Designer.cs">
       <DependentUpon>aktuellesProjekt_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Analysis.cs" />
     <Compile Include="Criterion_Show_Form.cs">
       <SubType>Form</SubType>
     </Compile>
