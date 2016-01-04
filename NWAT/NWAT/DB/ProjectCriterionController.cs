@@ -121,21 +121,19 @@ namespace NWAT.DB
 
         // TODO update ProjectCrit
         // Ist dafür da, die Parent Id und die Gewichtungen zu ändern. 
-        public bool UpdateProjectCriterionInDb(int projectId, ProjectProduct alteredProjectCriterion)
+        public bool UpdateProjectCriterionInDb(ProjectCriterion alteredProjectCriterion)
         {
 
-            /*
-             * int projectId = alteredProjectCriterion.ProjectId;
-             * int criterionId = alteredProjectCriterion.CriteriontId;
-             * ProjectCriterion resultProjectCriterion = base.DataContext.ProjectCriterion.SingleOrDefault(projectCriterion => projectCriterion.Criterion_Id == criterionId 
-                                                                              && projectCriterion.Project_Id == projectId);
-             * resultProjectCriterion.ParentId = alteredProjectCriterion.ParentId;
-             * resultProjectCriterion.WeightingCardinal = alteredProjectCriterion.WeightingCardinal;
-             * resultProjectCriterion.WeightingPercentage_Layer = alteredProjectCriterion.WeightingPercentage_Layer;
-             * resultProjectCriterion.WeightingPercentage_Project = alteredProjectCriterion.WeightingPercentage_Project;
-             * base.DataContext.SubmitChanges();
-            * 
-            */
+             int projectId = alteredProjectCriterion.Project_Id;
+             int criterionId = alteredProjectCriterion.Criterion_Id;
+             ProjectCriterion resultProjectCriterion = base.DataContext.ProjectCriterion.SingleOrDefault(projectCriterion => projectCriterion.Criterion_Id == criterionId 
+                                                                            && projectCriterion.Project_Id == projectId);
+             resultProjectCriterion.Parent_Criterion_Id = alteredProjectCriterion.Parent_Criterion_Id;
+             resultProjectCriterion.Weighting_Cardinal = alteredProjectCriterion.Weighting_Cardinal;
+             resultProjectCriterion.Weighting_Percentage_Layer = alteredProjectCriterion.Weighting_Percentage_Layer;
+             resultProjectCriterion.Weighting_Percentage_Project = alteredProjectCriterion.Weighting_Percentage_Project;
+             base.DataContext.SubmitChanges();
+            
             return true; 
         }
 
@@ -176,22 +174,63 @@ namespace NWAT.DB
         }
 
 
-
-
-
-
-        // TODO CalculatePercentageLayerWeighting
-        // sollte wieder die gleiche Liste zurückgeben, nur dass für jedes 
-        // ProjectCriterion das Member "Weighting_Percentage_Layer" ein Wert gesetzt ist
-        public IEnumerable<ProjectCriterion> CalculatePercentageLayerWeighting(IEnumerable<ProjectCriterion> projectCriterionsInOneLayer) 
+        /// <summary>
+        /// Updates all percentage layer weightings for one project.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// Erstellt von Joshua Frey, am 04.01.2016
+        public void UpdateAllPercentageLayerWeightings(int projectId)
         {
-            return new List<ProjectCriterion>();
+            // calculate all weightings for the base layer
+            List<ProjectCriterion> baseProjectCriterions = GetBaseProjectCriterions(projectId);
+            CalculatePercentageLayerWeighting(ref baseProjectCriterions);
+
+            // write calculated weightings back to db
+            foreach (ProjectCriterion baseProjCrit in baseProjectCriterions)
+            {
+                UpdateProjectCriterionInDb(baseProjCrit);
+            }
+            
+            // calculate all weightings for all child project criterions
+            List<ProjectCriterion> allProjectCriterions = GetAllProjectCriterionsForOneProject(projectId);
+
+            foreach (ProjectCriterion projCrit in allProjectCriterions)
+            {
+                List<ProjectCriterion> eventualChildrenOfCurrentProjCriterion = GetChildCriterionsByParentId(projectId, projCrit.Criterion_Id);
+                if (eventualChildrenOfCurrentProjCriterion.Count > 0)
+                {
+                    CalculatePercentageLayerWeighting(ref eventualChildrenOfCurrentProjCriterion);
+                    foreach (ProjectCriterion childProjCrit in eventualChildrenOfCurrentProjCriterion)
+                    {
+                        UpdateProjectCriterionInDb(childProjCrit);
+                    }
+                }
+            }
         }
 
         /*
         * Private Section
         */
 
+        /// <summary>
+        /// Calculates the percentage layer weighting for one Layer. 
+        /// </summary>
+        /// <param name="projectCriterionsInOneLayer">Reference of a IEnumerable of the project criterions in one layer.</param>
+        /// Erstellt von Joshua Frey, am 04.01.2016
+        private void CalculatePercentageLayerWeighting(ref List<ProjectCriterion> projectCriterionsInOneLayer)
+        {
+            float sumOfCardinalWeightings = 0;
+            foreach (ProjectCriterion projCrit in projectCriterionsInOneLayer)
+            {
+                sumOfCardinalWeightings += projCrit.Weighting_Cardinal.Value;
+            }
+
+            foreach (ProjectCriterion projCrit in projectCriterionsInOneLayer)
+            {
+                float percentageLayerWeighting = projCrit.Weighting_Cardinal.Value / sumOfCardinalWeightings;
+                projCrit.Weighting_Percentage_Layer = percentageLayerWeighting;
+            }
+        }
 
         /// <summary>
         /// Checks if equal project criterions.
