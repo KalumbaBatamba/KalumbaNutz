@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace NWAT.DB
 {
-    class FulfillmentController : DbController
+    class FulfillmentController : DbController, IDisposable
     {
         public FulfillmentController() : base() { }
         public FulfillmentController(NWATDataContext dataContext)
             : base(dataContext) { }
 
+        public void Dispose()
+        { }
         /// <summary>
         /// Gets the fulfillment by ids.
         /// </summary>
@@ -74,24 +76,40 @@ namespace NWAT.DB
                     foreach (ProjectCriterion projCrit in allProjectCriterions)
                     {
                         int criterionId = projCrit.Criterion_Id;
-                        Fulfillment newFulfillmentEntry = new Fulfillment
-                        {
-                            Project_Id = projectId,
-                            Product_Id = productId,
-                            Criterion_Id = criterionId
-                        };
-                        if (!CheckIfFullfilmentCombinationAlreadyExists(projectId, productId, criterionId))
-                        {
-                            base.DataContext.Fulfillment.InsertOnSubmit(newFulfillmentEntry);
-                            base.DataContext.SubmitChanges();
-
-                        }
-                        else
-                        {
-                            throw new DatabaseException(MessageFulfillmentEntryAlreadyExists(projectId, productId, criterionId));
-                        }
+                        InsertFullfillmentInDb(projectId, productId, criterionId);
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Inserts the fullfillment in database.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="productId">The product identifier.</param>
+        /// <param name="criterionId">The criterion identifier.</param>
+        /// Erstellt von Joshua Frey, am 04.01.2016
+        /// <exception cref="DatabaseException"></exception>
+        public bool InsertFullfillmentInDb(int projectId, int productId, int criterionId)
+        {
+            Fulfillment newFulfillmentEntry = new Fulfillment
+            {
+                Project_Id = projectId,
+                Product_Id = productId,
+                Criterion_Id = criterionId
+            };
+            if (!CheckIfFullfilmentCombinationAlreadyExists(projectId, productId, criterionId))
+            {
+                base.DataContext.Fulfillment.InsertOnSubmit(newFulfillmentEntry);
+                base.DataContext.SubmitChanges();
+                if (CheckIfFullfilmentCombinationAlreadyExists(projectId, productId, criterionId))
+                    return true;
+                else 
+                    return false;
+            }
+            else
+            {
+                throw new DatabaseException(MessageFulfillmentEntryAlreadyExists(projectId, productId, criterionId));
             }
         }
 
@@ -165,12 +183,16 @@ namespace NWAT.DB
             base.DataContext.SubmitChanges();
         }
 
+
         /// <summary>
         /// Deletes all fulfillments for one criterion.
         /// </summary>
         /// <param name="criterionId">The criterion identifier.</param>
-        /// Erstellt von Joshua Frey, am 29.12.2015
-        public void DeleteAllFulfillmentsForOneCriterion(int criterionId)
+        /// <returns>
+        /// bool, if deletion was successful
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 04.01.2016
+        public bool DeleteAllFulfillmentsForOneCriterion(int criterionId)
         {
             var allFulfillmentsToDelete = base.DataContext.Fulfillment.Where(fulfillment => fulfillment.Criterion_Id == criterionId);
 
@@ -179,7 +201,47 @@ namespace NWAT.DB
                 base.DataContext.Fulfillment.DeleteOnSubmit(fulfillmentToDelete);
             }
             base.DataContext.SubmitChanges();
+
+            var listOfStillexistingFulfillmentEntries = base.DataContext.Fulfillment.Where(fulfillment => fulfillment.Criterion_Id == criterionId);
+            if (listOfStillexistingFulfillmentEntries.Count() > 0)
+                return false;
+            else
+                return true;
+            
+
         }
+
+
+        /// <summary>
+        /// Deletes all fulfillments for one criterion in one project.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="criterionId">The criterion identifier.</param>
+        /// <returns>
+        /// bool, if deletion was successful
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 04.01.2016
+        public bool DeleteAllFulfillmentsForOneCriterionInOneProject(int projectId, int criterionId)
+        {
+            var allFulfillmentsToDelete = base.DataContext.Fulfillment.Where(fulfillment => fulfillment.Criterion_Id == criterionId
+                                                                                            && fulfillment.Project_Id == projectId);
+
+            foreach (var fulfillmentToDelete in allFulfillmentsToDelete)
+            {
+                base.DataContext.Fulfillment.DeleteOnSubmit(fulfillmentToDelete);
+            }
+            base.DataContext.SubmitChanges();
+
+            var listOfStillexistingFulfillmentEntries = base.DataContext.Fulfillment.Where(fulfillment => fulfillment.Criterion_Id == criterionId
+                                                                                            && fulfillment.Project_Id == projectId);
+            if (listOfStillexistingFulfillmentEntries.Count() > 0)
+                return false;
+            else
+                return true;
+
+
+        }
+
 
         /// <summary>
         /// Deletes all fulfillments for one project.
@@ -197,6 +259,31 @@ namespace NWAT.DB
             base.DataContext.SubmitChanges();
         }
 
+
+        /// <summary>
+        /// Checks if any criterion has no fulfilled value for a product.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="productId">The product identifier.</param>
+        /// <returns>
+        /// bool if any criterion has no value for fulfilled collumn
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 04.01.2016
+        public bool CheckIfAnyCriterionHasNoFulfilledValueForAProduct(int projectId, int productId)
+        {
+            bool hasNoFulfillmentValue = false;
+            List<Fulfillment> allFulfillmentsForOneProject =  GetAllFulfillmentsForSingleProdukt(projectId, productId);
+
+            foreach (Fulfillment fulfillment in allFulfillmentsForOneProject)
+            {
+                if (fulfillment.Fulfilled == null)
+                {
+                    hasNoFulfillmentValue = true;
+                }
+            }
+
+            return hasNoFulfillmentValue;
+        }
 
         /*
          * Private section

@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace NWAT.DB
 {
-    class ProjectProductController
+    class ProjectProductController : DbController, IDisposable
     {
+
+        public ProjectProductController() : base() { }
+        public ProjectProductController(NWATDataContext dataContext) 
+            : base(dataContext) { }
+
+        public void Dispose() { }
 
         // TODO get Project Product by ids
         public ProjectProduct GetProjectProductByIds(int projectId, int productId)
@@ -15,11 +21,19 @@ namespace NWAT.DB
             return new ProjectProduct();
         }
 
-        // TODO get all projectProducts for one Project from db
+
+        /// <summary>
+        /// Gets all project products for one project.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <returns>
+        /// list of all project products for one project
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 04.01.2016
         public List<ProjectProduct> GetAllProjectProductsForOneProject(int projectId)
         {
-            return new List<ProjectProduct>();
-
+            List<ProjectProduct> allProjectProductsForOneProject = base.DataContext.ProjectProduct.Where(projectProduct => projectProduct.Project_Id == projectId).ToList();
+            return allProjectProductsForOneProject;
         }
 
         // TODO insert Project Product 

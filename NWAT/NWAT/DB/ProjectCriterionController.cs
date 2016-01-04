@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace NWAT.DB
 {
@@ -137,10 +138,91 @@ namespace NWAT.DB
             return true; 
         }
 
-        // TODO Delete ProjectCrit
-        // eventuell private machen, da sie nur von der ChangeAllocation Methode aufgerufen wird
-        public bool DeleteProjectCriterionFromDb(int projectId, int criterionId) { return true; }
 
+        /// <summary>
+        /// Deletes the project criterion from database.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="criterionId">The criterion identifier.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 04.01.2016
+        public bool DeleteProjectCriterionFromDb(int projectId, int criterionId) 
+        {
+            ProjectCriterion delProjCrit = (from projCrit in base.DataContext.ProjectCriterion
+                                            where projCrit.Project_Id == projectId
+                                            && projCrit.Criterion_Id == criterionId
+                                            select projCrit).FirstOrDefault();
+            base.DataContext.ProjectCriterion.DeleteOnSubmit(delProjCrit);
+            base.DataContext.SubmitChanges();
+
+            return GetProjectCriterionByIds(projectId, criterionId) == null;
+        }
+
+
+        /// <summary>
+        /// Deallocates the criterion and all child criterions from project. This includes the entries in the fulfillment table
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="projCrit">The proj crit.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 04.01.2016
+        public bool DeallocateCriterionAndAllChildCriterions(int projectId, ProjectCriterion projCrit)
+        {
+            int projectCriterionId = projCrit.Criterion_Id;
+            // checks if criterion has any children criterion (is a parent criterion)
+            List<ProjectCriterion> eventualChildCriterions = GetChildCriterionsByParentId(projectId, projectCriterionId);
+            bool deletionPermitted = true;
+            if (eventualChildCriterions.Count > 0)
+            {
+                string decisionMessage = MessageUserDecisionOfDeallocatingAllChildCriterions(projCrit, eventualChildCriterions);
+                const string caption = "Kriterienentkopplung";
+
+                var result = MessageBox.Show(decisionMessage, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    foreach (ProjectCriterion childProjCrit in eventualChildCriterions)
+                    {
+                        if (deletionPermitted)
+                        {
+                            deletionPermitted = DeallocateCriterionAndAllChildCriterions(projectId, childProjCrit);
+                        }
+                        
+                    }
+                }
+                else
+                    deletionPermitted = false;
+
+            }
+            string projCritName = projCrit.Criterion.Name;
+            if (deletionPermitted)
+            {
+                // delete all fulfillment entries which point to this project criterion
+                bool fulfillmentDeletionSuccessfull;
+                using (FulfillmentController fulfillmentContr = new FulfillmentController())
+                {
+                    fulfillmentDeletionSuccessfull = fulfillmentContr.DeleteAllFulfillmentsForOneCriterionInOneProject(projectId, projCrit.Criterion_Id);
+                }
+
+                if (fulfillmentDeletionSuccessfull && DeleteProjectCriterionFromDb(projectId, projectCriterionId))
+                {
+                    MessageBox.Show("Das Kriterium " +  projCritName + " wurde erfolgreich vom Projekt entkoppelt.");
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Bei dem Löschvorgang ist ein Fehler aufgetreten.");
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Löschen von " + projCritName + " konnte nicht durchgeführt werden, weil ein Löschvorgang vom Benutzer abgelehnt wurde.");
+                return false;
+            }
+        }
+
+       
         
         // TODO updateProjectCriterionListInDb 
         // params: ProjectID und die aktuelle Liste die vom Benutzer zugeordnet wurde.
@@ -149,28 +231,71 @@ namespace NWAT.DB
         // --> füge neue Einträge hinzu
         public bool ChangeAllocationOfProjectCriterionsInDb(int projectId, List<ProjectCriterion> newProjectCriterionList)
         {
-            /*
-             * listFromDb = GetAllProjectCriterionsForOneProject(projectId)
-             * 
-             * oldToDelete = GetOldProjectCriterionsWhichWereDeallocated(listFromDb, newProjectCriterionList);
-             * foreach (crit in oldToDelete)
-             * {
-             *      if(checkIfCriterionIsAParent(crit))
-             *      {
-             *          // hier wird der benutzer gefragt ob
-             *          MessageBox()
-             *      }
-             *      DeleteSingleCriterion(crit)
-             * }
-             * 
-             * newToAdd = GetNewProjectCriterionsWhichWereAllocated(listFromDb, newProjectCriterionList);
-             * foreach (crit in newToAdd)
-             * {
-             *      Insert(crit)
-             * }
-             * 
-             */
+            List<ProjectCriterion> projCritlistFromDb = GetAllProjectCriterionsForOneProject(projectId);
+             
+            List<ProjectCriterion> oldToDelete = GetOldProjectCriterionsWhichWereDeallocated(projCritlistFromDb, newProjectCriterionList);
+            
+            foreach (ProjectCriterion projCrit in oldToDelete)
+            {
+                // check if project criterion does still exist
+                // if not, the criterion was a child Criterion and was deleted in any loop before by deletion of its parent criterion
+                if (projCrit.Criterion_Id != 0)
+                {
+                    DeallocateCriterionAndAllChildCriterions(projectId, projCrit);
+                }
+            }
+            List<ProjectCriterion> newToAdd = GetNewProjectCriterionsWhichWereAllocated(projCritlistFromDb, newProjectCriterionList);
+            foreach (ProjectCriterion projCrit in newToAdd)
+            {
+                AllocateCriterion(projectId, projCrit);
+            }
+             
             return true;
+        }
+
+
+        /// <summary>
+        /// Allocates the criterion.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="projCrit">The proj crit.</param>
+        /// <returns>
+        /// bool if insertions in projectCriterion table and fulfillment table were successful
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 04.01.2016
+        /// <exception cref="DatabaseException"></exception>
+        public bool AllocateCriterion(int projectId, ProjectCriterion projCrit)
+        {
+            bool insertionProjectCritionSuccessful = true;
+            bool insertionFulfillmentSuccessful = true;
+
+            int projCritId = projCrit.Criterion_Id;
+            if (projCritId != 0 && projCrit.Project_Id != 0)
+            {
+                insertionProjectCritionSuccessful = InsertProjectCriterionIntoDb(projCrit);
+
+                // get all project products for insertion to fulfillment table
+                List<ProjectProduct> allProjectProducts;
+                using (ProjectProductController projProdCont = new ProjectProductController())
+                {
+                    allProjectProducts = projProdCont.GetAllProjectProductsForOneProject(projectId);
+                }
+
+                // insert criterions into fulfillment table for each product
+                using(FulfillmentController fulfillContr = new FulfillmentController())
+                {
+                    foreach (ProjectProduct projProd in allProjectProducts)
+                    {
+                        int prodId = projProd.Product_Id;
+                        if (!fulfillContr.InsertFullfillmentInDb(projectId, prodId, projCritId))
+                        {
+                            insertionFulfillmentSuccessful = false;
+                            throw (new DatabaseException(MessageInsertionToFulFillmentTableFailed(prodId, projCritId)));
+                        }
+                    }
+                }
+            }
+            return insertionFulfillmentSuccessful && insertionProjectCritionSuccessful;
         }
 
 
@@ -342,6 +467,28 @@ namespace NWAT.DB
         {
             return "Das Kriterium mit dem Namen \"" + criterionName +
                    "\" ist bereits dem Projekt \"" + projectName + "\" zugeordnet";
+        }
+
+
+        private static string MessageUserDecisionOfDeallocatingAllChildCriterions(ProjectCriterion projCrit, List<ProjectCriterion> eventualChildCriterions)
+        {
+            string critName = projCrit.Criterion.Name;
+            // hier wird der benutzer gefragt ob
+            string decisionMessage = @"Dem Kriterium " + critName + " sind noch folgende Kriterien untergeordnet: \n";
+            foreach (ProjectCriterion childProjCrit in eventualChildCriterions)
+            {
+                decisionMessage += childProjCrit.Criterion.Name + "\n";
+            }
+            decisionMessage += "Wenn Sie das Kriterium dem Projekt entziehen, werden auch alle untergeordneten Kriterien dem Projekt entzogen\n" +
+                "Des Weiteren werden alle Erfüllungseinträge mit den betroffenen Kriterien für dieses Projekt entfernt.\n" +
+                "Möchten Sie das Kriterium " + critName + " und dessen Unterkriterien vom Projekt entkoppeln?";
+            return decisionMessage;
+        }
+
+        private string MessageInsertionToFulFillmentTableFailed(int prodId, int projCritId)
+        {
+            return String.Format(@"Der Eintrag für das Produkt mit der ID {0} und das Kriterium mit der ID {1} 
+                                    konnte nicht in die Erfüllungstabelle eingefügt werden.", prodId, projCritId);
         }
 
         //private string MessageCriterionDoesNotExist(int criterionId)
