@@ -43,6 +43,7 @@
             this.btn_ProjUpdate.TabIndex = 9;
             this.btn_ProjUpdate.Text = "ändern";
             this.btn_ProjUpdate.UseVisualStyleBackColor = true;
+            this.btn_ProjUpdate.Click += new System.EventHandler(this.btn_ProjUpdate_Click);
             // 
             // textBox_ProjNameUpdate
             // 
@@ -79,7 +80,7 @@
             this.label_ProjName.TabIndex = 5;
             this.label_ProjName.Text = "Projektname:";
             // 
-            // Project_Update
+            // Project_Update_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -89,7 +90,7 @@
             this.Controls.Add(this.label_ProjDescUpdate);
             this.Controls.Add(this.textBox_ProjDescUpdate);
             this.Controls.Add(this.label_ProjName);
-            this.Name = "Project_Update";
+            this.Name = "Project_Update_Form";
             this.Text = "Projekt ändern";
             this.ResumeLayout(false);
             this.PerformLayout();

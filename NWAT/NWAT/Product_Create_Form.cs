@@ -21,5 +21,14 @@ namespace NWAT
         {
 
         }
+
+        private void btn_ProdCreate_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void CreateNewProduct()
+        {
+
+        }
     }
 }

@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.dataGridView_ProjCritBalance = new System.Windows.Forms.DataGridView();
-            this.btn_ProjCritBalaCancle = new System.Windows.Forms.Button();
-            this.btn_ProjCritBalaSave = new System.Windows.Forms.Button();
             this.ProjCritID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjCritIDParent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjCritName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjCritBala = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjCritDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_ProjCritBalaCancle = new System.Windows.Forms.Button();
+            this.btn_ProjCritBalaSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ProjCritBalance)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,24 +52,6 @@
             this.dataGridView_ProjCritBalance.Name = "dataGridView_ProjCritBalance";
             this.dataGridView_ProjCritBalance.Size = new System.Drawing.Size(575, 520);
             this.dataGridView_ProjCritBalance.TabIndex = 3;
-            // 
-            // btn_ProjCritBalaCancle
-            // 
-            this.btn_ProjCritBalaCancle.Location = new System.Drawing.Point(597, 516);
-            this.btn_ProjCritBalaCancle.Name = "btn_ProjCritBalaCancle";
-            this.btn_ProjCritBalaCancle.Size = new System.Drawing.Size(75, 23);
-            this.btn_ProjCritBalaCancle.TabIndex = 5;
-            this.btn_ProjCritBalaCancle.Text = "abbrechen";
-            this.btn_ProjCritBalaCancle.UseVisualStyleBackColor = true;
-            // 
-            // btn_ProjCritBalaSave
-            // 
-            this.btn_ProjCritBalaSave.Location = new System.Drawing.Point(597, 487);
-            this.btn_ProjCritBalaSave.Name = "btn_ProjCritBalaSave";
-            this.btn_ProjCritBalaSave.Size = new System.Drawing.Size(75, 23);
-            this.btn_ProjCritBalaSave.TabIndex = 4;
-            this.btn_ProjCritBalaSave.Text = "speichern";
-            this.btn_ProjCritBalaSave.UseVisualStyleBackColor = true;
             // 
             // ProjCritID
             // 
@@ -101,7 +83,25 @@
             this.ProjCritDesc.Name = "ProjCritDesc";
             this.ProjCritDesc.Width = 158;
             // 
-            // ProjCritBalance
+            // btn_ProjCritBalaCancle
+            // 
+            this.btn_ProjCritBalaCancle.Location = new System.Drawing.Point(597, 516);
+            this.btn_ProjCritBalaCancle.Name = "btn_ProjCritBalaCancle";
+            this.btn_ProjCritBalaCancle.Size = new System.Drawing.Size(75, 23);
+            this.btn_ProjCritBalaCancle.TabIndex = 5;
+            this.btn_ProjCritBalaCancle.Text = "abbrechen";
+            this.btn_ProjCritBalaCancle.UseVisualStyleBackColor = true;
+            // 
+            // btn_ProjCritBalaSave
+            // 
+            this.btn_ProjCritBalaSave.Location = new System.Drawing.Point(597, 487);
+            this.btn_ProjCritBalaSave.Name = "btn_ProjCritBalaSave";
+            this.btn_ProjCritBalaSave.Size = new System.Drawing.Size(75, 23);
+            this.btn_ProjCritBalaSave.TabIndex = 4;
+            this.btn_ProjCritBalaSave.Text = "speichern";
+            this.btn_ProjCritBalaSave.UseVisualStyleBackColor = true;
+            // 
+            // ProjCritBalance_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -109,8 +109,9 @@
             this.Controls.Add(this.dataGridView_ProjCritBalance);
             this.Controls.Add(this.btn_ProjCritBalaCancle);
             this.Controls.Add(this.btn_ProjCritBalaSave);
-            this.Name = "ProjCritBalance";
+            this.Name = "ProjCritBalance_Form";
             this.Text = "Gleichgewichtung";
+            this.Load += new System.EventHandler(this.ProjCritBalance_Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ProjCritBalance)).EndInit();
             this.ResumeLayout(false);
 

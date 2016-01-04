@@ -16,5 +16,18 @@ namespace NWAT
         {
             InitializeComponent();
         }
+
+        private void ProjCritStruUpdate_Form_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void GetProjectCritStructure()
+        {
+
+        }
+        private void UpdateProjCritSturcture()
+        {
+
+        }
     }
 }

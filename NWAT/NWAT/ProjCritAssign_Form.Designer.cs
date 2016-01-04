@@ -31,10 +31,10 @@
             this.label_ProjCrits = new System.Windows.Forms.Label();
             this.label_CritsAvail = new System.Windows.Forms.Label();
             this.dataGridView_ProjCrits = new System.Windows.Forms.DataGridView();
-            this.dataGridView_CritAvail = new System.Windows.Forms.DataGridView();
             this.ProjCritID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjCritName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjCritDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView_CritAvail = new System.Windows.Forms.DataGridView();
             this.AvailCritID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AvailCritName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AvailCritDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,18 +76,6 @@
             this.dataGridView_ProjCrits.Size = new System.Drawing.Size(290, 490);
             this.dataGridView_ProjCrits.TabIndex = 2;
             // 
-            // dataGridView_CritAvail
-            // 
-            this.dataGridView_CritAvail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_CritAvail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.AvailCritID,
-            this.AvailCritName,
-            this.AvailCritDesc});
-            this.dataGridView_CritAvail.Location = new System.Drawing.Point(377, 30);
-            this.dataGridView_CritAvail.Name = "dataGridView_CritAvail";
-            this.dataGridView_CritAvail.Size = new System.Drawing.Size(290, 490);
-            this.dataGridView_CritAvail.TabIndex = 3;
-            // 
             // ProjCritID
             // 
             this.ProjCritID.HeaderText = "ID";
@@ -105,6 +93,18 @@
             this.ProjCritDesc.HeaderText = "Beschreibung";
             this.ProjCritDesc.Name = "ProjCritDesc";
             this.ProjCritDesc.Width = 450;
+            // 
+            // dataGridView_CritAvail
+            // 
+            this.dataGridView_CritAvail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_CritAvail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.AvailCritID,
+            this.AvailCritName,
+            this.AvailCritDesc});
+            this.dataGridView_CritAvail.Location = new System.Drawing.Point(377, 30);
+            this.dataGridView_CritAvail.Name = "dataGridView_CritAvail";
+            this.dataGridView_CritAvail.Size = new System.Drawing.Size(290, 490);
+            this.dataGridView_CritAvail.TabIndex = 3;
             // 
             // AvailCritID
             // 
@@ -160,7 +160,7 @@
             this.btn_ProjCritCancle.Text = "abbrechen";
             this.btn_ProjCritCancle.UseVisualStyleBackColor = true;
             // 
-            // ProjCritAssign
+            // ProjCritAssign_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -173,8 +173,9 @@
             this.Controls.Add(this.dataGridView_ProjCrits);
             this.Controls.Add(this.label_CritsAvail);
             this.Controls.Add(this.label_ProjCrits);
-            this.Name = "ProjCritAssign";
+            this.Name = "ProjCritAssign_Form";
             this.Text = "Kriterienzuordnung";
+            this.Load += new System.EventHandler(this.ProjCritAssign_Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ProjCrits)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_CritAvail)).EndInit();
             this.ResumeLayout(false);

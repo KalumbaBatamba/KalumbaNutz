@@ -16,5 +16,22 @@ namespace NWAT
         {
             InitializeComponent();
         }
+
+        private void ProjCritProdFulfilment_Form_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void AddProjProdCritFulfilment()
+        {
+
+        }
+        private void GetProjProdFromDB()
+        {
+
+        }
+        private void GetProjCritsFromDB()
+        {
+
+        }
     }
 }

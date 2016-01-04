@@ -1,6 +1,6 @@
 ﻿namespace NWAT
 {
-    partial class ProjCritStruUpdate_Form
+    partial class ProjCritShow_Form
     {
         /// <summary>
         /// Required designer variable.
@@ -28,28 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ProjCritShow = new System.Windows.Forms.DataGridView();
             this.ProjCritID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjCritIDParent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjCritName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjCritDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btn_ProjCritStruSave = new System.Windows.Forms.Button();
-            this.btn_ProjCritStruCancle = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.btn_ProjCritStruClose = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.ProjCritShow)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // ProjCritShow
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ProjCritShow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ProjCritShow.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProjCritID,
             this.ProjCritIDParent,
             this.ProjCritName,
             this.ProjCritDesc});
-            this.dataGridView1.Location = new System.Drawing.Point(13, 29);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(575, 520);
-            this.dataGridView1.TabIndex = 0;
+            this.ProjCritShow.Location = new System.Drawing.Point(13, 20);
+            this.ProjCritShow.Name = "ProjCritShow";
+            this.ProjCritShow.Size = new System.Drawing.Size(575, 520);
+            this.ProjCritShow.TabIndex = 3;
             // 
             // ProjCritID
             // 
@@ -75,48 +74,37 @@
             this.ProjCritDesc.Name = "ProjCritDesc";
             this.ProjCritDesc.Width = 300;
             // 
-            // btn_ProjCritStruSave
+            // btn_ProjCritStruClose
             // 
-            this.btn_ProjCritStruSave.Location = new System.Drawing.Point(597, 496);
-            this.btn_ProjCritStruSave.Name = "btn_ProjCritStruSave";
-            this.btn_ProjCritStruSave.Size = new System.Drawing.Size(75, 23);
-            this.btn_ProjCritStruSave.TabIndex = 1;
-            this.btn_ProjCritStruSave.Text = "sprichern";
-            this.btn_ProjCritStruSave.UseVisualStyleBackColor = true;
+            this.btn_ProjCritStruClose.Location = new System.Drawing.Point(597, 516);
+            this.btn_ProjCritStruClose.Name = "btn_ProjCritStruClose";
+            this.btn_ProjCritStruClose.Size = new System.Drawing.Size(75, 23);
+            this.btn_ProjCritStruClose.TabIndex = 5;
+            this.btn_ProjCritStruClose.Text = "schliessen";
+            this.btn_ProjCritStruClose.UseVisualStyleBackColor = true;
             // 
-            // btn_ProjCritStruCancle
-            // 
-            this.btn_ProjCritStruCancle.Location = new System.Drawing.Point(597, 525);
-            this.btn_ProjCritStruCancle.Name = "btn_ProjCritStruCancle";
-            this.btn_ProjCritStruCancle.Size = new System.Drawing.Size(75, 23);
-            this.btn_ProjCritStruCancle.TabIndex = 2;
-            this.btn_ProjCritStruCancle.Text = "abbrechen";
-            this.btn_ProjCritStruCancle.UseVisualStyleBackColor = true;
-            // 
-            // ProjCritStruUpdate_Form
+            // ProjCritShow_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 561);
-            this.Controls.Add(this.btn_ProjCritStruCancle);
-            this.Controls.Add(this.btn_ProjCritStruSave);
-            this.Controls.Add(this.dataGridView1);
-            this.Name = "ProjCritStruUpdate_Form";
-            this.Text = "Projekt-Kriterienstruktur";
-            this.Load += new System.EventHandler(this.ProjCritStruUpdate_Form_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Controls.Add(this.ProjCritShow);
+            this.Controls.Add(this.btn_ProjCritStruClose);
+            this.Name = "ProjCritShow_Form";
+            this.Text = "ProjCritShow_Form";
+            this.Load += new System.EventHandler(this.ProjCritShow_Form_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.ProjCritShow)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView ProjCritShow;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjCritID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjCritIDParent;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjCritName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjCritDesc;
-        private System.Windows.Forms.Button btn_ProjCritStruSave;
-        private System.Windows.Forms.Button btn_ProjCritStruCancle;
+        private System.Windows.Forms.Button btn_ProjCritStruClose;
     }
 }

@@ -57,6 +57,7 @@
             this.btn_CritShow.TabIndex = 2;
             this.btn_CritShow.Text = "anzeigen";
             this.btn_CritShow.UseVisualStyleBackColor = true;
+            this.btn_CritShow.Click += new System.EventHandler(this.btn_CritShow_Click);
             // 
             // btn_CritUpdate
             // 
@@ -66,6 +67,7 @@
             this.btn_CritUpdate.TabIndex = 3;
             this.btn_CritUpdate.Text = "ändern";
             this.btn_CritUpdate.UseVisualStyleBackColor = true;
+            this.btn_CritUpdate.Click += new System.EventHandler(this.btn_CritUpdate_Click);
             // 
             // btn_CritDelete
             // 
@@ -75,6 +77,7 @@
             this.btn_CritDelete.TabIndex = 4;
             this.btn_CritDelete.Text = "löschen";
             this.btn_CritDelete.UseVisualStyleBackColor = true;
+            this.btn_CritDelete.Click += new System.EventHandler(this.btn_CritDelete_Click);
             // 
             // btn_CritCreate
             // 
@@ -84,6 +87,7 @@
             this.btn_CritCreate.TabIndex = 7;
             this.btn_CritCreate.Text = "Neu anlegen";
             this.btn_CritCreate.UseVisualStyleBackColor = true;
+            this.btn_CritCreate.Click += new System.EventHandler(this.btn_CritCreate_Click);
             // 
             // dataGridView1
             // 

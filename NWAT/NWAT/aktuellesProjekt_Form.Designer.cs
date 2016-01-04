@@ -114,6 +114,7 @@
             this.btn_CurrProjKritAssign.Text = "Kriterien zuordnen";
             this.btn_CurrProjKritAssign.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_CurrProjKritAssign.UseVisualStyleBackColor = true;
+            this.btn_CurrProjKritAssign.Click += new System.EventHandler(this.btn_CurrProjKritAssign_Click);
             // 
             // btn_CurrProjCritStruShow
             // 
@@ -124,6 +125,7 @@
             this.btn_CurrProjCritStruShow.Text = "Kriterienstruktur anzeigen";
             this.btn_CurrProjCritStruShow.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_CurrProjCritStruShow.UseVisualStyleBackColor = true;
+            this.btn_CurrProjCritStruShow.Click += new System.EventHandler(this.btn_CurrProjCritStruShow_Click);
             // 
             // btn_CurrProjCritStruUpdate
             // 
@@ -134,6 +136,7 @@
             this.btn_CurrProjCritStruUpdate.Text = "Kriterienstruktur ändern";
             this.btn_CurrProjCritStruUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_CurrProjCritStruUpdate.UseVisualStyleBackColor = true;
+            this.btn_CurrProjCritStruUpdate.Click += new System.EventHandler(this.btn_CurrProjCritStruUpdate_Click);
             // 
             // btn_CurrProjCritStruPrint
             // 
@@ -144,6 +147,7 @@
             this.btn_CurrProjCritStruPrint.Text = "Kriterienstruktur drucken";
             this.btn_CurrProjCritStruPrint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_CurrProjCritStruPrint.UseVisualStyleBackColor = true;
+            this.btn_CurrProjCritStruPrint.Click += new System.EventHandler(this.btn_CurrProjCritStruPrint_Click);
             // 
             // btn_CurrProjCritStruBalance
             // 
@@ -154,6 +158,7 @@
             this.btn_CurrProjCritStruBalance.Text = "Gleichgewichtung";
             this.btn_CurrProjCritStruBalance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_CurrProjCritStruBalance.UseVisualStyleBackColor = true;
+            this.btn_CurrProjCritStruBalance.Click += new System.EventHandler(this.btn_CurrProjCritStruBalance_Click);
             // 
             // btn_CurrProjCritStruEval
             // 
@@ -164,6 +169,7 @@
             this.btn_CurrProjCritStruEval.Text = "individuelle Gewichtung";
             this.btn_CurrProjCritStruEval.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_CurrProjCritStruEval.UseVisualStyleBackColor = true;
+            this.btn_CurrProjCritStruEval.Click += new System.EventHandler(this.btn_CurrProjCritStruEval_Click);
             // 
             // groupBox_CurrProjProds
             // 
@@ -187,6 +193,7 @@
             this.btn_CurrProjProdAssign.Text = "Produkte zuordnen";
             this.btn_CurrProjProdAssign.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_CurrProjProdAssign.UseVisualStyleBackColor = true;
+            this.btn_CurrProjProdAssign.Click += new System.EventHandler(this.btn_CurrProjProdAssign_Click);
             // 
             // btn_CurrProjProdFulfCapt
             // 
@@ -197,6 +204,7 @@
             this.btn_CurrProjProdFulfCapt.Text = "Erfüllung erfassen";
             this.btn_CurrProjProdFulfCapt.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_CurrProjProdFulfCapt.UseVisualStyleBackColor = true;
+            this.btn_CurrProjProdFulfCapt.Click += new System.EventHandler(this.btn_CurrProjProdFulfCapt_Click);
             // 
             // btnCurrProjProdFulfPrint
             // 
@@ -207,6 +215,7 @@
             this.btnCurrProjProdFulfPrint.Text = "Erfüllung drucken";
             this.btnCurrProjProdFulfPrint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCurrProjProdFulfPrint.UseVisualStyleBackColor = true;
+            this.btnCurrProjProdFulfPrint.Click += new System.EventHandler(this.btnCurrProjProdFulfPrint_Click);
             // 
             // groupBox_CurrProjAnalys
             // 
@@ -228,6 +237,7 @@
             this.btn_CurrProjProdAnalShow.Text = "Analyse anzeigen";
             this.btn_CurrProjProdAnalShow.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_CurrProjProdAnalShow.UseVisualStyleBackColor = true;
+            this.btn_CurrProjProdAnalShow.Click += new System.EventHandler(this.btn_CurrProjProdAnalShow_Click);
             // 
             // btn_CurrProjProdAnalPrint
             // 
@@ -238,8 +248,9 @@
             this.btn_CurrProjProdAnalPrint.Text = "Analyse drucken";
             this.btn_CurrProjProdAnalPrint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_CurrProjProdAnalPrint.UseVisualStyleBackColor = true;
+            this.btn_CurrProjProdAnalPrint.Click += new System.EventHandler(this.btn_CurrProjProdAnalPrint_Click);
             // 
-            // aktuellesProjekt
+            // aktuellesProjekt_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -251,7 +262,7 @@
             this.Controls.Add(this.label_CurrProjDesc);
             this.Controls.Add(this.label_CurrProjNameShow);
             this.Controls.Add(this.label_CurrProjName);
-            this.Name = "aktuellesProjekt";
+            this.Name = "aktuellesProjekt_Form";
             this.Text = "aktuelles Projekt";
             this.Load += new System.EventHandler(this.aktuellesProjekt_Load);
             this.groupBox_CurrProjCrits.ResumeLayout(false);

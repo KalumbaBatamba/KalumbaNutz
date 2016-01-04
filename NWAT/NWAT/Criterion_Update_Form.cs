@@ -16,5 +16,23 @@ namespace NWAT
         {
             InitializeComponent();
         }
+
+        private void btn_CritUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void GetCritsSpecs()
+        {
+
+        }
+        private void UpdateCritSpecs()
+        {
+
+        }
+
+        private void Criterion_Update_Form_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

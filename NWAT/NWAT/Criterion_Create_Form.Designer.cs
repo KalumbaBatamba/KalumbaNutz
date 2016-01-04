@@ -76,8 +76,9 @@
             this.btn_CritCreate.TabIndex = 4;
             this.btn_CritCreate.Text = "anlegen";
             this.btn_CritCreate.UseVisualStyleBackColor = true;
+            this.btn_CritCreate.Click += new System.EventHandler(this.btn_CritCreate_Click);
             // 
-            // Criterion_Create
+            // Criterion_Create_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -87,8 +88,9 @@
             this.Controls.Add(this.textBox_CritNameCreate);
             this.Controls.Add(this.label_CritDesc);
             this.Controls.Add(this.label_CritName);
-            this.Name = "Criterion_Create";
+            this.Name = "Criterion_Create_Form";
             this.Text = "Kriterium anlegen";
+            this.Load += new System.EventHandler(this.Criterion_Create_Form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -21,5 +21,28 @@ namespace NWAT
         {
 
         }
+        private void GetAllProdFromDB()
+        {
+
+        }
+
+        private void btn_ProdShow_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_ProdUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_ProdDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void DeleteProdFromDB()
+        {
+
+        }
     }
 }

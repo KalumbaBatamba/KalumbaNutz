@@ -16,5 +16,14 @@ namespace NWAT
         {
             InitializeComponent();
         }
+
+        private void btn_ProjUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void UpdateProject()
+        {
+
+        }
     }
 }

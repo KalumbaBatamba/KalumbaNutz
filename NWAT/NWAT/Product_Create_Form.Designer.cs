@@ -47,6 +47,7 @@
             this.btn_ProdCreate.TabIndex = 9;
             this.btn_ProdCreate.Text = "anlegen";
             this.btn_ProdCreate.UseVisualStyleBackColor = true;
+            this.btn_ProdCreate.Click += new System.EventHandler(this.btn_ProdCreate_Click);
             // 
             // textBox_ProdDescCreate
             // 
@@ -113,7 +114,7 @@
             this.label_ProdPrize.TabIndex = 13;
             this.label_ProdPrize.Text = "Preis:";
             // 
-            // Product_Create
+            // Product_Create_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -127,7 +128,7 @@
             this.Controls.Add(this.textBox_ProdNameCreate);
             this.Controls.Add(this.label_ProdDesc);
             this.Controls.Add(this.label_ProdName);
-            this.Name = "Product_Create";
+            this.Name = "Product_Create_Form";
             this.Text = "Produkt anlegen";
             this.Load += new System.EventHandler(this.Product_Create_Load);
             this.ResumeLayout(false);

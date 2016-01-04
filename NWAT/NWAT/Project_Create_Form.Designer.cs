@@ -43,6 +43,7 @@
             this.btn_ProjCreate.TabIndex = 9;
             this.btn_ProjCreate.Text = "anlegen";
             this.btn_ProjCreate.UseVisualStyleBackColor = true;
+            this.btn_ProjCreate.Click += new System.EventHandler(this.btn_ProjCreate_Click);
             // 
             // textBox_ProjDescCreate
             // 
@@ -77,7 +78,7 @@
             this.label_ProjName.TabIndex = 5;
             this.label_ProjName.Text = "Projektname:";
             // 
-            // Project_Create
+            // Project_Create_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -87,8 +88,9 @@
             this.Controls.Add(this.textBox_ProjNameCreate);
             this.Controls.Add(this.label_ProjDesc);
             this.Controls.Add(this.label_ProjName);
-            this.Name = "Project_Create";
+            this.Name = "Project_Create_Form";
             this.Text = "Projekt anlegen";
+            this.Load += new System.EventHandler(this.Project_Create_Form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

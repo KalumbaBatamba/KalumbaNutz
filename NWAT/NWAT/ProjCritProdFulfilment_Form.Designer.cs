@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.dataGridView_ProjCritProdFulf = new System.Windows.Forms.DataGridView();
-            this.btn_ProjCritProdFulfCancle = new System.Windows.Forms.Button();
-            this.btn_ProjCritProdFulfSave = new System.Windows.Forms.Button();
-            this.comboBox_ProjCritProdFulf = new System.Windows.Forms.ComboBox();
             this.ProjCritID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjCritIDParent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjCritName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjCritBalaInd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjCritProdFulf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_ProjCritProdFulfCancle = new System.Windows.Forms.Button();
+            this.btn_ProjCritProdFulfSave = new System.Windows.Forms.Button();
+            this.comboBox_ProjCritProdFulf = new System.Windows.Forms.ComboBox();
             this.checkBox_ProjCritProdFulf = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ProjCritProdFulf)).BeginInit();
             this.SuspendLayout();
@@ -54,33 +54,6 @@
             this.dataGridView_ProjCritProdFulf.Name = "dataGridView_ProjCritProdFulf";
             this.dataGridView_ProjCritProdFulf.Size = new System.Drawing.Size(575, 488);
             this.dataGridView_ProjCritProdFulf.TabIndex = 9;
-            // 
-            // btn_ProjCritProdFulfCancle
-            // 
-            this.btn_ProjCritProdFulfCancle.Location = new System.Drawing.Point(597, 516);
-            this.btn_ProjCritProdFulfCancle.Name = "btn_ProjCritProdFulfCancle";
-            this.btn_ProjCritProdFulfCancle.Size = new System.Drawing.Size(75, 23);
-            this.btn_ProjCritProdFulfCancle.TabIndex = 11;
-            this.btn_ProjCritProdFulfCancle.Text = "abbrechen";
-            this.btn_ProjCritProdFulfCancle.UseVisualStyleBackColor = true;
-            // 
-            // btn_ProjCritProdFulfSave
-            // 
-            this.btn_ProjCritProdFulfSave.Location = new System.Drawing.Point(597, 487);
-            this.btn_ProjCritProdFulfSave.Name = "btn_ProjCritProdFulfSave";
-            this.btn_ProjCritProdFulfSave.Size = new System.Drawing.Size(75, 23);
-            this.btn_ProjCritProdFulfSave.TabIndex = 10;
-            this.btn_ProjCritProdFulfSave.Text = "speichern";
-            this.btn_ProjCritProdFulfSave.UseVisualStyleBackColor = true;
-            // 
-            // comboBox_ProjCritProdFulf
-            // 
-            this.comboBox_ProjCritProdFulf.FormattingEnabled = true;
-            this.comboBox_ProjCritProdFulf.Location = new System.Drawing.Point(13, 25);
-            this.comboBox_ProjCritProdFulf.Name = "comboBox_ProjCritProdFulf";
-            this.comboBox_ProjCritProdFulf.Size = new System.Drawing.Size(229, 21);
-            this.comboBox_ProjCritProdFulf.TabIndex = 12;
-            this.comboBox_ProjCritProdFulf.Text = "Wählen Sie das Produkt aus";
             // 
             // ProjCritID
             // 
@@ -112,6 +85,33 @@
             this.ProjCritProdFulf.Name = "ProjCritProdFulf";
             this.ProjCritProdFulf.Width = 158;
             // 
+            // btn_ProjCritProdFulfCancle
+            // 
+            this.btn_ProjCritProdFulfCancle.Location = new System.Drawing.Point(597, 516);
+            this.btn_ProjCritProdFulfCancle.Name = "btn_ProjCritProdFulfCancle";
+            this.btn_ProjCritProdFulfCancle.Size = new System.Drawing.Size(75, 23);
+            this.btn_ProjCritProdFulfCancle.TabIndex = 11;
+            this.btn_ProjCritProdFulfCancle.Text = "abbrechen";
+            this.btn_ProjCritProdFulfCancle.UseVisualStyleBackColor = true;
+            // 
+            // btn_ProjCritProdFulfSave
+            // 
+            this.btn_ProjCritProdFulfSave.Location = new System.Drawing.Point(597, 487);
+            this.btn_ProjCritProdFulfSave.Name = "btn_ProjCritProdFulfSave";
+            this.btn_ProjCritProdFulfSave.Size = new System.Drawing.Size(75, 23);
+            this.btn_ProjCritProdFulfSave.TabIndex = 10;
+            this.btn_ProjCritProdFulfSave.Text = "speichern";
+            this.btn_ProjCritProdFulfSave.UseVisualStyleBackColor = true;
+            // 
+            // comboBox_ProjCritProdFulf
+            // 
+            this.comboBox_ProjCritProdFulf.FormattingEnabled = true;
+            this.comboBox_ProjCritProdFulf.Location = new System.Drawing.Point(13, 25);
+            this.comboBox_ProjCritProdFulf.Name = "comboBox_ProjCritProdFulf";
+            this.comboBox_ProjCritProdFulf.Size = new System.Drawing.Size(229, 21);
+            this.comboBox_ProjCritProdFulf.TabIndex = 12;
+            this.comboBox_ProjCritProdFulf.Text = "Wählen Sie das Produkt aus";
+            // 
             // checkBox_ProjCritProdFulf
             // 
             this.checkBox_ProjCritProdFulf.AutoSize = true;
@@ -121,7 +121,7 @@
             this.checkBox_ProjCritProdFulf.TabIndex = 13;
             this.checkBox_ProjCritProdFulf.UseVisualStyleBackColor = true;
             // 
-            // ProjCritProdFulfilment
+            // ProjCritProdFulfilment_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -131,8 +131,9 @@
             this.Controls.Add(this.dataGridView_ProjCritProdFulf);
             this.Controls.Add(this.btn_ProjCritProdFulfCancle);
             this.Controls.Add(this.btn_ProjCritProdFulfSave);
-            this.Name = "ProjCritProdFulfilment";
+            this.Name = "ProjCritProdFulfilment_Form";
             this.Text = "Produkt-Kriterienerfüllung";
+            this.Load += new System.EventHandler(this.ProjCritProdFulfilment_Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ProjCritProdFulf)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

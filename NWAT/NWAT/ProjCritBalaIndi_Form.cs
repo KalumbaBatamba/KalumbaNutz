@@ -16,5 +16,18 @@ namespace NWAT
         {
             InitializeComponent();
         }
+
+        private void ProjCritBalaIndi_Form_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void ShowProjCritSturcture()
+        {
+
+        }
+        private void SetIndiBalance()
+        {
+
+        }
     }
 }

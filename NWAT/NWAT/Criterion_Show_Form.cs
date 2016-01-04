@@ -16,5 +16,14 @@ namespace NWAT
         {
             InitializeComponent();
         }
+
+        private void Criterion_Show_Form_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void GetCritSpecs()
+        {
+
+        }
     }
 }

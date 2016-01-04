@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.dataGridView_prodAvail = new System.Windows.Forms.DataGridView();
+            this.AvailProdID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AvailProdName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AvailProdManu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView_ProjProd = new System.Windows.Forms.DataGridView();
+            this.ProjProdID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjProdName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjProdManu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label_ProdAvail = new System.Windows.Forms.Label();
             this.label_ProjProd = new System.Windows.Forms.Label();
             this.btn_ProjProdCancle = new System.Windows.Forms.Button();
             this.btn_ProjProdSave = new System.Windows.Forms.Button();
             this.btn_ProdToPool = new System.Windows.Forms.Button();
             this.btn_ProdToProj = new System.Windows.Forms.Button();
-            this.ProjProdID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjProdName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjProdManu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AvailProdID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AvailProdName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AvailProdManu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_prodAvail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ProjProd)).BeginInit();
             this.SuspendLayout();
@@ -58,6 +58,24 @@
             this.dataGridView_prodAvail.Size = new System.Drawing.Size(290, 490);
             this.dataGridView_prodAvail.TabIndex = 11;
             // 
+            // AvailProdID
+            // 
+            this.AvailProdID.HeaderText = "ID";
+            this.AvailProdID.Name = "AvailProdID";
+            this.AvailProdID.Width = 25;
+            // 
+            // AvailProdName
+            // 
+            this.AvailProdName.HeaderText = "Name";
+            this.AvailProdName.Name = "AvailProdName";
+            this.AvailProdName.Width = 150;
+            // 
+            // AvailProdManu
+            // 
+            this.AvailProdManu.HeaderText = "Hersteller";
+            this.AvailProdManu.Name = "AvailProdManu";
+            this.AvailProdManu.Width = 400;
+            // 
             // dataGridView_ProjProd
             // 
             this.dataGridView_ProjProd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -69,6 +87,24 @@
             this.dataGridView_ProjProd.Name = "dataGridView_ProjProd";
             this.dataGridView_ProjProd.Size = new System.Drawing.Size(290, 490);
             this.dataGridView_ProjProd.TabIndex = 10;
+            // 
+            // ProjProdID
+            // 
+            this.ProjProdID.HeaderText = "ID";
+            this.ProjProdID.Name = "ProjProdID";
+            this.ProjProdID.Width = 25;
+            // 
+            // ProjProdName
+            // 
+            this.ProjProdName.HeaderText = "Name";
+            this.ProjProdName.Name = "ProjProdName";
+            this.ProjProdName.Width = 150;
+            // 
+            // ProjProdManu
+            // 
+            this.ProjProdManu.HeaderText = "Hersteller";
+            this.ProjProdManu.Name = "ProjProdManu";
+            this.ProjProdManu.Width = 450;
             // 
             // label_ProdAvail
             // 
@@ -124,43 +160,7 @@
             this.btn_ProdToProj.Text = "<<";
             this.btn_ProdToProj.UseVisualStyleBackColor = true;
             // 
-            // ProjProdID
-            // 
-            this.ProjProdID.HeaderText = "ID";
-            this.ProjProdID.Name = "ProjProdID";
-            this.ProjProdID.Width = 25;
-            // 
-            // ProjProdName
-            // 
-            this.ProjProdName.HeaderText = "Name";
-            this.ProjProdName.Name = "ProjProdName";
-            this.ProjProdName.Width = 150;
-            // 
-            // ProjProdManu
-            // 
-            this.ProjProdManu.HeaderText = "Hersteller";
-            this.ProjProdManu.Name = "ProjProdManu";
-            this.ProjProdManu.Width = 450;
-            // 
-            // AvailProdID
-            // 
-            this.AvailProdID.HeaderText = "ID";
-            this.AvailProdID.Name = "AvailProdID";
-            this.AvailProdID.Width = 25;
-            // 
-            // AvailProdName
-            // 
-            this.AvailProdName.HeaderText = "Name";
-            this.AvailProdName.Name = "AvailProdName";
-            this.AvailProdName.Width = 150;
-            // 
-            // AvailProdManu
-            // 
-            this.AvailProdManu.HeaderText = "Hersteller";
-            this.AvailProdManu.Name = "AvailProdManu";
-            this.AvailProdManu.Width = 400;
-            // 
-            // ProjProdAssign
+            // ProjProdAssign_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -173,8 +173,9 @@
             this.Controls.Add(this.btn_ProjProdSave);
             this.Controls.Add(this.btn_ProdToPool);
             this.Controls.Add(this.btn_ProdToProj);
-            this.Name = "ProjProdAssign";
+            this.Name = "ProjProdAssign_Form";
             this.Text = "ProjProdAssign";
+            this.Load += new System.EventHandler(this.ProjProdAssign_Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_prodAvail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ProjProd)).EndInit();
             this.ResumeLayout(false);

@@ -150,7 +150,7 @@
             this.btn_ProjImport.Text = "importieren";
             this.btn_ProjImport.UseVisualStyleBackColor = true;
             // 
-            // Projektverwaltung
+            // Projektverwaltung_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -167,8 +167,9 @@
             this.Controls.Add(this.btn_ProjectShow);
             this.Controls.Add(this.comboBox_SelectProject);
             this.Controls.Add(this.label_ProjectChoose);
-            this.Name = "Projektverwaltung";
+            this.Name = "Projektverwaltung_Form";
             this.Text = "Projektverwaltung";
+            this.Load += new System.EventHandler(this.Projektverwaltung_Form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

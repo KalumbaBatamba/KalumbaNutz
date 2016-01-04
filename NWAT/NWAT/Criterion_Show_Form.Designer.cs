@@ -80,7 +80,7 @@
             this.btn_CritShowClose.Text = "schliessen";
             this.btn_CritShowClose.UseVisualStyleBackColor = true;
             // 
-            // Criterion_Show
+            // Criterion_Show_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -90,8 +90,9 @@
             this.Controls.Add(this.label_CritDescLab);
             this.Controls.Add(this.label_CritShowName);
             this.Controls.Add(this.label_CritName);
-            this.Name = "Criterion_Show";
+            this.Name = "Criterion_Show_Form";
             this.Text = "Kriteriendeltails";
+            this.Load += new System.EventHandler(this.Criterion_Show_Form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -21,5 +21,47 @@ namespace NWAT
         {
 
         }
+
+        private void Projektverwaltung_Form_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OpenViewCreateNewProject()
+        {
+
+        }
+
+        private void GetAllProjects()
+        {
+
+        }
+
+        private void OpenViewShowActivProject()
+        {
+
+        }
+
+        private void OpenViewChangeActiveProject()
+        {
+
+        }
+        private void PrintActiveProject()
+        {
+
+        }
+        private void ExportActiveProject()
+        {
+
+        }
+        private void ImportProject()
+        {
+
+        }
+        private void OpenViewUpdateActiveProject()
+        {
+
+        }
+
     }
 }

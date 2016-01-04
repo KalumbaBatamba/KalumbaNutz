@@ -35,5 +35,68 @@ namespace NWAT
         {
 
         }
+        private void OpenCritAssign()
+        {
+
+        }
+        private void OpenCritStructure()
+        {
+
+        }
+
+        private void btn_CurrProjKritAssign_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_CurrProjCritStruShow_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_CurrProjCritStruUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_CurrProjCritStruPrint_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_CurrProjCritStruBalance_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_CurrProjCritStruEval_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_CurrProjProdAssign_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_CurrProjProdFulfCapt_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCurrProjProdFulfPrint_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_CurrProjProdAnalShow_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_CurrProjProdAnalPrint_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

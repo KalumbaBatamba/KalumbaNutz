@@ -16,5 +16,23 @@ namespace NWAT
         {
             InitializeComponent();
         }
+
+        private void ProjCritAssign_Form_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void AddCritToProject()
+        {
+
+        }
+        private void DeleteCritFromProject()
+        {
+
+        }
+        private void GetAllCritsFromDB()
+        {
+
+        }
+       
     }
 }

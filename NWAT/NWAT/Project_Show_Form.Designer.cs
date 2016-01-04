@@ -80,7 +80,7 @@
             this.label_ProjName.TabIndex = 5;
             this.label_ProjName.Text = "Projektname:";
             // 
-            // Project_Show
+            // Project_Show_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -90,8 +90,9 @@
             this.Controls.Add(this.label_ProjDescLab);
             this.Controls.Add(this.label_ProjShowName);
             this.Controls.Add(this.label_ProjName);
-            this.Name = "Project_Show";
+            this.Name = "Project_Show_Form";
             this.Text = "Projekt anzeigen";
+            this.Load += new System.EventHandler(this.Project_Show_Form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

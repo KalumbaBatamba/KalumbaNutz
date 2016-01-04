@@ -16,5 +16,23 @@ namespace NWAT
         {
             InitializeComponent();
         }
+
+        private void Project_Create_Form_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void CreateNewProject()
+        {
+
+        }
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_ProjCreate_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

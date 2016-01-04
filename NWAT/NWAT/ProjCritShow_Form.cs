@@ -10,23 +10,18 @@ using System.Windows.Forms;
 
 namespace NWAT
 {
-    public partial class Criterion_Create_Form : Form
+    public partial class ProjCritShow_Form : Form
     {
-        public Criterion_Create_Form()
+        public ProjCritShow_Form()
         {
             InitializeComponent();
         }
 
-        private void btn_CritCreate_Click(object sender, EventArgs e)
+        private void ProjCritShow_Form_Load(object sender, EventArgs e)
         {
 
         }
-        private void CreateNewCrit()
-        {
-
-        }
-
-        private void Criterion_Create_Form_Load(object sender, EventArgs e)
+        private void ShowProjCritSturcture()
         {
 
         }

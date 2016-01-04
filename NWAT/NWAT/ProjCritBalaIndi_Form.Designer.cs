@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.dataGridView_ProjCritBalaIndi = new System.Windows.Forms.DataGridView();
-            this.btn_ProjCritBalaIndiCancle = new System.Windows.Forms.Button();
-            this.btn_ProjCritBalaIndiSave = new System.Windows.Forms.Button();
             this.ProjCritID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjCritIDParent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjCritName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjCritBalaInd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjCritDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_ProjCritBalaIndiCancle = new System.Windows.Forms.Button();
+            this.btn_ProjCritBalaIndiSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ProjCritBalaIndi)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,24 +52,6 @@
             this.dataGridView_ProjCritBalaIndi.Name = "dataGridView_ProjCritBalaIndi";
             this.dataGridView_ProjCritBalaIndi.Size = new System.Drawing.Size(575, 520);
             this.dataGridView_ProjCritBalaIndi.TabIndex = 6;
-            // 
-            // btn_ProjCritBalaIndiCancle
-            // 
-            this.btn_ProjCritBalaIndiCancle.Location = new System.Drawing.Point(597, 516);
-            this.btn_ProjCritBalaIndiCancle.Name = "btn_ProjCritBalaIndiCancle";
-            this.btn_ProjCritBalaIndiCancle.Size = new System.Drawing.Size(75, 23);
-            this.btn_ProjCritBalaIndiCancle.TabIndex = 8;
-            this.btn_ProjCritBalaIndiCancle.Text = "abbrechen";
-            this.btn_ProjCritBalaIndiCancle.UseVisualStyleBackColor = true;
-            // 
-            // btn_ProjCritBalaIndiSave
-            // 
-            this.btn_ProjCritBalaIndiSave.Location = new System.Drawing.Point(597, 487);
-            this.btn_ProjCritBalaIndiSave.Name = "btn_ProjCritBalaIndiSave";
-            this.btn_ProjCritBalaIndiSave.Size = new System.Drawing.Size(75, 23);
-            this.btn_ProjCritBalaIndiSave.TabIndex = 7;
-            this.btn_ProjCritBalaIndiSave.Text = "speichern";
-            this.btn_ProjCritBalaIndiSave.UseVisualStyleBackColor = true;
             // 
             // ProjCritID
             // 
@@ -101,7 +83,25 @@
             this.ProjCritDesc.Name = "ProjCritDesc";
             this.ProjCritDesc.Width = 158;
             // 
-            // ProjCritBalaIndi
+            // btn_ProjCritBalaIndiCancle
+            // 
+            this.btn_ProjCritBalaIndiCancle.Location = new System.Drawing.Point(597, 516);
+            this.btn_ProjCritBalaIndiCancle.Name = "btn_ProjCritBalaIndiCancle";
+            this.btn_ProjCritBalaIndiCancle.Size = new System.Drawing.Size(75, 23);
+            this.btn_ProjCritBalaIndiCancle.TabIndex = 8;
+            this.btn_ProjCritBalaIndiCancle.Text = "abbrechen";
+            this.btn_ProjCritBalaIndiCancle.UseVisualStyleBackColor = true;
+            // 
+            // btn_ProjCritBalaIndiSave
+            // 
+            this.btn_ProjCritBalaIndiSave.Location = new System.Drawing.Point(597, 487);
+            this.btn_ProjCritBalaIndiSave.Name = "btn_ProjCritBalaIndiSave";
+            this.btn_ProjCritBalaIndiSave.Size = new System.Drawing.Size(75, 23);
+            this.btn_ProjCritBalaIndiSave.TabIndex = 7;
+            this.btn_ProjCritBalaIndiSave.Text = "speichern";
+            this.btn_ProjCritBalaIndiSave.UseVisualStyleBackColor = true;
+            // 
+            // ProjCritBalaIndi_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -109,8 +109,9 @@
             this.Controls.Add(this.dataGridView_ProjCritBalaIndi);
             this.Controls.Add(this.btn_ProjCritBalaIndiCancle);
             this.Controls.Add(this.btn_ProjCritBalaIndiSave);
-            this.Name = "ProjCritBalaIndi";
+            this.Name = "ProjCritBalaIndi_Form";
             this.Text = "ProjCritBalaIndi";
+            this.Load += new System.EventHandler(this.ProjCritBalaIndi_Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ProjCritBalaIndi)).EndInit();
             this.ResumeLayout(false);
 

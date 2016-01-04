@@ -16,5 +16,14 @@ namespace NWAT
         {
             InitializeComponent();
         }
+
+        private void btn_Close_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void ShowProdSpecs()
+        {
+
+        }
     }
 }

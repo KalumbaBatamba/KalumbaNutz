@@ -72,6 +72,7 @@
             this.btn_ProdDelete.TabIndex = 12;
             this.btn_ProdDelete.Text = "löschen";
             this.btn_ProdDelete.UseVisualStyleBackColor = true;
+            this.btn_ProdDelete.Click += new System.EventHandler(this.btn_ProdDelete_Click);
             // 
             // btn_ProdUpdate
             // 
@@ -81,6 +82,7 @@
             this.btn_ProdUpdate.TabIndex = 11;
             this.btn_ProdUpdate.Text = "ändern";
             this.btn_ProdUpdate.UseVisualStyleBackColor = true;
+            this.btn_ProdUpdate.Click += new System.EventHandler(this.btn_ProdUpdate_Click);
             // 
             // btn_ProdShow
             // 
@@ -90,6 +92,7 @@
             this.btn_ProdShow.TabIndex = 10;
             this.btn_ProdShow.Text = "anzeigen";
             this.btn_ProdShow.UseVisualStyleBackColor = true;
+            this.btn_ProdShow.Click += new System.EventHandler(this.btn_ProdShow_Click);
             // 
             // lable_ProdChoose
             // 
@@ -109,7 +112,7 @@
             this.comboBox_ProdChoose.TabIndex = 8;
             this.comboBox_ProdChoose.Text = "Wählen Sie ein Produkt aus der Liste aus";
             // 
-            // Produktverwaltung
+            // Produktverwaltung_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -122,7 +125,7 @@
             this.Controls.Add(this.btn_ProdShow);
             this.Controls.Add(this.lable_ProdChoose);
             this.Controls.Add(this.comboBox_ProdChoose);
-            this.Name = "Produktverwaltung";
+            this.Name = "Produktverwaltung_Form";
             this.Text = "Produktverwaltung";
             this.Load += new System.EventHandler(this.Produktverwaltung_Load);
             this.ResumeLayout(false);

@@ -79,6 +79,7 @@
             this.btn_ProdUpdate.TabIndex = 18;
             this.btn_ProdUpdate.Text = "ändern";
             this.btn_ProdUpdate.UseVisualStyleBackColor = true;
+            this.btn_ProdUpdate.Click += new System.EventHandler(this.btn_ProdUpdate_Click);
             // 
             // textBox_ProdDescUpdate
             // 
@@ -113,7 +114,7 @@
             this.label_ProdName.TabIndex = 14;
             this.label_ProdName.Text = "Produktname:";
             // 
-            // Product_Update
+            // Product_Update_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -127,8 +128,9 @@
             this.Controls.Add(this.textBox_ProdNameUpdate);
             this.Controls.Add(this.label_ProdDesc);
             this.Controls.Add(this.label_ProdName);
-            this.Name = "Product_Update";
+            this.Name = "Product_Update_Form";
             this.Text = "Product_Update";
+            this.Load += new System.EventHandler(this.Product_Update_Form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

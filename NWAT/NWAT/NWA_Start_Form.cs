@@ -21,5 +21,25 @@ namespace NWAT
         {
 
         }
+
+        private void NWA_Start_Form_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_ProjAdm_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_CritAdm_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_ProdAdm_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

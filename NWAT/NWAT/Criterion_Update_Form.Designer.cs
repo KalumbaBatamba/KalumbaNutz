@@ -78,8 +78,9 @@
             this.btn_CritUpdate.TabIndex = 4;
             this.btn_CritUpdate.Text = "ändern";
             this.btn_CritUpdate.UseVisualStyleBackColor = true;
+            this.btn_CritUpdate.Click += new System.EventHandler(this.btn_CritUpdate_Click);
             // 
-            // Criterion_Update
+            // Criterion_Update_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -89,8 +90,9 @@
             this.Controls.Add(this.label_CritDescUpdate);
             this.Controls.Add(this.textBox_CritDescUpdate);
             this.Controls.Add(this.label_CritName);
-            this.Name = "Criterion_Update";
+            this.Name = "Criterion_Update_Form";
             this.Text = "Kriterium ändern";
+            this.Load += new System.EventHandler(this.Criterion_Update_Form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

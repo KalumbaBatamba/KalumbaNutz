@@ -16,5 +16,23 @@ namespace NWAT
         {
             InitializeComponent();
         }
+
+        private void ProjProdAssign_Form_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void AddProdToProject()
+        {
+
+        }
+        private void DeleteProdFromProject()
+        {
+
+        }
+        private void GetAllProdsFromDB()
+        {
+
+        }
+       
     }
 }

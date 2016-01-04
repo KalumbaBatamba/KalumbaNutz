@@ -42,6 +42,7 @@
             this.btn_ProjAdm.TabIndex = 0;
             this.btn_ProjAdm.Text = "Projektverwaltung";
             this.btn_ProjAdm.UseVisualStyleBackColor = true;
+            this.btn_ProjAdm.Click += new System.EventHandler(this.btn_ProjAdm_Click);
             // 
             // btn_CritAdm
             // 
@@ -63,8 +64,9 @@
             this.btn_ProdAdm.TabIndex = 2;
             this.btn_ProdAdm.Text = "Produktverwaltung";
             this.btn_ProdAdm.UseVisualStyleBackColor = true;
+            this.btn_ProdAdm.Click += new System.EventHandler(this.btn_ProdAdm_Click);
             // 
-            // StartForm
+            // NWA_Start_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -72,8 +74,9 @@
             this.Controls.Add(this.btn_ProdAdm);
             this.Controls.Add(this.btn_CritAdm);
             this.Controls.Add(this.btn_ProjAdm);
-            this.Name = "StartForm";
+            this.Name = "NWA_Start_Form";
             this.Text = "NWAT";
+            this.Load += new System.EventHandler(this.NWA_Start_Form_Load);
             this.ResumeLayout(false);
 
         }
