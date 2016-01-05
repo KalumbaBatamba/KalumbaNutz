@@ -109,6 +109,10 @@
     <Compile Include="Kriterienverwaltung_View.Designer.cs">
       <DependentUpon>Kriterienverwaltung_View.cs</DependentUpon>
     </Compile>
+    <Compile Include="Printer\AnalysisPrinter.cs" />
+    <Compile Include="Printer\FulfillmentForEachProductPrinter.cs" />
+    <Compile Include="Printer\CriterionstructurePrinter.cs" />
+    <Compile Include="Printer\ProjectDataPrinter.cs" />
     <Compile Include="Product_Create_View.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -258,6 +262,7 @@
     <EmbeddedResource Include="NWA_Start_View.resx">
       <DependentUpon>NWA_Start_View.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="DB\NWAT.dbml.layout">
       <DependentUpon>NWAT.dbml</DependentUpon>
     </None>
