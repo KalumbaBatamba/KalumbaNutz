@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NWAT.DB.CriterionController" Collapsed="true">
+    <Position X="12.75" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIBAhAAACAAAAAgAAAAAABACAggIQAAAA=</HashCode>
+      <FileName>DB\CriterionController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.DB.DbController" Collapsed="true">
+    <Position X="13.75" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DB\DbController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.DB.FulfillmentController" Collapsed="true">
+    <Position X="12.75" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAABgAAACADACIAAIAAhAACAAAAEIABCAQAAAAAABA=</HashCode>
+      <FileName>DB\FulfillmentController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.491" />
+  </Class>
+  <Class Name="NWAT.DB.ProductController" Collapsed="true">
+    <Position X="12.75" Y="6.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AgAAAgAAABAABBAAAAAAAQwAAAAAAAAAAAABAAAAkQA=</HashCode>
+      <FileName>DB\ProductController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.DB.ProjectController" Collapsed="true">
+    <Position X="12.75" Y="8.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ABAQAIAABAAAAABAAoAAAAAABABAAAAAQAQAACAAAAA=</HashCode>
+      <FileName>DB\ProjectController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.DB.ProjectCriterionController" Collapsed="true">
+    <Position X="12.75" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAAABCAIAAABAIoEAAACAAAAACAAAAEAIAAEgIAQgAg=</HashCode>
+      <FileName>DB\ProjectCriterionController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.DB.ProjectProductController" Collapsed="true">
+    <Position X="12.75" Y="7.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAACAAAEAAAAAAAAACAAIAAAEAAQCAAAAAQAA=</HashCode>
+      <FileName>DB\ProjectProductController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.491" />
+  </Class>
+  <Class Name="NWAT.DB.Criterion" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAigiABAEUgAAAEQCEAIBwFqCAAQQCEAAQQAIAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NWAT.DB.ProjectProduct" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQBiAAABAAAAAAAAUAEACAABiqAAgAAAAAABAABACQA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NWAT.DB.Fulfillment" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQBigAgNEAAEAAAAUCEgCAAFiqAAgQAAACARAABACQA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NWAT.DB.Product" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="6.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQAiAAABAUAAAAEEUgkAIAQBiKAQwACGAAAAgIBQAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.209" Collapsed="true" />
+  </Class>
+  <Class Name="NWAT.DB.Project" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABiACABAEUgAAAAQAEAIBwBiKAAQACGAAQBgIAQAQA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NWAT.DB.ProjectCriterion" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABggAABEgAAAAIQQCMACAMFiKIACQABCAwhgAAAGRA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NWAT.Analysis" Collapsed="true">
+    <Position X="12.75" Y="9.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Analysis.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.Printer.AnalysisPrinter" Collapsed="true">
+    <Position X="8.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Printer\AnalysisPrinter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.Printer.CriterionstructurePrinter" Collapsed="true">
+    <Position X="8.5" Y="11.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Printer\CriterionstructurePrinter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.Printer.FulfillmentForEachProductPrinter" Collapsed="true">
+    <Position X="8.5" Y="9.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Printer\FulfillmentForEachProductPrinter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.Printer.ProjectDataPrinter" Collapsed="true">
+    <Position X="8.5" Y="10.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Printer\ProjectDataPrinter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.Criterion_Create_View" Collapsed="true">
+    <Position X="3.5" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAgAhACACAAAgAAAACAAAACAAIAAAAABAAgAAAAAAA=</HashCode>
+      <FileName>Criterion_Create_View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.aktuellesProjekt_View" Collapsed="true">
+    <Position X="3.5" Y="9.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IiEEAIYAJKoIAQBAAADACaACAIAwAkGQAAAQBAUAUAA=</HashCode>
+      <FileName>aktuellesProjekt_View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.Criterion_Show_View" Collapsed="true">
+    <Position X="3.5" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAgCAQABAAAACAAAACAAAAAgAAAAAgAAAABAA=</HashCode>
+      <FileName>Criterion_Show_View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.Criterion_Update_View" Collapsed="true">
+    <Position X="3.5" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAIACAAAQEAAACAAAACAAAAAUBAAAAgAABAAAA=</HashCode>
+      <FileName>Criterion_Update_View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.Kriterienverwaltung_View" Collapsed="true">
+    <Position X="3.5" Y="1.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QAggABAIACAAAQAAAACAAAACIAggoQCAEAAAAEQAAAE=</HashCode>
+      <FileName>Kriterienverwaltung_View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.NWA_Start_View" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAECAAAAJAAACCAAACAAAAAAAAAEAACAABACA=</HashCode>
+      <FileName>NWA_Start_View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.Product_Show_View" Collapsed="true">
+    <Position X="3.5" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AiAAAAAAACAAAAAAAACAABACCBABAAAiAABAAEAAAAA=</HashCode>
+      <FileName>Product_Show_View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.Product_Create_View" Collapsed="true">
+    <Position X="3.5" Y="6.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAACAwAAQAAACCAAACABABABAAAABAAKAAQAA=</HashCode>
+      <FileName>Product_Create_View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.Product_Update_View" Collapsed="true">
+    <Position X="3.5" Y="7.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AggAAEAAACIAAQAAAACAAYCCABABAAAAAABAQAAAAAA=</HashCode>
+      <FileName>Product_Update_View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.Produktverwaltung_View" Collapsed="true">
+    <Position X="3.5" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAACIIARAAEACAAAQCACAgAAIAAAQAQAAAQgA=</HashCode>
+      <FileName>Produktverwaltung_View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.ProjCritAssign_View" Collapsed="true">
+    <Position X="7" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAIBIQAAACAAAAgAAACAQABigAJAAAEABUABAAQAAQA=</HashCode>
+      <FileName>ProjCritAssign_View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.ProjCritBalance_View" Collapsed="true">
+    <Position X="7" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ACAQQQAAACAAAAAgEACAAABCQACAAAAAAEAAAEAAAAE=</HashCode>
+      <FileName>ProjCritBalance_View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.ProjCritProdFulfilment_View" Collapsed="true">
+    <Position X="7" Y="2.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AACgAYAAACBAAAAgAAKAAAACAAAAABAAAEAIAEABAQE=</HashCode>
+      <FileName>ProjCritProdFulfilment_View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.ProjCritStruUpdate_View" Collapsed="true">
+    <Position X="7" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAACAAAAAgAACAAABiAAgACAAAAEQCAAAAAAI=</HashCode>
+      <FileName>ProjCritStruUpdate_View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.ProjCritShow_View" Collapsed="true">
+    <Position X="7" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAACAAQEAgAACAAABCAAAAAAAAAEACAAACAAA=</HashCode>
+      <FileName>ProjCritShow_View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.Project_Create_View" Collapsed="true">
+    <Position X="3.5" Y="10.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAACAAACAAAACCAAACAQEAAAAAEABAAIAACAA=</HashCode>
+      <FileName>Project_Create_View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.Project_Update_View" Collapsed="true">
+    <Position X="3.5" Y="11.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAYAAAAACAAAQAAAACAAQACAQAAAAAAAAAICAAAAAA=</HashCode>
+      <FileName>Project_Update_View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.Project_Show_View" Collapsed="true">
+    <Position X="3.5" Y="10" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAACAQAACAAACAABACAQAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Project_Show_View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.Projektverwaltung_View" Collapsed="true">
+    <Position X="3.5" Y="8.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gEAUAAUAAiAAoFAIAYCAAAECAAIAAAAEACAAAAAIAAA=</HashCode>
+      <FileName>Projektverwaltung_View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.ProjProdAssign_View" Collapsed="true">
+    <Position X="7" Y="7.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AEAQAEBIiCACIAAgEEiEAAICAAAAABAgAAAAAAAAAAA=</HashCode>
+      <FileName>ProjProdAssign_View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

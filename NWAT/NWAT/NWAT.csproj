@@ -262,6 +262,7 @@
     <EmbeddedResource Include="NWA_Start_View.resx">
       <DependentUpon>NWA_Start_View.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram_MVC_Seperation.cd" />
     <None Include="DB\NWAT.dbml.layout">
       <DependentUpon>NWAT.dbml</DependentUpon>
     </None>
