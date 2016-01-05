@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.ProjCritShow = new System.Windows.Forms.DataGridView();
-            this.ProjCritID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjCritIDParent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjCritName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjCritDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_ProjCritStruClose = new System.Windows.Forms.Button();
+            this.dgc_ProjCritID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgc_ProjCritIDParent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgc_ProjCritName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgc_ProjCritDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ProjCritShow)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,38 +41,14 @@
             // 
             this.ProjCritShow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ProjCritShow.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ProjCritID,
-            this.ProjCritIDParent,
-            this.ProjCritName,
-            this.ProjCritDesc});
+            this.dgc_ProjCritID,
+            this.dgc_ProjCritIDParent,
+            this.dgc_ProjCritName,
+            this.dgc_ProjCritDesc});
             this.ProjCritShow.Location = new System.Drawing.Point(13, 20);
             this.ProjCritShow.Name = "ProjCritShow";
             this.ProjCritShow.Size = new System.Drawing.Size(575, 520);
             this.ProjCritShow.TabIndex = 3;
-            // 
-            // ProjCritID
-            // 
-            this.ProjCritID.HeaderText = "ID";
-            this.ProjCritID.Name = "ProjCritID";
-            this.ProjCritID.Width = 30;
-            // 
-            // ProjCritIDParent
-            // 
-            this.ProjCritIDParent.HeaderText = "Parent ID";
-            this.ProjCritIDParent.Name = "ProjCritIDParent";
-            this.ProjCritIDParent.Width = 50;
-            // 
-            // ProjCritName
-            // 
-            this.ProjCritName.HeaderText = "Name";
-            this.ProjCritName.Name = "ProjCritName";
-            this.ProjCritName.Width = 150;
-            // 
-            // ProjCritDesc
-            // 
-            this.ProjCritDesc.HeaderText = "Beschreibung";
-            this.ProjCritDesc.Name = "ProjCritDesc";
-            this.ProjCritDesc.Width = 300;
             // 
             // btn_ProjCritStruClose
             // 
@@ -83,14 +59,38 @@
             this.btn_ProjCritStruClose.Text = "schliessen";
             this.btn_ProjCritStruClose.UseVisualStyleBackColor = true;
             // 
-            // ProjCritShow_Form
+            // dgc_ProjCritID
+            // 
+            this.dgc_ProjCritID.HeaderText = "ID";
+            this.dgc_ProjCritID.Name = "dgc_ProjCritID";
+            this.dgc_ProjCritID.Width = 30;
+            // 
+            // dgc_ProjCritIDParent
+            // 
+            this.dgc_ProjCritIDParent.HeaderText = "Parent ID";
+            this.dgc_ProjCritIDParent.Name = "dgc_ProjCritIDParent";
+            this.dgc_ProjCritIDParent.Width = 80;
+            // 
+            // dgc_ProjCritName
+            // 
+            this.dgc_ProjCritName.HeaderText = "Name";
+            this.dgc_ProjCritName.Name = "dgc_ProjCritName";
+            this.dgc_ProjCritName.Width = 150;
+            // 
+            // dgc_ProjCritDesc
+            // 
+            this.dgc_ProjCritDesc.HeaderText = "Beschreibung";
+            this.dgc_ProjCritDesc.Name = "dgc_ProjCritDesc";
+            this.dgc_ProjCritDesc.Width = 270;
+            // 
+            // ProjCritShow_View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 561);
             this.Controls.Add(this.ProjCritShow);
             this.Controls.Add(this.btn_ProjCritStruClose);
-            this.Name = "ProjCritShow_Form";
+            this.Name = "ProjCritShow_View";
             this.Text = "ProjCritShow_Form";
             this.Load += new System.EventHandler(this.ProjCritShow_Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ProjCritShow)).EndInit();
@@ -101,10 +101,10 @@
         #endregion
 
         private System.Windows.Forms.DataGridView ProjCritShow;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProjCritID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProjCritIDParent;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProjCritName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProjCritDesc;
         private System.Windows.Forms.Button btn_ProjCritStruClose;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_ProjCritID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_ProjCritIDParent;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_ProjCritName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_ProjCritDesc;
     }
 }

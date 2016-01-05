@@ -94,11 +94,6 @@ namespace NWAT
 
         }
 
-        private void btn_CurrProjProdAnalPrint_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_Balance_Click(object sender, EventArgs e)
         {
 

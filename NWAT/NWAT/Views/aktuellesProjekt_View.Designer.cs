@@ -33,6 +33,7 @@
             this.label_CurrProjDesc = new System.Windows.Forms.Label();
             this.label_CurrProjDescShow = new System.Windows.Forms.Label();
             this.groupBox_CurrProjCrits = new System.Windows.Forms.GroupBox();
+            this.btn_Balance = new System.Windows.Forms.Button();
             this.btn_CurrProjKritAssign = new System.Windows.Forms.Button();
             this.btn_CurrProjCritStruShow = new System.Windows.Forms.Button();
             this.btn_CurrProjCritStruUpdate = new System.Windows.Forms.Button();
@@ -43,8 +44,6 @@
             this.btnCurrProjProdFulfPrint = new System.Windows.Forms.Button();
             this.groupBox_CurrProjAnalys = new System.Windows.Forms.GroupBox();
             this.btn_CurrProjProdAnalShow = new System.Windows.Forms.Button();
-            this.btn_CurrProjProdAnalPrint = new System.Windows.Forms.Button();
-            this.btn_Balance = new System.Windows.Forms.Button();
             this.groupBox_CurrProjCrits.SuspendLayout();
             this.groupBox_CurrProjProds.SuspendLayout();
             this.groupBox_CurrProjAnalys.SuspendLayout();
@@ -102,6 +101,17 @@
             this.groupBox_CurrProjCrits.TabIndex = 20;
             this.groupBox_CurrProjCrits.TabStop = false;
             this.groupBox_CurrProjCrits.Text = "Projektkriterien";
+            // 
+            // btn_Balance
+            // 
+            this.btn_Balance.Location = new System.Drawing.Point(6, 136);
+            this.btn_Balance.Name = "btn_Balance";
+            this.btn_Balance.Size = new System.Drawing.Size(111, 23);
+            this.btn_Balance.TabIndex = 11;
+            this.btn_Balance.Text = "Gewichtung";
+            this.btn_Balance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Balance.UseVisualStyleBackColor = true;
+            this.btn_Balance.Click += new System.EventHandler(this.btn_Balance_Click);
             // 
             // btn_CurrProjKritAssign
             // 
@@ -196,10 +206,9 @@
             // groupBox_CurrProjAnalys
             // 
             this.groupBox_CurrProjAnalys.Controls.Add(this.btn_CurrProjProdAnalShow);
-            this.groupBox_CurrProjAnalys.Controls.Add(this.btn_CurrProjProdAnalPrint);
             this.groupBox_CurrProjAnalys.Location = new System.Drawing.Point(346, 299);
             this.groupBox_CurrProjAnalys.Name = "groupBox_CurrProjAnalys";
-            this.groupBox_CurrProjAnalys.Size = new System.Drawing.Size(173, 80);
+            this.groupBox_CurrProjAnalys.Size = new System.Drawing.Size(173, 54);
             this.groupBox_CurrProjAnalys.TabIndex = 22;
             this.groupBox_CurrProjAnalys.TabStop = false;
             this.groupBox_CurrProjAnalys.Text = "Analyse";
@@ -214,28 +223,6 @@
             this.btn_CurrProjProdAnalShow.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_CurrProjProdAnalShow.UseVisualStyleBackColor = true;
             this.btn_CurrProjProdAnalShow.Click += new System.EventHandler(this.btn_CurrProjProdAnalShow_Click);
-            // 
-            // btn_CurrProjProdAnalPrint
-            // 
-            this.btn_CurrProjProdAnalPrint.Location = new System.Drawing.Point(6, 48);
-            this.btn_CurrProjProdAnalPrint.Name = "btn_CurrProjProdAnalPrint";
-            this.btn_CurrProjProdAnalPrint.Size = new System.Drawing.Size(111, 23);
-            this.btn_CurrProjProdAnalPrint.TabIndex = 17;
-            this.btn_CurrProjProdAnalPrint.Text = "Analyse drucken";
-            this.btn_CurrProjProdAnalPrint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_CurrProjProdAnalPrint.UseVisualStyleBackColor = true;
-            this.btn_CurrProjProdAnalPrint.Click += new System.EventHandler(this.btn_CurrProjProdAnalPrint_Click);
-            // 
-            // btn_Balance
-            // 
-            this.btn_Balance.Location = new System.Drawing.Point(6, 136);
-            this.btn_Balance.Name = "btn_Balance";
-            this.btn_Balance.Size = new System.Drawing.Size(111, 23);
-            this.btn_Balance.TabIndex = 11;
-            this.btn_Balance.Text = "Gewichtung";
-            this.btn_Balance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Balance.UseVisualStyleBackColor = true;
-            this.btn_Balance.Click += new System.EventHandler(this.btn_Balance_Click);
             // 
             // aktuellesProjekt_View
             // 
@@ -277,7 +264,6 @@
         private System.Windows.Forms.Button btnCurrProjProdFulfPrint;
         private System.Windows.Forms.GroupBox groupBox_CurrProjAnalys;
         private System.Windows.Forms.Button btn_CurrProjProdAnalShow;
-        private System.Windows.Forms.Button btn_CurrProjProdAnalPrint;
         private System.Windows.Forms.Button btn_Balance;
     }
 }

@@ -57,29 +57,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="aktuellesProjekt_View.cs">
+    <Compile Include="Views\aktuellesProjekt_View.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="aktuellesProjekt_View.Designer.cs">
+    <Compile Include="Views\aktuellesProjekt_View.Designer.cs">
       <DependentUpon>aktuellesProjekt_View.cs</DependentUpon>
     </Compile>
     <Compile Include="Analysis.cs" />
-    <Compile Include="Criterion_Show_View.cs">
+    <Compile Include="Views\Criterion_Show_View.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Criterion_Show_View.Designer.cs">
+    <Compile Include="Views\Criterion_Show_View.Designer.cs">
       <DependentUpon>Criterion_Show_View.cs</DependentUpon>
     </Compile>
-    <Compile Include="Criterion_Update_View.cs">
+    <Compile Include="Views\Criterion_Update_View.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Criterion_Update_View.Designer.cs">
+    <Compile Include="Views\Criterion_Update_View.Designer.cs">
       <DependentUpon>Criterion_Update_View.cs</DependentUpon>
     </Compile>
-    <Compile Include="Criterion_Create_View.cs">
+    <Compile Include="Views\Criterion_Create_View.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Criterion_Create_View.Designer.cs">
+    <Compile Include="Views\Criterion_Create_View.Designer.cs">
       <DependentUpon>Criterion_Create_View.cs</DependentUpon>
     </Compile>
     <Compile Include="DB\AbsDbController.cs" />
@@ -103,170 +103,170 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="IPrinter.cs" />
-    <Compile Include="Kriterienverwaltung_View.cs">
+    <Compile Include="Views\Kriterienverwaltung_View.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Kriterienverwaltung_View.Designer.cs">
+    <Compile Include="Views\Kriterienverwaltung_View.Designer.cs">
       <DependentUpon>Kriterienverwaltung_View.cs</DependentUpon>
     </Compile>
     <Compile Include="Printer\AnalysisPrinter.cs" />
     <Compile Include="Printer\FulfillmentForEachProductPrinter.cs" />
     <Compile Include="Printer\CriterionstructurePrinter.cs" />
     <Compile Include="Printer\ProjectDataPrinter.cs" />
-    <Compile Include="Product_Create_View.cs">
+    <Compile Include="Views\Product_Create_View.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Product_Create_View.Designer.cs">
+    <Compile Include="Views\Product_Create_View.Designer.cs">
       <DependentUpon>Product_Create_View.cs</DependentUpon>
     </Compile>
-    <Compile Include="Product_Show_View.cs">
+    <Compile Include="Views\Product_Show_View.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Product_Show_View.Designer.cs">
+    <Compile Include="Views\Product_Show_View.Designer.cs">
       <DependentUpon>Product_Show_View.cs</DependentUpon>
     </Compile>
-    <Compile Include="Product_Update_View.cs">
+    <Compile Include="Views\Product_Update_View.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Product_Update_View.Designer.cs">
+    <Compile Include="Views\Product_Update_View.Designer.cs">
       <DependentUpon>Product_Update_View.cs</DependentUpon>
     </Compile>
-    <Compile Include="Produktverwaltung_View.cs">
+    <Compile Include="Views\Produktverwaltung_View.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Produktverwaltung_View.Designer.cs">
+    <Compile Include="Views\Produktverwaltung_View.Designer.cs">
       <DependentUpon>Produktverwaltung_View.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="ProjCritAssign_View.cs">
+    <Compile Include="Views\ProjCritAssign_View.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProjCritAssign_View.Designer.cs">
+    <Compile Include="Views\ProjCritAssign_View.Designer.cs">
       <DependentUpon>ProjCritAssign_View.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProjCritBalance_View.cs">
+    <Compile Include="Views\ProjCritBalance_View.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProjCritBalance_View.Designer.cs">
+    <Compile Include="Views\ProjCritBalance_View.Designer.cs">
       <DependentUpon>ProjCritBalance_View.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProjCritProdFulfilment_View.cs">
+    <Compile Include="Views\ProjCritProdFulfilment_View.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProjCritProdFulfilment_View.Designer.cs">
+    <Compile Include="Views\ProjCritProdFulfilment_View.Designer.cs">
       <DependentUpon>ProjCritProdFulfilment_View.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProjCritShow_View.cs">
+    <Compile Include="Views\ProjCritShow_View.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProjCritShow_View.Designer.cs">
+    <Compile Include="Views\ProjCritShow_View.Designer.cs">
       <DependentUpon>ProjCritShow_View.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProjCritStruUpdate_View.cs">
+    <Compile Include="Views\ProjCritStruUpdate_View.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProjCritStruUpdate_View.Designer.cs">
+    <Compile Include="Views\ProjCritStruUpdate_View.Designer.cs">
       <DependentUpon>ProjCritStruUpdate_View.cs</DependentUpon>
     </Compile>
-    <Compile Include="Project_Create_View.cs">
+    <Compile Include="Views\Project_Create_View.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Project_Create_View.Designer.cs">
+    <Compile Include="Views\Project_Create_View.Designer.cs">
       <DependentUpon>Project_Create_View.cs</DependentUpon>
     </Compile>
-    <Compile Include="Project_Show_View.cs">
+    <Compile Include="Views\Project_Show_View.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Project_Show_View.Designer.cs">
+    <Compile Include="Views\Project_Show_View.Designer.cs">
       <DependentUpon>Project_Show_View.cs</DependentUpon>
     </Compile>
-    <Compile Include="Project_Update_View.cs">
+    <Compile Include="Views\Project_Update_View.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Project_Update_View.Designer.cs">
+    <Compile Include="Views\Project_Update_View.Designer.cs">
       <DependentUpon>Project_Update_View.cs</DependentUpon>
     </Compile>
-    <Compile Include="Projektverwaltung_View.cs">
+    <Compile Include="Views\Projektverwaltung_View.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Projektverwaltung_View.Designer.cs">
+    <Compile Include="Views\Projektverwaltung_View.Designer.cs">
       <DependentUpon>Projektverwaltung_View.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProjProdAssign_View.cs">
+    <Compile Include="Views\ProjProdAssign_View.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProjProdAssign_View.Designer.cs">
+    <Compile Include="Views\ProjProdAssign_View.Designer.cs">
       <DependentUpon>ProjProdAssign_View.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="NWA_Start_View.cs">
+    <Compile Include="Views\NWA_Start_View.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NWA_Start_View.Designer.cs">
+    <Compile Include="Views\NWA_Start_View.Designer.cs">
       <DependentUpon>NWA_Start_View.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Criterion_Show_View.resx">
+    <EmbeddedResource Include="Views\Criterion_Show_View.resx">
       <DependentUpon>Criterion_Show_View.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Criterion_Update_View.resx">
+    <EmbeddedResource Include="Views\Criterion_Update_View.resx">
       <DependentUpon>Criterion_Update_View.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Criterion_Create_View.resx">
+    <EmbeddedResource Include="Views\Criterion_Create_View.resx">
       <DependentUpon>Criterion_Create_View.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Kriterienverwaltung_View.resx">
+    <EmbeddedResource Include="Views\Kriterienverwaltung_View.resx">
       <DependentUpon>Kriterienverwaltung_View.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Product_Create_View.resx">
+    <EmbeddedResource Include="Views\Product_Create_View.resx">
       <DependentUpon>Product_Create_View.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Product_Show_View.resx">
+    <EmbeddedResource Include="Views\Product_Show_View.resx">
       <DependentUpon>Product_Show_View.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Product_Update_View.resx">
+    <EmbeddedResource Include="Views\Product_Update_View.resx">
       <DependentUpon>Product_Update_View.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Produktverwaltung_View.resx">
+    <EmbeddedResource Include="Views\Produktverwaltung_View.resx">
       <DependentUpon>Produktverwaltung_View.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjCritAssign_View.resx">
+    <EmbeddedResource Include="Views\ProjCritAssign_View.resx">
       <DependentUpon>ProjCritAssign_View.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjCritBalance_View.resx">
+    <EmbeddedResource Include="Views\ProjCritBalance_View.resx">
       <DependentUpon>ProjCritBalance_View.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjCritProdFulfilment_View.resx">
+    <EmbeddedResource Include="Views\ProjCritProdFulfilment_View.resx">
       <DependentUpon>ProjCritProdFulfilment_View.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjCritShow_View.resx">
+    <EmbeddedResource Include="Views\ProjCritShow_View.resx">
       <DependentUpon>ProjCritShow_View.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjCritStruUpdate_View.resx">
+    <EmbeddedResource Include="Views\ProjCritStruUpdate_View.resx">
       <DependentUpon>ProjCritStruUpdate_View.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Project_Create_View.resx">
+    <EmbeddedResource Include="Views\Project_Create_View.resx">
       <DependentUpon>Project_Create_View.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Project_Show_View.resx">
+    <EmbeddedResource Include="Views\Project_Show_View.resx">
       <DependentUpon>Project_Show_View.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Project_Update_View.resx">
+    <EmbeddedResource Include="Views\Project_Update_View.resx">
       <DependentUpon>Project_Update_View.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Projektverwaltung_View.resx">
+    <EmbeddedResource Include="Views\Projektverwaltung_View.resx">
       <DependentUpon>Projektverwaltung_View.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjProdAssign_View.resx">
+    <EmbeddedResource Include="Views\ProjProdAssign_View.resx">
       <DependentUpon>ProjProdAssign_View.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NWA_Start_View.resx">
+    <EmbeddedResource Include="Views\NWA_Start_View.resx">
       <DependentUpon>NWA_Start_View.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram_MVC_Seperation.cd" />
     <None Include="DB\NWAT.dbml.layout">
       <DependentUpon>NWAT.dbml</DependentUpon>
     </None>
-    <EmbeddedResource Include="aktuellesProjekt_View.resx">
+    <EmbeddedResource Include="Views\aktuellesProjekt_View.resx">
       <DependentUpon>aktuellesProjekt_View.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">

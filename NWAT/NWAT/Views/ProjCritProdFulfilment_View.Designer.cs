@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.dataGridView_ProjCritProdFulf = new System.Windows.Forms.DataGridView();
-            this.ProjCritID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjCritIDParent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjCritName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjCritBalaInd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjCritProdFulf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_ProjCritProdFulfCancle = new System.Windows.Forms.Button();
             this.btn_ProjCritProdFulfSave = new System.Windows.Forms.Button();
             this.comboBox_ProjCritProdFulf = new System.Windows.Forms.ComboBox();
             this.checkBox_ProjCritProdFulf = new System.Windows.Forms.CheckBox();
+            this.dgc_ProjCritID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgc_ProjCritIDParent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgc_ProjCritName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgc_ProjCritBalaInd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgc_ProjCritProdFulf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ProjCritProdFulf)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,45 +45,15 @@
             // 
             this.dataGridView_ProjCritProdFulf.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_ProjCritProdFulf.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ProjCritID,
-            this.ProjCritIDParent,
-            this.ProjCritName,
-            this.ProjCritBalaInd,
-            this.ProjCritProdFulf});
+            this.dgc_ProjCritID,
+            this.dgc_ProjCritIDParent,
+            this.dgc_ProjCritName,
+            this.dgc_ProjCritBalaInd,
+            this.dgc_ProjCritProdFulf});
             this.dataGridView_ProjCritProdFulf.Location = new System.Drawing.Point(13, 52);
             this.dataGridView_ProjCritProdFulf.Name = "dataGridView_ProjCritProdFulf";
             this.dataGridView_ProjCritProdFulf.Size = new System.Drawing.Size(575, 488);
             this.dataGridView_ProjCritProdFulf.TabIndex = 9;
-            // 
-            // ProjCritID
-            // 
-            this.ProjCritID.HeaderText = "ID";
-            this.ProjCritID.Name = "ProjCritID";
-            this.ProjCritID.Width = 30;
-            // 
-            // ProjCritIDParent
-            // 
-            this.ProjCritIDParent.HeaderText = "Parent ID";
-            this.ProjCritIDParent.Name = "ProjCritIDParent";
-            this.ProjCritIDParent.Width = 80;
-            // 
-            // ProjCritName
-            // 
-            this.ProjCritName.HeaderText = "Name";
-            this.ProjCritName.Name = "ProjCritName";
-            this.ProjCritName.Width = 150;
-            // 
-            // ProjCritBalaInd
-            // 
-            this.ProjCritBalaInd.HeaderText = "Gewichtungsfaktor";
-            this.ProjCritBalaInd.Name = "ProjCritBalaInd";
-            this.ProjCritBalaInd.Width = 110;
-            // 
-            // ProjCritProdFulf
-            // 
-            this.ProjCritProdFulf.HeaderText = "Erfüllung";
-            this.ProjCritProdFulf.Name = "ProjCritProdFulf";
-            this.ProjCritProdFulf.Width = 158;
             // 
             // btn_ProjCritProdFulfCancle
             // 
@@ -121,7 +91,37 @@
             this.checkBox_ProjCritProdFulf.TabIndex = 13;
             this.checkBox_ProjCritProdFulf.UseVisualStyleBackColor = true;
             // 
-            // ProjCritProdFulfilment_Form
+            // dgc_ProjCritID
+            // 
+            this.dgc_ProjCritID.HeaderText = "ID";
+            this.dgc_ProjCritID.Name = "dgc_ProjCritID";
+            this.dgc_ProjCritID.Width = 30;
+            // 
+            // dgc_ProjCritIDParent
+            // 
+            this.dgc_ProjCritIDParent.HeaderText = "Parent ID";
+            this.dgc_ProjCritIDParent.Name = "dgc_ProjCritIDParent";
+            this.dgc_ProjCritIDParent.Width = 80;
+            // 
+            // dgc_ProjCritName
+            // 
+            this.dgc_ProjCritName.HeaderText = "Name";
+            this.dgc_ProjCritName.Name = "dgc_ProjCritName";
+            this.dgc_ProjCritName.Width = 150;
+            // 
+            // dgc_ProjCritBalaInd
+            // 
+            this.dgc_ProjCritBalaInd.HeaderText = "Gewichtungsfaktor";
+            this.dgc_ProjCritBalaInd.Name = "dgc_ProjCritBalaInd";
+            this.dgc_ProjCritBalaInd.Width = 110;
+            // 
+            // dgc_ProjCritProdFulf
+            // 
+            this.dgc_ProjCritProdFulf.HeaderText = "Erfüllung";
+            this.dgc_ProjCritProdFulf.Name = "dgc_ProjCritProdFulf";
+            this.dgc_ProjCritProdFulf.Width = 158;
+            // 
+            // ProjCritProdFulfilment_View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -131,7 +131,7 @@
             this.Controls.Add(this.dataGridView_ProjCritProdFulf);
             this.Controls.Add(this.btn_ProjCritProdFulfCancle);
             this.Controls.Add(this.btn_ProjCritProdFulfSave);
-            this.Name = "ProjCritProdFulfilment_Form";
+            this.Name = "ProjCritProdFulfilment_View";
             this.Text = "Produkt-Kriterienerfüllung";
             this.Load += new System.EventHandler(this.ProjCritProdFulfilment_Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ProjCritProdFulf)).EndInit();
@@ -143,14 +143,14 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView_ProjCritProdFulf;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProjCritID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProjCritIDParent;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProjCritName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProjCritBalaInd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProjCritProdFulf;
         private System.Windows.Forms.Button btn_ProjCritProdFulfCancle;
         private System.Windows.Forms.Button btn_ProjCritProdFulfSave;
         private System.Windows.Forms.ComboBox comboBox_ProjCritProdFulf;
         private System.Windows.Forms.CheckBox checkBox_ProjCritProdFulf;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_ProjCritID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_ProjCritIDParent;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_ProjCritName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_ProjCritBalaInd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_ProjCritProdFulf;
     }
 }

@@ -36,8 +36,6 @@
             this.btn_ProjectImport = new System.Windows.Forms.Button();
             this.btn_ProjectPrint = new System.Windows.Forms.Button();
             this.btn_ProjectStartCreate = new System.Windows.Forms.Button();
-            this.textBox_ProjectCreateName = new System.Windows.Forms.TextBox();
-            this.label_ProjectCreate = new System.Windows.Forms.Label();
             this.btn_ProjectModify = new System.Windows.Forms.Button();
             this.btn_ProjImport = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -108,29 +106,12 @@
             // 
             // btn_ProjectStartCreate
             // 
-            this.btn_ProjectStartCreate.Location = new System.Drawing.Point(337, 50);
+            this.btn_ProjectStartCreate.Location = new System.Drawing.Point(12, 29);
             this.btn_ProjectStartCreate.Name = "btn_ProjectStartCreate";
-            this.btn_ProjectStartCreate.Size = new System.Drawing.Size(75, 23);
+            this.btn_ProjectStartCreate.Size = new System.Drawing.Size(300, 23);
             this.btn_ProjectStartCreate.TabIndex = 7;
-            this.btn_ProjectStartCreate.Text = "anlegen";
+            this.btn_ProjectStartCreate.Text = "Neues Projekt anlegen";
             this.btn_ProjectStartCreate.UseVisualStyleBackColor = true;
-            // 
-            // textBox_ProjectCreateName
-            // 
-            this.textBox_ProjectCreateName.Location = new System.Drawing.Point(12, 50);
-            this.textBox_ProjectCreateName.Name = "textBox_ProjectCreateName";
-            this.textBox_ProjectCreateName.Size = new System.Drawing.Size(300, 20);
-            this.textBox_ProjectCreateName.TabIndex = 8;
-            this.textBox_ProjectCreateName.Text = "Projektname eingeben";
-            // 
-            // label_ProjectCreate
-            // 
-            this.label_ProjectCreate.AutoSize = true;
-            this.label_ProjectCreate.Location = new System.Drawing.Point(9, 34);
-            this.label_ProjectCreate.Name = "label_ProjectCreate";
-            this.label_ProjectCreate.Size = new System.Drawing.Size(118, 13);
-            this.label_ProjectCreate.TabIndex = 9;
-            this.label_ProjectCreate.Text = "Neues Projekt anlegen:";
             // 
             // btn_ProjectModify
             // 
@@ -150,15 +131,13 @@
             this.btn_ProjImport.Text = "importieren";
             this.btn_ProjImport.UseVisualStyleBackColor = true;
             // 
-            // Projektverwaltung_Form
+            // Projektverwaltung_View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 291);
             this.Controls.Add(this.btn_ProjImport);
             this.Controls.Add(this.btn_ProjectModify);
-            this.Controls.Add(this.label_ProjectCreate);
-            this.Controls.Add(this.textBox_ProjectCreateName);
             this.Controls.Add(this.btn_ProjectStartCreate);
             this.Controls.Add(this.btn_ProjectPrint);
             this.Controls.Add(this.btn_ProjectImport);
@@ -167,7 +146,7 @@
             this.Controls.Add(this.btn_ProjectShow);
             this.Controls.Add(this.comboBox_SelectProject);
             this.Controls.Add(this.label_ProjectChoose);
-            this.Name = "Projektverwaltung_Form";
+            this.Name = "Projektverwaltung_View";
             this.Text = "Projektverwaltung";
             this.Load += new System.EventHandler(this.Projektverwaltung_Form_Load);
             this.ResumeLayout(false);
@@ -185,8 +164,6 @@
         private System.Windows.Forms.Button btn_ProjectImport;
         private System.Windows.Forms.Button btn_ProjectPrint;
         private System.Windows.Forms.Button btn_ProjectStartCreate;
-        private System.Windows.Forms.TextBox textBox_ProjectCreateName;
-        private System.Windows.Forms.Label label_ProjectCreate;
         private System.Windows.Forms.Button btn_ProjectModify;
         private System.Windows.Forms.Button btn_ProjImport;
     }
