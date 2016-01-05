@@ -11,25 +11,19 @@ namespace NWAT.Printer
 {
     class ProjectDataPrinter
     {
-      Document doc;
+        Document doc;
 
         public ProjectDataPrinter()
-
         {
-        
-        this.doc = new Document();
-        
+            this.doc = new Document();
         }
 
         public void printProjectData()
         {
-        
             Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
             PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream("project.pdf", FileMode.Create));
-           
-
         }
     }
 
-    }
+}
 
