@@ -1,6 +1,6 @@
 ﻿namespace NWAT
 {
-    partial class Criterion_Form
+    partial class Kriterienverwaltung_View
     {
         /// <summary>
         /// Required designer variable.
