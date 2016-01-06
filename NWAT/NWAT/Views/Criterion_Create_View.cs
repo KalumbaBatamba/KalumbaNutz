@@ -7,13 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NWAT.DB;
 
 namespace NWAT
 {
     public partial class Criterion_Create_View : Form
     {
+
+        private CriterionController critCont;
         public Criterion_Create_View()
         {
+         this.critCont = new CriterionController();
             InitializeComponent();
         }
 

@@ -7,13 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using NWAT.DB;
 namespace NWAT
 {
     public partial class ProjProdAssign_View : Form
     {
+        private ProjectProductController projProdCont;
         public ProjProdAssign_View()
         {
+            this.projProdCont = new ProjectProductController();
             InitializeComponent();
         }
 

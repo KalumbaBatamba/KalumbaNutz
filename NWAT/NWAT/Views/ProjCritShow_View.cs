@@ -7,13 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using NWAT.DB;
 namespace NWAT
 {
     public partial class ProjCritShow_View : Form
     {
+        private ProjectCriterionController projCritCont;
         public ProjCritShow_View()
         {
+            this.projCritCont = new ProjectCriterionController();
             InitializeComponent();
         }
 

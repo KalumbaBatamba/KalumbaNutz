@@ -7,13 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using NWAT.DB;
 namespace NWAT
 {
+
     public partial class ProjCritProdFulfilment_View : Form
     {
+        private ProjectCriterionController projCritCont;
         public ProjCritProdFulfilment_View()
         {
+            this.projCritCont = new ProjectCriterionController();
             InitializeComponent();
         }
 
@@ -30,6 +33,11 @@ namespace NWAT
 
         }
         private void GetProjCritsFromDB()
+        {
+
+        }
+
+        private void btn_ProdFulfPrint_Click(object sender, EventArgs e)
         {
 
         }

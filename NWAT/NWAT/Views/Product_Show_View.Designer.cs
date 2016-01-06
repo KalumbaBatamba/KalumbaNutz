@@ -121,7 +121,7 @@
             this.btn_Close.UseVisualStyleBackColor = true;
             this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);
             // 
-            // Product_Show_Form
+            // Product_Show_View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -135,8 +135,9 @@
             this.Controls.Add(this.label_ProdPrizeShow);
             this.Controls.Add(this.label_ProdManuShow);
             this.Controls.Add(this.label_ProdNameShow);
-            this.Name = "Product_Show_Form";
+            this.Name = "Product_Show_View";
             this.Text = "Produkt anzeigen";
+            this.Load += new System.EventHandler(this.Product_Show_View_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -7,13 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using NWAT.DB;
 namespace NWAT
 {
     public partial class Projektverwaltung_View : Form
     {
+        private ProjectController projCont;
         public Projektverwaltung_View()
         {
+            this.projCont = new ProjectController();
             InitializeComponent();
         }
 

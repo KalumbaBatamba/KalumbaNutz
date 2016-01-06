@@ -7,13 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using NWAT.DB;
 namespace NWAT
 {
     public partial class Produktverwaltung_View : Form
     {
+        private ProductController prodCont;
         public Produktverwaltung_View()
         {
+            this.prodCont = new ProductController();
             InitializeComponent();
         }
 

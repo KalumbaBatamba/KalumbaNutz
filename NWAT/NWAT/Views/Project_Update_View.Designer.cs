@@ -80,7 +80,7 @@
             this.label_ProjName.TabIndex = 5;
             this.label_ProjName.Text = "Projektname:";
             // 
-            // Project_Update_Form
+            // Project_Update_View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -90,8 +90,9 @@
             this.Controls.Add(this.label_ProjDescUpdate);
             this.Controls.Add(this.textBox_ProjDescUpdate);
             this.Controls.Add(this.label_ProjName);
-            this.Name = "Project_Update_Form";
+            this.Name = "Project_Update_View";
             this.Text = "Projekt ändern";
+            this.Load += new System.EventHandler(this.Project_Update_View_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
