@@ -9,7 +9,19 @@ namespace NWAT
 {
     class Analysis
     {
+        private FulfillmentController fulfillContr;
+        private ProjectCriterionController projCritContr;
 
+        public Analysis()
+        {
+            this.fulfillContr = new FulfillmentController();
+            this.projCritContr = new ProjectCriterionController();
+        }
+
+        
+        
+
+        // TODO By Yann
         public void Analyse()
         {
             // this instance of project criterion controller is needed to work with the Project_Criterion table
@@ -30,5 +42,24 @@ namespace NWAT
      
             
         }
+    }
+
+    // TODO By Yann
+    class AnalysisCriterionResult
+    {
+        private String critName; 
+        private String critDescription;
+        private int cardinalWeighting;
+        private double layerPercentageWeighting; 
+        private double projectPercentageWeighting;
+        List<ProductCriterionFulfillmentResult> productResults;
+    }
+
+    // TODO By Yann
+    class ProductCriterionFulfillmentResult
+    {
+        int criterionId;
+        string productName;
+        double result;
     }
 }
