@@ -7,6 +7,10 @@ using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
+/// <summary>
+/// 
+/// </summary>
+/// Erstellt von Adrian Glasnek
 namespace NWAT.Printer
 {
     class AnalysisPrinter
