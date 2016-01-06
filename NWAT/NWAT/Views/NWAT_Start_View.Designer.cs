@@ -1,6 +1,6 @@
 ﻿namespace NWAT
 {
-    partial class NWA_Start_View
+    partial class NWAT_Start_View
     {
         /// <summary>
         /// Required designer variable.
