@@ -41,5 +41,10 @@ namespace NWAT
         {
 
         }
+
+        private void dataGridView_ProjCritProdFulf_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -114,7 +114,7 @@
             this.label_ProdName.TabIndex = 14;
             this.label_ProdName.Text = "Produktname:";
             // 
-            // Product_Update_Form
+            // Product_Update_View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -128,8 +128,8 @@
             this.Controls.Add(this.textBox_ProdNameUpdate);
             this.Controls.Add(this.label_ProdDesc);
             this.Controls.Add(this.label_ProdName);
-            this.Name = "Product_Update_Form";
-            this.Text = "Product_Update";
+            this.Name = "Product_Update_View";
+            this.Text = "Produktdetails";
             this.Load += new System.EventHandler(this.Product_Update_Form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

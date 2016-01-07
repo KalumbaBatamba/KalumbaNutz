@@ -124,7 +124,7 @@
             this.Controls.Add(this.btn_ProjCritBalaCancle);
             this.Controls.Add(this.btn_ProjCritBalaSave);
             this.Name = "ProjCritBalance_View";
-            this.Text = "Projekt-Kriteriengewichtung";
+            this.Text = "Gewichtung";
             this.Load += new System.EventHandler(this.ProjCritBalance_View_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ProjCritBalance)).EndInit();
             this.ResumeLayout(false);

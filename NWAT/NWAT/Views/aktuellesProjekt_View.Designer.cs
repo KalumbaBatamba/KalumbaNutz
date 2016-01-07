@@ -237,7 +237,7 @@
             this.Controls.Add(this.label_CurrProjNameShow);
             this.Controls.Add(this.label_CurrProjName);
             this.Name = "aktuellesProjekt_View";
-            this.Text = "aktuelles Projekt";
+            this.Text = "aktuelles Projekt ";
             this.Load += new System.EventHandler(this.aktuellesProjekt_Load);
             this.groupBox_CurrProjCrits.ResumeLayout(false);
             this.groupBox_CurrProjProds.ResumeLayout(false);

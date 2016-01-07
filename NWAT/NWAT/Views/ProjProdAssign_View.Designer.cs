@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             this.dataGridView_prodAvail = new System.Windows.Forms.DataGridView();
+            this.dgc_AvailProdID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgc_AvailProdName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgc_AvailProdManu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView_ProjProd = new System.Windows.Forms.DataGridView();
+            this.dgc_ProjProdID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgc_ProjProdName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgc_ProjProdManu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label_ProdAvail = new System.Windows.Forms.Label();
             this.label_ProjProd = new System.Windows.Forms.Label();
             this.btn_ProjProdCancle = new System.Windows.Forms.Button();
             this.btn_ProjProdSave = new System.Windows.Forms.Button();
             this.btn_ProdToPool = new System.Windows.Forms.Button();
             this.btn_ProdToProj = new System.Windows.Forms.Button();
-            this.dgc_ProjProdID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgc_ProjProdName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgc_ProjProdManu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgc_AvailProdID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgc_AvailProdName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgc_AvailProdManu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_prodAvail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ProjProd)).BeginInit();
             this.SuspendLayout();
@@ -58,6 +58,24 @@
             this.dataGridView_prodAvail.Size = new System.Drawing.Size(290, 490);
             this.dataGridView_prodAvail.TabIndex = 11;
             // 
+            // dgc_AvailProdID
+            // 
+            this.dgc_AvailProdID.HeaderText = "ID";
+            this.dgc_AvailProdID.Name = "dgc_AvailProdID";
+            this.dgc_AvailProdID.Width = 25;
+            // 
+            // dgc_AvailProdName
+            // 
+            this.dgc_AvailProdName.HeaderText = "Name";
+            this.dgc_AvailProdName.Name = "dgc_AvailProdName";
+            this.dgc_AvailProdName.Width = 150;
+            // 
+            // dgc_AvailProdManu
+            // 
+            this.dgc_AvailProdManu.HeaderText = "Hersteller";
+            this.dgc_AvailProdManu.Name = "dgc_AvailProdManu";
+            this.dgc_AvailProdManu.Width = 400;
+            // 
             // dataGridView_ProjProd
             // 
             this.dataGridView_ProjProd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -69,6 +87,24 @@
             this.dataGridView_ProjProd.Name = "dataGridView_ProjProd";
             this.dataGridView_ProjProd.Size = new System.Drawing.Size(290, 490);
             this.dataGridView_ProjProd.TabIndex = 10;
+            // 
+            // dgc_ProjProdID
+            // 
+            this.dgc_ProjProdID.HeaderText = "ID";
+            this.dgc_ProjProdID.Name = "dgc_ProjProdID";
+            this.dgc_ProjProdID.Width = 25;
+            // 
+            // dgc_ProjProdName
+            // 
+            this.dgc_ProjProdName.HeaderText = "Name";
+            this.dgc_ProjProdName.Name = "dgc_ProjProdName";
+            this.dgc_ProjProdName.Width = 150;
+            // 
+            // dgc_ProjProdManu
+            // 
+            this.dgc_ProjProdManu.HeaderText = "Hersteller";
+            this.dgc_ProjProdManu.Name = "dgc_ProjProdManu";
+            this.dgc_ProjProdManu.Width = 450;
             // 
             // label_ProdAvail
             // 
@@ -124,42 +160,6 @@
             this.btn_ProdToProj.Text = "<<";
             this.btn_ProdToProj.UseVisualStyleBackColor = true;
             // 
-            // dgc_ProjProdID
-            // 
-            this.dgc_ProjProdID.HeaderText = "ID";
-            this.dgc_ProjProdID.Name = "dgc_ProjProdID";
-            this.dgc_ProjProdID.Width = 25;
-            // 
-            // dgc_ProjProdName
-            // 
-            this.dgc_ProjProdName.HeaderText = "Name";
-            this.dgc_ProjProdName.Name = "dgc_ProjProdName";
-            this.dgc_ProjProdName.Width = 150;
-            // 
-            // dgc_ProjProdManu
-            // 
-            this.dgc_ProjProdManu.HeaderText = "Hersteller";
-            this.dgc_ProjProdManu.Name = "dgc_ProjProdManu";
-            this.dgc_ProjProdManu.Width = 450;
-            // 
-            // dgc_AvailProdID
-            // 
-            this.dgc_AvailProdID.HeaderText = "ID";
-            this.dgc_AvailProdID.Name = "dgc_AvailProdID";
-            this.dgc_AvailProdID.Width = 25;
-            // 
-            // dgc_AvailProdName
-            // 
-            this.dgc_AvailProdName.HeaderText = "Name";
-            this.dgc_AvailProdName.Name = "dgc_AvailProdName";
-            this.dgc_AvailProdName.Width = 150;
-            // 
-            // dgc_AvailProdManu
-            // 
-            this.dgc_AvailProdManu.HeaderText = "Hersteller";
-            this.dgc_AvailProdManu.Name = "dgc_AvailProdManu";
-            this.dgc_AvailProdManu.Width = 400;
-            // 
             // ProjProdAssign_View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -174,7 +174,7 @@
             this.Controls.Add(this.btn_ProdToPool);
             this.Controls.Add(this.btn_ProdToProj);
             this.Name = "ProjProdAssign_View";
-            this.Text = "ProjProdAssign";
+            this.Text = "Produktzuordnung";
             this.Load += new System.EventHandler(this.ProjProdAssign_Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_prodAvail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ProjProd)).EndInit();
