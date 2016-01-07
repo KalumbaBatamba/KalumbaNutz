@@ -162,12 +162,6 @@
     <Compile Include="Views\ProjCritShow_View.Designer.cs">
       <DependentUpon>ProjCritShow_View.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProjCritStrucShow_View.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\ProjCritStrucShow_View.Designer.cs">
-      <DependentUpon>ProjCritStrucShow_View.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\ProjCritStruUpdate_View.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -246,9 +240,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ProjCritShow_View.resx">
       <DependentUpon>ProjCritShow_View.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\ProjCritStrucShow_View.resx">
-      <DependentUpon>ProjCritStrucShow_View.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ProjCritStruUpdate_View.resx">
       <DependentUpon>ProjCritStruUpdate_View.cs</DependentUpon>
