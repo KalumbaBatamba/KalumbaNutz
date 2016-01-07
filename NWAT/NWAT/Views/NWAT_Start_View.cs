@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace NWAT
 {
-    public partial class NWA_Start_View : Form
+    public partial class NWAT_Start_View : Form
     {
-        public NWA_Start_View()
+        public NWAT_Start_View()
         {
             InitializeComponent();
         }

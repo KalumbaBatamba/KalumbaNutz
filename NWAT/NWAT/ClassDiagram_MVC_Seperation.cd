@@ -39,7 +39,7 @@
   <Class Name="NWAT.DB.ProjectCriterionController" Collapsed="true">
     <Position X="12.75" Y="4.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>QAAABCAIAAABAIoEAAACAAAAACAAAAEAIAAEgIAQgAg=</HashCode>
+      <HashCode>QAAgBKAIAAABAIoEAAACAAAAACAAAAEAIAAEgIAQgAg=</HashCode>
       <FileName>DB\ProjectCriterionController.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -102,7 +102,7 @@
   <Class Name="NWAT.Analysis" Collapsed="true">
     <Position X="12.75" Y="9.5" Width="1.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAACgAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Analysis.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -137,29 +137,29 @@
   <Class Name="NWAT.Criterion_Create_View" Collapsed="true">
     <Position X="3.5" Y="3" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAgAhACACAAAgAAAACAAAACAAIAAAAABAAgAAAAAAA=</HashCode>
-      <FileName>Criterion_Create_View.cs</FileName>
+      <HashCode>AAAgAhACACAAAgAQAACAAAACAAIAAAAABAAgAAAAAAA=</HashCode>
+      <FileName>Views\Criterion_Create_View.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NWAT.aktuellesProjekt_View" Collapsed="true">
     <Position X="3.5" Y="9.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>IiEEAIYAJKoIAQBAAADACaACAIAwAkGQAAAQBAUAUAA=</HashCode>
-      <FileName>aktuellesProjekt_View.cs</FileName>
+      <HashCode>IiEEAIYAJKoIAQBAAADACKACAIAwAEGQAAAQBAUAUAA=</HashCode>
+      <FileName>Views\aktuellesProjekt_View.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NWAT.Criterion_Show_View" Collapsed="true">
     <Position X="3.5" Y="2.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAEAAgCAQABAAAACAAAACAAAAAgAAAAAgAAAABAA=</HashCode>
-      <FileName>Criterion_Show_View.cs</FileName>
+      <HashCode>AAAAAEAAgCAQABAQAACAAAACAAAAAgAAAAAgAAAABAA=</HashCode>
+      <FileName>Views\Criterion_Show_View.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NWAT.Criterion_Update_View" Collapsed="true">
     <Position X="3.5" Y="3.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AABAAAAIACAAAQEAAACAAAACAAAAAUBAAAAgAABAAAA=</HashCode>
-      <FileName>Criterion_Update_View.cs</FileName>
+      <HashCode>AABAAAAIACAAAQEQAACAAAACAAAAAUBAAAAgAABAAAA=</HashCode>
+      <FileName>Views\Criterion_Update_View.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NWAT.Kriterienverwaltung_View" Collapsed="true">
@@ -169,113 +169,113 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>QAggABAIACAAAQAAAACAAAACIAggoQCAEAAAAEQAAAE=</HashCode>
-      <FileName>Kriterienverwaltung_View.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="NWAT.NWA_Start_View" Collapsed="true">
-    <Position X="0.5" Y="5.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAECAAAAJAAACCAAACAAAAAAAAAEAACAABACA=</HashCode>
-      <FileName>NWA_Start_View.cs</FileName>
+      <HashCode>UAggABAIACAAAQEQAACAAAICAAAgIQCAEEAAAEQAAAA=</HashCode>
+      <FileName>Views\Kriterienverwaltung_View.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NWAT.Product_Show_View" Collapsed="true">
     <Position X="3.5" Y="5.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AiAAAAAAACAAAAAAAACAABACCBABAAAiAABAAEAAAAA=</HashCode>
-      <FileName>Product_Show_View.cs</FileName>
+      <HashCode>AiAAAAAAACAAAACAAACAABACCBABAAAiAAhAAEAAAAA=</HashCode>
+      <FileName>Views\Product_Show_View.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NWAT.Product_Create_View" Collapsed="true">
     <Position X="3.5" Y="6.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAACAwAAQAAACCAAACABABABAAAABAAKAAQAA=</HashCode>
-      <FileName>Product_Create_View.cs</FileName>
+      <HashCode>AgAAAAAAACAwAASAAACCAAACABABABAAAABAAKAAQAA=</HashCode>
+      <FileName>Views\Product_Create_View.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NWAT.Product_Update_View" Collapsed="true">
     <Position X="3.5" Y="7.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AggAAEAAACIAAQAAAACAAYCCABABAAAAAABAQAAAAAA=</HashCode>
-      <FileName>Product_Update_View.cs</FileName>
+      <HashCode>AggAAEAAACIAAQCAAACAAYCCABABAAAAAABAQAAAAAA=</HashCode>
+      <FileName>Views\Product_Update_View.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NWAT.Produktverwaltung_View" Collapsed="true">
     <Position X="3.5" Y="5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAQAAAACIIARAAEACAAAQCACAgAAIAAAQAQAAAQgA=</HashCode>
-      <FileName>Produktverwaltung_View.cs</FileName>
+      <HashCode>AAAAQAAAACIIAQCAEACAAAQCACAgAAIAAAQAQAAAQAA=</HashCode>
+      <FileName>Views\Produktverwaltung_View.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NWAT.ProjCritAssign_View" Collapsed="true">
     <Position X="7" Y="6" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAIBIQAAACAAAAgAAACAQABigAJAAAEABUABAAQAAQA=</HashCode>
-      <FileName>ProjCritAssign_View.cs</FileName>
+      <HashCode>AAIBIBAAACAAAAgACiCAQAAiAABAAAABBQQBAAQAAQE=</HashCode>
+      <FileName>Views\ProjCritAssign_View.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NWAT.ProjCritBalance_View" Collapsed="true">
     <Position X="7" Y="4.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>ACAQQQAAACAAAAAgEACAAABCQACAAAAAAEAAAEAAAAE=</HashCode>
-      <FileName>ProjCritBalance_View.cs</FileName>
+      <HashCode>ACARQAAAACAAAAAAEiCAAAACQICAAAABAAAAAEAAAAE=</HashCode>
+      <FileName>Views\ProjCritBalance_View.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NWAT.ProjCritProdFulfilment_View" Collapsed="true">
     <Position X="7" Y="2.75" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AACgAYAAACBAAAAgAAKAAAACAAAAABAAAEAIAEABAQE=</HashCode>
-      <FileName>ProjCritProdFulfilment_View.cs</FileName>
+      <HashCode>AACgAIAAACAAAAAAEiKAAIAGAIAAABAAEAAIAEABAQE=</HashCode>
+      <FileName>Views\ProjCritProdFulfilment_View.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NWAT.ProjCritStruUpdate_View" Collapsed="true">
     <Position X="7" Y="5.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAQAAACAAAAAgAACAAABiAAgACAAAAEQCAAAAAAI=</HashCode>
-      <FileName>ProjCritStruUpdate_View.cs</FileName>
+      <HashCode>AAAAAAAAACAAAAAAEiCAAAAiAAgACAABAAQCAAAAAAM=</HashCode>
+      <FileName>Views\ProjCritStruUpdate_View.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NWAT.ProjCritShow_View" Collapsed="true">
     <Position X="7" Y="3.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAQAAACAAQEAgAACAAABCAAAAAAAAAEACAAACAAA=</HashCode>
-      <FileName>ProjCritShow_View.cs</FileName>
+      <HashCode>AAAAAAAAACAAQEAAEiCAAAACAAAAAAABAAACAAACAAE=</HashCode>
+      <FileName>Views\ProjCritShow_View.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NWAT.Project_Create_View" Collapsed="true">
     <Position X="3.5" Y="10.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAQAACAAACAAAACCAAACAQEAAAAAEABAAIAACAA=</HashCode>
-      <FileName>Project_Create_View.cs</FileName>
+      <HashCode>AAAAAAQAACAAACCAAACCAAACAQEAAAAAEABAAIAACAA=</HashCode>
+      <FileName>Views\Project_Create_View.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NWAT.Project_Update_View" Collapsed="true">
     <Position X="3.5" Y="11.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAYAAAAACAAAQAAAACAAQACAQAAAAAAAAAICAAAAAA=</HashCode>
-      <FileName>Project_Update_View.cs</FileName>
+      <HashCode>AAAYAAAAACAAAQAAAACAAQACAwAAAAAAAAAICAABAAA=</HashCode>
+      <FileName>Views\Project_Update_View.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NWAT.Project_Show_View" Collapsed="true">
     <Position X="3.5" Y="10" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAIAAAACAQAACAAACAABACAQAAAAAAAAABAAAAAAA=</HashCode>
-      <FileName>Project_Show_View.cs</FileName>
+      <HashCode>AAAAIAAAACAQAACAAACAABACAwAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Views\Project_Show_View.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NWAT.Projektverwaltung_View" Collapsed="true">
     <Position X="3.5" Y="8.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>gEAUAAUAAiAAoFAIAYCAAAECAAIAAAAEACAAAAAIAAA=</HashCode>
-      <FileName>Projektverwaltung_View.cs</FileName>
+      <HashCode>gEAUAAUAAiAAIFAIAYCAAAECAgIAAAAEACAAAAAIAAA=</HashCode>
+      <FileName>Views\Projektverwaltung_View.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="NWAT.ProjProdAssign_View" Collapsed="true">
     <Position X="7" Y="7.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>AEAQAEBIiCACIAAgEEiEAAICAAAAABAgAAAAAAAAAAA=</HashCode>
-      <FileName>ProjProdAssign_View.cs</FileName>
+      <HashCode>AUIQACAICCAiIAAgAEyEAAICAAAAABAAAQAAAAAAAAA=</HashCode>
+      <FileName>Views\ProjProdAssign_View.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.NWAT_Start_View" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAECAAAAJAAACCAAACAAAAAAAAAEAACAABACA=</HashCode>
+      <FileName>Views\NWAT_Start_View.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

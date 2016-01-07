@@ -333,6 +333,12 @@ namespace NWAT.DB
             }
         }
 
+        // TODO by Yann
+        public void UpdateAllPercentageProjectWeightings(int projectId)
+        {
+ 
+        }
+
         /*
         * Private Section
         */
@@ -355,6 +361,12 @@ namespace NWAT.DB
                 float percentageLayerWeighting = projCrit.Weighting_Cardinal.Value / sumOfCardinalWeightings;
                 projCrit.Weighting_Percentage_Layer = percentageLayerWeighting;
             }
+        }
+
+        // TODO by Yann
+        private void CalculatePercentageProjectWeighting()
+        {
+            
         }
 
         /// <summary>
