@@ -161,6 +161,30 @@ namespace NWAT.DB
             return GetProjectById(projectId) == null;
         }
 
+        // TODO export Project
+        /// <summary>
+        /// Exports the project.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 07.01.2016
+        public bool ExportProject(int projectId)
+        {
+            return true;
+        }
+
+        // TODO Import Project
+        /// <summary>
+        /// Imports the project.
+        /// </summary>
+        /// <param name="backupFilePath">The backup file path.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 07.01.2016
+        public bool ImportProject(string backupFilePath)
+        {
+            return true;
+        }
+
         /*
          * Private Section
          */
