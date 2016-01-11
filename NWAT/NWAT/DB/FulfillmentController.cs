@@ -260,31 +260,6 @@ namespace NWAT.DB
         }
 
 
-        /// <summary>
-        /// Checks if any criterion has no fulfilled value for a product.
-        /// </summary>
-        /// <param name="projectId">The project identifier.</param>
-        /// <param name="productId">The product identifier.</param>
-        /// <returns>
-        /// bool if any criterion has no value for fulfilled collumn
-        /// </returns>
-        /// Erstellt von Joshua Frey, am 04.01.2016
-        public bool CheckIfAnyCriterionHasNoFulfilledValueForAProduct(int projectId, int productId)
-        {
-            bool hasNoFulfillmentValue = false;
-            List<Fulfillment> allFulfillmentsForOneProject =  GetAllFulfillmentsForSingleProdukt(projectId, productId);
-
-            foreach (Fulfillment fulfillment in allFulfillmentsForOneProject)
-            {
-                if (fulfillment.Fulfilled == null)
-                {
-                    hasNoFulfillmentValue = true;
-                }
-            }
-
-            return hasNoFulfillmentValue;
-        }
-
         /*
          * Private section
          */
