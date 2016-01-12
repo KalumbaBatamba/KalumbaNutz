@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonMessages.cs" />
     <Compile Include="DB\CurrentMasterDataIdsController.cs" />
     <Compile Include="DB\NWAT.designer.cs">
       <AutoGen>True</AutoGen>

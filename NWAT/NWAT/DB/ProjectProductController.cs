@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace NWAT.DB
 {
@@ -15,10 +16,21 @@ namespace NWAT.DB
 
         public void Dispose() { }
 
-        // TODO get Project Product by ids
+
+        /// <summary>
+        /// Gets the project product by ids.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="productId">The product identifier.</param>
+        /// <returns>
+        /// A instance of ProjectProduct with given projectId and productId
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 12.01.2016
         public ProjectProduct GetProjectProductByIds(int projectId, int productId)
         {
-            return new ProjectProduct();
+            ProjectProduct resultProduct = base.DataContext.ProjectProduct.SingleOrDefault(projProd => projProd.Project_Id == projectId &&
+                                                                                                       projProd.Product_Id == productId);
+            return resultProduct;
         }
 
 
@@ -36,45 +48,176 @@ namespace NWAT.DB
             return allProjectProductsForOneProject;
         }
 
-        // TODO insert Project Product 
-        // private machen?
-        public bool InserttProjectProductIntoDb(ProjectProduct newProd)
-        { return true; }
 
-        // TODO delete single Product wird in delete from list aufgerufen
-        // private machen?
-        public bool DeleteProjectProductFromDb(int projectId, int productId)
-        { return true; }
-
-        // TODO updateProjectProductListInDb 
-        // params: ProjectID und die aktuelle Liste die vom Benutzer zugeordnet wurde.
-        // Diese liste wird nun mit den Einträgen verglichen und die Db auf diese Liste aktualisiert
-        // --> lösche nicht mehr vorhandene Einträge
-        // --> füge neue Einträge hinzu
-        public bool ChangeAllocationOfProjectProducstListInDb(int projectId, ProjectProduct newProjectProductList)
+        /// <summary>
+        /// Changes the allocation of project producst list in database.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="newProjectProductList">The new project product list.</param>
+        /// <returns>
+        /// boolean, if chacnges were done successfully
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 12.01.2016
+        public bool ChangeAllocationOfProjectProducstListInDb(int projectId, List<ProjectProduct> newProjectProductList)
         {
-            /*
-             * listFromDb = GetAllProjectProductsForOneProject(projectId)
-             * 
-             * oldToDelete = GetOldProjectProductsWhichWereDeallocated(listFromDb, newProjectProductList);
-             * foreach (prod in oldToDelete)
-             * {
-             *      DeleteSingleProduct(prod)
-             * }
-             * 
-             * newToAdd = GetNewProjectProductsWhichWereAllocated(listFromDb, newProjectProductList);
-             * foreach (prod in newToAdd)
-             * {
-             *      Insert(prod)
-             * }
-             * 
-             */
-            return true;
+            bool deallocationSuccessful = true;
+            bool allocationSuccessful = true;
+            List<ProjectProduct> listFromDb = GetAllProjectProductsForOneProject(projectId);
+
+            List<ProjectProduct> oldToDelete = GetOldProjectProductsWhichWereDeallocated(listFromDb, newProjectProductList);
+            
+            foreach(ProjectProduct oldProjProd in oldToDelete)
+            {
+                deallocationSuccessful = DeallocateProductFromProject(projectId, oldProjProd);
+            }
+
+            List<ProjectProduct> newToAdd = GetNewProjectCriterionsWhichWereAllocated(listFromDb, newProjectProductList);
+
+            foreach (ProjectProduct newProjProd in newToAdd)
+            {
+                allocationSuccessful = AllocateProduct(projectId, newProjProd);
+            }
+            return deallocationSuccessful && allocationSuccessful;
         }
         
         /*
          * Private section
          */
+
+
+        /// <summary>
+        /// Deallocates the product from project and deletes all allocated fulfillment entries
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="productToDeallocate">The product to deallocate.</param>
+        /// <returns>
+        /// boolean, if deallocation was successful and all allocated fulfillment entries were delted successfully
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 12.01.2016
+        private bool DeallocateProductFromProject(int projectId, ProjectProduct productToDeallocate)
+        {
+            bool fulfillmentDeletionSuccessful;
+            int idOfProductToDeallocate = productToDeallocate.Product_Id;
+            string nameOfProductToDeallocate = productToDeallocate.Product.Name;
+            using (FulfillmentController fulfillContr = new FulfillmentController())
+            {
+                fulfillmentDeletionSuccessful = fulfillContr.DeleteAllFulfillmentsForOneProductInOneProject(projectId, idOfProductToDeallocate);
+            }
+
+            if (fulfillmentDeletionSuccessful && DeleteProjectProductFromDb(projectId, idOfProductToDeallocate))
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show(String.Format(@"Bei dem Entkoppeln des Produkts {0} ist ein Fehler aufgetreten."), nameOfProductToDeallocate);
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// Allocates the product.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="projProd">The proj product.</param>
+        /// <returns>
+        /// boolean, if allocation to ProjectProduct and Fulfillment table was successful
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 12.01.2016
+        /// <exception cref="DatabaseException"></exception>
+        private bool AllocateProduct(int projectId, ProjectProduct projProd)
+        {
+            bool insertionProjectProductSuccessful = true;
+            bool insertionFulfillmentSuccessful = true;
+
+            int productId = projProd.Product_Id;
+            
+            if (productId != 0 && projProd.Project_Id != 0)
+            {
+                insertionProjectProductSuccessful = InsertProjectProductIntoDb(projProd);
+
+                // get all project criterions to create new fulfillment entries
+                List<ProjectCriterion> allProjectCriterions;
+                using (ProjectCriterionController projCritCont = new ProjectCriterionController())
+                {
+                    allProjectCriterions = projCritCont.GetAllProjectCriterionsForOneProject(projectId);
+                }
+
+                // create fulfillment entry for this product and each project criterion
+                using (FulfillmentController fulfillCont = new FulfillmentController())
+                {
+                    foreach (ProjectCriterion projCrit in allProjectCriterions)
+                    {
+                        int criterionId = projCrit.Criterion_Id;
+                        if (!fulfillCont.InsertFullfillmentInDb(projectId, productId, criterionId))
+                        {
+                            insertionFulfillmentSuccessful = false;
+                            throw (new DatabaseException(CommonMessages.MessageInsertionToFulFillmentTableFailed(productId, criterionId)));
+                        }
+                    }
+                }
+            }
+            return insertionFulfillmentSuccessful && insertionProjectProductSuccessful;
+        }
+
+        /// <summary>
+        /// Insertts the project product into database.
+        /// </summary>
+        /// <param name="newProjectProduct">The new project product.</param>
+        /// <returns>
+        /// true if insertion was successful
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 12.01.2016
+        /// <exception cref="DatabaseException">
+        /// </exception>
+        private bool InsertProjectProductIntoDb(ProjectProduct newProjectProduct)
+        {
+            if (newProjectProduct != null)
+            {
+                int newProjectId = newProjectProduct.Project_Id;
+                int newProductId = newProjectProduct.Product_Id;
+
+                if (!CheckIfProjectProductAlreadyExists(newProjectId, newProductId))
+                {
+                    base.DataContext.ProjectProduct.InsertOnSubmit(newProjectProduct);
+                    base.DataContext.SubmitChanges();
+                }
+                else
+                {
+                    ProjectProduct alreadyExistingProjectProduct = GetProjectProductByIds(newProjectId, newProductId);
+                    string existingProjectName = alreadyExistingProjectProduct.Project.Name;
+                    string existingProductName = alreadyExistingProjectProduct.Product.Name;
+                    throw new DatabaseException(MessageProductIsAlreadyAllocatedToProject(existingProjectName, existingProductName));
+                }
+                return CheckIfSameProjectProduct(newProjectProduct, GetProjectProductByIds(newProjectId, newProductId));
+            }
+            else
+            {
+                throw new DatabaseException(MessageProjectProductCouldNotBeSavedEmptyObject());
+            }
+        }
+
+
+        /// <summary>
+        /// Deletes the project product from database.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="productId">The product identifier.</param>
+        /// <returns>
+        /// boolean if deletion was successful
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 12.01.2016
+        private bool DeleteProjectProductFromDb(int projectId, int productId)
+        {
+            ProjectProduct projProdToDelete = base.DataContext.ProjectProduct.SingleOrDefault(projProd => projProd.Project_Id == projectId &&
+                                                                                                          projProd.Product_Id == productId);
+            base.DataContext.ProjectProduct.DeleteOnSubmit(projProdToDelete);
+            base.DataContext.SubmitChanges();
+
+            return GetProjectProductByIds(projectId, productId) == null;
+        }
+
 
         /// <summary>
         /// Checks if project product already exists.
@@ -94,6 +237,21 @@ namespace NWAT.DB
                 return false;
         }
 
+        /// <summary>
+        /// Checks if same project product.
+        /// </summary>
+        /// <param name="projProdOne">The proj product one.</param>
+        /// <param name="projProdTwo">The proj product two.</param>
+        /// <returns>
+        /// boolean if given project products are the same.
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 12.01.2016
+        public bool CheckIfSameProjectProduct(ProjectProduct projProdOne, ProjectProduct projProdTwo)
+        {
+            bool sameProjectId = projProdOne.Project_Id == projProdTwo.Project_Id;
+            bool sameProductId = projProdOne.Product_Id == projProdTwo.Product_Id;
+            return sameProductId && sameProjectId;
+        }
 
         /// <summary>
         /// Gets the old project products which were deallocated in a new list. This list contains all project products
@@ -131,5 +289,20 @@ namespace NWAT.DB
             return resultProjProdList;
         }
 
+
+        /*
+         * Messages
+         */
+
+        private string MessageProjectProductCouldNotBeSavedEmptyObject()
+        {
+            return "Das Projektprodukt konnte nicht in der Datenbank gespeichert werden." +
+                   " Bitte überprüfen Sie das übergebene Projektprodukt Objekt.";
+        }
+
+        private string MessageProductIsAlreadyAllocatedToProject(string projectName, string productName)
+        {
+            return String.Format(@"Das Produkt {0} ist bereits dem Projekt {1} zugeordnet", projectName, productName);
+        }
     }
 }

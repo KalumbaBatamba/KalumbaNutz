@@ -9,12 +9,13 @@ namespace NWAT.DB
 {
 
 
-    class ProjectCriterionController : DbController
+    class ProjectCriterionController : DbController, IDisposable
     {
         public ProjectCriterionController() : base() { }
         public ProjectCriterionController(NWATDataContext dataContext)
             : base(dataContext) { }
-       
+
+        public void Dispose() { }
 
         /// <summary>
         /// Gets the project criterion by ids.
@@ -62,16 +63,19 @@ namespace NWAT.DB
             return resultProjectCriterions;
         }
 
-        // TODO GetBaseProjectCriterions
-        // liefert eine Liste mit allen Basis Projektkriterien zurück
-        // d.h. die Kriterien die keine Eltern Kriterien haben
-        // Ist dies sinnvoll?
+
+        /// <summary>
+        /// Gets the base project criterions.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <returns>
+        /// A list of all base criterions in first layer.
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 12.01.2016
         public List<ProjectCriterion> GetBaseProjectCriterions(int projectId)
         {
             List<ProjectCriterion> baseCriterions = base.DataContext.ProjectCriterion.Where(projectCrit => projectCrit.Project_Id == projectId 
                                                                                                         && projectCrit.Parent_Criterion_Id == null).ToList();
-
-
             return baseCriterions;
         }
 
@@ -101,13 +105,13 @@ namespace NWAT.DB
         }
 
         /// <summary>
-        /// Deletes the project criterion from database.
+        /// Deletes the project criterion from database. This can also be called when a master criterion should be deleted
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
         /// <param name="criterionId">The criterion identifier.</param>
         /// <returns></returns>
         /// Erstellt von Joshua Frey, am 04.01.2016
-        public bool DeleteProjectCriterionFromDb(int projectId, int criterionId) 
+        public bool DeleteProjectCriterionFromDb(int projectId, int criterionId)
         {
             bool success;
             success = DeleteProjectCriterionDataSet(projectId, criterionId);
@@ -123,14 +127,21 @@ namespace NWAT.DB
 
             return success;
         }
+        
 
-        // TODO updateProjectCriterionListInDb 
-        // params: ProjectID und die aktuelle Liste die vom Benutzer zugeordnet wurde.
-        // Diese liste wird nun mit den Einträgen verglichen und die Db auf diese Liste aktualisiert
-        // --> lösche nicht mehr vorhandene Einträge
-        // --> füge neue Einträge hinzu
+
+        /// <summary>
+        /// Changes the allocation of project criterions in database.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="newProjectCriterionList">The new project criterion list.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 12.01.2016
         public bool ChangeAllocationOfProjectCriterionsInDb(int projectId, List<ProjectCriterion> newProjectCriterionList)
         {
+            bool deallocationSuccessful = true;
+            bool allocationSuccessful = true;
+
             List<ProjectCriterion> projCritlistFromDb = GetAllProjectCriterionsForOneProject(projectId);
              
             List<ProjectCriterion> oldToDelete = GetOldProjectCriterionsWhichWereDeallocated(projCritlistFromDb, newProjectCriterionList);
@@ -141,16 +152,16 @@ namespace NWAT.DB
                 // if not, the criterion was a child Criterion and was deleted in any loop before by deletion of its parent criterion
                 if (projCrit.Criterion_Id != 0)
                 {
-                    DeallocateCriterionAndAllChildCriterions(projectId, projCrit);
+                    deallocationSuccessful = DeallocateCriterionAndAllChildCriterions(projectId, projCrit);
                 }
             }
             List<ProjectCriterion> newToAdd = GetNewProjectCriterionsWhichWereAllocated(projCritlistFromDb, newProjectCriterionList);
             foreach (ProjectCriterion projCrit in newToAdd)
             {
-                AllocateCriterion(projectId, projCrit);
+                allocationSuccessful = AllocateCriterion(projectId, projCrit);
             }
              
-            return true;
+            return deallocationSuccessful && allocationSuccessful;
         }
 
         /*
@@ -210,8 +221,6 @@ namespace NWAT.DB
                 // set default layer depth to 1
                 newProjectCriterion.Layer_Depth = 1;
 
-                ProjectCriterion alreadyExistingProjectCriterion = this.GetProjectCriterionByIds(projectId, criterionId);
-
                 // if == null then this project criterion does not exist yet and it can be inserted into db
                 if (!CheckIfProjectCriterionAlreadyExists(projectId, criterionId))
                 {
@@ -222,11 +231,12 @@ namespace NWAT.DB
                 // project criterion already exists --> throw exception
                 else
                 {
+                    ProjectCriterion alreadyExistingProjectCriterion = this.GetProjectCriterionByIds(projectId, criterionId);
                     string projectName = alreadyExistingProjectCriterion.Project.Name;
                     string criterionName = alreadyExistingProjectCriterion.Criterion.Name;
                     throw (new DatabaseException((MessageProjectCriterionAlreadyExists(projectName, criterionName))));
                 }
-                return CheckIfEqualProjectCriterions(newProjectCriterion, this.GetProjectCriterionByIds(projectId, criterionId));
+                return checkIfSameProjectCriterions(newProjectCriterion, this.GetProjectCriterionByIds(projectId, criterionId));
             }
             else
             {
@@ -383,7 +393,7 @@ namespace NWAT.DB
                         if (!fulfillContr.InsertFullfillmentInDb(projectId, prodId, projCritId))
                         {
                             insertionFulfillmentSuccessful = false;
-                            throw (new DatabaseException(MessageInsertionToFulFillmentTableFailed(prodId, projCritId)));
+                            throw (new DatabaseException(CommonMessages.MessageInsertionToFulFillmentTableFailed(prodId, projCritId)));
                         }
                     }
                 }
@@ -525,30 +535,6 @@ namespace NWAT.DB
         }
 
         /// <summary>
-        /// Checks if equal project criterions.
-        /// </summary>
-        /// <param name="projectCriterionOne">The project criterion one.</param>
-        /// <param name="projectCriterionTwo">The project criterion two.</param>
-        /// <returns>
-        /// bool if same project criterions
-        /// </returns>
-        /// Erstellt von Joshua Frey, am 22.12.2015
-        private bool CheckIfEqualProjectCriterions(ProjectCriterion projectCriterionOne, ProjectCriterion projectCriterionTwo)
-        {
-            bool sameProjectId = projectCriterionOne.Project_Id == projectCriterionTwo.Project_Id;
-            bool sameCriterionId = projectCriterionOne.Criterion_Id == projectCriterionTwo.Criterion_Id;
-            bool sameCardinalWeighting = projectCriterionOne.Weighting_Cardinal == projectCriterionTwo.Weighting_Cardinal;
-            bool samePercentageLayerWeighting = projectCriterionOne.Weighting_Percentage_Layer == projectCriterionTwo.Weighting_Percentage_Layer;
-            bool samePercentageProjectWeighting = projectCriterionOne.Weighting_Percentage_Project == projectCriterionTwo.Weighting_Percentage_Project;
-
-            return sameProjectId &&
-                   sameCriterionId &&
-                   sameCardinalWeighting &&
-                   samePercentageLayerWeighting &&
-                   samePercentageProjectWeighting;
-        }
-
-        /// <summary>
         /// Checks if project criterion already exists.
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
@@ -650,12 +636,6 @@ namespace NWAT.DB
                 "Des Weiteren werden alle Erfüllungseinträge mit den betroffenen Kriterien für dieses Projekt entfernt.\n" +
                 "Möchten Sie das Kriterium " + critName + " und dessen Unterkriterien vom Projekt entkoppeln?";
             return decisionMessage;
-        }
-
-        private string MessageInsertionToFulFillmentTableFailed(int prodId, int projCritId)
-        {
-            return String.Format(@"Der Eintrag für das Produkt mit der ID {0} und das Kriterium mit der ID {1} 
-                                    konnte nicht in die Erfüllungstabelle eingefügt werden.", prodId, projCritId);
         }
 
         private string MessageUpdateProjectCriterionFailed(string critName)

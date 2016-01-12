@@ -47,19 +47,20 @@ namespace NWAT
     // TODO By Yann
     class AnalysisCriterionResult
     {
-        private String critName; 
-        private String critDescription;
-        private int cardinalWeighting;
-        private double layerPercentageWeighting; 
-        private double projectPercentageWeighting;
-        List<ProductCriterionFulfillmentResult> productResults;
+        
+        //private String critName; 
+        //private String critDescription;
+        //private int cardinalWeighting;
+        //private double layerPercentageWeighting; 
+        //private double projectPercentageWeighting;
+        //List<ProductCriterionFulfillmentResult> productResults;
     }
 
     // TODO By Yann
     class ProductCriterionFulfillmentResult
     {
-        int criterionId;
-        string productName;
-        double result;
+        //int criterionId;
+        //string productName;
+        //double result;
     }
 }
