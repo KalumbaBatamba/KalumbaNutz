@@ -17,7 +17,7 @@
   <Class Name="NWAT.DB.FulfillmentController" Collapsed="true">
     <Position X="12.75" Y="3.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAABgAAACADACIAAIAAhAACAAAAEIABCAQAAAAAABA=</HashCode>
+      <HashCode>AAAABgAAACADACAAAIAAhAACAAAAEIABCAQAAAAAABA=</HashCode>
       <FileName>DB\FulfillmentController.cs</FileName>
     </TypeIdentifier>
     <Lollipop Orientation="Right" Position="0.491" />
@@ -32,7 +32,7 @@
   <Class Name="NWAT.DB.ProjectController" Collapsed="true">
     <Position X="12.75" Y="8.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>ABAQAIAABAAAAABAAoAAAAAABABAAAAAQAQAACAAAAA=</HashCode>
+      <HashCode>ABAUAoAABAAAAABAAoAAAAAABABAAAAAQAQAACAAAAA=</HashCode>
       <FileName>DB\ProjectController.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -50,54 +50,6 @@
       <FileName>DB\ProjectProductController.cs</FileName>
     </TypeIdentifier>
     <Lollipop Orientation="Right" Position="0.491" />
-  </Class>
-  <Class Name="NWAT.DB.Criterion" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="17" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAigiABAEUgAAAEQCEAIBwFqCAAQQCEAAQQAIAAAAA=</HashCode>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="NWAT.DB.ProjectProduct" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="17" Y="7.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AQBiAAABAAAAAAAAUAEACAABiqAAgAAAAAABAABACQA=</HashCode>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="NWAT.DB.Fulfillment" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="17" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AQBigAgNEAAEAAAAUCEgCAAFiqAAgQAAACARAABACQA=</HashCode>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="NWAT.DB.Product" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="17" Y="6.5" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Fields" Collapsed="true" />
-      <Compartment Name="Properties" Collapsed="true" />
-      <Compartment Name="Methods" Collapsed="true" />
-      <Compartment Name="Events" Collapsed="true" />
-    </Compartments>
-    <TypeIdentifier>
-      <HashCode>AQAiAAABAUAAAAEEUgkAIAQBiKAQwACGAAAAgIBQAAA=</HashCode>
-    </TypeIdentifier>
-    <Lollipop Position="0.209" Collapsed="true" />
-  </Class>
-  <Class Name="NWAT.DB.Project" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="17" Y="8.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AABiACABAEUgAAAAQAEAIBwBiKAAQACGAAQBgIAQAQA=</HashCode>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="NWAT.DB.ProjectCriterion" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="17" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AABggAABEgAAAAIQQCMACAMFiKIACQABCAwhgAAAGRA=</HashCode>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="NWAT.Analysis" Collapsed="true">
     <Position X="12.75" Y="9.5" Width="1.25" />
@@ -218,7 +170,7 @@
   <Class Name="NWAT.ProjCritProdFulfilment_View" Collapsed="true">
     <Position X="7" Y="2.75" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AACgAIAAACAAAAAAEiKAAIAGAIAAABAAEAAIAEABAQE=</HashCode>
+      <HashCode>AACgAIAAACAAAAAAEiKAAIAGAAAAABAAEAAMCEABAQE=</HashCode>
       <FileName>Views\ProjCritProdFulfilment_View.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -232,7 +184,7 @@
   <Class Name="NWAT.ProjCritShow_View" Collapsed="true">
     <Position X="7" Y="3.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAQEAAEiCAAAACAAAAAAABAAACAAACAAE=</HashCode>
+      <HashCode>AAAAAAAAACAAQEAAAgCAAAACAAAAAAAAAAACAAACAAA=</HashCode>
       <FileName>Views\ProjCritShow_View.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -277,6 +229,54 @@
       <HashCode>AAAAAAAAECAAAAJAAACCAAACAAAAAAAAAEAACAABACA=</HashCode>
       <FileName>Views\NWAT_Start_View.cs</FileName>
     </TypeIdentifier>
+  </Class>
+  <Class Name="NWAT.DB.Criterion" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAigCABAEUgAAAAQCEAIBwFiCAAQQCEAAQAAIAAAgA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NWAT.DB.ProjectProduct" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQBiAAABAAAAAAAAUAEACAABiqAAgAAAAAABAABACQA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NWAT.DB.Fulfillment" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQBigAgNEAAEAAAAUCEgCAAFiqAAgQAAACARAABACQA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NWAT.DB.Product" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="6.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQAiAAABAUAAAAEEUgkAIAQBiKAQwACGAAAAgIBQAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.209" Collapsed="true" />
+  </Class>
+  <Class Name="NWAT.DB.Project" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABiACABAEUgAAAAQAEAIBwBiKAAQACGAAQBgIAQAQA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="NWAT.DB.ProjectCriterion" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABggAABEgAAAAAQQCMACAMFiKIACQABKAwhgAAAGRA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

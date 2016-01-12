@@ -64,8 +64,26 @@ namespace NWAT.DB
                 string newProductName = newProduct.Name;
                 if (!CheckIfProductNameAlreadyExists(newProductName))
                 {
-                    base.DataContext.Product.InsertOnSubmit(newProduct);
-                    base.DataContext.SubmitChanges();
+
+                    using (CurrentMasterDataIdsController masterDataIdsContr = new CurrentMasterDataIdsController())
+                    {
+                        CurrentMasterDataIds masterDataIdsSet = masterDataIdsContr.GetCurrentMasterDataIds();
+
+                        int currentProdId = masterDataIdsSet.CurrentProductId;
+
+                        // if you inserted a product manually and forgot to adjust the currentProductId it will 
+                        // increment to the free place and will use new id to insert new product
+                        while (GetProductById(currentProdId) != null)
+                        {
+                            masterDataIdsContr.incrementCurrentCriterionId();
+                            currentProdId = masterDataIdsSet.CurrentCriterionId;
+                        }
+
+                        newProduct.Product_Id = currentProdId;
+                        base.DataContext.Product.InsertOnSubmit(newProduct);
+                        base.DataContext.SubmitChanges();
+                        masterDataIdsContr.incrementCurrentProductId();
+                    }
                 }
                 else
                 {

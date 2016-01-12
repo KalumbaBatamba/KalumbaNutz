@@ -63,8 +63,29 @@ namespace NWAT.DB
                 string newCriterionName = newCriterion.Name;
                 if (!CheckIfCriterionNameAlreadyExists(newCriterionName))
                 {
-                    base.DataContext.Criterion.InsertOnSubmit(newCriterion);
-                    base.DataContext.SubmitChanges();
+
+                    using (CurrentMasterDataIdsController masterDataIdsContr = new CurrentMasterDataIdsController())
+                    {
+                        CurrentMasterDataIds masterDataIdsSet = masterDataIdsContr.GetCurrentMasterDataIds();
+
+                        int currentCritId = masterDataIdsSet.CurrentCriterionId;
+
+                        // if you inserted a criterion manually and forgot to adjust the currentCriterionId it will 
+                        // increment to the free place and will use new id to insert new criterion
+                        while (GetCriterionById(currentCritId) != null)
+                        {
+                            masterDataIdsContr.incrementCurrentCriterionId();
+                            currentCritId = masterDataIdsSet.CurrentCriterionId;
+                        }
+
+                        newCriterion.Criterion_Id = currentCritId;
+
+                        base.DataContext.Criterion.InsertOnSubmit(newCriterion);
+                        base.DataContext.SubmitChanges();
+                        masterDataIdsContr.incrementCurrentCriterionId();
+                    }
+
+                   
                 }
                 else
                 {

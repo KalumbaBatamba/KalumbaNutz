@@ -76,68 +76,29 @@ namespace NWAT.DB
         }
 
         /// <summary>
-        /// Inserts the project criterion into database.
+        /// Updates the project criterion in database.
         /// </summary>
-        /// <param name="newProjectCriterion">The new project criterion.</param>
-        /// <returns>
-        /// bool if insertion was sucessfully
-        /// </returns>
-        /// Erstellt von Joshua Frey, am 22.12.2015
-        /// <exception cref="DatabaseException">
-        /// </exception>
-        public bool InsertProjectCriterionIntoDb(ProjectCriterion newProjectCriterion)
-        {
-            if (newProjectCriterion != null)
-            {
-                int projectId = newProjectCriterion.Project_Id;
-                int criterionId = newProjectCriterion.Criterion_Id;
-
-                // set equal weighting when inserting a new project criterion
-                newProjectCriterion.Weighting_Cardinal = 1;
-
-                ProjectCriterion alreadyExistingProjectCriterion = this.GetProjectCriterionByIds(projectId, criterionId);
-
-                // if == null then this project criterion does not exist yet and it can be inserted into db
-                if (!CheckIfProjectCriterionAlreadyExists(projectId, criterionId))
-                {
-                    base.DataContext.ProjectCriterion.InsertOnSubmit(newProjectCriterion);
-                    base.DataContext.SubmitChanges();
-                }
-
-                // project criterion already exists --> throw exception
-                else
-                {
-                    string projectName = alreadyExistingProjectCriterion.Project.Name;
-                    string criterionName = alreadyExistingProjectCriterion.Criterion.Name;
-                    throw (new DatabaseException((MessageProjectCriterionAlreadyExists(projectName, criterionName))));
-                }
-                return CheckIfEqualProjectCriterions(newProjectCriterion, this.GetProjectCriterionByIds(projectId, criterionId));   
-            }
-            else
-            {
-                throw (new DatabaseException(MessageProjectCriterionCouldNotBeSavedEmptyObject()));        
-            }
-        }
-
-
-        // TODO update ProjectCrit
-        // Ist dafür da, die Parent Id und die Gewichtungen zu ändern. 
+        /// <param name="alteredProjectCriterion">The altered project criterion.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 12.01.2016
+        /// <exception cref="DatabaseException"></exception>
         public bool UpdateProjectCriterionInDb(ProjectCriterion alteredProjectCriterion)
         {
+            bool updateSuccess;
+            updateSuccess = UpdateProjectCriterionDataSet(alteredProjectCriterion);
+            if (!updateSuccess)
+            {
+                throw new DatabaseException(MessageUpdateProjectCriterionFailed(alteredProjectCriterion.Criterion.Name));
+            }
 
-             int projectId = alteredProjectCriterion.Project_Id;
-             int criterionId = alteredProjectCriterion.Criterion_Id;
-             ProjectCriterion resultProjectCriterion = base.DataContext.ProjectCriterion.SingleOrDefault(projectCriterion => projectCriterion.Criterion_Id == criterionId 
-                                                                            && projectCriterion.Project_Id == projectId);
-             resultProjectCriterion.Parent_Criterion_Id = alteredProjectCriterion.Parent_Criterion_Id;
-             resultProjectCriterion.Weighting_Cardinal = alteredProjectCriterion.Weighting_Cardinal;
-             resultProjectCriterion.Weighting_Percentage_Layer = alteredProjectCriterion.Weighting_Percentage_Layer;
-             resultProjectCriterion.Weighting_Percentage_Project = alteredProjectCriterion.Weighting_Percentage_Project;
-             base.DataContext.SubmitChanges();
-            
-            return true; 
+            int projectId = alteredProjectCriterion.Project_Id;
+            UpdateLayerDepthForProjectCriterion(projectId, alteredProjectCriterion.Criterion_Id);
+            UpdateAllPercentageLayerWeightings(projectId);
+
+            // TODO aktivieren sobald implementiert
+            // UpdateAllPercentageProjectWeightings(projectId)
+            return updateSuccess; 
         }
-
 
         /// <summary>
         /// Deletes the project criterion from database.
@@ -148,82 +109,21 @@ namespace NWAT.DB
         /// Erstellt von Joshua Frey, am 04.01.2016
         public bool DeleteProjectCriterionFromDb(int projectId, int criterionId) 
         {
-            ProjectCriterion delProjCrit = (from projCrit in base.DataContext.ProjectCriterion
-                                            where projCrit.Project_Id == projectId
-                                            && projCrit.Criterion_Id == criterionId
-                                            select projCrit).FirstOrDefault();
-            base.DataContext.ProjectCriterion.DeleteOnSubmit(delProjCrit);
-            base.DataContext.SubmitChanges();
+            bool success;
+            success = DeleteProjectCriterionDataSet(projectId, criterionId);
+            if (!success)
+            {
+                throw new DatabaseException(MessageDeleteProjectCriterionFailed(criterionId.ToString()));
+            }
 
-            return GetProjectCriterionByIds(projectId, criterionId) == null;
+            UpdateAllPercentageLayerWeightings(projectId);
+
+            // TODO aktivieren sobald implementiert
+            // UpdateAllPercentageProjectWeightings(projectId)
+
+            return success;
         }
 
-
-        /// <summary>
-        /// Deallocates the criterion and all child criterions from project. This includes the entries in the fulfillment table
-        /// </summary>
-        /// <param name="projectId">The project identifier.</param>
-        /// <param name="projCrit">The proj crit.</param>
-        /// <returns></returns>
-        /// Erstellt von Joshua Frey, am 04.01.2016
-        public bool DeallocateCriterionAndAllChildCriterions(int projectId, ProjectCriterion projCrit)
-        {
-            int projectCriterionId = projCrit.Criterion_Id;
-            // checks if criterion has any children criterion (is a parent criterion)
-            List<ProjectCriterion> eventualChildCriterions = GetChildCriterionsByParentId(projectId, projectCriterionId);
-            bool deletionPermitted = true;
-            if (eventualChildCriterions.Count > 0)
-            {
-                string decisionMessage = MessageUserDecisionOfDeallocatingAllChildCriterions(projCrit, eventualChildCriterions);
-                const string caption = "Kriterienentkopplung";
-
-                var result = MessageBox.Show(decisionMessage, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    foreach (ProjectCriterion childProjCrit in eventualChildCriterions)
-                    {
-                        if (deletionPermitted)
-                        {
-                            deletionPermitted = DeallocateCriterionAndAllChildCriterions(projectId, childProjCrit);
-                        }
-                        
-                    }
-                }
-                else
-                    deletionPermitted = false;
-
-            }
-            string projCritName = projCrit.Criterion.Name;
-            if (deletionPermitted)
-            {
-                // delete all fulfillment entries which point to this project criterion
-                bool fulfillmentDeletionSuccessfull;
-                using (FulfillmentController fulfillmentContr = new FulfillmentController())
-                {
-                    fulfillmentDeletionSuccessfull = fulfillmentContr.DeleteAllFulfillmentsForOneCriterionInOneProject(projectId, projCrit.Criterion_Id);
-                }
-
-                if (fulfillmentDeletionSuccessfull && DeleteProjectCriterionFromDb(projectId, projectCriterionId))
-                {
-                    MessageBox.Show("Das Kriterium " +  projCritName + " wurde erfolgreich vom Projekt entkoppelt.");
-                    return true;
-                }
-                else
-                {
-                    MessageBox.Show("Bei dem Löschvorgang ist ein Fehler aufgetreten.");
-                    return false;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Löschen von " + projCritName + " konnte nicht durchgeführt werden, weil ein Löschvorgang vom Benutzer abgelehnt wurde.");
-                return false;
-            }
-        }
-
-       
-        
         // TODO updateProjectCriterionListInDb 
         // params: ProjectID und die aktuelle Liste die vom Benutzer zugeordnet wurde.
         // Diese liste wird nun mit den Einträgen verglichen und die Db auf diese Liste aktualisiert
@@ -253,6 +153,199 @@ namespace NWAT.DB
             return true;
         }
 
+        /*
+        * Private Section
+        */
+
+        /// <summary>
+        /// Inserts the project criterion into database.
+        /// </summary>
+        /// <param name="newProjectCriterion">The new project criterion.</param>
+        /// <returns>
+        /// bool if insertion was sucessfully
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 22.12.2015
+        /// <exception cref="DatabaseException">
+        /// </exception>
+        private bool InsertProjectCriterionIntoDb(ProjectCriterion newProjectCriterion)
+        {
+            bool success;
+            try
+            {
+                success = InsertProjectCriterionDataSet(newProjectCriterion);
+            }
+            catch (Exception e)
+            {
+                throw (e);
+            }
+            if (success)
+            {
+                int projectId = newProjectCriterion.Project_Id;
+                UpdateLayerDepthForProjectCriterion(projectId, newProjectCriterion.Criterion_Id);
+                UpdateAllPercentageLayerWeightings(projectId);
+
+                // TODO aktivieren sobald implementiert
+                // UpdateAllPercentageProjectWeightings(projectId)
+            }
+            return success;
+        }
+
+        /// <summary>
+        /// Inserts the project criterion data set into Db
+        /// </summary>
+        /// <param name="newProjectCriterion">The new project criterion.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 12.01.2016
+        /// <exception cref="DatabaseException">
+        /// </exception>
+        private bool InsertProjectCriterionDataSet(ProjectCriterion newProjectCriterion)
+        {
+            if (newProjectCriterion != null)
+            {
+                int projectId = newProjectCriterion.Project_Id;
+                int criterionId = newProjectCriterion.Criterion_Id;
+
+                // set equal weighting when inserting a new project criterion
+                newProjectCriterion.Weighting_Cardinal = 1;
+                // set default layer depth to 1
+                newProjectCriterion.Layer_Depth = 1;
+
+                ProjectCriterion alreadyExistingProjectCriterion = this.GetProjectCriterionByIds(projectId, criterionId);
+
+                // if == null then this project criterion does not exist yet and it can be inserted into db
+                if (!CheckIfProjectCriterionAlreadyExists(projectId, criterionId))
+                {
+                    base.DataContext.ProjectCriterion.InsertOnSubmit(newProjectCriterion);
+                    base.DataContext.SubmitChanges();
+                }
+
+                // project criterion already exists --> throw exception
+                else
+                {
+                    string projectName = alreadyExistingProjectCriterion.Project.Name;
+                    string criterionName = alreadyExistingProjectCriterion.Criterion.Name;
+                    throw (new DatabaseException((MessageProjectCriterionAlreadyExists(projectName, criterionName))));
+                }
+                return CheckIfEqualProjectCriterions(newProjectCriterion, this.GetProjectCriterionByIds(projectId, criterionId));
+            }
+            else
+            {
+                throw (new DatabaseException(MessageProjectCriterionCouldNotBeSavedEmptyObject()));
+            }
+        }
+
+
+        /// <summary>
+        /// Updates the project criterion data set.
+        /// </summary>
+        /// <param name="alteredProjectCriterion">The altered project criterion.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 12.01.2016
+        private bool UpdateProjectCriterionDataSet(ProjectCriterion alteredProjectCriterion)
+        {
+            int projectId = alteredProjectCriterion.Project_Id;
+            int criterionId = alteredProjectCriterion.Criterion_Id;
+            ProjectCriterion resultProjectCriterion = base.DataContext.ProjectCriterion.SingleOrDefault(projectCriterion => projectCriterion.Criterion_Id == criterionId
+                                                                           && projectCriterion.Project_Id == projectId);
+            resultProjectCriterion.Parent_Criterion_Id = alteredProjectCriterion.Parent_Criterion_Id;
+            resultProjectCriterion.Weighting_Cardinal = alteredProjectCriterion.Weighting_Cardinal;
+            resultProjectCriterion.Layer_Depth = alteredProjectCriterion.Layer_Depth;
+            resultProjectCriterion.Weighting_Percentage_Layer = alteredProjectCriterion.Weighting_Percentage_Layer;
+            resultProjectCriterion.Weighting_Percentage_Project = alteredProjectCriterion.Weighting_Percentage_Project;
+            base.DataContext.SubmitChanges();
+
+            ProjectCriterion changedProjCritFromDb = GetProjectCriterionByIds(alteredProjectCriterion.Project_Id, alteredProjectCriterion.Criterion_Id);
+
+            bool successfulUpdate = checkIfSameProjectCriterions(alteredProjectCriterion, changedProjCritFromDb);
+
+            return successfulUpdate;
+
+        }
+
+
+        /// <summary>
+        /// Deletes the project criterion data set.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="criterionId">The criterion identifier.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 12.01.2016
+        private bool DeleteProjectCriterionDataSet(int projectId, int criterionId)
+        {
+            ProjectCriterion delProjCrit = (from projCrit in base.DataContext.ProjectCriterion
+                                            where projCrit.Project_Id == projectId
+                                            && projCrit.Criterion_Id == criterionId
+                                            select projCrit).FirstOrDefault();
+            base.DataContext.ProjectCriterion.DeleteOnSubmit(delProjCrit);
+            base.DataContext.SubmitChanges();
+
+            return GetProjectCriterionByIds(projectId, criterionId) == null;
+        }
+
+
+        /// <summary>
+        /// Deallocates the criterion and all child criterions from project. This includes the entries in the fulfillment table
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="projCrit">The proj crit.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 04.01.2016
+        private bool DeallocateCriterionAndAllChildCriterions(int projectId, ProjectCriterion projCrit)
+        {
+            int projectCriterionId = projCrit.Criterion_Id;
+            // checks if criterion has any children criterion (is a parent criterion)
+            List<ProjectCriterion> eventualChildCriterions = GetChildCriterionsByParentId(projectId, projectCriterionId);
+            bool deletionPermitted = true;
+            if (eventualChildCriterions.Count > 0)
+            {
+                string decisionMessage = MessageUserDecisionOfDeallocatingAllChildCriterions(projCrit, eventualChildCriterions);
+                const string caption = "Kriterienentkopplung";
+
+                var result = MessageBox.Show(decisionMessage, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    foreach (ProjectCriterion childProjCrit in eventualChildCriterions)
+                    {
+                        if (deletionPermitted)
+                        {
+                            deletionPermitted = DeallocateCriterionAndAllChildCriterions(projectId, childProjCrit);
+                        }
+
+                    }
+                }
+                else
+                    deletionPermitted = false;
+
+            }
+            string projCritName = projCrit.Criterion.Name;
+            if (deletionPermitted)
+            {
+                // delete all fulfillment entries which point to this project criterion
+                bool fulfillmentDeletionSuccessfull;
+                using (FulfillmentController fulfillmentContr = new FulfillmentController())
+                {
+                    fulfillmentDeletionSuccessfull = fulfillmentContr.DeleteAllFulfillmentsForOneCriterionInOneProject(projectId, projCrit.Criterion_Id);
+                }
+
+                if (fulfillmentDeletionSuccessfull && DeleteProjectCriterionFromDb(projectId, projectCriterionId))
+                {
+                    MessageBox.Show("Das Kriterium " + projCritName + " wurde erfolgreich vom Projekt entkoppelt.");
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Bei dem Löschvorgang ist ein Fehler aufgetreten.");
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Löschen von " + projCritName + " konnte nicht durchgeführt werden, weil ein Löschvorgang vom Benutzer abgelehnt wurde.");
+                return false;
+            }
+        }
+
 
         /// <summary>
         /// Allocates the criterion.
@@ -264,7 +357,7 @@ namespace NWAT.DB
         /// </returns>
         /// Erstellt von Joshua Frey, am 04.01.2016
         /// <exception cref="DatabaseException"></exception>
-        public bool AllocateCriterion(int projectId, ProjectCriterion projCrit)
+        private bool AllocateCriterion(int projectId, ProjectCriterion projCrit)
         {
             bool insertionProjectCritionSuccessful = true;
             bool insertionFulfillmentSuccessful = true;
@@ -282,7 +375,7 @@ namespace NWAT.DB
                 }
 
                 // insert criterions into fulfillment table for each product
-                using(FulfillmentController fulfillContr = new FulfillmentController())
+                using (FulfillmentController fulfillContr = new FulfillmentController())
                 {
                     foreach (ProjectProduct projProd in allProjectProducts)
                     {
@@ -304,7 +397,7 @@ namespace NWAT.DB
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
         /// Erstellt von Joshua Frey, am 04.01.2016
-        public void UpdateAllPercentageLayerWeightings(int projectId)
+        private void UpdateAllPercentageLayerWeightings(int projectId)
         {
             // calculate all weightings for the base layer
             List<ProjectCriterion> baseProjectCriterions = GetBaseProjectCriterions(projectId);
@@ -313,9 +406,9 @@ namespace NWAT.DB
             // write calculated weightings back to db
             foreach (ProjectCriterion baseProjCrit in baseProjectCriterions)
             {
-                UpdateProjectCriterionInDb(baseProjCrit);
+                UpdateProjectCriterionDataSet(baseProjCrit);
             }
-            
+
             // calculate all weightings for all child project criterions
             List<ProjectCriterion> allProjectCriterions = GetAllProjectCriterionsForOneProject(projectId);
 
@@ -327,21 +420,83 @@ namespace NWAT.DB
                     CalculatePercentageLayerWeighting(ref eventualChildrenOfCurrentProjCriterion);
                     foreach (ProjectCriterion childProjCrit in eventualChildrenOfCurrentProjCriterion)
                     {
-                        UpdateProjectCriterionInDb(childProjCrit);
+                        UpdateProjectCriterionDataSet(childProjCrit);
                     }
                 }
             }
         }
 
         // TODO by Yann
-        public void UpdateAllPercentageProjectWeightings(int projectId)
+        private void UpdateAllPercentageProjectWeightings(int projectId)
         {
- 
+
         }
 
-        /*
-        * Private Section
-        */
+
+
+
+        /// <summary>
+        /// Checks if same project criterions.
+        /// </summary>
+        /// <param name="projCritOne">The proj crit one.</param>
+        /// <param name="projCritTwo">The proj crit two.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 12.01.2016
+        private static bool checkIfSameProjectCriterions(ProjectCriterion projCritOne, ProjectCriterion projCritTwo)
+        {
+            bool sameParentCritId = projCritOne.Parent_Criterion_Id == projCritTwo.Parent_Criterion_Id;
+            bool sameLayerDepth = projCritOne.Layer_Depth == projCritTwo.Layer_Depth;
+            bool sameCardinalWeighting = projCritOne.Weighting_Cardinal == projCritTwo.Weighting_Cardinal;
+            bool samePercentageLayerWeighting = projCritOne.Weighting_Percentage_Layer == projCritTwo.Weighting_Percentage_Layer;
+            bool samePercentageProjectWeighting = projCritOne.Weighting_Percentage_Project == projCritTwo.Weighting_Percentage_Project;
+
+            return sameCardinalWeighting &&
+                   sameLayerDepth &&
+                   sameParentCritId &&
+                   samePercentageLayerWeighting &&
+                   samePercentageProjectWeighting;
+        }
+
+
+        /// <summary>
+        /// Calculates the layer depth of the Criterion and updates it in Database;
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="projCritId">The proj crit identifier.</param>
+        /// Erstellt von Joshua Frey, am 12.01.2016
+        private void UpdateLayerDepthForProjectCriterion(int projectId, int projCritId)
+        {
+            // base criterions are on layer one. So the lowest layer a criterion can exist in, is 1
+            int layerCounter = 1;
+
+            List<ProjectCriterion> allProjectCriterions = GetAllProjectCriterionsForOneProject(projectId);
+            ProjectCriterion involvedProjCriterion;
+            involvedProjCriterion = allProjectCriterions.Single(projCrit => projCrit.Criterion_Id == projCritId);
+
+            bool hasParent = false;
+
+            // traverse all parent criterion and count them in layerCounter
+            do
+            {
+                
+                if (involvedProjCriterion.Parent_Criterion_Id != null && involvedProjCriterion.Parent_Criterion_Id.Value != 0)
+                {
+                    int parentCritId = involvedProjCriterion.Parent_Criterion_Id.Value;
+                    hasParent = true;
+                    layerCounter++;
+                    involvedProjCriterion = allProjectCriterions.Single(projCrit => projCrit.Criterion_Id == parentCritId);
+                }   
+                else
+                {
+                    hasParent = false;
+                }
+            }while(hasParent);
+
+            ProjectCriterion projCritToUpdate = allProjectCriterions.Single(projCrit => projCrit.Criterion_Id == projCritId);
+            projCritToUpdate.Layer_Depth = layerCounter;
+            UpdateProjectCriterionDataSet(projCritToUpdate);
+        }
+
 
         /// <summary>
         /// Calculates the percentage layer weighting for one Layer. 
@@ -503,6 +658,15 @@ namespace NWAT.DB
                                     konnte nicht in die Erfüllungstabelle eingefügt werden.", prodId, projCritId);
         }
 
+        private string MessageUpdateProjectCriterionFailed(string critName)
+        {
+            return String.Format(@"Das Projekt Kriteriums {0} konnte nicht in der Datenbank geändert werden.", critName);
+        }
+
+        private string MessageDeleteProjectCriterionFailed(string critName)
+        {
+            return String.Format(@"Das Projekt Kriteriums {0} konnte nicht aus der Datenbank gelöscht werden.", critName);
+        }
         //private string MessageCriterionDoesNotExist(int criterionId)
         //{
         //    return "Das Kriterium mit der Id \"" + criterionId +

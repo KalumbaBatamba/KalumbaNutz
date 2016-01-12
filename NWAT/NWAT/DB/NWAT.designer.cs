@@ -45,13 +45,16 @@ namespace NWAT.DB
     partial void InsertProject(Project instance);
     partial void UpdateProject(Project instance);
     partial void DeleteProject(Project instance);
+    partial void InsertCurrentMasterDataIds(CurrentMasterDataIds instance);
+    partial void UpdateCurrentMasterDataIds(CurrentMasterDataIds instance);
+    partial void DeleteCurrentMasterDataIds(CurrentMasterDataIds instance);
     partial void InsertProjectCriterion(ProjectCriterion instance);
     partial void UpdateProjectCriterion(ProjectCriterion instance);
     partial void DeleteProjectCriterion(ProjectCriterion instance);
     #endregion
 		
 		public NWATDataContext() : 
-				base(global::NWAT.Properties.Settings.Default.NWATConnectionString, mappingSource)
+				base(global::NWAT.Properties.Settings.Default.NWATConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -120,6 +123,14 @@ namespace NWAT.DB
 			}
 		}
 		
+		public System.Data.Linq.Table<CurrentMasterDataIds> CurrentMasterDataIds
+		{
+			get
+			{
+				return this.GetTable<CurrentMasterDataIds>();
+			}
+		}
+		
 		public System.Data.Linq.Table<ProjectCriterion> ProjectCriterion
 		{
 			get
@@ -167,7 +178,7 @@ namespace NWAT.DB
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Criterion_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Criterion_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int Criterion_Id
 		{
 			get
@@ -811,7 +822,7 @@ namespace NWAT.DB
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Product_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Product_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int Product_Id
 		{
 			get
@@ -1000,7 +1011,7 @@ namespace NWAT.DB
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Project_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Project_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int Project_Id
 		{
 			get
@@ -1156,6 +1167,140 @@ namespace NWAT.DB
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CurrentMasterDataIds")]
+	public partial class CurrentMasterDataIds : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _CurrentProjectId;
+		
+		private int _CurrentCriterionId;
+		
+		private int _CurrentProductId;
+		
+    #region Definitionen der Erweiterungsmethoden
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnCurrentProjectIdChanging(int value);
+    partial void OnCurrentProjectIdChanged();
+    partial void OnCurrentCriterionIdChanging(int value);
+    partial void OnCurrentCriterionIdChanged();
+    partial void OnCurrentProductIdChanging(int value);
+    partial void OnCurrentProductIdChanged();
+    #endregion
+		
+		public CurrentMasterDataIds()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrentProjectId", DbType="Int NOT NULL")]
+		public int CurrentProjectId
+		{
+			get
+			{
+				return this._CurrentProjectId;
+			}
+			set
+			{
+				if ((this._CurrentProjectId != value))
+				{
+					this.OnCurrentProjectIdChanging(value);
+					this.SendPropertyChanging();
+					this._CurrentProjectId = value;
+					this.SendPropertyChanged("CurrentProjectId");
+					this.OnCurrentProjectIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrentCriterionId", DbType="Int NOT NULL")]
+		public int CurrentCriterionId
+		{
+			get
+			{
+				return this._CurrentCriterionId;
+			}
+			set
+			{
+				if ((this._CurrentCriterionId != value))
+				{
+					this.OnCurrentCriterionIdChanging(value);
+					this.SendPropertyChanging();
+					this._CurrentCriterionId = value;
+					this.SendPropertyChanged("CurrentCriterionId");
+					this.OnCurrentCriterionIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrentProductId", DbType="Int NOT NULL")]
+		public int CurrentProductId
+		{
+			get
+			{
+				return this._CurrentProductId;
+			}
+			set
+			{
+				if ((this._CurrentProductId != value))
+				{
+					this.OnCurrentProductIdChanging(value);
+					this.SendPropertyChanging();
+					this._CurrentProductId = value;
+					this.SendPropertyChanged("CurrentProductId");
+					this.OnCurrentProductIdChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ProjectCriterion")]
 	public partial class ProjectCriterion : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1165,6 +1310,8 @@ namespace NWAT.DB
 		private int _Project_Id;
 		
 		private int _Criterion_Id;
+		
+		private int _Layer_Depth;
 		
 		private System.Nullable<int> _Parent_Criterion_Id;
 		
@@ -1188,6 +1335,8 @@ namespace NWAT.DB
     partial void OnProject_IdChanged();
     partial void OnCriterion_IdChanging(int value);
     partial void OnCriterion_IdChanged();
+    partial void OnLayer_DepthChanging(int value);
+    partial void OnLayer_DepthChanged();
     partial void OnParent_Criterion_IdChanging(System.Nullable<int> value);
     partial void OnParent_Criterion_IdChanged();
     partial void OnWeighting_CardinalChanging(System.Nullable<int> value);
@@ -1250,6 +1399,26 @@ namespace NWAT.DB
 					this._Criterion_Id = value;
 					this.SendPropertyChanged("Criterion_Id");
 					this.OnCriterion_IdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Layer_Depth", DbType="Int NOT NULL")]
+		public int Layer_Depth
+		{
+			get
+			{
+				return this._Layer_Depth;
+			}
+			set
+			{
+				if ((this._Layer_Depth != value))
+				{
+					this.OnLayer_DepthChanging(value);
+					this.SendPropertyChanging();
+					this._Layer_Depth = value;
+					this.SendPropertyChanged("Layer_Depth");
+					this.OnLayer_DepthChanged();
 				}
 			}
 		}

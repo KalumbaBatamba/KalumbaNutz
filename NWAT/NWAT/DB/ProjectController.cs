@@ -65,8 +65,25 @@ namespace NWAT.DB
                 string newProjectName = newProject.Name;
                 if (!CheckIfProjectNameAlreadyExists(newProjectName))
                 {
-                    base.DataContext.Project.InsertOnSubmit(newProject);
-                    base.DataContext.SubmitChanges();
+                    using (CurrentMasterDataIdsController masterDataIdsContr = new CurrentMasterDataIdsController())
+                    {
+                        CurrentMasterDataIds masterDataIdsSet = masterDataIdsContr.GetCurrentMasterDataIds();
+
+                        int currentProjectId = masterDataIdsSet.CurrentProjectId;
+
+                        // if you inserted a project manually and forgot to adjust the currentProjectId it will 
+                        // increment to the free place and will use new id to insert new project
+                        while (GetProjectById(currentProjectId) != null)
+                        {
+                            masterDataIdsContr.incrementCurrentCriterionId();
+                            currentProjectId = masterDataIdsSet.CurrentCriterionId;
+                        }
+
+                        newProject.Project_Id = currentProjectId;
+                        base.DataContext.Project.InsertOnSubmit(newProject);
+                        base.DataContext.SubmitChanges();
+                        masterDataIdsContr.incrementCurrentProjectId();
+                    }
                 }
                 else
                 {

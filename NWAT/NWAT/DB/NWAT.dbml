@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="NWAT" Class="NWATDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=.\sqlexpress_2012;Initial Catalog=NWAT;Integrated Security=True" SettingsObjectName="NWAT.Properties.Settings" SettingsPropertyName="NWATConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=kalumba2\sqlexpress_2012;Initial Catalog=NWAT;Integrated Security=True" SettingsObjectName="NWAT.Properties.Settings" SettingsPropertyName="NWATConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Criterion" Member="Criterion">
     <Type Name="Criterion">
-      <Column Name="Criterion_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Criterion_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Association Name="Criterion_Fulfillment" Member="Fulfillment" ThisKey="Criterion_Id" OtherKey="Criterion_Id" Type="Fulfillment" />
@@ -32,7 +32,7 @@
   </Table>
   <Table Name="dbo.Product" Member="Product">
     <Type Name="Product">
-      <Column Name="Product_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Product_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Producer" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Price" Type="System.Double" DbType="Float" CanBeNull="true" />
@@ -42,7 +42,7 @@
   </Table>
   <Table Name="dbo.Project" Member="Project">
     <Type Name="Project">
-      <Column Name="Project_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Project_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Association Name="Project_ProjectProduct" Member="ProjectProduct" ThisKey="Project_Id" OtherKey="Project_Id" Type="ProjectProduct" />
@@ -50,10 +50,19 @@
       <Association Name="Project_ProjectCriterion" Member="ProjectCriterion" ThisKey="Project_Id" OtherKey="Project_Id" Type="ProjectCriterion" />
     </Type>
   </Table>
+  <Table Name="dbo.CurrentMasterDataIds" Member="CurrentMasterDataIds">
+    <Type Name="CurrentMasterDataIds">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CurrentProjectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CurrentCriterionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CurrentProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Table Name="dbo.ProjectCriterion" Member="ProjectCriterion">
     <Type Name="ProjectCriterion">
       <Column Name="Project_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Criterion_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Layer_Depth" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Parent_Criterion_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Weighting_Cardinal" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Weighting_Percentage_Layer" Type="System.Double" DbType="Float" CanBeNull="true" />

@@ -2,96 +2,102 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.875" name="NWAT">
   <DataContextMoniker Name="/NWATDataContext" />
   <nestedChildShapes>
-    <classShape Id="9ea4ae95-19e2-408b-b33e-4dc89003ac75" absoluteBounds="0.75, 4, 2, 1.3862939453125005">
+    <classShape Id="56101c3a-aeff-490b-818c-f750918cbb8b" absoluteBounds="0.75, 4, 2, 1.3862939453125005">
       <DataClassMoniker Name="/NWATDataContext/Criterion" />
       <nestedChildShapes>
-        <elementListCompartment Id="2689b00e-4bd2-4a66-b6e2-c000a45e90e3" absoluteBounds="0.765, 4.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="dcc31a0d-0c01-4230-994c-fe4e87a56606" absoluteBounds="0.765, 4.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="82f7b210-b235-4209-b982-5aeb94bfc861" absoluteBounds="3.5, 6.625, 2, 1.1939925130208344">
+    <classShape Id="f8e18dcb-eb5c-4aa7-a80f-3370f282f320" absoluteBounds="3.5, 6.625, 2, 1.1939925130208344">
       <DataClassMoniker Name="/NWATDataContext/ProjectProduct" />
       <nestedChildShapes>
-        <elementListCompartment Id="6b5166f3-d74a-4485-b105-575e0224af1c" absoluteBounds="3.515, 7.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="198ef2dd-aef7-4a9d-b5ea-a3717f5bd9b1" absoluteBounds="3.515, 7.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="a5ed80cd-98d1-4b77-b5db-e906fab8742c" absoluteBounds="3.5, 3.875, 2, 1.7708968098958327">
+    <classShape Id="e196dc36-31c3-44ea-a472-e0063a6af3b2" absoluteBounds="3.5, 3.875, 2, 1.7708968098958327">
       <DataClassMoniker Name="/NWATDataContext/Fulfillment" />
       <nestedChildShapes>
-        <elementListCompartment Id="5ee5b65b-8275-4c8e-9604-c0c8b4d76787" absoluteBounds="3.515, 4.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="21a76213-dd68-4760-a8bb-243fe122e49d" absoluteBounds="3.515, 4.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="7093afa1-5218-49e2-a8f0-f20757cd5413" absoluteBounds="0.75, 7, 2, 1.5785953776041657">
+    <classShape Id="a8f81848-7ff7-4930-a932-7f8875387629" absoluteBounds="0.75, 7, 2, 1.5785953776041657">
       <DataClassMoniker Name="/NWATDataContext/Product" />
       <nestedChildShapes>
-        <elementListCompartment Id="0c5edbaf-f58c-4c50-a9dd-82e55c4c573d" absoluteBounds="0.765, 7.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="88121329-2678-41d0-83db-402b10dc2171" absoluteBounds="0.765, 7.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="a30e5197-69b6-428b-a00e-44d0d720e8e0" absoluteBounds="0.75, 1.875, 2, 1.3862939453125">
+    <classShape Id="0e8fdea0-a15b-4011-bdbb-16b9b6e9c248" absoluteBounds="0.75, 1.875, 2, 1.3862939453125">
       <DataClassMoniker Name="/NWATDataContext/Project" />
       <nestedChildShapes>
-        <elementListCompartment Id="9424519c-5244-4a9e-a644-53f570b658d0" absoluteBounds="0.765, 2.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="7e4fee30-8949-4102-8ead-c8e1d2382509" absoluteBounds="0.765, 2.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="00ed810e-2886-460b-b87b-85f2de5d2b07" absoluteBounds="3.5, 0.75, 2, 1.9631982421875">
-      <DataClassMoniker Name="/NWATDataContext/ProjectCriterion" />
-      <nestedChildShapes>
-        <elementListCompartment Id="76c4a00f-d7e9-44b1-bf37-1be6c6c6d890" absoluteBounds="3.515, 1.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(2.75 : 4.69314697265625); (3.22916666666667 : 4.69314697265625 : JumpStart); (3.39583333333333 : 4.69314697265625 : JumpEnd); (3.5 : 4.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 4.69314697265625); (3.22916666666667 : 4.69314697265625 : JumpStart); (3.39583333333333 : 4.69314697265625 : JumpEnd); (3.5 : 4.69314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NWATDataContext/Criterion/Criterion_Fulfillment" />
       <nodes>
-        <classShapeMoniker Id="9ea4ae95-19e2-408b-b33e-4dc89003ac75" />
-        <classShapeMoniker Id="a5ed80cd-98d1-4b77-b5db-e906fab8742c" />
+        <classShapeMoniker Id="56101c3a-aeff-490b-818c-f750918cbb8b" />
+        <classShapeMoniker Id="e196dc36-31c3-44ea-a472-e0063a6af3b2" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 7.40949625651042); (3.5 : 7.40949625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 7.40949625651042); (3.5 : 7.40949625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NWATDataContext/Product/Product_ProjectProduct" />
       <nodes>
-        <classShapeMoniker Id="7093afa1-5218-49e2-a8f0-f20757cd5413" />
-        <classShapeMoniker Id="82f7b210-b235-4209-b982-5aeb94bfc861" />
+        <classShapeMoniker Id="a8f81848-7ff7-4930-a932-7f8875387629" />
+        <classShapeMoniker Id="f8e18dcb-eb5c-4aa7-a80f-3370f282f320" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 7.00121330413662); (3.125 : 6.62621330413662); (3.125 : 5.20077389127604); (3.22916666666667 : 5.20077389127604 : JumpStart); (3.39583333333333 : 5.20077389127604 : JumpEnd); (3.5 : 5.20077389127604)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 7.00121330413662); (3.125 : 6.62621330413662); (3.125 : 5.20077389127604); (3.22916666666667 : 5.20077389127604 : JumpStart); (3.39583333333333 : 5.20077389127604 : JumpEnd); (3.5 : 5.20077389127604)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NWATDataContext/Product/Product_Fulfillment" />
       <nodes>
-        <classShapeMoniker Id="7093afa1-5218-49e2-a8f0-f20757cd5413" />
-        <classShapeMoniker Id="a5ed80cd-98d1-4b77-b5db-e906fab8742c" />
+        <classShapeMoniker Id="a8f81848-7ff7-4930-a932-7f8875387629" />
+        <classShapeMoniker Id="e196dc36-31c3-44ea-a472-e0063a6af3b2" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.72760602088341 : 3.2612939453125); (2.81607443490112 : 3.34976235933021 : JumpStart); (2.93392556509888 : 3.46761348952797 : JumpEnd); (3.3125 : 3.84618792442909); (3.3125 : 6.98599612825521); (3.5 : 6.98599612825521)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.72760602088341 : 3.2612939453125); (2.81607443490112 : 3.34976235933021 : JumpStart); (2.93392556509888 : 3.46761348952797 : JumpEnd); (2.94107443490112 : 3.47476235933021 : JumpStart); (3.05892556509888 : 3.59261348952797 : JumpEnd); (3.3125 : 3.84618792442909); (3.3125 : 7.22199625651042); (3.5 : 7.22199625651042)]" fixedFrom="NotFixed" fixedTo="Algorithm">
       <AssociationMoniker Name="/NWATDataContext/Project/Project_ProjectProduct" />
       <nodes>
-        <classShapeMoniker Id="a30e5197-69b6-428b-a00e-44d0d720e8e0" />
-        <classShapeMoniker Id="82f7b210-b235-4209-b982-5aeb94bfc861" />
+        <classShapeMoniker Id="0e8fdea0-a15b-4011-bdbb-16b9b6e9c248" />
+        <classShapeMoniker Id="f8e18dcb-eb5c-4aa7-a80f-3370f282f320" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 3.23783258623798); (2.875 : 3.6362939453125); (2.875 : 3.25); (3.06607443490112 : 3.44107443490112 : JumpStart); (3.18392556509888 : 3.55892556509888 : JumpEnd); (3.5 : 3.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 3.23783258623798); (2.875 : 3.6362939453125); (2.875 : 3.25); (2.94107443490112 : 3.31607443490112 : JumpStart); (3.05892556509888 : 3.43392556509888 : JumpEnd); (3.5 : 3.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/NWATDataContext/Project/Project_Fulfillment" />
       <nodes>
-        <classShapeMoniker Id="a30e5197-69b6-428b-a00e-44d0d720e8e0" />
-        <classShapeMoniker Id="a5ed80cd-98d1-4b77-b5db-e906fab8742c" />
+        <classShapeMoniker Id="0e8fdea0-a15b-4011-bdbb-16b9b6e9c248" />
+        <classShapeMoniker Id="e196dc36-31c3-44ea-a472-e0063a6af3b2" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 4.05438437785457); (3.21875 : 3.58563437785457); (3.21875 : 1.73159912109375); (3.5 : 1.73159912109375)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <classShape Id="5b7408a7-b58d-4550-aa28-8ee9bcacc85c" absoluteBounds="8.375, 2.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/NWATDataContext/CurrentMasterDataIds" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9395c68a-b2be-4157-9dae-41f8df533961" absoluteBounds="8.39, 2.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d7a85937-7ad5-41c8-9ffe-fa975c25fbea" absoluteBounds="4, 1.25, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/NWATDataContext/ProjectCriterion" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4ee5cc23-cec4-492d-a31f-83ee16bc81bb" absoluteBounds="4.015, 1.71, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.75 : 4); (1.75 : 3.5112939453125); (2.75245332854954 : 3.5112939453125 : JumpStart); (3.21962727864583 : 3.5112939453125 : JumpEnd); (3.25 : 3.5112939453125); (3.25 : 2.32774983723958); (4 : 2.32774983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/NWATDataContext/Criterion/Criterion_ProjectCriterion" />
       <nodes>
-        <classShapeMoniker Id="9ea4ae95-19e2-408b-b33e-4dc89003ac75" />
-        <classShapeMoniker Id="00ed810e-2886-460b-b87b-85f2de5d2b07" />
+        <classShapeMoniker Id="56101c3a-aeff-490b-818c-f750918cbb8b" />
+        <classShapeMoniker Id="d7a85937-7ad5-41c8-9ffe-fa975c25fbea" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.72760602088341 : 4); (3.125 : 3.60260602088341); (3.125 : 1.73159912109375); (3.5 : 1.73159912109375)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.281252 : 4); (2.281252 : 3.7612939453125); (3 : 3.7612939453125); (3 : 2.89787675585937); (3.16666666666667 : 2.89787675585937 : JumpStart); (3.33333333333333 : 2.89787675585937 : JumpEnd); (4 : 2.89787675585937)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/NWATDataContext/Criterion/Criterion_ProjectCriterion1" />
       <nodes>
-        <classShapeMoniker Id="9ea4ae95-19e2-408b-b33e-4dc89003ac75" />
-        <classShapeMoniker Id="00ed810e-2886-460b-b87b-85f2de5d2b07" />
+        <classShapeMoniker Id="56101c3a-aeff-490b-818c-f750918cbb8b" />
+        <classShapeMoniker Id="d7a85937-7ad5-41c8-9ffe-fa975c25fbea" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 2.29409912109375); (3.04166666666667 : 2.29409912109375 : JumpStart); (3.30208333333333 : 2.29409912109375 : JumpEnd); (3.5 : 2.29409912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 2.03887491861979); (4 : 2.03887491861979)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/NWATDataContext/Project/Project_ProjectCriterion" />
       <nodes>
-        <classShapeMoniker Id="a30e5197-69b6-428b-a00e-44d0d720e8e0" />
-        <classShapeMoniker Id="00ed810e-2886-460b-b87b-85f2de5d2b07" />
+        <classShapeMoniker Id="0e8fdea0-a15b-4011-bdbb-16b9b6e9c248" />
+        <classShapeMoniker Id="d7a85937-7ad5-41c8-9ffe-fa975c25fbea" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>
