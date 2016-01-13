@@ -67,6 +67,7 @@
       <DependentUpon>NWAT.dbml</DependentUpon>
     </Compile>
     <Compile Include="DB\ProjectExporter.cs" />
+    <Compile Include="DB\ProjectImporter.cs" />
     <Compile Include="Views\aktuellesProjekt_View.cs">
       <SubType>Form</SubType>
     </Compile>

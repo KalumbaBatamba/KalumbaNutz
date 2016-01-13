@@ -181,24 +181,6 @@ namespace NWAT.DB
                 return false;
         }
 
-        // TODO was passiert mit dieser methode? soll die aufgerufen werden, wenn ein Produkt aus dem Pool gelöscht wird?
-        /// <summary>
-        /// Deletes all fulfillments for one product.
-        /// </summary>
-        /// <param name="productId">The product identifier.</param>
-        /// Erstellt von Joshua Frey, am 29.12.2015
-        public void DeleteAllFulfillmentsForOneProduct(int productId)
-        {
-            var allFulfillmentsToDelete = base.DataContext.Fulfillment.Where(fulfillment => fulfillment.Product_Id == productId);
-
-            foreach (var fulfillmentToDelete in allFulfillmentsToDelete)
-            {
-                base.DataContext.Fulfillment.DeleteOnSubmit(fulfillmentToDelete);
-            }
-            base.DataContext.SubmitChanges();
-        }
-
-
         /// <summary>
         /// Deletes all fulfillments for one product in one project.
         /// </summary>
@@ -226,35 +208,6 @@ namespace NWAT.DB
             else
                 return true;
         }
-
-        // TODO was passiert mit dieser methode? soll die aufgerufen werden, wenn ein Kriterium aus dem Pool gelöscht wird?
-        /// <summary>
-        /// Deletes all fulfillments for one criterion.
-        /// </summary>
-        /// <param name="criterionId">The criterion identifier.</param>
-        /// <returns>
-        /// bool, if deletion was successful
-        /// </returns>
-        /// Erstellt von Joshua Frey, am 04.01.2016
-        public bool DeleteAllFulfillmentsForOneCriterion(int criterionId)
-        {
-            var allFulfillmentsToDelete = base.DataContext.Fulfillment.Where(fulfillment => fulfillment.Criterion_Id == criterionId);
-
-            foreach (var fulfillmentToDelete in allFulfillmentsToDelete)
-            {
-                base.DataContext.Fulfillment.DeleteOnSubmit(fulfillmentToDelete);
-            }
-            base.DataContext.SubmitChanges();
-
-            var listOfStillexistingFulfillmentEntries = base.DataContext.Fulfillment.Where(fulfillment => fulfillment.Criterion_Id == criterionId);
-            if (listOfStillexistingFulfillmentEntries.Count() > 0)
-                return false;
-            else
-                return true;
-            
-
-        }
-
 
         /// <summary>
         /// Deletes all fulfillments for one criterion in one project.

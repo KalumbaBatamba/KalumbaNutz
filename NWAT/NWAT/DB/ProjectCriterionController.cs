@@ -79,6 +79,19 @@ namespace NWAT.DB
             return baseCriterions;
         }
 
+
+        /// <summary>
+        /// Gets all project criterions which have given criterion as parent.
+        /// Is used, when a criterion should be deleted in master table, but still has children in any project
+        /// </summary>
+        /// <param name="criterionId">The criterion identifier.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 13.01.2016
+        public List<ProjectCriterion> GetAllProjectCriterionsWhichHaveGivenCriterionAsParent(int criterionId)
+        {
+            return base.DataContext.ProjectCriterion.Where(projCrit => projCrit.Parent_Criterion_Id == criterionId).ToList();
+        }
+
         /// <summary>
         /// Updates the project criterion in database.
         /// </summary>
@@ -295,12 +308,25 @@ namespace NWAT.DB
 
         /// <summary>
         /// Deallocates the criterion and all child criterions from project. This includes the entries in the fulfillment table
+        /// User will be asked, if children should be deallocated
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="projCrit">The proj crit.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 13.01.2016
+        public bool DeallocateCriterionAndAllChildCriterions(int projectId, ProjectCriterion projCrit)
+        {
+            return DeallocateCriterionAndAllChildCriterions(projectId, projCrit, false);
+        }
+
+        /// <summary>
+        /// Deallocates the criterion and all child criterions from project. This includes the entries in the fulfillment table
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
         /// <param name="projCrit">The proj crit.</param>
         /// <returns></returns>
         /// Erstellt von Joshua Frey, am 04.01.2016
-        private bool DeallocateCriterionAndAllChildCriterions(int projectId, ProjectCriterion projCrit)
+        public bool DeallocateCriterionAndAllChildCriterions(int projectId, ProjectCriterion projCrit, bool forceDeallocationOfChildren)
         {
             int projectCriterionId = projCrit.Criterion_Id;
             // checks if criterion has any children criterion (is a parent criterion)
@@ -311,22 +337,24 @@ namespace NWAT.DB
                 string decisionMessage = MessageUserDecisionOfDeallocatingAllChildCriterions(projCrit, eventualChildCriterions);
                 const string caption = "Kriterienentkopplung";
 
-                var result = MessageBox.Show(decisionMessage, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                // only ask user if children should be deallocated when forceDeallocationOfChildre = false
+                if (!forceDeallocationOfChildren)
+                {
+                    var result = MessageBox.Show(decisionMessage, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (result == DialogResult.Yes)
+                    if (result == DialogResult.No)
+                    {
+                        deletionPermitted = false;
+                    }
+                }
+
+                if (deletionPermitted)
                 {
                     foreach (ProjectCriterion childProjCrit in eventualChildCriterions)
                     {
-                        if (deletionPermitted)
-                        {
-                            deletionPermitted = DeallocateCriterionAndAllChildCriterions(projectId, childProjCrit);
-                        }
-
+                        deletionPermitted = DeallocateCriterionAndAllChildCriterions(projectId, childProjCrit, forceDeallocationOfChildren);
                     }
                 }
-                else
-                    deletionPermitted = false;
-
             }
             string projCritName = projCrit.Criterion.Name;
             if (deletionPermitted)
@@ -340,7 +368,11 @@ namespace NWAT.DB
 
                 if (fulfillmentDeletionSuccessfull && DeleteProjectCriterionFromDb(projectId, projectCriterionId))
                 {
-                    MessageBox.Show("Das Kriterium " + projCritName + " wurde erfolgreich vom Projekt entkoppelt.");
+                    if (!forceDeallocationOfChildren)
+                    {
+                        MessageBox.Show("Das Kriterium " + projCritName + " wurde erfolgreich vom Projekt entkoppelt.");
+                    }
+                    
                     return true;
                 }
                 else

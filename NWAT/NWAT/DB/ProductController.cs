@@ -44,6 +44,36 @@ namespace NWAT.DB
         }
 
         /// <summary>
+        /// Checks if product is allocated to any project.
+        /// </summary>
+        /// <param name="productId">The product identifier.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 13.01.2016
+        public bool checkIfProductIsAllocatedToAnyProject(int productId)
+        {
+            bool isAllocatedToProjects = false;
+            List<ProjectProduct> allocatedProjectProducts = getAllProjectProductsWhichThisProductIsAllocatedTo(productId);
+            if (allocatedProjectProducts.Count > 0)
+            {
+                isAllocatedToProjects = true;
+            }
+            return isAllocatedToProjects;
+        }
+
+        /// <summary>
+        /// Gets all project products which this product is allocated to.
+        /// </summary>
+        /// <param name="productId">The product identifier.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 13.01.2016
+        public List<ProjectProduct> getAllProjectProductsWhichThisProductIsAllocatedTo(int productId)
+        {
+            Product prod = GetProductById(productId);
+            List<ProjectProduct> allocatedProjectProducts = prod.ProjectProduct.ToList();
+            return allocatedProjectProducts;
+        }
+
+        /// <summary>
         /// Inserts the product into database.
         /// </summary>
         /// <param name="newProduct">The new product.</param>

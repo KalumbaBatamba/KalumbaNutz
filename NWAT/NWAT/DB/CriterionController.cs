@@ -4,6 +4,7 @@ using System.Data.Linq;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace NWAT.DB
 {
@@ -40,6 +41,37 @@ namespace NWAT.DB
             List<Criterion> criterions;
             criterions = base.DataContext.Criterion.ToList();
             return criterions;
+        }
+
+        /// <summary>
+        /// Checks if criterion is allocated to any project.
+        /// </summary>
+        /// <param name="criterionId">The criterion identifier.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 13.01.2016
+        public bool checkIfCriterionIsAllocatedToAnyProject(int criterionId)
+        {
+            bool isAllocatedToProjects = false;
+            List<ProjectCriterion> allocatedProjectCriterions = getAllProjecCriterionsWhichThisCriterionIsRelatedTo(criterionId);
+            if (allocatedProjectCriterions.Count > 0)
+            {
+                isAllocatedToProjects = true;
+            }
+            return isAllocatedToProjects;
+        }
+
+
+        /// <summary>
+        /// Gets all projec criterions which this criterion is related to.
+        /// </summary>
+        /// <param name="criterionId">The criterion identifier.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 13.01.2016
+        public List<ProjectCriterion> getAllProjecCriterionsWhichThisCriterionIsRelatedTo(int criterionId)
+        {
+            Criterion crit = GetCriterionById(criterionId);
+            List<ProjectCriterion> allocatedProjectCriterions = crit.ProjectCriterion.ToList();
+            return allocatedProjectCriterions;
         }
 
         /// <summary>
@@ -172,6 +204,35 @@ namespace NWAT.DB
                                         select crit).FirstOrDefault();
             if (delCriterion != null)
             {
+                // check if criterion is parent Id in any project
+                using (ProjectCriterionController tempProjCritContr = new ProjectCriterionController())
+                {
+                    List<ProjectCriterion> projectCriterionChildren = 
+                        tempProjCritContr.GetAllProjectCriterionsWhichHaveGivenCriterionAsParent(delCriterion.Criterion_Id);
+                    if (projectCriterionChildren.Count > 0)
+                    {
+                        
+                        string caption = "Löschen der untergeordneten Kriterien";
+                        var result = MessageBox.Show(MessageDeleteAllChildProjectCriterions(projectCriterionChildren, delCriterion), caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        // User interaction --> User can decide if export files outside the zip archive should be deleted
+                        if (result == DialogResult.Yes)
+                        {
+                            foreach (ProjectCriterion childProjCritToDelete in projectCriterionChildren)
+                            {
+                                bool forceDeallocationOfAllChildren = false;
+                                tempProjCritContr.DeallocateCriterionAndAllChildCriterions(childProjCritToDelete.Project_Id, childProjCritToDelete, forceDeallocationOfAllChildren);
+                            }
+                        }
+                        // if user declines deallocation of all children, the criterion will not be removed from master table.
+                        else
+                        {
+                            return false;
+                        }
+                    }
+
+                }
+
                 base.DataContext.Criterion.DeleteOnSubmit(delCriterion);
                 base.DataContext.SubmitChanges();
             }
@@ -285,6 +346,33 @@ namespace NWAT.DB
         private string MessageCriterionHasNoId()
         {
             return "Das Criterion Object besitzt keine ID. Bitte überprüfen Sie das übergebene Object";
+        }
+
+
+        /// <summary>
+        /// Return messages if all child project criterions should be deallocated.
+        /// </summary>
+        /// <param name="projectCriterionChildren">The project criterion children.</param>
+        /// <param name="deleteCriterion">The delete criterion.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 13.01.2016
+        private string MessageDeleteAllChildProjectCriterions(List<ProjectCriterion> projectCriterionChildren, Criterion deleteCriterion)
+        {
+            string begin = String.Format("Das Kriterium {0} (Id={1}) hat folgende Projektkriterien als untergeordnete Kriterien:\n\n", deleteCriterion.Name, deleteCriterion.Criterion_Id);
+            string projectCriterionChildrenListAsString = "";
+
+            foreach (ProjectCriterion projCrit in projectCriterionChildren)
+            {
+                projectCriterionChildrenListAsString += String.Format(" - Projekt: {0} (Id={1})\n   Kindkriterium: {2} (Id={3})\n\n", 
+                    projCrit.Project.Name, projCrit.Project_Id, projCrit.Criterion.Name, projCrit.Criterion_Id);
+            }
+
+            string end = "\nWenn Sie das Kriterium löschen, entkoppeln sie auch alle \n"+
+                         "untergeordneten Kriterien und deren untergeordneten Kriterien usw. \n"+
+                         "von allen betroffenen Projekten. \n" + 
+                         "Sind Sie sich sicher, dass Sie das Kriterium löschen wollen?";
+
+            return begin + projectCriterionChildrenListAsString + end;
         }
     }
 }

@@ -48,7 +48,6 @@ namespace NWAT.DB
             return allProjectProductsForOneProject;
         }
 
-
         /// <summary>
         /// Changes the allocation of project producst list in database.
         /// </summary>
