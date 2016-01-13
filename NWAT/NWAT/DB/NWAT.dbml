@@ -18,6 +18,14 @@
       <Association Name="Project_ProjectProduct" Member="Project" ThisKey="Project_Id" OtherKey="Project_Id" Type="Project" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.CurrentMasterDataIds" Member="CurrentMasterDataIds">
+    <Type Name="CurrentMasterDataIds">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CurrentProjectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CurrentCriterionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CurrentProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Table Name="dbo.Fulfillment" Member="Fulfillment">
     <Type Name="Fulfillment">
       <Column Name="Project_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -50,21 +58,13 @@
       <Association Name="Project_ProjectCriterion" Member="ProjectCriterion" ThisKey="Project_Id" OtherKey="Project_Id" Type="ProjectCriterion" />
     </Type>
   </Table>
-  <Table Name="dbo.CurrentMasterDataIds" Member="CurrentMasterDataIds">
-    <Type Name="CurrentMasterDataIds">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="CurrentProjectId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CurrentCriterionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CurrentProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.ProjectCriterion" Member="ProjectCriterion">
     <Type Name="ProjectCriterion">
       <Column Name="Project_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Criterion_Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Layer_Depth" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Parent_Criterion_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Weighting_Cardinal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Weighting_Cardinal" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Weighting_Percentage_Layer" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="Weighting_Percentage_Project" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Association Name="Criterion_ProjectCriterion" Member="Criterion" ThisKey="Criterion_Id" OtherKey="Criterion_Id" Type="Criterion" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />

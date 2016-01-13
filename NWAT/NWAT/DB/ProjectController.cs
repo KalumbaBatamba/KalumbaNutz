@@ -202,11 +202,6 @@ namespace NWAT.DB
             return true;
         }
 
-        /*
-         * Private Section
-         */
-
-
         /// <summary>
         /// Checks if equal projects.
         /// </summary>
@@ -216,7 +211,7 @@ namespace NWAT.DB
         /// bool if given projects are equal
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        private bool CheckIfEqualProjects(Project projOne, Project projTwo)
+        public bool CheckIfEqualProjects(Project projOne, Project projTwo)
         {
             bool equalName = projOne.Name == projTwo.Name;
             bool equalDescription = projOne.Description == projTwo.Description;
@@ -224,6 +219,9 @@ namespace NWAT.DB
             return equalName && equalDescription;
         }
 
+        /*
+         * Private Section
+         */
 
         /// <summary>
         /// Checks if project name already exists.

@@ -153,7 +153,7 @@ namespace NWAT.DB
                         if (!fulfillCont.InsertFullfillmentInDb(projectId, productId, criterionId))
                         {
                             insertionFulfillmentSuccessful = false;
-                            throw (new DatabaseException(CommonMessages.MessageInsertionToFulFillmentTableFailed(productId, criterionId)));
+                            throw (new DatabaseException(CommonMethods.MessageInsertionToFulFillmentTableFailed(productId, criterionId)));
                         }
                     }
                 }

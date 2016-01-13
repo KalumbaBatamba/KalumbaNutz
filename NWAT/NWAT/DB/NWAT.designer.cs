@@ -36,6 +36,9 @@ namespace NWAT.DB
     partial void InsertProjectProduct(ProjectProduct instance);
     partial void UpdateProjectProduct(ProjectProduct instance);
     partial void DeleteProjectProduct(ProjectProduct instance);
+    partial void InsertCurrentMasterDataIds(CurrentMasterDataIds instance);
+    partial void UpdateCurrentMasterDataIds(CurrentMasterDataIds instance);
+    partial void DeleteCurrentMasterDataIds(CurrentMasterDataIds instance);
     partial void InsertFulfillment(Fulfillment instance);
     partial void UpdateFulfillment(Fulfillment instance);
     partial void DeleteFulfillment(Fulfillment instance);
@@ -45,16 +48,13 @@ namespace NWAT.DB
     partial void InsertProject(Project instance);
     partial void UpdateProject(Project instance);
     partial void DeleteProject(Project instance);
-    partial void InsertCurrentMasterDataIds(CurrentMasterDataIds instance);
-    partial void UpdateCurrentMasterDataIds(CurrentMasterDataIds instance);
-    partial void DeleteCurrentMasterDataIds(CurrentMasterDataIds instance);
     partial void InsertProjectCriterion(ProjectCriterion instance);
     partial void UpdateProjectCriterion(ProjectCriterion instance);
     partial void DeleteProjectCriterion(ProjectCriterion instance);
     #endregion
 		
 		public NWATDataContext() : 
-				base(global::NWAT.Properties.Settings.Default.NWATConnectionString1, mappingSource)
+				base(global::NWAT.Properties.Settings.Default.NWATConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -99,6 +99,14 @@ namespace NWAT.DB
 			}
 		}
 		
+		public System.Data.Linq.Table<CurrentMasterDataIds> CurrentMasterDataIds
+		{
+			get
+			{
+				return this.GetTable<CurrentMasterDataIds>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Fulfillment> Fulfillment
 		{
 			get
@@ -120,14 +128,6 @@ namespace NWAT.DB
 			get
 			{
 				return this.GetTable<Project>();
-			}
-		}
-		
-		public System.Data.Linq.Table<CurrentMasterDataIds> CurrentMasterDataIds
-		{
-			get
-			{
-				return this.GetTable<CurrentMasterDataIds>();
 			}
 		}
 		
@@ -477,6 +477,140 @@ namespace NWAT.DB
 						this._Project_Id = default(int);
 					}
 					this.SendPropertyChanged("Project");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CurrentMasterDataIds")]
+	public partial class CurrentMasterDataIds : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _CurrentProjectId;
+		
+		private int _CurrentCriterionId;
+		
+		private int _CurrentProductId;
+		
+    #region Definitionen der Erweiterungsmethoden
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnCurrentProjectIdChanging(int value);
+    partial void OnCurrentProjectIdChanged();
+    partial void OnCurrentCriterionIdChanging(int value);
+    partial void OnCurrentCriterionIdChanged();
+    partial void OnCurrentProductIdChanging(int value);
+    partial void OnCurrentProductIdChanged();
+    #endregion
+		
+		public CurrentMasterDataIds()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrentProjectId", DbType="Int NOT NULL")]
+		public int CurrentProjectId
+		{
+			get
+			{
+				return this._CurrentProjectId;
+			}
+			set
+			{
+				if ((this._CurrentProjectId != value))
+				{
+					this.OnCurrentProjectIdChanging(value);
+					this.SendPropertyChanging();
+					this._CurrentProjectId = value;
+					this.SendPropertyChanged("CurrentProjectId");
+					this.OnCurrentProjectIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrentCriterionId", DbType="Int NOT NULL")]
+		public int CurrentCriterionId
+		{
+			get
+			{
+				return this._CurrentCriterionId;
+			}
+			set
+			{
+				if ((this._CurrentCriterionId != value))
+				{
+					this.OnCurrentCriterionIdChanging(value);
+					this.SendPropertyChanging();
+					this._CurrentCriterionId = value;
+					this.SendPropertyChanged("CurrentCriterionId");
+					this.OnCurrentCriterionIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrentProductId", DbType="Int NOT NULL")]
+		public int CurrentProductId
+		{
+			get
+			{
+				return this._CurrentProductId;
+			}
+			set
+			{
+				if ((this._CurrentProductId != value))
+				{
+					this.OnCurrentProductIdChanging(value);
+					this.SendPropertyChanging();
+					this._CurrentProductId = value;
+					this.SendPropertyChanged("CurrentProductId");
+					this.OnCurrentProductIdChanged();
 				}
 			}
 		}
@@ -1167,140 +1301,6 @@ namespace NWAT.DB
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CurrentMasterDataIds")]
-	public partial class CurrentMasterDataIds : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _CurrentProjectId;
-		
-		private int _CurrentCriterionId;
-		
-		private int _CurrentProductId;
-		
-    #region Definitionen der Erweiterungsmethoden
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnCurrentProjectIdChanging(int value);
-    partial void OnCurrentProjectIdChanged();
-    partial void OnCurrentCriterionIdChanging(int value);
-    partial void OnCurrentCriterionIdChanged();
-    partial void OnCurrentProductIdChanging(int value);
-    partial void OnCurrentProductIdChanged();
-    #endregion
-		
-		public CurrentMasterDataIds()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrentProjectId", DbType="Int NOT NULL")]
-		public int CurrentProjectId
-		{
-			get
-			{
-				return this._CurrentProjectId;
-			}
-			set
-			{
-				if ((this._CurrentProjectId != value))
-				{
-					this.OnCurrentProjectIdChanging(value);
-					this.SendPropertyChanging();
-					this._CurrentProjectId = value;
-					this.SendPropertyChanged("CurrentProjectId");
-					this.OnCurrentProjectIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrentCriterionId", DbType="Int NOT NULL")]
-		public int CurrentCriterionId
-		{
-			get
-			{
-				return this._CurrentCriterionId;
-			}
-			set
-			{
-				if ((this._CurrentCriterionId != value))
-				{
-					this.OnCurrentCriterionIdChanging(value);
-					this.SendPropertyChanging();
-					this._CurrentCriterionId = value;
-					this.SendPropertyChanged("CurrentCriterionId");
-					this.OnCurrentCriterionIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrentProductId", DbType="Int NOT NULL")]
-		public int CurrentProductId
-		{
-			get
-			{
-				return this._CurrentProductId;
-			}
-			set
-			{
-				if ((this._CurrentProductId != value))
-				{
-					this.OnCurrentProductIdChanging(value);
-					this.SendPropertyChanging();
-					this._CurrentProductId = value;
-					this.SendPropertyChanged("CurrentProductId");
-					this.OnCurrentProductIdChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ProjectCriterion")]
 	public partial class ProjectCriterion : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1315,7 +1315,7 @@ namespace NWAT.DB
 		
 		private System.Nullable<int> _Parent_Criterion_Id;
 		
-		private System.Nullable<int> _Weighting_Cardinal;
+		private int _Weighting_Cardinal;
 		
 		private System.Nullable<double> _Weighting_Percentage_Layer;
 		
@@ -1339,7 +1339,7 @@ namespace NWAT.DB
     partial void OnLayer_DepthChanged();
     partial void OnParent_Criterion_IdChanging(System.Nullable<int> value);
     partial void OnParent_Criterion_IdChanged();
-    partial void OnWeighting_CardinalChanging(System.Nullable<int> value);
+    partial void OnWeighting_CardinalChanging(int value);
     partial void OnWeighting_CardinalChanged();
     partial void OnWeighting_Percentage_LayerChanging(System.Nullable<double> value);
     partial void OnWeighting_Percentage_LayerChanged();
@@ -1447,8 +1447,8 @@ namespace NWAT.DB
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weighting_Cardinal", DbType="Int")]
-		public System.Nullable<int> Weighting_Cardinal
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weighting_Cardinal", DbType="Int NOT NULL")]
+		public int Weighting_Cardinal
 		{
 			get
 			{

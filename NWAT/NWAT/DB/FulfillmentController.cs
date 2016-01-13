@@ -46,6 +46,20 @@ namespace NWAT.DB
                                                                   && fulfillment.Product_Id == productId).ToList();
         }
 
+
+        /// <summary>
+        /// Gets all fulfillments for one project.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <returns>
+        /// A list with all fulfillments for given project(id)
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 13.01.2016
+        public List<Fulfillment> GetAllFulfillmentsForOneProject(int projectId)
+        {
+            return base.DataContext.Fulfillment.Where(fulfillment => fulfillment.Project_Id == projectId).ToList();
+        }
+
         /// <summary>
         /// Fills the fulfillment table initially.
         /// </summary>

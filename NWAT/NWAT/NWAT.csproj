@@ -57,13 +57,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommonMessages.cs" />
+    <Compile Include="CommonMethods.cs" />
     <Compile Include="DB\CurrentMasterDataIdsController.cs" />
     <Compile Include="DB\NWAT.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NWAT.dbml</DependentUpon>
     </Compile>
+    <Compile Include="DB\ProjectExporter.cs" />
     <Compile Include="Views\aktuellesProjekt_View.cs">
       <SubType>Form</SubType>
     </Compile>

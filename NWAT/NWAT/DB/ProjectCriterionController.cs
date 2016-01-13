@@ -393,7 +393,7 @@ namespace NWAT.DB
                         if (!fulfillContr.InsertFullfillmentInDb(projectId, prodId, projCritId))
                         {
                             insertionFulfillmentSuccessful = false;
-                            throw (new DatabaseException(CommonMessages.MessageInsertionToFulFillmentTableFailed(prodId, projCritId)));
+                            throw (new DatabaseException(CommonMethods.MessageInsertionToFulFillmentTableFailed(prodId, projCritId)));
                         }
                     }
                 }
@@ -518,12 +518,12 @@ namespace NWAT.DB
             float sumOfCardinalWeightings = 0;
             foreach (ProjectCriterion projCrit in projectCriterionsInOneLayer)
             {
-                sumOfCardinalWeightings += projCrit.Weighting_Cardinal.Value;
+                sumOfCardinalWeightings += projCrit.Weighting_Cardinal;
             }
 
             foreach (ProjectCriterion projCrit in projectCriterionsInOneLayer)
             {
-                float percentageLayerWeighting = projCrit.Weighting_Cardinal.Value / sumOfCardinalWeightings;
+                float percentageLayerWeighting = projCrit.Weighting_Cardinal / sumOfCardinalWeightings;
                 projCrit.Weighting_Percentage_Layer = percentageLayerWeighting;
             }
         }
