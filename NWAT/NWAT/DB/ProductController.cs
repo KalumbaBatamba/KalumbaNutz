@@ -51,7 +51,7 @@ namespace NWAT.DB
         /// bool if insert of new product was successfull.
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        /// <exception cref="DatabaseException">
+        /// <exception cref="NWATException">
         ///  Das Produkt mit dem Namen -Produktname- existiert bereits in einem anderen Datensatz in der Datenbank.
         /// or
         /// Das Produkt konnte nicht in der Datenbank angelegt werden. 
@@ -87,12 +87,12 @@ namespace NWAT.DB
                 }
                 else
                 {
-                    throw (new DatabaseException((MessageProductAlreadyExists(newProductName))));
+                    throw (new NWATException((MessageProductAlreadyExists(newProductName))));
                 }
             }
             else
             {
-                throw (new DatabaseException(MessageProductCouldNotBeSavedEmptyObject()));        
+                throw (new NWATException(MessageProductCouldNotBeSavedEmptyObject()));        
             }
 
             Product newProductFromDb = (from prod in base.DataContext.Product
@@ -113,7 +113,7 @@ namespace NWAT.DB
         /// bool if update of product was successful
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        /// <exception cref="DatabaseException">
+        /// <exception cref="NWATException">
         /// Das Produkt mit dem Namen -Produktname- existiert bereits in einem anderen Datensatz in der Datenbank.
         /// or
         /// Das Produkt konnte nicht in der Datenbank gespeichert werden. 
@@ -125,7 +125,7 @@ namespace NWAT.DB
         {
 
             if(!CheckIfProductHasAnId(alteredProduct))
-                throw (new DatabaseException(MessageProductHasNoId()));
+                throw (new NWATException(MessageProductHasNoId()));
 
             int productId = alteredProduct.Product_Id;
             Product prodToUpdateFromDb = base.DataContext.Product.SingleOrDefault(prod=>prod.Product_Id==productId);
@@ -142,12 +142,12 @@ namespace NWAT.DB
                 }
                 else
                 {
-                    throw (new DatabaseException(MessageProductAlreadyExists(newProductName)));
+                    throw (new NWATException(MessageProductAlreadyExists(newProductName)));
                 }
             }
             else
             {
-                throw (new DatabaseException(MessageProductDoesNotExist(productId) + "\n" + 
+                throw (new NWATException(MessageProductDoesNotExist(productId) + "\n" + 
                                                 MessageProductCouldNotBeSavedEmptyObject()));  
             }
            
@@ -165,7 +165,7 @@ namespace NWAT.DB
         /// bool if deletion was successfull<
         /// /returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        /// <exception cref="DatabaseException">
+        /// <exception cref="NWATException">
         /// "Das Produkt mit der Id X existiert nicht in der Datenbank."
         /// </exception>
         public bool DeleteProductFromDb(int productId)
@@ -180,7 +180,7 @@ namespace NWAT.DB
             }
             else
             {
-                throw(new DatabaseException(MessageProductDoesNotExist(productId)));
+                throw(new NWATException(MessageProductDoesNotExist(productId)));
             }
 
             return GetProductById(productId) == null;

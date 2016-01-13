@@ -21,13 +21,18 @@ namespace NWAT
         /// Erstellt von Joshua Frey, am 13.01.2016
         public static bool CheckIfForbiddenDelimiterInDb(string text)
         {
-            int indexOfDelimiter = text.IndexOf("|");
-            if (indexOfDelimiter == -1 || indexOfDelimiter == 0)
+            bool foundForbiddenChar = false;
+            List<string> listOfForbiddenChars = new List<string>(){@"|", @"\"};
+            foreach (string forbidChar in listOfForbiddenChars)
             {
-                return true;
+                int indexOfDelimiter = text.IndexOf(forbidChar);
+                if (indexOfDelimiter == -1 || indexOfDelimiter == 0)
+                {
+                    foundForbiddenChar = true;
+                }
             }
-            else
-                return false;
+            return foundForbiddenChar;
+            
         }
         
 

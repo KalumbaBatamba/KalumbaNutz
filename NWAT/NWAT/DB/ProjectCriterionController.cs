@@ -85,14 +85,14 @@ namespace NWAT.DB
         /// <param name="alteredProjectCriterion">The altered project criterion.</param>
         /// <returns></returns>
         /// Erstellt von Joshua Frey, am 12.01.2016
-        /// <exception cref="DatabaseException"></exception>
+        /// <exception cref="NWATException"></exception>
         public bool UpdateProjectCriterionInDb(ProjectCriterion alteredProjectCriterion)
         {
             bool updateSuccess;
             updateSuccess = UpdateProjectCriterionDataSet(alteredProjectCriterion);
             if (!updateSuccess)
             {
-                throw new DatabaseException(MessageUpdateProjectCriterionFailed(alteredProjectCriterion.Criterion.Name));
+                throw new NWATException(MessageUpdateProjectCriterionFailed(alteredProjectCriterion.Criterion.Name));
             }
 
             int projectId = alteredProjectCriterion.Project_Id;
@@ -117,7 +117,7 @@ namespace NWAT.DB
             success = DeleteProjectCriterionDataSet(projectId, criterionId);
             if (!success)
             {
-                throw new DatabaseException(MessageDeleteProjectCriterionFailed(criterionId.ToString()));
+                throw new NWATException(MessageDeleteProjectCriterionFailed(criterionId.ToString()));
             }
 
             UpdateAllPercentageLayerWeightings(projectId);
@@ -176,7 +176,7 @@ namespace NWAT.DB
         /// bool if insertion was sucessfully
         /// </returns>
         /// Erstellt von Joshua Frey, am 22.12.2015
-        /// <exception cref="DatabaseException">
+        /// <exception cref="NWATException">
         /// </exception>
         private bool InsertProjectCriterionIntoDb(ProjectCriterion newProjectCriterion)
         {
@@ -207,7 +207,7 @@ namespace NWAT.DB
         /// <param name="newProjectCriterion">The new project criterion.</param>
         /// <returns></returns>
         /// Erstellt von Joshua Frey, am 12.01.2016
-        /// <exception cref="DatabaseException">
+        /// <exception cref="NWATException">
         /// </exception>
         private bool InsertProjectCriterionDataSet(ProjectCriterion newProjectCriterion)
         {
@@ -234,13 +234,13 @@ namespace NWAT.DB
                     ProjectCriterion alreadyExistingProjectCriterion = this.GetProjectCriterionByIds(projectId, criterionId);
                     string projectName = alreadyExistingProjectCriterion.Project.Name;
                     string criterionName = alreadyExistingProjectCriterion.Criterion.Name;
-                    throw (new DatabaseException((MessageProjectCriterionAlreadyExists(projectName, criterionName))));
+                    throw (new NWATException((MessageProjectCriterionAlreadyExists(projectName, criterionName))));
                 }
                 return checkIfSameProjectCriterions(newProjectCriterion, this.GetProjectCriterionByIds(projectId, criterionId));
             }
             else
             {
-                throw (new DatabaseException(MessageProjectCriterionCouldNotBeSavedEmptyObject()));
+                throw (new NWATException(MessageProjectCriterionCouldNotBeSavedEmptyObject()));
             }
         }
 
@@ -366,7 +366,7 @@ namespace NWAT.DB
         /// bool if insertions in projectCriterion table and fulfillment table were successful
         /// </returns>
         /// Erstellt von Joshua Frey, am 04.01.2016
-        /// <exception cref="DatabaseException"></exception>
+        /// <exception cref="NWATException"></exception>
         private bool AllocateCriterion(int projectId, ProjectCriterion projCrit)
         {
             bool insertionProjectCritionSuccessful = true;
@@ -393,7 +393,7 @@ namespace NWAT.DB
                         if (!fulfillContr.InsertFullfillmentInDb(projectId, prodId, projCritId))
                         {
                             insertionFulfillmentSuccessful = false;
-                            throw (new DatabaseException(CommonMethods.MessageInsertionToFulFillmentTableFailed(prodId, projCritId)));
+                            throw (new NWATException(CommonMethods.MessageInsertionToFulFillmentTableFailed(prodId, projCritId)));
                         }
                     }
                 }

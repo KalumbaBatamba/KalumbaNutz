@@ -45,7 +45,7 @@ namespace NWAT.DB
             bool success = updateCurrentMasterDataIds(currentMasterDataIds);
             if (!success)
             {
-                throw new DatabaseException(MessageUpdateFailed());
+                throw new NWATException(MessageUpdateFailed());
             }
         }
 
@@ -53,7 +53,7 @@ namespace NWAT.DB
         /// Increments the current criterion identifier.
         /// </summary>
         /// Erstellt von Joshua Frey, am 11.01.2016
-        /// <exception cref="DatabaseException"></exception>
+        /// <exception cref="NWATException"></exception>
         public void incrementCurrentCriterionId()
         {
             CurrentMasterDataIds currentMasterDataIds = GetCurrentMasterDataIds();
@@ -61,7 +61,7 @@ namespace NWAT.DB
             bool success = updateCurrentMasterDataIds(currentMasterDataIds);
             if (!success)
             {
-                throw new DatabaseException(MessageUpdateFailed());
+                throw new NWATException(MessageUpdateFailed());
             }
         }
 
@@ -76,7 +76,7 @@ namespace NWAT.DB
             bool success = updateCurrentMasterDataIds(currentMasterDataIds);
             if (!success)
             {
-                throw new DatabaseException(MessageUpdateFailed());
+                throw new NWATException(MessageUpdateFailed());
             }
         }
 

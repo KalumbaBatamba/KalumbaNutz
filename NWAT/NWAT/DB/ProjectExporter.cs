@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,13 +53,17 @@ namespace NWAT.DB
             get { return _fileBaseName; }
             set { _fileBaseName = value; }
         }
-        
-	
-        
-        
+
+        private List<string> _exportFilePaths;
+
+        public List<string> ExportFilePaths
+        {
+            get { return _exportFilePaths; }
+            set { _exportFilePaths = value; }
+        }
         
 
-
+        
         // DB controller
 
         private ProjectController _exportProjectController;
@@ -126,6 +131,8 @@ namespace NWAT.DB
             ExportProjectProductController = new ProjectProductController();
             ExportFulfillmentController = new FulfillmentController();
 
+            this.ExportFilePaths = new List<string>();
+
             ProjectId = projectIdToExport;
             ProjectName = ExportProjectController.GetProjectById(projectIdToExport).Name;
             Timestamp = CreateTimestampForFile();
@@ -135,25 +142,48 @@ namespace NWAT.DB
             FileBaseName = String.Format(@"{0}\{1}_Project_{2}", ExportFilePath, Timestamp, ProjectName);
         }
 
-        public void Export()
-        {
-            // You have to stick to the export order. Otherwise there won't be exported all information.
-            
-            // Export Fullfillments
-            string fulfillmentExportFilePath = ExportFulfillments();
-            if(VerifyFulfillmentsExport(fulfillmentExportFilePath))
-            {
-                MessageBox.Show(MessageExportVerified("Fulfillment"));
-                // delete Fulfillment
-            }
 
+        /// <summary>
+        /// Archives the whole project. This is the main method which will be called
+        /// </summary>
+        /// Erstellt von Joshua Frey, am 13.01.2016
+        public void ArchiveWholeProject()
+        {
+            string logFilePath = this.FileBaseName + "_log.txt";
+            this.ExportFilePaths.Add(logFilePath);
+
+            // Create Logfile and Logfile Writer
+            if (!File.Exists(logFilePath))
+            {
+                File.Create(logFilePath).Close();
+            }
+            StreamWriter archiveLogWriter = File.AppendText(logFilePath);
+            // You have to stick to the export order. Otherwise there won't be exported all information.
+
+            bool allExportsSucceeded = true;
+
+            // export FulFillment
+            string fulfillmentExportFilePath = ExportFulfillments();
+            if (VerifyFulfillmentsExport(fulfillmentExportFilePath))
+            {
+                Log(MessageExportVerified("Fulfillment"), archiveLogWriter);
+            }
+            else
+            {
+                allExportsSucceeded = false;
+                Log(MessageExportNotVerified("Fulfillment"), archiveLogWriter);
+            }
 
             // Export ProjectProducts
             string projectProductExportFilePath = ExportProjectProducts();
             if (VerifyProjectProductsExport(projectProductExportFilePath))
             {
-                MessageBox.Show(MessageExportVerified("ProjectProduct"));
-                // delete Project Products
+                Log(MessageExportVerified("ProjectProduct"), archiveLogWriter);
+            }
+            else
+            {
+                allExportsSucceeded = false;
+                Log(MessageExportNotVerified("ProjectProduct"), archiveLogWriter);
             }
 
 
@@ -161,37 +191,165 @@ namespace NWAT.DB
             string projectCriterionExportFilePath = ExportProjectCriterions();
             if (VerifyProjectCriterionsExport(projectCriterionExportFilePath))
             {
-                MessageBox.Show(MessageExportVerified("ProjectCriterion"));
-                // delete Project Criterions
+                Log(MessageExportVerified("ProjectCriterion"), archiveLogWriter);
             }
-
-
-            // Export Products
-            string productExportFilePath = ExportProducts();
-            if(VerifyProductsExport(productExportFilePath))
+            else
             {
-                MessageBox.Show(MessageExportVerified("Product"));
-                // delete Project
+                allExportsSucceeded = false;
+                Log(MessageExportNotVerified("ProjectCriterion"), archiveLogWriter);
             }
 
-            // Export Criterions
+
+            // Export Products 
+            string productExportFilePath = ExportProducts();
+            if (VerifyProductsExport(productExportFilePath))
+            {
+                Log(MessageExportVerified("Product"), archiveLogWriter);
+            }
+            else
+            {
+                allExportsSucceeded = false;
+                Log(MessageExportNotVerified("Product"), archiveLogWriter);
+            }
+
+
+            // Export criterions
             string CriterionExportFilePath = ExportCriterion();
             if (VerifyCriterionsExport(CriterionExportFilePath))
             {
-                MessageBox.Show(MessageExportVerified("Criterion"));
-                // delete Project
+                Log(MessageExportVerified("Criterion"), archiveLogWriter);
             }
-            // Export Project
+            else
+            {
+                allExportsSucceeded = false;
+                Log(MessageExportNotVerified("Product"), archiveLogWriter);
+            }
+
+
+            // Export project
             string projectExportFilePath = ExportProjectInformation();
             if (VerifyProjectExport(projectExportFilePath))
             {
-                MessageBox.Show(MessageExportVerified("Project"));
-                // delete Project
+                Log(MessageExportVerified("Project"), archiveLogWriter);
+            }
+            else
+            {
+                allExportsSucceeded = false;
+                Log(MessageExportNotVerified("Project"), archiveLogWriter);
+            }
+
+
+            if (!allExportsSucceeded)
+            {
+                string exportErrorMessage = MessageWholeExportProcessFailed();
+                MessageBox.Show(exportErrorMessage);
+                Log(exportErrorMessage, archiveLogWriter);
+                archiveLogWriter.Close();
+            }
+            else
+            {
+                string exportSuccessMessage = MessageWholeExportProcessSucceeded();
+                MessageBox.Show(exportSuccessMessage);
+                Log(exportSuccessMessage, archiveLogWriter);
+
+                bool allDeletionsSucceeded = true;
+                    
+                // delete Data from db
+                if (DeleteFulFillmentData())
+                {
+                    Log(MessageDeletionVerified("Fulfillment"), archiveLogWriter);
+                }
+                else
+                {
+                    Log(MessageDeletionNotVerified("Fulfillment"), archiveLogWriter);
+                    allDeletionsSucceeded = false;
+                }
+
+                if (DeleteProjectProductData())
+                {
+                    Log(MessageDeletionVerified("ProjectProduct"), archiveLogWriter);
+                }
+                else
+                {
+                    Log(MessageDeletionNotVerified("ProjectProduct"), archiveLogWriter);
+                    allDeletionsSucceeded = false;
+                }
+
+                if (DeleteProjectCriterionData())
+                {
+                    Log(MessageDeletionVerified("ProjectCriterion"), archiveLogWriter);
+                }
+                else
+                {
+                    Log(MessageDeletionNotVerified("ProjectCriterion"), archiveLogWriter);
+                    allDeletionsSucceeded = false;
+                }
+
+                if (DeleteProductData(productExportFilePath))
+                {
+                    Log(MessageDeletionVerified("Product"), archiveLogWriter);
+                }
+                else
+                {
+                    Log(MessageDeletionNotVerified("Product"), archiveLogWriter);
+                    allDeletionsSucceeded = false;
+                }
+
+                if (DeleteCriterionData(CriterionExportFilePath))
+                {
+                    Log(MessageDeletionVerified("Criterion"), archiveLogWriter);
+                }
+                else
+                {
+                    Log(MessageDeletionNotVerified("Criterion"), archiveLogWriter);
+                    allDeletionsSucceeded = false;
+                }
+
+                if (DeleteProjectData())
+                {
+                    Log(MessageDeletionVerified("Project"), archiveLogWriter);
+                }
+                else
+                {
+                    Log(MessageDeletionNotVerified("Project"), archiveLogWriter);
+                    allDeletionsSucceeded = false;
+                }
+
+                // if everey deletion was successful, the zip Process will start
+                if (allDeletionsSucceeded)
+                {
+                    string deletionSuccess = MessageWholeDeletionProcessSucceeded();
+                    MessageBox.Show(deletionSuccess);
+                    Log(deletionSuccess, archiveLogWriter);
+                    archiveLogWriter.Close();
+                       
+                    // create zip archive
+                    CompressToZipArchive();
+
+                    string caption = "Löschen der Export Dateien";
+                    var result = MessageBox.Show(MessageZipProcessSuccessful(), caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    // User interaction --> User can decide if export files outside the zip archive should be deleted
+                    if (result == DialogResult.Yes)
+                    {
+                        foreach (string file in this.ExportFilePaths)
+                        {
+                            if (File.Exists(file))
+                            {
+                                File.Delete(file);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    string deletionError = MessageWholeDeletionProcessFailed();
+                    MessageBox.Show(deletionError);
+                    Log(deletionError, archiveLogWriter);
+                    archiveLogWriter.Close();
+                }
             }
         }
-
-       
-
 
         /// <summary>
         /// Exports the fulfillments.
@@ -204,6 +362,8 @@ namespace NWAT.DB
         {
             List<Fulfillment> allFulFillmentEntriesForThisProject = this.ExportFulfillmentController.GetAllFulfillmentsForOneProject(this.ProjectId);
             string fileUri = this.FileBaseName + "_Fulfillment.txt";
+
+            this.ExportFilePaths.Add(fileUri);
 
             using (StreamWriter sw = new StreamWriter(fileUri))
             {
@@ -221,7 +381,6 @@ namespace NWAT.DB
             }
             return fileUri;
         }
-
 
         /// <summary>
         /// Verifies the fulfillments export.
@@ -273,7 +432,6 @@ namespace NWAT.DB
                 return false;
         }
 
-
         /// <summary>
         /// Adds the exported fulfillment to list.
         /// </summary>
@@ -321,9 +479,6 @@ namespace NWAT.DB
             });
         }
 
-
-
-
         /// <summary>
         /// Exports the project products.
         /// </summary>
@@ -335,6 +490,7 @@ namespace NWAT.DB
         {
             List<ProjectProduct> allProjectProductsForThisProject = this.ExportProjectProductController.GetAllProjectProductsForOneProject(this.ProjectId);
             string fileUri = this.FileBaseName + "_ProjectProduct.txt";
+            this.ExportFilePaths.Add(fileUri);
 
             using (StreamWriter sw = new StreamWriter(fileUri))
             {
@@ -396,7 +552,6 @@ namespace NWAT.DB
                 return false;
         }
 
-
         /// <summary>
         /// Exports the project criterions.
         /// </summary>
@@ -408,6 +563,7 @@ namespace NWAT.DB
         {
             List<ProjectCriterion> allProjectCriterionsForThisProject = this.ExportProjectCriterionController.GetAllProjectCriterionsForOneProject(this.ProjectId);
             string fileUri = this.FileBaseName + "_ProjectCriterion.txt";
+            this.ExportFilePaths.Add(fileUri);
 
             using (StreamWriter sw = new StreamWriter(fileUri))
             {
@@ -482,7 +638,6 @@ namespace NWAT.DB
                 return false;
         }
 
-
         /// <summary>
         /// Adds the exported project criterion to list.
         /// </summary>
@@ -542,6 +697,7 @@ namespace NWAT.DB
             AddProjectSpecificProductsToProductList(ref exportProducts);
 
             string fileUri = this.FileBaseName + "_Product.txt";
+            this.ExportFilePaths.Add(fileUri);
 
             using (StreamWriter sw = new StreamWriter(fileUri))
             {
@@ -560,7 +716,6 @@ namespace NWAT.DB
             return fileUri;
         }
 
-
         /// <summary>
         /// Adds the project specific products to product list.
         /// </summary>
@@ -574,7 +729,6 @@ namespace NWAT.DB
                 productList.Add(projProd.Product);
             }
         }
-
 
         /// <summary>
         /// Verifies the products export.
@@ -626,7 +780,6 @@ namespace NWAT.DB
                 return false;
         }
 
-
         /// <summary>
         /// Adds the exported product to list.
         /// </summary>
@@ -655,7 +808,6 @@ namespace NWAT.DB
             });
         }
 
-
         /// <summary>
         /// Exports the criterion.
         /// </summary>
@@ -668,6 +820,7 @@ namespace NWAT.DB
             AddProjectSpecificCriterionsToCriterionList(ref exportCriterions);
 
             string fileUri = this.FileBaseName + "_Criterion.txt";
+            this.ExportFilePaths.Add(fileUri);
 
             using (StreamWriter sw = new StreamWriter(fileUri))
             {
@@ -699,7 +852,6 @@ namespace NWAT.DB
                 criterionList.Add(projCrit.Criterion);
             }
         }
-
 
         /// <summary>
         /// Verifies the criterions export.
@@ -772,8 +924,6 @@ namespace NWAT.DB
             });
         }
 
-
-
         /// <summary>
         /// Exports the project information.
         /// </summary>
@@ -789,6 +939,7 @@ namespace NWAT.DB
             string csvRow = String.Format(@"{1}{0}{2}{0}{3}", this._delimiter, proj.Project_Id.ToString(), proj.Name, proj.Description);
 
             string fileUri = this.FileBaseName + "_Project.txt";
+            this.ExportFilePaths.Add(fileUri);
 
             using (StreamWriter sw = new StreamWriter(fileUri))
             {
@@ -823,15 +974,205 @@ namespace NWAT.DB
             }
         }
 
-        // TODO VerifyExport
-        // hier muss die geschriebene Datei nochmal ausgelesen werden und überprüft werden, ob alle relevanten Daten in die Datei geschrieben wurden
-        private bool VerifyExport()
+
+        /// <summary>
+        /// Deletes the ful fillment data.
+        /// </summary>
+        /// Erstellt von Joshua Frey, am 13.01.2016
+        private bool DeleteFulFillmentData()
         {
-            return true;
+            this.ExportFulfillmentController.DeleteAllFulfillmentsForOneProject(this.ProjectId);
+
+            // check if deletion was successful
+            if (this.ExportFulfillmentController.GetAllFulfillmentsForOneProject(this.ProjectId).Count == 0)
+                return true;
+            else
+                return false;
         }
 
-        private void CompressToZipArchive()
+        /// <summary>
+        /// Deletes the project product data.
+        /// </summary>
+        /// Erstellt von Joshua Frey, am 13.01.2016
+        private bool DeleteProjectProductData()
         {
+            bool projectProducstDeletionSuccessful = true;
+            foreach (ProjectProduct projProd in this.ExportProjectProductController.GetAllProjectProductsForOneProject(this.ProjectId))
+            {
+                if (!this.ExportProjectProductController.DeleteProjectProductFromDb(projProd.Project_Id, projProd.Product_Id))
+                {
+                    projectProducstDeletionSuccessful = false;
+                }
+            }
+
+            // check if deletion was successful
+            if (projectProducstDeletionSuccessful)
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// Deletes the project criterion data.
+        /// </summary>
+        /// Erstellt von Joshua Frey, am 13.01.2016
+        private bool DeleteProjectCriterionData()
+        {
+            bool projectCriterionDeletionSuccessfull = true;
+            foreach (ProjectCriterion projCrit in this.ExportProjectCriterionController.GetAllProjectCriterionsForOneProject(this.ProjectId))
+            {
+                if (!this.ExportProjectCriterionController.DeleteProjectCriterionFromDb(projCrit.Project_Id, projCrit.Criterion_Id))
+                {
+                    projectCriterionDeletionSuccessfull = false;
+                }
+            }
+
+            // check if deletion was successful
+            if (projectCriterionDeletionSuccessfull)
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// Deletes the product data.
+        /// </summary>
+        /// <param name="productExportFilePath">The product export file path.</param>
+        /// Erstellt von Joshua Frey, am 13.01.2016
+        private bool DeleteProductData(string productExportFilePath)
+        {
+            List<Product> exportedProducts = new List<Product>();
+            using (StreamReader sr = new StreamReader(productExportFilePath))
+            {
+                string line = "";
+                while ((line = sr.ReadLine()) != null)
+                {
+                    AddExportedProductToList(ref exportedProducts, line);
+                }
+            }
+
+            List<int> productsToDeleteIds = new List<int>();
+
+            foreach (Product prod in exportedProducts)
+            {
+                // a list of all project products mapping which use this product in outher projects as this
+                List<ProjectProduct> projectProductsWhichUseThisProdInOtherProjects =
+                    this.ExportProductController.GetProductById(prod.Product_Id).
+                    ProjectProduct.Where(projProd => projProd.Project_Id != this.ProjectId).ToList();
+
+                // if product is not used in any other project --> put it into the deletionList.
+                if (projectProductsWhichUseThisProdInOtherProjects.Count == 0)
+                {
+                    productsToDeleteIds.Add(prod.Product_Id);
+                }
+            }
+
+            // delete all products which are not allocated to other projects
+
+            bool productDeletionSuccessfull = true;
+            foreach (int prodToDeleteId in productsToDeleteIds)
+            {
+                if (!this.ExportProductController.DeleteProductFromDb(prodToDeleteId))
+                {
+                    productDeletionSuccessfull = false;
+                }
+            }
+            if (productDeletionSuccessfull)
+                return true;
+            else
+                return false;
+        }
+
+        /// Deletes the criterion data.
+        /// </summary>
+        /// <param name="criterionExportFilePath">The product export file path.</param>
+        /// Erstellt von Joshua Frey, am 13.01.2016
+        private bool DeleteCriterionData(string criterionExportFilePath)
+        {
+            List<Criterion> exportedCriterions = new List<Criterion>();
+            using (StreamReader sr = new StreamReader(criterionExportFilePath))
+            {
+                string line = "";
+                while ((line = sr.ReadLine()) != null)
+                {
+                    AddExportedCriterionstToList(ref exportedCriterions, line);
+                }
+            }
+
+            List<int> criterionsToDeleteIds = new List<int>();
+
+            foreach (Criterion crit in exportedCriterions)
+            {
+                // a list of all project criterions mapping which use this criterion in outher projects as this
+                List<ProjectCriterion> projectCriterionsWhichUseThisCriterionInOtherProjects =
+                    this.ExportCriterionController.GetCriterionById(crit.Criterion_Id).
+                    ProjectCriterion.Where(projCrit => projCrit.Project_Id != this.ProjectId).ToList();
+
+                // if criterion is not used in any other project --> put it into the deletionList.
+                if (projectCriterionsWhichUseThisCriterionInOtherProjects.Count == 0)
+                {
+                    criterionsToDeleteIds.Add(crit.Criterion_Id);
+                }
+            }
+
+            // delete all criterions which are not allocated to other projects
+
+            bool criterionDeletionSuccessfull = true;
+            foreach (int critToDeleteId in criterionsToDeleteIds)
+            {
+                if (!this.ExportCriterionController.DeleteCriterionFromDb(critToDeleteId))
+                {
+                    criterionDeletionSuccessfull = false;
+                }
+            }
+            if (criterionDeletionSuccessfull)
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// Deletes the project data.
+        /// </summary>
+        /// Erstellt von Joshua Frey, am 13.01.2016
+        private bool DeleteProjectData()
+        {
+            if (this.ExportProjectController.DeleteProjectFromDb(this.ProjectId))
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// Compresses to zip archive.
+        /// </summary>
+        /// Erstellt von Joshua Frey, am 13.01.2016
+        /// <exception cref="NWATException"></exception>
+        private bool CompressToZipArchive()
+        {
+            string zipFilePath = this.FileBaseName + ".zip";
+
+            using (FileStream zipToOpen = new FileStream(zipFilePath, FileMode.OpenOrCreate))
+            {
+                using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Create))
+                {
+
+                    foreach (string exportFilePath in this.ExportFilePaths)
+                    {
+                        if (File.Exists(exportFilePath))
+                        {
+                            string fileName = Path.GetFileName(exportFilePath);
+                            archive.CreateEntryFromFile(exportFilePath, fileName, CompressionLevel.Optimal);
+                        }
+                        else
+                        {
+                            MessageBox.Show(MessageZipProblemFileMissing(exportFilePath));
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
         }
 
         /// <summary>
@@ -854,14 +1195,79 @@ namespace NWAT.DB
 
             return String.Format(@"{1}{0}{2}{0}{3}_{4}{0}{5}{0}{6}", timeStampDelimiter, year, month, day, hour, minute, second);
         }
-        
-     
+
+        /// <summary>
+        /// Logs the specified log message.
+        /// </summary>
+        /// <param name="logMessage">The log message.</param>
+        /// <param name="archiveLogWriter">The archive log writer.</param>
+        /// Erstellt von Joshua Frey, am 13.01.2016
+        private void Log(string logMessage, TextWriter archiveLogWriter)
+        {
+            archiveLogWriter.Write("\r\nLog Eintrag : ");
+            archiveLogWriter.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(),
+                DateTime.Now.ToLongDateString());
+            archiveLogWriter.WriteLine(":");
+            archiveLogWriter.WriteLine("{0}", logMessage);
+            archiveLogWriter.WriteLine ("-------------------------------");
+        }
+
         /*
          * Messages
          */
         private string MessageExportVerified(string tableName)
         {
-            return String.Format("Der Export der Daten aus der Tabelle {0} ist verifiziert. \nLöschvorgang der Daten wird durchgeführt.", tableName);
+            return String.Format("Der Export der Daten aus der Tabelle {0} ist verifiziert.", tableName);
+        }
+
+        private string MessageExportNotVerified(string tableName)
+        {
+            return String.Format("Beim Export der Daten aus der Tabelle {0} ein Fehler aufgetreten. Es konnten nicht alle Daten exportiert werden.", tableName);
+        }
+
+        private string MessageWholeExportProcessFailed()
+        {
+            return "Beim Export sind Fehler aufgetreten. Aus diesem Grund wird nicht gelöscht.\n" +
+                   "Bitte überprüfen Sie die log Datei.";
+        }
+
+        private string MessageWholeExportProcessSucceeded()
+        {
+            return "Alle Exportvorgänge wurden erfolgreich abgeschlossen. \nLöschvorgang wird gestartet";
+        }
+
+        private string MessageWholeDeletionProcessSucceeded()
+        {
+            return "Alle Löschvorgänge wurden erfolgreich abgeschlossen. Das Archiv wird gezippt.";
+        }
+
+        private string MessageWholeDeletionProcessFailed()
+        {
+            return "Beim Löschen sind Fehler aufgetreten. Aus diesem Grund wird nicht gezippt.\n" +
+                   "Bitte überprüfen Sie die log Datei.";
+        }
+
+        private string MessageDeletionVerified(string tableName)
+        {
+            return String.Format("Das Löschen der Daten aus der Tabelle {0} ist verifiziert. \n"+
+                "Es sind nun keine diesem Projekt spezifische Daten in der Tabelle {0} enthalten.", tableName);
+        }
+
+        private string MessageDeletionNotVerified(string tableName)
+        {
+            return String.Format("Beim Löschen der Daten aus der Tabelle {0} ist ein Fehler aufgetreten. \n"+
+                "Es konnten nicht alle relevanten Daten gelöscht werden, die gelöscht werden sollten.", tableName);
+        }
+
+        private string MessageZipProblemFileMissing(string filePath)
+        {
+            return String.Format("Beim Komprimieren ist ein Fehler aufgetreten. Die erstellte Exportdatei kann nicht gefunden werden: {0}", filePath);
+        }
+
+        private string MessageZipProcessSuccessful()
+        {
+            return "Das Komprimieren der exportierten Daten in ein Ziparchiv war erfolgreich.\n" +
+                "Möchten Sie die Exportdateien außerhalb des Ziparchivs löschen?";
         }
     }
 }

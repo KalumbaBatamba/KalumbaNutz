@@ -79,6 +79,26 @@ namespace NWAT.DB
             }
             return deallocationSuccessful && allocationSuccessful;
         }
+
+        /// <summary>
+        /// Deletes the project product from database.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="productId">The product identifier.</param>
+        /// <returns>
+        /// boolean if deletion was successful
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 12.01.2016
+        public bool DeleteProjectProductFromDb(int projectId, int productId)
+        {
+            ProjectProduct projProdToDelete = base.DataContext.ProjectProduct.SingleOrDefault(projProd => projProd.Project_Id == projectId &&
+                                                                                                          projProd.Product_Id == productId);
+            base.DataContext.ProjectProduct.DeleteOnSubmit(projProdToDelete);
+            base.DataContext.SubmitChanges();
+
+            return GetProjectProductByIds(projectId, productId) == null;
+        }
+
         
         /*
          * Private section
@@ -125,7 +145,7 @@ namespace NWAT.DB
         /// boolean, if allocation to ProjectProduct and Fulfillment table was successful
         /// </returns>
         /// Erstellt von Joshua Frey, am 12.01.2016
-        /// <exception cref="DatabaseException"></exception>
+        /// <exception cref="NWATException"></exception>
         private bool AllocateProduct(int projectId, ProjectProduct projProd)
         {
             bool insertionProjectProductSuccessful = true;
@@ -153,7 +173,7 @@ namespace NWAT.DB
                         if (!fulfillCont.InsertFullfillmentInDb(projectId, productId, criterionId))
                         {
                             insertionFulfillmentSuccessful = false;
-                            throw (new DatabaseException(CommonMethods.MessageInsertionToFulFillmentTableFailed(productId, criterionId)));
+                            throw (new NWATException(CommonMethods.MessageInsertionToFulFillmentTableFailed(productId, criterionId)));
                         }
                     }
                 }
@@ -169,7 +189,7 @@ namespace NWAT.DB
         /// true if insertion was successful
         /// </returns>
         /// Erstellt von Joshua Frey, am 12.01.2016
-        /// <exception cref="DatabaseException">
+        /// <exception cref="NWATException">
         /// </exception>
         private bool InsertProjectProductIntoDb(ProjectProduct newProjectProduct)
         {
@@ -188,35 +208,16 @@ namespace NWAT.DB
                     ProjectProduct alreadyExistingProjectProduct = GetProjectProductByIds(newProjectId, newProductId);
                     string existingProjectName = alreadyExistingProjectProduct.Project.Name;
                     string existingProductName = alreadyExistingProjectProduct.Product.Name;
-                    throw new DatabaseException(MessageProductIsAlreadyAllocatedToProject(existingProjectName, existingProductName));
+                    throw new NWATException(MessageProductIsAlreadyAllocatedToProject(existingProjectName, existingProductName));
                 }
                 return CheckIfSameProjectProduct(newProjectProduct, GetProjectProductByIds(newProjectId, newProductId));
             }
             else
             {
-                throw new DatabaseException(MessageProjectProductCouldNotBeSavedEmptyObject());
+                throw new NWATException(MessageProjectProductCouldNotBeSavedEmptyObject());
             }
         }
 
-
-        /// <summary>
-        /// Deletes the project product from database.
-        /// </summary>
-        /// <param name="projectId">The project identifier.</param>
-        /// <param name="productId">The product identifier.</param>
-        /// <returns>
-        /// boolean if deletion was successful
-        /// </returns>
-        /// Erstellt von Joshua Frey, am 12.01.2016
-        private bool DeleteProjectProductFromDb(int projectId, int productId)
-        {
-            ProjectProduct projProdToDelete = base.DataContext.ProjectProduct.SingleOrDefault(projProd => projProd.Project_Id == projectId &&
-                                                                                                          projProd.Product_Id == productId);
-            base.DataContext.ProjectProduct.DeleteOnSubmit(projProdToDelete);
-            base.DataContext.SubmitChanges();
-
-            return GetProjectProductByIds(projectId, productId) == null;
-        }
 
 
         /// <summary>

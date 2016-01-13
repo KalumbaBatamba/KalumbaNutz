@@ -52,7 +52,7 @@ namespace NWAT.DB
         /// <param name="newProject">The new project.</param>
         /// <returns></returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        /// <exception cref="DatabaseException">
+        /// <exception cref="NWATException">
         /// Das Projekt mit dem Namen -Projektname- existiert bereits in einem anderen Datensatz in der Datenbank.
         /// or
         /// Das Projekt konnte nicht in der Datenbank angelegt werden. 
@@ -87,12 +87,12 @@ namespace NWAT.DB
                 }
                 else
                 {
-                    throw (new DatabaseException(MessageProjectAlreadyExists(newProjectName)));
+                    throw (new NWATException(MessageProjectAlreadyExists(newProjectName)));
                 }
             }
             else
             {
-                throw (new DatabaseException(MessageProjectCouldNotBeSavedEmptyObject()));
+                throw (new NWATException(MessageProjectCouldNotBeSavedEmptyObject()));
             }
 
             Project newProjectFromDb = (from proj in base.DataContext.Project
@@ -109,7 +109,7 @@ namespace NWAT.DB
         /// <param name="alteredProject">The altered project.</param>
         /// <returns></returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        /// <exception cref="DatabaseException">
+        /// <exception cref="NWATException">
         /// Das Projekt mit dem Namen -Projektname- existiert bereits in einem anderen Datensatz in der Datenbank.
         /// or
         /// Das Projekt konnte nicht in der Datenbank angelegt werden. 
@@ -120,7 +120,7 @@ namespace NWAT.DB
         public bool UpdateProjectInDb(Project alteredProject)
         {
             if (!CheckIfProjectHasAnId(alteredProject))
-                throw (new DatabaseException(MessageProjectHasNoId()));
+                throw (new NWATException(MessageProjectHasNoId()));
 
             int projectId = alteredProject.Project_Id;
             Project projToUpdateFromDb = base.DataContext.Project.SingleOrDefault(proj => proj.Project_Id == projectId);
@@ -135,12 +135,12 @@ namespace NWAT.DB
                 }
                 else
                 {
-                    throw (new DatabaseException(MessageProjectAlreadyExists(newProjectName)));
+                    throw (new NWATException(MessageProjectAlreadyExists(newProjectName)));
                 }
             }
             else
             {
-                throw (new DatabaseException(MessageProjectDoesNotExist(projectId) + "\n" +
+                throw (new NWATException(MessageProjectDoesNotExist(projectId) + "\n" +
                                                 MessageProjectCouldNotBeSavedEmptyObject()));
             }
             base.DataContext.SubmitChanges();
@@ -157,7 +157,7 @@ namespace NWAT.DB
         /// bool if deletion was successful
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        /// <exception cref="DatabaseException">
+        /// <exception cref="NWATException">
         /// "Das Projekt mit der Id X existiert nicht in der Datenbank."
         /// </exception>
         public bool DeleteProjectFromDb(int projectId)
@@ -172,7 +172,7 @@ namespace NWAT.DB
             }
             else
             {
-                throw (new DatabaseException(MessageProjectDoesNotExist(projectId)));
+                throw (new NWATException(MessageProjectDoesNotExist(projectId)));
             }
 
             return GetProjectById(projectId) == null;

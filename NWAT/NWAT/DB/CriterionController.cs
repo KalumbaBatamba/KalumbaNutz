@@ -50,7 +50,7 @@ namespace NWAT.DB
         /// bool if insert of new criterion was successfull.
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        /// <exception cref="DatabaseException">
+        /// <exception cref="NWATException">
         ///  Das Kriterium mit dem Namen -Kriteriumname- existiert bereits in einem anderen Datensatz in der Datenbank.
         /// or
         /// Das Kriterium konnte nicht in der Datenbank angelegt werden. 
@@ -89,12 +89,12 @@ namespace NWAT.DB
                 }
                 else
                 {
-                    throw (new DatabaseException((MessageCriterionAlreadyExists(newCriterionName))));
+                    throw (new NWATException((MessageCriterionAlreadyExists(newCriterionName))));
                 }
             }
             else
             {
-                throw (new DatabaseException(MessageCriterionCouldNotBeSavedEmptyObject()));        
+                throw (new NWATException(MessageCriterionCouldNotBeSavedEmptyObject()));        
             }
 
             Criterion newCriterionFromDb = (from crit in base.DataContext.Criterion
@@ -112,7 +112,7 @@ namespace NWAT.DB
         /// bool if update of criterion was successful
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        /// <exception cref="DatabaseException">
+        /// <exception cref="NWATException">
         /// Das Kriterium mit dem Namen -Kriteriumname- existiert bereits in einem anderen Datensatz in der Datenbank.
         /// or
         /// Das Kriterium konnte nicht in der Datenbank gespeichert werden. 
@@ -123,7 +123,7 @@ namespace NWAT.DB
         public bool UpdateCriterionInDb(Criterion alteredCriterion)
         {
             if (!CheckIfCriterionHasAnId(alteredCriterion))
-                throw (new DatabaseException(MessageCriterionHasNoId()));
+                throw (new NWATException(MessageCriterionHasNoId()));
 
             int criterionId = alteredCriterion.Criterion_Id;
             Criterion critToUpdateFromDb = base.DataContext.Criterion.SingleOrDefault(crit=>crit.Criterion_Id==criterionId);
@@ -138,12 +138,12 @@ namespace NWAT.DB
                 }
                 else
                 {
-                    throw (new DatabaseException(MessageCriterionAlreadyExists(newCriterionName)));
+                    throw (new NWATException(MessageCriterionAlreadyExists(newCriterionName)));
                 }
             }
             else
             {
-                throw (new DatabaseException(MessageCriterionDoesNotExist(criterionId) + "\n" + 
+                throw (new NWATException(MessageCriterionDoesNotExist(criterionId) + "\n" + 
                                                 MessageCriterionCouldNotBeSavedEmptyObject()));  
             }
             base.DataContext.SubmitChanges();
@@ -160,7 +160,7 @@ namespace NWAT.DB
         /// bool if deletion was successfull<
         /// /returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        /// <exception cref="DatabaseException">
+        /// <exception cref="NWATException">
         /// "Das Kriterium mit der Id X existiert nicht in der Datenbank."
         /// or
         /// SqlException if you try to delete a criterion, which is a parent criterion in project criterion table
@@ -177,7 +177,7 @@ namespace NWAT.DB
             }
             else
             {
-                throw(new DatabaseException(MessageCriterionDoesNotExist(criterionId)));
+                throw(new NWATException(MessageCriterionDoesNotExist(criterionId)));
             }
 
             return GetCriterionById(criterionId) == null;

@@ -67,7 +67,7 @@ namespace NWAT.DB
         /// <param name="allProjectProducts">All project products.</param>
         /// <param name="allProjectCriterions">All project criterions.</param>
         /// Erstellt von Joshua Frey, am 28.12.2015
-        /// <exception cref="DatabaseException">
+        /// <exception cref="NWATException">
         /// </exception>
         public void FillFulfillmentTableInitially(int projectId,
                                                   List<ProjectProduct> allProjectProducts,
@@ -79,11 +79,11 @@ namespace NWAT.DB
 
                 if (allProjectCriterions.Count == 0)
                 {
-                    throw new DatabaseException(MessageGivenParamListIsEmpty("Projektkriterien Liste"));
+                    throw new NWATException(MessageGivenParamListIsEmpty("Projektkriterien Liste"));
                 }
                 else if(allProjectProducts.Count == 0)
                 {
-                    throw new DatabaseException(MessageGivenParamListIsEmpty("Projektprodukte Liste"));
+                    throw new NWATException(MessageGivenParamListIsEmpty("Projektprodukte Liste"));
                 }
                 else
                 {
@@ -103,7 +103,7 @@ namespace NWAT.DB
         /// <param name="productId">The product identifier.</param>
         /// <param name="criterionId">The criterion identifier.</param>
         /// Erstellt von Joshua Frey, am 04.01.2016
-        /// <exception cref="DatabaseException"></exception>
+        /// <exception cref="NWATException"></exception>
         public bool InsertFullfillmentInDb(int projectId, int productId, int criterionId)
         {
             Fulfillment newFulfillmentEntry = new Fulfillment
@@ -123,7 +123,7 @@ namespace NWAT.DB
             }
             else
             {
-                throw new DatabaseException(MessageFulfillmentEntryAlreadyExists(projectId, productId, criterionId));
+                throw new NWATException(MessageFulfillmentEntryAlreadyExists(projectId, productId, criterionId));
             }
         }
 
@@ -133,7 +133,7 @@ namespace NWAT.DB
         /// <param name="alteredFulfillment">The altered fulfillment.</param>
         /// <returns></returns>
         /// Erstellt von Joshua Frey, am 29.12.2015
-        /// <exception cref="DatabaseException"></exception>
+        /// <exception cref="NWATException"></exception>
         public bool UpdateFulfillmentEntry(Fulfillment alteredFulfillment)
         {
             int projectId = alteredFulfillment.Project_Id;
@@ -149,7 +149,7 @@ namespace NWAT.DB
             }
             else
             {
-                throw new DatabaseException(MessageFulfillmentCouldNotBeSaved());
+                throw new NWATException(MessageFulfillmentCouldNotBeSaved());
             }
 
             Fulfillment newFulfillmentInDb = GetFulfillmentByIds(projectId, productId, criterionId);
