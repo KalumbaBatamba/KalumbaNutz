@@ -11,7 +11,7 @@ namespace NWAT.DB
 {
     class ProjectExporter
     {
-        // the pipe symbol is used to seperate the columns in the csv file.
+        // the pipe symbol is used to seperate the columns in the csv files.
         private readonly string _delimiter = "|";
 
         private int _projectId;
@@ -149,7 +149,7 @@ namespace NWAT.DB
         /// Erstellt von Joshua Frey, am 13.01.2016
         public void ArchiveWholeProject()
         {
-            string logFilePath = this.FileBaseName + "_log.txt";
+            string logFilePath = this.FileBaseName + ".log";
             this.ExportFilePaths.Add(logFilePath);
 
             // Create Logfile and Logfile Writer
