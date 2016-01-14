@@ -45,73 +45,44 @@ namespace NWAT.Printer
                 PdfPTable table = new PdfPTable(2);
 
                 //Überschrift setzen
-
-                
-                Paragraph heading = new Paragraph("Kriterienstruktur");
+               
+                Paragraph heading = new Paragraph("Kriterienstruktur                                                                                                                                  *");
 
                 //Abstand nach Übersicht bis zur Tabelle
                 heading.SpacingAfter = 18f;
-
-
-
-                //ProjectCriterionController cont = new ProjectCriterionController();
-                //ProjectCriterion crit = cont.GetProjectCriterionByIds(2, 2);
-
-                //int layer = crit.Layer_Depth;
-                //double intendFactor = 10;
-                //double intend = layer * intendFactor;
-
-                //heading.IndentationLeft = (Convert.ToSingle(intend));
-
                 doc.Add(heading);
-
-
-
-
-                //Breite der einzelnen Zellen
-
-                table.TotalWidth = 316f;
-
-                //Lock von Table Breite
-
-                table.LockedWidth = true;
-
-
-
-                //Proportionen der Tabelle
-
-                float[] widths = new float[] { 1f, 2f };
-
-                table.SetWidths(widths);
-
-                table.HorizontalAlignment = 0;
-
-
-
-                //Lass Platz zwischen Tabelleneinträgen
-
-                table.SpacingBefore = 20f;
-
-                table.SpacingAfter = 30f;
-
-                //Überschriften für die Tabellenspalten
-
-                table.AddCell("Projekt ID");
-
-                table.AddCell("Kriterium");
-
-               
-
-                //Schleife um Daten aus Datenbank zu holen
+                         
+               //Schleife um Daten aus Datenbank zu holen
 
                 foreach (ProjectCriterion proj in projCrits)
                 {
+                    int layer = proj.Layer_Depth;
 
-                    table.AddCell(proj.Project_Id.ToString());
-                    table.AddCell(proj.Criterion.Description.ToString());
+                    if (layer == 1)
+                    {
 
+                        Paragraph intend = new Paragraph(proj.Criterion.Description.ToString());
+
+                        doc.Add(intend);
+                    }
+
+                    if (layer == 2)
+                    {
+                        Paragraph intend = new Paragraph(proj.Criterion.Description.ToString());
+                        intend.IndentationLeft = 25f;
+                        doc.Add(intend);
+                    }
+
+                    if (layer == 3)
+                    {
+                        Paragraph intend = new Paragraph(proj.Criterion.Description.ToString());
+                        intend.IndentationLeft = 50f;
+                        doc.Add(intend);
+                    }
+               
+                    
                 }
-                doc.Add(table);
+
                 doc.Close();
 
                 MessageBox.Show("PDF erfolgreich angelegt");
