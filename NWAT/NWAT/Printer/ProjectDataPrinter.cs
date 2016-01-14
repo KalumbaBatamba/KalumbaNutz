@@ -52,6 +52,17 @@ namespace NWAT.Printer
                 //Abstand nach Übersicht bis zur Tabelle
                 heading.SpacingAfter = 18f;
 
+                
+
+                //ProjectCriterionController cont = new ProjectCriterionController();
+                //ProjectCriterion crit = cont.GetProjectCriterionByIds(2, 2);
+
+                //int layer = crit.Layer_Depth;
+                //double intendFactor = 10;
+                //double intend = layer * intendFactor;
+
+                //heading.IndentationLeft = (Convert.ToSingle(intend));
+
                 doc.Add(heading);
 
 
