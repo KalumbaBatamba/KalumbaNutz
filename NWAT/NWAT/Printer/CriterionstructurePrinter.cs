@@ -38,13 +38,12 @@ namespace NWAT.Printer
             if (sfd.ShowDialog() == DialogResult.OK)
             {
 
+                //Dokument Erstellen, Definieren des Formats
                 Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
                 PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(sfd.FileName, FileMode.Create));
                 doc.Open();
 
-                PdfPTable table = new PdfPTable(2);
-
-                //Überschrift setzen
+               //Überschrift setzen
                
                 Paragraph heading = new Paragraph("Kriterienstruktur                                                                                                                                  *");
 
@@ -57,30 +56,14 @@ namespace NWAT.Printer
                 foreach (ProjectCriterion proj in projCrits)
                 {
                     int layer = proj.Layer_Depth;
+                    double factor = 25;
+                    double intend = layer * factor;
 
-                    if (layer == 1)
-                    {
-
-                        Paragraph intend = new Paragraph(proj.Criterion.Description.ToString());
-
-                        doc.Add(intend);
-                    }
-
-                    if (layer == 2)
-                    {
-                        Paragraph intend = new Paragraph(proj.Criterion.Description.ToString());
-                        intend.IndentationLeft = 25f;
-                        doc.Add(intend);
-                    }
-
-                    if (layer == 3)
-                    {
-                        Paragraph intend = new Paragraph(proj.Criterion.Description.ToString());
-                        intend.IndentationLeft = 50f;
-                        doc.Add(intend);
-                    }
-               
-                    
+                  
+                    Paragraph critstruc = new Paragraph(proj.Criterion.Description.ToString());
+                    critstruc.IndentationLeft = (Convert.ToSingle(intend));
+                    doc.Add(critstruc);
+          
                 }
 
                 doc.Close();
