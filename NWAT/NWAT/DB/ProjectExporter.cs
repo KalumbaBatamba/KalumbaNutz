@@ -119,9 +119,9 @@ namespace NWAT.DB
         /// Initializes a new instance of the <see cref="ProjectExporter"/> class.
         /// </summary>
         /// <param name="projectIdToExport">The project identifier to export.</param>
-        /// <param name="exportFilePath">The export file path.</param>
+        /// <param name="exportDirectoryPath">The export file path.</param>
         /// Erstellt von Joshua Frey, am 13.01.2016
-        public ProjectExporter(int projectIdToExport, string exportFilePath)
+        public ProjectExporter(int projectIdToExport, string exportDirectoryPath)
         {
             // initialize db controller
             ExportProjectController = new ProjectController();
@@ -137,7 +137,7 @@ namespace NWAT.DB
             ProjectName = ExportProjectController.GetProjectById(projectIdToExport).Name;
             Timestamp = CreateTimestampForFile();
 
-            ExportFilePath = ExportFilePath = exportFilePath; ;
+            ExportFilePath = exportDirectoryPath;
 
             FileBaseName = String.Format(@"{0}\{1}_Project_{2}", ExportFilePath, Timestamp, ProjectName);
         }
@@ -324,7 +324,18 @@ namespace NWAT.DB
                     archiveLogWriter.Close();
                        
                     // create zip archive
-                    CompressToZipArchive();
+                    using (ArchiveZipper archZipper = new ArchiveZipper())
+                    {
+                        try
+                        {
+                            string zipArchivePath = this.FileBaseName + ".zip";
+                            archZipper.CompressFilesToZipArchive(zipArchivePath, this.ExportFilePaths);
+                        }
+                        catch (NWATException zipperError)
+                        {
+                            throw zipperError;
+                        }
+                    }
 
                     string caption = "Löschen der Export Dateien";
                     var result = MessageBox.Show(MessageZipProcessSuccessful(), caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -1144,38 +1155,6 @@ namespace NWAT.DB
         }
 
         /// <summary>
-        /// Compresses to zip archive.
-        /// </summary>
-        /// Erstellt von Joshua Frey, am 13.01.2016
-        /// <exception cref="NWATException"></exception>
-        private bool CompressToZipArchive()
-        {
-            string zipFilePath = this.FileBaseName + ".zip";
-
-            using (FileStream zipToOpen = new FileStream(zipFilePath, FileMode.OpenOrCreate))
-            {
-                using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Create))
-                {
-
-                    foreach (string exportFilePath in this.ExportFilePaths)
-                    {
-                        if (File.Exists(exportFilePath))
-                        {
-                            string fileName = Path.GetFileName(exportFilePath);
-                            archive.CreateEntryFromFile(exportFilePath, fileName, CompressionLevel.Optimal);
-                        }
-                        else
-                        {
-                            MessageBox.Show(MessageZipProblemFileMissing(exportFilePath));
-                            return false;
-                        }
-                    }
-                }
-            }
-            return true;
-        }
-
-        /// <summary>
         /// Creates the timestamp for file.
         /// </summary>
         /// <returns>
@@ -1257,11 +1236,6 @@ namespace NWAT.DB
         {
             return String.Format("Beim Löschen der Daten aus der Tabelle {0} ist ein Fehler aufgetreten. \n"+
                 "Es konnten nicht alle relevanten Daten gelöscht werden, die gelöscht werden sollten.", tableName);
-        }
-
-        private string MessageZipProblemFileMissing(string filePath)
-        {
-            return String.Format("Beim Komprimieren ist ein Fehler aufgetreten. Die erstellte Exportdatei kann nicht gefunden werden: {0}", filePath);
         }
 
         private string MessageZipProcessSuccessful()
