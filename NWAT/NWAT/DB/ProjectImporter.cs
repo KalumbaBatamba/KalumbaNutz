@@ -4,8 +4,6 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NWAT.DB
@@ -170,44 +168,16 @@ namespace NWAT.DB
                 return;
             }
 
-            extractArchiveDataToTempDir();
+            // extract archive data to temporary dir.
+            using (ArchiveZipper zipper = new ArchiveZipper())
+            {
+                string tempExtractDir = this.TemporaryExtractionDirectory;
+                List<string> extracedFiles = zipper.extractArchiveDataToTempDir(tempExtractDir, this.ZipArchiveFilePath);
+                setImportFilePaths(extracedFiles);
+            }
 
             importProjectData();
 
-        }
-
-        /// <summary>
-        /// Extracts the archive data to temporary dir.
-        /// </summary>
-        /// <returns></returns>
-        /// Erstellt von Joshua Frey, am 13.01.2016
-        private void extractArchiveDataToTempDir()
-        {
-            string tempExtractDir = this.TemporaryExtractionDirectory;
-            
-            if(Directory.Exists(tempExtractDir))
-            {
-                Directory.Delete(tempExtractDir, true);
-                // sleep is needed. If tempExtractDir is open in file explorer
-                // it needs more time to delete tempExtractDir and handle the user interruption from gui
-                // closing window so the create statement will not actually create a tempExtractDir
-                Thread.Sleep(20);
-            }
-            Directory.CreateDirectory(tempExtractDir);
-
-            using (ZipArchive archive = ZipFile.OpenRead(this.ZipArchiveFilePath))
-            {
-                foreach (ZipArchiveEntry entry in archive.Entries)
-                {
-                    if (entry.FullName.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
-                    {
-                        
-                        string extractedFilePath = Path.Combine(tempExtractDir, entry.FullName);
-                        setImportFilePaths(extractedFilePath);
-                        entry.ExtractToFile(extractedFilePath);
-                    }
-                }
-            }
         }
 
 
@@ -215,38 +185,44 @@ namespace NWAT.DB
         /// Sets the import file paths.
         /// </summary>
         /// Erstellt von Joshua Frey, am 14.01.2016
-        private void setImportFilePaths(string extractedFilePath)
+        private void setImportFilePaths(List<string> extractedFilePaths)
         {
-            if (extractedFilePath.EndsWith("_Fulfillment.txt", StringComparison.OrdinalIgnoreCase))
+            foreach (string filePath in extractedFilePaths)
             {
-                this.FulfillmenImportFilePath = extractedFilePath;
-            }
-            else if (extractedFilePath.EndsWith("_ProjectProduct.txt", StringComparison.OrdinalIgnoreCase))
-            {
-                this.ProjectProductImportFilePath = extractedFilePath;
-            }
-            else if (extractedFilePath.EndsWith("_ProjectCriterion.txt", StringComparison.OrdinalIgnoreCase))
-            {
-                this.ProjectCriterionImportFilePath = extractedFilePath;
-            }
-            else if (extractedFilePath.EndsWith("_Criterion.txt", StringComparison.OrdinalIgnoreCase))
-            {
-                this.CriterionImportFilePath = extractedFilePath;
-            }
-            else if (extractedFilePath.EndsWith("_Product.txt", StringComparison.OrdinalIgnoreCase))
-            {
-                this.ProductImportFilePath = extractedFilePath;
-            }
-            else if (extractedFilePath.EndsWith("_Project.txt", StringComparison.OrdinalIgnoreCase))
-            {
-                this.ProjectImportFilePath = extractedFilePath;
+
+                if (filePath.EndsWith("_Fulfillment.txt", StringComparison.OrdinalIgnoreCase))
+                {
+                    this.FulfillmenImportFilePath = filePath;
+                }
+                else if (filePath.EndsWith("_ProjectProduct.txt", StringComparison.OrdinalIgnoreCase))
+                {
+                    this.ProjectProductImportFilePath = filePath;
+                }
+                else if (filePath.EndsWith("_ProjectCriterion.txt", StringComparison.OrdinalIgnoreCase))
+                {
+                    this.ProjectCriterionImportFilePath = filePath;
+                }
+                else if (filePath.EndsWith("_Criterion.txt", StringComparison.OrdinalIgnoreCase))
+                {
+                    this.CriterionImportFilePath = filePath;
+                }
+                else if (filePath.EndsWith("_Product.txt", StringComparison.OrdinalIgnoreCase))
+                {
+                    this.ProductImportFilePath = filePath;
+                }
+                else if (filePath.EndsWith("_Project.txt", StringComparison.OrdinalIgnoreCase))
+                {
+                    this.ProjectImportFilePath = filePath;
+                }
             }
         }
+
 
         /// <summary>
         /// Imports the project data.
         /// </summary>
-        /// Erstellt von Joshua Frey, am 13.01.2016
+        /// Erstellt von Joshua Frey, am 15.01.2016
+        /// <exception cref="NWAT.DB.NWATException"></exception>
         private void importProjectData()
         {
             using (StreamReader sr = new StreamReader(this.ProjectImportFilePath))
@@ -267,10 +243,17 @@ namespace NWAT.DB
                             importProj.Name += "_imported";
                             MessageBox.Show("abgeänderter Name");
                         }
+                        
+                        bool importSuccessful = this.ImportProjectController.InsertProjectIntoDb(importProj, importProj.Project_Id);
+                        if (!importSuccessful)
+                        {
+                            string dataSet = String.Format("Project_Id = {0}\n Name = {1}\n Description = {3}",
+                                                            importProj.Project_Id,
+                                                            importProj.Name, 
+                                                            importProj.Description);
 
-                        this.ImportProjectController.InsertProjectIntoDb(importProj, importProj.Project_Id);
-
-
+                            throw new NWATException(MessageImportFailed("Project", dataSet));
+                        }
                     }
                     else 
                         MessageBox.Show("ID gibts schon");
@@ -299,6 +282,15 @@ namespace NWAT.DB
             return importProject;
         }
 
+        /// <summary>
+        /// Imports the criterion data.
+        /// </summary>
+        /// Erstellt von Joshua Frey, am 15.01.2016
+        private void importCriterionData()
+        {
+ 
+        }
+
         
         /*
          * Messages
@@ -308,6 +300,13 @@ namespace NWAT.DB
         {
             return String.Format("Die Archivdatei '{0}' existiert nicht mehr.\n"+
                                  "Import abgebrochen.", this.ZipArchiveFilePath);
+        }
+
+        private string MessageImportFailed(string tableName, string dataSet)
+        {
+            return String.Format("Der Import in die Tabelle {1} war nicht erfolgreich. \n" + 
+                                 "Folgender Datensatz ist betroffen:\n",
+                                    dataSet, tableName);
         }
     }
 }
