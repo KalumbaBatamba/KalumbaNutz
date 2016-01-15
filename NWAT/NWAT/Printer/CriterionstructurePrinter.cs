@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using iTextSharp.text.log;
 
 /// <summary>
 /// 
@@ -23,6 +24,7 @@ namespace NWAT.Printer
 {
     public class CriterionStructurePrinter
     {
+
 
         //Methode um allen in der Datenbank gelisteten Projekte in einer PDF auszugeben
 
@@ -53,24 +55,31 @@ namespace NWAT.Printer
                          
                //Schleife um Daten aus Datenbank zu holen
 
-                foreach (ProjectCriterion proj in projCrits)
-                {
-                    int layer = proj.Layer_Depth;
-                    double factor = 25;
-                    double intend = layer * factor;
 
-                  
-                    Paragraph critstruc = new Paragraph(proj.Criterion.Description.ToString());
-                    critstruc.IndentationLeft = (Convert.ToSingle(intend));
-                    doc.Add(critstruc);
-          
+
+
+                foreach (ProjectCriterion projectCriterion in projCrits)
+                {
+                        int layer = projectCriterion.Layer_Depth;
+                        double factor = 25;
+                        double intend = layer * factor;
+
+                        Paragraph projectCriterionDescription = new Paragraph(projectCriterion.Criterion.Description.ToString());
+                        projectCriterionDescription.IndentationLeft = (Convert.ToSingle(intend));
+                        doc.Add(projectCriterionDescription);  
                 }
+                    
+                
 
                 doc.Close();
 
                 MessageBox.Show("PDF erfolgreich angelegt");
+                
+                //PDf wird automatisch geöffnet nach der erfolgreichen Speicherung
 
-                Application.Exit();
+                System.Diagnostics.Process.Start(sfd.FileName);
+
+                
             }
         }
 
