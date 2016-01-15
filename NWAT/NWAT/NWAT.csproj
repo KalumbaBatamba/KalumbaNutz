@@ -99,7 +99,7 @@
     <Compile Include="DB\ProductController.cs" />
     <Compile Include="DB\ProjectCriterionController.cs" />
     <Compile Include="DB\ProjectController.cs" />
-    <Compile Include="DB\NWATException.cs" />
+    <Compile Include="NWATException.cs" />
     <Compile Include="DB\CriterionController.cs" />
     <Compile Include="DB\ProjectProductController.cs" />
     <Compile Include="Form1.cs">
