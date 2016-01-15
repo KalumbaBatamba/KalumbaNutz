@@ -44,6 +44,38 @@ namespace NWAT.DB
         }
 
         /// <summary>
+        /// Checks if criterion identifier already exists.
+        /// </summary>
+        /// <param name="criterionId">The criterion identifier.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 15.01.2016
+        public bool CheckIfCriterionIdAlreadyExists(int criterionId)
+        {
+            Criterion existingCrit = GetCriterionById(criterionId);
+            return existingCrit != null;
+        }
+
+        /// <summary>
+        /// Checks if criterion name already exists.
+        /// </summary>
+        /// <param name="criterionName">Name of the criterion.</param>
+        /// <returns>
+        /// bool if criterion name already exists in db.
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 14.12.2015
+        public bool CheckIfCriterionNameAlreadyExists(String criterionName)
+        {
+            Criterion criterionWithExistingName = (from crit in base.DataContext.Criterion
+                                                   where crit.Name == criterionName
+                                                   select crit).FirstOrDefault();
+            if (criterionWithExistingName != null)
+                return true;
+            else
+                return false;
+        }
+
+
+        /// <summary>
         /// Checks if criterion is allocated to any project.
         /// </summary>
         /// <param name="criterionId">The criterion identifier.</param>
@@ -265,24 +297,6 @@ namespace NWAT.DB
             return equalName && equalDescription;
         }
 
-        /// <summary>
-        /// Checks if criterion name already exists.
-        /// </summary>
-        /// <param name="criterionName">Name of the criterion.</param>
-        /// <returns>
-        /// bool if criterion name already exists in db.
-        /// </returns>
-        /// Erstellt von Joshua Frey, am 14.12.2015
-        private bool CheckIfCriterionNameAlreadyExists(String criterionName)
-        {
-            Criterion criterionWithExistingName = (from crit in base.DataContext.Criterion
-                                                        where crit.Name == criterionName
-                                                        select crit).FirstOrDefault();
-            if (criterionWithExistingName != null)
-                return true;
-            else
-                return false;
-        }
 
         /// <summary>
         /// Checks if product has an identifier.

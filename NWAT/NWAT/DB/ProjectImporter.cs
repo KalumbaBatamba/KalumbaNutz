@@ -4,6 +4,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace NWAT.DB
@@ -22,12 +23,12 @@ namespace NWAT.DB
             set { _zipArchiveFilePath = value; }
         }
 
-        private string _temporaryExtractionDirectory;
+        private string _importFilesDirectory;
 
-	    public string TemporaryExtractionDirectory
+	    public string ImportFilesDirectory
 	    {
-		    get { return _temporaryExtractionDirectory;}
-		    set { _temporaryExtractionDirectory = value;}
+		    get { return _importFilesDirectory;}
+		    set { _importFilesDirectory = value;}
 	    }
 	
         private string _projectImportFilePath;
@@ -77,13 +78,16 @@ namespace NWAT.DB
             get { return _fulfillmenImportFilePath; }
             set { _fulfillmenImportFilePath = value; }
         }
-        
-        
-        
-        
-        
-        
 
+        private LogWriter _importLogWriter;
+
+        public LogWriter ImportLogWriter
+        {
+            get { return _importLogWriter; }
+            set { _importLogWriter = value; }
+        }
+        
+        
         // DB controller
 
         private ProjectController _importProjectController;
@@ -134,7 +138,6 @@ namespace NWAT.DB
             set { _importFulfillmentController = value; }
         }
 
-        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProjectImporter"/> class.
@@ -151,8 +154,53 @@ namespace NWAT.DB
             ImportProjectProductController = new ProjectProductController();
             ImportFulfillmentController = new FulfillmentController();
             this.ZipArchiveFilePath = archiveFilePath;
-            this.TemporaryExtractionDirectory = String.Format(@"{0}\NWATTempExtractDir",Path.GetDirectoryName(this.ZipArchiveFilePath));
 
+            this.ImportFilesDirectory = CreateImportDirectory();
+
+            // Create Logfile
+            string logFilePath = this.ImportFilesDirectory + @"\Import.log";
+            this.ImportLogWriter = new LogWriter(logFilePath, "Import Log");
+        }
+
+        /// <summary>
+        /// Creates the import directory.
+        /// </summary>
+        /// <returns>
+        /// Import dir path
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 15.01.2016
+        private string CreateImportDirectory()
+        {
+            string importDirName = "";
+            string zipFileRootDir = Path.GetDirectoryName(this.ZipArchiveFilePath);
+            string zipArchiveFileName = Path.GetFileNameWithoutExtension(this.ZipArchiveFilePath);
+            string timeStamp = CommonMethods.GetTimestamp();
+            string projectName = "";
+            int indexOfProjectInZipName = zipArchiveFileName.IndexOf("Project");
+            if (indexOfProjectInZipName != -1)
+            {
+                projectName = zipArchiveFileName.Substring(indexOfProjectInZipName);
+                
+            }
+            else
+            {
+                projectName = "Default_Project";
+            }
+            
+            importDirName = String.Format(@"{0}\{1}_{2}_Import_Dateien", zipFileRootDir, timeStamp, projectName);
+            
+            
+
+            if (Directory.Exists(importDirName))
+            {
+                Directory.Delete(importDirName, true);
+                // sleep is needed. If tempExtractDir is open in file explorer
+                // it needs more time to delete tempExtractDir and handle the user interruption from gui
+                // closing window so the create statement will not actually create a tempExtractDir
+                Thread.Sleep(20);
+            }
+            Directory.CreateDirectory(importDirName);
+            return importDirName;
         }
 
         /// <summary>
@@ -171,8 +219,8 @@ namespace NWAT.DB
             // extract archive data to temporary dir.
             using (ArchiveZipper zipper = new ArchiveZipper())
             {
-                string tempExtractDir = this.TemporaryExtractionDirectory;
-                List<string> extracedFiles = zipper.extractArchiveDataToTempDir(tempExtractDir, this.ZipArchiveFilePath);
+                string tempExtractDir = this.ImportFilesDirectory;
+                List<string> extracedFiles = zipper.extractArchiveDataToDir(tempExtractDir, this.ZipArchiveFilePath);
                 setImportFilePaths(extracedFiles);
             }
 
@@ -225,6 +273,7 @@ namespace NWAT.DB
         /// <exception cref="NWAT.DB.NWATException"></exception>
         private void importProjectData()
         {
+            this.ImportLogWriter.Log(MessageStartImportOfData("Project"));
             using (StreamReader sr = new StreamReader(this.ProjectImportFilePath))
             {
                 string line;
@@ -233,33 +282,47 @@ namespace NWAT.DB
                 {
                     importProj = getProjectByLineFromImportFile(line);
 
+                    int importProjId = importProj.Project_Id;
+                    string originImportProjName = importProj.Name;
                     // if does not already exist in table --> import; else skip
-                    if (!this.ImportProjectController.CheckIfProjectIdAlreadyExists(importProj.Project_Id))
+                    if (!this.ImportProjectController.CheckIfProjectIdAlreadyExists(importProjId))
                     {
+
                         // if name of project already exists in table, then expand the name of
                         // importProject by "_imported"
+                        bool nameChanged = false;
                         if (this.ImportProjectController.CheckIfProjectNameAlreadyExists(importProj.Name))
                         {
+
                             importProj.Name += "_imported";
-                            MessageBox.Show("abgeänderter Name");
+                            nameChanged = true;
                         }
-                        
-                        bool importSuccessful = this.ImportProjectController.InsertProjectIntoDb(importProj, importProj.Project_Id);
+
+                        // if name was changed, logfile will be updated
+                        if (nameChanged)
+                        {
+                            this.ImportLogWriter.Log(MessageSuffixWasAppendedToDataName(originImportProjName, importProj.Name));
+                        }
+
+
+                        bool importSuccessful = this.ImportProjectController.InsertProjectIntoDb(importProj, importProjId);
                         if (!importSuccessful)
                         {
                             string dataSet = String.Format("Project_Id = {0}\n Name = {1}\n Description = {3}",
-                                                            importProj.Project_Id,
-                                                            importProj.Name, 
+                                                            importProjId,
+                                                            importProj.Name,
                                                             importProj.Description);
 
                             throw new NWATException(MessageImportFailed("Project", dataSet));
                         }
                     }
-                    else 
-                        MessageBox.Show("ID gibts schon");
-                    
+                    else
+                    {
+                        this.ImportLogWriter.Log(MessageDatasetAlreadyExists(importProjId, originImportProjName));
+                    }
                 }
             }
+            this.ImportLogWriter.Log(MessageEndImportOfData("Project"));
         }
 
         /// <summary>
@@ -288,7 +351,63 @@ namespace NWAT.DB
         /// Erstellt von Joshua Frey, am 15.01.2016
         private void importCriterionData()
         {
- 
+            using (StreamReader sr = new StreamReader(this.ProjectImportFilePath))
+            {
+                string line;
+                Criterion importCriterion;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    importCriterion = getCriterionByLineFromImportFile(line);
+                    int importCritId = importCriterion.Criterion_Id;
+                    string importCritName = importCriterion.Name;
+
+                    // if does not already exist in table --> import; else skip
+                    if (!this.ImportCriterionController.CheckIfCriterionIdAlreadyExists(importCritId))
+                    {
+                        // if name of criterion already exists in table, then expand the name of
+                        // importProject by "_imported"
+                        if (this.ImportCriterionController.CheckIfCriterionNameAlreadyExists(importCritName))
+                        {
+                            importCriterion.Name += "_imported";
+                            MessageBox.Show("abgeänderter Name");
+                        }
+
+                        //bool importSuccessful = this.ImportProjectController.InsertProjectIntoDb(importCriterion, importCritId);
+                        bool importSuccessful = true;
+                        if (!importSuccessful)
+                        {
+                            string dataSet = String.Format("Project_Id = {0}\n Name = {1}\n Description = {3}",
+                                                            importCritId,
+                                                            importCriterion.Name,
+                                                            importCriterion.Description);
+
+                            throw new NWATException(MessageImportFailed("Project", dataSet));
+                        }
+                    }
+                    else
+                        MessageBox.Show("ID gibts schon");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the criterion by line from import file.
+        /// </summary>
+        /// <param name="criterionImportLine">The criterion import line.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 15.01.2016
+        private Criterion getCriterionByLineFromImportFile(string criterionImportLine)
+        {
+            Criterion importCriterion;
+            // Project_Id|Name|Description
+            var lineAsArray = criterionImportLine.Split(this._delimiter);
+            importCriterion = new Criterion()
+            {
+                Criterion_Id = Convert.ToInt32(lineAsArray[0]),
+                Name = lineAsArray[1],
+                Description = lineAsArray[2]
+            };
+            return importCriterion;
         }
 
         
@@ -307,6 +426,28 @@ namespace NWAT.DB
             return String.Format("Der Import in die Tabelle {1} war nicht erfolgreich. \n" + 
                                  "Folgender Datensatz ist betroffen:\n",
                                     dataSet, tableName);
+        }
+
+        private string MessageStartImportOfData(string tableName)
+        {
+            return String.Format("\tImport der Daten für die Tabelle \"{0}\" wurde gestartet.", tableName);
+        }
+
+        private string MessageEndImportOfData(string tableName)
+        {
+            return String.Format("\tImport der Daten für die Tabelle \"{0}\" wurde beendet.", tableName);
+        }
+
+        private string MessageSuffixWasAppendedToDataName(string originName, string changedName)
+        {
+            return String.Format("Der Datensatz mit dem Namen \"{0}\" wurde als \"{1}\" importiert, da ein weitere Datensatz mit" +
+                                " den ursprünglichen Namen in der Tabelle enthalten ist.", originName, changedName);
+        }
+
+        private string MessageDatasetAlreadyExists(int dataSetId, string dataSetName)
+        {
+            return String.Format("Der Datensatz mit der Id \"{0}\" und dem Namen \"{1}\" wurde nicht importiert, "+
+                                 "da der Datensatz bereits in der Tabelle existiert.", dataSetId, dataSetName);
         }
     }
 }

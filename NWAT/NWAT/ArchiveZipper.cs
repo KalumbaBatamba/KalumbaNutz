@@ -5,8 +5,6 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace NWAT
 {
@@ -56,17 +54,13 @@ namespace NWAT
         /// A list with all paths of extraced files
         /// </returns>
         /// Erstellt von Joshua Frey, am 15.01.2016
-        public List<string> extractArchiveDataToTempDir(string tempExtractDir, string zipArchiveFilePath)
+        public List<string> extractArchiveDataToDir(string tempExtractDir, string zipArchiveFilePath)
         {
-            if (Directory.Exists(tempExtractDir))
+            if (!Directory.Exists(tempExtractDir))
             {
-                Directory.Delete(tempExtractDir, true);
-                // sleep is needed. If tempExtractDir is open in file explorer
-                // it needs more time to delete tempExtractDir and handle the user interruption from gui
-                // closing window so the create statement will not actually create a tempExtractDir
-                Thread.Sleep(20);
+                Directory.CreateDirectory(tempExtractDir);
             }
-            Directory.CreateDirectory(tempExtractDir);
+            
 
             List<string> extractedFilePaths = new List<string>();
 

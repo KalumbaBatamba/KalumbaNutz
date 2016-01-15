@@ -61,6 +61,15 @@ namespace NWAT.DB
             get { return _exportFilePaths; }
             set { _exportFilePaths = value; }
         }
+
+        private LogWriter _archiveLogWriter;
+
+        public LogWriter ArchiveLogWriter
+        {
+            get { return _archiveLogWriter; }
+            set { _archiveLogWriter = value; }
+        }
+        
         
 
         
@@ -135,11 +144,17 @@ namespace NWAT.DB
 
             ProjectId = projectIdToExport;
             ProjectName = ExportProjectController.GetProjectById(projectIdToExport).Name;
-            Timestamp = CreateTimestampForFile();
+            Timestamp = CommonMethods.GetTimestamp();
 
             ExportFilePath = exportDirectoryPath;
 
             FileBaseName = String.Format(@"{0}\{1}_Project_{2}", ExportFilePath, Timestamp, ProjectName);
+
+            string logFilePath = this.FileBaseName + ".log";
+            this.ExportFilePaths.Add(logFilePath);
+
+            // Create Logfile
+            this.ArchiveLogWriter = new LogWriter(logFilePath, "Archivierungslog");
         }
 
 
@@ -149,41 +164,31 @@ namespace NWAT.DB
         /// Erstellt von Joshua Frey, am 13.01.2016
         public void ArchiveWholeProject()
         {
-            string logFilePath = this.FileBaseName + ".log";
-            this.ExportFilePaths.Add(logFilePath);
-
-            // Create Logfile and Logfile Writer
-            if (!File.Exists(logFilePath))
-            {
-                File.Create(logFilePath).Close();
-            }
-            StreamWriter archiveLogWriter = File.AppendText(logFilePath);
-            // You have to stick to the export order. Otherwise there won't be exported all information.
-
+           
             bool allExportsSucceeded = true;
 
             // export FulFillment
             string fulfillmentExportFilePath = ExportFulfillments();
             if (VerifyFulfillmentsExport(fulfillmentExportFilePath))
             {
-                Log(MessageExportVerified("Fulfillment"), archiveLogWriter);
+                this.ArchiveLogWriter.Log(MessageExportVerified("Fulfillment"));
             }
             else
             {
                 allExportsSucceeded = false;
-                Log(MessageExportNotVerified("Fulfillment"), archiveLogWriter);
+                this.ArchiveLogWriter.Log(MessageExportNotVerified("Fulfillment"));
             }
 
             // Export ProjectProducts
             string projectProductExportFilePath = ExportProjectProducts();
             if (VerifyProjectProductsExport(projectProductExportFilePath))
             {
-                Log(MessageExportVerified("ProjectProduct"), archiveLogWriter);
+                this.ArchiveLogWriter.Log(MessageExportVerified("ProjectProduct"));
             }
             else
             {
                 allExportsSucceeded = false;
-                Log(MessageExportNotVerified("ProjectProduct"), archiveLogWriter);
+                this.ArchiveLogWriter.Log(MessageExportNotVerified("ProjectProduct"));
             }
 
 
@@ -191,12 +196,12 @@ namespace NWAT.DB
             string projectCriterionExportFilePath = ExportProjectCriterions();
             if (VerifyProjectCriterionsExport(projectCriterionExportFilePath))
             {
-                Log(MessageExportVerified("ProjectCriterion"), archiveLogWriter);
+                this.ArchiveLogWriter.Log(MessageExportVerified("ProjectCriterion"));
             }
             else
             {
                 allExportsSucceeded = false;
-                Log(MessageExportNotVerified("ProjectCriterion"), archiveLogWriter);
+                this.ArchiveLogWriter.Log(MessageExportNotVerified("ProjectCriterion"));
             }
 
 
@@ -204,12 +209,12 @@ namespace NWAT.DB
             string productExportFilePath = ExportProducts();
             if (VerifyProductsExport(productExportFilePath))
             {
-                Log(MessageExportVerified("Product"), archiveLogWriter);
+                this.ArchiveLogWriter.Log(MessageExportVerified("Product"));
             }
             else
             {
                 allExportsSucceeded = false;
-                Log(MessageExportNotVerified("Product"), archiveLogWriter);
+                this.ArchiveLogWriter.Log(MessageExportNotVerified("Product"));
             }
 
 
@@ -217,12 +222,12 @@ namespace NWAT.DB
             string CriterionExportFilePath = ExportCriterion();
             if (VerifyCriterionsExport(CriterionExportFilePath))
             {
-                Log(MessageExportVerified("Criterion"), archiveLogWriter);
+                this.ArchiveLogWriter.Log(MessageExportVerified("Criterion"));
             }
             else
             {
                 allExportsSucceeded = false;
-                Log(MessageExportNotVerified("Product"), archiveLogWriter);
+                this.ArchiveLogWriter.Log(MessageExportNotVerified("Product"));
             }
 
 
@@ -230,12 +235,12 @@ namespace NWAT.DB
             string projectExportFilePath = ExportProjectInformation();
             if (VerifyProjectExport(projectExportFilePath))
             {
-                Log(MessageExportVerified("Project"), archiveLogWriter);
+                this.ArchiveLogWriter.Log(MessageExportVerified("Project"));
             }
             else
             {
                 allExportsSucceeded = false;
-                Log(MessageExportNotVerified("Project"), archiveLogWriter);
+                this.ArchiveLogWriter.Log(MessageExportNotVerified("Project"));
             }
 
 
@@ -243,75 +248,74 @@ namespace NWAT.DB
             {
                 string exportErrorMessage = MessageWholeExportProcessFailed();
                 MessageBox.Show(exportErrorMessage);
-                Log(exportErrorMessage, archiveLogWriter);
-                archiveLogWriter.Close();
+                this.ArchiveLogWriter.Log(exportErrorMessage);
             }
             else
             {
                 string exportSuccessMessage = MessageWholeExportProcessSucceeded();
                 MessageBox.Show(exportSuccessMessage);
-                Log(exportSuccessMessage, archiveLogWriter);
+                this.ArchiveLogWriter.Log(exportSuccessMessage);
 
                 bool allDeletionsSucceeded = true;
                     
                 // delete Data from db
                 if (DeleteFulFillmentData())
                 {
-                    Log(MessageDeletionVerified("Fulfillment"), archiveLogWriter);
+                    this.ArchiveLogWriter.Log(MessageDeletionVerified("Fulfillment"));
                 }
                 else
                 {
-                    Log(MessageDeletionNotVerified("Fulfillment"), archiveLogWriter);
+                    this.ArchiveLogWriter.Log(MessageDeletionNotVerified("Fulfillment"));
                     allDeletionsSucceeded = false;
                 }
 
                 if (DeleteProjectProductData())
                 {
-                    Log(MessageDeletionVerified("ProjectProduct"), archiveLogWriter);
+                    this.ArchiveLogWriter.Log(MessageDeletionVerified("ProjectProduct"));
                 }
                 else
                 {
-                    Log(MessageDeletionNotVerified("ProjectProduct"), archiveLogWriter);
+                    this.ArchiveLogWriter.Log(MessageDeletionNotVerified("ProjectProduct"));
                     allDeletionsSucceeded = false;
                 }
 
                 if (DeleteProjectCriterionData())
                 {
-                    Log(MessageDeletionVerified("ProjectCriterion"), archiveLogWriter);
+                    this.ArchiveLogWriter.Log(MessageDeletionVerified("ProjectCriterion"));
                 }
                 else
                 {
-                    Log(MessageDeletionNotVerified("ProjectCriterion"), archiveLogWriter);
+                    this.ArchiveLogWriter.Log(MessageDeletionNotVerified("ProjectCriterion"));
                     allDeletionsSucceeded = false;
                 }
 
                 if (DeleteProductData(productExportFilePath))
                 {
-                    Log(MessageDeletionVerified("Product"), archiveLogWriter);
+                    this.ArchiveLogWriter.Log(MessageDeletionVerified("Product"));
                 }
                 else
                 {
-                    Log(MessageDeletionNotVerified("Product"), archiveLogWriter);
+                    this.ArchiveLogWriter.Log(MessageDeletionNotVerified("Product"));
                     allDeletionsSucceeded = false;
                 }
 
                 if (DeleteCriterionData(CriterionExportFilePath))
                 {
-                    Log(MessageDeletionVerified("Criterion"), archiveLogWriter);
+                    this.ArchiveLogWriter.Log(MessageDeletionVerified("Criterion"));
                 }
                 else
                 {
-                    Log(MessageDeletionNotVerified("Criterion"), archiveLogWriter);
+                    this.ArchiveLogWriter.Log(MessageDeletionNotVerified("Criterion"));
                     allDeletionsSucceeded = false;
                 }
 
                 if (DeleteProjectData())
                 {
-                    Log(MessageDeletionVerified("Project"), archiveLogWriter);
+                    this.ArchiveLogWriter.Log(MessageDeletionVerified("Project"));
                 }
                 else
                 {
-                    Log(MessageDeletionNotVerified("Project"), archiveLogWriter);
+                    this.ArchiveLogWriter.Log(MessageDeletionNotVerified("Project"));
                     allDeletionsSucceeded = false;
                 }
 
@@ -320,8 +324,7 @@ namespace NWAT.DB
                 {
                     string deletionSuccess = MessageWholeDeletionProcessSucceeded();
                     MessageBox.Show(deletionSuccess);
-                    Log(deletionSuccess, archiveLogWriter);
-                    archiveLogWriter.Close();
+                    this.ArchiveLogWriter.Log(MessageDeletionVerified(deletionSuccess));
                        
                     // create zip archive
                     using (ArchiveZipper archZipper = new ArchiveZipper())
@@ -356,8 +359,7 @@ namespace NWAT.DB
                 {
                     string deletionError = MessageWholeDeletionProcessFailed();
                     MessageBox.Show(deletionError);
-                    Log(deletionError, archiveLogWriter);
-                    archiveLogWriter.Close();
+                    this.ArchiveLogWriter.Log(deletionError);
                 }
             }
         }
@@ -1154,42 +1156,6 @@ namespace NWAT.DB
                 return false;
         }
 
-        /// <summary>
-        /// Creates the timestamp for file.
-        /// </summary>
-        /// <returns>
-        /// a timestamp as string
-        /// </returns>
-        /// Erstellt von Joshua Frey, am 12.01.2016
-        private string CreateTimestampForFile()
-        {
-            string timeStampDelimiter = ".";
-            DateTime now = DateTime.Now;
-            string year = now.Year.ToString();
-            string month = now.Month.ToString();
-            string day = now.Day.ToString();
-            string hour = now.Hour.ToString();
-            string minute = now.Minute.ToString();
-            string second = now.Second.ToString();
-
-            return String.Format(@"{1}{0}{2}{0}{3}_{4}{0}{5}{0}{6}", timeStampDelimiter, year, month, day, hour, minute, second);
-        }
-
-        /// <summary>
-        /// Logs the specified log message.
-        /// </summary>
-        /// <param name="logMessage">The log message.</param>
-        /// <param name="archiveLogWriter">The archive log writer.</param>
-        /// Erstellt von Joshua Frey, am 13.01.2016
-        private void Log(string logMessage, TextWriter archiveLogWriter)
-        {
-            archiveLogWriter.Write("\r\nLog Eintrag : ");
-            archiveLogWriter.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(),
-                DateTime.Now.ToLongDateString());
-            archiveLogWriter.WriteLine(":");
-            archiveLogWriter.WriteLine("{0}", logMessage);
-            archiveLogWriter.WriteLine ("-------------------------------");
-        }
 
         /*
          * Messages

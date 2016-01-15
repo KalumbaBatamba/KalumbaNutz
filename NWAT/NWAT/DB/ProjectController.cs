@@ -54,11 +54,8 @@ namespace NWAT.DB
         /// Erstellt von Joshua Frey, am 14.01.2016
         public bool CheckIfProjectIdAlreadyExists(int importProjId)
         {
-            Project existingProj = base.DataContext.Project.SingleOrDefault(proj => proj.Project_Id == importProjId);
-            if (existingProj != null)
-                return true;
-            else
-                return false;
+            Project existingProj = GetProjectById(importProjId);
+            return existingProj != null;
         }
 
 
