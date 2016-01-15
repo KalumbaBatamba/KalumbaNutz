@@ -47,6 +47,28 @@ namespace NWAT.DB
         }
 
         /// <summary>
+        /// Checks if project identifier already exists.
+        /// </summary>
+        /// <param name="importProjId">The import proj identifier.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 14.01.2016
+        public bool CheckIfProjectIdAlreadyExists(int importProjId)
+        {
+            Project existingProj = base.DataContext.Project.SingleOrDefault(proj => proj.Project_Id == importProjId);
+            if (existingProj != null)
+                return true;
+            else
+                return false;
+        }
+
+
+        // TODO Überladen sodass importiert werden kann.
+        public bool InsertProjectIntoDb(Project newProject)
+        {
+            return InsertProjectIntoDb(newProject, 0);
+        }
+
+        /// <summary>
         /// Inserts the project into database.
         /// </summary>
         /// <param name="newProject">The new project.</param>
@@ -58,31 +80,50 @@ namespace NWAT.DB
         /// Das Projekt konnte nicht in der Datenbank angelegt werden. 
         /// Bitte überprüfen Sie das übergebene Projekt Objekt.
         /// </exception>
-        public bool InsertProjectIntoDb(Project newProject)
+        public bool InsertProjectIntoDb(Project newProject, int insertId)
         {
+
             if (newProject != null)
             {
+                // if insert Id is != 0 then this project will be imported at the index of insertId
+                bool willBeImported = insertId != 0;
+
                 string newProjectName = newProject.Name;
                 if (!CheckIfProjectNameAlreadyExists(newProjectName))
                 {
-                    using (CurrentMasterDataIdsController masterDataIdsContr = new CurrentMasterDataIdsController())
+                    if (willBeImported)
                     {
-                        CurrentMasterDataIds masterDataIdsSet = masterDataIdsContr.GetCurrentMasterDataIds();
-
-                        int currentProjectId = masterDataIdsSet.CurrentProjectId;
-
-                        // if you inserted a project manually and forgot to adjust the currentProjectId it will 
-                        // increment to the free place and will use new id to insert new project
-                        while (GetProjectById(currentProjectId) != null)
+                        if (CheckIfProjectIdAlreadyExists(insertId))
                         {
-                            masterDataIdsContr.incrementCurrentCriterionId();
-                            currentProjectId = masterDataIdsSet.CurrentCriterionId;
+                            throw (new NWATException(MessageProjectIdAlreadyExists(insertId)));
                         }
+                        else
+                        {
+                            base.DataContext.Project.InsertOnSubmit(newProject);
+                            base.DataContext.SubmitChanges();
+                        }
+                    }
+                    else
+                    {
+                        using (CurrentMasterDataIdsController masterDataIdsContr = new CurrentMasterDataIdsController())
+                        {
+                            CurrentMasterDataIds masterDataIdsSet = masterDataIdsContr.GetCurrentMasterDataIds();
 
-                        newProject.Project_Id = currentProjectId;
-                        base.DataContext.Project.InsertOnSubmit(newProject);
-                        base.DataContext.SubmitChanges();
-                        masterDataIdsContr.incrementCurrentProjectId();
+                            int currentProjectId = masterDataIdsSet.CurrentProjectId;
+
+                            // if you inserted a project manually and forgot to adjust the currentProjectId it will 
+                            // increment to the free place and will use new id to insert new project
+                            while (GetProjectById(currentProjectId) != null)
+                            {
+                                masterDataIdsContr.incrementCurrentCriterionId();
+                                currentProjectId = masterDataIdsSet.CurrentCriterionId;
+                            }
+
+                            newProject.Project_Id = currentProjectId;
+                            base.DataContext.Project.InsertOnSubmit(newProject);
+                            base.DataContext.SubmitChanges();
+                            masterDataIdsContr.incrementCurrentProjectId();
+                        }
                     }
                 }
                 else
@@ -195,10 +236,6 @@ namespace NWAT.DB
             return equalName && equalDescription;
         }
 
-        /*
-         * Private Section
-         */
-
         /// <summary>
         /// Checks if project name already exists.
         /// </summary>
@@ -207,16 +244,42 @@ namespace NWAT.DB
         /// bool if project name already exists in db.
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
-        private bool CheckIfProjectNameAlreadyExists(String projectName)
+        public bool CheckIfProjectNameAlreadyExists(String projectName)
         {
             Project projectWithExistingName = (from proj in base.DataContext.Project
-                                                    where proj.Name == projectName
-                                                    select proj).FirstOrDefault();
+                                               where proj.Name == projectName
+                                               select proj).FirstOrDefault();
             if (projectWithExistingName != null)
                 return true;
             else
                 return false;
         }
+
+        /// <summary>
+        /// Checks if project name already exists.
+        /// </summary>
+        /// <param name="projectName">Name of the project.</param>
+        /// <param name="excludedId">The excluded identifier, which identifies the project, that should be updated.</param>
+        /// <returns>
+        /// bool if other project exist with name to which user want to update given project to.
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 14.12.2015
+        public bool CheckIfProjectNameAlreadyExists(String projectName, int excludedId)
+        {
+            Project projectWithExistingName = (from proj in base.DataContext.Project
+                                               where proj.Name == projectName
+                                               && proj.Project_Id != excludedId
+                                               select proj).FirstOrDefault();
+            if (projectWithExistingName != null)
+                return true;
+            else
+                return false;
+        }
+
+
+        /*
+         * Private Section
+         */
 
         /// <summary>
         /// Checks if project has an identifier.
@@ -235,28 +298,6 @@ namespace NWAT.DB
         }
 
 
-        /// <summary>
-        /// Checks if project name already exists.
-        /// </summary>
-        /// <param name="projectName">Name of the project.</param>
-        /// <param name="excludedId">The excluded identifier, which identifies the project, that should be updated.</param>
-        /// <returns>
-        /// bool if other project exist with name to which user want to update given project to.
-        /// </returns>
-        /// Erstellt von Joshua Frey, am 14.12.2015
-        private bool CheckIfProjectNameAlreadyExists(String projectName, int excludedId)
-        {
-            Project projectWithExistingName = (from proj in base.DataContext.Project
-                                                    where proj.Name == projectName
-                                                    && proj.Project_Id != excludedId
-                                                    select proj).FirstOrDefault();
-            if (projectWithExistingName != null)
-                return true;
-            else
-                return false;
-        }
-
-
         /*
          Messages
          */
@@ -270,6 +311,12 @@ namespace NWAT.DB
         private string MessageProjectAlreadyExists(string projectName)
         {
             return "Das Projekt mit dem Namen \"" + projectName +
+                   "\" existiert bereits in einem anderen Datensatz in der Datenbank.";
+        }
+
+        private string MessageProjectIdAlreadyExists(int id)
+        {
+            return "Das Projekt mit der Id \"" + id.ToString() +
                    "\" existiert bereits in einem anderen Datensatz in der Datenbank.";
         }
 
