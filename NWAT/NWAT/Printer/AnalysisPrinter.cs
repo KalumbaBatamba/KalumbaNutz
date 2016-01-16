@@ -36,6 +36,7 @@ namespace NWAT.Printer
 
                 Document AnalysisPrinterDoc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
                 PdfWriter writer = PdfWriter.GetInstance(AnalysisPrinterDoc, new FileStream(SfdAnalysis.FileName, FileMode.Create));
+                writer.PageEvent = new PdfPageEvents();
                 AnalysisPrinterDoc.Open();
 
                 //Größe der Überschrift, Schriftart und Überschrifttext festlegen
@@ -45,11 +46,14 @@ namespace NWAT.Printer
                 //Abstand nach Übersicht bis zur Tabelle
                 heading.SpacingAfter = 18f;
                 AnalysisPrinterDoc.Add(heading);
-                
 
+                
                 MessageBox.Show("PDF erfolgreich angelegt");
                 AnalysisPrinterDoc.Close();
 
+                //Aufrufen der Hilfsmethode um Seitenzahl auf das PDF Dokument zu schreiben
+                CriterionStructurePrinter PageNumberObject = new CriterionStructurePrinter();
+                PageNumberObject.GetPageNumber(SfdAnalysis);
 
                 //PDf wird automatisch geöffnet nach der erfolgreichen Speicherung
 

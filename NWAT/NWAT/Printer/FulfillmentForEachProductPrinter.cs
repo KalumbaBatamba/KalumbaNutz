@@ -31,6 +31,13 @@ namespace NWAT.Printer
             {
                 Document FulfillmentPrinter = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
                 PdfWriter writer = PdfWriter.GetInstance(FulfillmentPrinter, new FileStream("FulfillmentEachProduct.pdf", FileMode.Create));
+                writer.PageEvent = new PdfPageEvents();
+
+
+                //Aufrufen der Hilfsmethode um Seitenzahl auf das PDF Dokument zu schreiben
+                CriterionStructurePrinter PageNumberObject = new CriterionStructurePrinter();
+                PageNumberObject.GetPageNumber(SfdFulfillment);
+            
             }
         }
     }
