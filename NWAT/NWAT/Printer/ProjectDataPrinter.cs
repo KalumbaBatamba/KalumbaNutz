@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,14 +34,14 @@ namespace NWAT.Printer
             List<Project> x = criContr.GetAllProjectsFromDB();
 
             //SaveFileDialog um Dokument am gewünschten Ort speicher zu können 
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "Pdf File |*.pdf";
-            if (sfd.ShowDialog() == DialogResult.OK)
+            SaveFileDialog sfdProjectData = new SaveFileDialog();
+            sfdProjectData.Filter = "Pdf File |*.pdf";
+            if (sfdProjectData.ShowDialog() == DialogResult.OK)
             {
 
-                Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
-                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(sfd.FileName, FileMode.Create));
-                doc.Open();
+                Document projectDataDoc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
+                PdfWriter writer = PdfWriter.GetInstance(projectDataDoc, new FileStream(sfdProjectData.FileName, FileMode.Create));
+                projectDataDoc.Open();
 
                 PdfPTable table = new PdfPTable(3);
 
@@ -63,7 +62,7 @@ namespace NWAT.Printer
 
                 //heading.IndentationLeft = (Convert.ToSingle(intend));
 
-                doc.Add(heading);
+                projectDataDoc.Add(heading);
 
 
 
@@ -112,10 +111,12 @@ namespace NWAT.Printer
                     table.AddCell(proj.Description.ToString());
 
                 }
-                doc.Add(table);
-                doc.Close();
+                projectDataDoc.Add(table);
+                projectDataDoc.Close();
 
                 MessageBox.Show("PDF erfolgreich angelegt");
+
+                System.Diagnostics.Process.Start(sfdProjectData.FileName);
                 Application.Exit();
             }
         }

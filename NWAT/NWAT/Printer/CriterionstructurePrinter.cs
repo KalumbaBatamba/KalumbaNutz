@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,26 +34,26 @@ namespace NWAT.Printer
             List<ProjectCriterion> projCrits = cont.GetAllProjectCriterionsForOneProject(1);
 
             //SaveFileDialog um Dokument am gewünschten Ort speicher zu können 
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "Pdf File |*.pdf";
-            if (sfd.ShowDialog() == DialogResult.OK)
+            SaveFileDialog SfdCriterion = new SaveFileDialog();
+            SfdCriterion.Filter = "Pdf File |*.pdf";
+            if (SfdCriterion.ShowDialog() == DialogResult.OK)
             {
 
                 //Dokument Erstellen, Definieren des Formats
-                Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
-                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(sfd.FileName, FileMode.Create));
-                doc.Open();
+                Document CriterionStructureDoc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
+                PdfWriter writer = PdfWriter.GetInstance(CriterionStructureDoc, new FileStream(SfdCriterion.FileName, FileMode.Create));
+                CriterionStructureDoc.Open();
 
-               //Überschrift setzen
-               
-                Paragraph heading = new Paragraph("Kriterienstruktur                                                                                                                                  *");
+               //Überschrift und nötige Formatierung setzen
+
+                Font arial = FontFactory.GetFont("Arial", 20);
+                Paragraph heading = new Paragraph("Kriterienstruktur", arial);
 
                 //Abstand nach Übersicht bis zur Tabelle
                 heading.SpacingAfter = 18f;
-                doc.Add(heading);
+                CriterionStructureDoc.Add(heading);
                          
                //Schleife um Daten aus Datenbank zu holen
-
 
 
 
@@ -64,20 +63,21 @@ namespace NWAT.Printer
                         double factor = 25;
                         double intend = layer * factor;
 
-                        Paragraph projectCriterionDescription = new Paragraph(projectCriterion.Criterion.Description.ToString());
+                        Font CritStructFont = FontFactory.GetFont("Arial", 9);
+                        Paragraph projectCriterionDescription = new Paragraph(projectCriterion.Criterion.Description.ToString(), CritStructFont);
                         projectCriterionDescription.IndentationLeft = (Convert.ToSingle(intend));
-                        doc.Add(projectCriterionDescription);  
+                        CriterionStructureDoc.Add(projectCriterionDescription);  
                 }
                     
                 
 
-                doc.Close();
+                CriterionStructureDoc.Close();
 
                 MessageBox.Show("PDF erfolgreich angelegt");
                 
                 //PDf wird automatisch geöffnet nach der erfolgreichen Speicherung
 
-                System.Diagnostics.Process.Start(sfd.FileName);
+                System.Diagnostics.Process.Start(SfdCriterion.FileName);
 
                 
             }
