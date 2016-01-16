@@ -12,9 +12,10 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 
 /// <summary>
-/// 
+/// Klasse um die Erfüllung der Kriterien in einer PDF Datei zu zeigen
 /// </summary>
 /// Erstellt von Adrian Glasnek
+
 namespace NWAT.Printer
 {
 

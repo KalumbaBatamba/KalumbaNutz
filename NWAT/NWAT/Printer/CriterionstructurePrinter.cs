@@ -13,11 +13,10 @@ using iTextSharp.text.pdf;
 using iTextSharp.text.log;
 
 /// <summary>
-/// 
+/// Klasse um die Kriterienstruktur in einer PDF Datei zu zeigen
 /// </summary>
 /// Erstellt von Adrian Glasnek
 /// 
-
 
 namespace NWAT.Printer
 {
@@ -91,8 +90,11 @@ namespace NWAT.Printer
             }
         }
 
-
-        //Hilfsmethode um Seitenzahl auf das PDF Dokument zu schreiben
+        /// <summary>
+        /// Hilfsmethode um Seitenzahl auf das PDF Dokument zu schreiben
+        /// </summary>
+        /// 
+        /// Erstellt von Adrian Glasnek
 
         public void GetPageNumber(SaveFileDialog save)
         {

@@ -12,6 +12,12 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using iTextSharp.text.log;
 
+/// <summary>
+/// Klasse um das Datum auf einem erzeugtem PDF Dokument anzuzeigen
+/// </summary>
+/// Erstellt von Adrian Glasnek
+/// 
+
 namespace NWAT.Printer
 {
     //PdfPageEventHelper Klasse ableiten und das OnEndPage Ereignis überschreiben => Timestamp auf PDF einfügen

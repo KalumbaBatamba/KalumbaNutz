@@ -11,18 +11,17 @@ using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
+/// <summary>
+/// Klasse um die aktuellen in der Datenbank vorhanden Projekte in einer Liste auszugeben
+/// </summary>
+/// Erstellt von Adrian Glasnek
+/// 
+
+
 namespace NWAT.Printer
 {
 
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// Erstellt von Adrian Glasnek
-    /// 
-
     
-
     public class ProjectDataPrinter
     {
 

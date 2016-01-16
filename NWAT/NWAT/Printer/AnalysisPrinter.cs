@@ -12,9 +12,10 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 
 /// <summary>
-/// 
+/// Klasse um die Analyseergebnisse in einer PDF Datei zu zeigen
 /// </summary>
 /// Erstellt von Adrian Glasnek
+
 namespace NWAT.Printer
 {
     class AnalysisPrinter
