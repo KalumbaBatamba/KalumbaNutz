@@ -11,6 +11,9 @@ using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using iTextSharp.text.log;
+using iTextSharp.text.pdf.draw;
+
+
 
 /// <summary>
 /// Klasse um die Kriterienstruktur in einer PDF Datei zu zeigen
@@ -41,45 +44,61 @@ namespace NWAT.Printer
             {
 
                 //Dokument Erstellen, Definieren des Formats
-                Document CriterionStructureDoc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
+                Document CriterionStructureDoc = new Document(iTextSharp.text.PageSize.A4.Rotate()); //Dokument in Querformat
+                CriterionStructureDoc.SetMargins(50, 200, 50, 125); //Seitenränder definieren
                 PdfWriter writer = PdfWriter.GetInstance(CriterionStructureDoc, new FileStream(SfdCriterion.FileName, FileMode.Create));
                 writer.PageEvent = new PdfPageEvents(); //Timestamp
                 CriterionStructureDoc.Open();
 
-               //Überschrift und nötige Formatierung setzen
 
-                Font arial = FontFactory.GetFont("Arial", 20);
-                Paragraph heading = new Paragraph("Kriterienstruktur", arial);
+               //Überschrift und nötige Formatierung setzen (Schriftart, Fett Druck, Schriftgröße)
+                Font arial = FontFactory.GetFont("Arial_BOLD", 10, Font.BOLD);
+                Paragraph heading = new Paragraph("Anforderungen des Anwenders", arial);
+                heading.Add(new Chunk(new VerticalPositionMark()));
+                heading.Add(new Chunk("*                        Kommentar", arial));
+                 
                 
-
+                
+                
                 //Abstand nach Übersicht bis zur Tabelle
-                heading.SpacingAfter = 18f;
+                heading.SpacingAfter = 15f;
                 CriterionStructureDoc.Add(heading);
                          
                //Schleife um Daten aus Datenbank zu holen
 
-
-
-                foreach (ProjectCriterion projectCriterion in projCrits)
-                {
+                    foreach (ProjectCriterion projectCriterion in projCrits)
+                    {
                         int layer = projectCriterion.Layer_Depth;
                         double factor = 25;
                         double intend = layer * factor;
 
                         //Schriftgröße der angezeigten Kriterienstruktur bestimmen
-                        Font CritStructFont = FontFactory.GetFont("Arial", 9);
-                        Paragraph projectCriterionDescription = new Paragraph(projectCriterion.Criterion.Description.ToString(), CritStructFont);
+                        Font CritStructFont = FontFactory.GetFont("Arial", 10);
+                        Paragraph projectCriterionDescription = new Paragraph(/*projectCriterion.Criterion.Description.ToString(), CritStructFont)*/);
+
+                        PdfPTable table = new PdfPTable(1);
+                        PdfPCell cell = new PdfPCell(new Phrase(projectCriterion.Criterion.Description.ToString(), CritStructFont));
+                        cell.Border = 0;
+                        table.AddCell(cell);
+                        table.HorizontalAlignment =0;
+                        table.TotalWidth = 350f; //Breite der "Tabelle"
+                        table.LockedWidth = true;
+                        projectCriterionDescription.Add(table);
+                       
+
                         projectCriterionDescription.IndentationLeft = (Convert.ToSingle(intend));
-                        CriterionStructureDoc.Add(projectCriterionDescription);  
-                }
+                        CriterionStructureDoc.Add(projectCriterionDescription);
+                       
+                    }
+                
 
 
                 //Close Dokument - Bearbeitung Beenden
                 CriterionStructureDoc.Close();
 
-                //Aufrufen der Hilfsmethode um Seitenzahl auf das PDF Dokument zu schreiben
+                //Aufrufen der Hilfsmethode um Seitenzahl auf das PDF Dokument zu schreiben - Dokument und Einrückung der Seitenzahl wird der Methode übergeben
                 CriterionStructurePrinter PageNumberObject = new CriterionStructurePrinter();
-                PageNumberObject.GetPageNumber(SfdCriterion);
+                PageNumberObject.GetPageNumber(SfdCriterion, 800);
                 
                 MessageBox.Show("PDF erfolgreich angelegt");
                 
@@ -96,7 +115,7 @@ namespace NWAT.Printer
         /// 
         /// Erstellt von Adrian Glasnek
 
-        public void GetPageNumber(SaveFileDialog save)
+        public void GetPageNumber(SaveFileDialog save, int pageNumberBottom)
         {
             byte[] bytes = File.ReadAllBytes(save.FileName);
             Font BlackFont = FontFactory.GetFont("Arial", 9, Font.NORMAL, BaseColor.BLACK);
@@ -108,7 +127,7 @@ namespace NWAT.Printer
                     int pages = reader.NumberOfPages;
                     for (int i = 1; i <= pages; i++)
                     {
-                        ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(i.ToString(), BlackFont), 568f, 15f, 0);
+                        ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(i.ToString(), BlackFont), pageNumberBottom, 15f, 0);
                     }
                 }
                 bytes = stream.ToArray();

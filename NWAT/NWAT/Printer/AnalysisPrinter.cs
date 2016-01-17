@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using iTextSharp.text.pdf.draw;
 
 /// <summary>
 /// Klasse um die Analyseergebnisse in einer PDF Datei zu zeigen
@@ -41,7 +42,7 @@ namespace NWAT.Printer
                 AnalysisPrinterDoc.Open();
 
                 //Größe der Überschrift, Schriftart und Überschrifttext festlegen
-                Font arial = FontFactory.GetFont("Arial", 24, BaseColor.BLACK);
+                Font arial = FontFactory.GetFont("Arial_BOLD", 10, Font.BOLD);
                 Paragraph heading = new Paragraph("Analyseergebnis", arial);
 
                 //Abstand nach Übersicht bis zur Tabelle
@@ -52,9 +53,9 @@ namespace NWAT.Printer
                 MessageBox.Show("PDF erfolgreich angelegt");
                 AnalysisPrinterDoc.Close();
 
-                //Aufrufen der Hilfsmethode um Seitenzahl auf das PDF Dokument zu schreiben
+                //Aufrufen der Hilfsmethode um Seitenzahl auf das PDF Dokument zu schreiben - Dokument und Einrückung der Seitenzahl wird der Methode übergeben
                 CriterionStructurePrinter PageNumberObject = new CriterionStructurePrinter();
-                PageNumberObject.GetPageNumber(SfdAnalysis);
+                PageNumberObject.GetPageNumber(SfdAnalysis, 568);
 
                 //PDf wird automatisch geöffnet nach der erfolgreichen Speicherung
 

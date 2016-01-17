@@ -11,6 +11,7 @@ using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using iTextSharp.text.log;
+using iTextSharp.text.pdf.draw;
 
 /// <summary>
 /// Klasse um das Datum auf einem erzeugtem PDF Dokument anzuzeigen

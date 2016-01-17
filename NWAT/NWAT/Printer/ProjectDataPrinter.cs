@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using iTextSharp.text.pdf.draw;
 
 /// <summary>
 /// Klasse um die aktuellen in der Datenbank vorhanden Projekte in einer Liste auszugeben
