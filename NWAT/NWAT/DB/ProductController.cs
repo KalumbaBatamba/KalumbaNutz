@@ -105,8 +105,8 @@ namespace NWAT.DB
                         // increment to the free place and will use new id to insert new product
                         while (GetProductById(currentProdId) != null)
                         {
-                            masterDataIdsContr.incrementCurrentCriterionId();
-                            currentProdId = masterDataIdsSet.CurrentCriterionId;
+                            masterDataIdsContr.incrementCurrentProductId();
+                            currentProdId = masterDataIdsSet.CurrentProductId;
                         }
 
                         newProduct.Product_Id = currentProdId;
