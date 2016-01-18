@@ -111,18 +111,18 @@
             this.label_ProdAvail.AutoSize = true;
             this.label_ProdAvail.Location = new System.Drawing.Point(377, 10);
             this.label_ProdAvail.Name = "label_ProdAvail";
-            this.label_ProdAvail.Size = new System.Drawing.Size(102, 13);
+            this.label_ProdAvail.Size = new System.Drawing.Size(107, 13);
             this.label_ProdAvail.TabIndex = 9;
-            this.label_ProdAvail.Text = "verfügbare Kriterien:";
+            this.label_ProdAvail.Text = "verfügbare Produkte:";
             // 
             // label_ProjProd
             // 
             this.label_ProjProd.AutoSize = true;
             this.label_ProjProd.Location = new System.Drawing.Point(15, 10);
             this.label_ProjProd.Name = "label_ProjProd";
-            this.label_ProjProd.Size = new System.Drawing.Size(110, 13);
+            this.label_ProjProd.Size = new System.Drawing.Size(115, 13);
             this.label_ProjProd.TabIndex = 8;
-            this.label_ProjProd.Text = "zugeordnete Kriterien:";
+            this.label_ProjProd.Text = "zugeordnete Produkte:";
             // 
             // btn_ProjProdCancle
             // 

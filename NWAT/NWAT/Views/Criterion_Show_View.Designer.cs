@@ -52,6 +52,7 @@
             this.label_CritShowName.Size = new System.Drawing.Size(178, 13);
             this.label_CritShowName.TabIndex = 1;
             this.label_CritShowName.Text = "Name des anzuzeigenden Kriteriums";
+            this.label_CritShowName.Click += new System.EventHandler(this.label_CritShowName_Click);
             // 
             // label_CritDescLab
             // 
@@ -80,7 +81,7 @@
             this.btn_CritShowClose.Text = "schliessen";
             this.btn_CritShowClose.UseVisualStyleBackColor = true;
             // 
-            // Criterion_Show_Form
+            // Criterion_Show_View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -90,7 +91,7 @@
             this.Controls.Add(this.label_CritDescLab);
             this.Controls.Add(this.label_CritShowName);
             this.Controls.Add(this.label_CritName);
-            this.Name = "Criterion_Show_Form";
+            this.Name = "Criterion_Show_View";
             this.Text = "Kriteriendeltails";
             this.Load += new System.EventHandler(this.Criterion_Show_Form_Load);
             this.ResumeLayout(false);

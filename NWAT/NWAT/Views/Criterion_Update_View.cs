@@ -36,7 +36,8 @@ namespace NWAT
 
         private void Criterion_Update_Form_Load(object sender, EventArgs e)
         {
-
+            textBox_CritNameUpdate.Text = aktRow.Name.ToString();
+            textBox_CritDescUpdate.Text = aktRow.Description.ToString();
         }
     }
 }

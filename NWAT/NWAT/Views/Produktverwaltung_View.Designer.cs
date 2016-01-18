@@ -44,6 +44,7 @@
             this.btn_ProdCreate.TabIndex = 15;
             this.btn_ProdCreate.Text = "Neues Produkt anlegen";
             this.btn_ProdCreate.UseVisualStyleBackColor = true;
+            this.btn_ProdCreate.Click += new System.EventHandler(this.btn_ProdCreate_Click);
             // 
             // btn_ProdDelete
             // 

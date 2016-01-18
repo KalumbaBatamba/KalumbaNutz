@@ -23,7 +23,16 @@ namespace NWAT
 
         private void btn_CritCreate_Click(object sender, EventArgs e)
         {
+            String Name = textBox_CritNameCreate.Text;
+            String Desc = textBox_CritDescCreate.Text;
 
+           // MessageBox.Show(Name + Desc);
+            Criterion Crit = new Criterion { Name = Name, Description = Desc };
+            this.critCont.InsertCriterionIntoDb(Crit);
+          //  Criterion_Create_View CritCreate = new Criterion_Create_View();
+            this.Close();
+          
+            
         }
         private void CreateNewCrit()
         {

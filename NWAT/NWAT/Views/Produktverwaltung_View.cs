@@ -30,21 +30,29 @@ namespace NWAT
 
         private void btn_ProdShow_Click(object sender, EventArgs e)
         {
-
+            Product_Show_View ProdShow = new Product_Show_View();
+            ProdShow.Show();
         }
 
         private void btn_ProdUpdate_Click(object sender, EventArgs e)
         {
-
+            Product_Update_View ProdUpdate = new Product_Update_View();
+            ProdUpdate.Show();
         }
 
         private void btn_ProdDelete_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("Wollen Sie das ausgeählte Produkt wirklich löschen?");
         }
         private void DeleteProdFromDB()
         {
 
+        }
+
+        private void btn_ProdCreate_Click(object sender, EventArgs e)
+        {
+            Product_Create_View ProdCreate = new Product_Create_View();
+            ProdCreate.Show();
         }
     }
 }

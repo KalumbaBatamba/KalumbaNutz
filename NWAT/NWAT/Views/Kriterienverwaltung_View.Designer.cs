@@ -34,9 +34,7 @@
             this.btn_CritDelete = new System.Windows.Forms.Button();
             this.btn_CritCreate = new System.Windows.Forms.Button();
             this.dataGridView_Crits = new System.Windows.Forms.DataGridView();
-            this.dgc_CritID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgc_CritName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgc_CritDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_refresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Crits)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,38 +90,31 @@
             // dataGridView_Crits
             // 
             this.dataGridView_Crits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Crits.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgc_CritID,
-            this.dgc_CritName,
-            this.dgc_CritDesc});
             this.dataGridView_Crits.Location = new System.Drawing.Point(13, 31);
+            this.dataGridView_Crits.MultiSelect = false;
             this.dataGridView_Crits.Name = "dataGridView_Crits";
+            this.dataGridView_Crits.ReadOnly = true;
+            this.dataGridView_Crits.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_Crits.Size = new System.Drawing.Size(525, 518);
             this.dataGridView_Crits.TabIndex = 8;
+            this.dataGridView_Crits.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Crits_CellContentClick);
             // 
-            // dgc_CritID
+            // btn_refresh
             // 
-            this.dgc_CritID.HeaderText = "ID";
-            this.dgc_CritID.Name = "dgc_CritID";
-            this.dgc_CritID.Width = 25;
-            // 
-            // dgc_CritName
-            // 
-            this.dgc_CritName.HeaderText = "Name";
-            this.dgc_CritName.Name = "dgc_CritName";
-            this.dgc_CritName.Width = 150;
-            // 
-            // dgc_CritDesc
-            // 
-            this.dgc_CritDesc.HeaderText = "Beschreibung";
-            this.dgc_CritDesc.Name = "dgc_CritDesc";
-            this.dgc_CritDesc.Width = 300;
+            this.btn_refresh.Location = new System.Drawing.Point(584, 120);
+            this.btn_refresh.Name = "btn_refresh";
+            this.btn_refresh.Size = new System.Drawing.Size(75, 23);
+            this.btn_refresh.TabIndex = 9;
+            this.btn_refresh.Text = "refresh";
+            this.btn_refresh.UseVisualStyleBackColor = true;
+            this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
             // 
             // Kriterienverwaltung_View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 561);
+            this.Controls.Add(this.btn_refresh);
             this.Controls.Add(this.dataGridView_Crits);
             this.Controls.Add(this.btn_CritCreate);
             this.Controls.Add(this.btn_CritDelete);
@@ -147,8 +138,6 @@
         private System.Windows.Forms.Button btn_CritDelete;
         private System.Windows.Forms.Button btn_CritCreate;
         private System.Windows.Forms.DataGridView dataGridView_Crits;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_CritID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_CritName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_CritDesc;
+        private System.Windows.Forms.Button btn_refresh;
     }
 }

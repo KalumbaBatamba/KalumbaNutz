@@ -46,17 +46,20 @@ namespace NWAT
 
         private void btn_CurrProjKritAssign_Click(object sender, EventArgs e)
         {
-
+            ProjCritAssign_View ProjCritAssign = new ProjCritAssign_View();
+            ProjCritAssign.Show();
         }
 
         private void btn_CurrProjCritStruShow_Click(object sender, EventArgs e)
         {
-
+            ProjCritShow_View ProjCritShow = new ProjCritShow_View();
+            ProjCritShow.Show();
         }
 
         private void btn_CurrProjCritStruUpdate_Click(object sender, EventArgs e)
         {
-
+            ProjCritStruUpdate_View ProjCritStruUpdate = new ProjCritStruUpdate_View();
+            ProjCritStruUpdate.Show();
         }
 
         private void btn_CurrProjCritStruPrint_Click(object sender, EventArgs e)
@@ -76,12 +79,14 @@ namespace NWAT
 
         private void btn_CurrProjProdAssign_Click(object sender, EventArgs e)
         {
-
+            ProjProdAssign_View ProjProdAssign = new ProjProdAssign_View();
+            ProjProdAssign.Show();
         }
 
         private void btn_CurrProjProdFulfCapt_Click(object sender, EventArgs e)
         {
-
+            ProjCritProdFulfilment_View ProjCritProdFulfillment = new ProjCritProdFulfilment_View();
+            ProjCritProdFulfillment.Show();
         }
 
         private void btnCurrProjProdFulfPrint_Click(object sender, EventArgs e)
@@ -96,7 +101,8 @@ namespace NWAT
 
         private void btn_Balance_Click(object sender, EventArgs e)
         {
-
+            ProjCritBalance_View ProjCritBalance = new ProjCritBalance_View();
+            ProjCritBalance.Show();
         }
     }
 }

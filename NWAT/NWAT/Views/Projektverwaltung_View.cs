@@ -65,5 +65,46 @@ namespace NWAT
 
         }
 
+        private void btn_ProjectStartCreate_Click(object sender, EventArgs e)
+        {
+            Project_Create_View ProjectCreate = new Project_Create_View();
+            ProjectCreate.Show();
+        }
+
+        private void btn_ProjectModify_Click(object sender, EventArgs e)
+        {
+            Project_Update_View ProjectModify = new Project_Update_View();
+            ProjectModify.Show();
+        }
+
+        private void btn_ProjectShow_Click(object sender, EventArgs e)
+        {
+            Project_Show_View ProjectShow = new Project_Show_View();
+            ProjectShow.Show();
+        }
+
+        private void btn_ProjectUpdate_Click(object sender, EventArgs e)
+        {
+            Project_Update_View ProjectUpdate = new Project_Update_View();
+            ProjectUpdate.Show();
+        }
+
+        private void btn_ProjImport_Click(object sender, EventArgs e)
+        {
+            // Displays an OpenFileDialog so the user can select a Cursor.
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "Cursor Files|*.cur";
+            openFileDialog1.Title = "Select a Cursor File";
+
+            // Show the Dialog.
+            // If the user clicked OK in the dialog and
+            // a .CUR file was selected, open it.
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                // Assign the cursor in the Stream to the Form's Cursor property.
+                this.Cursor = new Cursor(openFileDialog1.OpenFile());
+            }
+        }
+
     }
 }

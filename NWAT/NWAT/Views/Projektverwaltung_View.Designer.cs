@@ -67,6 +67,7 @@
             this.btn_ProjectShow.TabIndex = 2;
             this.btn_ProjectShow.Text = "anzeigen";
             this.btn_ProjectShow.UseVisualStyleBackColor = true;
+            this.btn_ProjectShow.Click += new System.EventHandler(this.btn_ProjectShow_Click);
             // 
             // btn_ProjectUpdate
             // 
@@ -76,6 +77,7 @@
             this.btn_ProjectUpdate.TabIndex = 3;
             this.btn_ProjectUpdate.Text = "ändern";
             this.btn_ProjectUpdate.UseVisualStyleBackColor = true;
+            this.btn_ProjectUpdate.Click += new System.EventHandler(this.btn_ProjectUpdate_Click);
             // 
             // btn_ProjectExport
             // 
@@ -112,6 +114,7 @@
             this.btn_ProjectStartCreate.TabIndex = 7;
             this.btn_ProjectStartCreate.Text = "Neues Projekt anlegen";
             this.btn_ProjectStartCreate.UseVisualStyleBackColor = true;
+            this.btn_ProjectStartCreate.Click += new System.EventHandler(this.btn_ProjectStartCreate_Click);
             // 
             // btn_ProjectModify
             // 
@@ -121,6 +124,7 @@
             this.btn_ProjectModify.TabIndex = 10;
             this.btn_ProjectModify.Text = "Projekt bearbeiten";
             this.btn_ProjectModify.UseVisualStyleBackColor = true;
+            this.btn_ProjectModify.Click += new System.EventHandler(this.btn_ProjectModify_Click);
             // 
             // btn_ProjImport
             // 
@@ -130,6 +134,7 @@
             this.btn_ProjImport.TabIndex = 11;
             this.btn_ProjImport.Text = "importieren";
             this.btn_ProjImport.UseVisualStyleBackColor = true;
+            this.btn_ProjImport.Click += new System.EventHandler(this.btn_ProjImport_Click);
             // 
             // Projektverwaltung_View
             // 
