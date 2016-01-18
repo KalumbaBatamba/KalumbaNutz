@@ -23,8 +23,8 @@ namespace NWAT
 
         private void Criterion_Show_Form_Load(object sender, EventArgs e)
         {
-            label_CritShowName.Text = aktRow.Name.ToString();
-            label_CritShowDesc.Text = aktRow.Description.ToString();
+            label_CritShowName.Text = aktRowCrit.CritName.ToString();
+            label_CritShowDesc.Text = aktRowCrit.CritDescription.ToString();
         }
         private void GetCritSpecs()
         {

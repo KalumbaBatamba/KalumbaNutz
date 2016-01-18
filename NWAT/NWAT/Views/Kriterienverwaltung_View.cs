@@ -33,10 +33,11 @@ namespace NWAT
             List<Criterion> CritList = critCont.GetAllCriterionsFromDb();
             var bindingList = new BindingList<Criterion>(CritList);
             var source = new BindingSource(bindingList, null);
+            dataGridView_Crits.DataSource = CritList;
             //   CritList.Add(new Criterion() {Criterion_Id = 1, Name = "Testname", Description= "Testdescr"});
             //   CritList.Add(new Criterion() { Criterion_Id = 2, Name = "Testname2", Description = "Testdescr2" });
             //  dataGridView_Crits.DataSource = source;
-            dataGridView_Crits.DataSource = CritList;
+          
 
         }
         private void Kriterienverwaltung_Load(object sender, EventArgs e)
@@ -68,9 +69,9 @@ namespace NWAT
             int zelle1 = (int)row.Cells[0].Value;
             string zelle2 = (string)row.Cells[1].Value;
             string zelle3 = (string)row.Cells[2].Value;
-            aktRow.ID = zelle1;
-            aktRow.Name = zelle2;
-            aktRow.Description = zelle3;
+            aktRowCrit.CritID = zelle1;
+            aktRowCrit.CritName = zelle2;
+            aktRowCrit.CritDescription = zelle3;
             MessageBox.Show(zelle1.ToString() + zelle2 + zelle3);
 
 
@@ -84,9 +85,9 @@ namespace NWAT
             int zelle1 = (int)row.Cells[0].Value;
             string zelle2 = (string)row.Cells[1].Value;
             string zelle3 = (string)row.Cells[2].Value;
-            aktRow.ID = zelle1;
-            aktRow.Name = zelle2;
-            aktRow.Description = zelle3;
+            aktRowCrit.CritID = zelle1;
+            aktRowCrit.CritName = zelle2;
+            aktRowCrit.CritDescription = zelle3;
             MessageBox.Show(zelle1.ToString() + zelle2 + zelle3);
             
             Criterion_Update_View CritUpdate = new Criterion_Update_View();
@@ -130,10 +131,10 @@ namespace NWAT
         }
     }
 }
-public class aktRow
+public class aktRowCrit
 {
-    public static int ID;
-    public static string Name;
-    public static string Description;
+    public static int CritID;
+    public static string CritName;
+    public static string CritDescription;
 
 }

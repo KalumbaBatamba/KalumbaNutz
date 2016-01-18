@@ -38,12 +38,13 @@
             this.btn_ProjectStartCreate = new System.Windows.Forms.Button();
             this.btn_ProjectModify = new System.Windows.Forms.Button();
             this.btn_ProjImport = new System.Windows.Forms.Button();
+            this.btn_refresh = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label_ProjectChoose
             // 
             this.label_ProjectChoose.AutoSize = true;
-            this.label_ProjectChoose.Location = new System.Drawing.Point(9, 124);
+            this.label_ProjectChoose.Location = new System.Drawing.Point(9, 89);
             this.label_ProjectChoose.Name = "label_ProjectChoose";
             this.label_ProjectChoose.Size = new System.Drawing.Size(163, 13);
             this.label_ProjectChoose.TabIndex = 0;
@@ -53,7 +54,7 @@
             // comboBox_SelectProject
             // 
             this.comboBox_SelectProject.FormattingEnabled = true;
-            this.comboBox_SelectProject.Location = new System.Drawing.Point(12, 141);
+            this.comboBox_SelectProject.Location = new System.Drawing.Point(12, 106);
             this.comboBox_SelectProject.Name = "comboBox_SelectProject";
             this.comboBox_SelectProject.Size = new System.Drawing.Size(300, 21);
             this.comboBox_SelectProject.TabIndex = 1;
@@ -136,11 +137,22 @@
             this.btn_ProjImport.UseVisualStyleBackColor = true;
             this.btn_ProjImport.Click += new System.EventHandler(this.btn_ProjImport_Click);
             // 
+            // btn_refresh
+            // 
+            this.btn_refresh.Location = new System.Drawing.Point(337, 103);
+            this.btn_refresh.Name = "btn_refresh";
+            this.btn_refresh.Size = new System.Drawing.Size(75, 23);
+            this.btn_refresh.TabIndex = 12;
+            this.btn_refresh.Text = "refresh";
+            this.btn_refresh.UseVisualStyleBackColor = true;
+            this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
+            // 
             // Projektverwaltung_View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 291);
+            this.Controls.Add(this.btn_refresh);
             this.Controls.Add(this.btn_ProjImport);
             this.Controls.Add(this.btn_ProjectModify);
             this.Controls.Add(this.btn_ProjectStartCreate);
@@ -171,5 +183,6 @@
         private System.Windows.Forms.Button btn_ProjectStartCreate;
         private System.Windows.Forms.Button btn_ProjectModify;
         private System.Windows.Forms.Button btn_ProjImport;
+        private System.Windows.Forms.Button btn_refresh;
     }
 }

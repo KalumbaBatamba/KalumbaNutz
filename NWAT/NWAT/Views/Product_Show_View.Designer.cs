@@ -71,9 +71,8 @@
             this.label_ProdDescShow.AutoSize = true;
             this.label_ProdDescShow.Location = new System.Drawing.Point(138, 140);
             this.label_ProdDescShow.Name = "label_ProdDescShow";
-            this.label_ProdDescShow.Size = new System.Drawing.Size(143, 13);
+            this.label_ProdDescShow.Size = new System.Drawing.Size(0, 13);
             this.label_ProdDescShow.TabIndex = 3;
-            this.label_ProdDescShow.Text = "Beschreibung des Produktes";
             // 
             // label_ProdName
             // 
@@ -107,9 +106,8 @@
             this.label_ProdDesc.AutoSize = true;
             this.label_ProdDesc.Location = new System.Drawing.Point(10, 140);
             this.label_ProdDesc.Name = "label_ProdDesc";
-            this.label_ProdDesc.Size = new System.Drawing.Size(75, 13);
+            this.label_ProdDesc.Size = new System.Drawing.Size(0, 13);
             this.label_ProdDesc.TabIndex = 7;
-            this.label_ProdDesc.Text = "Beschreibung:";
             // 
             // btn_Close
             // 

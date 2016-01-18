@@ -26,7 +26,17 @@ namespace NWAT
 
         private void Projektverwaltung_Form_Load(object sender, EventArgs e)
         {
+            List<Project> ProjList = projCont.GetAllProjectsFromDB();
+            var bindingList = new BindingList<Project>(ProjList);
+            var source = new BindingSource(bindingList, null);
+            //   CritList.Add(new Criterion() {Criterion_Id = 1, Name = "Testname", Description= "Testdescr"});
+            //   CritList.Add(new Criterion() { Criterion_Id = 2, Name = "Testname2", Description = "Testdescr2" });
+            //  dataGridView_Crits.DataSource = source;
+            comboBox_SelectProject.DataSource = ProjList;
 
+            //   comboBox.DataSource = x;
+            comboBox_SelectProject.DisplayMember = "Name";
+            comboBox_SelectProject.ValueMember = "Project_ID";
         }
 
         private void OpenViewCreateNewProject()
@@ -104,6 +114,17 @@ namespace NWAT
                 // Assign the cursor in the Stream to the Form's Cursor property.
                 this.Cursor = new Cursor(openFileDialog1.OpenFile());
             }
+        }
+
+        private void btn_refresh_Click(object sender, EventArgs e)
+        {
+            List<Project> ProjList = projCont.GetAllProjectsFromDB();
+            var bindingList = new BindingList<Project>(ProjList);
+            var source = new BindingSource(bindingList, null);
+            comboBox_SelectProject.DataSource = ProjList;
+            comboBox_SelectProject.DisplayMember = "Name";
+            comboBox_SelectProject.ValueMember = "Project_ID";
+            
         }
 
     }

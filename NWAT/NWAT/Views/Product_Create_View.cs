@@ -27,7 +27,13 @@ namespace NWAT
 
         private void btn_ProdCreate_Click(object sender, EventArgs e)
         {
-
+            Product prodCre = new Product();
+         //   prodCre.Product_Id = aktRowProd.ProdID;
+            prodCre.Name = textBox_ProdNameCreate.Text;
+            prodCre.Producer = textBox_ProdManuCreate.Text;
+            prodCre.Price = Convert.ToDouble(textBox_ProdPrizeCreate.Text);
+            prodCont.InsertProductIntoDb(prodCre);
+            this.Close();
         }
         private void CreateNewProduct()
         {

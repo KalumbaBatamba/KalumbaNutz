@@ -23,7 +23,13 @@ namespace NWAT
 
         private void btn_CritUpdate_Click(object sender, EventArgs e)
         {
-
+            Criterion critUpd = new Criterion();
+            critUpd.Criterion_Id = aktRowCrit.CritID;
+            critUpd.Name = textBox_CritNameUpdate.Text;
+            critUpd.Description = textBox_CritDescUpdate.Text;
+            critCont.UpdateCriterionInDb(critUpd);
+            this.Close();
+            
         }
         private void GetCritsSpecs()
         {
@@ -36,8 +42,8 @@ namespace NWAT
 
         private void Criterion_Update_Form_Load(object sender, EventArgs e)
         {
-            textBox_CritNameUpdate.Text = aktRow.Name.ToString();
-            textBox_CritDescUpdate.Text = aktRow.Description.ToString();
+            textBox_CritNameUpdate.Text = aktRowCrit.CritName.ToString();
+            textBox_CritDescUpdate.Text = aktRowCrit.CritDescription.ToString();
         }
     }
 }
