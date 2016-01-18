@@ -35,8 +35,9 @@ namespace NWAT.Printer
         public void CritStructPrinter()
         {
 
+            //Benötigte Verbindung um Daten aus der Datenbank holen
             ProjectCriterionController cont = new ProjectCriterionController();
-            List<ProjectCriterion> projCrits = cont.GetAllProjectCriterionsForOneProject(1);
+            List<ProjectCriterion> projCrits = cont.GetAllProjectCriterionsForOneProject(1); //TODO - Hier noch definieren das aktuelles Projekt gewählt wird
 
             //SaveFileDialog um Dokument am gewünschten Ort speicher zu können 
             SfdCriterion.Filter = "Pdf File |*.pdf";
@@ -46,14 +47,23 @@ namespace NWAT.Printer
                 //Dokument Erstellen, Definieren des Formats
                 Document CriterionStructureDoc = new Document(iTextSharp.text.PageSize.A4.Rotate()); //Dokument in Querformat
                 CriterionStructureDoc.SetMargins(50, 200, 50, 125); //Seitenränder definieren
-                PdfWriter writer = PdfWriter.GetInstance(CriterionStructureDoc, new FileStream(SfdCriterion.FileName, FileMode.Create));
-                writer.PageEvent = new PdfPageEvents(); //Timestamp
+                try //try catch um Fehler abzufangen wenn eine gleichnamige PDF noch geöffnet ist
+                {    
+                    PdfWriter writer = PdfWriter.GetInstance(CriterionStructureDoc, new FileStream(SfdCriterion.FileName, FileMode.Create));
+                    writer.PageEvent = new PdfPageEvents(); //Timestamp                
+                }
+                catch (Exception) 
+                {MessageBox.Show(String.Format("{0}" + " noch geöffnet! Bitte Schließen!", SfdCriterion.FileName));}
+
+               
                 CriterionStructureDoc.Open();
 
 
                //Überschrift und nötige Formatierung setzen (Schriftart, Fett Druck, Schriftgröße)
+                ProjectCriterion stringProjectName = new ProjectCriterion();
+                
                 Font arial = FontFactory.GetFont("Arial_BOLD", 10, Font.BOLD);
-                Paragraph heading = new Paragraph("Anforderungen des Anwenders", arial);
+                Paragraph heading = new Paragraph("Anforderungen des Anwenders",  arial);
                 heading.Add(new Chunk(new VerticalPositionMark()));
                 heading.Add(new Chunk("*                        Kommentar", arial));
                  
@@ -68,38 +78,43 @@ namespace NWAT.Printer
 
                     foreach (ProjectCriterion projectCriterion in projCrits)
                     {
-                        int layer = projectCriterion.Layer_Depth;
-                        double factor = 25;
-                        double intend = layer * factor;
-
-                        //Schriftgröße der angezeigten Kriterienstruktur bestimmen
-                        Font CritStructFont = FontFactory.GetFont("Arial", 10);
-                        Paragraph projectCriterionDescription = new Paragraph(/*projectCriterion.Criterion.Description.ToString(), CritStructFont)*/);
-
-                        PdfPTable table = new PdfPTable(1);
-                        PdfPCell cell = new PdfPCell(new Phrase(projectCriterion.Criterion.Description.ToString(), CritStructFont));
-                        cell.Border = 0;
-                        table.AddCell(cell);
-                        table.HorizontalAlignment =0;
-                        table.TotalWidth = 350f; //Breite der "Tabelle"
-                        table.LockedWidth = true;
-                        projectCriterionDescription.Add(table);
+                         
                        
+                            int layer = projectCriterion.Layer_Depth;
+                            double factor = 25;
+                            double intend = layer * factor;
 
-                        projectCriterionDescription.IndentationLeft = (Convert.ToSingle(intend));
-                        CriterionStructureDoc.Add(projectCriterionDescription);
-                       
+                            //Schriftgröße der angezeigten Kriterienstruktur bestimmen
+                            Font CritStructFont = FontFactory.GetFont("Arial", 10);
+                            Paragraph projectCriterionDescription = new Paragraph(/*projectCriterion.Criterion.Description.ToString(), CritStructFont)*/);
+
+                            PdfPTable CritTable = new PdfPTable(1);
+                            PdfPCell Crits = new PdfPCell(new Phrase(projectCriterion.Criterion.Description.ToString(), CritStructFont));
+                            Crits.Border = 0;
+                            CritTable.AddCell(Crits);
+                            CritTable.HorizontalAlignment = 0;
+                            CritTable.TotalWidth = 350f; //Breite der "Tabelle"
+                            CritTable.LockedWidth = true;
+                            projectCriterionDescription.Add(CritTable);
+
+                            //Passende Einrückung je nach Zugehörigkeit
+                            projectCriterionDescription.IndentationLeft = (Convert.ToSingle(intend));
+                            CriterionStructureDoc.Add(projectCriterionDescription);
+                        
+
+            
                     }
-                
 
+                    
 
                 //Close Dokument - Bearbeitung Beenden
                 CriterionStructureDoc.Close();
 
                 //Aufrufen der Hilfsmethode um Seitenzahl auf das PDF Dokument zu schreiben - Dokument und Einrückung der Seitenzahl wird der Methode übergeben
+              
                 CriterionStructurePrinter PageNumberObject = new CriterionStructurePrinter();
                 PageNumberObject.GetPageNumber(SfdCriterion, 800);
-                
+              
                 MessageBox.Show("PDF erfolgreich angelegt");
                 
                 //PDf wird automatisch geöffnet nach der erfolgreichen Speicherung
@@ -115,7 +130,7 @@ namespace NWAT.Printer
         /// 
         /// Erstellt von Adrian Glasnek
 
-        public void GetPageNumber(SaveFileDialog save, int pageNumberBottom)
+        public void GetPageNumber(SaveFileDialog save, int pageNumberBottomPosition)
         {
             byte[] bytes = File.ReadAllBytes(save.FileName);
             Font BlackFont = FontFactory.GetFont("Arial", 9, Font.NORMAL, BaseColor.BLACK);
@@ -127,7 +142,7 @@ namespace NWAT.Printer
                     int pages = reader.NumberOfPages;
                     for (int i = 1; i <= pages; i++)
                     {
-                        ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(i.ToString(), BlackFont), pageNumberBottom, 15f, 0);
+                        ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(i.ToString(), BlackFont), pageNumberBottomPosition, 15f, 0);
                     }
                 }
                 bytes = stream.ToArray();
@@ -135,12 +150,6 @@ namespace NWAT.Printer
             File.WriteAllBytes(save.FileName, bytes);
         }
 
-       
-
-
-       
-
-
-       
+  
     }
 }

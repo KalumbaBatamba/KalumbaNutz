@@ -37,8 +37,13 @@ namespace NWAT.Printer
             {
                 Document FulfillmentPrinter = new Document(iTextSharp.text.PageSize.A4.Rotate());
                 FulfillmentPrinter.SetMargins(50, 200, 50, 125); //Seitenränder definieren
-                PdfWriter writer = PdfWriter.GetInstance(FulfillmentPrinter, new FileStream(SfdFulfillment.FileName, FileMode.Create));
-                writer.PageEvent = new PdfPageEvents();
+                try //try catch um Fehler abzufangen wenn eine gleichnamige PDF noch geöffnet ist
+                {  
+                    PdfWriter writer = PdfWriter.GetInstance(FulfillmentPrinter, new FileStream(SfdFulfillment.FileName, FileMode.Create));
+                    writer.PageEvent = new PdfPageEvents();
+                }
+                catch (Exception) {MessageBox.Show(String.Format("{0}" + " noch geöffnet! Bitte Schließen!", SfdFulfillment.FileName));}
+                
                 FulfillmentPrinter.Open();
 
                 Font arial = FontFactory.GetFont("Arial_BOLD", 10, Font.BOLD);
@@ -56,7 +61,17 @@ namespace NWAT.Printer
 
                     //Schriftgröße der angezeigten Kriterienstruktur bestimmen
                     Font CritStructFont = FontFactory.GetFont("Arial", 9);
-                    Paragraph projectCriterionDescription = new Paragraph(projectCriterion.Criterion.Description.ToString(), CritStructFont);
+                    Paragraph projectCriterionDescription = new Paragraph(/*projectCriterion.Criterion.Description.ToString(), CritStructFont*/);
+
+                    PdfPTable CritTable = new PdfPTable(1);
+                    PdfPCell Crits = new PdfPCell(new Phrase(projectCriterion.Criterion.Description.ToString(), CritStructFont));
+                    Crits.Border = 0;
+                    CritTable.AddCell(Crits);
+                    CritTable.HorizontalAlignment = 0;
+                    CritTable.TotalWidth = 350f; //Breite der "Tabelle"
+                    CritTable.LockedWidth = true;
+                    projectCriterionDescription.Add(CritTable);
+                    
                     projectCriterionDescription.IndentationLeft = (Convert.ToSingle(intend));
                     FulfillmentPrinter.Add(projectCriterionDescription);
                 }

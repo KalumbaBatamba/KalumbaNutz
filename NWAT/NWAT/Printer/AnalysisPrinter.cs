@@ -37,9 +37,15 @@ namespace NWAT.Printer
                 //Dokument erstellen - Formatierungen angeben
 
                 Document AnalysisPrinterDoc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
-                PdfWriter writer = PdfWriter.GetInstance(AnalysisPrinterDoc, new FileStream(SfdAnalysis.FileName, FileMode.Create));
-                writer.PageEvent = new PdfPageEvents();
-                AnalysisPrinterDoc.Open();
+                
+                try //try catch um Fehler abzufangen wenn eine gleichnamige PDF noch geöffnet ist
+                {
+                    PdfWriter writer = PdfWriter.GetInstance(AnalysisPrinterDoc, new FileStream(SfdAnalysis.FileName, FileMode.Create));
+                    writer.PageEvent = new PdfPageEvents();
+                }
+                catch (Exception){MessageBox.Show(String.Format("{0}" + " noch geöffnet! Bitte Schließen!", SfdAnalysis.FileName)); }
+                    
+                    AnalysisPrinterDoc.Open();
 
                 //Größe der Überschrift, Schriftart und Überschrifttext festlegen
                 Font arial = FontFactory.GetFont("Arial_BOLD", 10, Font.BOLD);
