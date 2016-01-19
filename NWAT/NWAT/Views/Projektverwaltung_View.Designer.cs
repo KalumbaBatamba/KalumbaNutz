@@ -59,6 +59,7 @@
             this.comboBox_SelectProject.Size = new System.Drawing.Size(300, 21);
             this.comboBox_SelectProject.TabIndex = 1;
             this.comboBox_SelectProject.Text = "Wählen Sie ein Projekt aus der Liste aus";
+            this.comboBox_SelectProject.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectProject_SelectedIndexChanged);
             // 
             // btn_ProjectShow
             // 

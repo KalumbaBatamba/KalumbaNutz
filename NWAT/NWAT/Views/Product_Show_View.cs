@@ -12,10 +12,33 @@ namespace NWAT
 {
     public partial class Product_Show_View : Form
     {
-        private ProductController prodCont;
-        public Product_Show_View()
+        private Product _product;
+
+        public Product Product
         {
-            this.prodCont = new ProductController();
+            get { return _product; }
+            set { _product = value; }
+        }
+
+        private ProductController _productCont;
+
+        public ProductController ProductCont
+        {
+            get { return _productCont; }
+            set { _productCont = value; }
+        }
+
+
+   //     private ProductController prodCont;
+
+    
+        public Product_Show_View(int productID)
+        {
+            this.ProductCont = new ProductController();
+            this.Product = this.ProductCont.GetProductById(productID);
+
+
+       //     this.prodCont = new ProductController();
             InitializeComponent();
         }
 
@@ -31,14 +54,14 @@ namespace NWAT
         private void Product_Show_View_Load(object sender, EventArgs e)
         {
 
-           Product prod = prodCont.GetProductById(aktRowProd.ProdID);
-           String ProdName = prod.Name;
-           String ProdProducer = prod.Producer;
-           double ProdPrice = prod.Price.Value;
+       //    Product prod = prodCont.GetProductById(Product.Product_Id);
+           String ProdName = this.Product.Name;
+           String ProdProducer = this.Product.Producer;
+           double ProdPrice = this.Product.Price.Value;
            MessageBox.Show(ProdName + ProdProducer);
-           label_ProdNameShow.Text = ProdName; 
-           label_ProdManuShow.Text = ProdProducer;
-           label_ProdPrizeShow.Text = String.Format("{0:0.00}", ProdPrice);
+           label_ProdNameShow.Text = this.Product.Name; 
+           label_ProdManuShow.Text = this.Product.Producer;
+           label_ProdPrizeShow.Text = String.Format("{0:0.00}", this.Product.Price);
 
         //    Product prod = new Product();
         //    prod = prodCont.GetProductById(aktRowProd.ProdID);

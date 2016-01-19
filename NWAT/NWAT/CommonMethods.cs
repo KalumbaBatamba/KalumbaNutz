@@ -76,6 +76,7 @@ namespace NWAT
             }
             catch (FormatException e)
             {
+                throw(e);
             }
         }
 

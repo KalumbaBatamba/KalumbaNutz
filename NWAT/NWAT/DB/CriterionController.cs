@@ -81,10 +81,10 @@ namespace NWAT.DB
         /// <param name="criterionId">The criterion identifier.</param>
         /// <returns></returns>
         /// Erstellt von Joshua Frey, am 13.01.2016
-        public bool checkIfCriterionIsAllocatedToAnyProject(int criterionId)
+        public bool CheckIfCriterionIsAllocatedToAnyProject(int criterionId)
         {
             bool isAllocatedToProjects = false;
-            List<ProjectCriterion> allocatedProjectCriterions = getAllProjecCriterionsWhichThisCriterionIsRelatedTo(criterionId);
+            List<ProjectCriterion> allocatedProjectCriterions = GetAllProjectCriterionsWhichThisCriterionIsRelatedTo(criterionId);
             if (allocatedProjectCriterions.Count > 0)
             {
                 isAllocatedToProjects = true;
@@ -99,11 +99,17 @@ namespace NWAT.DB
         /// <param name="criterionId">The criterion identifier.</param>
         /// <returns></returns>
         /// Erstellt von Joshua Frey, am 13.01.2016
-        public List<ProjectCriterion> getAllProjecCriterionsWhichThisCriterionIsRelatedTo(int criterionId)
+        public List<ProjectCriterion> GetAllProjectCriterionsWhichThisCriterionIsRelatedTo(int criterionId)
         {
             Criterion crit = GetCriterionById(criterionId);
             List<ProjectCriterion> allocatedProjectCriterions = crit.ProjectCriterion.ToList();
             return allocatedProjectCriterions;
+        }
+
+
+        public bool InsertCriterionIntoDb(Criterion newCriterion)
+        {
+            return InsertCriterionIntoDb(newCriterion, 0);
         }
 
         /// <summary>
@@ -115,41 +121,53 @@ namespace NWAT.DB
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
         /// <exception cref="NWATException">
-        ///  Das Kriterium mit dem Namen -Kriteriumname- existiert bereits in einem anderen Datensatz in der Datenbank.
-        /// or
-        /// Das Kriterium konnte nicht in der Datenbank angelegt werden. 
-        /// Bitte überprüfen Sie das übergebene Kriterium Objekt.
         /// </exception>
-        public bool InsertCriterionIntoDb(Criterion newCriterion)
+        public bool InsertCriterionIntoDb(Criterion newCriterion, int insertId)
         {
             if (newCriterion != null)
             {
+                // if insert Id is != 0 then this criterion will be imported at the index of insertId
+                bool willBeImported = insertId != 0;
+
                 string newCriterionName = newCriterion.Name;
                 if (!CheckIfCriterionNameAlreadyExists(newCriterionName))
                 {
 
-                    using (CurrentMasterDataIdsController masterDataIdsContr = new CurrentMasterDataIdsController())
+                    if (willBeImported)
                     {
-                        CurrentMasterDataIds masterDataIdsSet = masterDataIdsContr.GetCurrentMasterDataIds();
-
-                        int currentCritId = masterDataIdsSet.CurrentCriterionId;
-
-                        // if you inserted a criterion manually and forgot to adjust the currentCriterionId it will 
-                        // increment to the free place and will use new id to insert new criterion
-                        while (GetCriterionById(currentCritId) != null)
+                        if (CheckIfCriterionIdAlreadyExists(insertId))
                         {
-                            masterDataIdsContr.incrementCurrentCriterionId();
-                            currentCritId = masterDataIdsSet.CurrentCriterionId;
+                            throw (new NWATException(MessageCriterionIdAlreadyExists(insertId)));
                         }
-
-                        newCriterion.Criterion_Id = currentCritId;
-
-                        base.DataContext.Criterion.InsertOnSubmit(newCriterion);
-                        base.DataContext.SubmitChanges();
-                        masterDataIdsContr.incrementCurrentCriterionId();
+                        else
+                        {
+                            base.DataContext.Criterion.InsertOnSubmit(newCriterion);
+                            base.DataContext.SubmitChanges();
+                        }
                     }
+                    else
+                    {
+                        using (CurrentMasterDataIdsController masterDataIdsContr = new CurrentMasterDataIdsController())
+                        {
+                            CurrentMasterDataIds masterDataIdsSet = masterDataIdsContr.GetCurrentMasterDataIds();
 
-                   
+                            int currentCritId = masterDataIdsSet.CurrentCriterionId;
+
+                            // if you inserted a criterion manually and forgot to adjust the currentCriterionId it will 
+                            // increment to the free place and will use new id to insert new criterion
+                            while (GetCriterionById(currentCritId) != null)
+                            {
+                                masterDataIdsContr.incrementCurrentCriterionId();
+                                currentCritId = masterDataIdsSet.CurrentCriterionId;
+                            }
+
+                            newCriterion.Criterion_Id = currentCritId;
+
+                            base.DataContext.Criterion.InsertOnSubmit(newCriterion);
+                            base.DataContext.SubmitChanges();
+                            masterDataIdsContr.incrementCurrentCriterionId();
+                        }
+                    }
                 }
                 else
                 {
@@ -231,9 +249,11 @@ namespace NWAT.DB
         /// </exception>
         public bool DeleteCriterionFromDb(int criterionId)
         {
-            Criterion delCriterion = (from crit in base.DataContext.Criterion
-                                        where crit.Criterion_Id == criterionId
-                                        select crit).FirstOrDefault();
+            //Criterion delCriterion = (from crit in base.DataContext.Criterion
+            //                            where crit.Criterion_Id == criterionId
+            //                            select crit).FirstOrDefault();
+
+            Criterion delCriterion = GetCriterionById(criterionId);
             if (delCriterion != null)
             {
                 // check if criterion is parent Id in any project
@@ -343,6 +363,12 @@ namespace NWAT.DB
         {
             return "Das Kriterium konnte nicht in der Datenbank gespeichert werden." +
                    " Bitte überprüfen Sie das übergebene Kriterium Objekt.";
+        }
+
+        private string MessageCriterionIdAlreadyExists(int id)
+        {
+            return "Das Kriterium mit der Id \"" + id.ToString() +
+                   "\" existiert bereits in einem anderen Datensatz in der Datenbank.";
         }
 
         private string MessageCriterionAlreadyExists(string criterionName)

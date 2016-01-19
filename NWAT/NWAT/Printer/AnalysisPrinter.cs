@@ -60,8 +60,8 @@ namespace NWAT.Printer
                 AnalysisPrinterDoc.Close();
 
                 //Aufrufen der Hilfsmethode um Seitenzahl auf das PDF Dokument zu schreiben - Dokument und Einrückung der Seitenzahl wird der Methode übergeben
-                CriterionStructurePrinter PageNumberObject = new CriterionStructurePrinter();
-                PageNumberObject.GetPageNumber(SfdAnalysis, 568);
+                //CriterionStructurePrinter PageNumberObject = new CriterionStructurePrinter();
+                //PageNumberObject.GetPageNumber(SfdAnalysis, 568);
 
                 //PDf wird automatisch geöffnet nach der erfolgreichen Speicherung
 

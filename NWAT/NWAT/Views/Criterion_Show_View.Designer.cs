@@ -80,6 +80,7 @@
             this.btn_CritShowClose.TabIndex = 4;
             this.btn_CritShowClose.Text = "schliessen";
             this.btn_CritShowClose.UseVisualStyleBackColor = true;
+            this.btn_CritShowClose.Click += new System.EventHandler(this.btn_CritShowClose_Click);
             // 
             // Criterion_Show_View
             // 

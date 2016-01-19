@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace NWAT.DB
 {
-    public class FulfillmentController : DbController, IDisposable
+    public class FulfillmentController : DbController
     {
         public FulfillmentController() : base() { }
         public FulfillmentController(NWATDataContext dataContext)
             : base(dataContext) { }
 
-        public void Dispose()
-        { }
+      
         /// <summary>
         /// Gets the fulfillment by ids.
         /// </summary>
