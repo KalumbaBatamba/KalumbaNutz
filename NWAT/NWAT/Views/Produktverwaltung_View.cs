@@ -43,27 +43,29 @@ namespace NWAT
         private void btn_ProdShow_Click(object sender, EventArgs e)
         {
             int selectedIndex = comboBox_ProdChoose.SelectedIndex;
-            Object selectedItem = comboBox_ProdChoose.SelectedItem;
-            aktRowProd.ProdID = selectedIndex +=1 ;
-            MessageBox.Show("Selected Item Text: " + selectedItem.ToString() + "\n" +
-                            "Index: " + selectedIndex.ToString());
-            Product_Show_View ProdShow = new Product_Show_View();
+            Product selectedItem = (Product)comboBox_ProdChoose.SelectedItem;
+    //        aktRowProd.ProdID = selectedItem.Product_Id ;
+            MessageBox.Show("Selected Item Text: " + selectedItem.Product_Id );
+            Product_Show_View ProdShow = new Product_Show_View(selectedItem.Product_Id);
             ProdShow.Show();
         }
 
         private void btn_ProdUpdate_Click(object sender, EventArgs e)
         {
             int selectedIndex = comboBox_ProdChoose.SelectedIndex;
-            Object selectedItem = comboBox_ProdChoose.SelectedItem;
-            aktRowProd.ProdID = selectedIndex += 1;
-            MessageBox.Show("Selected Item Text: " + selectedItem.ToString() + "\n" +
-                            "Index: " + selectedIndex.ToString());
-            Product_Update_View ProdUpdate = new Product_Update_View();
+            Product selectedItem = (Product)comboBox_ProdChoose.SelectedItem;
+    //      aktRowProd.ProdID = selectedItem.Product_Id;
+            MessageBox.Show("Selected Item Text: " + selectedItem.Product_Id);
+            Product_Update_View ProdUpdate = new Product_Update_View(selectedItem.Product_Id);
             ProdUpdate.Show();
         }
 
         private void btn_ProdDelete_Click(object sender, EventArgs e)
         {
+            int selectedIndex = comboBox_ProdChoose.SelectedIndex;
+            Product selectedItem = (Product)comboBox_ProdChoose.SelectedItem;
+    //        aktRowProd.ProdID = selectedItem.Product_Id;
+            prodCont.DeleteProductFromDb(selectedItem.Product_Id);
             MessageBox.Show("Wollen Sie das ausgeählte Produkt wirklich löschen?");
         }
         private void DeleteProdFromDB()

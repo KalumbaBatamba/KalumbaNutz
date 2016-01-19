@@ -41,6 +41,8 @@ namespace NWAT
             projCre.Name = textBox_ProjNameCreate.Text;
             projCre.Description = textBox_ProjDescCreate.Text;
             projCont.InsertProjectIntoDb(projCre);
+
+            this.Close();
         }
     }
 }

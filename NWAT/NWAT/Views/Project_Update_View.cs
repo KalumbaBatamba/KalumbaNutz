@@ -12,26 +12,56 @@ namespace NWAT
 {
     public partial class Project_Update_View : Form
     {
+        private Project _project;
 
-        private ProjectController projCont;
-        public Project_Update_View()
+        public Project Project
         {
-            this.projCont = new ProjectController();
+            get { return _project; }
+            set { _project = value; }
+        }
+
+        private ProjectController _projectCont;
+
+        public ProjectController ProjectCont
+        {
+            get { return _projectCont; }
+            set { _projectCont = value; }
+        }
+
+
+
+   //     private ProjectController projCont;
+        public Project_Update_View(int projectId)
+        {
+            this.ProjectCont = new ProjectController();
+            this.Project = this.ProjectCont.GetProjectById(projectId);
+
+           // this.ProjectCont = new ProjectController();
             InitializeComponent();
         }
 
         private void btn_ProjUpdate_Click(object sender, EventArgs e)
         {
-
+            Project projUpd = ProjectCont.GetProjectById(Project.Project_Id);//new Project();
+            projUpd.Project_Id = this.Project.Project_Id;
+            projUpd.Name = textBox_ProjNameUpdate.Text;
+            projUpd.Description = textBox_ProjDescUpdate.Text;
+            ProjectCont.UpdateProjectInDb(projUpd);
+            this.Close();
         }
         private void UpdateProject()
         {
-
+           
         }
 
         private void Project_Update_View_Load(object sender, EventArgs e)
         {
-
+            Project proj = ProjectCont.GetProjectById(aktRowProj.ProjID);
+            String ProjName = proj.Name;
+            String ProjDesc = proj.Description;
+            MessageBox.Show(ProjName + ProjDesc);
+            textBox_ProjNameUpdate.Text = ProjName;
+            textBox_ProjDescUpdate.Text = ProjDesc;
         }
     }
 }
