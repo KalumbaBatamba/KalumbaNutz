@@ -231,9 +231,11 @@ namespace NWAT.DB
         /// </exception>
         public bool DeleteCriterionFromDb(int criterionId)
         {
-            Criterion delCriterion = (from crit in base.DataContext.Criterion
-                                        where crit.Criterion_Id == criterionId
-                                        select crit).FirstOrDefault();
+            //Criterion delCriterion = (from crit in base.DataContext.Criterion
+            //                            where crit.Criterion_Id == criterionId
+            //                            select crit).FirstOrDefault();
+
+            Criterion delCriterion = GetCriterionById(criterionId);
             if (delCriterion != null)
             {
                 // check if criterion is parent Id in any project
