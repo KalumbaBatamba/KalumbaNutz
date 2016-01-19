@@ -14,16 +14,44 @@ namespace NWAT
     public partial class Criterion_Update_View : Form
     {
 
-        private CriterionController critCont;
-        public Criterion_Update_View()
+        private Criterion _criterion;
+
+        public Criterion Criterion
         {
-            this.critCont = new CriterionController();
+            get { return _criterion; }
+            set { _criterion = value; }
+        }
+
+        private CriterionController _criterionCont;
+
+        public CriterionController CriterionCont
+        {
+            get { return _criterionCont; }
+            set { _criterionCont = value; }
+        }
+
+
+
+       // private CriterionController critCont;
+        public Criterion_Update_View(int criterionId)
+        {
+ //           this.critCont = new CriterionController();
+            this.CriterionCont = new CriterionController();
+            this.Criterion = this.CriterionCont.GetCriterionById(criterionId);
+
+            
             InitializeComponent();
         }
 
         private void btn_CritUpdate_Click(object sender, EventArgs e)
         {
-
+            Criterion critUpd = CriterionCont.GetCriterionById(Criterion.Criterion_Id); //new Criterion();
+            critUpd.Criterion_Id = this.Criterion.Criterion_Id;   //aktRowCrit.CritID;
+            critUpd.Name = textBox_CritNameUpdate.Text;
+            critUpd.Description = textBox_CritDescUpdate.Text;
+            CriterionCont.UpdateCriterionInDb(critUpd);
+            this.Close();
+            
         }
         private void GetCritsSpecs()
         {
@@ -36,8 +64,8 @@ namespace NWAT
 
         private void Criterion_Update_Form_Load(object sender, EventArgs e)
         {
-            textBox_CritNameUpdate.Text = aktRow.Name.ToString();
-            textBox_CritDescUpdate.Text = aktRow.Description.ToString();
+            textBox_CritNameUpdate.Text = this.Criterion.Name;  //aktRowCrit.CritName.ToString();
+            textBox_CritDescUpdate.Text = this.Criterion.Description; //aktRowCrit.CritDescription.ToString();
         }
     }
 }

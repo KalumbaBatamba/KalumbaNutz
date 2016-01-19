@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace NWAT.DB
 {
-    class CriterionController : DbController
+    public class CriterionController : DbController
     {
         public CriterionController() : base() { }
         public CriterionController(NWATDataContext dataContext)
@@ -81,10 +81,10 @@ namespace NWAT.DB
         /// <param name="criterionId">The criterion identifier.</param>
         /// <returns></returns>
         /// Erstellt von Joshua Frey, am 13.01.2016
-        public bool checkIfCriterionIsAllocatedToAnyProject(int criterionId)
+        public bool CheckIfCriterionIsAllocatedToAnyProject(int criterionId)
         {
             bool isAllocatedToProjects = false;
-            List<ProjectCriterion> allocatedProjectCriterions = getAllProjecCriterionsWhichThisCriterionIsRelatedTo(criterionId);
+            List<ProjectCriterion> allocatedProjectCriterions = GetAllProjecCriterionsWhichThisCriterionIsRelatedTo(criterionId);
             if (allocatedProjectCriterions.Count > 0)
             {
                 isAllocatedToProjects = true;
@@ -99,7 +99,7 @@ namespace NWAT.DB
         /// <param name="criterionId">The criterion identifier.</param>
         /// <returns></returns>
         /// Erstellt von Joshua Frey, am 13.01.2016
-        public List<ProjectCriterion> getAllProjecCriterionsWhichThisCriterionIsRelatedTo(int criterionId)
+        public List<ProjectCriterion> GetAllProjectCriterionsWhichThisCriterionIsRelatedTo(int criterionId)
         {
             Criterion crit = GetCriterionById(criterionId);
             List<ProjectCriterion> allocatedProjectCriterions = crit.ProjectCriterion.ToList();
@@ -231,9 +231,11 @@ namespace NWAT.DB
         /// </exception>
         public bool DeleteCriterionFromDb(int criterionId)
         {
-            Criterion delCriterion = (from crit in base.DataContext.Criterion
-                                        where crit.Criterion_Id == criterionId
-                                        select crit).FirstOrDefault();
+            //Criterion delCriterion = (from crit in base.DataContext.Criterion
+            //                            where crit.Criterion_Id == criterionId
+            //                            select crit).FirstOrDefault();
+
+            Criterion delCriterion = GetCriterionById(criterionId);
             if (delCriterion != null)
             {
                 // check if criterion is parent Id in any project

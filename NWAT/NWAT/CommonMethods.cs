@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NWAT
 {
-    class CommonMethods
+    public class CommonMethods
     {
         // this class holds static methods as members, which can be used by several different classes/objects in this project
 
@@ -76,6 +76,7 @@ namespace NWAT
             }
             catch (FormatException e)
             {
+                throw(e);
             }
         }
 

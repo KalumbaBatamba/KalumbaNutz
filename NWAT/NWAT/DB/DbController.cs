@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NWAT.DB
 {
-    abstract class DbController
+    abstract public class DbController: IDisposable
     {
         private NWATDataContext _dataContext;
 
@@ -32,6 +32,8 @@ namespace NWAT.DB
         {
             this._dataContext = dataContext;
         }
+
+        public void Dispose() { }
 
     }
 }

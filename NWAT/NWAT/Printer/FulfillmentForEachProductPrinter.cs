@@ -79,8 +79,8 @@ namespace NWAT.Printer
                 FulfillmentPrinter.Close();
 
                 //Aufrufen der Hilfsmethode um Seitenzahl auf das PDF Dokument zu schreiben
-                CriterionStructurePrinter PageNumberObject = new CriterionStructurePrinter();
-                PageNumberObject.GetPageNumber(SfdFulfillment, 800); 
+                //CriterionStructurePrinter PageNumberObject = new CriterionStructurePrinter();
+                //PageNumberObject.GetPageNumber(SfdFulfillment, 800); 
 
                 MessageBox.Show("PDF erfolgreich angelegt");
 

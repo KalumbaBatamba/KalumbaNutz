@@ -33,16 +33,19 @@ namespace NWAT
             List<Criterion> CritList = critCont.GetAllCriterionsFromDb();
             var bindingList = new BindingList<Criterion>(CritList);
             var source = new BindingSource(bindingList, null);
+            dataGridView_Crits.DataSource = CritList;
             //   CritList.Add(new Criterion() {Criterion_Id = 1, Name = "Testname", Description= "Testdescr"});
             //   CritList.Add(new Criterion() { Criterion_Id = 2, Name = "Testname2", Description = "Testdescr2" });
             //  dataGridView_Crits.DataSource = source;
-            dataGridView_Crits.DataSource = CritList;
+          
 
         }
         private void Kriterienverwaltung_Load(object sender, EventArgs e)
         {
       //      this.critCont = new CriterionController();
       //      InitializeComponent();
+            dataGridView_Crits.Rows.Clear();
+
             List<Criterion> CritList = critCont.GetAllCriterionsFromDb();
             var bindingList = new BindingList<Criterion>(CritList);
             var source = new BindingSource(bindingList, null);
@@ -68,13 +71,13 @@ namespace NWAT
             int zelle1 = (int)row.Cells[0].Value;
             string zelle2 = (string)row.Cells[1].Value;
             string zelle3 = (string)row.Cells[2].Value;
-            aktRow.ID = zelle1;
-            aktRow.Name = zelle2;
-            aktRow.Description = zelle3;
+     //       aktRowCrit.CritID = zelle1;
+     //       aktRowCrit.CritName = zelle2;
+     //       aktRowCrit.CritDescription = zelle3;
             MessageBox.Show(zelle1.ToString() + zelle2 + zelle3);
 
 
-            Criterion_Show_View CritShow = new Criterion_Show_View();
+            Criterion_Show_View CritShow = new Criterion_Show_View(zelle1);
             CritShow.Show();
         }
 
@@ -84,19 +87,26 @@ namespace NWAT
             int zelle1 = (int)row.Cells[0].Value;
             string zelle2 = (string)row.Cells[1].Value;
             string zelle3 = (string)row.Cells[2].Value;
-            aktRow.ID = zelle1;
-            aktRow.Name = zelle2;
-            aktRow.Description = zelle3;
+            aktRowCrit.CritID = zelle1;
+            aktRowCrit.CritName = zelle2;
+            aktRowCrit.CritDescription = zelle3;
             MessageBox.Show(zelle1.ToString() + zelle2 + zelle3);
             
-            Criterion_Update_View CritUpdate = new Criterion_Update_View();
+            Criterion_Update_View CritUpdate = new Criterion_Update_View(zelle1);
             CritUpdate.Show();
             
         }
 
         private void btn_CritDelete_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Wollen Sie das ausgewählte Kriterium wirklich löschen?");
+            DataGridViewRow row = dataGridView_Crits.SelectedRows[0];
+            int zelle1 = (int)row.Cells[0].Value;
+         //   aktRowCrit.CritID = zelle1;
+         
+            
+
+            critCont.DeleteCriterionFromDb(zelle1);
+            MessageBox.Show("Das Kriterium wurde gelöscht");
         }
 
         private void btn_CritCreate_Click(object sender, EventArgs e)
@@ -120,8 +130,14 @@ namespace NWAT
 
         private void btn_refresh_Click(object sender, EventArgs e)
         {
+//            dataGridView_Crits.DataSource = null;
+  //        var bindingList = new BindingList<Criterion>() ;
+ //           bindingList.Clear();
+            
             List<Criterion> CritList = critCont.GetAllCriterionsFromDb();
-            var bindingList = new BindingList<Criterion>(CritList);
+   //         bindingList = CritList;
+            var bindingList  = new BindingList<Criterion>(CritList);
+ //           bindingList.  (CritList);
             var source = new BindingSource(bindingList, null);
             //   CritList.Add(new Criterion() {Criterion_Id = 1, Name = "Testname", Description= "Testdescr"});
             //   CritList.Add(new Criterion() { Criterion_Id = 2, Name = "Testname2", Description = "Testdescr2" });
@@ -130,10 +146,10 @@ namespace NWAT
         }
     }
 }
-public class aktRow
+public class aktRowCrit
 {
-    public static int ID;
-    public static string Name;
-    public static string Description;
+    public static int CritID;
+    public static string CritName;
+    public static string CritDescription;
 
 }

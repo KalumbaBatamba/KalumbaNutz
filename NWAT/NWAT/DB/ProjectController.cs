@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NWAT.DB
 {
-    class ProjectController : DbController
+    public class ProjectController : DbController
     {
 
         public ProjectController() : base() { }

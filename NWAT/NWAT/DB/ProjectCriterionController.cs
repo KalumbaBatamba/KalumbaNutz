@@ -9,13 +9,11 @@ namespace NWAT.DB
 {
 
 
-    class ProjectCriterionController : DbController, IDisposable
+    public class ProjectCriterionController : DbController
     {
         public ProjectCriterionController() : base() { }
         public ProjectCriterionController(NWATDataContext dataContext)
             : base(dataContext) { }
-
-        public void Dispose() { }
 
         /// <summary>
         /// Gets the project criterion by ids.
@@ -177,9 +175,52 @@ namespace NWAT.DB
             return deallocationSuccessful && allocationSuccessful;
         }
 
+
+        /// <summary>
+        /// Klasse um die Kriterienstruktur zu sortieren und in einer Liste zurückzugeben
+        /// </summary>
+        /// Erstellt von Adrian Glasnek
+        /// 
+
+        public List<ProjectCriterion> GetSortedCriterionStructure(int projectId)
+        {
+            List<ProjectCriterion> sortedCriterionStructure = new List<ProjectCriterion>();
+
+            List<ProjectCriterion> baseCriterion = GetBaseProjectCriterions(projectId);
+
+
+            FillSortedStructureList(projectId, baseCriterion, ref sortedCriterionStructure);
+
+
+            return sortedCriterionStructure;
+        }
+
+
+        /// <summary>
+        /// Klasse um die Kriterienstruktur zu sortieren und in einer Liste zurückzugeben
+        /// </summary>
+        /// Erstellt von Adrian Glasnek
+        /// 
+
         /*
         * Private Section
         */
+
+        private void FillSortedStructureList(int projectId, List<ProjectCriterion> siblingCriterions, ref List<ProjectCriterion> sortedCriterionStructure)
+        {
+            foreach (ProjectCriterion sibling in siblingCriterions)
+            {
+                sortedCriterionStructure.Add(sibling);
+
+                List<ProjectCriterion> childrenCriterions = GetChildCriterionsByParentId(projectId, sibling.Criterion_Id);
+
+                if (childrenCriterions.Count > 0)
+                {
+                    FillSortedStructureList(projectId, childrenCriterions, ref sortedCriterionStructure);
+                }
+            }
+            
+        }
 
         /// <summary>
         /// Inserts the project criterion into database.

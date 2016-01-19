@@ -43,6 +43,7 @@
             this.btn_ProjShowClose.TabIndex = 9;
             this.btn_ProjShowClose.Text = "schliessen";
             this.btn_ProjShowClose.UseVisualStyleBackColor = true;
+            this.btn_ProjShowClose.Click += new System.EventHandler(this.btn_ProjShowClose_Click);
             // 
             // label_ProjShowDesc
             // 
@@ -80,7 +81,7 @@
             this.label_ProjName.TabIndex = 5;
             this.label_ProjName.Text = "Projektname:";
             // 
-            // Project_Show_Form
+            // Project_Show_View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -90,7 +91,7 @@
             this.Controls.Add(this.label_ProjDescLab);
             this.Controls.Add(this.label_ProjShowName);
             this.Controls.Add(this.label_ProjName);
-            this.Name = "Project_Show_Form";
+            this.Name = "Project_Show_View";
             this.Text = "Projekt anzeigen";
             this.Load += new System.EventHandler(this.Project_Show_Form_Load);
             this.ResumeLayout(false);

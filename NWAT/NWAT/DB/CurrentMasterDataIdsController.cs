@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace NWAT.DB
 {
-    class CurrentMasterDataIdsController : DbController, IDisposable
+    public class CurrentMasterDataIdsController : DbController
     {
         public CurrentMasterDataIdsController() : base() { }
         public CurrentMasterDataIdsController(NWATDataContext dataContext) : 
             base (dataContext) { }
 
-        public void Dispose() { }
+ 
 
         /// <summary>
         /// Gets the current master data ids.
