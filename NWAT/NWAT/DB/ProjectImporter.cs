@@ -234,6 +234,7 @@ namespace NWAT.DB
             }
 
             importProjectData();
+            importCriterionData();
 
         }
 
@@ -293,29 +294,25 @@ namespace NWAT.DB
 
                     int importProjId = importProj.Project_Id;
                     string originImportProjName = importProj.Name;
-                    // if does not already exist in table --> import; else skip
+                    // if id does not already exist in table --> import; else skip
                     if (!this.ImportProjectController.CheckIfProjectIdAlreadyExists(importProjId))
                     {
 
                         // if name of project already exists in table, then expand the name of
                         // importProject by "_imported"
-                        bool nameChanged = false;
                         if (this.ImportProjectController.CheckIfProjectNameAlreadyExists(importProj.Name))
                         {
-
                             importProj.Name += "_imported";
-                            nameChanged = true;
-                        }
-
-                        // if name was changed, logfile will be updated
-                        if (nameChanged)
-                        {
+                            // if name was changed, logfile will be updated
                             this.ImportLogWriter.Log(MessageSuffixWasAppendedToDataName(originImportProjName, importProj.Name));
                         }
 
-
                         bool importSuccessful = this.ImportProjectController.InsertProjectIntoDb(importProj, importProjId);
-                        if (!importSuccessful)
+                        if (importSuccessful)
+                        {
+                            this.ImportLogWriter.Log(MessageImportSucceeded(importProjId, importProj.Name));
+                        }
+                        else
                         {
                             string dataSet = String.Format("Project_Id = {0}\n Name = {1}\n Description = {3}",
                                                             importProjId,
@@ -360,7 +357,8 @@ namespace NWAT.DB
         /// Erstellt von Joshua Frey, am 15.01.2016
         private void importCriterionData()
         {
-            using (StreamReader sr = new StreamReader(this.ProjectImportFilePath))
+            this.ImportLogWriter.Log(MessageStartImportOfData("Criterion"));
+            using (StreamReader sr = new StreamReader(this.CriterionImportFilePath))
             {
                 string line;
                 Criterion importCriterion;
@@ -368,22 +366,27 @@ namespace NWAT.DB
                 {
                     importCriterion = getCriterionByLineFromImportFile(line);
                     int importCritId = importCriterion.Criterion_Id;
-                    string importCritName = importCriterion.Name;
+                    string originImportCritName = importCriterion.Name;
 
-                    // if does not already exist in table --> import; else skip
+                    // if id does not already exist in table --> import; else skip
                     if (!this.ImportCriterionController.CheckIfCriterionIdAlreadyExists(importCritId))
                     {
                         // if name of criterion already exists in table, then expand the name of
                         // importProject by "_imported"
-                        if (this.ImportCriterionController.CheckIfCriterionNameAlreadyExists(importCritName))
+                        if (this.ImportCriterionController.CheckIfCriterionNameAlreadyExists(importCriterion.Name))
                         {
                             importCriterion.Name += "_imported";
-                            MessageBox.Show("abgeänderter Name");
+                            // if name was changed, logfile will be updated
+                            this.ImportLogWriter.Log(MessageSuffixWasAppendedToDataName(originImportCritName, importCriterion.Name));
                         }
 
-                        //bool importSuccessful = this.ImportProjectController.InsertProjectIntoDb(importCriterion, importCritId);
-                        bool importSuccessful = true;
-                        if (!importSuccessful)
+                        bool importSuccessful = this.ImportCriterionController.InsertCriterionIntoDb(importCriterion, importCritId);
+                        //bool importSuccessful = true;
+                        if (importSuccessful)
+                        {
+                            this.ImportLogWriter.Log(MessageImportSucceeded(importCritId, importCriterion.Name));
+                        }
+                        else
                         {
                             string dataSet = String.Format("Project_Id = {0}\n Name = {1}\n Description = {3}",
                                                             importCritId,
@@ -392,11 +395,15 @@ namespace NWAT.DB
 
                             throw new NWATException(MessageImportFailed("Project", dataSet));
                         }
+                        
                     }
                     else
-                        MessageBox.Show("ID gibts schon");
+                    {
+                        this.ImportLogWriter.Log(MessageDatasetAlreadyExists(importCritId, originImportCritName));
+                    }
                 }
             }
+            this.ImportLogWriter.Log(MessageEndImportOfData("Criterion"));
         }
 
         /// <summary>
@@ -435,6 +442,11 @@ namespace NWAT.DB
             return String.Format("Der Import in die Tabelle {1} war nicht erfolgreich. \n" + 
                                  "Folgender Datensatz ist betroffen:\n",
                                     dataSet, tableName);
+        }
+
+        private string MessageImportSucceeded(int dataSetId, string dataSetName)
+        {
+            return String.Format("Der Datensatz mit der Id \"{0}\" und dem Namen \"{1}\" wurde erfolgreich importiert.", dataSetId, dataSetName);
         }
 
         private string MessageStartImportOfData(string tableName)
