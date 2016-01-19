@@ -27,17 +27,39 @@ namespace NWAT.Printer
     {
 
         //Objekt SfdCriterion erstellen
-         SaveFileDialog SfdCriterion = new SaveFileDialog();
+         private SaveFileDialog SfdCriterion = new SaveFileDialog();
+         private Project _project;
+
+         public Project Project
+         {
+             get { return _project; }
+             set { _project = value; }
+         }
+
+         private ProjectCriterionController _projectCriterionController;
+
+         public ProjectCriterionController ProjCritContr
+         {
+             get { return _projectCriterionController; }
+             set { _projectCriterionController = value; }
+         }
          
+
+         public CriterionStructurePrinter(int projectId)
+         {
+             this.ProjCritContr = new ProjectCriterionController();
+             ProjectController projCont = new ProjectController();
+             this.Project = projCont.GetProjectById(projectId);
+         }
             
         //Methode um allen in der Datenbank gelisteten Projekte in einer PDF auszugeben
 
-        public void CritStructPrinter()
+        public void CreateCriterionStructurePdf()
         {
 
             //Benötigte Verbindung um Daten aus der Datenbank holen
-            ProjectCriterionController cont = new ProjectCriterionController();
-            List<ProjectCriterion> projCrits = cont.GetAllProjectCriterionsForOneProject(1); //TODO - Hier noch definieren das aktuelles Projekt gewählt wird
+            
+            List<ProjectCriterion> baseCriterions = this.ProjCritContr.GetBaseProjectCriterions(this.Project.Project_Id); //TODO - Hier noch definieren das aktuelles Projekt gewählt wird
 
             //SaveFileDialog um Dokument am gewünschten Ort speicher zu können 
             SfdCriterion.Filter = "Pdf File |*.pdf";
@@ -53,66 +75,54 @@ namespace NWAT.Printer
                     writer.PageEvent = new PdfPageEvents(); //Timestamp                
                 }
                 catch (Exception) 
-                {MessageBox.Show(String.Format("{0}" + " noch geöffnet! Bitte Schließen!", SfdCriterion.FileName));}
+                {
+                    MessageBox.Show(String.Format("{0}" + " noch geöffnet! Bitte Schließen!", SfdCriterion.FileName));
+                    return;
+                }
 
                
                 CriterionStructureDoc.Open();
 
 
                //Überschrift und nötige Formatierung setzen (Schriftart, Fett Druck, Schriftgröße)
-                ProjectCriterion stringProjectName = new ProjectCriterion();
+                string projectName = Project.Name;
                 
                 Font arial = FontFactory.GetFont("Arial_BOLD", 10, Font.BOLD);
-                Paragraph heading = new Paragraph("Anforderungen des Anwenders",  arial);
-                heading.Add(new Chunk(new VerticalPositionMark()));
-                heading.Add(new Chunk("*                        Kommentar", arial));
+                
                  
                 
                 
                 
-                //Abstand nach Übersicht bis zur Tabelle
-                heading.SpacingAfter = 15f;
-                CriterionStructureDoc.Add(heading);
+               
+                
                          
                //Schleife um Daten aus Datenbank zu holen
 
-                    foreach (ProjectCriterion projectCriterion in projCrits)
-                    {
-                         
-                       
-                            int layer = projectCriterion.Layer_Depth;
-                            double factor = 25;
-                            double intend = layer * factor;
+                PdfPTable CritTable = new PdfPTable(3);
+                float[] widths = {300f, 15f, 100f }; //Relative Breite der Spalten in Relation zur gesamten Tabellengröße
+                CritTable.DefaultCell.Border = 0;
+                CritTable.SetWidths(widths);
+                
+                CritTable.AddCell(new Paragraph("Anforderungen des Anwenders", arial));
+                CritTable.AddCell(new Paragraph("*", arial));
+                CritTable.AddCell(new Paragraph("Kommentar", arial));
+                
+           
+                CritTable.HorizontalAlignment = 0;
+                CritTable.TotalWidth = 700f; //Totale Breite der "Tabelle"
+                CritTable.LockedWidth = true;
 
-                            //Schriftgröße der angezeigten Kriterienstruktur bestimmen
-                            Font CritStructFont = FontFactory.GetFont("Arial", 10);
-                            Paragraph projectCriterionDescription = new Paragraph(/*projectCriterion.Criterion.Description.ToString(), CritStructFont)*/);
+                //Methodenaufruf
 
-                            PdfPTable CritTable = new PdfPTable(1);
-                            PdfPCell Crits = new PdfPCell(new Phrase(projectCriterion.Criterion.Description.ToString(), CritStructFont));
-                            Crits.Border = 0;
-                            CritTable.AddCell(Crits);
-                            CritTable.HorizontalAlignment = 0;
-                            CritTable.TotalWidth = 350f; //Breite der "Tabelle"
-                            CritTable.LockedWidth = true;
-                            projectCriterionDescription.Add(CritTable);
+                PrintCriterionStructure(ref CritTable);
 
-                            //Passende Einrückung je nach Zugehörigkeit
-                            projectCriterionDescription.IndentationLeft = (Convert.ToSingle(intend));
-                            CriterionStructureDoc.Add(projectCriterionDescription);
-                        
-
-            
-                    }
-
-                    
+                CriterionStructureDoc.Add(CritTable);
 
                 //Close Dokument - Bearbeitung Beenden
                 CriterionStructureDoc.Close();
 
-                //Aufrufen der Hilfsmethode um Seitenzahl auf das PDF Dokument zu schreiben - Dokument und Einrückung der Seitenzahl wird der Methode übergeben
-              
-                CriterionStructurePrinter PageNumberObject = new CriterionStructurePrinter();
+                //Aufrufen der Hilfsmethode um Seitenzahl auf das PDF Dokument zu schreiben - Dokument und Einrückung der Seitenzahl wird der Methode übergeben     
+                CriterionStructurePrinter PageNumberObject = new CriterionStructurePrinter(99);
                 PageNumberObject.GetPageNumber(SfdCriterion, 800);
               
                 MessageBox.Show("PDF erfolgreich angelegt");
@@ -121,6 +131,37 @@ namespace NWAT.Printer
                 System.Diagnostics.Process.Start(SfdCriterion.FileName);
 
                 
+            }
+        }
+
+        private void PrintCriterionStructure(ref PdfPTable CritTable)
+        {
+
+            List<ProjectCriterion> sortedProjectCriterionStructure = this.ProjCritContr.GetSortedCriterionStructure(this.Project.Project_Id);
+
+            
+
+            foreach (ProjectCriterion projectCriterion in sortedProjectCriterionStructure)
+            {
+                
+                int layer = projectCriterion.Layer_Depth;
+                int factor = 25;
+                int intend;
+          
+                intend = layer * factor;
+               
+                //Schriftgröße der angezeigten Kriterienstruktur bestimmen
+                Font CritStructFont = FontFactory.GetFont("Arial", 10);
+
+                Paragraph para = new Paragraph(projectCriterion.Criterion.Description.ToString(), CritStructFont);
+                para.IndentationLeft = intend;
+                PdfPCell Crits = new PdfPCell();
+                Crits.AddElement(para);
+                Crits.Border = 0;
+             
+                CritTable.AddCell(Crits);
+                CritTable.AddCell("");
+                CritTable.AddCell("");
             }
         }
 
@@ -150,6 +191,31 @@ namespace NWAT.Printer
             File.WriteAllBytes(save.FileName, bytes);
         }
 
+
+        public class CellSpacingEvent : IPdfPCellEvent
+        {
+            private int cellSpacing;
+            public CellSpacingEvent(int cellSpacing)
+            {
+                this.cellSpacing = cellSpacing;
+            }
+            void IPdfPCellEvent.CellLayout(PdfPCell cell, Rectangle position, PdfContentByte[] canvases)
+            {
+                //Grab the line canvas for drawing lines on
+                PdfContentByte cb = canvases[PdfPTable.LINECANVAS];
+                //Create a new rectangle using our previously supplied spacing
+                cb.Rectangle(
+                    position.Left + this.cellSpacing,
+                    position.Bottom + this.cellSpacing,
+                    (position.Right - this.cellSpacing) - (position.Left + this.cellSpacing),
+                    (position.Top - this.cellSpacing) - (position.Bottom + this.cellSpacing)
+                    );
+                //Set a color
+                cb.SetColorStroke(BaseColor.RED);
+                //Draw the rectangle
+                cb.Stroke();
+            }
+        }
   
     }
 }
