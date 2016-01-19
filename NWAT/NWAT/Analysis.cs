@@ -7,7 +7,7 @@ using NWAT.DB;
 
 namespace NWAT
 {
-    class Analysis
+    public class Analysis
     {
         private FulfillmentController fulfillContr;
         private ProjectCriterionController projCritContr;

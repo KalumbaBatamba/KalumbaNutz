@@ -8,7 +8,7 @@ using System.Text;
 
 namespace NWAT
 {
-    class ArchiveZipper : IDisposable
+    public class ArchiveZipper : IDisposable
     {
         public void Dispose() { }
 

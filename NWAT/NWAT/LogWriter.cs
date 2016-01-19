@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NWAT
 {
-    class LogWriter
+    public class LogWriter
     {
 
         private string _logFilePath;
