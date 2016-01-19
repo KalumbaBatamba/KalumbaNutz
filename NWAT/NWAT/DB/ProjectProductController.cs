@@ -7,14 +7,13 @@ using System.Windows.Forms;
 
 namespace NWAT.DB
 {
-    public class ProjectProductController : DbController, IDisposable
+    public class ProjectProductController : DbController
     {
 
         public ProjectProductController() : base() { }
         public ProjectProductController(NWATDataContext dataContext) 
             : base(dataContext) { }
 
-        public void Dispose() { }
 
 
         /// <summary>
