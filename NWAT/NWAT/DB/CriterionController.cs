@@ -84,7 +84,7 @@ namespace NWAT.DB
         public bool CheckIfCriterionIsAllocatedToAnyProject(int criterionId)
         {
             bool isAllocatedToProjects = false;
-            List<ProjectCriterion> allocatedProjectCriterions = GetAllProjecCriterionsWhichThisCriterionIsRelatedTo(criterionId);
+            List<ProjectCriterion> allocatedProjectCriterions = GetAllProjectCriterionsWhichThisCriterionIsRelatedTo(criterionId);
             if (allocatedProjectCriterions.Count > 0)
             {
                 isAllocatedToProjects = true;
