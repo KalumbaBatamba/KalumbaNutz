@@ -81,10 +81,10 @@ namespace NWAT.DB
         /// <param name="criterionId">The criterion identifier.</param>
         /// <returns></returns>
         /// Erstellt von Joshua Frey, am 13.01.2016
-        public bool checkIfCriterionIsAllocatedToAnyProject(int criterionId)
+        public bool CheckIfCriterionIsAllocatedToAnyProject(int criterionId)
         {
             bool isAllocatedToProjects = false;
-            List<ProjectCriterion> allocatedProjectCriterions = getAllProjecCriterionsWhichThisCriterionIsRelatedTo(criterionId);
+            List<ProjectCriterion> allocatedProjectCriterions = GetAllProjecCriterionsWhichThisCriterionIsRelatedTo(criterionId);
             if (allocatedProjectCriterions.Count > 0)
             {
                 isAllocatedToProjects = true;
@@ -99,7 +99,7 @@ namespace NWAT.DB
         /// <param name="criterionId">The criterion identifier.</param>
         /// <returns></returns>
         /// Erstellt von Joshua Frey, am 13.01.2016
-        public List<ProjectCriterion> getAllProjecCriterionsWhichThisCriterionIsRelatedTo(int criterionId)
+        public List<ProjectCriterion> GetAllProjectCriterionsWhichThisCriterionIsRelatedTo(int criterionId)
         {
             Criterion crit = GetCriterionById(criterionId);
             List<ProjectCriterion> allocatedProjectCriterions = crit.ProjectCriterion.ToList();
