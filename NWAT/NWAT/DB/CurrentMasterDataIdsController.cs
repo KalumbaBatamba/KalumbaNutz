@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NWAT.DB
 {
-    class CurrentMasterDataIdsController : DbController, IDisposable
+    public class CurrentMasterDataIdsController : DbController, IDisposable
     {
         public CurrentMasterDataIdsController() : base() { }
         public CurrentMasterDataIdsController(NWATDataContext dataContext) : 

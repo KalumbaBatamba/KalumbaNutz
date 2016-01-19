@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace NWAT.DB
 {
-    class ProjectProductController : DbController, IDisposable
+    public class ProjectProductController : DbController, IDisposable
     {
 
         public ProjectProductController() : base() { }

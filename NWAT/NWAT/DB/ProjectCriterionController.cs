@@ -9,7 +9,7 @@ namespace NWAT.DB
 {
 
 
-    class ProjectCriterionController : DbController, IDisposable
+    public class ProjectCriterionController : DbController, IDisposable
     {
         public ProjectCriterionController() : base() { }
         public ProjectCriterionController(NWATDataContext dataContext)

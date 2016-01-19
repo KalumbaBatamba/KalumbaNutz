@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace NWAT.DB
 {
-    class CriterionController : DbController
+    public class CriterionController : DbController
     {
         public CriterionController() : base() { }
         public CriterionController(NWATDataContext dataContext)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NWAT.DB
 {
-    class FulfillmentController : DbController, IDisposable
+    public class FulfillmentController : DbController, IDisposable
     {
         public FulfillmentController() : base() { }
         public FulfillmentController(NWATDataContext dataContext)

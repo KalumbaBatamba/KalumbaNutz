@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace NWAT.DB
 {
-    class ProjectImporter
+    public class ProjectImporter
     {
 
         // the pipe symbol is used to seperate the columns in the csv files.

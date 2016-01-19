@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NWAT.DB
 {
-    abstract class DbController
+    abstract public class DbController
     {
         private NWATDataContext _dataContext;
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NWAT.DB
 {
-    class ProductController : DbController
+    public class ProductController : DbController
     {
 
         public ProductController() : base() { }
