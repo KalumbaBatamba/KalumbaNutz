@@ -500,7 +500,9 @@ namespace NWAT.DB
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-	}
+
+        public string Name { get; set; }
+    }
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CurrentMasterDataIds")]
 	public partial class CurrentMasterDataIds : INotifyPropertyChanging, INotifyPropertyChanged

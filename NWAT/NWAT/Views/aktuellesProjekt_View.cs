@@ -109,7 +109,7 @@ namespace NWAT
 
         private void btn_CurrProjProdAssign_Click(object sender, EventArgs e)
         {
-            ProjProdAssign_View ProjProdAssign = new ProjProdAssign_View();
+            ProjProdAssign_View ProjProdAssign = new ProjProdAssign_View(Project.Project_Id);
             ProjProdAssign.Show();
         }
 
