@@ -104,6 +104,18 @@ namespace NWAT.DB
         }
 
         /// <summary>
+        /// Gets the highest layer number in project.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 20.01.2016
+        public int GetHighestLayerNumberInProject(int projectId)
+        {
+            ProjectCriterion projCritWithHighestLayerNum = base.DataContext.ProjectCriterion.OrderByDescending(projCrit => projCrit.Layer_Depth).FirstOrDefault();
+            return projCritWithHighestLayerNum.Layer_Depth;
+        }
+
+        /// <summary>
         /// Updates the project criterion in database.
         /// </summary>
         /// <param name="alteredProjectCriterion">The altered project criterion.</param>
