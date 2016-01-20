@@ -156,7 +156,7 @@ namespace NWAT.Printer
                     //Schriftgröße der angezeigten Kriterienstruktur bestimmen
                     Font CritStructFont = FontFactory.GetFont("Arial", 10);
 
-
+                   
                     Paragraph para = new Paragraph(projectCriterion.Criterion.Description.ToString(), CritStructFont);
                     para.IndentationLeft = intend;
                     PdfPCell Crits = new PdfPCell();
@@ -165,7 +165,17 @@ namespace NWAT.Printer
 
                     CritTable.AddCell(Crits);
                     CritTable.AddCell("");
-                    CritTable.AddCell("");
+
+                    //If Abfrage - Wenn eine Gewichtung in der Datenbank hinterlegt ist wird bei den Kriterien ein x gesetzt ansonsten ein -
+                    if (projectCriterion.Weighting_Cardinal <= 0)
+                    {
+                        CritTable.AddCell(new Paragraph("-", CritStructFont));
+                    }
+                    else
+                    {
+                        CritTable.AddCell(new Paragraph("x", CritStructFont));
+                    }
+
                     CritTable.AddCell("");
                 }
             
