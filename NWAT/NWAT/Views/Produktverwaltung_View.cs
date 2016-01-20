@@ -65,7 +65,13 @@ namespace NWAT
             int selectedIndex = comboBox_ProdChoose.SelectedIndex;
             Product selectedItem = (Product)comboBox_ProdChoose.SelectedItem;
     //        aktRowProd.ProdID = selectedItem.Product_Id;
-            prodCont.DeleteProductFromDb(selectedItem.Product_Id);
+            using (ProductController prodDelete = new ProductController()) {
+
+                prodDelete.DeleteProductFromDb(selectedItem.Product_Id);
+            }
+            
+            
+    //        prodCont.DeleteProductFromDb(selectedItem.Product_Id);
             MessageBox.Show("Wollen Sie das ausgeählte Produkt wirklich löschen?");
         }
         private void DeleteProdFromDB()
@@ -81,12 +87,23 @@ namespace NWAT
 
         private void btn_refresh_Click(object sender, EventArgs e)
         {
-            List<Product> ProdList = prodCont.GetAllProductsFromDb();
-            var bindingList = new BindingList<Product>(ProdList);
-            var source = new BindingSource(bindingList, null);
-            comboBox_ProdChoose.DataSource = ProdList;
-            comboBox_ProdChoose.DisplayMember = "Name";
-            comboBox_ProdChoose.ValueMember = "Product_ID";
+            using (ProductController ProdRefr = new ProductController())
+            {
+                List<Product> ProdList = ProdRefr.GetAllProductsFromDb();
+                var bindingList = new BindingList<Product>(ProdList);
+                var source = new BindingSource(bindingList, null);
+                comboBox_ProdChoose.DataSource = ProdList;
+                comboBox_ProdChoose.DisplayMember = "Name";
+                comboBox_ProdChoose.ValueMember = "Product_ID";
+            }
+
+
+            //List<Product> ProdList = prodCont.GetAllProductsFromDb();
+            //var bindingList = new BindingList<Product>(ProdList);
+            //var source = new BindingSource(bindingList, null);
+            //comboBox_ProdChoose.DataSource = ProdList;
+            //comboBox_ProdChoose.DisplayMember = "Name";
+            //comboBox_ProdChoose.ValueMember = "Product_ID";
         }
     }
     public class aktRowProd

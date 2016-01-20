@@ -42,7 +42,7 @@ namespace NWAT.Printer
 
             // Footer Datum
             FooterDate.BeginText();
-            FooterDate.SetFontAndSize(new Font(iTextSharp.text.Font.FontFamily.UNDEFINED, 9, iTextSharp.text.Font.NORMAL).GetCalculatedBaseFont(false), 9);
+            FooterDate.SetFontAndSize(new Font(iTextSharp.text.Font.FontFamily.UNDEFINED, 9, iTextSharp.text.Font.BOLD).GetCalculatedBaseFont(false), 9);
             FooterDate.ShowTextAligned(PdfContentByte.ALIGN_RIGHT,
                 DateTime.Now.ToString("dd. MMMMM, yyyy"),
                 pageSize.GetRight(MilimetersToPoints(25)),

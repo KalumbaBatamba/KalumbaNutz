@@ -44,15 +44,47 @@ namespace NWAT.DB
         }
 
         /// <summary>
+        /// Checks if product identifier already exists.
+        /// </summary>
+        /// <param name="productId">The product identifier.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 20.01.2016
+        public bool CheckIfProductIdAlreadyExists(int productId)
+        {
+            Product existingProduct = GetProductById(productId);
+            return existingProduct != null;
+        }
+
+        /// <summary>
+        /// Checks if product name already exists.
+        /// </summary>
+        /// <param name="productName">Name of the product.</param>
+        /// <returns>
+        /// bool if product name already exists in db.
+        /// </returns>
+        /// Erstellt von Joshua Frey, am 14.12.2015
+        public bool CheckIfProductNameAlreadyExists(String productName)
+        {
+            Product productWithExistingName = (from prod in base.DataContext.Product
+                                               where prod.Name == productName
+                                               select prod).FirstOrDefault();
+            if (productWithExistingName != null)
+                return true;
+            else
+                return false;
+        }
+
+
+        /// <summary>
         /// Checks if product is allocated to any project.
         /// </summary>
         /// <param name="productId">The product identifier.</param>
         /// <returns></returns>
         /// Erstellt von Joshua Frey, am 13.01.2016
-        public bool checkIfProductIsAllocatedToAnyProject(int productId)
+        public bool CheckIfProductIsAllocatedToAnyProject(int productId)
         {
             bool isAllocatedToProjects = false;
-            List<ProjectProduct> allocatedProjectProducts = getAllProjectProductsWhichThisProductIsAllocatedTo(productId);
+            List<ProjectProduct> allocatedProjectProducts = GetAllProjectProductsWhichThisProductIsAllocatedTo(productId);
             if (allocatedProjectProducts.Count > 0)
             {
                 isAllocatedToProjects = true;
@@ -66,7 +98,7 @@ namespace NWAT.DB
         /// <param name="productId">The product identifier.</param>
         /// <returns></returns>
         /// Erstellt von Joshua Frey, am 13.01.2016
-        public List<ProjectProduct> getAllProjectProductsWhichThisProductIsAllocatedTo(int productId)
+        public List<ProjectProduct> GetAllProjectProductsWhichThisProductIsAllocatedTo(int productId)
         {
             Product prod = GetProductById(productId);
             List<ProjectProduct> allocatedProjectProducts = prod.ProjectProduct.ToList();
@@ -82,37 +114,51 @@ namespace NWAT.DB
         /// </returns>
         /// Erstellt von Joshua Frey, am 14.12.2015
         /// <exception cref="NWATException">
-        ///  Das Produkt mit dem Namen -Produktname- existiert bereits in einem anderen Datensatz in der Datenbank.
-        /// or
-        /// Das Produkt konnte nicht in der Datenbank angelegt werden. 
-        /// Bitte überprüfen Sie das übergebene Produkt Objekt.
         /// </exception>
         public bool InsertProductIntoDb(Product newProduct)
         {
+
             if (newProduct != null)
             {
+                // if insert Id is != 0 then this project will be imported at the index of insertId
+                bool willBeImported = newProduct.Product_Id != 0;
+
                 string newProductName = newProduct.Name;
                 if (!CheckIfProductNameAlreadyExists(newProductName))
                 {
-
-                    using (CurrentMasterDataIdsController masterDataIdsContr = new CurrentMasterDataIdsController())
+                    if (willBeImported)
                     {
-                        CurrentMasterDataIds masterDataIdsSet = masterDataIdsContr.GetCurrentMasterDataIds();
-
-                        int currentProdId = masterDataIdsSet.CurrentProductId;
-
-                        // if you inserted a product manually and forgot to adjust the currentProductId it will 
-                        // increment to the free place and will use new id to insert new product
-                        while (GetProductById(currentProdId) != null)
+                        if (CheckIfProductIdAlreadyExists(newProduct.Product_Id))
                         {
-                            masterDataIdsContr.incrementCurrentProductId();
-                            currentProdId = masterDataIdsSet.CurrentProductId;
+                            throw (new NWATException(MessageProductIdAlreadyExists(newProduct.Product_Id)));
                         }
+                        else
+                        {
+                            base.DataContext.Product.InsertOnSubmit(newProduct);
+                            base.DataContext.SubmitChanges();
+                        }
+                    }
+                    else
+                    {
+                        using (CurrentMasterDataIdsController masterDataIdsContr = new CurrentMasterDataIdsController())
+                        {
+                            CurrentMasterDataIds masterDataIdsSet = masterDataIdsContr.GetCurrentMasterDataIds();
 
-                        newProduct.Product_Id = currentProdId;
-                        base.DataContext.Product.InsertOnSubmit(newProduct);
-                        base.DataContext.SubmitChanges();
-                        masterDataIdsContr.incrementCurrentProductId();
+                            int currentProdId = masterDataIdsSet.CurrentProductId;
+
+                            // if you inserted a product manually and forgot to adjust the currentProductId it will 
+                            // increment to the free place and will use new id to insert new product
+                            while (GetProductById(currentProdId) != null)
+                            {
+                                masterDataIdsContr.incrementCurrentProductId();
+                                currentProdId = masterDataIdsSet.CurrentProductId;
+                            }
+
+                            newProduct.Product_Id = currentProdId;
+                            base.DataContext.Product.InsertOnSubmit(newProduct);
+                            base.DataContext.SubmitChanges();
+                            masterDataIdsContr.incrementCurrentProductId();
+                        }
                     }
                 }
                 else
@@ -237,26 +283,7 @@ namespace NWAT.DB
 
             return equalName && equalProducer && equalPrice;
         }
-
-        /// <summary>
-        /// Checks if product name already exists.
-        /// </summary>
-        /// <param name="productName">Name of the product.</param>
-        /// <returns>
-        /// bool if product name already exists in db.
-        /// </returns>
-        /// Erstellt von Joshua Frey, am 14.12.2015
-        private bool CheckIfProductNameAlreadyExists(String productName)
-        {
-            Product productWithExistingName = (from prod in base.DataContext.Product
-                                                    where prod.Name == productName
-                                                    select prod).FirstOrDefault();
-            if (productWithExistingName != null)
-                return true;
-            else
-                return false;
-        }
-
+                
         /// <summary>
         /// Checks if product has an identifier.
         /// </summary>
@@ -308,6 +335,12 @@ namespace NWAT.DB
         private string MessageProductAlreadyExists(string productName)
         {
             return "Das Produkt mit dem Namen \"" + productName +
+                   "\" existiert bereits in einem anderen Datensatz in der Datenbank.";
+        }
+
+        private string MessageProductIdAlreadyExists(int id)
+        {
+            return "Das Produkt mit der Id \"" + id.ToString() +
                    "\" existiert bereits in einem anderen Datensatz in der Datenbank.";
         }
 

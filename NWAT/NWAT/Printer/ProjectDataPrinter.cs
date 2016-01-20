@@ -41,6 +41,7 @@ namespace NWAT.Printer
 
                 Document projectDataDoc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
                 PdfWriter writer = PdfWriter.GetInstance(projectDataDoc, new FileStream(sfdProjectData.FileName, FileMode.Create));
+                writer.PageEvent = new PdfPageEvents(); //Timestamp  
                 projectDataDoc.Open();
 
                 PdfPTable table = new PdfPTable(3);

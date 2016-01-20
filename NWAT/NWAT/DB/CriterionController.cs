@@ -107,10 +107,6 @@ namespace NWAT.DB
         }
 
 
-        public bool InsertCriterionIntoDb(Criterion newCriterion)
-        {
-            return InsertCriterionIntoDb(newCriterion, 0);
-        }
 
         /// <summary>
         /// Inserts the criterion into database.
@@ -122,12 +118,12 @@ namespace NWAT.DB
         /// Erstellt von Joshua Frey, am 14.12.2015
         /// <exception cref="NWATException">
         /// </exception>
-        public bool InsertCriterionIntoDb(Criterion newCriterion, int insertId)
+        public bool InsertCriterionIntoDb(Criterion newCriterion)
         {
             if (newCriterion != null)
             {
                 // if insert Id is != 0 then this criterion will be imported at the index of insertId
-                bool willBeImported = insertId != 0;
+                bool willBeImported = newCriterion.Criterion_Id != 0;
 
                 string newCriterionName = newCriterion.Name;
                 if (!CheckIfCriterionNameAlreadyExists(newCriterionName))
@@ -135,9 +131,9 @@ namespace NWAT.DB
 
                     if (willBeImported)
                     {
-                        if (CheckIfCriterionIdAlreadyExists(insertId))
+                        if (CheckIfCriterionIdAlreadyExists(newCriterion.Criterion_Id))
                         {
-                            throw (new NWATException(MessageCriterionIdAlreadyExists(insertId)));
+                            throw (new NWATException(MessageCriterionIdAlreadyExists(newCriterion.Criterion_Id)));
                         }
                         else
                         {

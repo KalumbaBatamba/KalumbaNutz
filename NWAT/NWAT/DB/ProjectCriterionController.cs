@@ -91,6 +91,19 @@ namespace NWAT.DB
         }
 
         /// <summary>
+        /// Checks if project criterion already exists.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="criterionId">The criterion identifier.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 20.01.2016
+        public bool CheckIfProjectCriterionAlreadyExists(int projectId, int criterionId)
+        {
+            ProjectCriterion existingProjCrit = GetProjectCriterionByIds(projectId, criterionId);
+            return existingProjCrit != null;
+        }
+
+        /// <summary>
         /// Updates the project criterion in database.
         /// </summary>
         /// <param name="alteredProjectCriterion">The altered project criterion.</param>
@@ -154,7 +167,14 @@ namespace NWAT.DB
             bool allocationSuccessful = true;
 
             List<ProjectCriterion> projCritlistFromDb = GetAllProjectCriterionsForOneProject(projectId);
-             
+
+            List<ProjectCriterion> newToAdd = GetNewProjectCriterionsWhichWereAllocated(projCritlistFromDb, newProjectCriterionList);
+            foreach (ProjectCriterion projCrit in newToAdd)
+            {
+                allocationSuccessful = AllocateCriterion(projectId, projCrit);
+            }
+
+
             List<ProjectCriterion> oldToDelete = GetOldProjectCriterionsWhichWereDeallocated(projCritlistFromDb, newProjectCriterionList);
             
             foreach (ProjectCriterion projCrit in oldToDelete)
@@ -166,18 +186,25 @@ namespace NWAT.DB
                     deallocationSuccessful = DeallocateCriterionAndAllChildCriterions(projectId, projCrit);
                 }
             }
-            List<ProjectCriterion> newToAdd = GetNewProjectCriterionsWhichWereAllocated(projCritlistFromDb, newProjectCriterionList);
-            foreach (ProjectCriterion projCrit in newToAdd)
-            {
-                allocationSuccessful = AllocateCriterion(projectId, projCrit);
-            }
+            
              
             return deallocationSuccessful && allocationSuccessful;
         }
 
+        /// <summary>
+        /// Imports the project criterion.
+        /// </summary>
+        /// <param name="importProjectCriterion">The import project criterion.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 20.01.2016
+        public bool ImportProjectCriterion(ProjectCriterion importProjectCriterion)
+        {
+            return InsertProjectCriterionIntoDb(importProjectCriterion);
+        }
+
 
         /// <summary>
-        /// Klasse um die Kriterienstruktur zu sortieren und in einer Liste zurückzugeben
+        /// Kriterienstruktur sortieren um richtige Ausgabe an Printer Klassen übergeben zu können
         /// </summary>
         /// Erstellt von Adrian Glasnek
         /// 
@@ -188,23 +215,25 @@ namespace NWAT.DB
 
             List<ProjectCriterion> baseCriterion = GetBaseProjectCriterions(projectId);
 
-
+            //Methode bekommt alle Basis Kriterien (aus Ebene 1), Projekt Id und Liste sortedCriterionStructure übergeben
             FillSortedStructureList(projectId, baseCriterion, ref sortedCriterionStructure);
 
-
+            //Gibt die Liste mit den sortierten Kriterien zurück
             return sortedCriterionStructure;
         }
 
 
-        /// <summary>
-        /// Klasse um die Kriterienstruktur zu sortieren und in einer Liste zurückzugeben
-        /// </summary>
-        /// Erstellt von Adrian Glasnek
-        /// 
+      
 
         /*
         * Private Section
         */
+
+        /// <summary>
+        /// Methode mit einer rekursiven foreach-Schleife um alle Kindes Kinder zu erfassen
+        /// </summary>
+        /// Erstellt von Adrian Glasnek
+        /// 
 
         private void FillSortedStructureList(int projectId, List<ProjectCriterion> siblingCriterions, ref List<ProjectCriterion> sortedCriterionStructure)
         {
@@ -213,6 +242,8 @@ namespace NWAT.DB
                 sortedCriterionStructure.Add(sibling);
 
                 List<ProjectCriterion> childrenCriterions = GetChildCriterionsByParentId(projectId, sibling.Criterion_Id);
+
+                //Rekursive if Abfrage bzw. Methodenaufruf um alle Kinder und Kindeskinder zu bekommen
 
                 if (childrenCriterions.Count > 0)
                 {
@@ -687,24 +718,6 @@ namespace NWAT.DB
         }
 
         /// <summary>
-        /// Checks if project criterion already exists.
-        /// </summary>
-        /// <param name="projectId">The project identifier.</param>
-        /// <param name="criterionId">The criterion identifier.</param>
-        /// <returns>
-        /// bool if project criterion already exists
-        /// </returns>
-        /// Erstellt von Joshua Frey, am 22.12.2015
-        private bool CheckIfProjectCriterionAlreadyExists(int projectId, int criterionId)
-        {
-            ProjectCriterion existingProjectCriterion = this.GetProjectCriterionByIds(projectId, criterionId);
-            if(existingProjectCriterion != null)
-                return true;
-            else
-                return false;
-        }
-        
-        /// <summary>
         /// Checks if parent exists in project as project criterion.
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
@@ -733,10 +746,20 @@ namespace NWAT.DB
         /// which have to be deleted in the db table
         /// </returns>
         /// Erstellt von Joshua Frey, am 28.12.2015
-        private List<ProjectCriterion> GetOldProjectCriterionsWhichWereDeallocated(List<ProjectCriterion> listFromDb, List<ProjectCriterion> newProjectCriterionList)
+        private List<ProjectCriterion> GetOldProjectCriterionsWhichWereDeallocated(List<ProjectCriterion> listFromDb,
+                                                                                   List<ProjectCriterion> newProjectCriterionList)
         {
             List<ProjectCriterion> resultProjCritList = new List<ProjectCriterion>();
-            resultProjCritList = listFromDb.Except(newProjectCriterionList).ToList();
+            
+            foreach(ProjectCriterion projCritFromDb in listFromDb)
+            {
+                ProjectCriterion projCritExistingInBothList = newProjectCriterionList.SingleOrDefault(newProjCrit => 
+                                                                    newProjCrit.Criterion_Id == projCritFromDb.Criterion_Id);
+                if (projCritExistingInBothList == null)
+                {
+                    resultProjCritList.Add(projCritFromDb);
+                }
+            }
             return resultProjCritList;
         }
 
@@ -751,10 +774,21 @@ namespace NWAT.DB
         /// which have to be inserted in the db table
         /// </returns>
         /// Erstellt von Joshua Frey, am 28.12.2015
-        private List<ProjectCriterion> GetNewProjectCriterionsWhichWereAllocated(List<ProjectCriterion> listFromDb, List<ProjectCriterion> newProjectCriterionList)
+        private List<ProjectCriterion> GetNewProjectCriterionsWhichWereAllocated(List<ProjectCriterion> listFromDb, 
+                                                                                 List<ProjectCriterion> newProjectCriterionList)
         {
             List<ProjectCriterion> resultProjCritList = new List<ProjectCriterion>();
-            resultProjCritList = newProjectCriterionList.Except(listFromDb).ToList();
+
+            foreach (ProjectCriterion newAllocatedCrit in newProjectCriterionList)
+            {
+                ProjectCriterion projCritExistingInBothLists = listFromDb.SingleOrDefault(allocatedCritInDb =>
+                                                    allocatedCritInDb.Criterion_Id == newAllocatedCrit.Criterion_Id);
+                if (projCritExistingInBothLists == null)
+                {
+                    resultProjCritList.Add(newAllocatedCrit);
+                }
+            }
+
             return resultProjCritList;
         }
 

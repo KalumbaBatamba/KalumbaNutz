@@ -41,12 +41,22 @@ namespace NWAT
 
         private void Project_Show_Form_Load(object sender, EventArgs e)
         {
-            Project proj = ProjectCont.GetProjectById(Project.Project_Id);
-            String ProjName = proj.Name;
-            String ProjDesc = proj.Description;
-            MessageBox.Show(ProjName + ProjDesc);
-            label_ProjShowName.Text = proj.Name;
-            label_ProjShowDesc.Text = proj.Description;
+            using (ProjectController ProjShowForm = new ProjectController())
+            {
+                Project proj = ProjShowForm.GetProjectById(Project.Project_Id);
+                String ProjName = proj.Name;
+                String ProjDesc = proj.Description;
+                MessageBox.Show(ProjName + ProjDesc);
+                label_ProjShowName.Text = this.Project.Name; //proj.Name;
+                label_ProjShowDesc.Text = this.Project.Description; //proj.Description;
+            }
+            
+            //Project proj = ProjectCont.GetProjectById(Project.Project_Id);
+            //String ProjName = proj.Name;
+            //String ProjDesc = proj.Description;
+            //MessageBox.Show(ProjName + ProjDesc);
+            //label_ProjShowName.Text = proj.Name;
+            //label_ProjShowDesc.Text = proj.Description;
         }
         private void ShowProject()
         {

@@ -36,12 +36,6 @@
             this.btn_CritToPool = new System.Windows.Forms.Button();
             this.btn_ProjCritSave = new System.Windows.Forms.Button();
             this.btn_ProjCritCancle = new System.Windows.Forms.Button();
-            this.dgc_ProjCritID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgc_ProjCritName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgc_ProjCritDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgc_AvailCritID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgc_AvailCritName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgc_AvailCritDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ProjCrits)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_CritAvail)).BeginInit();
             this.SuspendLayout();
@@ -67,24 +61,20 @@
             // dataGridView_ProjCrits
             // 
             this.dataGridView_ProjCrits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_ProjCrits.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgc_ProjCritID,
-            this.dgc_ProjCritName,
-            this.dgc_ProjCritDesc});
             this.dataGridView_ProjCrits.Location = new System.Drawing.Point(15, 30);
+            this.dataGridView_ProjCrits.MultiSelect = false;
             this.dataGridView_ProjCrits.Name = "dataGridView_ProjCrits";
+            this.dataGridView_ProjCrits.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_ProjCrits.Size = new System.Drawing.Size(290, 490);
             this.dataGridView_ProjCrits.TabIndex = 2;
             // 
             // dataGridView_CritAvail
             // 
             this.dataGridView_CritAvail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_CritAvail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgc_AvailCritID,
-            this.dgc_AvailCritName,
-            this.dgc_AvailCritDesc});
             this.dataGridView_CritAvail.Location = new System.Drawing.Point(377, 30);
+            this.dataGridView_CritAvail.MultiSelect = false;
             this.dataGridView_CritAvail.Name = "dataGridView_CritAvail";
+            this.dataGridView_CritAvail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_CritAvail.Size = new System.Drawing.Size(290, 490);
             this.dataGridView_CritAvail.TabIndex = 3;
             // 
@@ -96,6 +86,7 @@
             this.btn_CritToProj.TabIndex = 4;
             this.btn_CritToProj.Text = "<<";
             this.btn_CritToProj.UseVisualStyleBackColor = true;
+            this.btn_CritToProj.Click += new System.EventHandler(this.btn_CritToProj_Click);
             // 
             // btn_CritToPool
             // 
@@ -105,6 +96,7 @@
             this.btn_CritToPool.TabIndex = 5;
             this.btn_CritToPool.Text = ">>";
             this.btn_CritToPool.UseVisualStyleBackColor = true;
+            this.btn_CritToPool.Click += new System.EventHandler(this.btn_CritToPool_Click);
             // 
             // btn_ProjCritSave
             // 
@@ -114,6 +106,7 @@
             this.btn_ProjCritSave.TabIndex = 6;
             this.btn_ProjCritSave.Text = "speichern";
             this.btn_ProjCritSave.UseVisualStyleBackColor = true;
+            this.btn_ProjCritSave.Click += new System.EventHandler(this.btn_ProjCritSave_Click);
             // 
             // btn_ProjCritCancle
             // 
@@ -123,42 +116,6 @@
             this.btn_ProjCritCancle.TabIndex = 7;
             this.btn_ProjCritCancle.Text = "abbrechen";
             this.btn_ProjCritCancle.UseVisualStyleBackColor = true;
-            // 
-            // dgc_ProjCritID
-            // 
-            this.dgc_ProjCritID.HeaderText = "ID";
-            this.dgc_ProjCritID.Name = "dgc_ProjCritID";
-            this.dgc_ProjCritID.Width = 25;
-            // 
-            // dgc_ProjCritName
-            // 
-            this.dgc_ProjCritName.HeaderText = "Name";
-            this.dgc_ProjCritName.Name = "dgc_ProjCritName";
-            this.dgc_ProjCritName.Width = 150;
-            // 
-            // dgc_ProjCritDesc
-            // 
-            this.dgc_ProjCritDesc.HeaderText = "Beschreibung";
-            this.dgc_ProjCritDesc.Name = "dgc_ProjCritDesc";
-            this.dgc_ProjCritDesc.Width = 450;
-            // 
-            // dgc_AvailCritID
-            // 
-            this.dgc_AvailCritID.HeaderText = "ID";
-            this.dgc_AvailCritID.Name = "dgc_AvailCritID";
-            this.dgc_AvailCritID.Width = 25;
-            // 
-            // dgc_AvailCritName
-            // 
-            this.dgc_AvailCritName.HeaderText = "Name";
-            this.dgc_AvailCritName.Name = "dgc_AvailCritName";
-            this.dgc_AvailCritName.Width = 150;
-            // 
-            // dgc_AvailCritDesc
-            // 
-            this.dgc_AvailCritDesc.HeaderText = "Beschreibung";
-            this.dgc_AvailCritDesc.Name = "dgc_AvailCritDesc";
-            this.dgc_AvailCritDesc.Width = 400;
             // 
             // ProjCritAssign_View
             // 
@@ -193,11 +150,5 @@
         private System.Windows.Forms.Button btn_CritToPool;
         private System.Windows.Forms.Button btn_ProjCritSave;
         private System.Windows.Forms.Button btn_ProjCritCancle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_ProjCritID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_ProjCritName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_ProjCritDesc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_AvailCritID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_AvailCritName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_AvailCritDesc;
     }
 }
