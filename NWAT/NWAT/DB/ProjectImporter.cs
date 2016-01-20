@@ -620,7 +620,7 @@ namespace NWAT.DB
                     }
                 }
             }
-            this.ImportLogWriter.Log(MessageEndImportOfData("Product"));
+            this.ImportLogWriter.Log(MessageEndImportOfData("ProjectCriterion"));
         }
 
 
