@@ -204,7 +204,7 @@ namespace NWAT.DB
 
 
         /// <summary>
-        /// Klasse um die Kriterienstruktur zu sortieren und in einer Liste zurückzugeben
+        /// Kriterienstruktur sortieren um richtige Ausgabe an Printer Klassen übergeben zu können
         /// </summary>
         /// Erstellt von Adrian Glasnek
         /// 
@@ -215,10 +215,10 @@ namespace NWAT.DB
 
             List<ProjectCriterion> baseCriterion = GetBaseProjectCriterions(projectId);
 
-
+            //Methode bekommt alle Basis Kriterien (aus Ebene 1), Projekt Id und Liste sortedCriterionStructure übergeben
             FillSortedStructureList(projectId, baseCriterion, ref sortedCriterionStructure);
 
-
+            //Gibt die Liste mit den sortierten Kriterien zurück
             return sortedCriterionStructure;
         }
 
@@ -230,7 +230,7 @@ namespace NWAT.DB
         */
 
         /// <summary>
-        /// Klasse um die Kriterienstruktur zu sortieren und in einer Liste zurückzugeben
+        /// Methode mit einer rekursiven foreach-Schleife um alle Kindes Kinder zu erfassen
         /// </summary>
         /// Erstellt von Adrian Glasnek
         /// 
@@ -242,6 +242,8 @@ namespace NWAT.DB
                 sortedCriterionStructure.Add(sibling);
 
                 List<ProjectCriterion> childrenCriterions = GetChildCriterionsByParentId(projectId, sibling.Criterion_Id);
+
+                //Rekursive if Abfrage bzw. Methodenaufruf um alle Kinder und Kindeskinder zu bekommen
 
                 if (childrenCriterions.Count > 0)
                 {
