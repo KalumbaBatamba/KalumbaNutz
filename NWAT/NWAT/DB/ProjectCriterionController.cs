@@ -167,7 +167,14 @@ namespace NWAT.DB
             bool allocationSuccessful = true;
 
             List<ProjectCriterion> projCritlistFromDb = GetAllProjectCriterionsForOneProject(projectId);
-             
+
+            List<ProjectCriterion> newToAdd = GetNewProjectCriterionsWhichWereAllocated(projCritlistFromDb, newProjectCriterionList);
+            foreach (ProjectCriterion projCrit in newToAdd)
+            {
+                allocationSuccessful = AllocateCriterion(projectId, projCrit);
+            }
+
+
             List<ProjectCriterion> oldToDelete = GetOldProjectCriterionsWhichWereDeallocated(projCritlistFromDb, newProjectCriterionList);
             
             foreach (ProjectCriterion projCrit in oldToDelete)
@@ -179,11 +186,7 @@ namespace NWAT.DB
                     deallocationSuccessful = DeallocateCriterionAndAllChildCriterions(projectId, projCrit);
                 }
             }
-            List<ProjectCriterion> newToAdd = GetNewProjectCriterionsWhichWereAllocated(projCritlistFromDb, newProjectCriterionList);
-            foreach (ProjectCriterion projCrit in newToAdd)
-            {
-                allocationSuccessful = AllocateCriterion(projectId, projCrit);
-            }
+            
              
             return deallocationSuccessful && allocationSuccessful;
         }
@@ -662,10 +665,20 @@ namespace NWAT.DB
         /// which have to be deleted in the db table
         /// </returns>
         /// Erstellt von Joshua Frey, am 28.12.2015
-        private List<ProjectCriterion> GetOldProjectCriterionsWhichWereDeallocated(List<ProjectCriterion> listFromDb, List<ProjectCriterion> newProjectCriterionList)
+        private List<ProjectCriterion> GetOldProjectCriterionsWhichWereDeallocated(List<ProjectCriterion> listFromDb,
+                                                                                   List<ProjectCriterion> newProjectCriterionList)
         {
             List<ProjectCriterion> resultProjCritList = new List<ProjectCriterion>();
-            resultProjCritList = listFromDb.Except(newProjectCriterionList).ToList();
+            
+            foreach(ProjectCriterion projCritFromDb in listFromDb)
+            {
+                ProjectCriterion projCritExistingInBothList = newProjectCriterionList.SingleOrDefault(newProjCrit => 
+                                                                    newProjCrit.Criterion_Id == projCritFromDb.Criterion_Id);
+                if (projCritExistingInBothList == null)
+                {
+                    resultProjCritList.Add(projCritFromDb);
+                }
+            }
             return resultProjCritList;
         }
 
@@ -680,10 +693,21 @@ namespace NWAT.DB
         /// which have to be inserted in the db table
         /// </returns>
         /// Erstellt von Joshua Frey, am 28.12.2015
-        private List<ProjectCriterion> GetNewProjectCriterionsWhichWereAllocated(List<ProjectCriterion> listFromDb, List<ProjectCriterion> newProjectCriterionList)
+        private List<ProjectCriterion> GetNewProjectCriterionsWhichWereAllocated(List<ProjectCriterion> listFromDb, 
+                                                                                 List<ProjectCriterion> newProjectCriterionList)
         {
             List<ProjectCriterion> resultProjCritList = new List<ProjectCriterion>();
-            resultProjCritList = newProjectCriterionList.Except(listFromDb).ToList();
+
+            foreach (ProjectCriterion newAllocatedCrit in newProjectCriterionList)
+            {
+                ProjectCriterion projCritExistingInBothLists = listFromDb.SingleOrDefault(allocatedCritInDb =>
+                                                    allocatedCritInDb.Criterion_Id == newAllocatedCrit.Criterion_Id);
+                if (projCritExistingInBothLists == null)
+                {
+                    resultProjCritList.Add(newAllocatedCrit);
+                }
+            }
+
             return resultProjCritList;
         }
 
