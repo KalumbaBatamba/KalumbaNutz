@@ -39,6 +39,7 @@ namespace NWAT
         
 
         private ProjectCriterionController projCritCont;
+   //     private CriterionController CritContr;
         public ProjCritAssign_View(int projectId)
         {
             ProjectId = projectId;
@@ -73,6 +74,18 @@ namespace NWAT
             dataGridView_CritAvail.DataSource = AllCrits;
 
             dataGridView_ProjCrits.Rows.Clear();
+         
+          using(CriterionController critCon = new CriterionController())
+          {
+            foreach (ProjectCriterion projCrit in ProjCrits)
+            {
+            //    MessageBox.Show(projCrit.Criterion_Id.ToString());
+          //      projCrit.Name = "test";
+               var singleCritId = critCon.GetCriterionById(projCrit.Criterion_Id);
+               projCrit.Name = singleCritId.Name.ToString();
+            }
+          }
+
             var ProjCritBindingList = new BindingList<ProjectCriterion>(ProjCrits);
             var projCritSource = new BindingSource(ProjCritBindingList, null);
             dataGridView_ProjCrits.DataSource = ProjCrits;
@@ -84,6 +97,18 @@ namespace NWAT
             dataGridView_ProjCrits.Columns.Remove("Criterion");
             dataGridView_ProjCrits.Columns.Remove("ParentCriterion");
             dataGridView_ProjCrits.Columns.Remove("Project");
+            dataGridView_ProjCrits.Columns[0].HeaderText = "ID";
+            dataGridView_ProjCrits.Columns[0].Width = 30;
+            dataGridView_ProjCrits.Columns[1].HeaderText = "P-ID";
+            dataGridView_ProjCrits.Columns[1].Width = 30;
+            dataGridView_ProjCrits.Columns[2].Width = 200;
+          //  dataGridView_ProjCrits.Columns.Add("Name","Name");
+           // DataGridViewColumn col = new DataGridViewTextBoxColumn();
+           // col.DataPropertyName = "Name";
+           // col.HeaderText = "Name";
+           // col.Name = "test";
+           //// col.
+           // dataGridView_ProjCrits.Columns.Add(col);
         }
         private void AddCritToProject()
         {
@@ -105,20 +130,22 @@ namespace NWAT
             string CritName = (string)row.Cells[1].Value ;
             int index = dataGridView_CritAvail.CurrentCell.RowIndex;
     //        dataGridView_CritAvail.Rows.RemoveAt(row.Index);
-            AllCrits.RemoveAt(index);
+    //        AllCrits.RemoveAt(index);
             //if (ProjCrits.Count != 0)
             //{
                 ProjCritParentAllocation_View projCritAllView = new ProjCritParentAllocation_View(
                     ProjCrits, 
                     ProjectId, 
-                    CritId, 
+                    CritId,
+                    index,
                     this);
                 projCritAllView.Show();
             //}
         }
 
-        public void AllocateNewProjectCriterion(ProjectCriterion projCritToAllocate)
+        public void AllocateNewProjectCriterion(ProjectCriterion projCritToAllocate, int index)
         {
+            AllCrits.RemoveAt(index);
             ProjCrits.Add(projCritToAllocate);
           //  AllCrits.Remove
             
@@ -134,6 +161,17 @@ namespace NWAT
             dataGridView_CritAvail.DataSource = AllCrits;
             dataGridView_ProjCrits.DataSource = null;
 
+            using (CriterionController critCon = new CriterionController())
+            {
+                foreach (ProjectCriterion projCrit in ProjCrits)
+                {
+                    //    MessageBox.Show(projCrit.Criterion_Id.ToString());
+                    //      projCrit.Name = "test";
+                    var singleCritId = critCon.GetCriterionById(projCrit.Criterion_Id);
+                    projCrit.Name = singleCritId.Name.ToString();
+                }
+            }
+
             dataGridView_ProjCrits.DataSource = ProjCrits;
             dataGridView_ProjCrits.Columns.Remove("Project_Id");
             dataGridView_ProjCrits.Columns.Remove("Layer_Depth");
@@ -143,7 +181,18 @@ namespace NWAT
             dataGridView_ProjCrits.Columns.Remove("Criterion");
             dataGridView_ProjCrits.Columns.Remove("ParentCriterion");
             dataGridView_ProjCrits.Columns.Remove("Project");
-
+            dataGridView_ProjCrits.Columns[0].HeaderText = "ID";
+            dataGridView_ProjCrits.Columns[0].Width = 30;
+            dataGridView_ProjCrits.Columns[1].HeaderText = "P-ID";
+            dataGridView_ProjCrits.Columns[1].Width = 30;
+            dataGridView_ProjCrits.Columns[2].Width = 200;
+            //DataGridViewColumn col = new DataGridViewTextBoxColumn();
+            //col.DataPropertyName = "Name2";
+            //col.HeaderText = "Name2";
+            //col.Name = "test2";
+            //col.Width = 200;
+            // col.
+          //  dataGridView_ProjCrits.Columns.Add(col);
 
           // projCritCont.
         //    dataGridView_ProjCrits.Refresh();

@@ -35,6 +35,7 @@
             // 
             // btn_ProjAdm
             // 
+            this.btn_ProjAdm.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btn_ProjAdm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_ProjAdm.Location = new System.Drawing.Point(113, 30);
             this.btn_ProjAdm.Name = "btn_ProjAdm";
@@ -46,6 +47,7 @@
             // 
             // btn_ProdAdm
             // 
+            this.btn_ProdAdm.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btn_ProdAdm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_ProdAdm.Location = new System.Drawing.Point(113, 199);
             this.btn_ProdAdm.Name = "btn_ProdAdm";
@@ -57,6 +59,7 @@
             // 
             // btn_CritAdm
             // 
+            this.btn_CritAdm.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btn_CritAdm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_CritAdm.Location = new System.Drawing.Point(113, 112);
             this.btn_CritAdm.Name = "btn_CritAdm";

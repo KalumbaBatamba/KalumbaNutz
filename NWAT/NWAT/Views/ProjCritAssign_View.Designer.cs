@@ -51,8 +51,9 @@
             // 
             // label_CritsAvail
             // 
+            this.label_CritsAvail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label_CritsAvail.AutoSize = true;
-            this.label_CritsAvail.Location = new System.Drawing.Point(374, 9);
+            this.label_CritsAvail.Location = new System.Drawing.Point(399, 9);
             this.label_CritsAvail.Name = "label_CritsAvail";
             this.label_CritsAvail.Size = new System.Drawing.Size(102, 13);
             this.label_CritsAvail.TabIndex = 1;
@@ -60,6 +61,8 @@
             // 
             // dataGridView_ProjCrits
             // 
+            this.dataGridView_ProjCrits.AllowUserToAddRows = false;
+            this.dataGridView_ProjCrits.AllowUserToDeleteRows = false;
             this.dataGridView_ProjCrits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_ProjCrits.Location = new System.Drawing.Point(15, 30);
             this.dataGridView_ProjCrits.MultiSelect = false;
@@ -70,8 +73,9 @@
             // 
             // dataGridView_CritAvail
             // 
+            this.dataGridView_CritAvail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView_CritAvail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_CritAvail.Location = new System.Drawing.Point(377, 30);
+            this.dataGridView_CritAvail.Location = new System.Drawing.Point(402, 30);
             this.dataGridView_CritAvail.MultiSelect = false;
             this.dataGridView_CritAvail.Name = "dataGridView_CritAvail";
             this.dataGridView_CritAvail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -80,7 +84,8 @@
             // 
             // btn_CritToProj
             // 
-            this.btn_CritToProj.Location = new System.Drawing.Point(311, 206);
+            this.btn_CritToProj.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_CritToProj.Location = new System.Drawing.Point(323, 206);
             this.btn_CritToProj.Name = "btn_CritToProj";
             this.btn_CritToProj.Size = new System.Drawing.Size(60, 23);
             this.btn_CritToProj.TabIndex = 4;
@@ -90,7 +95,8 @@
             // 
             // btn_CritToPool
             // 
-            this.btn_CritToPool.Location = new System.Drawing.Point(311, 236);
+            this.btn_CritToPool.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_CritToPool.Location = new System.Drawing.Point(323, 236);
             this.btn_CritToPool.Name = "btn_CritToPool";
             this.btn_CritToPool.Size = new System.Drawing.Size(60, 23);
             this.btn_CritToPool.TabIndex = 5;
@@ -100,7 +106,8 @@
             // 
             // btn_ProjCritSave
             // 
-            this.btn_ProjCritSave.Location = new System.Drawing.Point(510, 526);
+            this.btn_ProjCritSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_ProjCritSave.Location = new System.Drawing.Point(535, 572);
             this.btn_ProjCritSave.Name = "btn_ProjCritSave";
             this.btn_ProjCritSave.Size = new System.Drawing.Size(75, 23);
             this.btn_ProjCritSave.TabIndex = 6;
@@ -110,7 +117,8 @@
             // 
             // btn_ProjCritCancle
             // 
-            this.btn_ProjCritCancle.Location = new System.Drawing.Point(592, 526);
+            this.btn_ProjCritCancle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_ProjCritCancle.Location = new System.Drawing.Point(617, 572);
             this.btn_ProjCritCancle.Name = "btn_ProjCritCancle";
             this.btn_ProjCritCancle.Size = new System.Drawing.Size(75, 23);
             this.btn_ProjCritCancle.TabIndex = 7;
@@ -121,7 +129,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 561);
+            this.ClientSize = new System.Drawing.Size(709, 607);
             this.Controls.Add(this.btn_ProjCritCancle);
             this.Controls.Add(this.btn_ProjCritSave);
             this.Controls.Add(this.btn_CritToPool);

@@ -46,6 +46,9 @@
             // 
             // textBox_CritDescUpdate
             // 
+            this.textBox_CritDescUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_CritDescUpdate.Location = new System.Drawing.Point(15, 79);
             this.textBox_CritDescUpdate.Multiline = true;
             this.textBox_CritDescUpdate.Name = "textBox_CritDescUpdate";
@@ -64,6 +67,9 @@
             // 
             // textBox_CritNameUpdate
             // 
+            this.textBox_CritNameUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_CritNameUpdate.Location = new System.Drawing.Point(15, 26);
             this.textBox_CritNameUpdate.Name = "textBox_CritNameUpdate";
             this.textBox_CritNameUpdate.Size = new System.Drawing.Size(300, 20);
@@ -72,6 +78,7 @@
             // 
             // btn_CritUpdate
             // 
+            this.btn_CritUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_CritUpdate.Location = new System.Drawing.Point(337, 256);
             this.btn_CritUpdate.Name = "btn_CritUpdate";
             this.btn_CritUpdate.Size = new System.Drawing.Size(75, 23);
@@ -80,7 +87,7 @@
             this.btn_CritUpdate.UseVisualStyleBackColor = true;
             this.btn_CritUpdate.Click += new System.EventHandler(this.btn_CritUpdate_Click);
             // 
-            // Criterion_Update_Form
+            // Criterion_Update_View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -90,7 +97,7 @@
             this.Controls.Add(this.label_CritDescUpdate);
             this.Controls.Add(this.textBox_CritDescUpdate);
             this.Controls.Add(this.label_CritName);
-            this.Name = "Criterion_Update_Form";
+            this.Name = "Criterion_Update_View";
             this.Text = "Kriterium ändern";
             this.Load += new System.EventHandler(this.Criterion_Update_Form_Load);
             this.ResumeLayout(false);

@@ -74,6 +74,7 @@
             // 
             // btn_CritShowClose
             // 
+            this.btn_CritShowClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_CritShowClose.Location = new System.Drawing.Point(337, 256);
             this.btn_CritShowClose.Name = "btn_CritShowClose";
             this.btn_CritShowClose.Size = new System.Drawing.Size(75, 23);

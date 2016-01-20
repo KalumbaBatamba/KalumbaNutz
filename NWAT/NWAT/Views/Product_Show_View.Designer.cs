@@ -111,6 +111,7 @@
             // 
             // btn_Close
             // 
+            this.btn_Close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_Close.Location = new System.Drawing.Point(337, 256);
             this.btn_Close.Name = "btn_Close";
             this.btn_Close.Size = new System.Drawing.Size(75, 23);

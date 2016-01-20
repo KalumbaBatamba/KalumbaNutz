@@ -29,6 +29,15 @@ namespace NWAT.Views
             set { _criterionIdToAllocate = value; }
         }
 
+        private int _criterionIdDeleteFromList;
+
+        public int CriterionIdDeleteFromList
+        {
+            get { return _criterionIdDeleteFromList; }
+            set { _criterionIdDeleteFromList = value; }
+        }
+        
+
         private int _projectId;
 
         public int ProjectId
@@ -51,12 +60,14 @@ namespace NWAT.Views
             List<ProjectCriterion> allAllocatedProjCrits, 
             int projectId, 
             int criterionIdToAllocate,
+            int index,
             ProjCritAssign_View parentView)
         {
             ParentView = parentView;
             ProjectId = projectId;
             AllAllocProjCrits = allAllocatedProjCrits;
             CriterionIdToAllocate = criterionIdToAllocate;
+            CriterionIdDeleteFromList = index;
             InitializeComponent();
         }
 
@@ -96,16 +107,48 @@ namespace NWAT.Views
             
             Criterion selectedParentCiterion = (Criterion)comboBox_CritName.SelectedItem;
 
-            ProjectCriterion projCritToAllocate = new ProjectCriterion() 
-            {
-                Project_Id = ProjectId,
-                Criterion_Id = CriterionIdToAllocate,
-                Parent_Criterion_Id = selectedParentCiterion.Criterion_Id
-            };
+            //if (selectedParentCiterion.Criterion_Id == null)
+            //{
+            //    ProjectCriterion projCritToAllocate = new ProjectCriterion()
+            //    {
+            //        Project_Id = ProjectId,
+            //        Criterion_Id = CriterionIdToAllocate
+            //    };
+            //    ParentView.AllocateNewProjectCriterion(projCritToAllocate, CriterionIdDeleteFromList);
+            //    this.Close();
+                
+            //}
+            //else
+            //{
+                ProjectCriterion projCritToAllocate = new ProjectCriterion()
+                {
+                    Project_Id = ProjectId,
+                    Criterion_Id = CriterionIdToAllocate,
+                    //if(selectedParentCiterion.Criterion_Id == null )
+                    //{
+                    //Parent_Criterion_Id = null;
+                    //}
+                    Parent_Criterion_Id = selectedParentCiterion.Criterion_Id
+                };
+                ParentView.AllocateNewProjectCriterion(projCritToAllocate, CriterionIdDeleteFromList);
+                this.Close();
+            //}
+            
+
+            //ProjectCriterion projCritToAllocate = new ProjectCriterion() 
+            //{
+            //    Project_Id = ProjectId,
+            //    Criterion_Id = CriterionIdToAllocate,
+            //    //if(selectedParentCiterion.Criterion_Id == null )
+            //    //{
+            //    //Parent_Criterion_Id = null;
+            //    //}
+            //    Parent_Criterion_Id = selectedParentCiterion.Criterion_Id
+            //};
 
 
-            ParentView.AllocateNewProjectCriterion(projCritToAllocate);
-            this.Close();
+            //ParentView.AllocateNewProjectCriterion(projCritToAllocate, CriterionIdDeleteFromList);
+            //this.Close();
         }
 
         private void btn_cancle_Click(object sender, EventArgs e)
@@ -115,7 +158,7 @@ namespace NWAT.Views
                 Project_Id = ProjectId,
                 Criterion_Id = CriterionIdToAllocate
             };
-            ParentView.AllocateNewProjectCriterion(projCritToAllocate);
+            ParentView.AllocateNewProjectCriterion(projCritToAllocate, CriterionIdDeleteFromList);
             this.Close();
         }
     }

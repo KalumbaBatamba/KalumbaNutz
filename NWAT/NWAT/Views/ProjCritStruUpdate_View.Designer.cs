@@ -40,6 +40,9 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgc_ProjCritID,
@@ -77,6 +80,7 @@
             // 
             // btn_ProjCritStruSave
             // 
+            this.btn_ProjCritStruSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ProjCritStruSave.Location = new System.Drawing.Point(597, 496);
             this.btn_ProjCritStruSave.Name = "btn_ProjCritStruSave";
             this.btn_ProjCritStruSave.Size = new System.Drawing.Size(75, 23);
@@ -86,6 +90,7 @@
             // 
             // btn_ProjCritStruCancle
             // 
+            this.btn_ProjCritStruCancle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ProjCritStruCancle.Location = new System.Drawing.Point(597, 525);
             this.btn_ProjCritStruCancle.Name = "btn_ProjCritStruCancle";
             this.btn_ProjCritStruCancle.Size = new System.Drawing.Size(75, 23);
