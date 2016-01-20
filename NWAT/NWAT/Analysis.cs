@@ -22,7 +22,7 @@ namespace NWAT
 
 
 
-        // TODO By Yann 
+        // Erstellt von Weloko Tchokoua
         // calculate the fullfilment level of each product and generate a list to print.
         public void Analyse()
         {
@@ -47,6 +47,7 @@ namespace NWAT
                 if (fullcon.Criterion_Id.Equals(son.Criterion_Id) && fullcon.Fulfilled == true)
                 {
                     
+                    
                 }
             }
 
@@ -55,7 +56,7 @@ namespace NWAT
         }
     }
 
-    // TODO By Yann
+    // Erstellt von Weloko Tchokoua
     class AnalysisCriterionResult
     {
 
@@ -106,12 +107,12 @@ namespace NWAT
         
         int criterionId;
         string productName;
-        float result;
+        double result;
         int projectId = 0;
         String criterionName;
 
         //Constructor of the class to generate the list of product and criterion
-        public ProductCriterionFulfillmentResult(string productName, int criterionId, String criterionName, float result)
+        public ProductCriterionFulfillmentResult(string productName, int criterionId, String criterionName, double result)
         {
             this.productName = productName;
             this.result = result;
@@ -142,7 +143,7 @@ namespace NWAT
                         if (pcrit.Criterion.Criterion_Id.Equals(allcrit.Parent_Criterion_Id.Value))
                         {
 
-                            result += pcrit.Weighting_Percentage_Project;
+                            result += pcrit.Weighting_Percentage_Project.Value;
 
                             
 
@@ -153,8 +154,8 @@ namespace NWAT
                         
 
                     }
-          
-            
+
+            return Listtoshows;
         }
 
     }
