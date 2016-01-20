@@ -68,6 +68,7 @@
             this.label_CurrProjNameShow.Size = new System.Drawing.Size(148, 13);
             this.label_CurrProjNameShow.TabIndex = 1;
             this.label_CurrProjNameShow.Text = "Name des aktuellen Projektes";
+            this.label_CurrProjNameShow.Click += new System.EventHandler(this.label_CurrProjNameShow_Click);
             // 
             // label_CurrProjDesc
             // 

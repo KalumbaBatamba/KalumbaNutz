@@ -142,7 +142,6 @@ namespace NWAT.Printer
 
                 List<ProjectCriterion> sortedProjectCriterionStructure = this.ProjCritContr.GetSortedCriterionStructure(this.Project.Project_Id);
 
-
                 //Foreach-Schleife druckt sortierte Kriterien auf das Pdf Dokument
                 foreach (ProjectCriterion projectCriterion in sortedProjectCriterionStructure)
                 {
