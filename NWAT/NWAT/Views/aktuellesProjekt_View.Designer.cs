@@ -90,6 +90,7 @@
             // 
             // groupBox_CurrProjCrits
             // 
+            this.groupBox_CurrProjCrits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox_CurrProjCrits.Controls.Add(this.btn_Balance);
             this.groupBox_CurrProjCrits.Controls.Add(this.btn_CurrProjKritAssign);
             this.groupBox_CurrProjCrits.Controls.Add(this.btn_CurrProjCritStruShow);
@@ -159,6 +160,7 @@
             // 
             // groupBox_CurrProjProds
             // 
+            this.groupBox_CurrProjProds.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox_CurrProjProds.Controls.Add(this.btn_CurrProjProdAssign);
             this.groupBox_CurrProjProds.Controls.Add(this.btn_CurrProjProdFulfCapt);
             this.groupBox_CurrProjProds.Controls.Add(this.btnCurrProjProdFulfPrint);
@@ -205,6 +207,7 @@
             // 
             // groupBox_CurrProjAnalys
             // 
+            this.groupBox_CurrProjAnalys.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox_CurrProjAnalys.Controls.Add(this.btn_CurrProjProdAnalShow);
             this.groupBox_CurrProjAnalys.Location = new System.Drawing.Point(346, 299);
             this.groupBox_CurrProjAnalys.Name = "groupBox_CurrProjAnalys";

@@ -41,6 +41,7 @@
             // 
             // btn_ProdCreate
             // 
+            this.btn_ProdCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ProdCreate.Location = new System.Drawing.Point(336, 265);
             this.btn_ProdCreate.Name = "btn_ProdCreate";
             this.btn_ProdCreate.Size = new System.Drawing.Size(75, 23);
@@ -51,6 +52,9 @@
             // 
             // textBox_ProdDescCreate
             // 
+            this.textBox_ProdDescCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_ProdDescCreate.Location = new System.Drawing.Point(12, 172);
             this.textBox_ProdDescCreate.Multiline = true;
             this.textBox_ProdDescCreate.Name = "textBox_ProdDescCreate";
@@ -59,6 +63,9 @@
             // 
             // textBox_ProdNameCreate
             // 
+            this.textBox_ProdNameCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_ProdNameCreate.Location = new System.Drawing.Point(12, 35);
             this.textBox_ProdNameCreate.Name = "textBox_ProdNameCreate";
             this.textBox_ProdNameCreate.Size = new System.Drawing.Size(300, 20);
@@ -93,6 +100,9 @@
             // 
             // textBox_ProdManuCreate
             // 
+            this.textBox_ProdManuCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_ProdManuCreate.Location = new System.Drawing.Point(12, 74);
             this.textBox_ProdManuCreate.Name = "textBox_ProdManuCreate";
             this.textBox_ProdManuCreate.Size = new System.Drawing.Size(300, 20);
@@ -100,6 +110,9 @@
             // 
             // textBox_ProdPrizeCreate
             // 
+            this.textBox_ProdPrizeCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_ProdPrizeCreate.Location = new System.Drawing.Point(12, 113);
             this.textBox_ProdPrizeCreate.Name = "textBox_ProdPrizeCreate";
             this.textBox_ProdPrizeCreate.Size = new System.Drawing.Size(300, 20);
@@ -114,7 +127,7 @@
             this.label_ProdPrize.TabIndex = 13;
             this.label_ProdPrize.Text = "Preis:";
             // 
-            // Product_Create_Form
+            // Product_Create_View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -128,7 +141,7 @@
             this.Controls.Add(this.textBox_ProdNameCreate);
             this.Controls.Add(this.label_ProdDesc);
             this.Controls.Add(this.label_ProdName);
-            this.Name = "Product_Create_Form";
+            this.Name = "Product_Create_View";
             this.Text = "Produkt anlegen";
             this.Load += new System.EventHandler(this.Product_Create_Load);
             this.ResumeLayout(false);

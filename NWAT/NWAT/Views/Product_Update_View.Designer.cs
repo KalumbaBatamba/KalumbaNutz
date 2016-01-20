@@ -50,6 +50,9 @@
             // 
             // textBox_ProdPrizeUpdate
             // 
+            this.textBox_ProdPrizeUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_ProdPrizeUpdate.Location = new System.Drawing.Point(14, 105);
             this.textBox_ProdPrizeUpdate.Name = "textBox_ProdPrizeUpdate";
             this.textBox_ProdPrizeUpdate.Size = new System.Drawing.Size(300, 20);
@@ -57,6 +60,9 @@
             // 
             // textBox_ProdManuUpdate
             // 
+            this.textBox_ProdManuUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_ProdManuUpdate.Location = new System.Drawing.Point(14, 66);
             this.textBox_ProdManuUpdate.Name = "textBox_ProdManuUpdate";
             this.textBox_ProdManuUpdate.Size = new System.Drawing.Size(300, 20);
@@ -73,6 +79,7 @@
             // 
             // btn_ProdUpdate
             // 
+            this.btn_ProdUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ProdUpdate.Location = new System.Drawing.Point(338, 257);
             this.btn_ProdUpdate.Name = "btn_ProdUpdate";
             this.btn_ProdUpdate.Size = new System.Drawing.Size(75, 23);
@@ -83,6 +90,9 @@
             // 
             // textBox_ProdDescUpdate
             // 
+            this.textBox_ProdDescUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_ProdDescUpdate.Location = new System.Drawing.Point(14, 164);
             this.textBox_ProdDescUpdate.Multiline = true;
             this.textBox_ProdDescUpdate.Name = "textBox_ProdDescUpdate";
@@ -91,6 +101,9 @@
             // 
             // textBox_ProdNameUpdate
             // 
+            this.textBox_ProdNameUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_ProdNameUpdate.Location = new System.Drawing.Point(14, 27);
             this.textBox_ProdNameUpdate.Name = "textBox_ProdNameUpdate";
             this.textBox_ProdNameUpdate.Size = new System.Drawing.Size(300, 20);

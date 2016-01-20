@@ -35,6 +35,9 @@
             // 
             // ProjCritShow
             // 
+            this.ProjCritShow.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ProjCritShow.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ProjCritShow.Location = new System.Drawing.Point(13, 20);
             this.ProjCritShow.Name = "ProjCritShow";
@@ -43,6 +46,7 @@
             // 
             // btn_ProjCritStruClose
             // 
+            this.btn_ProjCritStruClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ProjCritStruClose.Location = new System.Drawing.Point(597, 516);
             this.btn_ProjCritStruClose.Name = "btn_ProjCritStruClose";
             this.btn_ProjCritStruClose.Size = new System.Drawing.Size(75, 23);

@@ -65,6 +65,8 @@
             // 
             // comboBox_CritName
             // 
+            this.comboBox_CritName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox_CritName.FormattingEnabled = true;
             this.comboBox_CritName.Location = new System.Drawing.Point(29, 129);
             this.comboBox_CritName.Name = "comboBox_CritName";
@@ -74,6 +76,7 @@
             // 
             // btn_zuordnen
             // 
+            this.btn_zuordnen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_zuordnen.Location = new System.Drawing.Point(29, 176);
             this.btn_zuordnen.Name = "btn_zuordnen";
             this.btn_zuordnen.Size = new System.Drawing.Size(75, 23);
@@ -84,6 +87,7 @@
             // 
             // btn_cancle
             // 
+            this.btn_cancle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_cancle.Location = new System.Drawing.Point(122, 176);
             this.btn_cancle.Name = "btn_cancle";
             this.btn_cancle.Size = new System.Drawing.Size(136, 23);

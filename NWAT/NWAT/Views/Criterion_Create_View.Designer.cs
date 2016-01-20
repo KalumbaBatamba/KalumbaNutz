@@ -55,6 +55,9 @@
             // 
             // textBox_CritNameCreate
             // 
+            this.textBox_CritNameCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_CritNameCreate.Location = new System.Drawing.Point(13, 26);
             this.textBox_CritNameCreate.Name = "textBox_CritNameCreate";
             this.textBox_CritNameCreate.Size = new System.Drawing.Size(300, 20);
@@ -62,6 +65,9 @@
             // 
             // textBox_CritDescCreate
             // 
+            this.textBox_CritDescCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_CritDescCreate.Location = new System.Drawing.Point(13, 78);
             this.textBox_CritDescCreate.Multiline = true;
             this.textBox_CritDescCreate.Name = "textBox_CritDescCreate";
@@ -70,6 +76,7 @@
             // 
             // btn_CritCreate
             // 
+            this.btn_CritCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_CritCreate.Location = new System.Drawing.Point(337, 256);
             this.btn_CritCreate.Name = "btn_CritCreate";
             this.btn_CritCreate.Size = new System.Drawing.Size(75, 23);
@@ -78,7 +85,7 @@
             this.btn_CritCreate.UseVisualStyleBackColor = true;
             this.btn_CritCreate.Click += new System.EventHandler(this.btn_CritCreate_Click);
             // 
-            // Criterion_Create_Form
+            // Criterion_Create_View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -88,7 +95,7 @@
             this.Controls.Add(this.textBox_CritNameCreate);
             this.Controls.Add(this.label_CritDesc);
             this.Controls.Add(this.label_CritName);
-            this.Name = "Criterion_Create_Form";
+            this.Name = "Criterion_Create_View";
             this.Text = "Kriterium anlegen";
             this.Load += new System.EventHandler(this.Criterion_Create_Form_Load);
             this.ResumeLayout(false);

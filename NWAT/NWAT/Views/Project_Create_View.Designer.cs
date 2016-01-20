@@ -37,6 +37,7 @@
             // 
             // btn_ProjCreate
             // 
+            this.btn_ProjCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ProjCreate.Location = new System.Drawing.Point(338, 257);
             this.btn_ProjCreate.Name = "btn_ProjCreate";
             this.btn_ProjCreate.Size = new System.Drawing.Size(75, 23);
@@ -47,6 +48,8 @@
             // 
             // textBox_ProjDescCreate
             // 
+            this.textBox_ProjDescCreate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_ProjDescCreate.Location = new System.Drawing.Point(14, 79);
             this.textBox_ProjDescCreate.Multiline = true;
             this.textBox_ProjDescCreate.Name = "textBox_ProjDescCreate";
@@ -55,6 +58,8 @@
             // 
             // textBox_ProjNameCreate
             // 
+            this.textBox_ProjNameCreate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_ProjNameCreate.Location = new System.Drawing.Point(14, 27);
             this.textBox_ProjNameCreate.Name = "textBox_ProjNameCreate";
             this.textBox_ProjNameCreate.Size = new System.Drawing.Size(300, 20);
@@ -78,7 +83,7 @@
             this.label_ProjName.TabIndex = 5;
             this.label_ProjName.Text = "Projektname:";
             // 
-            // Project_Create_Form
+            // Project_Create_View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -88,7 +93,7 @@
             this.Controls.Add(this.textBox_ProjNameCreate);
             this.Controls.Add(this.label_ProjDesc);
             this.Controls.Add(this.label_ProjName);
-            this.Name = "Project_Create_Form";
+            this.Name = "Project_Create_View";
             this.Text = "Projekt anlegen";
             this.Load += new System.EventHandler(this.Project_Create_Form_Load);
             this.ResumeLayout(false);

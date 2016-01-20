@@ -1628,6 +1628,8 @@ namespace NWAT.DB
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-	}
+
+        public string Name { get; set; }
+    }
 }
 #pragma warning restore 1591

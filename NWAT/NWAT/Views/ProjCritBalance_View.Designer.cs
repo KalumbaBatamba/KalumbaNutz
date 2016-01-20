@@ -42,6 +42,9 @@
             // 
             // dataGridView_ProjCritBalance
             // 
+            this.dataGridView_ProjCritBalance.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView_ProjCritBalance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_ProjCritBalance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgc_ProjCritID,
@@ -86,6 +89,7 @@
             // 
             // btn_ProjCritBalaCancle
             // 
+            this.btn_ProjCritBalaCancle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ProjCritBalaCancle.Location = new System.Drawing.Point(584, 516);
             this.btn_ProjCritBalaCancle.Name = "btn_ProjCritBalaCancle";
             this.btn_ProjCritBalaCancle.Size = new System.Drawing.Size(88, 23);
@@ -96,6 +100,7 @@
             // 
             // btn_ProjCritBalaSave
             // 
+            this.btn_ProjCritBalaSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ProjCritBalaSave.Location = new System.Drawing.Point(584, 487);
             this.btn_ProjCritBalaSave.Name = "btn_ProjCritBalaSave";
             this.btn_ProjCritBalaSave.Size = new System.Drawing.Size(88, 23);
@@ -106,6 +111,7 @@
             // 
             // btn_SameBalance
             // 
+            this.btn_SameBalance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_SameBalance.Location = new System.Drawing.Point(567, 20);
             this.btn_SameBalance.Name = "btn_SameBalance";
             this.btn_SameBalance.Size = new System.Drawing.Size(105, 23);

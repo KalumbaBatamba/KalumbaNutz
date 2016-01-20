@@ -33,7 +33,6 @@
             this.btn_ProjectShow = new System.Windows.Forms.Button();
             this.btn_ProjectUpdate = new System.Windows.Forms.Button();
             this.btn_ProjectExport = new System.Windows.Forms.Button();
-            this.btn_ProjectImport = new System.Windows.Forms.Button();
             this.btn_ProjectPrint = new System.Windows.Forms.Button();
             this.btn_ProjectStartCreate = new System.Windows.Forms.Button();
             this.btn_ProjectModify = new System.Windows.Forms.Button();
@@ -53,6 +52,8 @@
             // 
             // comboBox_SelectProject
             // 
+            this.comboBox_SelectProject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox_SelectProject.FormattingEnabled = true;
             this.comboBox_SelectProject.Location = new System.Drawing.Point(12, 106);
             this.comboBox_SelectProject.Name = "comboBox_SelectProject";
@@ -63,7 +64,8 @@
             // 
             // btn_ProjectShow
             // 
-            this.btn_ProjectShow.Location = new System.Drawing.Point(337, 141);
+            this.btn_ProjectShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_ProjectShow.Location = new System.Drawing.Point(337, 165);
             this.btn_ProjectShow.Name = "btn_ProjectShow";
             this.btn_ProjectShow.Size = new System.Drawing.Size(75, 23);
             this.btn_ProjectShow.TabIndex = 2;
@@ -73,7 +75,8 @@
             // 
             // btn_ProjectUpdate
             // 
-            this.btn_ProjectUpdate.Location = new System.Drawing.Point(337, 171);
+            this.btn_ProjectUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_ProjectUpdate.Location = new System.Drawing.Point(337, 195);
             this.btn_ProjectUpdate.Name = "btn_ProjectUpdate";
             this.btn_ProjectUpdate.Size = new System.Drawing.Size(75, 23);
             this.btn_ProjectUpdate.TabIndex = 3;
@@ -83,25 +86,18 @@
             // 
             // btn_ProjectExport
             // 
-            this.btn_ProjectExport.Location = new System.Drawing.Point(337, 229);
+            this.btn_ProjectExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_ProjectExport.Location = new System.Drawing.Point(337, 253);
             this.btn_ProjectExport.Name = "btn_ProjectExport";
             this.btn_ProjectExport.Size = new System.Drawing.Size(75, 23);
             this.btn_ProjectExport.TabIndex = 4;
             this.btn_ProjectExport.Text = "archivieren";
             this.btn_ProjectExport.UseVisualStyleBackColor = true;
             // 
-            // btn_ProjectImport
-            // 
-            this.btn_ProjectImport.Location = new System.Drawing.Point(409, 294);
-            this.btn_ProjectImport.Name = "btn_ProjectImport";
-            this.btn_ProjectImport.Size = new System.Drawing.Size(75, 23);
-            this.btn_ProjectImport.TabIndex = 5;
-            this.btn_ProjectImport.Text = "importieren";
-            this.btn_ProjectImport.UseVisualStyleBackColor = true;
-            // 
             // btn_ProjectPrint
             // 
-            this.btn_ProjectPrint.Location = new System.Drawing.Point(337, 200);
+            this.btn_ProjectPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_ProjectPrint.Location = new System.Drawing.Point(337, 224);
             this.btn_ProjectPrint.Name = "btn_ProjectPrint";
             this.btn_ProjectPrint.Size = new System.Drawing.Size(75, 23);
             this.btn_ProjectPrint.TabIndex = 6;
@@ -130,7 +126,8 @@
             // 
             // btn_ProjImport
             // 
-            this.btn_ProjImport.Location = new System.Drawing.Point(337, 259);
+            this.btn_ProjImport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_ProjImport.Location = new System.Drawing.Point(337, 283);
             this.btn_ProjImport.Name = "btn_ProjImport";
             this.btn_ProjImport.Size = new System.Drawing.Size(75, 23);
             this.btn_ProjImport.TabIndex = 11;
@@ -140,7 +137,8 @@
             // 
             // btn_refresh
             // 
-            this.btn_refresh.Location = new System.Drawing.Point(337, 103);
+            this.btn_refresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_refresh.Location = new System.Drawing.Point(337, 127);
             this.btn_refresh.Name = "btn_refresh";
             this.btn_refresh.Size = new System.Drawing.Size(75, 23);
             this.btn_refresh.TabIndex = 12;
@@ -152,13 +150,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(474, 291);
+            this.ClientSize = new System.Drawing.Size(474, 315);
             this.Controls.Add(this.btn_refresh);
             this.Controls.Add(this.btn_ProjImport);
             this.Controls.Add(this.btn_ProjectModify);
             this.Controls.Add(this.btn_ProjectStartCreate);
             this.Controls.Add(this.btn_ProjectPrint);
-            this.Controls.Add(this.btn_ProjectImport);
             this.Controls.Add(this.btn_ProjectExport);
             this.Controls.Add(this.btn_ProjectUpdate);
             this.Controls.Add(this.btn_ProjectShow);
@@ -179,7 +176,6 @@
         private System.Windows.Forms.Button btn_ProjectShow;
         private System.Windows.Forms.Button btn_ProjectUpdate;
         private System.Windows.Forms.Button btn_ProjectExport;
-        private System.Windows.Forms.Button btn_ProjectImport;
         private System.Windows.Forms.Button btn_ProjectPrint;
         private System.Windows.Forms.Button btn_ProjectStartCreate;
         private System.Windows.Forms.Button btn_ProjectModify;
