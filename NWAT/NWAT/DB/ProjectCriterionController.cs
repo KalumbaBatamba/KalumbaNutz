@@ -104,18 +104,6 @@ namespace NWAT.DB
         }
 
         /// <summary>
-        /// Gets the highest layer number in project.
-        /// </summary>
-        /// <param name="projectId">The project identifier.</param>
-        /// <returns></returns>
-        /// Erstellt von Joshua Frey, am 20.01.2016
-        public int GetHighestLayerNumberInProject(int projectId)
-        {
-            ProjectCriterion projCritWithHighestLayerNum = base.DataContext.ProjectCriterion.OrderByDescending(projCrit => projCrit.Layer_Depth).FirstOrDefault();
-            return projCritWithHighestLayerNum.Layer_Depth;
-        }
-
-        /// <summary>
         /// Updates the project criterion in database.
         /// </summary>
         /// <param name="alteredProjectCriterion">The altered project criterion.</param>
@@ -552,9 +540,37 @@ namespace NWAT.DB
             }
         }
 
-        // TODO by Yann
+        // Esrstellt von Weloko Tchokoua
         private void UpdateAllPercentageProjectWeightings(int projectId)
         {
+            // calculate all weightings for the base layer
+
+            List<ProjectCriterion> baseProjectCriterions = GetBaseProjectCriterions(projectId);
+            CalculatePercentageProjectWeighting(ref baseProjectCriterions);
+
+            // write calculated weightings back to db
+
+            foreach (ProjectCriterion baseProjCrit in baseProjectCriterions)
+            {
+                UpdateProjectCriterionDataSet(baseProjCrit);
+            }
+
+            // calculate all weightings for all child project criterions
+
+            List<ProjectCriterion> allProjectCriterions = GetAllProjectCriterionsForOneProject(projectId);
+
+            foreach (ProjectCriterion projCrit in allProjectCriterions)
+            {
+                List<ProjectCriterion> eventualChildrenOfCurrentProjCriterion = GetChildCriterionsByParentId(projectId, projCrit.Criterion_Id);
+                if (eventualChildrenOfCurrentProjCriterion.Count > 0)
+                {
+                    CalculatePercentageProjectWeighting(ref eventualChildrenOfCurrentProjCriterion);
+                    foreach (ProjectCriterion childProjCrit in eventualChildrenOfCurrentProjCriterion)
+                    {
+                        UpdateProjectCriterionDataSet(childProjCrit);
+                    }
+                }
+            }
 
         }
 
@@ -620,7 +636,7 @@ namespace NWAT.DB
 
             ProjectCriterion projCritToUpdate = allProjectCriterions.Single(projCrit => projCrit.Criterion_Id == projCritId);
             projCritToUpdate.Layer_Depth = layerCounter;
-            UpdateProjectCriterionDataSet(projCritToUpdate);
+                UpdateProjectCriterionDataSet(projCritToUpdate);
         }
 
 
@@ -644,10 +660,61 @@ namespace NWAT.DB
             }
         }
 
-        // TODO by Yann
-        private void CalculatePercentageProjectWeighting()
+        // Erstellt von Weloko Tchokoua
+        private void CalculatePercentageProjectWeighting(ref List<ProjectCriterion> resultProjectCriterions)
         {
+            int projectId = 0;
+           // List<ProjectCriterion> allProjectCriterions = GetAllProjectCriterionsForOneProject(projectId);
+            List<ProjectCriterion> papa = GetBaseProjectCriterions(projectId);
+            double sumweightinglayeronecrit = 0;
+            double sumweigthinglayerseconddepth =0;
+            double parentprojectweightinglayer =0;
+            double parentprojectfirstlayer = 0;
 
+            foreach (ProjectCriterion all in resultProjectCriterions) 
+            foreach(ProjectCriterion parent in papa)
+            {
+                List<ProjectCriterion> childcrit = GetChildCriterionsByParentId(projectId, parent.Criterion_Id);
+
+                foreach(ProjectCriterion son in childcrit)
+                {
+
+                    if (parent.Criterion_Id == son.Parent_Criterion_Id)
+                    {
+                        UpdateAllPercentageLayerWeightings(projectId);
+                        UpdateLayerDepthForProjectCriterion(projectId, all.Criterion_Id);
+
+                        
+                        int maxlayer = int.MaxValue;
+                        maxlayer = Math.Max(all.Layer_Depth, maxlayer);
+                        for (all.Layer_Depth = 0; all.Layer_Depth <= maxlayer; all.Layer_Depth--)
+                        {
+                            sumweightinglayeronecrit += son.Weighting_Percentage_Layer.Value;
+                            parentprojectweightinglayer = (sumweightinglayeronecrit * parent.Weighting_Percentage_Layer.Value) / 100;
+
+                            parent.Weighting_Percentage_Project = parentprojectweightinglayer;
+
+                        }
+                    }
+                    else if (all.Parent_Criterion_Id == null )
+                    {
+                        do
+                        {
+                           sumweigthinglayerseconddepth +=son.Weighting_Percentage_Layer.Value;
+
+                           parentprojectfirstlayer = (parent.Weighting_Percentage_Layer.Value * sumweigthinglayerseconddepth) / 100;
+
+                           parent.Weighting_Percentage_Project = parentprojectfirstlayer;
+
+                        } while (all.Layer_Depth == 2 && parent.Layer_Depth == 1);
+                    }
+            }
+
+
+                 
+            }
+            
+            
         }
 
         /// <summary>

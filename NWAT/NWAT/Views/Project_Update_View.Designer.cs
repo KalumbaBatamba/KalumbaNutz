@@ -37,6 +37,7 @@
             // 
             // btn_ProjUpdate
             // 
+            this.btn_ProjUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ProjUpdate.Location = new System.Drawing.Point(337, 257);
             this.btn_ProjUpdate.Name = "btn_ProjUpdate";
             this.btn_ProjUpdate.Size = new System.Drawing.Size(75, 23);
@@ -47,6 +48,9 @@
             // 
             // textBox_ProjNameUpdate
             // 
+            this.textBox_ProjNameUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_ProjNameUpdate.Location = new System.Drawing.Point(15, 27);
             this.textBox_ProjNameUpdate.Name = "textBox_ProjNameUpdate";
             this.textBox_ProjNameUpdate.Size = new System.Drawing.Size(300, 20);
@@ -64,6 +68,9 @@
             // 
             // textBox_ProjDescUpdate
             // 
+            this.textBox_ProjDescUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_ProjDescUpdate.Location = new System.Drawing.Point(15, 80);
             this.textBox_ProjDescUpdate.Multiline = true;
             this.textBox_ProjDescUpdate.Name = "textBox_ProjDescUpdate";

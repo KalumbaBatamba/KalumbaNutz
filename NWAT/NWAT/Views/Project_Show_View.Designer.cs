@@ -37,6 +37,7 @@
             // 
             // btn_ProjShowClose
             // 
+            this.btn_ProjShowClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ProjShowClose.Location = new System.Drawing.Point(337, 257);
             this.btn_ProjShowClose.Name = "btn_ProjShowClose";
             this.btn_ProjShowClose.Size = new System.Drawing.Size(75, 23);

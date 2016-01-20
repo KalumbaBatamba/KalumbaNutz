@@ -49,6 +49,7 @@
             // 
             // btn_CritShow
             // 
+            this.btn_CritShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_CritShow.Location = new System.Drawing.Point(584, 30);
             this.btn_CritShow.Name = "btn_CritShow";
             this.btn_CritShow.Size = new System.Drawing.Size(75, 23);
@@ -59,6 +60,7 @@
             // 
             // btn_CritUpdate
             // 
+            this.btn_CritUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_CritUpdate.Location = new System.Drawing.Point(584, 60);
             this.btn_CritUpdate.Name = "btn_CritUpdate";
             this.btn_CritUpdate.Size = new System.Drawing.Size(75, 23);
@@ -69,6 +71,7 @@
             // 
             // btn_CritDelete
             // 
+            this.btn_CritDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_CritDelete.Location = new System.Drawing.Point(584, 90);
             this.btn_CritDelete.Name = "btn_CritDelete";
             this.btn_CritDelete.Size = new System.Drawing.Size(75, 23);
@@ -79,6 +82,7 @@
             // 
             // btn_CritCreate
             // 
+            this.btn_CritCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_CritCreate.Location = new System.Drawing.Point(555, 526);
             this.btn_CritCreate.Name = "btn_CritCreate";
             this.btn_CritCreate.Size = new System.Drawing.Size(104, 23);
@@ -89,6 +93,9 @@
             // 
             // dataGridView_Crits
             // 
+            this.dataGridView_Crits.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView_Crits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_Crits.Location = new System.Drawing.Point(13, 31);
             this.dataGridView_Crits.MultiSelect = false;
@@ -101,6 +108,7 @@
             // 
             // btn_refresh
             // 
+            this.btn_refresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_refresh.Location = new System.Drawing.Point(584, 120);
             this.btn_refresh.Name = "btn_refresh";
             this.btn_refresh.Size = new System.Drawing.Size(75, 23);

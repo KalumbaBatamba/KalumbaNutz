@@ -49,6 +49,7 @@
             // 
             // btn_ProdDelete
             // 
+            this.btn_ProdDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ProdDelete.Location = new System.Drawing.Point(363, 169);
             this.btn_ProdDelete.Name = "btn_ProdDelete";
             this.btn_ProdDelete.Size = new System.Drawing.Size(75, 23);
@@ -59,6 +60,7 @@
             // 
             // btn_ProdUpdate
             // 
+            this.btn_ProdUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ProdUpdate.Location = new System.Drawing.Point(363, 139);
             this.btn_ProdUpdate.Name = "btn_ProdUpdate";
             this.btn_ProdUpdate.Size = new System.Drawing.Size(75, 23);
@@ -69,6 +71,7 @@
             // 
             // btn_ProdShow
             // 
+            this.btn_ProdShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ProdShow.Location = new System.Drawing.Point(363, 109);
             this.btn_ProdShow.Name = "btn_ProdShow";
             this.btn_ProdShow.Size = new System.Drawing.Size(75, 23);
@@ -88,6 +91,9 @@
             // 
             // comboBox_ProdChoose
             // 
+            this.comboBox_ProdChoose.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBox_ProdChoose.FormattingEnabled = true;
             this.comboBox_ProdChoose.Location = new System.Drawing.Point(9, 76);
             this.comboBox_ProdChoose.Name = "comboBox_ProdChoose";
@@ -97,6 +103,7 @@
             // 
             // btn_refresh
             // 
+            this.btn_refresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_refresh.Location = new System.Drawing.Point(363, 73);
             this.btn_refresh.Name = "btn_refresh";
             this.btn_refresh.Size = new System.Drawing.Size(75, 23);

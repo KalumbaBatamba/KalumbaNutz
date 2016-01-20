@@ -48,6 +48,8 @@
             // 
             // dataGridView_prodAvail
             // 
+            this.dataGridView_prodAvail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView_prodAvail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_prodAvail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgc_AvailProdID,
@@ -78,6 +80,8 @@
             // 
             // dataGridView_ProjProd
             // 
+            this.dataGridView_ProjProd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridView_ProjProd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_ProjProd.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgc_ProjProdID,
@@ -108,6 +112,7 @@
             // 
             // label_ProdAvail
             // 
+            this.label_ProdAvail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label_ProdAvail.AutoSize = true;
             this.label_ProdAvail.Location = new System.Drawing.Point(377, 10);
             this.label_ProdAvail.Name = "label_ProdAvail";
@@ -126,6 +131,7 @@
             // 
             // btn_ProjProdCancle
             // 
+            this.btn_ProjProdCancle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ProjProdCancle.Location = new System.Drawing.Point(595, 527);
             this.btn_ProjProdCancle.Name = "btn_ProjProdCancle";
             this.btn_ProjProdCancle.Size = new System.Drawing.Size(75, 23);
@@ -135,6 +141,7 @@
             // 
             // btn_ProjProdSave
             // 
+            this.btn_ProjProdSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ProjProdSave.Location = new System.Drawing.Point(513, 527);
             this.btn_ProjProdSave.Name = "btn_ProjProdSave";
             this.btn_ProjProdSave.Size = new System.Drawing.Size(75, 23);
@@ -144,6 +151,7 @@
             // 
             // btn_ProdToPool
             // 
+            this.btn_ProdToPool.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btn_ProdToPool.Location = new System.Drawing.Point(314, 237);
             this.btn_ProdToPool.Name = "btn_ProdToPool";
             this.btn_ProdToPool.Size = new System.Drawing.Size(60, 23);
@@ -153,6 +161,7 @@
             // 
             // btn_ProdToProj
             // 
+            this.btn_ProdToProj.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btn_ProdToProj.Location = new System.Drawing.Point(314, 207);
             this.btn_ProdToProj.Name = "btn_ProdToProj";
             this.btn_ProdToProj.Size = new System.Drawing.Size(60, 23);

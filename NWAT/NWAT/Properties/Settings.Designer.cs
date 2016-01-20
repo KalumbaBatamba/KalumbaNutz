@@ -26,7 +26,7 @@ namespace NWAT.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\sqlexpress;Initial Catalog=NWAT;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\WDFN00293907A;Initial Catalog=NWAT;Integrated Security=True")]
         public string NWATConnectionString {
             get {
                 return ((string)(this["NWATConnectionString"]));
