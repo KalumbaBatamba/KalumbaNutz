@@ -164,7 +164,7 @@ namespace NWAT
         private void btn_ProjCritSave_Click(object sender, EventArgs e)
         {
             projCritCont.ChangeAllocationOfProjectCriterionsInDb(ProjectId, ProjCrits);
-         //   this.Close;
+            this.Close();
         }
 
         private void btn_CritToPool_Click(object sender, EventArgs e)
