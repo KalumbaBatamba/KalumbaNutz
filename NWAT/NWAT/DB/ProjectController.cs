@@ -59,12 +59,6 @@ namespace NWAT.DB
         }
 
 
-        // TODO Überladen sodass importiert werden kann.
-        public bool InsertProjectIntoDb(Project newProject)
-        {
-            return InsertProjectIntoDb(newProject, 0);
-        }
-
         /// <summary>
         /// Inserts the project into database.
         /// </summary>
@@ -77,22 +71,22 @@ namespace NWAT.DB
         /// Das Projekt konnte nicht in der Datenbank angelegt werden. 
         /// Bitte überprüfen Sie das übergebene Projekt Objekt.
         /// </exception>
-        public bool InsertProjectIntoDb(Project newProject, int insertId)
+        public bool InsertProjectIntoDb(Project newProject)
         {
 
             if (newProject != null)
             {
                 // if insert Id is != 0 then this project will be imported at the index of insertId
-                bool willBeImported = insertId != 0;
+                bool willBeImported = newProject.Project_Id != 0;
 
                 string newProjectName = newProject.Name;
                 if (!CheckIfProjectNameAlreadyExists(newProjectName))
                 {
                     if (willBeImported)
                     {
-                        if (CheckIfProjectIdAlreadyExists(insertId))
+                        if (CheckIfProjectIdAlreadyExists(newProject.Project_Id))
                         {
-                            throw (new NWATException(MessageProjectIdAlreadyExists(insertId)));
+                            throw (new NWATException(MessageProjectIdAlreadyExists(newProject.Project_Id)));
                         }
                         else
                         {

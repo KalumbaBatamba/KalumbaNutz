@@ -451,12 +451,23 @@ namespace NWAT.DB
         /// <param name="exportedFulfillments">The exported fulfillments.</param>
         /// <param name="line">The line.</param>
         /// Erstellt von Joshua Frey, am 13.01.2016
-        private static void AddExportedFulfillmentToList(ref List<Fulfillment> exportedFulfillments, string line)
+        private void AddExportedFulfillmentToList(ref List<Fulfillment> exportedFulfillments, string line)
         {
             var lineAsArray = line.Split('|');
-            int exportedProjectId = Convert.ToInt32(lineAsArray[0]);
-            int exportedProductId = Convert.ToInt32(lineAsArray[1]);
-            int exportedCriterionId = Convert.ToInt32(lineAsArray[2]);
+            int exportedProjectId;
+            int exportedProductId;
+            int exportedCriterionId;
+            try
+            {
+                exportedProjectId = Convert.ToInt32(lineAsArray[0]);
+                exportedProductId = Convert.ToInt32(lineAsArray[1]);
+                exportedCriterionId = Convert.ToInt32(lineAsArray[2]);
+            }
+            catch (FormatException formatException)
+            {
+                throw new NWATException(String.Format("{0}\n\n{1}",
+                    formatException, MessageWrongDatatypeInExportedLine("FulFillment", line, "int|int|int|int|int|double(mit Kommata)|double(mit Kommata)")));
+            }
             string exportedFulfilledAsString = lineAsArray[3];
             bool exportedFulfilled;
             switch (exportedFulfilledAsString.ToLower())
@@ -464,23 +475,11 @@ namespace NWAT.DB
                 case "true":
                     exportedFulfilled = true;
                     break;
-                case "false":
-                    exportedFulfilled = false;
-                    break;
                 default:
                     exportedFulfilled = false;
                     break;
             }
-            string exportedComment;
-            if (lineAsArray[4] == "")
-            {
-                exportedComment = null;
-            }
-            else
-            {
-                exportedComment = lineAsArray[4];
-            }
-
+            string exportedComment = CommonMethods.GetNullableStringValueFromString(lineAsArray[4]);
 
             exportedFulfillments.Add(new Fulfillment()
             {
@@ -535,10 +534,7 @@ namespace NWAT.DB
                 string line = "";
                 while ((line = sr.ReadLine()) != null)
                 {
-                    var lineAsArray = line.Split('|');
-                    int exportedProjectId = Convert.ToInt32(lineAsArray[0]);
-                    int exportedProductId = Convert.ToInt32(lineAsArray[1]);
-                    exportedProjProducts.Add(new ProjectProduct(){Project_Id = exportedProjectId, Product_Id = exportedProductId});
+                    AddExportedProjectProductToList(ref exportedProjProducts, line);
                 }
             }
             // if the count of lists doesn't differ 
@@ -563,6 +559,31 @@ namespace NWAT.DB
             }
             else
                 return false;
+        }
+
+        /// <summary>
+        /// Adds the exported project products to list.
+        /// </summary>
+        /// <param name="exportedProjProducts">The exported proj products.</param>
+        /// <param name="line">The line.</param>
+        /// Erstellt von Joshua Frey, am 20.01.2016
+        /// <exception cref="NWATException"></exception>
+        private void AddExportedProjectProductToList(ref List<ProjectProduct> exportedProjProducts, string line)
+        {
+            var lineAsArray = line.Split('|');
+            int exportedProjectId;
+            int exportedProductId;
+            try
+            {
+                exportedProjectId = Convert.ToInt32(lineAsArray[0]);
+                exportedProductId = Convert.ToInt32(lineAsArray[1]);
+            }
+            catch (FormatException formatException)
+            {
+                throw new NWATException(String.Format("{0}\n\n{1}",
+                    formatException, MessageWrongDatatypeInExportedLine("ProjectProduct", line, "int|int")));
+            }
+            exportedProjProducts.Add(new ProjectProduct() { Project_Id = exportedProjectId, Product_Id = exportedProductId });
         }
 
         /// <summary>
@@ -660,29 +681,28 @@ namespace NWAT.DB
         private void AddExportedProjectCriterionToList(ref List<ProjectCriterion> exportedProjectCriterions, string line)
         {
             var lineAsArray = line.Split('|');
-            int exportedProjectId = Convert.ToInt32(lineAsArray[0]);
-            int exportedCriterionId = Convert.ToInt32(lineAsArray[1]);
-            int exportedLayerDepth = Convert.ToInt32(lineAsArray[2]);
+            int exportedProjectId;
+            int exportedCriterionId;
+            int exportedLayerDepth;
             System.Nullable<int> exportedParentCriterionId;
-            
-            // check if no Parent for this crit
-            if (lineAsArray[3] == "")
-                exportedParentCriterionId = null;
-            else
-                exportedParentCriterionId  = Convert.ToInt32(lineAsArray[3]);
-            int exportedCardinalWeighting = Convert.ToInt32(lineAsArray[4]);
-
-            System.Nullable<float> exportedPercentageLayerWeighting;
-            if (lineAsArray[5] == "")
-                exportedPercentageLayerWeighting = null;
-            else
-                exportedPercentageLayerWeighting = float.Parse(lineAsArray[5]);
-
-            System.Nullable<float> exportedPercentageProjectWeighting;
-            if (lineAsArray[6] == "")
-                exportedPercentageProjectWeighting = null;
-            else
-                exportedPercentageProjectWeighting = float.Parse(lineAsArray[5]);
+            int exportedCardinalWeighting;
+            System.Nullable<double> exportedPercentageLayerWeighting;
+            System.Nullable<double> exportedPercentageProjectWeighting;
+            try
+            {
+                exportedProjectId = Convert.ToInt32(lineAsArray[0]);
+                exportedCriterionId = Convert.ToInt32(lineAsArray[1]);
+                exportedLayerDepth = Convert.ToInt32(lineAsArray[2]);
+                exportedParentCriterionId = CommonMethods.GetNullableIntValueFromString(lineAsArray[3]);
+                exportedCardinalWeighting = Convert.ToInt32(lineAsArray[4]);
+                exportedPercentageLayerWeighting = CommonMethods.GetNullableDoubleValueFromString(lineAsArray[5]);
+                exportedPercentageProjectWeighting = CommonMethods.GetNullableDoubleValueFromString(lineAsArray[6]);
+            }
+            catch (FormatException formatException)
+            {
+                throw new NWATException(String.Format("{0}\n\n{1}",
+                    formatException, MessageWrongDatatypeInExportedLine("ProjectCriterion", line, "int|int|int|int|int|double(mit Kommata)|double(mit Kommata)")));
+            }
 
             exportedProjectCriterions.Add(new ProjectCriterion()
             {
@@ -802,15 +822,24 @@ namespace NWAT.DB
         private void AddExportedProductToList(ref List<Product> exportedProducts, string line)
         {
             var lineAsArray = line.Split('|');
-            int exportedProductId = Convert.ToInt32(lineAsArray[0]);
+            int exportedProductId;
+            try
+            {
+                exportedProductId = Convert.ToInt32(lineAsArray[0]);
+            }
+            catch (FormatException formatException)
+            {
+                throw new NWATException(String.Format("{0}\n\n{1}", formatException, MessageWrongDatatypeInExportedLine("Product", line, "int|string|string|double(mit Kommata)")));
+            }
+            
             string exportedName = lineAsArray[1];
             string exportedProducer = lineAsArray[2];
-            System.Nullable<float> exportedPrice;
+            System.Nullable<double> exportedPrice;
 
             if (lineAsArray[3] == "")
                 exportedPrice = null;
             else
-                exportedPrice = float.Parse(lineAsArray[3]);
+                exportedPrice = Convert.ToDouble(lineAsArray[3]);
 
             exportedProducts.Add(new Product()
             {
@@ -925,7 +954,16 @@ namespace NWAT.DB
         private void AddExportedCriterionstToList(ref List<Criterion> exportedCriterions, string line)
         {
             var lineAsArray = line.Split('|');
-            int exportedCriterionId = Convert.ToInt32(lineAsArray[0]);
+            int exportedCriterionId;
+            try
+            {
+                exportedCriterionId = Convert.ToInt32(lineAsArray[0]);
+            }
+            catch (FormatException formatException)
+            {
+                throw new NWATException(String.Format("{0}\n\n{1}", formatException, MessageWrongDatatypeInExportedLine("Criterion", line, "int|string|string")));
+            }
+            
             string exportedName = lineAsArray[1];
             string exportedDescription = lineAsArray[2];
 
@@ -976,7 +1014,16 @@ namespace NWAT.DB
             {
                 string line = sr.ReadLine();
                 var lineAsArray = line.Split('|');
-                int projId = Convert.ToInt32(lineAsArray[0]);
+                int projId;
+                try
+                {
+                    projId = Convert.ToInt32(lineAsArray[0]);
+                }
+                catch (FormatException formatException)
+                {
+                    throw new NWATException(String.Format("{0}\n\n{1}",formatException, MessageWrongDatatypeInExportedLine("Project", line, "int|string|string")));
+                }
+                
                 string projName = lineAsArray[1];
                 string projDescription = lineAsArray[2];
 
@@ -1208,6 +1255,13 @@ namespace NWAT.DB
         {
             return "Das Komprimieren der exportierten Daten in ein Ziparchiv war erfolgreich.\n" +
                 "Möchten Sie die Exportdateien außerhalb des Ziparchivs löschen?";
+        }
+
+        private string MessageWrongDatatypeInExportedLine(string tableName, string line, string dataTypesOrder)
+        {
+            return String.Format("Der folgende Datensatz aus der Tabelle {0} enthält Einträge mit falschen Datentypen.\n" +
+                                 "Datentypenreihenfolge: {1} \n\n" + 
+                                 "Datensatz: {2}", tableName, dataTypesOrder, line);
         }
     }
 }

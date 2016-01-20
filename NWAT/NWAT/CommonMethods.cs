@@ -80,6 +80,66 @@ namespace NWAT
             }
         }
 
+
+
+        /// <summary>
+        /// Gets the nullable double value from string.
+        /// </summary>
+        /// <param name="valueString">The value string.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 20.01.2016
+        public static System.Nullable<double> GetNullableDoubleValueFromString(string valueString)
+        {
+            if (valueString == "")
+            {
+                return null;
+            }
+            else
+            {
+                return Convert.ToDouble(valueString);
+            }
+        }
+
+        /// <summary>
+        /// Gets the nullable int value from string.
+        /// </summary>
+        /// <param name="valueString">The value string.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 20.01.2016
+        public static System.Nullable<int> GetNullableIntValueFromString(string valueString)
+        {
+            if (valueString == "")
+            {
+                return null;
+            }
+            else
+            {
+                return Convert.ToInt32(valueString);
+            }
+        }
+
+        /// <summary>
+        /// If given String is empty, it will return null. 
+        /// Else it will return the string.
+        /// </summary>
+        /// <param name="valueString">The value string.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 20.01.2016
+        public static string GetNullableStringValueFromString(string valueString)
+        {
+            if (valueString == "")
+            {
+                return null;
+            }
+            else
+            {
+                return valueString;
+            }
+        }
+
+
+
+
         /*
          * Messages
          */
