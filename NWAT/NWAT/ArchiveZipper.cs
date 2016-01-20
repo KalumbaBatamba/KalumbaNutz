@@ -54,7 +54,7 @@ namespace NWAT
         /// A list with all paths of extraced files
         /// </returns>
         /// Erstellt von Joshua Frey, am 15.01.2016
-        public List<string> extractArchiveDataToDir(string tempExtractDir, string zipArchiveFilePath)
+        public List<string> ExtractArchiveDataToDir(string tempExtractDir, string zipArchiveFilePath)
         {
             if (!Directory.Exists(tempExtractDir))
             {

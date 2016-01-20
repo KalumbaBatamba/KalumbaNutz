@@ -91,6 +91,19 @@ namespace NWAT.DB
         }
 
         /// <summary>
+        /// Checks if project criterion already exists.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="criterionId">The criterion identifier.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 20.01.2016
+        public bool CheckIfProjectCriterionAlreadyExists(int projectId, int criterionId)
+        {
+            ProjectCriterion existingProjCrit = GetProjectCriterionByIds(projectId, criterionId);
+            return existingProjCrit != null;
+        }
+
+        /// <summary>
         /// Updates the project criterion in database.
         /// </summary>
         /// <param name="alteredProjectCriterion">The altered project criterion.</param>
@@ -175,6 +188,17 @@ namespace NWAT.DB
             return deallocationSuccessful && allocationSuccessful;
         }
 
+        /// <summary>
+        /// Imports the project criterion.
+        /// </summary>
+        /// <param name="importProjectCriterion">The import project criterion.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 20.01.2016
+        public bool ImportProjectCriterion(ProjectCriterion importProjectCriterion)
+        {
+            return InsertProjectCriterionIntoDb(importProjectCriterion);
+        }
+
 
         /// <summary>
         /// Kriterienstruktur sortieren um richtige Ausgabe an Printer Klassen übergeben zu können
@@ -196,15 +220,17 @@ namespace NWAT.DB
         }
 
 
+      
+
+        /*
+        * Private Section
+        */
+
         /// <summary>
         /// Methode mit einer rekursiven foreach-Schleife um alle Kindes Kinder zu erfassen
         /// </summary>
         /// Erstellt von Adrian Glasnek
         /// 
-
-        /*
-        * Private Section
-        */
 
         private void FillSortedStructureList(int projectId, List<ProjectCriterion> siblingCriterions, ref List<ProjectCriterion> sortedCriterionStructure)
         {
@@ -609,24 +635,6 @@ namespace NWAT.DB
             
         }
 
-        /// <summary>
-        /// Checks if project criterion already exists.
-        /// </summary>
-        /// <param name="projectId">The project identifier.</param>
-        /// <param name="criterionId">The criterion identifier.</param>
-        /// <returns>
-        /// bool if project criterion already exists
-        /// </returns>
-        /// Erstellt von Joshua Frey, am 22.12.2015
-        private bool CheckIfProjectCriterionAlreadyExists(int projectId, int criterionId)
-        {
-            ProjectCriterion existingProjectCriterion = this.GetProjectCriterionByIds(projectId, criterionId);
-            if(existingProjectCriterion != null)
-                return true;
-            else
-                return false;
-        }
-        
         /// <summary>
         /// Checks if parent exists in project as project criterion.
         /// </summary>

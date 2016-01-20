@@ -51,14 +51,32 @@ namespace NWAT
             WriteHeaderToLog(logHeader);
         }
 
+        /// <summary>
+        /// Logs the specified log message.
+        /// </summary>
+        /// <param name="logMessage">The log message.</param>
+        /// Erstellt von Joshua Frey, am 20.01.2016
         public void Log(string logMessage)
         {
             this.LogFileWriter = File.AppendText(this.LogFilePath);
-            this.LogFileWriter.WriteLine("\r\n{0} {1}", DateTime.Now.ToLongTimeString(),
-                DateTime.Now.ToLongDateString());
+            //this.LogFileWriter.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(),
+            //    DateTime.Now.ToLongDateString());
 
+            //this.LogFileWriter.WriteLine("---------------------------------");
+            this.LogFileWriter.WriteLine("\r\n{0}:  {1}",DateTime.Now.ToLongTimeString(), logMessage);
+            this.LogFileWriter.Close();
+        }
+
+        /// <summary>
+        /// Logs the sub heading.
+        /// </summary>
+        /// <param name="logHeader">The log header.</param>
+        /// Erstellt von Joshua Frey, am 20.01.2016
+        public void LogSubHeading(string logSubHeader)
+        {
+            this.LogFileWriter = File.AppendText(this.LogFilePath);
+            this.LogFileWriter.WriteLine("\r\n\r\n{0}:  {1}", DateTime.Now.ToLongTimeString(), logSubHeader);
             this.LogFileWriter.WriteLine("---------------------------------");
-            this.LogFileWriter.WriteLine("{0}", logMessage);
             this.LogFileWriter.Close();
         }
 
@@ -71,8 +89,8 @@ namespace NWAT
         private void WriteHeaderToLog(string header)
         {
             this.LogFileWriter = File.AppendText(this.LogFilePath);
-            this.LogFileWriter.WriteLine(header);
-            this.LogFileWriter.WriteLine("-------------------------------");
+            this.LogFileWriter.WriteLine("{0}\t{1}", header, DateTime.Now.ToLongDateString());
+            this.LogFileWriter.WriteLine("-----------------------------------------");
             this.LogFileWriter.WriteLine();
             //this.LogFileWriter.WriteLine();
             this.LogFileWriter.Close();

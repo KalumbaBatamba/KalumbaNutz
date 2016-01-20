@@ -13,17 +13,45 @@ namespace NWAT
 {
     public partial class aktuellesProjekt_View : Form
     {
+        private Project _project;
+
+        public Project Project
+        {
+            get { return _project; }
+            set { _project = value; }
+        }
+
+        private ProjectController _projectCont;
+
+        public ProjectController ProjectCont
+        {
+            get { return _projectCont; }
+            set { _projectCont = value; }
+        }
 
         private ProjectController _projectController;
-        public aktuellesProjekt_View()
+
+
+        public aktuellesProjekt_View(int projectId)
         {
+         //   _projectController = new ProjectController();
+            this.ProjectCont = new ProjectController();
+            this.Project = this.ProjectCont.GetProjectById(projectId);
             InitializeComponent();
-            _projectController = new ProjectController();
+            
         }
 
         private void aktuellesProjekt_Load(object sender, EventArgs e)
         {
-
+            using (ProjectController AktProjForm = new ProjectController())
+            {
+                Project proj = AktProjForm.GetProjectById(Project.Project_Id);
+                String ProjName = proj.Name;
+                String ProjDesc = proj.Description;
+                MessageBox.Show(ProjName + ProjDesc);
+                label_CurrProjNameShow.Text = this.Project.Name; //proj.Name;
+                label_CurrProjDescShow.Text = this.Project.Description; //proj.Description;
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -46,7 +74,9 @@ namespace NWAT
 
         private void btn_CurrProjKritAssign_Click(object sender, EventArgs e)
         {
-            ProjCritAssign_View ProjCritAssign = new ProjCritAssign_View();
+            
+            
+            ProjCritAssign_View ProjCritAssign = new ProjCritAssign_View(Project.Project_Id);
             ProjCritAssign.Show();
         }
 
