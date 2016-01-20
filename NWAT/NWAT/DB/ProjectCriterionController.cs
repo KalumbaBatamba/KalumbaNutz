@@ -509,9 +509,37 @@ namespace NWAT.DB
             }
         }
 
-        // TODO by Yann
+        // Esrstellt von Weloko Tchokoua
         private void UpdateAllPercentageProjectWeightings(int projectId)
         {
+            // calculate all weightings for the base layer
+
+            List<ProjectCriterion> baseProjectCriterions = GetBaseProjectCriterions(projectId);
+            CalculatePercentageProjectWeighting(ref baseProjectCriterions);
+
+            // write calculated weightings back to db
+
+            foreach (ProjectCriterion baseProjCrit in baseProjectCriterions)
+            {
+                UpdateProjectCriterionDataSet(baseProjCrit);
+            }
+
+            // calculate all weightings for all child project criterions
+
+            List<ProjectCriterion> allProjectCriterions = GetAllProjectCriterionsForOneProject(projectId);
+
+            foreach (ProjectCriterion projCrit in allProjectCriterions)
+            {
+                List<ProjectCriterion> eventualChildrenOfCurrentProjCriterion = GetChildCriterionsByParentId(projectId, projCrit.Criterion_Id);
+                if (eventualChildrenOfCurrentProjCriterion.Count > 0)
+                {
+                    CalculatePercentageProjectWeighting(ref eventualChildrenOfCurrentProjCriterion);
+                    foreach (ProjectCriterion childProjCrit in eventualChildrenOfCurrentProjCriterion)
+                    {
+                        UpdateProjectCriterionDataSet(childProjCrit);
+                    }
+                }
+            }
 
         }
 
@@ -601,7 +629,7 @@ namespace NWAT.DB
             }
         }
 
-        // TODO by Yann
+        // Erstellt von Weloko Tchokoua
         private void CalculatePercentageProjectWeighting(ref List<ProjectCriterion> resultProjectCriterions)
         {
             int projectId = 0;
