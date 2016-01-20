@@ -22,22 +22,27 @@ namespace NWAT
             set { _criterion = value; }
         }
 
-        private CriterionController _criterionCont;
+        //private CriterionController _criterionCont;
 
-        public CriterionController CriterionCont
-        {
-            get { return _criterionCont; }
-            set { _criterionCont = value; }
-        }
+        //public CriterionController CriterionCont
+        //{
+        //    get { return _criterionCont; }
+        //    set { _criterionCont = value; }
+        //}
 
 
 
        // private CriterionController critCont;
         public Criterion_Update_View(int criterionId)
         {
- //           this.critCont = new CriterionController();
-            this.CriterionCont = new CriterionController();
-            this.Criterion = this.CriterionCont.GetCriterionById(criterionId);
+ //         this.critCont = new CriterionController();
+            using (CriterionController CritUpdView = new CriterionController())
+            {
+                this.Criterion = CritUpdView.GetCriterionById(criterionId);
+            }
+            
+    //        this.CriterionCont = new CriterionController();
+    //        this.Criterion = this.CriterionCont.GetCriterionById(criterionId);
 
             
             InitializeComponent();
@@ -45,11 +50,20 @@ namespace NWAT
 
         private void btn_CritUpdate_Click(object sender, EventArgs e)
         {
-            Criterion critUpd = CriterionCont.GetCriterionById(Criterion.Criterion_Id); //new Criterion();
-            critUpd.Criterion_Id = this.Criterion.Criterion_Id;   //aktRowCrit.CritID;
-            critUpd.Name = textBox_CritNameUpdate.Text;
-            critUpd.Description = textBox_CritDescUpdate.Text;
-            CriterionCont.UpdateCriterionInDb(critUpd);
+            using (CriterionController CritUpdClick = new CriterionController())
+            {
+                Criterion critUpd = CritUpdClick.GetCriterionById(Criterion.Criterion_Id);
+                critUpd.Criterion_Id = this.Criterion.Criterion_Id;   //aktRowCrit.CritID;
+                critUpd.Name = textBox_CritNameUpdate.Text;
+                critUpd.Description = textBox_CritDescUpdate.Text;
+                CritUpdClick.UpdateCriterionInDb(critUpd);
+            }
+            
+   //         Criterion critUpd = CriterionCont.GetCriterionById(Criterion.Criterion_Id); //new Criterion();
+            //critUpd.Criterion_Id = this.Criterion.Criterion_Id;   //aktRowCrit.CritID;
+            //critUpd.Name = textBox_CritNameUpdate.Text;
+            //critUpd.Description = textBox_CritDescUpdate.Text;
+            //CriterionCont.UpdateCriterionInDb(critUpd);
             this.Close();
             
         }

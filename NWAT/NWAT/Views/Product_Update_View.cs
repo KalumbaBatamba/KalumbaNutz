@@ -34,9 +34,14 @@ namespace NWAT
   //      private ProductController prodCont;
         public Product_Update_View(int productId)
         {
+
+            using (ProductController ProdUpdView = new ProductController()) 
+            {
+        //        this.ProdUpdView = new ProductController();
+                this.Product = ProdUpdView.GetProductById(productId);
+            
+            }
       //      this.prodCont = new ProductController();
-            this.ProductCont = new ProductController();
-            this.Product = this.ProductCont.GetProductById(productId);
             InitializeComponent();
         }
         
@@ -58,12 +63,18 @@ namespace NWAT
         private void btn_ProdUpdate_Click(object sender, EventArgs e)
         {
         //    int x = this.Product.Product_Id;
-            Product prodNew = ProductCont.GetProductById(Product.Product_Id);
-            prodNew.Product_Id = this.Product.Product_Id;  // aktRowProd.ProdID;
-            prodNew.Name = textBox_ProdNameUpdate.Text;
-            prodNew.Producer = textBox_ProdManuUpdate.Text;
-            prodNew.Price = Convert.ToDouble(textBox_ProdPrizeUpdate.Text);
-            ProductCont.UpdateProductInDb(prodNew);
+            using (ProductController prodUpdate = new ProductController()) 
+            {
+                Product prodNew = prodUpdate.GetProductById(Product.Product_Id);
+                prodNew.Product_Id = this.Product.Product_Id;  // aktRowProd.ProdID;
+                prodNew.Name = textBox_ProdNameUpdate.Text;
+                prodNew.Producer = textBox_ProdManuUpdate.Text;
+                prodNew.Price = Convert.ToDouble(textBox_ProdPrizeUpdate.Text);
+                prodUpdate.UpdateProductInDb(prodNew);
+            }
+            
+         //   Product prodNew = ProductCont.GetProductById(Product.Product_Id);
+           
             this.Close();
         }
         private void UpdateProduct()

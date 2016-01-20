@@ -67,18 +67,35 @@ namespace NWAT
 
         private void btn_CritShow_Click(object sender, EventArgs e)
         {
-            DataGridViewRow row = dataGridView_Crits.SelectedRows[0];
-            int zelle1 = (int)row.Cells[0].Value;
-            string zelle2 = (string)row.Cells[1].Value;
-            string zelle3 = (string)row.Cells[2].Value;
-     //       aktRowCrit.CritID = zelle1;
-     //       aktRowCrit.CritName = zelle2;
-     //       aktRowCrit.CritDescription = zelle3;
-            MessageBox.Show(zelle1.ToString() + zelle2 + zelle3);
+            using (CriterionController critShow = new CriterionController())
+            {
+                DataGridViewRow row = dataGridView_Crits.SelectedRows[0];
+                int zelle1 = (int)row.Cells[0].Value;
+                string zelle2 = (string)row.Cells[1].Value;
+                string zelle3 = (string)row.Cells[2].Value;
+                //       aktRowCrit.CritID = zelle1;
+                //       aktRowCrit.CritName = zelle2;
+                //       aktRowCrit.CritDescription = zelle3;
+                MessageBox.Show(zelle1.ToString() + zelle2 + zelle3);
 
 
-            Criterion_Show_View CritShow = new Criterion_Show_View(zelle1);
-            CritShow.Show();
+                Criterion_Show_View CritShowView = new Criterion_Show_View(zelle1);
+                CritShowView.Show();
+            
+            }
+
+     //       DataGridViewRow row = dataGridView_Crits.SelectedRows[0];
+     //       int zelle1 = (int)row.Cells[0].Value;
+     //       string zelle2 = (string)row.Cells[1].Value;
+     //       string zelle3 = (string)row.Cells[2].Value;
+     ////       aktRowCrit.CritID = zelle1;
+     ////       aktRowCrit.CritName = zelle2;
+     ////       aktRowCrit.CritDescription = zelle3;
+     //       MessageBox.Show(zelle1.ToString() + zelle2 + zelle3);
+
+
+     //       Criterion_Show_View CritShow = new Criterion_Show_View(zelle1);
+     //       CritShow.Show();
         }
 
         private void btn_CritUpdate_Click(object sender, EventArgs e)
@@ -102,10 +119,14 @@ namespace NWAT
             DataGridViewRow row = dataGridView_Crits.SelectedRows[0];
             int zelle1 = (int)row.Cells[0].Value;
          //   aktRowCrit.CritID = zelle1;
+         using (CriterionController critDelete = new CriterionController()){
          
+             critDelete.DeleteCriterionFromDb(zelle1);
+         
+         }
             
 
-            critCont.DeleteCriterionFromDb(zelle1);
+       //     critCont.DeleteCriterionFromDb(zelle1);
             MessageBox.Show("Das Kriterium wurde gelöscht");
         }
 
@@ -130,19 +151,28 @@ namespace NWAT
 
         private void btn_refresh_Click(object sender, EventArgs e)
         {
+            using (CriterionController CritRefr = new CriterionController())
+            {
+                List<Criterion> CritList = CritRefr.GetAllCriterionsFromDb();
+                var bindingList = new BindingList<Criterion>(CritList);
+                var source = new BindingSource(bindingList, null);
+                dataGridView_Crits.DataSource = CritList;
+            }
+
+
 //            dataGridView_Crits.DataSource = null;
   //        var bindingList = new BindingList<Criterion>() ;
  //           bindingList.Clear();
             
-            List<Criterion> CritList = critCont.GetAllCriterionsFromDb();
+  //          List<Criterion> CritList = critCont.GetAllCriterionsFromDb();
    //         bindingList = CritList;
-            var bindingList  = new BindingList<Criterion>(CritList);
+  //          var bindingList  = new BindingList<Criterion>(CritList);
  //           bindingList.  (CritList);
-            var source = new BindingSource(bindingList, null);
+  //          var source = new BindingSource(bindingList, null);
             //   CritList.Add(new Criterion() {Criterion_Id = 1, Name = "Testname", Description= "Testdescr"});
             //   CritList.Add(new Criterion() { Criterion_Id = 2, Name = "Testname2", Description = "Testdescr2" });
             //  dataGridView_Crits.DataSource = source;
-            dataGridView_Crits.DataSource = CritList;
+  //          dataGridView_Crits.DataSource = CritList;
         }
     }
 }
