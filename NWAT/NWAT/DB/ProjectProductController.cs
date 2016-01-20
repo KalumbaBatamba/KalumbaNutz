@@ -62,6 +62,14 @@ namespace NWAT.DB
             bool allocationSuccessful = true;
             List<ProjectProduct> listFromDb = GetAllProjectProductsForOneProject(projectId);
 
+            List<ProjectProduct> newToAdd = GetNewProjectCriterionsWhichWereAllocated(listFromDb, newProjectProductList);
+
+            foreach (ProjectProduct newProjProd in newToAdd)
+            {
+                allocationSuccessful = AllocateProduct(projectId, newProjProd);
+            }
+           
+
             List<ProjectProduct> oldToDelete = GetOldProjectProductsWhichWereDeallocated(listFromDb, newProjectProductList);
             
             foreach(ProjectProduct oldProjProd in oldToDelete)
@@ -69,13 +77,8 @@ namespace NWAT.DB
                 deallocationSuccessful = DeallocateProductFromProject(projectId, oldProjProd);
             }
 
-            List<ProjectProduct> newToAdd = GetNewProjectCriterionsWhichWereAllocated(listFromDb, newProjectProductList);
-
-            foreach (ProjectProduct newProjProd in newToAdd)
-            {
-                allocationSuccessful = AllocateProduct(projectId, newProjProd);
-            }
             return deallocationSuccessful && allocationSuccessful;
+
         }
 
         /// <summary>
@@ -266,7 +269,17 @@ namespace NWAT.DB
         private List<ProjectProduct> GetOldProjectProductsWhichWereDeallocated(List<ProjectProduct> listFromDb, List<ProjectProduct> newProjectProductList)
         {
             List<ProjectProduct> resultProjProdList = new List<ProjectProduct>();
-            resultProjProdList = listFromDb.Except(newProjectProductList).ToList();
+
+            foreach (ProjectProduct projProdFromDb in listFromDb)
+            {
+                ProjectProduct projProdExistingInBothList = newProjectProductList.SingleOrDefault(newProjProd =>
+                                                                    newProjProd.Product_Id == projProdFromDb.Product_Id);
+                if (projProdExistingInBothList == null)
+                {
+                    resultProjProdList.Add(projProdFromDb);
+                }
+            }
+
             return resultProjProdList;
         }
 
@@ -284,7 +297,16 @@ namespace NWAT.DB
         private List<ProjectProduct> GetNewProjectCriterionsWhichWereAllocated(List<ProjectProduct> listFromDb, List<ProjectProduct> newProjectProductList)
         {
             List<ProjectProduct> resultProjProdList = new List<ProjectProduct>();
-            resultProjProdList = newProjectProductList.Except(listFromDb).ToList();
+
+            foreach (ProjectProduct newAllocatedProd in newProjectProductList)
+            {
+                ProjectProduct projProdExistingInBothLists = listFromDb.SingleOrDefault(allocatedProdInDb =>
+                                                    allocatedProdInDb.Product_Id == newAllocatedProd.Product_Id);
+                if (projProdExistingInBothLists == null)
+                {
+                    resultProjProdList.Add(newAllocatedProd);
+                }
+            }
             return resultProjProdList;
         }
 
