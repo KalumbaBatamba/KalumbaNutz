@@ -56,12 +56,22 @@ namespace NWAT
 
         private void Project_Update_View_Load(object sender, EventArgs e)
         {
-            Project proj = ProjectCont.GetProjectById(aktRowProj.ProjID);
-            String ProjName = proj.Name;
-            String ProjDesc = proj.Description;
-            MessageBox.Show(ProjName + ProjDesc);
-            textBox_ProjNameUpdate.Text = ProjName;
-            textBox_ProjDescUpdate.Text = ProjDesc;
+
+            using (ProjectController UpdVieLoad = new ProjectController())
+            {
+                Project proj = UpdVieLoad.GetProjectById(Project.Project_Id);
+                String ProjName = this.Project.Name;
+                String ProjDesc = this.Project.Description;//proj.Description;
+                MessageBox.Show(ProjName + ProjDesc);
+                textBox_ProjNameUpdate.Text = this.Project.Name;//ProjName;
+                textBox_ProjDescUpdate.Text = this.Project.Description; //ProjDesc;
+            }
+            //Project proj = ProjectCont.GetProjectById(aktRowProj.ProjID);
+            //String ProjName = proj.Name;
+            //String ProjDesc = proj.Description;
+            //MessageBox.Show(ProjName + ProjDesc);
+            //textBox_ProjNameUpdate.Text = ProjName;
+            //textBox_ProjDescUpdate.Text = ProjDesc;
         }
     }
 }

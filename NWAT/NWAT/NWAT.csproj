@@ -159,6 +159,12 @@
     <Compile Include="Views\ProjCritBalance_View.Designer.cs">
       <DependentUpon>ProjCritBalance_View.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProjCritParentAllocation_View.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ProjCritParentAllocation_View.Designer.cs">
+      <DependentUpon>ProjCritParentAllocation_View.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProjCritProdFulfilment_View.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -246,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ProjCritBalance_View.resx">
       <DependentUpon>ProjCritBalance_View.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ProjCritParentAllocation_View.resx">
+      <DependentUpon>ProjCritParentAllocation_View.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ProjCritProdFulfilment_View.resx">
       <DependentUpon>ProjCritProdFulfilment_View.cs</DependentUpon>
