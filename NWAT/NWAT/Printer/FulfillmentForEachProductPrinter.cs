@@ -24,7 +24,7 @@ namespace NWAT.Printer
     class FulfillmentForEachProductPrinter
     {
         
-        SaveFileDialog SfdFulfillment = new SaveFileDialog();
+        SaveFileDialog SfdFulfillment = new SaveFileDialog();       //Objekt vom Typ SaveFileDialog
         private Project _projectid;
         private Product _productid;
 
@@ -162,7 +162,7 @@ namespace NWAT.Printer
                 //Schriftgröße der angezeigten Kriterienstruktur bestimmen
                 Font CritStructFont = FontFactory.GetFont("Arial", 10);
 
-
+                //Paragraph der die Zellen befüllt
                 Paragraph para = new Paragraph(projectCriterion.Criterion.Description.ToString(), CritStructFont);
                 para.IndentationLeft = intend;
                 PdfPCell Crits = new PdfPCell();

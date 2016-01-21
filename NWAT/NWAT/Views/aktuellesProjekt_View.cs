@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NWAT.Printer;
 
 namespace NWAT
 {
@@ -95,7 +96,8 @@ namespace NWAT
 
         private void btn_CurrProjCritStruPrint_Click(object sender, EventArgs e)
         {
-
+            CriterionStructurePrinter printobject = new CriterionStructurePrinter(Project.Project_Id);
+            printobject.CreateCriterionStructurePdf(); 
         }
 
         private void btn_CurrProjCritStruBalance_Click(object sender, EventArgs e)
@@ -137,6 +139,11 @@ namespace NWAT
         {
             ProjCritBalance_View ProjCritBalance = new ProjCritBalance_View(Project.Project_Id);
             ProjCritBalance.Show();
+        }
+
+        private void label_CurrProjNameShow_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

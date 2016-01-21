@@ -142,8 +142,11 @@ namespace NWAT.Printer
 
                 List<ProjectCriterion> sortedProjectCriterionStructure = this.ProjCritContr.GetSortedCriterionStructure(this.Project.Project_Id);
 
-
                 //Foreach-Schleife druckt sortierte Kriterien auf das Pdf Dokument
+
+                // dict: layer => enum
+                Dictionary<int, int> enumerations = new Dictionary<int, int>() { { 1, 0 } };
+
                 foreach (ProjectCriterion projectCriterion in sortedProjectCriterionStructure)
                 {
 
@@ -154,10 +157,12 @@ namespace NWAT.Printer
 
                     intend = layer * factor;
 
+                    string enumeration = GetEnumerationForCriterion(ref enumerations, layer);
+
                     //Schriftgröße der angezeigten Kriterienstruktur bestimmen
                     Font CritStructFont = FontFactory.GetFont("Arial", 10);
 
-
+                   
                     Paragraph para = new Paragraph(projectCriterion.Criterion.Description.ToString(), CritStructFont);
                     para.IndentationLeft = intend;
                     PdfPCell Crits = new PdfPCell();
@@ -166,10 +171,52 @@ namespace NWAT.Printer
 
                     CritTable.AddCell(Crits);
                     CritTable.AddCell("");
-                    CritTable.AddCell("");
+
+                    //If Abfrage - Wenn eine Gewichtung in der Datenbank hinterlegt ist wird bei den Kriterien ein x gesetzt ansonsten ein -
+                    if (projectCriterion.Weighting_Cardinal <= 0)
+                    {
+                        CritTable.AddCell(new Paragraph("-", CritStructFont));
+                    }
+                    else
+                    {
+                        CritTable.AddCell(new Paragraph("x", CritStructFont));
+                    }
+
                     CritTable.AddCell("");
                 }
             
+        }
+
+        private string  GetEnumerationForCriterion(ref Dictionary<int, int> enumerations, int layer)
+        {
+            int lastLayer = enumerations.Keys.ToList().Max();
+
+            string enumerationAsString = "";
+
+            if (layer == lastLayer)
+            {
+                enumerations[layer] += 1;
+            }
+            if (layer > lastLayer)
+            {
+                lastLayer += 1;
+                enumerations[lastLayer] = 1;
+            }
+            if (layer < lastLayer)
+            {
+                for (int deletingLayer = layer + 1; deletingLayer <= lastLayer; deletingLayer++)
+                {
+                    enumerations.Remove(deletingLayer);
+                }
+                enumerations[layer] += 1;
+                lastLayer = layer;
+            }
+
+            for (int i = 1; i <= lastLayer; i++)
+            {
+                enumerationAsString += enumerations[i] + ".";
+            }
+            return enumerationAsString;
         }
 
         /// <summary>
