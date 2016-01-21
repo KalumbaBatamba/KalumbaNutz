@@ -127,8 +127,7 @@ namespace NWAT
 
         private void btnCurrProjProdFulfPrint_Click(object sender, EventArgs e)
         {
-            ProjProdFulfillmentPrinter_View ProjProdFulfillmentPrinter = new ProjProdFulfillmentPrinter_View(Project.Project_Id);
-            ProjProdFulfillmentPrinter.Show();
+            ;
         }
 
         private void btn_CurrProjProdAnalShow_Click(object sender, EventArgs e)
