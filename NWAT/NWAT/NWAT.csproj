@@ -220,15 +220,6 @@
     <Compile Include="Views\NWAT_Start_View.Designer.cs">
       <DependentUpon>NWAT_Start_View.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProjProdFulfillmentPrinter_View.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\ProjProdFulfillmentPrinter_View.Designer.cs">
-      <DependentUpon>ProjProdFulfillmentPrinter_View.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Views\ProjProdFulfillmentPrinter_View.resx">
-      <DependentUpon>ProjProdFulfillmentPrinter_View.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="DB\NWAT.dbml.layout">
       <DependentUpon>NWAT.dbml</DependentUpon>
     </None>
