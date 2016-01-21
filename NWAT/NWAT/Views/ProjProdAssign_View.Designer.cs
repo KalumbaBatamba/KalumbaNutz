@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.dataGridView_prodAvail = new System.Windows.Forms.DataGridView();
-            this.dataGridView_ProjProd = new System.Windows.Forms.DataGridView();
             this.label_ProdAvail = new System.Windows.Forms.Label();
             this.label_ProjProd = new System.Windows.Forms.Label();
             this.btn_ProjProdCancle = new System.Windows.Forms.Button();
             this.btn_ProjProdSave = new System.Windows.Forms.Button();
             this.btn_ProdToPool = new System.Windows.Forms.Button();
             this.btn_ProdToProj = new System.Windows.Forms.Button();
+            this.dataGridView_ProjProd = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_prodAvail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ProjProd)).BeginInit();
             this.SuspendLayout();
@@ -50,20 +50,6 @@
             this.dataGridView_prodAvail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_prodAvail.Size = new System.Drawing.Size(290, 490);
             this.dataGridView_prodAvail.TabIndex = 11;
-            // 
-            // dataGridView_ProjProd
-            // 
-            this.dataGridView_ProjProd.AllowUserToAddRows = false;
-            this.dataGridView_ProjProd.AllowUserToDeleteRows = false;
-            this.dataGridView_ProjProd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.dataGridView_ProjProd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_ProjProd.Location = new System.Drawing.Point(18, 31);
-            this.dataGridView_ProjProd.MultiSelect = false;
-            this.dataGridView_ProjProd.Name = "dataGridView_ProjProd";
-            this.dataGridView_ProjProd.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_ProjProd.Size = new System.Drawing.Size(290, 490);
-            this.dataGridView_ProjProd.TabIndex = 10;
             // 
             // label_ProdAvail
             // 
@@ -127,6 +113,18 @@
             this.btn_ProdToProj.UseVisualStyleBackColor = true;
             this.btn_ProdToProj.Click += new System.EventHandler(this.btn_ProdToProj_Click);
             // 
+            // dataGridView_ProjProd
+            // 
+            this.dataGridView_ProjProd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridView_ProjProd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_ProjProd.Location = new System.Drawing.Point(18, 31);
+            this.dataGridView_ProjProd.MultiSelect = false;
+            this.dataGridView_ProjProd.Name = "dataGridView_ProjProd";
+            this.dataGridView_ProjProd.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView_ProjProd.Size = new System.Drawing.Size(290, 490);
+            this.dataGridView_ProjProd.TabIndex = 10;
+            // 
             // ProjProdAssign_View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -153,12 +151,12 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView_prodAvail;
-        private System.Windows.Forms.DataGridView dataGridView_ProjProd;
         private System.Windows.Forms.Label label_ProdAvail;
         private System.Windows.Forms.Label label_ProjProd;
         private System.Windows.Forms.Button btn_ProjProdCancle;
         private System.Windows.Forms.Button btn_ProjProdSave;
         private System.Windows.Forms.Button btn_ProdToPool;
         private System.Windows.Forms.Button btn_ProdToProj;
+        private System.Windows.Forms.DataGridView dataGridView_ProjProd;
     }
 }

@@ -56,6 +56,7 @@
             this.dataGridView_ProjCritBalance.Name = "dataGridView_ProjCritBalance";
             this.dataGridView_ProjCritBalance.Size = new System.Drawing.Size(561, 520);
             this.dataGridView_ProjCritBalance.TabIndex = 12;
+            this.dataGridView_ProjCritBalance.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_ProjCritBalance_CellContentClick);
             // 
             // dgc_ProjCritID
             // 

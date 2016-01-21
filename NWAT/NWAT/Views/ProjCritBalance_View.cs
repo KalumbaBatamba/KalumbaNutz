@@ -13,9 +13,38 @@ namespace NWAT
 {
     public partial class ProjCritBalance_View : Form
     {
-        private ProjectCriterionController projCritCont;
-        public ProjCritBalance_View()
+
+        private List<Product> _allProds;
+
+        public List<Product> AllProds
         {
+            get { return _allProds; }
+            set { _allProds = value; }
+        }
+
+        private List<ProjectProduct> _projProds;
+
+        public List<ProjectProduct> ProjProds
+        {
+            get { return _projProds; }
+            set { _projProds = value; }
+        }
+        private int _projectId;
+
+        public int ProjectId
+        {
+            get { return _projectId; }
+            set { _projectId = value; }
+        }
+
+     
+        private ProjectCriterionController projCritCont;
+     
+        
+        public ProjCritBalance_View(int projectID)
+        {
+            ProjectId = projectID;
+         
             this.projCritCont = new ProjectCriterionController();
             InitializeComponent();
         }
@@ -36,6 +65,11 @@ namespace NWAT
         }
 
         private void ProjCritBalance_View_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView_ProjCritBalance_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
