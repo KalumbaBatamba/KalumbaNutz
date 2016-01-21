@@ -22,12 +22,12 @@ namespace NWAT
             set { _allProds = value; }
         }
 
-        private List<ProjectProduct> _projProds;
+        private List<ProjectCriterion> _projCrits;
 
-        public List<ProjectProduct> ProjProds
+        public List<ProjectCriterion> ProjCrits
         {
-            get { return _projProds; }
-            set { _projProds = value; }
+            get { return _projCrits; }
+            set { _projCrits = value; }
         }
         private int _projectId;
 
@@ -44,30 +44,181 @@ namespace NWAT
         public ProjCritBalance_View(int projectID)
         {
             ProjectId = projectID;
-         
             this.projCritCont = new ProjectCriterionController();
             InitializeComponent();
         }
-
-        private void btn_SameBalance_Click(object sender, EventArgs e)
+        private void ProjCritBalance_View_Load(object sender, EventArgs e)
         {
+            using (ProjectCriterionController proCriCont = new ProjectCriterionController())
+            {
+                ProjCrits = proCriCont.GetSortedCriterionStructure(ProjectId); 
+                    //.GetAllProjectCriterionsForOneProject(ProjectId);
+                using (CriterionController critCon = new CriterionController())
+                {
+                    foreach (ProjectCriterion projCrit in ProjCrits)
+                    {
+                        //    MessageBox.Show(projCrit.Criterion_Id.ToString());
+                        //      projCrit.Name = "test";
+                        var singleCritId = critCon.GetCriterionById(projCrit.Criterion_Id );
+                        projCrit.Name = singleCritId.Name.ToString();
+                    }
+                }
+    
 
+            
+                
+            dataGridView_ProjCritBalance.Rows.Clear();
+            var CritBindingList = new BindingList<ProjectCriterion>(ProjCrits);
+            var CritSource = new BindingSource(CritBindingList, null);
+            dataGridView_ProjCritBalance.DataSource = ProjCrits;
+            dataGridView_ProjCritBalance.Columns.Remove("Project_Id");
+            dataGridView_ProjCritBalance.Columns.Remove("Layer_depth");
+     //       dataGridView_ProjCritBalance.Columns.Remove("Weighting_Percentage_Layer");
+            dataGridView_ProjCritBalance.Columns.Remove("Weighting_Percentage_Project");
+            dataGridView_ProjCritBalance.Columns.Remove("Criterion");
+            dataGridView_ProjCritBalance.Columns.Remove("ParentCriterion");
+            dataGridView_ProjCritBalance.Columns.Remove("Project");
+            dataGridView_ProjCritBalance.Columns[1].HeaderText = "ID";
+            dataGridView_ProjCritBalance.Columns[1].Width = 30;
+            dataGridView_ProjCritBalance.Columns[1].ReadOnly = true;
+            dataGridView_ProjCritBalance.Columns[2].HeaderText = "P-ID";
+            dataGridView_ProjCritBalance.Columns[2].Width = 30;
+            dataGridView_ProjCritBalance.Columns[2].ReadOnly = true;
+            dataGridView_ProjCritBalance.Columns[3].HeaderText = "G(C)";
+            dataGridView_ProjCritBalance.Columns[3].Width = 30;
+            dataGridView_ProjCritBalance.Columns[4].ReadOnly = true;
+            dataGridView_ProjCritBalance.Columns[4].Width = 30;
+            dataGridView_ProjCritBalance.Columns[5].Width = 350;
+            dataGridView_ProjCritBalance.Columns[5].ReadOnly = true;
+
+            }
         }
+
+        private void dataGridView_ProjCritBalance_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        { 
+        int zeile = (dataGridView_ProjCritBalance.Rows.Count -1);
+        }
+
+       private void btn_SameBalance_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView_ProjCritBalance.Rows)
+            {
+                row.Cells[3].Value = 1;
+            }
+
+
+
+
+ /*          //dataGridView_ProjCritBalance.
+            int i = 0;
+            foreach (DataGridViewRow row in dataGridView_ProjCritBalance.Rows)
+            {
+               // int i = 0;
+                ProjectCriterion fromList = ProjCrits[i];
+                i++;
+                fromList.Weighting_Cardinal = (int)row.Cells[3].Value;
+                projCritCont.UpdateProjectCriterionInDb(fromList);
+            }
+            dataGridView_ProjCritBalance.DataSource = null;
+            dataGridView_ProjCritBalance.DataSource = ProjCrits; dataGridView_ProjCritBalance.Columns.Remove("Project_Id");
+            dataGridView_ProjCritBalance.Columns.Remove("Layer_depth");
+        //    dataGridView_ProjCritBalance.Columns.Remove("Weighting_Percentage_Layer");
+            dataGridView_ProjCritBalance.Columns.Remove("Weighting_Percentage_Project");
+            dataGridView_ProjCritBalance.Columns.Remove("Criterion");
+            dataGridView_ProjCritBalance.Columns.Remove("ParentCriterion");
+            dataGridView_ProjCritBalance.Columns.Remove("Project");
+            dataGridView_ProjCritBalance.Columns[1].HeaderText = "ID";
+            dataGridView_ProjCritBalance.Columns[1].Width = 30;
+            dataGridView_ProjCritBalance.Columns[1].ReadOnly = true;
+            dataGridView_ProjCritBalance.Columns[2].HeaderText = "P-ID";
+            dataGridView_ProjCritBalance.Columns[2].Width = 30;
+            dataGridView_ProjCritBalance.Columns[2].ReadOnly = true;
+            dataGridView_ProjCritBalance.Columns[3].HeaderText = "G(C)";
+            dataGridView_ProjCritBalance.Columns[3].Width = 30;
+            //    dataGridView_ProjCritBalance.Columns[0].HeaderText = "P-ID";
+            dataGridView_ProjCritBalance.Columns[4].ReadOnly = true;
+            dataGridView_ProjCritBalance.Columns[4].Width = 30;
+            dataGridView_ProjCritBalance.Columns[5].Width = 350;
+            dataGridView_ProjCritBalance.Columns[5].ReadOnly = true;
+        //    projCritCont.UpdateProjectCriterionInDb(ProjCrits);
+            //   using (ProjectCriterionController proCritCon = new ProjectCriterionController())
+            //    {
+            //    if(ProjectCriterion proCrit in ProjCrits exists)
+            //       {
+                
+            //    }
+            //   }
+            //    ProjectCriterion changedProCrit = new ProjectCriterion()
+            //    {
+                
+            //    }
+
+
+          //      int i = (int)row.Cells[3].Value;
+        //    }
+    //        using (ProjectCriterionController proCritCon = new ProjectCriterionController())
+    //        {
+    //            foreach (ProjectCriterion proCrit in ProjCrits)
+    //            {
+    //                var newBalance = 
+    ////                proCrit.Weighting_Cardinal = dataGridView_ProjCritBalance.Columns[3]
+    //                //    MessageBox.Show(projCrit.Criterion_Id.ToString());
+    //                //      projCrit.Name = "test";
+    //                //var singleProdId = prodCon.GetProductById(projProd.Product_Id);
+    //                //projProd.Name = singleProdId.Name.ToString();
+    //            }
+    //        }
+            //foreach (DataGridViewRow row in dataGridView_ProjCritBalance.Rows)
+            //{
+            //ProjCrits.
+            //}
+    
+  */ 
+       }
 
         private void btn_ProjCritBalaSave_Click(object sender, EventArgs e)
         {
-
+            //dataGridView_ProjCritBalance.
+            int i = 0;
+            foreach (DataGridViewRow row in dataGridView_ProjCritBalance.Rows)
+            {
+                // int i = 0;
+                ProjectCriterion fromList = ProjCrits[i];
+                i++;
+                fromList.Weighting_Cardinal = (int)row.Cells[3].Value;
+                projCritCont.UpdateProjectCriterionInDb(fromList);
+            }
+            dataGridView_ProjCritBalance.DataSource = null;
+            dataGridView_ProjCritBalance.DataSource = ProjCrits; dataGridView_ProjCritBalance.Columns.Remove("Project_Id");
+            dataGridView_ProjCritBalance.Columns.Remove("Layer_depth");
+            //    dataGridView_ProjCritBalance.Columns.Remove("Weighting_Percentage_Layer");
+            dataGridView_ProjCritBalance.Columns.Remove("Weighting_Percentage_Project");
+            dataGridView_ProjCritBalance.Columns.Remove("Criterion");
+            dataGridView_ProjCritBalance.Columns.Remove("ParentCriterion");
+            dataGridView_ProjCritBalance.Columns.Remove("Project");
+            dataGridView_ProjCritBalance.Columns[1].HeaderText = "ID";
+            dataGridView_ProjCritBalance.Columns[1].Width = 30;
+            dataGridView_ProjCritBalance.Columns[1].ReadOnly = true;
+            dataGridView_ProjCritBalance.Columns[2].HeaderText = "P-ID";
+            dataGridView_ProjCritBalance.Columns[2].Width = 30;
+            dataGridView_ProjCritBalance.Columns[2].ReadOnly = true;
+            dataGridView_ProjCritBalance.Columns[3].HeaderText = "G(C)";
+            dataGridView_ProjCritBalance.Columns[3].Width = 30;
+            //    dataGridView_ProjCritBalance.Columns[0].HeaderText = "P-ID";
+            dataGridView_ProjCritBalance.Columns[4].ReadOnly = true;
+            dataGridView_ProjCritBalance.Columns[4].Width = 30;
+            dataGridView_ProjCritBalance.Columns[5].Width = 350;
+            dataGridView_ProjCritBalance.Columns[5].ReadOnly = true;
+            this.Close();
         }
 
         private void btn_ProjCritBalaCancle_Click(object sender, EventArgs e)
         {
+            this.Close();
 
         }
 
-        private void ProjCritBalance_View_Load(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void dataGridView_ProjCritBalance_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

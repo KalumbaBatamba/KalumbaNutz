@@ -29,14 +29,10 @@
         private void InitializeComponent()
         {
             this.dataGridView_ProjCritBalance = new System.Windows.Forms.DataGridView();
-            this.dgc_ProjCritID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgc_ProjCritIDParent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgc_ProjCritName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgc_ProjCritBalaInd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgc_ProjCritDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_ProjCritBalaCancle = new System.Windows.Forms.Button();
             this.btn_ProjCritBalaSave = new System.Windows.Forms.Button();
             this.btn_SameBalance = new System.Windows.Forms.Button();
+            this.Strukture = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ProjCritBalance)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,46 +43,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView_ProjCritBalance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_ProjCritBalance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgc_ProjCritID,
-            this.dgc_ProjCritIDParent,
-            this.dgc_ProjCritName,
-            this.dgc_ProjCritBalaInd,
-            this.dgc_ProjCritDesc});
+            this.Strukture});
             this.dataGridView_ProjCritBalance.Location = new System.Drawing.Point(0, 20);
             this.dataGridView_ProjCritBalance.Name = "dataGridView_ProjCritBalance";
             this.dataGridView_ProjCritBalance.Size = new System.Drawing.Size(561, 520);
             this.dataGridView_ProjCritBalance.TabIndex = 12;
             this.dataGridView_ProjCritBalance.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_ProjCritBalance_CellContentClick);
-            // 
-            // dgc_ProjCritID
-            // 
-            this.dgc_ProjCritID.HeaderText = "ID";
-            this.dgc_ProjCritID.Name = "dgc_ProjCritID";
-            this.dgc_ProjCritID.Width = 30;
-            // 
-            // dgc_ProjCritIDParent
-            // 
-            this.dgc_ProjCritIDParent.HeaderText = "Parent ID";
-            this.dgc_ProjCritIDParent.Name = "dgc_ProjCritIDParent";
-            this.dgc_ProjCritIDParent.Width = 80;
-            // 
-            // dgc_ProjCritName
-            // 
-            this.dgc_ProjCritName.HeaderText = "Name";
-            this.dgc_ProjCritName.Name = "dgc_ProjCritName";
-            this.dgc_ProjCritName.Width = 150;
-            // 
-            // dgc_ProjCritBalaInd
-            // 
-            this.dgc_ProjCritBalaInd.HeaderText = "Gewichtungsfaktor";
-            this.dgc_ProjCritBalaInd.Name = "dgc_ProjCritBalaInd";
-            this.dgc_ProjCritBalaInd.Width = 110;
-            // 
-            // dgc_ProjCritDesc
-            // 
-            this.dgc_ProjCritDesc.HeaderText = "Beschreibung";
-            this.dgc_ProjCritDesc.Name = "dgc_ProjCritDesc";
-            this.dgc_ProjCritDesc.Width = 158;
             // 
             // btn_ProjCritBalaCancle
             // 
@@ -121,6 +83,12 @@
             this.btn_SameBalance.UseVisualStyleBackColor = true;
             this.btn_SameBalance.Click += new System.EventHandler(this.btn_SameBalance_Click);
             // 
+            // Strukture
+            // 
+            this.Strukture.HeaderText = "Str";
+            this.Strukture.Name = "Strukture";
+            this.Strukture.Width = 50;
+            // 
             // ProjCritBalance_View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -144,10 +112,6 @@
         private System.Windows.Forms.Button btn_ProjCritBalaCancle;
         private System.Windows.Forms.Button btn_ProjCritBalaSave;
         private System.Windows.Forms.Button btn_SameBalance;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_ProjCritID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_ProjCritIDParent;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_ProjCritName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_ProjCritBalaInd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_ProjCritDesc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Strukture;
     }
 }
