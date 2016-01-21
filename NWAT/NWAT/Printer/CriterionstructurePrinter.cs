@@ -143,6 +143,10 @@ namespace NWAT.Printer
                 List<ProjectCriterion> sortedProjectCriterionStructure = this.ProjCritContr.GetSortedCriterionStructure(this.Project.Project_Id);
 
                 //Foreach-Schleife druckt sortierte Kriterien auf das Pdf Dokument
+
+                // dict: layer => enum
+                Dictionary<int, int> enumerations = new Dictionary<int, int>() { { 1, 0 } };
+
                 foreach (ProjectCriterion projectCriterion in sortedProjectCriterionStructure)
                 {
 
@@ -152,6 +156,8 @@ namespace NWAT.Printer
                     int intend;
 
                     intend = layer * factor;
+
+                    string enumeration = GetEnumerationForCriterion(ref enumerations, layer);
 
                     //Schriftgröße der angezeigten Kriterienstruktur bestimmen
                     Font CritStructFont = FontFactory.GetFont("Arial", 10);
@@ -179,6 +185,38 @@ namespace NWAT.Printer
                     CritTable.AddCell("");
                 }
             
+        }
+
+        private string  GetEnumerationForCriterion(ref Dictionary<int, int> enumerations, int layer)
+        {
+            int lastLayer = enumerations.Keys.ToList().Max();
+
+            string enumerationAsString = "";
+
+            if (layer == lastLayer)
+            {
+                enumerations[layer] += 1;
+            }
+            if (layer > lastLayer)
+            {
+                lastLayer += 1;
+                enumerations[lastLayer] = 1;
+            }
+            if (layer < lastLayer)
+            {
+                for (int deletingLayer = layer + 1; deletingLayer <= lastLayer; deletingLayer++)
+                {
+                    enumerations.Remove(deletingLayer);
+                }
+                enumerations[layer] += 1;
+                lastLayer = layer;
+            }
+
+            for (int i = 1; i <= lastLayer; i++)
+            {
+                enumerationAsString += enumerations[i] + ".";
+            }
+            return enumerationAsString;
         }
 
         /// <summary>
