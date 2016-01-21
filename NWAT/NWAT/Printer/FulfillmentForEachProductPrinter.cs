@@ -91,7 +91,7 @@ namespace NWAT.Printer
 
              this.FulFillContr = new FulfillmentController();
              FulfillmentController fulCont = new FulfillmentController();
-             this.FulfillmentForEachProduct = fulCont.GetAllFulfillmentsForSingleProdukt(projectId, productId);
+             this.FulfillmentForEachProduct = fulCont.GetAllFulfillmentsForSingleProduct(projectId, productId);
 
          }
 

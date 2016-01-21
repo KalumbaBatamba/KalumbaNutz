@@ -31,7 +31,7 @@ namespace NWAT.DB
         }
 
         /// <summary>
-        /// Gets all fulfillments for single produkt.
+        /// Gets all fulfillments for single product.
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
         /// <param name="productId">The product identifier.</param>
@@ -39,7 +39,7 @@ namespace NWAT.DB
         /// A list with all fulfillment entries for the product with the given id from the project with the given id
         /// </returns>
         /// Erstellt von Joshua Frey, am 29.12.2015
-        public List<Fulfillment> GetAllFulfillmentsForSingleProdukt(int projectId, int productId)
+        public List<Fulfillment> GetAllFulfillmentsForSingleProduct(int projectId, int productId)
         {
             return base.DataContext.Fulfillment.Where(fulfillment => fulfillment.Project_Id == projectId 
                                                                   && fulfillment.Product_Id == productId).ToList();
