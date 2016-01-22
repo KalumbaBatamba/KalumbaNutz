@@ -523,7 +523,7 @@ namespace NWAT.DB
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
         /// Erstellt von Joshua Frey, am 04.01.2016
-        private void UpdateAllPercentageLayerWeightings(int projectId)
+        public void UpdateAllPercentageLayerWeightings(int projectId)
         {
             // calculate all weightings for the base layer
             List<ProjectCriterion> baseProjectCriterions = GetBaseProjectCriterions(projectId);
@@ -553,7 +553,7 @@ namespace NWAT.DB
         }
 
         // Esrstellt von Weloko Tchokoua
-        private void UpdateAllPercentageProjectWeightings(int projectId)
+        public void UpdateAllPercentageProjectWeightings(int projectId)
         {
             // calculate all weightings for the base layer
 
@@ -618,7 +618,7 @@ namespace NWAT.DB
         /// <param name="projectId">The project identifier.</param>
         /// <param name="projCritId">The proj crit identifier.</param>
         /// Erstellt von Joshua Frey, am 12.01.2016
-        private void UpdateLayerDepthForProjectCriterion(int projectId, int projCritId)
+        public void UpdateLayerDepthForProjectCriterion(int projectId, int projCritId)
         {
             // base criterions are on layer one. So the lowest layer a criterion can exist in, is 1
             int layerCounter = 1;
@@ -657,7 +657,7 @@ namespace NWAT.DB
         /// </summary>
         /// <param name="projectCriterionsInOneLayer">Reference of a IEnumerable of the project criterions in one layer.</param>
         /// Erstellt von Joshua Frey, am 04.01.2016
-        private void CalculatePercentageLayerWeighting(ref List<ProjectCriterion> projectCriterionsInOneLayer)
+        public void CalculatePercentageLayerWeighting(ref List<ProjectCriterion> projectCriterionsInOneLayer)
         {
             float sumOfCardinalWeightings = 0;
             foreach (ProjectCriterion projCrit in projectCriterionsInOneLayer)
@@ -672,16 +672,18 @@ namespace NWAT.DB
             }
         }
 
+       
+
         // Erstellt von Weloko Tchokoua
-        private void CalculatePercentageProjectWeighting(ref List<ProjectCriterion> resultProjectCriterions)
+        public void CalculatePercentageProjectWeighting(ref List<ProjectCriterion> resultProjectCriterions)
         {
             int projectId = 0;
-           // List<ProjectCriterion> allProjectCriterions = GetAllProjectCriterionsForOneProject(projectId);
+           //List<ProjectCriterion> allProjectCriterions = GetAllProjectCriterionsForOneProject(projectId);
             List<ProjectCriterion> papa = GetBaseProjectCriterions(projectId);
             double sumweightinglayeronecrit = 0;
-            double sumweigthinglayerseconddepth =0;
+            //double sumweigthinglayerseconddepth =0;
             double parentprojectweightinglayer =0;
-            double parentprojectfirstlayer = 0;
+            //double parentprojectfirstlayer = 0;
 
             foreach (ProjectCriterion all in resultProjectCriterions) 
             foreach(ProjectCriterion parent in papa)
@@ -695,31 +697,19 @@ namespace NWAT.DB
                     {
                         UpdateAllPercentageLayerWeightings(projectId);
                         UpdateLayerDepthForProjectCriterion(projectId, all.Criterion_Id);
-
-                        
                         int maxlayer = int.MaxValue;
-                        maxlayer = Math.Max(all.Layer_Depth, maxlayer);
-                        for (all.Layer_Depth = 0; all.Layer_Depth <= maxlayer; all.Layer_Depth--)
+                        maxlayer = Math.Max(all.Layer_Depth, maxlayer) + 1;
+                        for (all.Layer_Depth = 1; all.Layer_Depth <= maxlayer; all.Layer_Depth--)
                         {
+
                             sumweightinglayeronecrit += son.Weighting_Percentage_Layer.Value;
-                            parentprojectweightinglayer = (sumweightinglayeronecrit * parent.Weighting_Percentage_Layer.Value) / 100;
+                            parentprojectweightinglayer = sumweightinglayeronecrit * parent.Weighting_Percentage_Layer.Value;
 
                             parent.Weighting_Percentage_Project = parentprojectweightinglayer;
 
                         }
                     }
-                    else if (all.Parent_Criterion_Id == null )
-                    {
-                        do
-                        {
-                           sumweigthinglayerseconddepth +=son.Weighting_Percentage_Layer.Value;
-
-                           parentprojectfirstlayer = (parent.Weighting_Percentage_Layer.Value * sumweigthinglayerseconddepth) / 100;
-
-                           parent.Weighting_Percentage_Project = parentprojectfirstlayer;
-
-                        } while (all.Layer_Depth == 2 && parent.Layer_Depth == 1);
-                    }
+                    
             }
 
 
