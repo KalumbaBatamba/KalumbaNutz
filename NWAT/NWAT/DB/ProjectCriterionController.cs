@@ -680,9 +680,10 @@ namespace NWAT.DB
             int projectId = 0;
            //List<ProjectCriterion> allProjectCriterions = GetAllProjectCriterionsForOneProject(projectId);
             List<ProjectCriterion> papa = GetBaseProjectCriterions(projectId);
-            double sumweightinglayeronecrit = 0;
-            //double sumweigthinglayerseconddepth =0;
-            double parentprojectweightinglayer =0;
+            List<ProjectCriterion> basecrit = GetBaseProjectCriterions(projectId);
+            float sumweightinglayeronecrit = 0;
+            float sumweigthinglayerseconddepth =0;
+            float parentprojectweightinglayer =0;
             //double parentprojectfirstlayer = 0;
 
             foreach (ProjectCriterion all in resultProjectCriterions) 
@@ -702,10 +703,21 @@ namespace NWAT.DB
                         for (all.Layer_Depth = 1; all.Layer_Depth <= maxlayer; all.Layer_Depth--)
                         {
 
-                            sumweightinglayeronecrit += son.Weighting_Percentage_Layer.Value;
-                            parentprojectweightinglayer = sumweightinglayeronecrit * parent.Weighting_Percentage_Layer.Value;
+                            sumweightinglayeronecrit += (float)son.Weighting_Percentage_Layer.Value;
+                            parentprojectweightinglayer = sumweightinglayeronecrit * (float)parent.Weighting_Percentage_Layer.Value;
 
                             parent.Weighting_Percentage_Project = parentprojectweightinglayer;
+                              foreach (ProjectCriterion papaohneparent in basecrit)
+                               {
+                                  while (son.Layer_Depth == 2)
+                                  {
+                                    sumweigthinglayerseconddepth += (float)son.Weighting_Percentage_Project;
+                                    papaohneparent.Weighting_Percentage_Project = sumweigthinglayerseconddepth;
+                                   }
+
+
+                               }
+
 
                         }
                     }
