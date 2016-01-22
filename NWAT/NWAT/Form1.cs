@@ -23,25 +23,29 @@ namespace NWAT
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ProjectController criContr = new ProjectController();
-            List<Project> x = criContr.GetAllProjectsFromDB();
 
-            Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
-            PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream("Test_PDF.pdf", FileMode.Create));
-            doc.Open();
+            ProjectCriterionController pro = new ProjectCriterionController();
+            List<ProjectCriterion> child = pro.GetAllProjectCriterionsForOneProject(1);
 
-            foreach(Project proj in x)
-            { 
-            Paragraph name = new Paragraph(proj.Name);
-            Paragraph desc = new Paragraph(proj.Description);
-            doc.Add(desc);    
-            doc.Add(name);
+            foreach (ProjectCriterion pc in child)
+            {
+                ProjectCriterion currentprojcrit = pc;
+               float productpercentageweigthing = (float)pc.Weighting_Percentage_Layer.Value;
+                while (pc.Parent_Criterion_Id != null || pc.Parent_Criterion_Id != 0)
+                {
+                    ProjectCriterion parent = pro.GetProjectCriterionByIds(1, pc.Parent_Criterion_Id.Value);
+                    productpercentageweigthing *= (float)parent.Weighting_Percentage_Layer.Value;
+                    currentprojcrit = parent;
+                    //MessageBox.Show();
+                    Console.WriteLine("je suis vraiment énervé");
+                }
             }
 
-            doc.Close();
-            MessageBox.Show("PDF erfolgreich angelegt");
+        } 
+   
             
-        }
+            
+           
 
         private void Form1_Load(object sender, EventArgs e)
         {
