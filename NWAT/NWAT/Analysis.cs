@@ -4,15 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NWAT.DB;
-
+// Erstellt von Weloko Tchokoua
 namespace NWAT
 {
     class Analysis
     {
         private FulfillmentController fulfillContr;
         private ProjectCriterionController projCritContr;
-        private string p;
-        private List<ProjectCriterion> listbasecrit;
+      
 
         public Analysis()
         {
@@ -75,6 +74,8 @@ namespace NWAT
                     Listtoprint.Add(pj.Weighting_Percentage_Layer);
                     Listtoprint.Add(pj.Weighting_Percentage_Project);
 
+                    Listtoprint.Sort();
+
                     }
                 }
 
@@ -92,12 +93,12 @@ namespace NWAT
     class AnalysisCriterionResult
     {
 
-        private String critName;
-        private String critDescription;
-        private int cardinalWeighting;
-        private double layerPercentageWeighting;
-        private double projectPercentageWeighting;
-        List<ProductCriterionFulfillmentResult> productResults;
+        //private String critName;
+        //private String critDescription;
+        //private int cardinalWeighting;
+        //private double layerPercentageWeighting;
+        //private double projectPercentageWeighting;
+        //List<ProductCriterionFulfillmentResult> productResults;
 
         public AnalysisCriterionResult()
         {
