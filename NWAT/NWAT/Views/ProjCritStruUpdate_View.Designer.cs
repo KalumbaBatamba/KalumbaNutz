@@ -28,55 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dgc_ProjCritID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgc_ProjCritIDParent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgc_ProjCritName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgc_ProjCritDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView_CritStruUpd = new System.Windows.Forms.DataGridView();
             this.btn_ProjCritStruSave = new System.Windows.Forms.Button();
             this.btn_ProjCritStruCancle = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_CritStruUpd)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dataGridView_CritStruUpd
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dataGridView_CritStruUpd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dgc_ProjCritID,
-            this.dgc_ProjCritIDParent,
-            this.dgc_ProjCritName,
-            this.dgc_ProjCritDesc});
-            this.dataGridView1.Location = new System.Drawing.Point(13, 29);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(575, 520);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // dgc_ProjCritID
-            // 
-            this.dgc_ProjCritID.HeaderText = "ID";
-            this.dgc_ProjCritID.Name = "dgc_ProjCritID";
-            this.dgc_ProjCritID.Width = 30;
-            // 
-            // dgc_ProjCritIDParent
-            // 
-            this.dgc_ProjCritIDParent.HeaderText = "Parent ID";
-            this.dgc_ProjCritIDParent.Name = "dgc_ProjCritIDParent";
-            this.dgc_ProjCritIDParent.Width = 80;
-            // 
-            // dgc_ProjCritName
-            // 
-            this.dgc_ProjCritName.HeaderText = "Name";
-            this.dgc_ProjCritName.Name = "dgc_ProjCritName";
-            this.dgc_ProjCritName.Width = 150;
-            // 
-            // dgc_ProjCritDesc
-            // 
-            this.dgc_ProjCritDesc.HeaderText = "Beschreibung";
-            this.dgc_ProjCritDesc.Name = "dgc_ProjCritDesc";
-            this.dgc_ProjCritDesc.Width = 270;
+            this.dataGridView_CritStruUpd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_CritStruUpd.Location = new System.Drawing.Point(13, 29);
+            this.dataGridView_CritStruUpd.Name = "dataGridView_CritStruUpd";
+            this.dataGridView_CritStruUpd.Size = new System.Drawing.Size(575, 520);
+            this.dataGridView_CritStruUpd.TabIndex = 0;
             // 
             // btn_ProjCritStruSave
             // 
@@ -105,23 +72,19 @@
             this.ClientSize = new System.Drawing.Size(684, 561);
             this.Controls.Add(this.btn_ProjCritStruCancle);
             this.Controls.Add(this.btn_ProjCritStruSave);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridView_CritStruUpd);
             this.Name = "ProjCritStruUpdate_View";
             this.Text = "Kriterienstruktur";
             this.Load += new System.EventHandler(this.ProjCritStruUpdate_Form_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_CritStruUpd)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridView_CritStruUpd;
         private System.Windows.Forms.Button btn_ProjCritStruSave;
         private System.Windows.Forms.Button btn_ProjCritStruCancle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_ProjCritID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_ProjCritIDParent;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_ProjCritName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgc_ProjCritDesc;
     }
 }

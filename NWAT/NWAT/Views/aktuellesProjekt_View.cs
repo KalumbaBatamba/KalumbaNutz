@@ -90,7 +90,7 @@ namespace NWAT
 
         private void btn_CurrProjCritStruUpdate_Click(object sender, EventArgs e)
         {
-            ProjCritStruUpdate_View ProjCritStruUpdate = new ProjCritStruUpdate_View();
+            ProjCritStruUpdate_View ProjCritStruUpdate = new ProjCritStruUpdate_View(Project.Project_Id);
             ProjCritStruUpdate.Show();
         }
 
