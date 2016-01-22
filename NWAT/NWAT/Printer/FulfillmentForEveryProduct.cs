@@ -14,17 +14,17 @@ using iTextSharp.text.log;
 using iTextSharp.text.pdf.draw;
 
 /// <summary>
-/// Klasse um die Erfüllung der Kriterien je Produkt in einer PDF Datei zu zeigen
+/// Klasse um die Erfüllung der Kriterien für alle Produkte in einer PDF Datei zu zeigen
 /// </summary>
 /// Erstellt von Adrian Glasnek
 
 namespace NWAT.Printer
 {
 
-    class FulfillmentForEachProductPrinter
+
+    class FulfillmentForEveryProduct
     {
-        
-        SaveFileDialog SfdFulfillment = new SaveFileDialog();       //Objekt vom Typ SaveFileDialog
+         SaveFileDialog SfdFulfillment = new SaveFileDialog();       //Objekt vom Typ SaveFileDialog
         private Project _projectid;
         private Product _productid;
         private Fulfillment _fulfilled;
@@ -79,7 +79,7 @@ namespace NWAT.Printer
          }
 
         //Konstruktor
-         public FulfillmentForEachProductPrinter(int projectId, int productId)
+         public FulfillmentForEveryProduct(int projectId, int productId)
          {
              this.ProjCritContr = new ProjectCriterionController();
              ProjectController projCont = new ProjectController();
@@ -128,7 +128,7 @@ namespace NWAT.Printer
                 CritTable.SetWidths(widths);          //Relationale Breiten der Tabellenspalten fixen
                 CritTable.HeaderRows = 1;            //Anzeigen der Überschriften auf jeder Seite des Dokuments
 
-                CritTable.AddCell(new Paragraph("Produkt-Einzeldarstellung   -   " + products.Name, arialBold));
+                CritTable.AddCell(new Paragraph("TabellarischeÜbersicht", arialBold));
                 CritTable.AddCell(new Paragraph(" ", arialBold));                   //Leere Zelle sorgt für Abstand - Formatierungszwecke
                 CritTable.AddCell(new Paragraph("E", arialBold));
                 CritTable.AddCell(new Paragraph("Kommentar", arialBold));
@@ -209,7 +209,7 @@ namespace NWAT.Printer
                 PdfPCell Crits = new PdfPCell();
                 Crits.AddElement(para);
                 Crits.Border = 0;
-                string comment = "";
+                
                 CritTable.AddCell(Crits);
                 CritTable.AddCell("");
                 //If Abfrage - Wenn Kriterium erfüllt dann setzte ein Kreuz, wenn nicht setzte ein -
@@ -220,10 +220,10 @@ namespace NWAT.Printer
                 else
                 {
                     CritTable.AddCell(new Paragraph("x", CritStructFont));
-                    comment = fulfillmentForCurrtentCrit.Comment;           //Falls Kommentar vorhanden, dann printe Kommentar mit
+                    
                 }
 
-                CritTable.AddCell(new Paragraph(comment, CritStructFont));
+                
             }
 
         }
@@ -267,4 +267,5 @@ namespace NWAT.Printer
         }
 
     }
+    
 }
