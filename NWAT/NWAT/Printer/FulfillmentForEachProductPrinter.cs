@@ -128,7 +128,7 @@ namespace NWAT.Printer
                 CritTable.SetWidths(widths);          //Relationale Breiten der Tabellenspalten fixen
                 CritTable.HeaderRows = 1;            //Anzeigen der Überschriften auf jeder Seite des Dokuments
 
-                CritTable.AddCell(new Paragraph("Produkt-Einzeldarstellung   -   " + products.Name, arialBold));
+                CritTable.AddCell(new Paragraph("Produkt-Einzeldarstellung   -   " + products.Name, arialBold)); //Name des Produkts wird mit angezeigt
                 CritTable.AddCell(new Paragraph(" ", arialBold));                   //Leere Zelle sorgt für Abstand - Formatierungszwecke
                 CritTable.AddCell(new Paragraph("E", arialBold));
                 CritTable.AddCell(new Paragraph("Kommentar", arialBold));

@@ -25,7 +25,7 @@ namespace NWAT.Printer
     class FulfillmentForEveryProduct
     {
 
-
+        Document FulfillmentPrinter = new Document(iTextSharp.text.PageSize.A4.Rotate());       //Eigentliches Dokument erstellen vom typ Document
         SaveFileDialog SfdFulfillment = new SaveFileDialog();       //Objekt vom Typ SaveFileDialog
         private Project _projectid;
         private Product _productid;
@@ -88,13 +88,11 @@ namespace NWAT.Printer
             ProjectController projCont = new ProjectController();
             this.Project = projCont.GetProjectById(projectId);
 
-
-
         }
 
         public void CreateFulfillmentForEveryProductPdf()
         {
-
+           
             ProjectProductController projprodContr = new ProjectProductController();
             List<ProjectProduct> allProductsForThisProject = projprodContr.GetAllProjectProductsForOneProject(this.Project.Project_Id);
             List<ProjectCriterion> baseCriterions = this.ProjCritContr.GetBaseProjectCriterions(this.Project.Project_Id); //Get all base Criterions
@@ -102,7 +100,7 @@ namespace NWAT.Printer
             SfdFulfillment.Filter = "Pdf File |*.pdf";
             if (SfdFulfillment.ShowDialog() == DialogResult.OK)
             {
-                Document FulfillmentPrinter = new Document(iTextSharp.text.PageSize.A4.Rotate());
+                
                 FulfillmentPrinter.SetMargins(50, 200, 50, 125); //Seitenränder definieren
                 try //try catch um Fehler abzufangen wenn eine gleichnamige PDF noch geöffnet ist
                 {
@@ -125,25 +123,30 @@ namespace NWAT.Printer
                 PdfPTable CritTable = new PdfPTable(countProducts + 2);
                 int numberOfCells = countProducts + 2;
                
-                // Je Anzahl der Produkte in der Datenbank wir die relative Spaltenbreite gesetzt 
+                // Je nach Anzahl der Produkte in der Datenbank wir die relative Spaltenbreite gesetzt 
                 if (numberOfCells == 3) { float[] widths = { 20f, 2f, 1f, }; CritTable.SetWidths(widths); ;}
                 if (numberOfCells == 4) { float[] widths = { 20f, 2f, 1f, 1f, }; CritTable.SetWidths(widths); ;}
                 if (numberOfCells == 5) { float[] widths = { 20, 2, 1, 1, 1 }; CritTable.SetWidths(widths); ;}
                 if (numberOfCells == 6) { float[] widths = { 20, 2, 1, 1, 1, 1 }; CritTable.SetWidths(widths); ;}
                 if (numberOfCells == 7) { float[] widths = { 20f, 2f, 1f, 1f, 1f, 1f, 1f }; CritTable.SetWidths(widths); ;}
                 if (numberOfCells == 8) { float[] widths = { 20f, 2f, 1f, 1f, 1f, 1f, 1f, 1f }; CritTable.SetWidths(widths); ;}
-     
+                if (numberOfCells >= 9) { throw new System.ArgumentException("Die Anzahl der maximal darstellbaren Produkte auf einer Seite wurde überschritten!"); }
+                //Ab einer Anzahl von >8 Produkten wird eine Fehlermeldung ausgeworfen das nicht mehr Produkte auf die Seite des Pdfs passen
+                         
                 CritTable.DefaultCell.Border = 1;               // Die Grenzen der Tabelle unsichtbar machen
                 CritTable.HeaderRows = 1;                     //Anzeigen der ersten Zeilen als Überschrift auf jeder Seite des Dokuments
 
+                CritTable.SpacingBefore = 20f;      //Platz zwischen Produktlegende und der Tabelle
                 CritTable.AddCell(new Paragraph("Tabellarische Übersicht aller Produkte", arialBold));
-                CritTable.AddCell(new Paragraph(" "));                   //Leere Zelle sorgt für Abstand - Formatierungszwecke
+                CritTable.AddCell(new Paragraph(" "));                   //Leere Zelle sorgt für Abstand zwischen Header und Erfüllungen 
                
                 //Zählt wieviele Produkte in der Datenbank liegen und schreibt dementsprechend viele Spalten auf das Pdf
                 for (int i = 1; i <= allProductsForThisProject.Count(); i++)
                 {
+
                     string prodHeader = "Prd." + i.ToString(); 
-                    CritTable.AddCell(new Paragraph(prodHeader,  products)); 
+                    CritTable.AddCell(new Paragraph(prodHeader,  products));
+                 
                 }
 
 
@@ -181,9 +184,13 @@ namespace NWAT.Printer
 
         private void PrintCriterionStructure(ref PdfPTable CritTable)
         {
+            
+
+            //Zugirff auf Erfüllungen der Kriterien für die Produkte aus der Datenbank
             FulfillmentController fufiCont = new FulfillmentController();
             List<Fulfillment> fufiList = fufiCont.GetAllFulfillmentsForOneProject(this.Project.Project_Id);
 
+            //Zugirff auf Liste aller Produkte aus der Datenbank
             ProjectProductController projprodContr = new ProjectProductController();
             List<ProjectProduct> allProductsForThisProject = projprodContr.GetAllProjectProductsForOneProject(this.Project.Project_Id);
 
@@ -193,7 +200,17 @@ namespace NWAT.Printer
             // dict: layer => enum
             Dictionary<int, int> enumerations = new Dictionary<int, int>() { { 1, 0 } };
 
-            //Foreach-Schleife druckt sortierte Kriterien auf das Pdf Dokument
+            //Variablen die in den unten folgenden foreach-Schleifen benötigt werden
+            int iCount = 0;  
+            int countCounter = 1;
+            int i = 1;
+
+            Paragraph productName = new Paragraph();            //Paragraph um Namem der Produkte mit den Abkürzungen in der Tabelle verbinden zu können
+            Font prodNameFont = FontFactory.GetFont("Arial", 9);    //Font für die Ausgabe der Produktlegende 
+            productName.Font = prodNameFont;
+                
+                
+                //Foreach-Schleife druckt sortierte Kriterien auf das Pdf Dokument
             foreach (ProjectCriterion projectCriterion in sortedProjectCriterionStructure)
             {
 
@@ -216,12 +233,20 @@ namespace NWAT.Printer
 
                 Paragraph para = new Paragraph(CritsEnumeration, CritStructFont);
                 para.IndentationLeft = intend;      //Einrückungsfaktor, das zugehörige Kriterien untereinander stehen
-                PdfPCell Crits = new PdfPCell();
-                Crits.AddElement(para);
-                Crits.Border = 1;
+                PdfPCell Crits = new PdfPCell();    //Neue Tabellenzelle in der die Kriterienbeschreibung reingeschrieben wird
+                Crits.AddElement(para);             //Der Zelle den Paragraphen übergeben
+                Crits.Border = 1;                   //Anzeigen von Linien im Pdf
 
                 CritTable.AddCell(Crits);
                 CritTable.AddCell("");
+
+                //if Schleife damit alle Produktnamen korrekt auf dem Pdf ausgegeben werden
+                if (iCount == countCounter)
+                {
+                    
+                    FulfillmentPrinter.Add(productName);   //Produktname der vergliechenen Produkte auf dem Dokument anzeige
+                }
+
 
                 //foreach Schleife um die Erfüllungen für alle in der Datenbank hinterlegten Produkte aus das Pdf zu drucken
                 foreach (ProjectProduct projprod in allProductsForThisProject)
@@ -233,23 +258,28 @@ namespace NWAT.Printer
                                     fufi.Product_Id == projprod.Product_Id &&
                                     fufi.Criterion_Id == projectCriterion.Criterion.Criterion_Id);
 
-
+                    //Wenn ein Kriterium erfüllt ist wird ein x gesetzt ansonsten ein -
                     if (fulfillForThisProdAndThisCrit.Fulfilled == true)
                     {
                         CritTable.AddCell(new Paragraph("x", CritStructFont));
+
                     }
                     else
                     {
                         CritTable.AddCell(new Paragraph("-", CritStructFont));
                     }
 
+                        //Hier wird der Name dem Paragraphen productName hinzugefügt
+                        productName.Add("Prd. " + i.ToString()+ "     -     "+ projprod.Product.Name + "\n");     
+                        i++;            //Gleichzeitig wird noch gesagt um welche Produkte es sich handelt
 
                 }
 
-
-
+                
+                iCount++;       //Erhöhe Variable Count - Relevant für if-Schleife zum Printen der Produktnamen auf dem Pdf
+               
             }
-
+           
         }
 
         /// <summary>
