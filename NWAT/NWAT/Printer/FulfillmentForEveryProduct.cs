@@ -14,7 +14,7 @@ using iTextSharp.text.log;
 using iTextSharp.text.pdf.draw;
 
 /// <summary>
-/// Klasse um die Erfüllung der Kriterien für alle Produkte in einer PDF Datei zu zeigen
+/// Klasse um die Erfüllung der Kriterien für ALLE Produkte in einer PDF Datei zu zeigen
 /// </summary>
 /// Erstellt von Adrian Glasnek
 
@@ -24,83 +24,80 @@ namespace NWAT.Printer
 
     class FulfillmentForEveryProduct
     {
-         SaveFileDialog SfdFulfillment = new SaveFileDialog();       //Objekt vom Typ SaveFileDialog
+
+
+        SaveFileDialog SfdFulfillment = new SaveFileDialog();       //Objekt vom Typ SaveFileDialog
         private Project _projectid;
         private Product _productid;
         private Fulfillment _fulfilled;
 
         //Benötigte Properties für Project, Product und Fulfillment
-         public Project Project
-         {
-             get { return _projectid; }
-             set { _projectid = value; }
-         }
+        public Project Project
+        {
+            get { return _projectid; }
+            set { _projectid = value; }
+        }
 
-         public Product Product
-         {
-             get { return _productid; }
-             set { _productid = value; }
-         }
+        public Product Product
+        {
+            get { return _productid; }
+            set { _productid = value; }
+        }
 
-         public Fulfillment Fulfillment
-         {
-             get { return _fulfilled; }
-             set { _fulfilled = value; }
-         }
+        public Fulfillment Fulfillment
+        {
+            get { return _fulfilled; }
+            set { _fulfilled = value; }
+        }
 
-         private List<Fulfillment> _fulfillmentForEachProduct;
+        private List<Fulfillment> _fufiList;
 
-         public List<Fulfillment> FulfillmentForEachProduct
-         {
-             get { return _fulfillmentForEachProduct; }
-             set { _fulfillmentForEachProduct = value; }
-         }
-         
+        public List<Fulfillment> FufiList
+        {
+            get { return _fufiList; }
+            set { _fufiList = value; }
+        }
 
-         private ProjectCriterionController _projectCriterionController;
-         public ProjectCriterionController ProjCritContr
-         {
-             get { return _projectCriterionController; }
-             set { _projectCriterionController = value; }
-         }
 
-         private ProductController _projProduct;
-         public ProductController ProjProduct
-         {
-             get { return _projProduct; }
-             set { _projProduct = value; }
-         }
 
-         private FulfillmentController _fulfillmentController;
-         public FulfillmentController FulFillContr
-         {
-             get { return _fulfillmentController; }
-             set { _fulfillmentController = value; }
-         }
+        private ProjectCriterionController _projectCriterionController;
+        public ProjectCriterionController ProjCritContr
+        {
+            get { return _projectCriterionController; }
+            set { _projectCriterionController = value; }
+        }
+
+        private ProductController _projProduct;
+        public ProductController ProjProduct
+        {
+            get { return _projProduct; }
+            set { _projProduct = value; }
+        }
+
+        private FulfillmentController _fulfillmentController;
+        public FulfillmentController FulFillContr
+        {
+            get { return _fulfillmentController; }
+            set { _fulfillmentController = value; }
+        }
 
         //Konstruktor
-         public FulfillmentForEveryProduct(int projectId, int productId)
-         {
-             this.ProjCritContr = new ProjectCriterionController();
-             ProjectController projCont = new ProjectController();
-             this.Project = projCont.GetProjectById(projectId);
-
-             this.ProjProduct = new ProductController();
-             ProductController projProdController = new ProductController();
-             this.Product = projProdController.GetProductById(productId);
-
-             this.FulFillContr = new FulfillmentController();
-             FulfillmentController fulCont = new FulfillmentController();
-             this.FulfillmentForEachProduct = fulCont.GetAllFulfillmentsForSingleProduct(projectId, productId);
-
-         }
-
-        public void CreateFulfillmentForEachProductPdf()
+        public FulfillmentForEveryProduct(int projectId)
         {
-            
-            Product products = this.ProjProduct.GetProductById(this.Product.Product_Id);    //Get Product by Id from Database
+            this.ProjCritContr = new ProjectCriterionController();
+            ProjectController projCont = new ProjectController();
+            this.Project = projCont.GetProjectById(projectId);
+
+
+
+        }
+
+        public void CreateFulfillmentForEveryProductPdf()
+        {
+
+            ProjectProductController projprodContr = new ProjectProductController();
+            List<ProjectProduct> allProductsForThisProject = projprodContr.GetAllProjectProductsForOneProject(this.Project.Project_Id);
             List<ProjectCriterion> baseCriterions = this.ProjCritContr.GetBaseProjectCriterions(this.Project.Project_Id); //Get all base Criterions
-            
 
             SfdFulfillment.Filter = "Pdf File |*.pdf";
             if (SfdFulfillment.ShowDialog() == DialogResult.OK)
@@ -108,33 +105,50 @@ namespace NWAT.Printer
                 Document FulfillmentPrinter = new Document(iTextSharp.text.PageSize.A4.Rotate());
                 FulfillmentPrinter.SetMargins(50, 200, 50, 125); //Seitenränder definieren
                 try //try catch um Fehler abzufangen wenn eine gleichnamige PDF noch geöffnet ist
-                {  
+                {
                     PdfWriter writer = PdfWriter.GetInstance(FulfillmentPrinter, new FileStream(SfdFulfillment.FileName, FileMode.Create));
                     writer.PageEvent = new PdfPageEvents();
                 }
-                catch (Exception) {MessageBox.Show(String.Format(SfdFulfillment.FileName + " noch geöffnet! Bitte Schließen!"));}
-                
+                catch (Exception) { MessageBox.Show(String.Format(SfdFulfillment.FileName + " noch geöffnet! Bitte Schließen!")); }
+
                 //Dokument öffnen um es bearbeiten zu können
                 FulfillmentPrinter.Open();
 
                 //Überschrift und nötige Formatierung setzen (Schriftart, Fett Druck, Schriftgröße)        
                 Font arialBold = FontFactory.GetFont("Arial_BOLD", 10, Font.BOLD);
-
+                Font products = FontFactory.GetFont("Arial_BOLD", 7, Font.NORMAL);
                 //Erstellen einer Pdf Tabelle in der die Daten aus der Datenbank ausgegeben werden
 
-                PdfPTable CritTable = new PdfPTable(4);
-                float[] widths = { 300f, 5f, 15f, 100f }; //Relative Breite der Spalten in Relation zur gesamten Tabellengröße
-                CritTable.DefaultCell.Border = 0;      // Die Grenzen der Tabelle unsichtbar machen
-                CritTable.SetWidths(widths);          //Relationale Breiten der Tabellenspalten fixen
-                CritTable.HeaderRows = 1;            //Anzeigen der Überschriften auf jeder Seite des Dokuments
+                int countProducts = allProductsForThisProject.Count();
 
-                CritTable.AddCell(new Paragraph("TabellarischeÜbersicht", arialBold));
-                CritTable.AddCell(new Paragraph(" ", arialBold));                   //Leere Zelle sorgt für Abstand - Formatierungszwecke
-                CritTable.AddCell(new Paragraph("E", arialBold));
-                CritTable.AddCell(new Paragraph("Kommentar", arialBold));
+                
+                PdfPTable CritTable = new PdfPTable(countProducts + 2);
+                int numberOfCells = countProducts + 2;
+               
+                // Je Anzahl der Produkte in der Datenbank wir die relative Spaltenbreite gesetzt 
+                if (numberOfCells == 3) { float[] widths = { 20f, 2f, 1f, }; CritTable.SetWidths(widths); ;}
+                if (numberOfCells == 4) { float[] widths = { 20f, 2f, 1f, 1f, }; CritTable.SetWidths(widths); ;}
+                if (numberOfCells == 5) { float[] widths = { 20, 2, 1, 1, 1 }; CritTable.SetWidths(widths); ;}
+                if (numberOfCells == 6) { float[] widths = { 20, 2, 1, 1, 1, 1 }; CritTable.SetWidths(widths); ;}
+                if (numberOfCells == 7) { float[] widths = { 20f, 2f, 1f, 1f, 1f, 1f, 1f }; CritTable.SetWidths(widths); ;}
+                if (numberOfCells == 8) { float[] widths = { 20f, 2f, 1f, 1f, 1f, 1f, 1f, 1f }; CritTable.SetWidths(widths); ;}
+     
+                CritTable.DefaultCell.Border = 1;               // Die Grenzen der Tabelle unsichtbar machen
+                CritTable.HeaderRows = 1;                     //Anzeigen der ersten Zeilen als Überschrift auf jeder Seite des Dokuments
+
+                CritTable.AddCell(new Paragraph("Tabellarische Übersicht aller Produkte", arialBold));
+                CritTable.AddCell(new Paragraph(" "));                   //Leere Zelle sorgt für Abstand - Formatierungszwecke
+               
+                //Zählt wieviele Produkte in der Datenbank liegen und schreibt dementsprechend viele Spalten auf das Pdf
+                for (int i = 1; i <= allProductsForThisProject.Count(); i++)
+                {
+                    string prodHeader = "Prd." + i.ToString(); 
+                    CritTable.AddCell(new Paragraph(prodHeader,  products)); 
+                }
+
 
                 CritTable.HorizontalAlignment = 0;
-                CritTable.TotalWidth = 650f; //Totale Breite der "Tabelle"
+                CritTable.TotalWidth = 700f; //Totale Breite der "Tabelle"
                 CritTable.LockedWidth = true;
 
                 //Methodenaufruf
@@ -148,8 +162,8 @@ namespace NWAT.Printer
 
 
                 //Aufrufen der Hilfsmethode (aus Klasse CriterionStructurePrinter)- Seitenzahl und den Projektnamen auf Pdf     
-                CriterionStructurePrinter PageNumberNameObject = new CriterionStructurePrinter(Project.Project_Id);
-                PageNumberNameObject.GetPageNumber(SfdFulfillment, 800);
+
+                GetPageNumber(SfdFulfillment, 800);
 
                 MessageBox.Show("Pdf erfolgreich erstellt!");
 
@@ -167,8 +181,11 @@ namespace NWAT.Printer
 
         private void PrintCriterionStructure(ref PdfPTable CritTable)
         {
+            FulfillmentController fufiCont = new FulfillmentController();
+            List<Fulfillment> fufiList = fufiCont.GetAllFulfillmentsForOneProject(this.Project.Project_Id);
 
-
+            ProjectProductController projprodContr = new ProjectProductController();
+            List<ProjectProduct> allProductsForThisProject = projprodContr.GetAllProjectProductsForOneProject(this.Project.Project_Id);
 
             //Übergebene Liste von Methode "GetSortedCriterionStructure()" in Liste sortedProjectCriterionStructure schreiben
 
@@ -179,14 +196,6 @@ namespace NWAT.Printer
             //Foreach-Schleife druckt sortierte Kriterien auf das Pdf Dokument
             foreach (ProjectCriterion projectCriterion in sortedProjectCriterionStructure)
             {
-
-                //Verbindung zu Erfüllungsdaten aus der Datenbank
-                Fulfillment fulfillmentForCurrtentCrit = _fulfillmentForEachProduct.SingleOrDefault(fufi => fufi.Criterion_Id == projectCriterion.Criterion_Id);
-
-                if (fulfillmentForCurrtentCrit == null) 
-                { 
-                    throw new NWATException(String.Format("Eintrag Kriterien ID {0} konnte nicht gefunden werden ", projectCriterion.Criterion_Id)); 
-                }
 
 
                 //Definieren der intend Variable um die richtige "Einrückung" auf dem Pdf Dokument erzielen zu können
@@ -201,6 +210,7 @@ namespace NWAT.Printer
                 //Schriftgröße der angezeigten Kriterienstruktur bestimmen
                 Font CritStructFont = FontFactory.GetFont("Arial", 10);
 
+
                 //Paragraph der die Zellen befüllt
                 string CritsEnumeration = "[" + enumeration + "]" + " " + projectCriterion.Criterion.Description.ToString();
 
@@ -208,22 +218,36 @@ namespace NWAT.Printer
                 para.IndentationLeft = intend;      //Einrückungsfaktor, das zugehörige Kriterien untereinander stehen
                 PdfPCell Crits = new PdfPCell();
                 Crits.AddElement(para);
-                Crits.Border = 0;
-                
+                Crits.Border = 1;
+
                 CritTable.AddCell(Crits);
                 CritTable.AddCell("");
-                //If Abfrage - Wenn Kriterium erfüllt dann setzte ein Kreuz, wenn nicht setzte ein -
-                if (!fulfillmentForCurrtentCrit.Fulfilled)
+
+                //foreach Schleife um die Erfüllungen für alle in der Datenbank hinterlegten Produkte aus das Pdf zu drucken
+                foreach (ProjectProduct projprod in allProductsForThisProject)
                 {
-                    CritTable.AddCell(new Paragraph("-", CritStructFont));
-                }
-                else
-                {
-                    CritTable.AddCell(new Paragraph("x", CritStructFont));
-                    
+
+
+                    Fulfillment fulfillForThisProdAndThisCrit = fufiList.Single(
+                            fufi => fufi.Project_Id == projectCriterion.Project_Id &&
+                                    fufi.Product_Id == projprod.Product_Id &&
+                                    fufi.Criterion_Id == projectCriterion.Criterion.Criterion_Id);
+
+
+                    if (fulfillForThisProdAndThisCrit.Fulfilled == true)
+                    {
+                        CritTable.AddCell(new Paragraph("x", CritStructFont));
+                    }
+                    else
+                    {
+                        CritTable.AddCell(new Paragraph("-", CritStructFont));
+                    }
+
+
                 }
 
-                
+
+
             }
 
         }
@@ -266,6 +290,37 @@ namespace NWAT.Printer
             return enumerationAsString;
         }
 
+        /// <summary>
+        /// Methode um Nummern auf Pdf zu drucken
+        /// </summary>
+        /// 
+        /// Erstellt von Adrian Glasnek
+
+        public void GetPageNumber(SaveFileDialog save, int pageNumberBottomPosition)
+        {
+            byte[] bytes = File.ReadAllBytes(save.FileName);
+            Font BlackFont = FontFactory.GetFont("Arial", 9, Font.BOLD, BaseColor.BLACK);
+            using (MemoryStream stream = new MemoryStream())
+            {
+                PdfReader reader = new PdfReader(bytes);
+                using (PdfStamper stamper = new PdfStamper(reader, stream))
+                {
+                    int pages = reader.NumberOfPages;
+                    for (int i = 1; i <= pages; i++)
+                    {
+                        //Seitenzahl
+                        ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(i.ToString(), BlackFont), pageNumberBottomPosition, 15f, 0);
+                        //Projekt Name
+                        ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(Project.Name.ToString(), BlackFont), 400, 15f, 0);
+
+                    }
+                }
+                bytes = stream.ToArray();
+            }
+            File.WriteAllBytes(save.FileName, bytes);
+
+        }
+
     }
-    
+
 }

@@ -124,7 +124,7 @@ namespace NWAT.Printer
 
                 PdfPTable CritTable = new PdfPTable(4);
                 float[] widths = { 300f, 5f, 15f, 100f }; //Relative Breite der Spalten in Relation zur gesamten Tabellengröße
-                CritTable.DefaultCell.Border = 0;      // Die Grenzen der Tabelle unsichtbar machen
+                CritTable.DefaultCell.Border = 1;      // Die Grenzen der Tabelle unsichtbar machen
                 CritTable.SetWidths(widths);          //Relationale Breiten der Tabellenspalten fixen
                 CritTable.HeaderRows = 1;            //Anzeigen der Überschriften auf jeder Seite des Dokuments
 
@@ -208,7 +208,7 @@ namespace NWAT.Printer
                 para.IndentationLeft = intend;      //Einrückungsfaktor, das zugehörige Kriterien untereinander stehen
                 PdfPCell Crits = new PdfPCell();
                 Crits.AddElement(para);
-                Crits.Border = 0;
+                Crits.Border = 1;
                 string comment = "";
                 CritTable.AddCell(Crits);
                 CritTable.AddCell("");
