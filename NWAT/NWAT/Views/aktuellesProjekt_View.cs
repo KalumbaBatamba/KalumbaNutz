@@ -1,4 +1,5 @@
 ﻿using NWAT.DB;
+using NWAT.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -89,7 +90,7 @@ namespace NWAT
 
         private void btn_CurrProjCritStruUpdate_Click(object sender, EventArgs e)
         {
-            ProjCritStruUpdate_View ProjCritStruUpdate = new ProjCritStruUpdate_View();
+            ProjCritStruUpdate_View ProjCritStruUpdate = new ProjCritStruUpdate_View(Project.Project_Id);
             ProjCritStruUpdate.Show();
         }
 
@@ -113,6 +114,9 @@ namespace NWAT
         {
             ProjProdAssign_View ProjProdAssign = new ProjProdAssign_View(Project.Project_Id);
             ProjProdAssign.Show();
+
+       //     ProjectProductAssign_View ProjectProductAssign = new ProjectProductAssign_View(Project.Project_Id);
+       //     ProjectProductAssign.Show();
         }
 
         private void btn_CurrProjProdFulfCapt_Click(object sender, EventArgs e)
@@ -123,7 +127,7 @@ namespace NWAT
 
         private void btnCurrProjProdFulfPrint_Click(object sender, EventArgs e)
         {
-
+            ;
         }
 
         private void btn_CurrProjProdAnalShow_Click(object sender, EventArgs e)
@@ -133,7 +137,7 @@ namespace NWAT
 
         private void btn_Balance_Click(object sender, EventArgs e)
         {
-            ProjCritBalance_View ProjCritBalance = new ProjCritBalance_View();
+            ProjCritBalance_View ProjCritBalance = new ProjCritBalance_View(Project.Project_Id);
             ProjCritBalance.Show();
         }
 

@@ -19,7 +19,7 @@ namespace NWAT
             // bla blubb
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new NWAT_Start_View());
             
         }/* ADRIAN TEST*/
     }

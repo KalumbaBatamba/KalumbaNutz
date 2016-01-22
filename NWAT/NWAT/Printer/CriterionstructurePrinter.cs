@@ -156,18 +156,23 @@ namespace NWAT.Printer
                     int intend;
 
                     intend = layer * factor;
-
+                    
+                    
                     string enumeration = GetEnumerationForCriterion(ref enumerations, layer);
+                    
 
                     //Schriftgröße der angezeigten Kriterienstruktur bestimmen
                     Font CritStructFont = FontFactory.GetFont("Arial", 10);
 
-                   
-                    Paragraph para = new Paragraph(projectCriterion.Criterion.Description.ToString(), CritStructFont);
-                    para.IndentationLeft = intend;
+                    //string der dem Paragraphen übergeben wird, mit den Enumerations und den Kriterien in einer Zeile
+                    string CritsEnumeration = "[" +enumeration+"]" + " " + projectCriterion.Criterion.Description.ToString();
+
+                    Paragraph para = new Paragraph(CritsEnumeration, CritStructFont);
+                    para.IndentationLeft = intend;      //Einrückungsfaktor, das zugehörige Kriterien untereinander stehen
                     PdfPCell Crits = new PdfPCell();
                     Crits.AddElement(para);
-                    Crits.Border = 0;
+                    
+                    Crits.Border = 0;                   //Grenzen der Pdf Zellen auf 0, d.h. Ränder sind unsichtbar
 
                     CritTable.AddCell(Crits);
                     CritTable.AddCell("");
@@ -187,7 +192,13 @@ namespace NWAT.Printer
             
         }
 
-        private string  GetEnumerationForCriterion(ref Dictionary<int, int> enumerations, int layer)
+        /// <summary>
+        /// Methode um Kriterien eine Nummerierung zu geben
+        /// </summary>
+        /// 
+        /// Erstellt von Adrian Glasnek
+
+        public string  GetEnumerationForCriterion(ref Dictionary<int, int> enumerations, int layer)
         {
             int lastLayer = enumerations.Keys.ToList().Max();
 

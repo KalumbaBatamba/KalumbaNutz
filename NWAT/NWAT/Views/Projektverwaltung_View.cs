@@ -153,9 +153,9 @@ namespace NWAT
                 comboBox_SelectProject.DataSource = ProjList;
                 comboBox_SelectProject.DisplayMember = "Name";
                 comboBox_SelectProject.ValueMember = "Project_ID";
-            
+                
             }
-
+           
             //List<Project> ProjList = projCont.GetAllProjectsFromDB();
             //var bindingList = new BindingList<Project>(ProjList);
             //var source = new BindingSource(bindingList, null);

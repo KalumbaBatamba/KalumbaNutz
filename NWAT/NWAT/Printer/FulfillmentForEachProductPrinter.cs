@@ -27,8 +27,9 @@ namespace NWAT.Printer
         SaveFileDialog SfdFulfillment = new SaveFileDialog();       //Objekt vom Typ SaveFileDialog
         private Project _projectid;
         private Product _productid;
+        private Fulfillment _fulfilled;
 
-        //Benötigte Properties für Project und Product
+        //Benötigte Properties für Project, Product und Fulfillment
          public Project Project
          {
              get { return _projectid; }
@@ -40,6 +41,21 @@ namespace NWAT.Printer
              get { return _productid; }
              set { _productid = value; }
          }
+
+         public Fulfillment Fulfillment
+         {
+             get { return _fulfilled; }
+             set { _fulfilled = value; }
+         }
+
+         private List<Fulfillment> _fulfillmentForEachProduct;
+
+         public List<Fulfillment> FulfillmentForEachProduct
+         {
+             get { return _fulfillmentForEachProduct; }
+             set { _fulfillmentForEachProduct = value; }
+         }
+         
 
          private ProjectCriterionController _projectCriterionController;
          public ProjectCriterionController ProjCritContr
@@ -55,8 +71,15 @@ namespace NWAT.Printer
              set { _projProduct = value; }
          }
 
+         private FulfillmentController _fulfillmentController;
+         public FulfillmentController FulFillContr
+         {
+             get { return _fulfillmentController; }
+             set { _fulfillmentController = value; }
+         }
+
         //Konstruktor
-         public FulfillmentForEachProductPrinter(int projectId, int projprodId)
+         public FulfillmentForEachProductPrinter(int projectId, int productId)
          {
              this.ProjCritContr = new ProjectCriterionController();
              ProjectController projCont = new ProjectController();
@@ -64,7 +87,11 @@ namespace NWAT.Printer
 
              this.ProjProduct = new ProductController();
              ProductController projProdController = new ProductController();
-             this.Product = projProdController.GetProductById(projprodId);
+             this.Product = projProdController.GetProductById(productId);
+
+             this.FulFillContr = new FulfillmentController();
+             FulfillmentController fulCont = new FulfillmentController();
+             this.FulfillmentForEachProduct = fulCont.GetAllFulfillmentsForSingleProduct(projectId, productId);
 
          }
 
@@ -146,11 +173,21 @@ namespace NWAT.Printer
             //Übergebene Liste von Methode "GetSortedCriterionStructure()" in Liste sortedProjectCriterionStructure schreiben
 
             List<ProjectCriterion> sortedProjectCriterionStructure = this.ProjCritContr.GetSortedCriterionStructure(this.Project.Project_Id);
-
+            // dict: layer => enum
+            Dictionary<int, int> enumerations = new Dictionary<int, int>() { { 1, 0 } };
 
             //Foreach-Schleife druckt sortierte Kriterien auf das Pdf Dokument
             foreach (ProjectCriterion projectCriterion in sortedProjectCriterionStructure)
             {
+
+                //Verbindung zu Erfüllungsdaten aus der Datenbank
+                Fulfillment fulfillmentForCurrtentCrit = _fulfillmentForEachProduct.SingleOrDefault(fufi => fufi.Criterion_Id == projectCriterion.Criterion_Id);
+
+                if (fulfillmentForCurrtentCrit == null) 
+                { 
+                    throw new NWATException(String.Format("Eintrag Kriterien ID {0} konnte nicht gefunden werden ", projectCriterion.Criterion_Id)); 
+                }
+
 
                 //Definieren der intend Variable um die richtige "Einrückung" auf dem Pdf Dokument erzielen zu können
                 int layer = projectCriterion.Layer_Depth;
@@ -159,22 +196,74 @@ namespace NWAT.Printer
 
                 intend = layer * factor;
 
+                string enumeration = GetEnumerationForCriterion(ref enumerations, layer);
+
                 //Schriftgröße der angezeigten Kriterienstruktur bestimmen
                 Font CritStructFont = FontFactory.GetFont("Arial", 10);
 
                 //Paragraph der die Zellen befüllt
-                Paragraph para = new Paragraph(projectCriterion.Criterion.Description.ToString(), CritStructFont);
-                para.IndentationLeft = intend;
+                string CritsEnumeration = "[" + enumeration + "]" + " " + projectCriterion.Criterion.Description.ToString();
+
+                Paragraph para = new Paragraph(CritsEnumeration, CritStructFont);
+                para.IndentationLeft = intend;      //Einrückungsfaktor, das zugehörige Kriterien untereinander stehen
                 PdfPCell Crits = new PdfPCell();
                 Crits.AddElement(para);
                 Crits.Border = 0;
-
+                string comment = "";
                 CritTable.AddCell(Crits);
                 CritTable.AddCell("");
-                CritTable.AddCell("");
-                CritTable.AddCell("");
+                //If Abfrage - Wenn Kriterium erfüllt dann setzte ein Kreuz, wenn nicht setzte ein -
+                if (!fulfillmentForCurrtentCrit.Fulfilled)
+                {
+                    CritTable.AddCell(new Paragraph("-", CritStructFont));
+                }
+                else
+                {
+                    CritTable.AddCell(new Paragraph("x", CritStructFont));
+                    comment = fulfillmentForCurrtentCrit.Comment;           //Falls Kommentar vorhanden, dann printe Kommentar mit
+                }
+
+                CritTable.AddCell(new Paragraph(comment, CritStructFont));
             }
 
+        }
+
+        /// <summary>
+        /// Methode um Kriterien eine Nummerierung zu geben
+        /// </summary>
+        /// 
+        /// Erstellt von Adrian Glasnek
+
+        public string GetEnumerationForCriterion(ref Dictionary<int, int> enumerations, int layer)
+        {
+            int lastLayer = enumerations.Keys.ToList().Max();
+
+            string enumerationAsString = "";
+
+            if (layer == lastLayer)
+            {
+                enumerations[layer] += 1;
+            }
+            if (layer > lastLayer)
+            {
+                lastLayer += 1;
+                enumerations[lastLayer] = 1;
+            }
+            if (layer < lastLayer)
+            {
+                for (int deletingLayer = layer + 1; deletingLayer <= lastLayer; deletingLayer++)
+                {
+                    enumerations.Remove(deletingLayer);
+                }
+                enumerations[layer] += 1;
+                lastLayer = layer;
+            }
+
+            for (int i = 1; i <= lastLayer; i++)
+            {
+                enumerationAsString += enumerations[i] + ".";
+            }
+            return enumerationAsString;
         }
 
     }
