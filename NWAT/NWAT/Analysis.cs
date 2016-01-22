@@ -11,6 +11,8 @@ namespace NWAT
     {
         private FulfillmentController fulfillContr;
         private ProjectCriterionController projCritContr;
+        private string p;
+        private List<ProjectCriterion> listbasecrit;
 
         public Analysis()
         {
@@ -20,17 +22,17 @@ namespace NWAT
         }
 
 
-
-
         // Erstellt von Weloko Tchokoua
         // calculate the fullfilment level of each product and generate a list to print.
 
-        public void Analyse()
+        public Object Analyse()
         {
             int projectId = 0;
              int productId= 0;
             int parentId = 0;
             int projCritId = 0;
+
+           // List<Analysis> Listtoprint = new List<Analysis>();
 
             // this instance of project criterion controller is needed to work with the Project_Criterion table
             // This method will return all project ctiterions for one project
@@ -53,43 +55,37 @@ namespace NWAT
             ProjectProductController prodController = new ProjectProductController();
             List<ProjectProduct> productINproject = prodController.GetAllProjectProductsForOneProject(projectId);
 
+             List<Object> Listtoprint = new List<Object>();
+
+            foreach (ProjectProduct prod in productINproject)
+            {
+                while (fulfiller.Fulfilled == true)
+                {
+                    List<ProjectCriterion> Crittree = projCritController.GetSortedCriterionStructure(projectId);
+
+                    foreach(ProjectCriterion pj in Crittree)
+                    {
+                    projCritController.UpdateLayerDepthForProjectCriterion(projectId, projCritId);
+                    projCritController.UpdateAllPercentageLayerWeightings(projectId);
+                    projCritController.UpdateAllPercentageProjectWeightings(projectId);
+
+                   
+                    Listtoprint.Add(prod.Name);
+                    Listtoprint.Add(pj.Name);
+                    Listtoprint.Add(pj.Weighting_Percentage_Layer);
+                    Listtoprint.Add(pj.Weighting_Percentage_Project);
+
+                    }
+                }
 
 
-            
-
-                 foreach (ProjectProduct product in productINproject)
-                 {
-                      float sumOfpercentagelayerWeightings = 0;
-                      float fulfillment_grad = 0;
-                      //float fulfillgrad_final = 0;
-                      List<ProjectCriterion> listbasecrit = projCritController.GetSortedCriterionStructure(projectId);
-                     
-                         foreach (ProjectCriterion projcrite in listbasecrit)
-                         foreach (ProjectCriterion parent in baseCriterions)
-
-                         {
-                             int maxlayer = int.MaxValue;
-                             maxlayer = Math.Max(projcrite.Layer_Depth, maxlayer) + 1;
-                             for (projcrite.Layer_Depth = 1; projcrite.Layer_Depth < maxlayer; projcrite.Layer_Depth--)
-                               {
-                                   while (fulfiller.Fulfilled == true && projcrite.Layer_Depth > 1 )
-                                   {
-                                   projCritController.UpdateAllPercentageLayerWeightings(projectId);
-                                
-                                     sumOfpercentagelayerWeightings += (float)projcrite.Weighting_Percentage_Layer;
-                                     fulfillment_grad = sumOfpercentagelayerWeightings * (float)parent.Weighting_Percentage_Layer;
-
-
-                                   }
-
-                               }
-                         }
-
-                 }
+            }
+            return Listtoprint;
 
              }
             
         }
+    
     }
 
     // Erstellt von Weloko Tchokoua
