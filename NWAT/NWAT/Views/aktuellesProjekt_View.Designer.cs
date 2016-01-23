@@ -201,7 +201,7 @@
             this.btnCurrProjProdFulfPrint.Name = "btnCurrProjProdFulfPrint";
             this.btnCurrProjProdFulfPrint.Size = new System.Drawing.Size(142, 23);
             this.btnCurrProjProdFulfPrint.TabIndex = 14;
-            this.btnCurrProjProdFulfPrint.Text = "Erfüllung drucken";
+            this.btnCurrProjProdFulfPrint.Text = "Erfüllungen drucken";
             this.btnCurrProjProdFulfPrint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCurrProjProdFulfPrint.UseVisualStyleBackColor = true;
             this.btnCurrProjProdFulfPrint.Click += new System.EventHandler(this.btnCurrProjProdFulfPrint_Click);
