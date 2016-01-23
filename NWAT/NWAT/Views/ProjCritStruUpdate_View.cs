@@ -106,5 +106,36 @@ namespace NWAT
         {
 
         }
+
+        private void btn_ProjCritStruSave_Click(object sender, EventArgs e)
+        {
+            int i = 0;
+            foreach (DataGridViewRow row in dataGridView_CritStruUpd.Rows)
+            {
+
+                //   int c = int.Parse(row.Cells[3].Value.);
+                //     if( row.Cells[3].Value.isNumber);
+                // GetType() == int;
+                //int.TryParse(row.Cells[3].Value, out c);
+                //    if (row.Cells[3].Value. )
+                //  {
+              //  int i = 0;
+                ProjectCriterion fromList = ProjCrits[i];
+               // var str = row.Cells[1].Value.GetType();
+                //    MessageBox.Show("Var = " + str);
+                i++;
+                if (row.Cells[2].Value != null)
+                {
+                    fromList.Parent_Criterion_Id = (int)row.Cells[2].Value;
+
+                    projCritCont.UpdateProjectCriterionInDb(fromList);
+                }
+            }
+        }
+
+        private void dataGridView_CritStruUpd_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+         
+        }
     }
 }

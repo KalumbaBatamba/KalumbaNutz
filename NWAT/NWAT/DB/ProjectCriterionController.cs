@@ -659,7 +659,7 @@ namespace NWAT.DB
         /// Erstellt von Joshua Frey, am 04.01.2016
         public void CalculatePercentageLayerWeighting(ref List<ProjectCriterion> projectCriterionsInOneLayer)
         {
-            float sumOfCardinalWeightings = 0;
+            int sumOfCardinalWeightings = 0;
             foreach (ProjectCriterion projCrit in projectCriterionsInOneLayer)
             {
                 sumOfCardinalWeightings += projCrit.Weighting_Cardinal;
@@ -667,7 +667,7 @@ namespace NWAT.DB
 
             foreach (ProjectCriterion projCrit in projectCriterionsInOneLayer)
             {
-                float percentageLayerWeighting = projCrit.Weighting_Cardinal / sumOfCardinalWeightings;
+                double percentageLayerWeighting = (double)projCrit.Weighting_Cardinal / (double)sumOfCardinalWeightings;
                 projCrit.Weighting_Percentage_Layer = percentageLayerWeighting;
             }
         }

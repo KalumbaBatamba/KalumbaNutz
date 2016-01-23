@@ -48,7 +48,6 @@ namespace NWAT
         {
             using (ProjectProductController proProCont = new ProjectProductController())
             {
-             //   ProjProds = new List<ProjectProduct>();
                 ProjProds = proProCont.GetAllProjectProductsForOneProject(ProjectId);
                 using (ProductController prodCon = new ProductController())
                 {

@@ -29,15 +29,17 @@
         private void InitializeComponent()
         {
             this.dataGridView_ProjCritBalance = new System.Windows.Forms.DataGridView();
+            this.Strukture = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_ProjCritBalaCancle = new System.Windows.Forms.Button();
             this.btn_ProjCritBalaSave = new System.Windows.Forms.Button();
             this.btn_SameBalance = new System.Windows.Forms.Button();
-            this.Strukture = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ProjCritBalance)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView_ProjCritBalance
             // 
+            this.dataGridView_ProjCritBalance.AllowUserToAddRows = false;
+            this.dataGridView_ProjCritBalance.AllowUserToDeleteRows = false;
             this.dataGridView_ProjCritBalance.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -49,6 +51,12 @@
             this.dataGridView_ProjCritBalance.Size = new System.Drawing.Size(561, 520);
             this.dataGridView_ProjCritBalance.TabIndex = 12;
             this.dataGridView_ProjCritBalance.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_ProjCritBalance_CellContentClick);
+            // 
+            // Strukture
+            // 
+            this.Strukture.HeaderText = "Str";
+            this.Strukture.Name = "Strukture";
+            this.Strukture.Width = 50;
             // 
             // btn_ProjCritBalaCancle
             // 
@@ -82,12 +90,6 @@
             this.btn_SameBalance.Text = "gleichgewichten";
             this.btn_SameBalance.UseVisualStyleBackColor = true;
             this.btn_SameBalance.Click += new System.EventHandler(this.btn_SameBalance_Click);
-            // 
-            // Strukture
-            // 
-            this.Strukture.HeaderText = "Str";
-            this.Strukture.Name = "Strukture";
-            this.Strukture.Width = 50;
             // 
             // ProjCritBalance_View
             // 

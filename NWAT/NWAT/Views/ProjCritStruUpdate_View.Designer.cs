@@ -44,6 +44,7 @@
             this.dataGridView_CritStruUpd.Name = "dataGridView_CritStruUpd";
             this.dataGridView_CritStruUpd.Size = new System.Drawing.Size(575, 520);
             this.dataGridView_CritStruUpd.TabIndex = 0;
+            this.dataGridView_CritStruUpd.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CritStruUpd_CellEndEdit);
             // 
             // btn_ProjCritStruSave
             // 
@@ -54,6 +55,7 @@
             this.btn_ProjCritStruSave.TabIndex = 1;
             this.btn_ProjCritStruSave.Text = "speichern";
             this.btn_ProjCritStruSave.UseVisualStyleBackColor = true;
+            this.btn_ProjCritStruSave.Click += new System.EventHandler(this.btn_ProjCritStruSave_Click);
             // 
             // btn_ProjCritStruCancle
             // 
