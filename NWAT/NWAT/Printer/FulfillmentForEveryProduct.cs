@@ -252,22 +252,26 @@ namespace NWAT.Printer
                 foreach (ProjectProduct projprod in allProductsForThisProject)
                 {
 
-
-                    Fulfillment fulfillForThisProdAndThisCrit = fufiList.Single(
-                            fufi => fufi.Project_Id == projectCriterion.Project_Id &&
-                                    fufi.Product_Id == projprod.Product_Id &&
-                                    fufi.Criterion_Id == projectCriterion.Criterion.Criterion_Id);
-
-                    //Wenn ein Kriterium erfüllt ist wird ein x gesetzt ansonsten ein -
-                    if (fulfillForThisProdAndThisCrit.Fulfilled == true)
+                    try         //try catch Anweisung um Fehler abzufangen. Fehler: Für das Produkt sind keine oder nicht alle Erfülungen in der DB hinterlegt
                     {
-                        CritTable.AddCell(new Paragraph("x", CritStructFont));
+                        Fulfillment fulfillForThisProdAndThisCrit = fufiList.Single(
+                                fufi => fufi.Project_Id == projectCriterion.Project_Id &&
+                                        fufi.Product_Id == projprod.Product_Id &&
+                                        fufi.Criterion_Id == projectCriterion.Criterion.Criterion_Id);
 
+                        //Wenn ein Kriterium erfüllt ist wird ein x gesetzt ansonsten ein -
+                        if (fulfillForThisProdAndThisCrit.Fulfilled == true)
+                        {
+                            CritTable.AddCell(new Paragraph("x", CritStructFont));
+
+                        }
+                        else
+                        {
+                            CritTable.AddCell(new Paragraph("-", CritStructFont));
+                        }
                     }
-                    else
-                    {
-                        CritTable.AddCell(new Paragraph("-", CritStructFont));
-                    }
+
+                    catch { throw new ApplicationException("Warnung!\n Nicht für alle Produkte des Projekts sind Erfüllungen hinterlegt! Bitte überprüfen Sie Ihre Eingaben! "); }
 
                         //Hier wird der Name dem Paragraphen productName hinzugefügt
                         productName.Add("Prd. " + i.ToString()+ "     -     "+ projprod.Product.Name + "\n");     
