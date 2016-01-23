@@ -121,13 +121,13 @@ namespace NWAT
 
         private void btn_CurrProjProdFulfCapt_Click(object sender, EventArgs e)
         {
-            ProjCritProdFulfilment_View ProjCritProdFulfillment = new ProjCritProdFulfilment_View();
+            ProjCritProdFulfilment_View ProjCritProdFulfillment = new ProjCritProdFulfilment_View(Project.Project_Id);
             ProjCritProdFulfillment.Show();
         }
 
         private void btnCurrProjProdFulfPrint_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Alle projektspezifischen Produkte inklusive der Kriterienstruktur und deren Erfüllungen werden auf dem Pdf abgebildet!");
+            MessageBox.Show("Alle projektspezifischen Produkte inklusive der Kriterienstruktur und deren Erfüllungen sind auf dem Pdf abgebildet!");
             FulfillmentForEveryProduct fulfillmentEveryProdPrint = new FulfillmentForEveryProduct(Project.Project_Id);
             fulfillmentEveryProdPrint.CreateFulfillmentForEveryProductPdf();
         }

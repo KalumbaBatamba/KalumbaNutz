@@ -12,9 +12,11 @@ namespace NWAT
 {
     public partial class Projektverwaltung_View : Form
     {
+        
         private ProjectController projCont;
         public Projektverwaltung_View()
         {
+            
             this.projCont = new ProjectController();
             InitializeComponent();
         }
@@ -99,6 +101,9 @@ namespace NWAT
             MessageBox.Show("Selected Item Text: " + selectedItem.Project_Id);
             aktuellesProjekt_View AktProjView = new aktuellesProjekt_View(selectedItem.Project_Id);
             AktProjView.Show();
+            
+
+            
 
             //Project_Update_View ProjectModify = new Project_Update_View(selectedItem.Project_Id);
             //ProjectModify.Show();
@@ -167,7 +172,7 @@ namespace NWAT
 
         private void comboBox_SelectProject_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
     }
