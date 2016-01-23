@@ -33,6 +33,7 @@
             this.label_CurrProjDesc = new System.Windows.Forms.Label();
             this.label_CurrProjDescShow = new System.Windows.Forms.Label();
             this.groupBox_CurrProjCrits = new System.Windows.Forms.GroupBox();
+            this.btn_ProjCritExport = new System.Windows.Forms.Button();
             this.btn_Balance = new System.Windows.Forms.Button();
             this.btn_CurrProjKritAssign = new System.Windows.Forms.Button();
             this.btn_CurrProjCritStruShow = new System.Windows.Forms.Button();
@@ -92,21 +93,33 @@
             // groupBox_CurrProjCrits
             // 
             this.groupBox_CurrProjCrits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox_CurrProjCrits.Controls.Add(this.btn_ProjCritExport);
             this.groupBox_CurrProjCrits.Controls.Add(this.btn_Balance);
             this.groupBox_CurrProjCrits.Controls.Add(this.btn_CurrProjKritAssign);
             this.groupBox_CurrProjCrits.Controls.Add(this.btn_CurrProjCritStruShow);
             this.groupBox_CurrProjCrits.Controls.Add(this.btn_CurrProjCritStruUpdate);
             this.groupBox_CurrProjCrits.Controls.Add(this.btn_CurrProjCritStruPrint);
-            this.groupBox_CurrProjCrits.Location = new System.Drawing.Point(7, 299);
+            this.groupBox_CurrProjCrits.Location = new System.Drawing.Point(7, 265);
             this.groupBox_CurrProjCrits.Name = "groupBox_CurrProjCrits";
-            this.groupBox_CurrProjCrits.Size = new System.Drawing.Size(164, 167);
+            this.groupBox_CurrProjCrits.Size = new System.Drawing.Size(164, 201);
             this.groupBox_CurrProjCrits.TabIndex = 20;
             this.groupBox_CurrProjCrits.TabStop = false;
             this.groupBox_CurrProjCrits.Text = "Projektkriterien";
             // 
+            // btn_ProjCritExport
+            // 
+            this.btn_ProjCritExport.Location = new System.Drawing.Point(5, 106);
+            this.btn_ProjCritExport.Name = "btn_ProjCritExport";
+            this.btn_ProjCritExport.Size = new System.Drawing.Size(142, 23);
+            this.btn_ProjCritExport.TabIndex = 12;
+            this.btn_ProjCritExport.Text = "Projektkriterienexport";
+            this.btn_ProjCritExport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_ProjCritExport.UseVisualStyleBackColor = true;
+            this.btn_ProjCritExport.Click += new System.EventHandler(this.button1_Click);
+            // 
             // btn_Balance
             // 
-            this.btn_Balance.Location = new System.Drawing.Point(6, 136);
+            this.btn_Balance.Location = new System.Drawing.Point(6, 164);
             this.btn_Balance.Name = "btn_Balance";
             this.btn_Balance.Size = new System.Drawing.Size(111, 23);
             this.btn_Balance.TabIndex = 11;
@@ -150,7 +163,7 @@
             // 
             // btn_CurrProjCritStruPrint
             // 
-            this.btn_CurrProjCritStruPrint.Location = new System.Drawing.Point(6, 106);
+            this.btn_CurrProjCritStruPrint.Location = new System.Drawing.Point(5, 135);
             this.btn_CurrProjCritStruPrint.Name = "btn_CurrProjCritStruPrint";
             this.btn_CurrProjCritStruPrint.Size = new System.Drawing.Size(142, 23);
             this.btn_CurrProjCritStruPrint.TabIndex = 10;
@@ -165,9 +178,9 @@
             this.groupBox_CurrProjProds.Controls.Add(this.btn_CurrProjProdAssign);
             this.groupBox_CurrProjProds.Controls.Add(this.btn_CurrProjProdFulfCapt);
             this.groupBox_CurrProjProds.Controls.Add(this.btnCurrProjProdFulfPrint);
-            this.groupBox_CurrProjProds.Location = new System.Drawing.Point(177, 299);
+            this.groupBox_CurrProjProds.Location = new System.Drawing.Point(177, 265);
             this.groupBox_CurrProjProds.Name = "groupBox_CurrProjProds";
-            this.groupBox_CurrProjProds.Size = new System.Drawing.Size(163, 110);
+            this.groupBox_CurrProjProds.Size = new System.Drawing.Size(163, 144);
             this.groupBox_CurrProjProds.TabIndex = 21;
             this.groupBox_CurrProjProds.TabStop = false;
             this.groupBox_CurrProjProds.Text = "Projektprodukte";
@@ -210,7 +223,7 @@
             // 
             this.groupBox_CurrProjAnalys.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox_CurrProjAnalys.Controls.Add(this.btn_CurrProjProdAnalShow);
-            this.groupBox_CurrProjAnalys.Location = new System.Drawing.Point(346, 299);
+            this.groupBox_CurrProjAnalys.Location = new System.Drawing.Point(346, 265);
             this.groupBox_CurrProjAnalys.Name = "groupBox_CurrProjAnalys";
             this.groupBox_CurrProjAnalys.Size = new System.Drawing.Size(173, 54);
             this.groupBox_CurrProjAnalys.TabIndex = 22;
@@ -269,5 +282,6 @@
         private System.Windows.Forms.GroupBox groupBox_CurrProjAnalys;
         private System.Windows.Forms.Button btn_CurrProjProdAnalShow;
         private System.Windows.Forms.Button btn_Balance;
+        private System.Windows.Forms.Button btn_ProjCritExport;
     }
 }

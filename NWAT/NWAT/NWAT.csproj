@@ -70,6 +70,7 @@
     <Compile Include="DB\ProjectExporter.cs" />
     <Compile Include="DB\ProjectImporter.cs" />
     <Compile Include="LogWriter.cs" />
+    <Compile Include="Printer\SpellVerification.cs" />
     <Compile Include="Printer\DateTimeStamp_Hilfsklasse.cs" />
     <Compile Include="Printer\FulfillmentForEveryProduct.cs" />
     <Compile Include="Views\aktuellesProjekt_View.cs">

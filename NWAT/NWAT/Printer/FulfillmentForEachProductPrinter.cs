@@ -186,7 +186,7 @@ namespace NWAT.Printer
                 //Fehlermeldung wenn nicht für alle Kriterien dieses Produktes eine Erfüllung hinterlegt ist
                 if (fulfillmentForCurrtentCrit == null) 
                 {
-                    throw new NWATException(String.Format("Nicht für alle Kriterien zu diesem Produkt sind Erfüllungen hinterlegt: \n Erfüllung für Kriterien ID {0} konnte nicht gefunden werden ", projectCriterion.Criterion_Id)); 
+                    throw new NWATException(String.Format("Nicht für alle Kriterien zu diesem Produkt ist ein Erfüllungseintrag hinterlegt: \n Erfüllung für Kriterien ID {0} konnte nicht gefunden werden ", projectCriterion.Criterion_Id)); 
                 }
 
 

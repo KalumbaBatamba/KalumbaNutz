@@ -54,6 +54,19 @@ namespace NWAT
                 label_CurrProjNameShow.Text = this.Project.Name; //proj.Name;
                 label_CurrProjDescShow.Text = this.Project.Description; //proj.Description;
             }
+
+            //Tool Tip für den Button Projektkriterienexport - Info an den User
+            ToolTip toolTip1 = new ToolTip();
+            toolTip1.ToolTipTitle = "Projektkriterienexport";
+            toolTip1.UseFading = true;
+            toolTip1.UseAnimation = true;
+            toolTip1.IsBalloon = true;
+            toolTip1.AutoPopDelay = 5000;
+            toolTip1.InitialDelay = 1000;
+            toolTip1.ReshowDelay = 500;
+            toolTip1.ShowAlways = true;
+            toolTip1.SetToolTip(btn_ProjCritExport, "Dieser Button erzeugt eine Textdatei mit allen Kriterien die dem aktuellen Projekt zugeordnet sind. \nDiese Textdatei kann genutzt werden, um beispielsweise anschließend eine Rechtschreibprüfung durchführen zu lassen.");
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -146,6 +159,12 @@ namespace NWAT
         private void label_CurrProjNameShow_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SpellVerification newObject = new SpellVerification(Project.Project_Id);
+            newObject.CreateTextFileWithCriterions();
         }
     }
 }
