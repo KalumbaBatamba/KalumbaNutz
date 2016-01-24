@@ -161,8 +161,6 @@ namespace NWAT.DB
             return success;
         }
         
-
-
         /// <summary>
         /// Changes the allocation of project criterions in database.
         /// </summary>
@@ -231,6 +229,88 @@ namespace NWAT.DB
             return sortedCriterionStructure;
         }
 
+
+        /// <summary>
+        /// Deallocates the criterion and all child criterions from project. This includes the entries in the fulfillment table
+        /// User will be asked, if children should be deallocated
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="projCrit">The proj crit.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 13.01.2016
+        public bool DeallocateCriterionAndAllChildCriterions(int projectId, ProjectCriterion projCrit)
+        {
+            return DeallocateCriterionAndAllChildCriterions(projectId, projCrit, false);
+        }
+
+        /// <summary>
+        /// Deallocates the criterion and all child criterions from project. This includes the entries in the fulfillment table
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="projCrit">The proj crit.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 04.01.2016
+        public bool DeallocateCriterionAndAllChildCriterions(int projectId, ProjectCriterion projCrit, bool forceDeallocationOfChildren)
+        {
+            int projectCriterionId = projCrit.Criterion_Id;
+            // checks if criterion has any children criterion (is a parent criterion)
+            List<ProjectCriterion> eventualChildCriterions = GetChildCriterionsByParentId(projectId, projectCriterionId);
+            bool deletionPermitted = true;
+            if (eventualChildCriterions.Count > 0)
+            {
+                string decisionMessage = MessageUserDecisionOfDeallocatingAllChildCriterions(projCrit, eventualChildCriterions);
+                const string caption = "Kriterienentkopplung";
+
+                // only ask user if children should be deallocated when forceDeallocationOfChildre = false
+                if (!forceDeallocationOfChildren)
+                {
+                    var result = MessageBox.Show(decisionMessage, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result == DialogResult.No)
+                    {
+                        deletionPermitted = false;
+                    }
+                }
+
+                if (deletionPermitted)
+                {
+                    foreach (ProjectCriterion childProjCrit in eventualChildCriterions)
+                    {
+                        deletionPermitted = DeallocateCriterionAndAllChildCriterions(projectId, childProjCrit, forceDeallocationOfChildren);
+                    }
+                }
+            }
+            string projCritName = projCrit.Criterion.Name;
+            if (deletionPermitted)
+            {
+                // delete all fulfillment entries which point to this project criterion
+                bool fulfillmentDeletionSuccessfull;
+                using (FulfillmentController fulfillmentContr = new FulfillmentController())
+                {
+                    fulfillmentDeletionSuccessfull = fulfillmentContr.DeleteAllFulfillmentsForOneCriterionInOneProject(projectId, projCrit.Criterion_Id);
+                }
+
+                if (fulfillmentDeletionSuccessfull && DeleteProjectCriterionFromDb(projectId, projectCriterionId))
+                {
+                    if (!forceDeallocationOfChildren)
+                    {
+                        MessageBox.Show("Das Kriterium " + projCritName + " wurde erfolgreich vom Projekt entkoppelt.");
+                    }
+
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Bei dem Löschvorgang ist ein Fehler aufgetreten.");
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Löschen von " + projCritName + " konnte nicht durchgeführt werden, weil ein Löschvorgang vom Benutzer abgelehnt wurde.");
+                return false;
+            }
+        }
 
       
 
@@ -384,90 +464,6 @@ namespace NWAT.DB
             return GetProjectCriterionByIds(projectId, criterionId) == null;
         }
 
-
-        /// <summary>
-        /// Deallocates the criterion and all child criterions from project. This includes the entries in the fulfillment table
-        /// User will be asked, if children should be deallocated
-        /// </summary>
-        /// <param name="projectId">The project identifier.</param>
-        /// <param name="projCrit">The proj crit.</param>
-        /// <returns></returns>
-        /// Erstellt von Joshua Frey, am 13.01.2016
-        public bool DeallocateCriterionAndAllChildCriterions(int projectId, ProjectCriterion projCrit)
-        {
-            return DeallocateCriterionAndAllChildCriterions(projectId, projCrit, false);
-        }
-
-        /// <summary>
-        /// Deallocates the criterion and all child criterions from project. This includes the entries in the fulfillment table
-        /// </summary>
-        /// <param name="projectId">The project identifier.</param>
-        /// <param name="projCrit">The proj crit.</param>
-        /// <returns></returns>
-        /// Erstellt von Joshua Frey, am 04.01.2016
-        public bool DeallocateCriterionAndAllChildCriterions(int projectId, ProjectCriterion projCrit, bool forceDeallocationOfChildren)
-        {
-            int projectCriterionId = projCrit.Criterion_Id;
-            // checks if criterion has any children criterion (is a parent criterion)
-            List<ProjectCriterion> eventualChildCriterions = GetChildCriterionsByParentId(projectId, projectCriterionId);
-            bool deletionPermitted = true;
-            if (eventualChildCriterions.Count > 0)
-            {
-                string decisionMessage = MessageUserDecisionOfDeallocatingAllChildCriterions(projCrit, eventualChildCriterions);
-                const string caption = "Kriterienentkopplung";
-
-                // only ask user if children should be deallocated when forceDeallocationOfChildre = false
-                if (!forceDeallocationOfChildren)
-                {
-                    var result = MessageBox.Show(decisionMessage, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                    if (result == DialogResult.No)
-                    {
-                        deletionPermitted = false;
-                    }
-                }
-
-                if (deletionPermitted)
-                {
-                    foreach (ProjectCriterion childProjCrit in eventualChildCriterions)
-                    {
-                        deletionPermitted = DeallocateCriterionAndAllChildCriterions(projectId, childProjCrit, forceDeallocationOfChildren);
-                    }
-                }
-            }
-            string projCritName = projCrit.Criterion.Name;
-            if (deletionPermitted)
-            {
-                // delete all fulfillment entries which point to this project criterion
-                bool fulfillmentDeletionSuccessfull;
-                using (FulfillmentController fulfillmentContr = new FulfillmentController())
-                {
-                    fulfillmentDeletionSuccessfull = fulfillmentContr.DeleteAllFulfillmentsForOneCriterionInOneProject(projectId, projCrit.Criterion_Id);
-                }
-
-                if (fulfillmentDeletionSuccessfull && DeleteProjectCriterionFromDb(projectId, projectCriterionId))
-                {
-                    if (!forceDeallocationOfChildren)
-                    {
-                        MessageBox.Show("Das Kriterium " + projCritName + " wurde erfolgreich vom Projekt entkoppelt.");
-                    }
-                    
-                    return true;
-                }
-                else
-                {
-                    MessageBox.Show("Bei dem Löschvorgang ist ein Fehler aufgetreten.");
-                    return false;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Löschen von " + projCritName + " konnte nicht durchgeführt werden, weil ein Löschvorgang vom Benutzer abgelehnt wurde.");
-                return false;
-            }
-        }
-
-
         /// <summary>
         /// Allocates the criterion.
         /// </summary>
@@ -517,7 +513,7 @@ namespace NWAT.DB
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
         /// Erstellt von Joshua Frey, am 04.01.2016
-        public void UpdateAllPercentageLayerWeightings(int projectId)
+        private void UpdateAllPercentageLayerWeightings(int projectId)
         {
             // calculate all weightings for the base layer
             List<ProjectCriterion> baseProjectCriterions = GetBaseProjectCriterions(projectId);
@@ -550,7 +546,7 @@ namespace NWAT.DB
         /// Updates all percentage project weighting2.
         /// </summary>
         /// Erstellt von Joshua Frey, am 20.01.2016
-        public void UpdateAllPercentageProjectWeightings(int projectId)
+        private void UpdateAllPercentageProjectWeightings(int projectId)
         {
             List<ProjectCriterion> allProjCritsForOneProject = GetAllProjectCriterionsForOneProject(projectId);
 
@@ -665,7 +661,7 @@ namespace NWAT.DB
         /// <param name="projectId">The project identifier.</param>
         /// <param name="projCritId">The proj crit identifier.</param>
         /// Erstellt von Joshua Frey, am 12.01.2016
-        public void UpdateLayerDepthForProjectCriterion(int projectId, int projCritId)
+        private void UpdateLayerDepthForProjectCriterion(int projectId, int projCritId)
         {
             // base criterions are on layer one. So the lowest layer a criterion can exist in, is 1
             int layerCounter = 1;
