@@ -73,6 +73,7 @@
     <Compile Include="DB\ProjectImporter.cs" />
     <Compile Include="Analysis\FunctioningAnalysis.cs" />
     <Compile Include="LogWriter.cs" />
+    <Compile Include="Printer\CriterionStructurePrinterCostumer.cs" />
     <Compile Include="Printer\SpellVerification.cs" />
     <Compile Include="Printer\DateTimeStamp_Hilfsklasse.cs" />
     <Compile Include="Printer\FulfillmentForEveryProduct.cs" />

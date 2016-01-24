@@ -65,8 +65,18 @@ namespace NWAT
             toolTip1.InitialDelay = 1000;
             toolTip1.ReshowDelay = 500;
             toolTip1.ShowAlways = true;
-            toolTip1.SetToolTip(btn_ProjCritExport, "Dieser Button erzeugt eine Textdatei mit allen Kriterien, die dem aktuellen Projekt zugeordnet sind. \nDiese Textdatei kann genutzt werden, um beispielsweise anschließend eine Rechtschreibprüfung durchführen zu lassen.");
-
+            toolTip1.SetToolTip(btn_ProjCritExport, "Dieser Button erzeugt eine Textdatei mit allen Kriterien, die dem aktuellen Projekt zugeordnet sind. \nDiese Textdatei kann genutzt werden, um beispielsweise anschließend eine Rechtschreibprüfung durchführen zu lassen");
+            ToolTip toolTip2 = new ToolTip();
+            //Tool Tip für den Button Gewichtung drucken - Info an den User
+            toolTip2.ToolTipTitle = "Gewichtung drucken";
+            toolTip2.UseFading = true;
+            toolTip2.UseAnimation = true;
+            toolTip2.IsBalloon = true;
+            toolTip2.AutoPopDelay = 5000;
+            toolTip2.InitialDelay = 1000;
+            toolTip2.ReshowDelay = 500;
+            toolTip2.ShowAlways = true;
+            toolTip2.SetToolTip(btn_CurrProjCritStruPrint, "Dieser Button erstellt eine Pdf Datei, in der die Kriterienstruktur mit den Anforderungen des Kunden inklusive der kardinalen Gewichtungen abgebildet werden");
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -166,6 +176,12 @@ namespace NWAT
         {
             SpellVerification newObject = new SpellVerification(Project.Project_Id);
             newObject.CreateTextFileWithCriterions();
+        }
+
+        private void btn_CurrProjCritStruPrintCostumer_Click(object sender, EventArgs e)
+        {
+            CriterionStructurePrinterCostumer printObject = new CriterionStructurePrinterCostumer(Project.Project_Id);
+            printObject.CreateCriterionStructurePdfForCostumer();
         }
     }
 }
