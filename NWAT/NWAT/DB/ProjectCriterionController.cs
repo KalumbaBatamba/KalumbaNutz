@@ -134,9 +134,8 @@ namespace NWAT.DB
             int projectId = alteredProjectCriterion.Project_Id;
             UpdateLayerDepthForProjectCriterion(projectId, alteredProjectCriterion.Criterion_Id);
             UpdateAllPercentageLayerWeightings(projectId);
+            UpdateAllPercentageProjectWeightings(projectId);
 
-            // TODO aktivieren sobald implementiert
-            // UpdateAllPercentageProjectWeightings(projectId)
             return updateSuccess; 
         }
 
@@ -157,9 +156,7 @@ namespace NWAT.DB
             }
 
             UpdateAllPercentageLayerWeightings(projectId);
-
-            // TODO aktivieren sobald implementiert
-            // UpdateAllPercentageProjectWeightings(projectId)
+            UpdateAllPercentageProjectWeightings(projectId);
 
             return success;
         }
@@ -291,9 +288,7 @@ namespace NWAT.DB
                 int projectId = newProjectCriterion.Project_Id;
                 UpdateLayerDepthForProjectCriterion(projectId, newProjectCriterion.Criterion_Id);
                 UpdateAllPercentageLayerWeightings(projectId);
-
-                // TODO aktivieren sobald implementiert
-                // UpdateAllPercentageProjectWeightings(projectId)
+                UpdateAllPercentageProjectWeightings(projectId);
             }
             return success;
         }
@@ -517,7 +512,6 @@ namespace NWAT.DB
             return insertionFulfillmentSuccessful && insertionProjectCritionSuccessful;
         }
 
-
         /// <summary>
         /// Updates all percentage layer weightings for one project.
         /// </summary>
@@ -552,39 +546,92 @@ namespace NWAT.DB
             }
         }
 
-        // Esrstellt von Weloko Tchokoua
+        /// <summary>
+        /// Updates all percentage project weighting2.
+        /// </summary>
+        /// Erstellt von Joshua Frey, am 20.01.2016
         public void UpdateAllPercentageProjectWeightings(int projectId)
         {
-            // calculate all weightings for the base layer
+            List<ProjectCriterion> allProjCritsForOneProject = GetAllProjectCriterionsForOneProject(projectId);
 
-            List<ProjectCriterion> baseProjectCriterions = GetBaseProjectCriterions(projectId);
-            CalculatePercentageProjectWeighting(ref baseProjectCriterions);
-
-            // write calculated weightings back to db
-
-            foreach (ProjectCriterion baseProjCrit in baseProjectCriterions)
+            foreach (ProjectCriterion currentProjCrit in allProjCritsForOneProject)
             {
-                UpdateProjectCriterionDataSet(baseProjCrit);
+                UpdatePercentageProjectWeightingForOneCriterion(currentProjCrit);
             }
-
-            // calculate all weightings for all child project criterions
-
-            List<ProjectCriterion> allProjectCriterions = GetAllProjectCriterionsForOneProject(projectId);
-
-            foreach (ProjectCriterion projCrit in allProjectCriterions)
-            {
-                List<ProjectCriterion> eventualChildrenOfCurrentProjCriterion = GetChildCriterionsByParentId(projectId, projCrit.Criterion_Id);
-                if (eventualChildrenOfCurrentProjCriterion.Count > 0)
-                {
-                    CalculatePercentageProjectWeighting(ref eventualChildrenOfCurrentProjCriterion);
-                    foreach (ProjectCriterion childProjCrit in eventualChildrenOfCurrentProjCriterion)
-                    {
-                        UpdateProjectCriterionDataSet(childProjCrit);
-                    }
-                }
-            }
-
         }
+
+        /// <summary>
+        /// Updates the percentage project weighting for one criterion.
+        /// </summary>
+        /// <param name="projectCrit">The project crit.</param>
+        /// Erstellt von Joshua Frey, am 20.01.2016
+        private void UpdatePercentageProjectWeightingForOneCriterion(ProjectCriterion projectCrit)
+        {
+            int projectId = projectCrit.Project_Id;
+            int criterionId = projectCrit.Criterion_Id;
+
+            double percentageProjectWeightingValue = 1;
+            List<ProjectCriterion> allProjectCriterions = GetAllProjectCriterionsForOneProject(projectId);
+            ProjectCriterion involvedProjCriterion;
+            involvedProjCriterion = allProjectCriterions.Single(projCrit => projCrit.Criterion_Id == criterionId);
+
+            bool hasParent = false;
+
+            // traverse all parent criterions and multiply their layer weightings
+            do
+            {
+                // multiplies weightingvalue by percentageLayerWeighting of current involved proj crit
+                percentageProjectWeightingValue *= involvedProjCriterion.Weighting_Percentage_Layer.Value;
+                if (involvedProjCriterion.Parent_Criterion_Id != null && involvedProjCriterion.Parent_Criterion_Id.Value != 0)
+                {
+                    int parentCritId = involvedProjCriterion.Parent_Criterion_Id.Value;
+                    hasParent = true;
+                    involvedProjCriterion = allProjectCriterions.Single(projCrit => projCrit.Criterion_Id == parentCritId);
+                }
+                else
+                {
+                    hasParent = false;
+                }
+            } while (hasParent);
+
+            projectCrit.Weighting_Percentage_Project = percentageProjectWeightingValue;
+
+            UpdateProjectCriterionDataSet(projectCrit);
+        }
+
+        //// Esrstellt von Weloko Tchokoua
+        //public void UpdateAllPercentageProjectWeightings(int projectId)
+        //{
+        //    // calculate all weightings for the base layer
+
+        //    List<ProjectCriterion> baseProjectCriterions = GetBaseProjectCriterions(projectId);
+        //    CalculatePercentageProjectWeighting(ref baseProjectCriterions);
+
+        //    // write calculated weightings back to db
+
+        //    foreach (ProjectCriterion baseProjCrit in baseProjectCriterions)
+        //    {
+        //        UpdateProjectCriterionDataSet(baseProjCrit);
+        //    }
+
+        //    // calculate all weightings for all child project criterions
+
+        //    List<ProjectCriterion> allProjectCriterions = GetAllProjectCriterionsForOneProject(projectId);
+
+        //    foreach (ProjectCriterion projCrit in allProjectCriterions)
+        //    {
+        //        List<ProjectCriterion> eventualChildrenOfCurrentProjCriterion = GetChildCriterionsByParentId(projectId, projCrit.Criterion_Id);
+        //        if (eventualChildrenOfCurrentProjCriterion.Count > 0)
+        //        {
+        //            CalculatePercentageProjectWeighting(ref eventualChildrenOfCurrentProjCriterion);
+        //            foreach (ProjectCriterion childProjCrit in eventualChildrenOfCurrentProjCriterion)
+        //            {
+        //                UpdateProjectCriterionDataSet(childProjCrit);
+        //            }
+        //        }
+        //    }
+
+        //}
 
 
 
@@ -826,7 +873,7 @@ namespace NWAT.DB
         private static string MessageUserDecisionOfDeallocatingAllChildCriterions(ProjectCriterion projCrit, List<ProjectCriterion> eventualChildCriterions)
         {
             string critName = projCrit.Criterion.Name;
-            // hier wird der benutzer gefragt ob
+            // user is asked if he wants to deallocate the subordinated criterions
             string decisionMessage = @"Dem Kriterium " + critName + " sind noch folgende Kriterien untergeordnet: \n";
             foreach (ProjectCriterion childProjCrit in eventualChildCriterions)
             {
@@ -847,16 +894,7 @@ namespace NWAT.DB
         {
             return String.Format(@"Das Projekt Kriteriums {0} konnte nicht aus der Datenbank gelöscht werden.", critName);
         }
-        //private string MessageCriterionDoesNotExist(int criterionId)
-        //{
-        //    return "Das Kriterium mit der Id \"" + criterionId +
-        //           "\" existiert nicht in der Datenbank.";
-        //}
-
-        //private string MessageCriterionHasNoId()
-        //{
-        //    return "Das Criterion Object besitzt keine ID. Bitte überprüfen Sie das übergebene Object";
-        //}
+     
 
     }
 }

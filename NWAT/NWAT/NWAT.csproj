@@ -59,6 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analysis\AnalysedProduct.cs" />
+    <Compile Include="Analysis\AnalysisResultCrit.cs" />
     <Compile Include="ArchiveZipper.cs" />
     <Compile Include="CommonMethods.cs" />
     <Compile Include="DB\CurrentMasterDataIdsController.cs" />
@@ -69,6 +71,7 @@
     </Compile>
     <Compile Include="DB\ProjectExporter.cs" />
     <Compile Include="DB\ProjectImporter.cs" />
+    <Compile Include="Analysis\FunctioningAnalysis.cs" />
     <Compile Include="LogWriter.cs" />
     <Compile Include="Printer\SpellVerification.cs" />
     <Compile Include="Printer\DateTimeStamp_Hilfsklasse.cs" />
