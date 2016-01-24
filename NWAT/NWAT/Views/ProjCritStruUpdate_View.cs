@@ -136,7 +136,65 @@ namespace NWAT
                 }
                 projCritCont.UpdateProjectCriterionInDb(fromList);
             }
-            this.Close();
+    //        this.Close();
+      using (ProjectCriterionController proCriCont = new ProjectCriterionController())
+            {
+                ProjCrits = proCriCont.GetSortedCriterionStructure(ProjectId);
+                //.GetSortedCriterionStructure(ProjectId); 
+                //.GetAllProjectCriterionsForOneProject(ProjectId);
+                using (CriterionController critCon = new CriterionController())
+                {
+                    foreach (ProjectCriterion projCrit in ProjCrits)
+                    {
+                        //    MessageBox.Show(projCrit.Criterion_Id.ToString());
+                        //      projCrit.Name = "test";
+                        var singleCritId = critCon.GetCriterionById(projCrit.Criterion_Id);
+                        projCrit.Name = singleCritId.Name.ToString();
+                    }
+                }
+
+
+
+
+                dataGridView_CritStruUpd.Rows.Clear();
+                var CritBindingList = new BindingList<ProjectCriterion>(ProjCrits);
+                var CritSource = new BindingSource(CritBindingList, null);
+                dataGridView_CritStruUpd.DataSource = ProjCrits;
+                dataGridView_CritStruUpd.Columns.Remove("Project_Id");
+               
+                
+                ////       dataGridView_ProjCritBalance.Columns.Remove("Weighting_Percentage_Layer");
+                //dataGridView_CritStruUpd.Columns.Remove("Weighting_Percentage_Project");
+                dataGridView_CritStruUpd.Columns.Remove("Criterion");
+                dataGridView_CritStruUpd.Columns.Remove("ParentCriterion");
+                dataGridView_CritStruUpd.Columns.Remove("Project");
+                dataGridView_CritStruUpd.Columns[0].ReadOnly = true;
+                dataGridView_CritStruUpd.Columns[1].ReadOnly = true;
+                dataGridView_CritStruUpd.Columns[3].ReadOnly = true;
+                dataGridView_CritStruUpd.Columns[4].ReadOnly = true;
+                dataGridView_CritStruUpd.Columns[5].ReadOnly = true;
+                dataGridView_CritStruUpd.Columns[6].ReadOnly = true;
+                //dataGridView_CritStruUpd.Columns[7].ReadOnly = true;
+
+                dataGridView_CritStruUpd.Columns[1].DisplayIndex = 0;
+                dataGridView_CritStruUpd.Columns[2].DisplayIndex = 1;
+                dataGridView_CritStruUpd.Columns[6].DisplayIndex = 3;
+                dataGridView_CritStruUpd.Columns[6].Width = 200;
+                //dataGridView_CritStruUpd.Columns[1].HeaderText = "ID";
+                //dataGridView_CritStruUpd.Columns[1].Width = 30;
+                //dataGridView_CritStruUpd.Columns[1].ReadOnly = true;
+                //dataGridView_CritStruUpd.Columns[2].HeaderText = "P-ID";
+                //dataGridView_CritStruUpd.Columns[2].Width = 30;
+                //dataGridView_CritStruUpd.Columns[2].ReadOnly = true;
+                //dataGridView_CritStruUpd.Columns[3].HeaderText = "G(C)";
+                //dataGridView_CritStruUpd.Columns[3].Width = 30;
+                //dataGridView_CritStruUpd.Columns[4].ReadOnly = true;
+                //dataGridView_CritStruUpd.Columns[4].Width = 30;
+                //dataGridView_CritStruUpd.Columns[5].Width = 350;
+                //dataGridView_CritStruUpd.Columns[5].ReadOnly = true;
+
+
+            }
         }
 
         private void dataGridView_CritStruUpd_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -146,9 +204,10 @@ namespace NWAT
 
         private void btn_refresh_Click(object sender, EventArgs e)
         {
+     /*    
             using (ProjectCriterionController proCriCont = new ProjectCriterionController())
             {
-                ProjCrits = proCriCont.GetSortedCriterionStructure(ProjectId);
+               ProjCrits = proCriCont.GetSortedCriterionStructure(ProjectId);
                 using (CriterionController critCon = new CriterionController())
                 {
                     foreach (ProjectCriterion projCrit in ProjCrits)
@@ -178,9 +237,9 @@ namespace NWAT
                 dataGridView_CritStruUpd.Columns[2].DisplayIndex = 1;
                 dataGridView_CritStruUpd.Columns[6].DisplayIndex = 3;
                 dataGridView_CritStruUpd.Columns[6].Width = 200;
-             
+             */
 
             }
         }
     }
-}
+//}

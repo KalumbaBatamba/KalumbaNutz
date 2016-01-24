@@ -247,7 +247,7 @@ namespace NWAT
                dataGridView_ProjCritBalance.Columns[4].Width = 60;
                dataGridView_ProjCritBalance.Columns[5].Width = 350;
                dataGridView_ProjCritBalance.Columns[5].ReadOnly = true;
-               this.Close();
+   //            this.Close();
        //    }
        }
 
