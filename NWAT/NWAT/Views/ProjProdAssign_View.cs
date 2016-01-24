@@ -178,7 +178,7 @@ namespace NWAT
         private void btn_ProdToPool_Click(object sender, EventArgs e)
         {
             
-DataGridViewRow row = dataGridView_ProjProd.SelectedRows[0];
+            DataGridViewRow row = dataGridView_ProjProd.SelectedRows[0];
             int ProdId = (int)row.Cells[0].Value;
       //         string ProdName = Convert.ToString(row.Cells[2].Value) ;
             int index = dataGridView_ProjProd.CurrentCell.RowIndex;
@@ -191,7 +191,8 @@ DataGridViewRow row = dataGridView_ProjProd.SelectedRows[0];
                 Product addProd = prodCont.GetProductById(ProdId);
                 //     }
                 AllProds.Add(addProd);
-                projProdCont.DeleteProjectProductFromDb(ProjectId , ProdId);
+  // 1              projProdCont.DeleteProjectProductFromDb(ProjectId , ProdId);
+                projProdCont.ChangeAllocationOfProjectProducstListInDb(ProjectId, ProjProds);
             }   
             dataGridView_prodAvail .DataSource = null;
             dataGridView_prodAvail.DataSource = AllProds;
