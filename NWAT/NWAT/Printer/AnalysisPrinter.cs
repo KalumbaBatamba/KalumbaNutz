@@ -13,7 +13,7 @@ using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.draw;
 
 /// <summary>
-/// Klasse um die Analyseergebnisse inklusive der Kriterienstruktur in einer PDF Datei zu zeigen
+/// Klasse um die Analyseergebnisse inklusive der Kriterienstruktur in einer PDF Datei auszugeben
 /// </summary>
 /// Erstellt von Adrian Glasnek
 
@@ -22,7 +22,7 @@ namespace NWAT.Printer
     class AnalysePrinter
     {
        
-       Document FulfillmentPrinter = new Document(iTextSharp.text.PageSize.A4.Rotate());       //Eigentliches Dokument erstellen vom typ Document
+        Document FulfillmentPrinter = new Document(iTextSharp.text.PageSize.A4.Rotate());       //Eigentliches Dokument erstellen vom typ Document
         SaveFileDialog SfdFulfillment = new SaveFileDialog();       //Objekt vom Typ SaveFileDialog
         private Project _projectid;
         private Product _productid;
@@ -120,10 +120,13 @@ namespace NWAT.Printer
                 Font products = FontFactory.GetFont("Arial_BOLD", 7, Font.NORMAL);
                 //Erstellen einer Pdf Tabelle in der die Daten aus der Datenbank ausgegeben werden
 
+                //int der die Anzahl der festen Spalten und die variable Anzahl der Produkte enthält
                 int countProducts = allProductsForThisProject.Count();
 
-                
+                //Erstellen der PdfTable
                 PdfPTable CritTable = new PdfPTable(countProducts + 4);
+
+                //int der die Anzahl der festen Spalten und die variable Anzahl der Produkte enthält
                 int numberOfCells = countProducts + 4;
                
                 // Je nach Anzahl der Produkte in der Datenbank wir die relative Spaltenbreite gesetzt 
@@ -142,7 +145,7 @@ namespace NWAT.Printer
                 CritTable.HeaderRows = 1;                     //Anzeigen der ersten Zeilen als Überschrift auf jeder Seite des Dokuments
 
                 CritTable.SpacingBefore = 20f;      //Platz zwischen Produktlegende und der Tabelle
-                CritTable.AddCell(new Paragraph("Nutzwert-Analyse", arialBold));
+                CritTable.AddCell(new Paragraph("Nutzwert - Analyse", arialBold));
                 CritTable.AddCell(new Paragraph(" "));                   //Leere Zelle sorgt für Abstand zwischen Header und Erfüllungen 
                 CritTable.AddCell(new Paragraph("Gew.", products));      //Spaltenüberschriften
                 CritTable.AddCell(new Paragraph("Proz.", products));
@@ -152,12 +155,9 @@ namespace NWAT.Printer
                 //Zählt wieviele Produkte in der Datenbank liegen und schreibt dementsprechend viele Spalten auf das Pdf
                 for (int i = 1; i <= allProductsForThisProject.Count(); i++)
                 {
-
                     string prodHeader = "Prd." + i.ToString(); 
-                    CritTable.AddCell(new Paragraph(prodHeader,  products));
-                 
+                    CritTable.AddCell(new Paragraph(prodHeader,  products));      
                 }
-
 
                 CritTable.HorizontalAlignment = 0;
                 CritTable.TotalWidth = 700f; //Totale Breite der "Tabelle"
@@ -172,11 +172,10 @@ namespace NWAT.Printer
                 //Close Dokument - Bearbeitung Beenden
                 FulfillmentPrinter.Close();
 
-
                 //Aufrufen der Hilfsmethode (aus Klasse CriterionStructurePrinter)- Seitenzahl und den Projektnamen auf Pdf     
-
                 GetPageNumber(SfdFulfillment, 800);
 
+                //Erfolgsmeldung
                 MessageBox.Show("Pdf erfolgreich erstellt!");
 
                 //PDf wird automatisch geöffnet nach der erfolgreichen Speicherung
@@ -193,8 +192,6 @@ namespace NWAT.Printer
 
         private void PrintCriterionStructure(ref PdfPTable CritTable)
         {
-            
-
             //Zugirff auf Erfüllungen der Kriterien für die Produkte aus der Datenbank
             FulfillmentController fufiCont = new FulfillmentController();
             List<Fulfillment> fufiList = fufiCont.GetAllFulfillmentsForOneProject(this.Project.Project_Id);
@@ -204,9 +201,9 @@ namespace NWAT.Printer
             List<ProjectProduct> allProductsForThisProject = projprodContr.GetAllProjectProductsForOneProject(this.Project.Project_Id);
 
             //Übergebene Liste von Methode "GetSortedCriterionStructure()" in Liste sortedProjectCriterionStructure schreiben
-
             List<ProjectCriterion> sortedProjectCriterionStructure = this.ProjCritContr.GetSortedCriterionStructure(this.Project.Project_Id);
-            // dict: layer => enum
+            
+            // Generische Liste - Dictionary Wertepaar vom Typ int - Schlüssel und Wert 
             Dictionary<int, int> enumerations = new Dictionary<int, int>() { { 1, 0 } };
 
             //Variablen die in den unten folgenden foreach-Schleifen benötigt werden
@@ -214,23 +211,22 @@ namespace NWAT.Printer
             int countCounter = 1;
             int i = 1;
 
-            Paragraph productName = new Paragraph();            //Paragraph um Namem der Produkte mit den Abkürzungen in der Tabelle verbinden zu können
-            Font prodNameFont = FontFactory.GetFont("Arial", 9);    //Font für die Ausgabe der Produktlegende 
+            //Paragraph um Namen der Produkte mit den Abkürzungen in der Tabelle verbinden zu können
+            //Font für die Ausgabe der Produktlegende
+            Paragraph productName = new Paragraph();            
+            Font prodNameFont = FontFactory.GetFont("Arial", 9);    
             productName.Font = prodNameFont;
-                
-                
-                //Foreach-Schleife druckt sortierte Kriterien auf das Pdf Dokument
+                             
+            //Foreach-Schleife druckt sortierte Kriterien auf das Pdf Dokument
             foreach (ProjectCriterion projectCriterion in sortedProjectCriterionStructure)
             {
-
-
                 //Definieren der intend Variable um die richtige "Einrückung" auf dem Pdf Dokument erzielen zu können
                 int layer = projectCriterion.Layer_Depth;
                 int factor = 25;
                 int intend;
-
                 intend = layer * factor;
 
+                //Aufzählunszahlen für die Kriterienstruktur in einen string schreiben
                 string enumeration = GetEnumerationForCriterion(ref enumerations, layer);
 
                 //Schriftgröße der angezeigten Kriterienstruktur bestimmen
@@ -241,33 +237,40 @@ namespace NWAT.Printer
                 string CritsEnumeration = "[" + enumeration + "]" + " " + projectCriterion.Criterion.Description.ToString();
 
                 Paragraph para = new Paragraph(CritsEnumeration, CritStructFont);
-                para.IndentationLeft = intend;      //Einrückungsfaktor, das zugehörige Kriterien untereinander stehen
-                PdfPCell Crits = new PdfPCell();    //Neue Tabellenzelle in der die Kriterienbeschreibung reingeschrieben wird
-                Crits.AddElement(para);             //Der Zelle den Paragraphen übergeben
-                Crits.Border = 1;                   //Anzeigen von Linien im Pdf
+                //Einrückungsfaktor, das zugehörige Kriterien untereinander stehen
+                para.IndentationLeft = intend;
+                //Neue Tabellenzelle in der die Kriterienbeschreibung reingeschrieben wird
+                PdfPCell Crits = new PdfPCell();
+                //Der Zelle den Paragraphen übergeben
+                Crits.AddElement(para);
+                //Anzeigen von Linien im Pdf
+                Crits.Border = 1;                   
 
+                //Die Kriterienstruktur den zellen hinzufügen
                 CritTable.AddCell(Crits);
                 CritTable.AddCell("");
                 CritTable.AddCell(new Paragraph(projectCriterion.Weighting_Cardinal.ToString(), numbers));      //Weighting Cardinal
-                double percentageLayer = projectCriterion.Weighting_Percentage_Layer.Value * 100;
-                
-                CritTable.AddCell(new Paragraph(percentageLayer.ToString(), numbers));
-                
+                try
+                {
+                    double percentageLayer = projectCriterion.Weighting_Percentage_Layer.Value * 100;
+                    CritTable.AddCell(new Paragraph(percentageLayer.ToString(), numbers));
+                }
+                catch (Exception e) {throw new Exception ("Der Wert einer Gewichtung unter Geschwisterkriterien darf nicht 'NULL' betragen", e); }
+     
 
                 //if Schleife damit alle Produktnamen korrekt auf dem Pdf ausgegeben werden
                 if (iCount == countCounter)
-                {
-                    
+                {                    
                     FulfillmentPrinter.Add(productName);   //Produktname der vergliechenen Produkte auf dem Dokument anzeige
                 }
-
 
                 //foreach Schleife um die Erfüllungen für alle in der Datenbank hinterlegten Produkte aus das Pdf zu drucken
                 foreach (ProjectProduct projprod in allProductsForThisProject)
                 {
-
-                    try         //try catch Anweisung um Fehler abzufangen. Fehler: Für das Produkt sind keine oder nicht alle Erfülungen in der DB hinterlegt
+                    //try catch Anweisung um Fehler abzufangen. Fehler: Für das Produkt sind keine oder nicht alle Erfülungen in der DB hinterlegt
+                    try         
                     {
+                        //Abfrage der Erfüllungen
                         Fulfillment fulfillForThisProdAndThisCrit = fufiList.Single(
                                 fufi => fufi.Project_Id == projectCriterion.Project_Id &&
                                         fufi.Product_Id == projprod.Product_Id &&
@@ -277,7 +280,6 @@ namespace NWAT.Printer
                         if (fulfillForThisProdAndThisCrit.Fulfilled == true)
                         {
                             CritTable.AddCell(new Paragraph("x", CritStructFont));
-
                         }
                         else
                         {
@@ -287,15 +289,13 @@ namespace NWAT.Printer
 
                     catch { throw new ApplicationException("Warnung!\n Nicht für alle Produkte des Projekts sind Erfüllungen hinterlegt! Bitte überprüfen Sie Ihre Eingaben! "); }
 
-                        //Hier wird der Name dem Paragraphen productName hinzugefügt
-                        productName.Add("Prd. " + i.ToString()+ "     -     "+ projprod.Product.Name + "\n");     
-                        i++;            //Gleichzeitig wird noch gesagt um welche Produkte es sich handelt
+                        //Gleichzeitig wird noch gesagt um welche Produkte es sich handelt
+                        productName.Add("Prd. " + i.ToString()+ "     -     "+ projprod.Product.Name + "\n");
+       
+                    i++;            
 
-                }
-
-                
-                iCount++;       //Erhöhe Variable Count - Relevant für if-Schleife zum Printen der Produktnamen auf dem Pdf
-               
+                }       
+                iCount++;       //Erhöhe Variable Count - Relevant für if-Schleife zum Printen der Produktnamen auf dem Pdf         
             }
            
         }
@@ -360,14 +360,11 @@ namespace NWAT.Printer
                         ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(i.ToString(), BlackFont), pageNumberBottomPosition, 15f, 0);
                         //Projekt Name
                         ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(Project.Name.ToString(), BlackFont), 400, 15f, 0);
-
                     }
                 }
                 bytes = stream.ToArray();
             }
             File.WriteAllBytes(save.FileName, bytes);
-
         }
-
     }
 }

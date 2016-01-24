@@ -147,7 +147,8 @@ namespace NWAT
 
         private void btn_CurrProjProdAnalShow_Click(object sender, EventArgs e)
         {
-
+            AnalysePrinter analyseObject = new AnalysePrinter(Project.Project_Id);
+            analyseObject.PrintAnalysisResult();
         }
 
         private void btn_Balance_Click(object sender, EventArgs e)

@@ -20,16 +20,15 @@ using iTextSharp.text.pdf.draw;
 
 namespace NWAT.Printer
 {
-
     class FulfillmentForEachProductPrinter
     {
-        
-        SaveFileDialog SfdFulfillment = new SaveFileDialog();       //Objekt vom Typ SaveFileDialog
+        //Objekt vom Typ SaveFileDialog
+        SaveFileDialog SfdFulfillment = new SaveFileDialog();       
         private Project _projectid;
         private Product _productid;
         private Fulfillment _fulfilled;
 
-        //Benötigte Properties für Project, Product und Fulfillment
+        //Benötigte Properties
          public Project Project
          {
              get { return _projectid; }
@@ -78,7 +77,7 @@ namespace NWAT.Printer
              set { _fulfillmentController = value; }
          }
 
-        //Konstruktor
+        //Konstruktor - Werden ProjectId und ProductId als Parameter übergeben
          public FulfillmentForEachProductPrinter(int projectId, int productId)
          {
              this.ProjCritContr = new ProjectCriterionController();
@@ -102,19 +101,23 @@ namespace NWAT.Printer
 
         public void CreateFulfillmentForEachProductPdf()
         {
-            
+            //Benötigte Listen die von den Controllern übergeben werden 
             Product products = this.ProjProduct.GetProductById(this.Product.Product_Id);    //Get Product by Id from Database
             List<ProjectCriterion> baseCriterions = this.ProjCritContr.GetBaseProjectCriterions(this.Project.Project_Id); //Get all base Criterions
             
-
             SfdFulfillment.Filter = "Pdf File |*.pdf";
             if (SfdFulfillment.ShowDialog() == DialogResult.OK)
             {
+                //Dokument erstellen und A4 als Format festlegen
                 Document FulfillmentPrinter = new Document(iTextSharp.text.PageSize.A4.Rotate());
-                FulfillmentPrinter.SetMargins(50, 200, 50, 125); //Seitenränder definieren
-                try //try catch um Fehler abzufangen wenn eine gleichnamige PDF noch geöffnet ist
+                //Seitenränder definieren
+                FulfillmentPrinter.SetMargins(50, 200, 50, 125);
+
+                //try catch um Fehler abzufangen wenn eine gleichnamige PDF noch geöffnet ist
+                try 
                 {  
                     PdfWriter writer = PdfWriter.GetInstance(FulfillmentPrinter, new FileStream(SfdFulfillment.FileName, FileMode.Create));
+                    //Timestamp
                     writer.PageEvent = new PdfPageEvents();
                 }
                 catch (Exception) {MessageBox.Show(String.Format(SfdFulfillment.FileName + " noch geöffnet! Bitte Schließen!"));}
@@ -125,21 +128,28 @@ namespace NWAT.Printer
                 //Überschrift und nötige Formatierung setzen (Schriftart, Fett Druck, Schriftgröße)        
                 Font arialBold = FontFactory.GetFont("Arial_BOLD", 10, Font.BOLD);
 
-                //Erstellen einer Pdf Tabelle in der die Daten aus der Datenbank ausgegeben werden
-
+                //Erstellen der Pdf Tabelle in der die Daten aus der Datenbank ausgegeben werden
                 PdfPTable CritTable = new PdfPTable(4);
-                float[] widths = { 300f, 5f, 15f, 100f }; //Relative Breite der Spalten in Relation zur gesamten Tabellengröße
-                CritTable.DefaultCell.Border = 1;      // Die Grenzen der Tabelle unsichtbar machen
-                CritTable.SetWidths(widths);          //Relationale Breiten der Tabellenspalten fixen
-                CritTable.HeaderRows = 1;            //Anzeigen der Überschriften auf jeder Seite des Dokuments
+                //Relative Breite der Spalten in Relation zur gesamten Tabellengröße
+                float[] widths = { 300f, 5f, 15f, 100f };
+                // Die Grenzen der Tabelle teilweise sichtbar machen
+                CritTable.DefaultCell.Border = 1;
+                //Relationale Breiten der Tabellenspalten an die Tabelle übergeben
+                CritTable.SetWidths(widths);
+                //Anzeigen der Überschriften auf jeder Seite des Dokuments
+                CritTable.HeaderRows = 1;
 
-                CritTable.AddCell(new Paragraph("Produkt-Einzeldarstellung   -   " + products.Name, arialBold)); //Name des Produkts wird mit angezeigt
-                CritTable.AddCell(new Paragraph(" ", arialBold));                   //Leere Zelle sorgt für Abstand - Formatierungszwecke
+                //Name des Produkts wird mit angezeigt
+                CritTable.AddCell(new Paragraph("Produkt-Einzeldarstellung   -   " + products.Name, arialBold));
+                //Leere Zelle sorgt für Abstand - Formatierungszwecke
+                CritTable.AddCell(new Paragraph(" ", arialBold));                  
                 CritTable.AddCell(new Paragraph("E", arialBold));
                 CritTable.AddCell(new Paragraph("Kommentar", arialBold));
 
+                //Ausrichtung Links
                 CritTable.HorizontalAlignment = 0;
-                CritTable.TotalWidth = 650f; //Totale Breite der "Tabelle"
+                //Totale Breite der "Tabelle"
+                CritTable.TotalWidth = 650f; 
                 CritTable.LockedWidth = true;
 
                 //Methodenaufruf
@@ -151,16 +161,15 @@ namespace NWAT.Printer
                 //Close Dokument - Bearbeitung Beenden
                 FulfillmentPrinter.Close();
 
-
                 //Aufrufen der Hilfsmethode (aus Klasse CriterionStructurePrinter)- Seitenzahl und den Projektnamen auf Pdf     
                 CriterionStructurePrinter PageNumberNameObject = new CriterionStructurePrinter(Project.Project_Id);
                 PageNumberNameObject.GetPageNumber(SfdFulfillment, 800);
 
+                //Meldung an den User nach erfolgreicher Erstellung
                 MessageBox.Show("Pdf erfolgreich erstellt!");
 
                 //PDf wird automatisch geöffnet nach der erfolgreichen Speicherung
                 System.Diagnostics.Process.Start(SfdFulfillment.FileName);
-
             }
         }
 
@@ -172,19 +181,15 @@ namespace NWAT.Printer
 
         private void PrintCriterionStructure(ref PdfPTable CritTable)
         {
-
-
-
             //Übergebene Liste von Methode "GetSortedCriterionStructure()" in Liste sortedProjectCriterionStructure schreiben
-
             List<ProjectCriterion> sortedProjectCriterionStructure = this.ProjCritContr.GetSortedCriterionStructure(this.Project.Project_Id);
-            // dict: layer => enum
+            
+            // Generische Liste - Dictionary Wertepaar vom Typ int - Schlüssel und Wert
             Dictionary<int, int> enumerations = new Dictionary<int, int>() { { 1, 0 } };
 
             //Foreach-Schleife druckt sortierte Kriterien auf das Pdf Dokument
             foreach (ProjectCriterion projectCriterion in sortedProjectCriterionStructure)
             {
-
                 //Verbindung zu Erfüllungsdaten aus der Datenbank
                 Fulfillment fulfillmentForCurrtentCrit = _fulfillmentForEachProduct.SingleOrDefault(fufi => fufi.Criterion_Id == projectCriterion.Criterion_Id);
 
@@ -194,14 +199,13 @@ namespace NWAT.Printer
                     throw new NWATException(String.Format("Nicht für alle Kriterien zu diesem Produkt ist ein Erfüllungseintrag hinterlegt: \n Erfüllung für Kriterien ID {0} konnte nicht gefunden werden ", projectCriterion.Criterion_Id)); 
                 }
 
-
                 //Definieren der intend Variable um die richtige "Einrückung" auf dem Pdf Dokument erzielen zu können
                 int layer = projectCriterion.Layer_Depth;
                 int factor = 25;
                 int intend;
-
                 intend = layer * factor;
 
+                //Aufzählunszahlen für die Kriterienstruktur in einen string schreiben
                 string enumeration = GetEnumerationForCriterion(ref enumerations, layer);
 
                 //Schriftgröße der angezeigten Kriterienstruktur bestimmen
@@ -210,14 +214,21 @@ namespace NWAT.Printer
                 //Paragraph der die Zellen befüllt
                 string CritsEnumeration = "[" + enumeration + "]" + " " + projectCriterion.Criterion.Description.ToString();
 
+                //Neuer Paragraph der den string übergeben bekommt
                 Paragraph para = new Paragraph(CritsEnumeration, CritStructFont);
-                para.IndentationLeft = intend;      //Einrückungsfaktor, das zugehörige Kriterien untereinander stehen
+                //Einrückungsfaktor, das zugehörige Kriterien untereinander stehen
+                para.IndentationLeft = intend;
+                //Neue Tabellenzelle in der die Kriterienbeschreibungen reingeschrieben werden
                 PdfPCell Crits = new PdfPCell();
+                //Der Zelle den Paragraphen übergeben
                 Crits.AddElement(para);
+                //Anzeigen von Linien im Pdf
                 Crits.Border = 1;
                 string comment = "";
+                //Die Pdf Zellen an die Pdf Tabelle übergeben
                 CritTable.AddCell(Crits);
                 CritTable.AddCell("");
+
                 //If Abfrage - Wenn Kriterium erfüllt dann setzte ein Kreuz, wenn nicht setzte ein -
                 if (!fulfillmentForCurrtentCrit.Fulfilled)
                 {

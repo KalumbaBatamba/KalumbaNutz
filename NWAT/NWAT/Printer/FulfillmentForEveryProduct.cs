@@ -14,19 +14,19 @@ using iTextSharp.text.log;
 using iTextSharp.text.pdf.draw;
 
 /// <summary>
-/// Klasse um die Erfüllung der Kriterien für ALLE Produkte in einer PDF Datei zu zeigen
+/// Klasse um die Erfüllung der Kriterien für ALLE Produkte eines Projekts in einer PDF Datei zu zeigen
 /// </summary>
 /// Erstellt von Adrian Glasnek
 
 namespace NWAT.Printer
 {
-
-
     class FulfillmentForEveryProduct
     {
-        
-        Document FulfillmentPrinter = new Document(iTextSharp.text.PageSize.A4.Rotate());       //Eigentliches Dokument erstellen vom typ Document
-        SaveFileDialog SfdFulfillment = new SaveFileDialog();       //Objekt vom Typ SaveFileDialog
+        //Dokument erstellen und festlegen das es in einem A4 Format erstellt wrid      
+        Document FulfillmentPrinter = new Document(iTextSharp.text.PageSize.A4.Rotate());
+        //Objekt vom Typ SaveFileDialog
+        SaveFileDialog SfdFulfillment = new SaveFileDialog();   
+    
         private Project _projectid;
         private Product _productid;
         private Fulfillment _fulfilled;
@@ -58,8 +58,6 @@ namespace NWAT.Printer
             set { _fufiList = value; }
         }
 
-
-
         private ProjectCriterionController _projectCriterionController;
         public ProjectCriterionController ProjCritContr
         {
@@ -81,7 +79,7 @@ namespace NWAT.Printer
             set { _fulfillmentController = value; }
         }
 
-        //Konstruktor
+        //Konstruktor - Wird ProjectId als Parameter übergeben
         public FulfillmentForEveryProduct(int projectId)
         {
             this.ProjCritContr = new ProjectCriterionController();
@@ -98,7 +96,7 @@ namespace NWAT.Printer
 
         public void CreateFulfillmentForEveryProductPdf()
         {
-           
+            //Benötigte Listen die von den Controllern übergeben werden 
             ProjectProductController projprodContr = new ProjectProductController();
             List<ProjectProduct> allProductsForThisProject = projprodContr.GetAllProjectProductsForOneProject(this.Project.Project_Id);
             List<ProjectCriterion> baseCriterions = this.ProjCritContr.GetBaseProjectCriterions(this.Project.Project_Id); //Get all base Criterions
@@ -106,11 +104,14 @@ namespace NWAT.Printer
             SfdFulfillment.Filter = "Pdf File |*.pdf";
             if (SfdFulfillment.ShowDialog() == DialogResult.OK)
             {
-                
-                FulfillmentPrinter.SetMargins(50, 200, 50, 125); //Seitenränder definieren
-                try //try catch um Fehler abzufangen wenn eine gleichnamige PDF noch geöffnet ist
+                //Seitenränder definieren
+                FulfillmentPrinter.SetMargins(50, 200, 50, 125);
+
+                //try catch um Fehler abzufangen wenn eine gleichnamige PDF noch geöffnet ist
+                try 
                 {
                     PdfWriter writer = PdfWriter.GetInstance(FulfillmentPrinter, new FileStream(SfdFulfillment.FileName, FileMode.Create));
+                    //Timestamp
                     writer.PageEvent = new PdfPageEvents();
                 }
                 catch (Exception) { MessageBox.Show(String.Format(SfdFulfillment.FileName + " noch geöffnet! Bitte Schließen!")); }
@@ -132,6 +133,11 @@ namespace NWAT.Printer
 
                 //Tabelle in der die Kriterien reingeschrieben werden - Tabelle zwecks besserer Darstellung gewählt
                 PdfPTable CritTable = new PdfPTable(countProducts + 3);
+
+                //Anzeigen der Überschriften auf jeder Seite des Dokuments
+                CritTable.HeaderRows = 1;
+
+                //int der die Anzahl der festen Spalten und die variable Anzahl der Produkte enthält
                 int numberOfCells = countProducts + 3;
                
                 // Je nach Anzahl der Produkte in der Datenbank wir die relative Spaltenbreite gesetzt 
@@ -145,26 +151,29 @@ namespace NWAT.Printer
                 if (numberOfCells == 10) { float[] widths = { 20f, 2f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f }; CritTable.SetWidths(widths); ;}
                 if (numberOfCells >= 11) { throw new System.ArgumentException("Die Anzahl der maximal darstellbaren Produkte auf einer Seite wurde überschritten!"); }
                 //Ab einer Anzahl von >10 Produkten wird eine Fehlermeldung ausgeworfen das nicht mehr Produkte auf die Seite des Pdfs passen
-                         
-                CritTable.DefaultCell.Border = 1;               // Die Grenzen der Tabelle unsichtbar machen
-                CritTable.HeaderRows = 1;                     //Anzeigen der ersten Zeilen als Überschrift auf jeder Seite des Dokuments
 
-                CritTable.SpacingBefore = 20f;      //Platz zwischen Produktlegende und der Tabelle
+                // Die Grenzen der Tabelle unsichtbar machen
+                CritTable.DefaultCell.Border = 1;
+                //Anzeigen der ersten Zeilen als Überschrift auf jeder Seite des Dokuments
+                CritTable.HeaderRows = 1;
+                //Platz zwischen Produktlegende und der Tabelle
+                CritTable.SpacingBefore = 20f;      
                 CritTable.AddCell(new Paragraph("Tabellarische Übersicht aller Produkte", arialBold));
-                CritTable.AddCell(new Paragraph(" "));                   //Leere Zelle sorgt für Abstand zwischen Header und Erfüllungen 
-                CritTable.AddCell(new Paragraph("*"));      //Kde. steht für die Anforderungen des Kunden
+                //Leere Zelle sorgt für Abstand zwischen Header und Erfüllungen
+                CritTable.AddCell(new Paragraph(" "));                    
+                CritTable.AddCell(new Paragraph("*"));  
+    
                 //Zählt wieviele Produkte in der Datenbank liegen und schreibt dementsprechend viele Spalten auf das Pdf
                 for (int i = 1; i <= allProductsForThisProject.Count(); i++)
                 {
-
                     string prodHeader = "Prd." + i.ToString(); 
-                    CritTable.AddCell(new Paragraph(prodHeader,  products));
-                 
+                    CritTable.AddCell(new Paragraph(prodHeader,  products));          
                 }
 
-
+                //Anordnung 0=> Linke Ausrichtung
                 CritTable.HorizontalAlignment = 0;
-                CritTable.TotalWidth = 700f; //Totale Breite der "Tabelle"
+                //Totale Breite der "Tabelle"
+                CritTable.TotalWidth = 700f; 
                 CritTable.LockedWidth = true;
 
                 //Methodenaufruf
@@ -178,12 +187,12 @@ namespace NWAT.Printer
 
 
                 //Aufrufen der Hilfsmethode (aus Klasse CriterionStructurePrinter)- Seitenzahl und den Projektnamen auf Pdf     
-
                 GetPageNumber(SfdFulfillment, 800);
 
+                //Message an User nach erfolgreicher Erstellung des Pdfs
                 MessageBox.Show("Pdf erfolgreich erstellt!");
 
-                //PDf wird automatisch geöffnet nach der erfolgreichen Speicherung
+                //PDf wird automatisch geöffnet nach der erfolgreicher Speicherung
                 System.Diagnostics.Process.Start(SfdFulfillment.FileName);
 
             }
@@ -197,8 +206,9 @@ namespace NWAT.Printer
 
         private void PrintCriterionStructure(ref PdfPTable CritTable)
         {
-
-            Paragraph productName = new Paragraph();            //Paragraph um Namem der Produkte mit den Abkürzungen in der Tabelle verbinden zu können
+            //Paragraph um Namem der Produkte mit den Abkürzungen in der Tabelle verbinden zu können
+            Paragraph productName = new Paragraph();
+            
             //Zugirff auf Erfüllungen der Kriterien für die Produkte aus der Datenbank
             FulfillmentController fufiCont = new FulfillmentController();
             List<Fulfillment> fufiList = fufiCont.GetAllFulfillmentsForOneProject(this.Project.Project_Id);
@@ -208,9 +218,9 @@ namespace NWAT.Printer
             List<ProjectProduct> allProductsForThisProject = projprodContr.GetAllProjectProductsForOneProject(this.Project.Project_Id);
 
             //Übergebene Liste von Methode "GetSortedCriterionStructure()" in Liste sortedProjectCriterionStructure schreiben
-
             List<ProjectCriterion> sortedProjectCriterionStructure = this.ProjCritContr.GetSortedCriterionStructure(this.Project.Project_Id);
-            // dict: layer => enum
+            
+            // Generische Liste - Dictionary Wertepaar vom Typ int - Schlüssel und Wert
             Dictionary<int, int> enumerations = new Dictionary<int, int>() { { 1, 0 } };
 
             //Variablen die in den unten folgenden foreach-Schleifen benötigt werden
@@ -218,65 +228,68 @@ namespace NWAT.Printer
             int countCounter = 1;
             int i = 1;
 
-            
-            Font prodNameFont = FontFactory.GetFont("Arial", 9);    //Font für die Ausgabe der Produktlegende 
+            //Font für die Ausgabe der Produktlegende 
+            Font prodNameFont = FontFactory.GetFont("Arial", 9);    
             productName.Font = prodNameFont;
                 
                 
-                //Foreach-Schleife druckt sortierte Kriterien auf das Pdf Dokument
+            //Foreach-Schleife druckt sortierte Kriterien auf das Pdf Dokument
             foreach (ProjectCriterion projectCriterion in sortedProjectCriterionStructure)
             {
+                //Font definieren für spätere Ausgabe
                 Font CritStructFont = FontFactory.GetFont("Arial", 10);
 
-                
-
-                //Definieren der intend Variable um die richtige "Einrückung" auf dem Pdf Dokument erzielen zu können
+                //Definieren der intend Variable um die richtige "Einrückung", je nach Ebene der Kriterien, auf dem Pdf Dokument erzielen zu können
                 int layer = projectCriterion.Layer_Depth;
                 int factor = 25;
                 int intend;
-
                 intend = layer * factor;
 
+                //Aufzählunszahlen für die Kriterienstruktur in einen string schreiben
                 string enumeration = GetEnumerationForCriterion(ref enumerations, layer);
 
-                //Schriftgröße der angezeigten Kriterienstruktur bestimmen
-                
-
-
-                //Paragraph der die Zellen befüllt
+                //Erst Enumeration und dann Kriterien abbilden 
                 string CritsEnumeration = "[" + enumeration + "]" + " " + projectCriterion.Criterion.Description.ToString();
 
+                //Neuer Paragraph der den string übergeben bekommt
                 Paragraph para = new Paragraph(CritsEnumeration, CritStructFont);
-                para.IndentationLeft = intend;      //Einrückungsfaktor, das zugehörige Kriterien untereinander stehen
-                PdfPCell Crits = new PdfPCell();    //Neue Tabellenzelle in der die Kriterienbeschreibung reingeschrieben wird
-                Crits.AddElement(para);             //Der Zelle den Paragraphen übergeben
-                Crits.Border = 1;                   //Anzeigen von Linien im Pdf
-
+                //Einrückungsfaktor, das zugehörige Kriterien untereinander stehen
+                para.IndentationLeft = intend;
+                //Neue Tabellenzelle in der die Kriterienbeschreibungen reingeschrieben werden
+                PdfPCell Crits = new PdfPCell();
+                //Der Zelle den Paragraphen übergeben
+                Crits.AddElement(para);
+                //Anzeigen von Linien im Pdf
+                Crits.Border = 1;          
+                //Die Pdf Zellen an die Pdf Tabelle übergeben
                 CritTable.AddCell(Crits);
                 CritTable.AddCell("");
+
+                //Abfrage der hinterlegten Zahl für die Kardinalzahl und dementsprechende Handlung
                 if (projectCriterion.Weighting_Cardinal <= 0)
-                {
-                    CritTable.AddCell(new Paragraph("-", CritStructFont));
-                }
+                    {
+                        CritTable.AddCell(new Paragraph("-", CritStructFont));
+                    }
                 else
-                {
-                    CritTable.AddCell(new Paragraph("x", CritStructFont));
-                }
+                    {
+                        CritTable.AddCell(new Paragraph("x", CritStructFont));
+                    }
 
                 //if Schleife damit alle Produktnamen korrekt auf dem Pdf ausgegeben werden
                 if (iCount == countCounter)
-                {
-                    
-                    FulfillmentPrinter.Add(productName);   //Produktname der vergliechenen Produkte auf dem Dokument anzeige
-                }
+                    {
+                    //Produktname der vergliechenen Produkte auf dem Dokument anzeige
+                    FulfillmentPrinter.Add(productName);   
+                    }
 
 
                 //foreach Schleife um die Erfüllungen für alle in der Datenbank hinterlegten Produkte aus das Pdf zu drucken
                 foreach (ProjectProduct projprod in allProductsForThisProject)
                 {
-
-                    try         //try catch Anweisung um Fehler abzufangen. Fehler: Für das Produkt sind keine oder nicht alle Erfülungen in der DB hinterlegt
+                    //try catch Anweisung um Fehler abzufangen. Fehler: Für das Produkt sind keine oder nicht alle Erfülungen in der DB hinterlegt
+                    try         
                     {
+                        //Abfrage der Erfüllungen
                         Fulfillment fulfillForThisProdAndThisCrit = fufiList.Single(
                                 fufi => fufi.Project_Id == projectCriterion.Project_Id &&
                                         fufi.Product_Id == projprod.Product_Id &&
@@ -286,7 +299,6 @@ namespace NWAT.Printer
                         if (fulfillForThisProdAndThisCrit.Fulfilled == true)
                         {
                             CritTable.AddCell(new Paragraph("x", CritStructFont));
-
                         }
                         else
                         {
@@ -296,16 +308,12 @@ namespace NWAT.Printer
 
                     catch { throw new ApplicationException("Warnung!\n Nicht für alle Produkte des Projekts sind Erfüllungen hinterlegt! Bitte überprüfen Sie Ihre Eingaben! "); }
 
-                        //Hier wird der Name dem Paragraphen productName hinzugefügt - Um welche Produkte es sich handelt
-                        
+                        //Hier wird der Name dem Paragraphen productName hinzugefügt - Um welche Produkte es sich handelt 
                         productName.Add("Prd. " + i.ToString()+ "     -     "+ projprod.Product.Name + "\n");     
                         i++;           
-
                 }
-
-                
-                iCount++;       //Erhöhe Variable Count - Relevant für if-Schleife zum Printen der Produktnamen auf dem Pdf
-               
+                //Erhöhe Variable Count - Relevant für if-Schleife zum Printen der Produktnamen auf dem Pdf  
+                iCount++;               
             }
            
         }
@@ -360,24 +368,21 @@ namespace NWAT.Printer
             Font BlackFont = FontFactory.GetFont("Arial", 9, Font.BOLD, BaseColor.BLACK);
             using (MemoryStream stream = new MemoryStream())
             {
-                PdfReader reader = new PdfReader(bytes);
-                using (PdfStamper stamper = new PdfStamper(reader, stream))
+                PdfReader Filereader = new PdfReader(bytes);
+                using (PdfStamper stamper = new PdfStamper(Filereader, stream))
                 {
-                    int pages = reader.NumberOfPages;
+                    int pages = Filereader.NumberOfPages;
                     for (int i = 1; i <= pages; i++)
-                    {
-                        
-                        //Seitenzahl
+                    {                     
+                        //Seitenzahl 
                         ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(i.ToString(), BlackFont), pageNumberBottomPosition, 15f, 0);
                         //Projekt Name
                         ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(Project.Name.ToString(), BlackFont), 400, 15f, 0);
-
                     }
                 }
                 bytes = stream.ToArray();
             }
             File.WriteAllBytes(save.FileName, bytes);
-
         }
 
     }

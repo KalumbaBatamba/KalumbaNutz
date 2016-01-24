@@ -15,7 +15,7 @@ using iTextSharp.text.pdf.draw;
 
 
 /// <summary>
-/// Klasse um eine Rechtschreibprüfung der Kriterienbeschreibungen auf Basis einer ausgegebenen Textdatei durchführen zu können
+/// Klasse um eine Textdatei zu erstellen um die Kriterienbeschreibungen einer Rechtschreibprüfung unterziehen zu können
 /// </summary>
 /// Erstellt von Adrian Glasnek
 /// 
@@ -24,6 +24,7 @@ namespace NWAT.Printer
 {
     public class SpellVerification
     {
+
         private SaveFileDialog SfdCriterionTextFile = new SaveFileDialog();
         private Project _project;
 
@@ -51,43 +52,37 @@ namespace NWAT.Printer
         }
 
          /// <summary>
-         /// Methode zur Textdatei
+         /// Methode zur Erstellung der Textdatei
          /// </summary>
          /// Erstellt von Adrian Glasnek
          /// 
 
         public void CreateTextFileWithCriterions()
         {
-            //Benötigte Verbindung um Daten aus der Datenbank zu holen
-
+            //Zugriff auf benötigte Listen um Daten aus der Datenbank zu holen
             List<ProjectCriterion> baseCriterions = this.ProjCritContr.GetBaseProjectCriterions(this.Project.Project_Id); //Get all base Criterions
             List<ProjectCriterion> sortedProjectCriterionStructure = this.ProjCritContr.GetSortedCriterionStructure(this.Project.Project_Id);
-            Dictionary<int, int> enumerations = new Dictionary<int, int>() { { 1, 0 } };
-
+            
+            //SaveFileDialog starten 
             SfdCriterionTextFile.Filter = "Text File |*.txt";
             if (SfdCriterionTextFile.ShowDialog() == DialogResult.OK)
             {
-                StreamWriter FileWriter = new StreamWriter(SfdCriterionTextFile.OpenFile());
+                StreamWriter FileTextWriter = new StreamWriter(SfdCriterionTextFile.OpenFile());
 
-                FileWriter.Write("Projektkriterien zum Projekt " + this.Project.Name + "\r\n\r\n");
-                FileWriter.Write("ID Beschreibung\r\n\r\n");
+                FileTextWriter.Write("Projektkriterien zum Projekt " + this.Project.Name + "\r\n\r\n");
+                FileTextWriter.Write("ID Beschreibung\r\n\r\n");
 
                 foreach (ProjectCriterion projectCriterion in sortedProjectCriterionStructure)
                 {
-                    
-                    //string der dem Paragraphen übergeben wird, mit den Enumerations und den Kriterien in einer Zeile
-                    string CritsEnumeration = projectCriterion.Criterion.Criterion_Id + "  " + projectCriterion.Criterion.Description.ToString() + "\r\n";
-
-                    FileWriter.Write(CritsEnumeration);
-      
+                    //string der dem Paragraphen übergeben wird, mit den Kriterien
+                    string Crits = projectCriterion.Criterion.Criterion_Id + "  " + projectCriterion.Criterion.Description.ToString() + "\r\n";
+                    FileTextWriter.Write(Crits);
                 }
-          
-                FileWriter.Dispose();
-                FileWriter.Close();
-
+                FileTextWriter.Dispose();
+                FileTextWriter.Close();
             }
-
-            System.Diagnostics.Process.Start(SfdCriterionTextFile.FileName);
+            //Text Dokument nach erfolgreicher Ablage öffnen
+            System.Diagnostics.Process.Start(SfdCriterionTextFile.FileName); 
         }
 
     }
