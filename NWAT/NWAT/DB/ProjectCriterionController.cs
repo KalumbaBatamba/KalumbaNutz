@@ -594,7 +594,7 @@ namespace NWAT.DB
                 }
             } while (hasParent);
 
-            projectCrit.Weighting_Percentage_Project = percentageProjectWeightingValue;
+            projectCrit.Weighting_Percentage_Project = Math.Round(percentageProjectWeightingValue, 6, MidpointRounding.ToEven);
 
             UpdateProjectCriterionDataSet(projectCrit);
         }
@@ -715,68 +715,68 @@ namespace NWAT.DB
             foreach (ProjectCriterion projCrit in projectCriterionsInOneLayer)
             {
                 double percentageLayerWeighting = (double)projCrit.Weighting_Cardinal / (double)sumOfCardinalWeightings;
-                projCrit.Weighting_Percentage_Layer = percentageLayerWeighting;
+                projCrit.Weighting_Percentage_Layer = Math.Round(percentageLayerWeighting,6, MidpointRounding.ToEven);
             }
         }
 
        
 
-        // Erstellt von Weloko Tchokoua
-        public void CalculatePercentageProjectWeighting(ref List<ProjectCriterion> resultProjectCriterions)
-        {
-            int projectId = 0;
-           //List<ProjectCriterion> allProjectCriterions = GetAllProjectCriterionsForOneProject(projectId);
-            List<ProjectCriterion> papa = GetBaseProjectCriterions(projectId);
-            List<ProjectCriterion> basecrit = GetBaseProjectCriterions(projectId);
-            float sumweightinglayeronecrit = 0;
-            float sumweigthinglayerseconddepth =0;
-            float parentprojectweightinglayer =0;
-            //double parentprojectfirstlayer = 0;
+        //// Erstellt von Weloko Tchokoua
+        //public void CalculatePercentageProjectWeighting(ref List<ProjectCriterion> resultProjectCriterions)
+        //{
+        //    int projectId = 0;
+        //   //List<ProjectCriterion> allProjectCriterions = GetAllProjectCriterionsForOneProject(projectId);
+        //    List<ProjectCriterion> papa = GetBaseProjectCriterions(projectId);
+        //    List<ProjectCriterion> basecrit = GetBaseProjectCriterions(projectId);
+        //    float sumweightinglayeronecrit = 0;
+        //    float sumweigthinglayerseconddepth =0;
+        //    float parentprojectweightinglayer =0;
+        //    //double parentprojectfirstlayer = 0;
 
-            foreach (ProjectCriterion all in resultProjectCriterions) 
-            foreach(ProjectCriterion parent in papa)
-            {
-                List<ProjectCriterion> childcrit = GetChildCriterionsByParentId(projectId, parent.Criterion_Id);
+        //    foreach (ProjectCriterion all in resultProjectCriterions)
+        //        foreach (ProjectCriterion parent in papa)
+        //        {
+        //            List<ProjectCriterion> childcrit = GetChildCriterionsByParentId(projectId, parent.Criterion_Id);
 
-                foreach(ProjectCriterion son in childcrit)
-                {
+        //            foreach (ProjectCriterion son in childcrit)
+        //            {
 
-                    if (parent.Criterion_Id == son.Parent_Criterion_Id)
-                    {
-                        UpdateAllPercentageLayerWeightings(projectId);
-                        UpdateLayerDepthForProjectCriterion(projectId, all.Criterion_Id);
-                        int maxlayer = int.MaxValue;
-                        maxlayer = Math.Max(all.Layer_Depth, maxlayer) + 1;
-                        for (all.Layer_Depth = 1; all.Layer_Depth <= maxlayer; all.Layer_Depth--)
-                        {
+        //                if (parent.Criterion_Id == son.Parent_Criterion_Id)
+        //                {
+        //                    UpdateAllPercentageLayerWeightings(projectId);
+        //                    UpdateLayerDepthForProjectCriterion(projectId, all.Criterion_Id);
+        //                    int maxlayer = int.MaxValue;
+        //                    maxlayer = Math.Max(all.Layer_Depth, maxlayer) + 1;
+        //                    for (all.Layer_Depth = 1; all.Layer_Depth <= maxlayer; all.Layer_Depth--)
+        //                    {
 
-                            sumweightinglayeronecrit += (float)son.Weighting_Percentage_Layer.Value;
-                            parentprojectweightinglayer = sumweightinglayeronecrit * (float)parent.Weighting_Percentage_Layer.Value;
+        //                        sumweightinglayeronecrit += (float)son.Weighting_Percentage_Layer.Value;
+        //                        parentprojectweightinglayer = sumweightinglayeronecrit * (float)parent.Weighting_Percentage_Layer.Value;
 
-                            parent.Weighting_Percentage_Project = parentprojectweightinglayer;
-                              foreach (ProjectCriterion papaohneparent in basecrit)
-                               {
-                                  while (son.Layer_Depth == 2)
-                                  {
-                                    sumweigthinglayerseconddepth += (float)son.Weighting_Percentage_Project;
-                                    papaohneparent.Weighting_Percentage_Project = sumweigthinglayerseconddepth;
-                                   }
-
-
-                               }
+        //                        parent.Weighting_Percentage_Project = parentprojectweightinglayer;
+        //                        foreach (ProjectCriterion papaohneparent in basecrit)
+        //                        {
+        //                            while (son.Layer_Depth == 2)
+        //                            {
+        //                                sumweigthinglayerseconddepth += (float)son.Weighting_Percentage_Project;
+        //                                papaohneparent.Weighting_Percentage_Project = sumweigthinglayerseconddepth;
+        //                            }
 
 
-                        }
-                    }
-                    
-            }
+        //                        }
 
 
-                 
-            }
+        //                    }
+        //                }
+
+        //            }
+
+
+
+        //        }
             
             
-        }
+        //}
 
         /// <summary>
         /// Checks if parent exists in project as project criterion.
