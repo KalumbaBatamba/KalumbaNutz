@@ -52,8 +52,13 @@ namespace NWAT.Printer
              ProjectController projCont = new ProjectController();
              this.Project = projCont.GetProjectById(projectId);
          }
-            
-        //Methode um allen in der Datenbank gelisteten Projekte in einer PDF auszugeben
+
+
+         /// <summary>
+         /// Methode um allen in der Datenbank gelisteten Projekte in einer PDF auszugeben
+         /// </summary>
+         /// Erstellt von Adrian Glasnek
+        
 
         public void CreateCriterionStructurePdf()
         {

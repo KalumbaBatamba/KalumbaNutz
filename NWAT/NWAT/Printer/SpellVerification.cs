@@ -50,6 +50,12 @@ namespace NWAT.Printer
              this.Project = projCont.GetProjectById(projectId);
         }
 
+         /// <summary>
+         /// Methode zur Textdatei
+         /// </summary>
+         /// Erstellt von Adrian Glasnek
+         /// 
+
         public void CreateTextFileWithCriterions()
         {
             //Benötigte Verbindung um Daten aus der Datenbank zu holen

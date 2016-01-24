@@ -24,7 +24,7 @@ namespace NWAT.Printer
 
     class FulfillmentForEveryProduct
     {
-
+        
         Document FulfillmentPrinter = new Document(iTextSharp.text.PageSize.A4.Rotate());       //Eigentliches Dokument erstellen vom typ Document
         SaveFileDialog SfdFulfillment = new SaveFileDialog();       //Objekt vom Typ SaveFileDialog
         private Project _projectid;
@@ -90,6 +90,12 @@ namespace NWAT.Printer
 
         }
 
+        /// <summary>
+        /// Methode um Pdf erstellen etc.
+        /// </summary>
+        /// 
+        /// Erstellt von Adrian Glasnek
+
         public void CreateFulfillmentForEveryProductPdf()
         {
            
@@ -109,19 +115,24 @@ namespace NWAT.Printer
                 }
                 catch (Exception) { MessageBox.Show(String.Format(SfdFulfillment.FileName + " noch geöffnet! Bitte Schließen!")); }
 
+                //Überschrift und nötige Formatierung setzen (Schriftart, Fett Druck, Schriftgröße)        
+                Font userNeedFont = FontFactory.GetFont("Arial", 9);
+                Font arialBold = FontFactory.GetFont("Arial_BOLD", 10, Font.BOLD);
+                Font products = FontFactory.GetFont("Arial_BOLD", 7, Font.NORMAL);
+
                 //Dokument öffnen um es bearbeiten zu können
                 FulfillmentPrinter.Open();
 
-                //Überschrift und nötige Formatierung setzen (Schriftart, Fett Druck, Schriftgröße)        
-                Font arialBold = FontFactory.GetFont("Arial_BOLD", 10, Font.BOLD);
-                Font products = FontFactory.GetFont("Arial_BOLD", 7, Font.NORMAL);
-                //Erstellen einer Pdf Tabelle in der die Daten aus der Datenbank ausgegeben werden
+                //Legende zur Erklärung der Symbole
+                Paragraph userNeeds = new Paragraph("    *         -     Anforderungen des Kunden",userNeedFont);
+                FulfillmentPrinter.Add(userNeeds);
 
+                //Anzahl der Produkte eines Projektes in einer int Variable speichern
                 int countProducts = allProductsForThisProject.Count();
 
-                
-                PdfPTable CritTable = new PdfPTable(countProducts + 2);
-                int numberOfCells = countProducts + 2;
+                //Tabelle in der die Kriterien reingeschrieben werden - Tabelle zwecks besserer Darstellung gewählt
+                PdfPTable CritTable = new PdfPTable(countProducts + 3);
+                int numberOfCells = countProducts + 3;
                
                 // Je nach Anzahl der Produkte in der Datenbank wir die relative Spaltenbreite gesetzt 
                 if (numberOfCells == 3) { float[] widths = { 20f, 2f, 1f, }; CritTable.SetWidths(widths); ;}
@@ -130,8 +141,10 @@ namespace NWAT.Printer
                 if (numberOfCells == 6) { float[] widths = { 20, 2, 1, 1, 1, 1 }; CritTable.SetWidths(widths); ;}
                 if (numberOfCells == 7) { float[] widths = { 20f, 2f, 1f, 1f, 1f, 1f, 1f }; CritTable.SetWidths(widths); ;}
                 if (numberOfCells == 8) { float[] widths = { 20f, 2f, 1f, 1f, 1f, 1f, 1f, 1f }; CritTable.SetWidths(widths); ;}
-                if (numberOfCells >= 9) { throw new System.ArgumentException("Die Anzahl der maximal darstellbaren Produkte auf einer Seite wurde überschritten!"); }
-                //Ab einer Anzahl von >8 Produkten wird eine Fehlermeldung ausgeworfen das nicht mehr Produkte auf die Seite des Pdfs passen
+                if (numberOfCells == 9) { float[] widths = { 20f, 2f, 1f, 1f, 1f, 1f, 1f, 1f, 1f }; CritTable.SetWidths(widths); ;}
+                if (numberOfCells == 10) { float[] widths = { 20f, 2f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f }; CritTable.SetWidths(widths); ;}
+                if (numberOfCells >= 11) { throw new System.ArgumentException("Die Anzahl der maximal darstellbaren Produkte auf einer Seite wurde überschritten!"); }
+                //Ab einer Anzahl von >10 Produkten wird eine Fehlermeldung ausgeworfen das nicht mehr Produkte auf die Seite des Pdfs passen
                          
                 CritTable.DefaultCell.Border = 1;               // Die Grenzen der Tabelle unsichtbar machen
                 CritTable.HeaderRows = 1;                     //Anzeigen der ersten Zeilen als Überschrift auf jeder Seite des Dokuments
@@ -139,7 +152,7 @@ namespace NWAT.Printer
                 CritTable.SpacingBefore = 20f;      //Platz zwischen Produktlegende und der Tabelle
                 CritTable.AddCell(new Paragraph("Tabellarische Übersicht aller Produkte", arialBold));
                 CritTable.AddCell(new Paragraph(" "));                   //Leere Zelle sorgt für Abstand zwischen Header und Erfüllungen 
-               
+                CritTable.AddCell(new Paragraph("*"));      //Kde. steht für die Anforderungen des Kunden
                 //Zählt wieviele Produkte in der Datenbank liegen und schreibt dementsprechend viele Spalten auf das Pdf
                 for (int i = 1; i <= allProductsForThisProject.Count(); i++)
                 {
@@ -184,8 +197,8 @@ namespace NWAT.Printer
 
         private void PrintCriterionStructure(ref PdfPTable CritTable)
         {
-            
 
+            Paragraph productName = new Paragraph();            //Paragraph um Namem der Produkte mit den Abkürzungen in der Tabelle verbinden zu können
             //Zugirff auf Erfüllungen der Kriterien für die Produkte aus der Datenbank
             FulfillmentController fufiCont = new FulfillmentController();
             List<Fulfillment> fufiList = fufiCont.GetAllFulfillmentsForOneProject(this.Project.Project_Id);
@@ -205,7 +218,7 @@ namespace NWAT.Printer
             int countCounter = 1;
             int i = 1;
 
-            Paragraph productName = new Paragraph();            //Paragraph um Namem der Produkte mit den Abkürzungen in der Tabelle verbinden zu können
+            
             Font prodNameFont = FontFactory.GetFont("Arial", 9);    //Font für die Ausgabe der Produktlegende 
             productName.Font = prodNameFont;
                 
@@ -213,7 +226,9 @@ namespace NWAT.Printer
                 //Foreach-Schleife druckt sortierte Kriterien auf das Pdf Dokument
             foreach (ProjectCriterion projectCriterion in sortedProjectCriterionStructure)
             {
+                Font CritStructFont = FontFactory.GetFont("Arial", 10);
 
+                
 
                 //Definieren der intend Variable um die richtige "Einrückung" auf dem Pdf Dokument erzielen zu können
                 int layer = projectCriterion.Layer_Depth;
@@ -225,7 +240,7 @@ namespace NWAT.Printer
                 string enumeration = GetEnumerationForCriterion(ref enumerations, layer);
 
                 //Schriftgröße der angezeigten Kriterienstruktur bestimmen
-                Font CritStructFont = FontFactory.GetFont("Arial", 10);
+                
 
 
                 //Paragraph der die Zellen befüllt
@@ -239,6 +254,14 @@ namespace NWAT.Printer
 
                 CritTable.AddCell(Crits);
                 CritTable.AddCell("");
+                if (projectCriterion.Weighting_Cardinal <= 0)
+                {
+                    CritTable.AddCell(new Paragraph("-", CritStructFont));
+                }
+                else
+                {
+                    CritTable.AddCell(new Paragraph("x", CritStructFont));
+                }
 
                 //if Schleife damit alle Produktnamen korrekt auf dem Pdf ausgegeben werden
                 if (iCount == countCounter)
@@ -273,9 +296,10 @@ namespace NWAT.Printer
 
                     catch { throw new ApplicationException("Warnung!\n Nicht für alle Produkte des Projekts sind Erfüllungen hinterlegt! Bitte überprüfen Sie Ihre Eingaben! "); }
 
-                        //Hier wird der Name dem Paragraphen productName hinzugefügt
+                        //Hier wird der Name dem Paragraphen productName hinzugefügt - Um welche Produkte es sich handelt
+                        
                         productName.Add("Prd. " + i.ToString()+ "     -     "+ projprod.Product.Name + "\n");     
-                        i++;            //Gleichzeitig wird noch gesagt um welche Produkte es sich handelt
+                        i++;           
 
                 }
 
@@ -342,6 +366,7 @@ namespace NWAT.Printer
                     int pages = reader.NumberOfPages;
                     for (int i = 1; i <= pages; i++)
                     {
+                        
                         //Seitenzahl
                         ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(i.ToString(), BlackFont), pageNumberBottomPosition, 15f, 0);
                         //Projekt Name
