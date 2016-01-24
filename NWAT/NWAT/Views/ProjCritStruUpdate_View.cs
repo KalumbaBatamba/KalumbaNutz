@@ -124,12 +124,17 @@ namespace NWAT
                // var str = row.Cells[1].Value.GetType();
                 //    MessageBox.Show("Var = " + str);
                 i++;
-                if (row.Cells[2].Value != null)
+             //   fromList.Parent_Criterion_Id = (int)row.Cells[2].Value;
+                if (row.Cells[2].Value == null)
+                {
+                    fromList.Parent_Criterion_Id = null;
+                    //(int)row.Cells[2].Value;
+                }
+                else
                 {
                     fromList.Parent_Criterion_Id = (int)row.Cells[2].Value;
-
-                    projCritCont.UpdateProjectCriterionInDb(fromList);
                 }
+                projCritCont.UpdateProjectCriterionInDb(fromList);
             }
         }
 
