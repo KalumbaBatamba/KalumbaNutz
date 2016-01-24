@@ -59,7 +59,8 @@ namespace NWAT
 
 
                 dataGridView_CritStruUpd.Rows.Clear();
-                var CritBindingList = new BindingList<ProjectCriterion>(ProjCrits);
+                refreshGrid();
+  /*              var CritBindingList = new BindingList<ProjectCriterion>(ProjCrits);
                 var CritSource = new BindingSource(CritBindingList, null);
                 dataGridView_CritStruUpd.DataSource = ProjCrits;
                 dataGridView_CritStruUpd.Columns.Remove("Project_Id");
@@ -95,7 +96,7 @@ namespace NWAT
                 //dataGridView_CritStruUpd.Columns[5].Width = 350;
                 //dataGridView_CritStruUpd.Columns[5].ReadOnly = true;
 
-
+*/
             }
         }
         private void GetProjectCritStructure()
@@ -136,8 +137,19 @@ namespace NWAT
                 }
              projCritCont.UpdateProjectCriterionInDb(fromList);
             }
-           
+            refreshGrid();
     //        this.Close();
+           
+      
+        }
+
+        private void dataGridView_CritStruUpd_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+         
+        }
+
+        private void refreshGrid()
+        {
             using (ProjectCriterionController proCriCont = new ProjectCriterionController())
             {
                 ProjCrits = proCriCont.GetSortedCriterionStructure(ProjectId);
@@ -171,16 +183,9 @@ namespace NWAT
                 dataGridView_CritStruUpd.Columns[2].DisplayIndex = 1;
                 dataGridView_CritStruUpd.Columns[6].DisplayIndex = 3;
                 dataGridView_CritStruUpd.Columns[6].Width = 200;
-        
+
             }
-      
         }
-
-        private void dataGridView_CritStruUpd_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-         
-        }
-
         private void btn_refresh_Click(object sender, EventArgs e)
         {
     
