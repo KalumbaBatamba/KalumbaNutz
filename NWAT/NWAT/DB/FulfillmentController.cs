@@ -145,6 +145,7 @@ namespace NWAT.DB
                                                                                                 && fulfillment.Criterion_Id == criterionId);
                 fulfillmentFromDb.Fulfilled = alteredFulfillment.Fulfilled;
                 fulfillmentFromDb.Comment = alteredFulfillment.Comment;
+                base.DataContext.SubmitChanges();
             }
             else
             {
