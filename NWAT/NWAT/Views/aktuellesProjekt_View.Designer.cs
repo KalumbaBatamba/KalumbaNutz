@@ -45,6 +45,7 @@
             this.btnCurrProjProdFulfPrint = new System.Windows.Forms.Button();
             this.groupBox_CurrProjAnalys = new System.Windows.Forms.GroupBox();
             this.btn_CurrProjProdAnalShow = new System.Windows.Forms.Button();
+            this.btn_CurrProjCritStruPrintCostumer = new System.Windows.Forms.Button();
             this.groupBox_CurrProjCrits.SuspendLayout();
             this.groupBox_CurrProjProds.SuspendLayout();
             this.groupBox_CurrProjAnalys.SuspendLayout();
@@ -93,15 +94,16 @@
             // groupBox_CurrProjCrits
             // 
             this.groupBox_CurrProjCrits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox_CurrProjCrits.Controls.Add(this.btn_CurrProjCritStruPrintCostumer);
             this.groupBox_CurrProjCrits.Controls.Add(this.btn_ProjCritExport);
             this.groupBox_CurrProjCrits.Controls.Add(this.btn_Balance);
             this.groupBox_CurrProjCrits.Controls.Add(this.btn_CurrProjKritAssign);
             this.groupBox_CurrProjCrits.Controls.Add(this.btn_CurrProjCritStruShow);
             this.groupBox_CurrProjCrits.Controls.Add(this.btn_CurrProjCritStruUpdate);
             this.groupBox_CurrProjCrits.Controls.Add(this.btn_CurrProjCritStruPrint);
-            this.groupBox_CurrProjCrits.Location = new System.Drawing.Point(7, 265);
+            this.groupBox_CurrProjCrits.Location = new System.Drawing.Point(7, 235);
             this.groupBox_CurrProjCrits.Name = "groupBox_CurrProjCrits";
-            this.groupBox_CurrProjCrits.Size = new System.Drawing.Size(164, 201);
+            this.groupBox_CurrProjCrits.Size = new System.Drawing.Size(164, 227);
             this.groupBox_CurrProjCrits.TabIndex = 20;
             this.groupBox_CurrProjCrits.TabStop = false;
             this.groupBox_CurrProjCrits.Text = "Projektkriterien";
@@ -119,7 +121,7 @@
             // 
             // btn_Balance
             // 
-            this.btn_Balance.Location = new System.Drawing.Point(6, 164);
+            this.btn_Balance.Location = new System.Drawing.Point(6, 193);
             this.btn_Balance.Name = "btn_Balance";
             this.btn_Balance.Size = new System.Drawing.Size(111, 23);
             this.btn_Balance.TabIndex = 11;
@@ -130,7 +132,7 @@
             // 
             // btn_CurrProjKritAssign
             // 
-            this.btn_CurrProjKritAssign.Location = new System.Drawing.Point(6, 19);
+            this.btn_CurrProjKritAssign.Location = new System.Drawing.Point(5, 19);
             this.btn_CurrProjKritAssign.Name = "btn_CurrProjKritAssign";
             this.btn_CurrProjKritAssign.Size = new System.Drawing.Size(111, 23);
             this.btn_CurrProjKritAssign.TabIndex = 7;
@@ -141,7 +143,7 @@
             // 
             // btn_CurrProjCritStruShow
             // 
-            this.btn_CurrProjCritStruShow.Location = new System.Drawing.Point(6, 48);
+            this.btn_CurrProjCritStruShow.Location = new System.Drawing.Point(5, 48);
             this.btn_CurrProjCritStruShow.Name = "btn_CurrProjCritStruShow";
             this.btn_CurrProjCritStruShow.Size = new System.Drawing.Size(142, 23);
             this.btn_CurrProjCritStruShow.TabIndex = 8;
@@ -152,7 +154,7 @@
             // 
             // btn_CurrProjCritStruUpdate
             // 
-            this.btn_CurrProjCritStruUpdate.Location = new System.Drawing.Point(6, 77);
+            this.btn_CurrProjCritStruUpdate.Location = new System.Drawing.Point(5, 77);
             this.btn_CurrProjCritStruUpdate.Name = "btn_CurrProjCritStruUpdate";
             this.btn_CurrProjCritStruUpdate.Size = new System.Drawing.Size(142, 23);
             this.btn_CurrProjCritStruUpdate.TabIndex = 9;
@@ -163,11 +165,11 @@
             // 
             // btn_CurrProjCritStruPrint
             // 
-            this.btn_CurrProjCritStruPrint.Location = new System.Drawing.Point(5, 135);
+            this.btn_CurrProjCritStruPrint.Location = new System.Drawing.Point(5, 164);
             this.btn_CurrProjCritStruPrint.Name = "btn_CurrProjCritStruPrint";
             this.btn_CurrProjCritStruPrint.Size = new System.Drawing.Size(142, 23);
             this.btn_CurrProjCritStruPrint.TabIndex = 10;
-            this.btn_CurrProjCritStruPrint.Text = "Kriterienstruktur drucken";
+            this.btn_CurrProjCritStruPrint.Text = "Gewichtung drucken";
             this.btn_CurrProjCritStruPrint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_CurrProjCritStruPrint.UseVisualStyleBackColor = true;
             this.btn_CurrProjCritStruPrint.Click += new System.EventHandler(this.btn_CurrProjCritStruPrint_Click);
@@ -178,7 +180,7 @@
             this.groupBox_CurrProjProds.Controls.Add(this.btn_CurrProjProdAssign);
             this.groupBox_CurrProjProds.Controls.Add(this.btn_CurrProjProdFulfCapt);
             this.groupBox_CurrProjProds.Controls.Add(this.btnCurrProjProdFulfPrint);
-            this.groupBox_CurrProjProds.Location = new System.Drawing.Point(177, 265);
+            this.groupBox_CurrProjProds.Location = new System.Drawing.Point(177, 235);
             this.groupBox_CurrProjProds.Name = "groupBox_CurrProjProds";
             this.groupBox_CurrProjProds.Size = new System.Drawing.Size(163, 144);
             this.groupBox_CurrProjProds.TabIndex = 21;
@@ -223,7 +225,7 @@
             // 
             this.groupBox_CurrProjAnalys.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox_CurrProjAnalys.Controls.Add(this.btn_CurrProjProdAnalShow);
-            this.groupBox_CurrProjAnalys.Location = new System.Drawing.Point(346, 265);
+            this.groupBox_CurrProjAnalys.Location = new System.Drawing.Point(346, 235);
             this.groupBox_CurrProjAnalys.Name = "groupBox_CurrProjAnalys";
             this.groupBox_CurrProjAnalys.Size = new System.Drawing.Size(173, 54);
             this.groupBox_CurrProjAnalys.TabIndex = 22;
@@ -240,6 +242,17 @@
             this.btn_CurrProjProdAnalShow.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_CurrProjProdAnalShow.UseVisualStyleBackColor = true;
             this.btn_CurrProjProdAnalShow.Click += new System.EventHandler(this.btn_CurrProjProdAnalShow_Click);
+            // 
+            // btn_CurrProjCritStruPrintCostumer
+            // 
+            this.btn_CurrProjCritStruPrintCostumer.Location = new System.Drawing.Point(5, 135);
+            this.btn_CurrProjCritStruPrintCostumer.Name = "btn_CurrProjCritStruPrintCostumer";
+            this.btn_CurrProjCritStruPrintCostumer.Size = new System.Drawing.Size(142, 23);
+            this.btn_CurrProjCritStruPrintCostumer.TabIndex = 13;
+            this.btn_CurrProjCritStruPrintCostumer.Text = "Kriterienstruktur drucken";
+            this.btn_CurrProjCritStruPrintCostumer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_CurrProjCritStruPrintCostumer.UseVisualStyleBackColor = true;
+            this.btn_CurrProjCritStruPrintCostumer.Click += new System.EventHandler(this.btn_CurrProjCritStruPrintCostumer_Click);
             // 
             // aktuellesProjekt_View
             // 
@@ -283,5 +296,6 @@
         private System.Windows.Forms.Button btn_CurrProjProdAnalShow;
         private System.Windows.Forms.Button btn_Balance;
         private System.Windows.Forms.Button btn_ProjCritExport;
+        private System.Windows.Forms.Button btn_CurrProjCritStruPrintCostumer;
     }
 }

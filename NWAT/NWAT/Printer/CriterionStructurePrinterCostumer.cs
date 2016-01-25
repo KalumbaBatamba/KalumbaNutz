@@ -16,50 +16,50 @@ using iTextSharp.text.pdf.draw;
 
 
 /// <summary>
-/// Klasse um die Kriterienstruktur in einer PDF Datei zu zeigen
+/// Klasse um die Kriterienstruktur in einer PDF Datei zu zeigen um sie an den Kunden weitergeben zu können
 /// </summary>
 /// Erstellt von Adrian Glasnek
 /// 
 
 namespace NWAT.Printer
 {
-    public class CriterionStructurePrinter
+    public class CriterionStructurePrinterCostumer
     {
         //Objekt SfdCriterion erstellen
-         private SaveFileDialog SfdCriterion = new SaveFileDialog();
-         private Project _project;
+        private SaveFileDialog SfdCriterion = new SaveFileDialog();
+        private Project _project;
 
         //Benötigte Properties für Project
-         public Project Project
-         {
-             get { return _project; }
-             set { _project = value; }
-         }
+        public Project Project
+        {
+            get { return _project; }
+            set { _project = value; }
+        }
 
-         private ProjectCriterionController _projectCriterionController;
+        private ProjectCriterionController _projectCriterionController;
 
-         public ProjectCriterionController ProjCritContr
-         {
-             get { return _projectCriterionController; }
-             set { _projectCriterionController = value; }
-         }
+        public ProjectCriterionController ProjCritContr
+        {
+            get { return _projectCriterionController; }
+            set { _projectCriterionController = value; }
+        }
 
-         //Konstruktor
-         public CriterionStructurePrinter(int projectId)
-         {
-             this.ProjCritContr = new ProjectCriterionController();
-             ProjectController projCont = new ProjectController();
-             this.Project = projCont.GetProjectById(projectId);
-         }
+        //Konstruktor
+        public CriterionStructurePrinterCostumer(int projectId)
+        {
+            this.ProjCritContr = new ProjectCriterionController();
+            ProjectController projCont = new ProjectController();
+            this.Project = projCont.GetProjectById(projectId);
+        }
 
 
-         /// <summary>
-         /// Methode um allen in der Datenbank gelisteten Projekte in einer PDF auszugeben
-         /// </summary>
-         /// Erstellt von Adrian Glasnek
-        
+        /// <summary>
+        /// Methode um allen in der Datenbank gelisteten Projekte in einer PDF auszugeben
+        /// </summary>
+        /// Erstellt von Adrian Glasnek
 
-        public void CreateCriterionStructurePdf()
+
+        public void CreateCriterionStructurePdfForCostumer()
         {
 
             //Benötigte Verbindung um Daten aus der Datenbank holen
@@ -74,13 +74,13 @@ namespace NWAT.Printer
                 CriterionStructureDoc.SetMargins(50, 200, 50, 125); //Seitenränder definieren
 
                 //try catch um Fehler abzufangen wenn eine gleichnamige PDF noch geöffnet ist
-                try 
-                {    
+                try
+                {
                     PdfWriter writer = PdfWriter.GetInstance(CriterionStructureDoc, new FileStream(SfdCriterion.FileName, FileMode.Create));
                     //Timestamp
-                    writer.PageEvent = new PdfPageEvents();                 
+                    writer.PageEvent = new PdfPageEvents();
                 }
-                catch (Exception) 
+                catch (Exception)
                 {
                     MessageBox.Show(String.Format("{0}" + " noch geöffnet! Bitte Schließen!", SfdCriterion.FileNames));
                     return;
@@ -91,28 +91,35 @@ namespace NWAT.Printer
 
                 //Überschrift und nötige Formatierung setzen (Schriftart, Fett Druck, Schriftgröße)        
                 Font arial = FontFactory.GetFont("Arial_BOLD", 10, Font.BOLD);
-                Font arialNormal = FontFactory.GetFont("Arial_BOLD", 10, Font.NORMAL);
 
-                 //Erstellen einer Pdf Tabelle in der die Daten aus der Datenbank ausgegeben werden - 4 Spalten werden "übergeben"
+                
+                CriterionStructureDoc.Add(new Paragraph("Kunde: ", arial));
+
+
+
+                //Erstellen einer Pdf Tabelle in der die Daten aus der Datenbank ausgegeben werden - 4 Spalten werden "übergeben"
                 PdfPTable CritTable = new PdfPTable(4);
 
+                //Abstand zwischen "Kunde" der Struktur
+                CritTable.SpacingBefore = 25f;
+
                 //Relative Breite der Spalten in Relation zur gesamten Tabellengröße
-                float[] widths = {300f, 5f, 15f, 100f };
-                // Die Grenzen der Tabelle teilweise sichtbar machen
+                float[] widths = { 300f, 5f, 15f, 100f };
+                // Die Grenzen der Tabelle teilweilse sichtbar machen
                 CritTable.DefaultCell.Border = 1;
                 //Relationale Breiten der Tabellenspalten fixen
                 CritTable.SetWidths(widths);
                 //Anzeigen der Überschriften auf jeder Seite des Dokuments
-                CritTable.HeaderRows = 1;            
+                CritTable.HeaderRows = 1;
                 CritTable.AddCell(new Paragraph("Anforderungen des Anwenders", arial));
                 //Leere Zelle sorgt für Abstand - Formatierungszwecke
-                CritTable.AddCell(new Paragraph(" ", arial));                  
-                CritTable.AddCell(new Paragraph("*", arial));
-                CritTable.AddCell(new Paragraph("Gew.", arialNormal));
-           
+                CritTable.AddCell(new Paragraph(" ", arial));
+                CritTable.AddCell(new Paragraph(" *", arial));
+                CritTable.AddCell(new Paragraph("Kommentar", arial));
+
                 CritTable.HorizontalAlignment = 0;
                 //Totale Breite der "Tabelle"
-                CritTable.TotalWidth = 650f; 
+                CritTable.TotalWidth = 650f;
                 CritTable.LockedWidth = true;
 
                 //Methodenaufruf
@@ -120,14 +127,14 @@ namespace NWAT.Printer
 
                 //Tabelle zum Dokument Adden
                 CriterionStructureDoc.Add(CritTable);
-               
+
                 //Close Dokument - Bearbeitung Beenden
                 CriterionStructureDoc.Close();
 
                 //Aufrufen der Hilfsmethode GetPageNumber - Seitenzahl und den Projektnamen auf Pdf     
                 CriterionStructurePrinter PageNumberObject = new CriterionStructurePrinter(Project.Project_Id);
                 PageNumberObject.GetPageNumber(SfdCriterion, 800);
-                
+
                 //Ausgabe bei erfolgreicher Ausgabe                
                 MessageBox.Show("Pdf erfolgreich erstellt!");
 
@@ -144,56 +151,46 @@ namespace NWAT.Printer
 
         private void PrintCriterionStructure(ref PdfPTable CritTable)
         {
-                //Liste für die sortierte Kriterienstruktur
-                List<ProjectCriterion> sortedProjectCriterionStructure = this.ProjCritContr.GetSortedCriterionStructure(this.Project.Project_Id);
+            //Liste für die sortierte Kriterienstruktur
+            List<ProjectCriterion> sortedProjectCriterionStructure = this.ProjCritContr.GetSortedCriterionStructure(this.Project.Project_Id);
 
-                // Generische Liste - Dictionary Wertepaar vom Typ int - Schlüssel und Wert
-                Dictionary<int, int> enumerations = new Dictionary<int, int>() { { 1, 0 } };
+            // Generische Liste - Dictionary Wertepaar vom Typ int - Schlüssel und Wert
+            Dictionary<int, int> enumerations = new Dictionary<int, int>() { { 1, 0 } };
 
-                //Foreach-Schleife druckt sortierte Kriterien auf das Pdf Dokument
-                foreach (ProjectCriterion projectCriterion in sortedProjectCriterionStructure)
-                {
-                    //Definieren der intend Variable um die richtige "Einrückung" auf dem Pdf Dokument erzielen zu können
-                    int layer = projectCriterion.Layer_Depth;
-                    int factor = 25;
-                    int intend;
-                    intend = layer * factor;
+            //Foreach-Schleife druckt sortierte Kriterien auf das Pdf Dokument
+            foreach (ProjectCriterion projectCriterion in sortedProjectCriterionStructure)
+            {
+                //Definieren der intend Variable um die richtige "Einrückung" auf dem Pdf Dokument erzielen zu können
+                int layer = projectCriterion.Layer_Depth;
+                int factor = 25;
+                int intend;
+                intend = layer * factor;
 
-                    //Paragraph der die Zellen befüllt
-                    string enumeration = GetEnumerationForCriterion(ref enumerations, layer);
-                    
-                    //Schriftgröße der angezeigten Kriterienstruktur bestimmen
-                    Font CritStructFont = FontFactory.GetFont("Arial", 10);
+                //Paragraph der die Zellen befüllt
+                string enumeration = GetEnumerationForCriterion(ref enumerations, layer);
 
-                    //string der dem Paragraphen übergeben wird, mit den Enumerations und den Kriterien in einer Zeile
-                    string CritsEnumeration = "[" +enumeration+"]" + " " + projectCriterion.Criterion.Description.ToString();
+                //Schriftgröße der angezeigten Kriterienstruktur bestimmen
+                Font CritStructFont = FontFactory.GetFont("Arial", 10);
+                Font brackets = FontFactory.GetFont("Arial", 8);
 
-                    Paragraph para = new Paragraph(CritsEnumeration, CritStructFont);
-                    //Einrückungsfaktor, das zugehörige Kriterien untereinander stehen
-                    para.IndentationLeft = intend;      
-                    PdfPCell Crits = new PdfPCell();
-                    Crits.AddElement(para);
+                //string der dem Paragraphen übergeben wird, mit den Enumerations und den Kriterien in einer Zeile
+                string CritsEnumeration = "[" + enumeration + "]" + " " + projectCriterion.Criterion.Description.ToString();
 
-                    //Grenzen der Pdf Zellen auf 1, d.h. Ränder teilweise sichtbar machen
-                    Crits.Border = 1;                   
+                Paragraph para = new Paragraph(CritsEnumeration, CritStructFont);
+                //Einrückungsfaktor, das zugehörige Kriterien untereinander stehen
+                para.IndentationLeft = intend;
+                PdfPCell Crits = new PdfPCell();
+                Crits.AddElement(para);
 
-                    CritTable.AddCell(Crits);
-                    CritTable.AddCell("");
+                //Grenzen der Pdf Zellen auf 1, d.h. teilweise sichtbar machen
+                Crits.Border = 1;
 
-                    //If Abfrage - Wenn eine Gewichtung in der Datenbank hinterlegt ist wird bei den Kriterien ein x gesetzt ansonsten ein -
-                    if (projectCriterion.Weighting_Cardinal <= 0)
-                    {
-                        CritTable.AddCell(new Paragraph("-", CritStructFont));
-                    }
-                    else
-                    {
-                        CritTable.AddCell(new Paragraph("x", CritStructFont));
-                    }
+                CritTable.AddCell(Crits);
+                CritTable.AddCell("");
+                CritTable.AddCell(new Paragraph("[  ]", brackets));
+                CritTable.AddCell("");
+            }
 
-                    string balance = "  " + projectCriterion.Weighting_Cardinal.ToString();
-                    CritTable.AddCell(new Paragraph(balance, CritStructFont));
-                }
-            
         }
 
         /// <summary>
@@ -202,7 +199,7 @@ namespace NWAT.Printer
         /// 
         /// Erstellt von Adrian Glasnek
 
-        public string  GetEnumerationForCriterion(ref Dictionary<int, int> enumerations, int layer)
+        public string GetEnumerationForCriterion(ref Dictionary<int, int> enumerations, int layer)
         {
             int lastLayer = enumerations.Keys.ToList().Max();
 
@@ -255,12 +252,12 @@ namespace NWAT.Printer
                         //Seitenzahl
                         ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(i.ToString(), BlackFont), pageNumberBottomPosition, 15f, 0);
                         //Projekt Name
-                        ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(Project.Name.ToString(), BlackFont), 400, 15f, 0);                  
+                        ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(Project.Name.ToString(), BlackFont), 400, 15f, 0);
                     }
                 }
                 bytes = stream.ToArray();
             }
-            File.WriteAllBytes(save.FileName, bytes);         
+            File.WriteAllBytes(save.FileName, bytes);
         }
     }
 }
