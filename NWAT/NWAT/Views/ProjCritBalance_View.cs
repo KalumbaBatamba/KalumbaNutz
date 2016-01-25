@@ -49,6 +49,10 @@ namespace NWAT
         }
         private void ProjCritBalance_View_Load(object sender, EventArgs e)
         {
+            // Attach DataGridView events to the corresponding event handlers.
+         
+      //       this.dataGridView_ProjCritBalance.CellEndEdit += new
+      //       DataGridViewCellEventHandler(dataGridView_ProjCritBalance_CellEndEdit);
             try
             {
                 using (ProjectCriterionController proCriCont = new ProjectCriterionController())
@@ -99,7 +103,8 @@ namespace NWAT
             catch (FormatException){
             MessageBox.Show("Bitte nur Zahlen eingeben");
             }
-            
+            this.dataGridView_ProjCritBalance.CellValidating += new
+         DataGridViewCellValidatingEventHandler(dataGridView_ProjCritBalance_CellValidating);
         }
 
         private void dataGridView_ProjCritBalance_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -369,6 +374,36 @@ namespace NWAT
         {
 
         }
-        
+  //      public event DataGridViewCellValidatingEventHandler CellValidating();
+
+        private void dataGridView_ProjCritBalance_CellValidating(object sender,   DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 3)
+            {
+                dataGridView_ProjCritBalance.Rows[e.RowIndex].ErrorText = "";
+                int newInteger;
+
+                // Don't try to validate the 'new row' until finished 
+                // editing since there
+                // is not any point in validating its initial value.
+                //      if (dataGridView_ProjCritBalance.Rows[e.RowIndex].IsNewRow) { return; }
+                if (e.FormattedValue.ToString() == "")
+                {
+
+                }
+                else if (!int.TryParse(e.FormattedValue.ToString(),
+                    out newInteger) || newInteger < 0)
+                {
+                    e.Cancel = true;
+                    dataGridView_ProjCritBalance.Rows[e.RowIndex].ErrorText = "the value must be a non-negative integer";
+         //       dataGridView_ProjCritBalance.Rows[e.RowIndex].Cells[3].Value = ProjCrits[e.RowIndex].Weighting_Cardinal ;
+         //      dataGridView_ProjCritBalance.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 9;
+                   
+
+                    MessageBox.Show("Bitte nur Ganzzahlen eintragen");
+                }
+            }
+     //       refreshGrid();
+        }
     }
 }

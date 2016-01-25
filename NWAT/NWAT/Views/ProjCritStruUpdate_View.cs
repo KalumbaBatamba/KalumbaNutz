@@ -98,6 +98,8 @@ namespace NWAT
 
 */
             }
+            this.dataGridView_CritStruUpd.CellValidating += new
+      DataGridViewCellValidatingEventHandler(dataGridView_CritStruUpd_CellValidating);
         }
         private void GetProjectCritStructure()
         {
@@ -190,5 +192,35 @@ namespace NWAT
         {
     
         }
+
+        private void dataGridView_CritStruUpd_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 2)
+            {
+                dataGridView_CritStruUpd.Rows[e.RowIndex].ErrorText = "";
+                int newInteger;
+
+                // Don't try to validate the 'new row' until finished 
+                // editing since there
+                // is not any point in validating its initial value.
+                //      if (dataGridView_ProjCritBalance.Rows[e.RowIndex].IsNewRow) { return; }
+                if (e.FormattedValue.ToString() == "")
+                {
+                  
+                }
+                else if (!int.TryParse(e.FormattedValue.ToString(),
+                    out newInteger) || newInteger < 0)
+                {
+                    e.Cancel = true;
+                    dataGridView_CritStruUpd.Rows[e.RowIndex].ErrorText = "Nur Zahlen erlaubt";
+                    //       dataGridView_ProjCritBalance.Rows[e.RowIndex].Cells[3].Value = ProjCrits[e.RowIndex].Weighting_Cardinal ;
+                    //      dataGridView_ProjCritBalance.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 9;
+                    MessageBox.Show("Bitte nur Ganzzahlen eintragen");
+                }
+                
+            }
+            //       refreshGrid();
+        }
+
     }
 }
