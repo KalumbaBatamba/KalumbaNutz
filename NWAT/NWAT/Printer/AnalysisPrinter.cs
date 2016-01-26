@@ -124,8 +124,8 @@ namespace NWAT.Printer
         public void PrintAnalysisResult()
         {
            
-            ProjectProductController projprodContr = new ProjectProductController();
-            List<ProjectProduct> allProductsForThisProject = projprodContr.GetAllProjectProductsForOneProject(this.Project.Project_Id);
+            
+            
             List<ProjectCriterion> baseCriterions = this.ProjCritContr.GetBaseProjectCriterions(this.Project.Project_Id); //Get all base Criterions
 
             SfdFulfillment.Filter = "Pdf File |*.pdf";
@@ -143,25 +143,28 @@ namespace NWAT.Printer
                 //Dokument öffnen um es bearbeiten zu können
                 FulfillmentPrinter.Open();
 
-                ////int der die Anzahl der festen Spalten und die variable Anzahl der Produkte enthält
-                int countProducts = allProductsForThisProject.Count();
+                Font headerRanking = FontFactory.GetFont("Arial_BOLD", 9, Font.NORMAL);
+                PdfPTable rankingTable = new PdfPTable(3);
+                rankingTable.HorizontalAlignment = 0;
+                rankingTable.DefaultCell.Border = 0;
+                rankingTable.TotalWidth = 200f;
+                float[] widths = { 1f, 4f, 4f, }; 
+                rankingTable.SetWidths(widths);
+
 
                 int prodCounter = 1;
                 //Zählt wieviele Produkte in der Datenbank liegen und schreibt dementsprechend viele Spalten auf das Pdf
                 foreach(AnalysedProduct analysedProd in this.AnalysedProducts)
                 {
-                    //Paragraph um Namen der Produkte mit den Abkürzungen in der Tabelle verbinden zu können
-                    //Font für die Ausgabe der Produktlegende
-                    Paragraph productName = new Paragraph();
-                    Font prodNameFont = FontFactory.GetFont("Arial", 9);
-                    productName.Font = prodNameFont;
-                    productName.Add("Prd. " + prodCounter.ToString() + "     -     " + analysedProd.ProjProd.Product.Name + "     Ergebnis: "+analysedProd.ProductAnalysisResult+"\n");
-                    FulfillmentPrinter.Add(productName);   //Produktname der vergliechenen Produkte auf dem Dokument anzeige
-
+                    rankingTable.AddCell(new Paragraph("Prd. " + prodCounter.ToString(), headerRanking));
+                    rankingTable.AddCell(new Paragraph(analysedProd.ProjProd.Product.Name.ToString(), headerRanking));
+                    rankingTable.AddCell(new Paragraph("Ergebnis: " + analysedProd.ProductAnalysisResult.ToString(), headerRanking));
+                    rankingTable.TotalWidth = 500f;
                     prodCounter++;
                 }
-                 
 
+                FulfillmentPrinter.Add(rankingTable);
+                
                 //Bei einer Anzahl von mehr als 5 Produkten innerhalb eines NWA-Projekts werden jeweils weitere Tabellen mit den restlichen Produkten generiert
                 List<List<AnalysedProduct>> tableLists = GetProdTableLists();
                 int firstProdId = 1;
@@ -181,7 +184,7 @@ namespace NWAT.Printer
                     firstProdId += this.maxProductsInTable;
                     tableNumber++;
                 }
-
+                
                 //Close Dokument - Bearbeitung Beenden
                 FulfillmentPrinter.Close();
 
@@ -200,6 +203,8 @@ namespace NWAT.Printer
         //Methode um das Grundgerüst der Tabellen zu erstellen
         private PdfPTable GetNewProductTable(List<AnalysedProduct> productsForThisTable, int firstProdId, int tableNumber)
         {
+            ProjectProductController projprodContr = new ProjectProductController();
+            int numberOfallProductsForThisProject = projprodContr.GetAllProjectProductsForOneProject(this.Project.Project_Id).Count;
 
             int numOfProdsInThisTable = productsForThisTable.Count;
 
@@ -229,8 +234,17 @@ namespace NWAT.Printer
             CritTable.DefaultCell.Border = 1;               // Die Grenzen der Tabelle unsichtbar machen
             CritTable.HeaderRows = 1;                     //Anzeigen der ersten Zeilen als Überschrift auf jeder Seite des Dokuments
 
-            CritTable.SpacingBefore = 20f;      //Platz zwischen Produktlegende und der Tabelle
-            CritTable.AddCell(new Paragraph(String.Format("Nutzwert - Analyse   [{0}. Teil]", tableNumber), arialBold));
+            //Platz zwischen Produktlegende und der Tabelle
+            CritTable.SpacingBefore = 20f;     
+            if (numberOfallProductsForThisProject > 5)
+            {
+                CritTable.AddCell(new Paragraph(String.Format("Nutzwert - Analyse   [{0}. Teil]", tableNumber), arialBold));
+            }
+            else
+            {
+                CritTable.AddCell(new Paragraph("Nutzwert - Analyse", arialBold));
+            }
+
             CritTable.AddCell(new Paragraph(" "));                   //Leere Zelle sorgt für Abstand zwischen Header und Erfüllungen 
             CritTable.AddCell(new Paragraph("Gew.", products));      //Spaltenüberschriften
             CritTable.AddCell(new Paragraph("Proz.", products));
