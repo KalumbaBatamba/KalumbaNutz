@@ -107,7 +107,7 @@ namespace NWAT
             int selectedIndex = comboBox_SelectProject.SelectedIndex;
             Project selectedItem = (Project)comboBox_SelectProject.SelectedItem;
      //       aktRowProj.ProjID = selectedItem.Project_Id;
-            MessageBox.Show("Selected Item Text: " + selectedItem.Project_Id);
+    //        MessageBox.Show("Selected Item Text: " + selectedItem.Project_Id);
             aktuellesProjekt_View AktProjView = new aktuellesProjekt_View(selectedItem.Project_Id);
             AktProjView.Show();
             Hide();

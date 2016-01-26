@@ -50,7 +50,7 @@ namespace NWAT
                 Project proj = AktProjForm.GetProjectById(Project.Project_Id);
                 String ProjName = proj.Name;
                 String ProjDesc = proj.Description;
-                MessageBox.Show(ProjName + ProjDesc);
+         //       MessageBox.Show(ProjName + ProjDesc);
                 label_CurrProjNameShow.Text = this.Project.Name; //proj.Name;
                 label_CurrProjDescShow.Text = this.Project.Description; //proj.Description;
             }

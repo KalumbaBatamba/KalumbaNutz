@@ -88,72 +88,72 @@ namespace NWAT
                 comboBox_ProjCritProdFulf.SelectedIndex = -1;
          //       comboBox_ProjCritProdFulf.ValueMember = "Product_ID";
             }
-            using (ProjectCriterionController proCriCont = new ProjectCriterionController())
-            {
-                ProjCrits = proCriCont.GetSortedCriterionStructure(Project.Project_Id);
-                using (CriterionController critCon = new CriterionController())
-                {
-                    foreach (ProjectCriterion projCrit in ProjCrits)
-                    {
-                        var singleCritId = critCon.GetCriterionById(projCrit.Criterion_Id);
-                        projCrit.Name = singleCritId.Name.ToString();
-                    }
-                }
+                    using (ProjectCriterionController proCriCont = new ProjectCriterionController())
+                     {
+                         ProjCrits = proCriCont.GetSortedCriterionStructure(Project.Project_Id);
+                         using (CriterionController critCon = new CriterionController())
+                         {
+                             foreach (ProjectCriterion projCrit in ProjCrits)
+                             {
+                                 var singleCritId = critCon.GetCriterionById(projCrit.Criterion_Id);
+                                 projCrit.Name = singleCritId.Name.ToString();
+                             }
+                         }
 
-                //           dataGridView_ProjCritProdFulf.Rows.Clear();
-                var CritBindingList = new BindingList<ProjectCriterion>(ProjCrits);
-                var CritSource = new BindingSource(CritBindingList, null);
-                dataGridView_ProjCritProdFulf.DataSource = ProjCrits;
-                dataGridView_ProjCritProdFulf.Columns.Remove("Project_Id");
-                //   dataGridView_ProjCritProdFulf.Columns.Remove("Criterion_Id");
-                //   dataGridView_ProjCritProdFulf.Columns.Remove("Layer_Depth");
-                //   dataGridView_ProjCritProdFulf.Columns.Remove("Parent_Criterion_Id");
-                dataGridView_ProjCritProdFulf.Columns.Remove("Weighting_Cardinal");
-                dataGridView_ProjCritProdFulf.Columns.Remove("Weighting_Percentage_Layer");
-                dataGridView_ProjCritProdFulf.Columns.Remove("Weighting_Percentage_Project");
-                dataGridView_ProjCritProdFulf.Columns.Remove("Criterion");
-                dataGridView_ProjCritProdFulf.Columns.Remove("ParentCriterion");
-                dataGridView_ProjCritProdFulf.Columns.Remove("Project");
-                DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
-                dataGridView_ProjCritProdFulf.Columns.Add(chk);
-                //   dataGridView_ProjCritProdFulf.Columns[0].CellType = Boolean;
-                chk.Name = "Erfüllung";
-                //   dataGridView_ProjCritProdFulf.Columns[0].CellType = Boolean;
-                //  dataGridView_ProjCritProdFulf.Columns[1].ReadOnly = true;
-                //dataGridView_ProjCritProdFulf.Columns[2].ReadOnly = true;
-                //dataGridView_ProjCritProdFulf.Columns[3].ReadOnly = true;
-                //dataGridView_ProjCritProdFulf.Columns[4].ReadOnly = true;
-                //dataGridView_ProjCritProdFulf.Columns[5].ReadOnly = true;
-                //dataGridView_ProjCritProdFulf.Columns[6].ReadOnly = true;
-                //dataGridView_ProjCritProdFulf.Columns[7].ReadOnly = true;
-                DataGridViewTextBoxColumn bem = new DataGridViewTextBoxColumn();
-                bem.Name = "Bemerkung";
-                dataGridView_ProjCritProdFulf.Columns.Add(bem);
-                dataGridView_ProjCritProdFulf.Columns[4].DisplayIndex = 0;
-                dataGridView_ProjCritProdFulf.Columns[3].DisplayIndex = 1;
-                dataGridView_ProjCritProdFulf.Columns[5].DisplayIndex = 2;
-                dataGridView_ProjCritProdFulf.Columns[1].DisplayIndex = 3;
-                dataGridView_ProjCritProdFulf.Columns[0].DisplayIndex = 4;
-                dataGridView_ProjCritProdFulf.Columns[2].DisplayIndex = 5;
-                //dataGridView_ProjCritProdFulf.Columns[6].Width = 200;
-                dataGridView_ProjCritProdFulf.Columns[0].HeaderText = "C-ID";
-                dataGridView_ProjCritProdFulf.Columns[1].HeaderText = "Layer";
-                dataGridView_ProjCritProdFulf.Columns[2].HeaderText = "P-ID";
-                dataGridView_ProjCritProdFulf.Columns[3].HeaderText = "Name";
-                //         dataGridView_ProjCritProdFulf.Columns[4].HeaderText = "Erfüllung";
-                dataGridView_ProjCritProdFulf.Columns[4].Name = "Erfüllung";
-                dataGridView_ProjCritProdFulf.Columns[0].Width = 50;
-                dataGridView_ProjCritProdFulf.Columns[1].Width = 50;
-                dataGridView_ProjCritProdFulf.Columns[2].Width = 50;
-                dataGridView_ProjCritProdFulf.Columns[4].Width = 50;
-                dataGridView_ProjCritProdFulf.Columns[3].Width = 150;
-                dataGridView_ProjCritProdFulf.Columns[5].Width = 200;
-                foreach (DataGridViewRow row in dataGridView_ProjCritProdFulf.Rows)
-                {
-                    row.Cells["Erfüllung"].Value = false;
-                }
+                         //           dataGridView_ProjCritProdFulf.Rows.Clear();
+                         var CritBindingList = new BindingList<ProjectCriterion>(ProjCrits);
+                         var CritSource = new BindingSource(CritBindingList, null);
+                         dataGridView_ProjCritProdFulf.DataSource = ProjCrits;
+                         dataGridView_ProjCritProdFulf.Columns.Remove("Project_Id");
+                         //   dataGridView_ProjCritProdFulf.Columns.Remove("Criterion_Id");
+                         //   dataGridView_ProjCritProdFulf.Columns.Remove("Layer_Depth");
+                         //   dataGridView_ProjCritProdFulf.Columns.Remove("Parent_Criterion_Id");
+                         dataGridView_ProjCritProdFulf.Columns.Remove("Weighting_Cardinal");
+                         dataGridView_ProjCritProdFulf.Columns.Remove("Weighting_Percentage_Layer");
+                         dataGridView_ProjCritProdFulf.Columns.Remove("Weighting_Percentage_Project");
+                         dataGridView_ProjCritProdFulf.Columns.Remove("Criterion");
+                         dataGridView_ProjCritProdFulf.Columns.Remove("ParentCriterion");
+                         dataGridView_ProjCritProdFulf.Columns.Remove("Project");
+                         DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
+                         dataGridView_ProjCritProdFulf.Columns.Add(chk);
+                         //   dataGridView_ProjCritProdFulf.Columns[0].CellType = Boolean;
+                         chk.Name = "Erfüllung";
+                         //   dataGridView_ProjCritProdFulf.Columns[0].CellType = Boolean;
+                         //  dataGridView_ProjCritProdFulf.Columns[1].ReadOnly = true;
+                         //dataGridView_ProjCritProdFulf.Columns[2].ReadOnly = true;
+                         //dataGridView_ProjCritProdFulf.Columns[3].ReadOnly = true;
+                         //dataGridView_ProjCritProdFulf.Columns[4].ReadOnly = true;
+                         //dataGridView_ProjCritProdFulf.Columns[5].ReadOnly = true;
+                         //dataGridView_ProjCritProdFulf.Columns[6].ReadOnly = true;
+                         //dataGridView_ProjCritProdFulf.Columns[7].ReadOnly = true;
+                         DataGridViewTextBoxColumn bem = new DataGridViewTextBoxColumn();
+                         bem.Name = "Bemerkung";
+                         dataGridView_ProjCritProdFulf.Columns.Add(bem);
+                         dataGridView_ProjCritProdFulf.Columns[4].DisplayIndex = 0;
+                         dataGridView_ProjCritProdFulf.Columns[3].DisplayIndex = 1;
+                         dataGridView_ProjCritProdFulf.Columns[5].DisplayIndex = 2;
+                         dataGridView_ProjCritProdFulf.Columns[1].DisplayIndex = 3;
+                         dataGridView_ProjCritProdFulf.Columns[0].DisplayIndex = 4;
+                         dataGridView_ProjCritProdFulf.Columns[2].DisplayIndex = 5;
+                         //dataGridView_ProjCritProdFulf.Columns[6].Width = 200;
+                         dataGridView_ProjCritProdFulf.Columns[0].HeaderText = "C-ID";
+                         dataGridView_ProjCritProdFulf.Columns[1].HeaderText = "Layer";
+                         dataGridView_ProjCritProdFulf.Columns[2].HeaderText = "P-ID";
+                         dataGridView_ProjCritProdFulf.Columns[3].HeaderText = "Name";
+                         //         dataGridView_ProjCritProdFulf.Columns[4].HeaderText = "Erfüllung";
+                         dataGridView_ProjCritProdFulf.Columns[4].Name = "Erfüllung";
+                         dataGridView_ProjCritProdFulf.Columns[0].Width = 50;
+                         dataGridView_ProjCritProdFulf.Columns[1].Width = 50;
+                         dataGridView_ProjCritProdFulf.Columns[2].Width = 50;
+                         dataGridView_ProjCritProdFulf.Columns[4].Width = 50;
+                         dataGridView_ProjCritProdFulf.Columns[3].Width = 150;
+                         dataGridView_ProjCritProdFulf.Columns[5].Width = 200;
+                         foreach (DataGridViewRow row in dataGridView_ProjCritProdFulf.Rows)
+                         {
+                             row.Cells["Erfüllung"].Value = false;
+                         }
 
-            }
+                     }       
 
             this.dataGridView_ProjCritProdFulf.CellValidating += new
          DataGridViewCellValidatingEventHandler(dataGridView_ProjCritProdFulf_CellValidating);
@@ -186,9 +186,20 @@ namespace NWAT
         private void btn_ProdFulfPrint_Click(object sender, EventArgs e)
         {
             Product selectedItem = (Product)comboBox_ProjCritProdFulf.SelectedItem;
+            if (selectedItem == null )
+            {
+                MessageBox.Show("Bitte erst ein Produkt auswählen.");
+            }
+            else
+            {
+                FulfPrint_View print = new FulfPrint_View(Project.Project_Id, selectedItem.Product_Id);
+                print.Show();
+                //   Hide();
+                //Product selectedItem = (Product)comboBox_ProjCritProdFulf.SelectedItem;
 
-            FulfillmentForEachProductPrinter PrintEachProduct = new FulfillmentForEachProductPrinter(Project.Project_Id, selectedItem.Product_Id);
-            PrintEachProduct.CreateFulfillmentForEachProductPdf();
+                //FulfillmentForEachProductPrinter PrintEachProduct = new FulfillmentForEachProductPrinter(Project.Project_Id, selectedItem.Product_Id);
+                //PrintEachProduct.CreateFulfillmentForEachProductPdf();
+            }
         }
 
         private void dataGridView_ProjCritProdFulf_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -198,39 +209,46 @@ namespace NWAT
 
         private void btn_ProjCritProdFulfSave_Click(object sender, EventArgs e)
         {
-          //  DataGridViewCheckBoxCell oCell;
-            using(FulfillmentController fulCont = new FulfillmentController()){
-                foreach (DataGridViewRow row in dataGridView_ProjCritProdFulf.Rows)
+            if (comboBox_ProjCritProdFulf.SelectedIndex != -1)
+            {
+                //  DataGridViewCheckBoxCell oCell;
+                using (FulfillmentController fulCont = new FulfillmentController())
                 {
-                    Fulfillment fulFi = new Fulfillment();
-                    fulFi.Criterion_Id = (int)row.Cells[0].Value;
-                    fulFi.Project_Id = Project.Project_Id;
-         //           fulFi.Product_Id = aktProd;
-
-                    int selectedIndex = comboBox_ProjCritProdFulf.SelectedIndex;
-                    Product selectedValue = new Product();
-                    selectedValue = (Product)comboBox_ProjCritProdFulf.SelectedItem;
-
-
-                    fulFi.Product_Id = selectedValue.Product_Id;
-                    fulFi.Comment = (string)row.Cells["Bemerkung"].Value;           
-                    if ((bool)row.Cells["Erfüllung"].Value == true)
+                    foreach (DataGridViewRow row in dataGridView_ProjCritProdFulf.Rows)
                     {
-                        fulFi.Fulfilled = true;
-    //                    MessageBox.Show("this cell is checked");
-                    }
-                    else if ((bool)row.Cells["Erfüllung"].Value == false)
-                    {
-                        fulFi.Fulfilled = false;
-  //                      MessageBox.Show("this cell not is checked");
-                    }
-                  //  string Bem = (string)row.Cells["Bemerkung"].Value;  
+                        Fulfillment fulFi = new Fulfillment();
+                        fulFi.Criterion_Id = (int)row.Cells[0].Value;
+                        fulFi.Project_Id = Project.Project_Id;
+                        //           fulFi.Product_Id = aktProd;
 
-                    fulCont.UpdateFulfillmentEntry(fulFi);
+                        int selectedIndex = comboBox_ProjCritProdFulf.SelectedIndex;
+                        Product selectedValue = new Product();
+                        selectedValue = (Product)comboBox_ProjCritProdFulf.SelectedItem;
+
+
+                        fulFi.Product_Id = selectedValue.Product_Id;
+                        fulFi.Comment = (string)row.Cells["Bemerkung"].Value;
+                        if ((bool)row.Cells["Erfüllung"].Value == true)
+                        {
+                            fulFi.Fulfilled = true;
+                            //                    MessageBox.Show("this cell is checked");
+                        }
+                        else if ((bool)row.Cells["Erfüllung"].Value == false)
+                        {
+                            fulFi.Fulfilled = false;
+                            //                      MessageBox.Show("this cell not is checked");
+                        }
+                        //  string Bem = (string)row.Cells["Bemerkung"].Value;  
+
+                        fulCont.UpdateFulfillmentEntry(fulFi);
+                    }
+
                 }
-
             }
-            
+            else 
+            {
+                MessageBox.Show("Sie müssen ein Produkt auswählen.");
+            }
         }
 
         private void comboBox_ProjCritProdFulf_SelectedIndexChanged(object sender, EventArgs e)
@@ -268,84 +286,7 @@ namespace NWAT
                 }
             }
             formloaded++;
-       /*     using (ProjectCriterionController proCriCont = new ProjectCriterionController())
-            {
-                ProjCrits = proCriCont.GetSortedCriterionStructure(Project.Project_Id);
-                using (CriterionController critCon = new CriterionController())
-                {
-                    foreach (ProjectCriterion projCrit in ProjCrits)
-                    {
-                        var singleCritId = critCon.GetCriterionById(projCrit.Criterion_Id);
-                        projCrit.Name = singleCritId.Name.ToString();
-                    }
-                }
-
-                //           dataGridView_ProjCritProdFulf.Rows.Clear();
-                var CritBindingList = new BindingList<ProjectCriterion>(ProjCrits);
-                var CritSource = new BindingSource(CritBindingList, null);
-                dataGridView_ProjCritProdFulf.DataSource = ProjCrits;
-                dataGridView_ProjCritProdFulf.Columns.Remove("Project_Id");
-                //   dataGridView_ProjCritProdFulf.Columns.Remove("Criterion_Id");
-                //   dataGridView_ProjCritProdFulf.Columns.Remove("Layer_Depth");
-                //   dataGridView_ProjCritProdFulf.Columns.Remove("Parent_Criterion_Id");
-                dataGridView_ProjCritProdFulf.Columns.Remove("Weighting_Cardinal");
-                dataGridView_ProjCritProdFulf.Columns.Remove("Weighting_Percentage_Layer");
-                dataGridView_ProjCritProdFulf.Columns.Remove("Weighting_Percentage_Project");
-                dataGridView_ProjCritProdFulf.Columns.Remove("Criterion");
-                dataGridView_ProjCritProdFulf.Columns.Remove("ParentCriterion");
-                dataGridView_ProjCritProdFulf.Columns.Remove("Project");
-                DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
-                dataGridView_ProjCritProdFulf.Columns.Add(chk);
-                //   dataGridView_ProjCritProdFulf.Columns[0].CellType = Boolean;
-                chk.Name = "Erfüllung";
-                //   dataGridView_ProjCritProdFulf.Columns[0].CellType = Boolean;
-                //  dataGridView_ProjCritProdFulf.Columns[1].ReadOnly = true;
-                //dataGridView_ProjCritProdFulf.Columns[2].ReadOnly = true;
-                //dataGridView_ProjCritProdFulf.Columns[3].ReadOnly = true;
-                //dataGridView_ProjCritProdFulf.Columns[4].ReadOnly = true;
-                //dataGridView_ProjCritProdFulf.Columns[5].ReadOnly = true;
-                //dataGridView_ProjCritProdFulf.Columns[6].ReadOnly = true;
-                //dataGridView_ProjCritProdFulf.Columns[7].ReadOnly = true;
-                DataGridViewTextBoxColumn bem = new DataGridViewTextBoxColumn();
-                bem.Name = "Bemerkung";
-                dataGridView_ProjCritProdFulf.Columns.Add(bem);
-                dataGridView_ProjCritProdFulf.Columns[4].DisplayIndex = 0;
-                dataGridView_ProjCritProdFulf.Columns[3].DisplayIndex = 1;
-                dataGridView_ProjCritProdFulf.Columns[5].DisplayIndex = 2;
-                dataGridView_ProjCritProdFulf.Columns[1].DisplayIndex = 3;
-                dataGridView_ProjCritProdFulf.Columns[0].DisplayIndex = 4;
-                dataGridView_ProjCritProdFulf.Columns[2].DisplayIndex = 5;
-                //dataGridView_ProjCritProdFulf.Columns[6].Width = 200;
-                dataGridView_ProjCritProdFulf.Columns[0].HeaderText = "C-ID";
-                dataGridView_ProjCritProdFulf.Columns[1].HeaderText = "Layer";
-                dataGridView_ProjCritProdFulf.Columns[2].HeaderText = "P-ID";
-                dataGridView_ProjCritProdFulf.Columns[3].HeaderText = "Name";
-                //         dataGridView_ProjCritProdFulf.Columns[4].HeaderText = "Erfüllung";
-                dataGridView_ProjCritProdFulf.Columns[4].Name = "Erfüllung";
-                dataGridView_ProjCritProdFulf.Columns[0].Width = 50;
-                dataGridView_ProjCritProdFulf.Columns[1].Width = 50;
-                dataGridView_ProjCritProdFulf.Columns[2].Width = 50;
-                dataGridView_ProjCritProdFulf.Columns[4].Width = 50;
-                dataGridView_ProjCritProdFulf.Columns[3].Width = 150;
-                dataGridView_ProjCritProdFulf.Columns[5].Width = 200;
-                using (FulfillmentController FuFi = new FulfillmentController())
-                {
- //                  FulFill = FuFi.GetAllFulfillmentsForSingleProduct(Project.Project_Id, selectedValue.Product_Id);
- //                   int i = 1;
- //                   bool aktErf = FulFill
-                    
-                    foreach (DataGridViewRow row in dataGridView_ProjCritProdFulf.Rows)
-                    {
-                        row.Cells["Erfüllung"].Value = false;
-//                        row.Cells["Erfüllung"].Value = FulFill.Criterion_Id ;
-//                        row.Cells["Bemerkung"].Value = FulFill[i].Comment;
-//                        i++;
-                    }
-                }
-            }
-
-
- //          updateGrid(); */
+       
         }
         private void updateGrid()
         {
