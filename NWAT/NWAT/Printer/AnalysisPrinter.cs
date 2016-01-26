@@ -130,16 +130,18 @@ namespace NWAT.Printer
                 int numberOfCells = countProducts + 4;
                
                 // Je nach Anzahl der Produkte in der Datenbank wir die relative Spaltenbreite gesetzt 
-                if (numberOfCells == 3) { float[] widths = { 20f, 2f, 1f, }; CritTable.SetWidths(widths); ;}
-                if (numberOfCells == 4) { float[] widths = { 20f, 2f, 1f, 1f, }; CritTable.SetWidths(widths); ;}
-                if (numberOfCells == 5) { float[] widths = { 20, 2, 1, 1, 1 }; CritTable.SetWidths(widths); ;}
-                if (numberOfCells == 6) { float[] widths = { 20, 2, 1, 1, 1, 1 }; CritTable.SetWidths(widths); ;}
-                if (numberOfCells == 7) { float[] widths = { 20f, 2f, 1f, 1f, 1f, 1f, 1f }; CritTable.SetWidths(widths); ;}
-                if (numberOfCells == 8) { float[] widths = { 20f, 2f, 1f, 1f, 1f, 1f, 1f, 1f }; CritTable.SetWidths(widths); ;}
-                if (numberOfCells == 9) { float[] widths = { 20f, 2f, 1f, 1f, 1f, 1f, 1f, 1f, 1f }; CritTable.SetWidths(widths); ;}
-                if (numberOfCells == 10) { float[] widths = { 20f, 2f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f }; CritTable.SetWidths(widths); ;}
-                if (numberOfCells >= 11) { throw new System.ArgumentException("Die Anzahl der maximal darstellbaren Produkte auf einer Seite wurde überschritten!"); }
-                //Ab einer Anzahl von >10 Produkten wird eine Fehlermeldung ausgeworfen das nicht mehr Produkte auf die Seite des Pdfs passen
+                if (numberOfCells == 3) { float[] widths = { 20f, 2f, 2f, }; CritTable.SetWidths(widths); ;}
+                if (numberOfCells == 4) { float[] widths = { 20f, 2f, 1f, 3f, }; CritTable.SetWidths(widths); ;}
+                if (numberOfCells == 5) { float[] widths = { 20, 2f, 2f, 3f, 3f }; CritTable.SetWidths(widths); ;}
+                if (numberOfCells == 6) { float[] widths = { 20, 2f, 2f, 3f, 3f, 3f }; CritTable.SetWidths(widths); ;}
+                if (numberOfCells == 7) { float[] widths = { 20f, 2f, 2f, 3f, 3f, 3f, 3f }; CritTable.SetWidths(widths); ;}
+                if (numberOfCells == 8) { float[] widths = { 20f, 2f, 2f, 3f, 3f, 3f, 3f, 3f }; CritTable.SetWidths(widths); ;}
+                if (numberOfCells == 9) { float[] widths = { 20f, 2f, 2f, 3f, 3f, 3f, 3f, 3f, 3f }; CritTable.SetWidths(widths); ;}
+                if (numberOfCells == 10) { float[] widths = { 20f, 2f, 2f, 3f, 3f, 3f, 3f, 3f, 3f, 3f }; CritTable.SetWidths(widths); ;}
+                if (numberOfCells == 11) { float[] widths = { 20f, 2f, 2f, 3f, 3f, 3f, 3f, 3f, 3f, 3f, 3f }; CritTable.SetWidths(widths); ;}
+                if (numberOfCells == 12) { float[] widths = { 20f, 2f, 2f, 3f, 3f, 3f, 3f, 3f, 3f, 3f, 3f, 3f }; CritTable.SetWidths(widths); ;}
+                if (numberOfCells >= 13) { throw new System.ArgumentException("Die Anzahl der maximal darstellbaren Produkte auf einer Seite wurde überschritten!"); }
+                //Ab einer Anzahl von >8 Produkten wird eine Fehlermeldung ausgeworfen das nicht mehr Produkte auf die Seite des Pdfs passen
                          
                 CritTable.DefaultCell.Border = 1;               // Die Grenzen der Tabelle unsichtbar machen
                 CritTable.HeaderRows = 1;                     //Anzeigen der ersten Zeilen als Überschrift auf jeder Seite des Dokuments
@@ -160,7 +162,8 @@ namespace NWAT.Printer
                 }
 
                 CritTable.HorizontalAlignment = 0;
-                CritTable.TotalWidth = 700f; //Totale Breite der "Tabelle"
+                //Totale Breite der "Tabelle"
+                CritTable.TotalWidth = 700f; 
                 CritTable.LockedWidth = true;
 
                 //Methodenaufruf

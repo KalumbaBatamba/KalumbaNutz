@@ -149,8 +149,10 @@ namespace NWAT.Printer
                 if (numberOfCells == 8) { float[] widths = { 20f, 2f, 1f, 1f, 1f, 1f, 1f, 1f }; CritTable.SetWidths(widths); ;}
                 if (numberOfCells == 9) { float[] widths = { 20f, 2f, 1f, 1f, 1f, 1f, 1f, 1f, 1f }; CritTable.SetWidths(widths); ;}
                 if (numberOfCells == 10) { float[] widths = { 20f, 2f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f }; CritTable.SetWidths(widths); ;}
-                if (numberOfCells >= 11) { throw new System.ArgumentException("Die Anzahl der maximal darstellbaren Produkte auf einer Seite wurde überschritten!"); }
-                //Ab einer Anzahl von >10 Produkten wird eine Fehlermeldung ausgeworfen das nicht mehr Produkte auf die Seite des Pdfs passen
+                if (numberOfCells == 11) { float[] widths = { 20f, 2f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f }; CritTable.SetWidths(widths); ;}
+                if (numberOfCells == 12) { float[] widths = { 20f, 2f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f }; CritTable.SetWidths(widths); ;}
+                if (numberOfCells >= 13) { throw new System.ArgumentException("Die Anzahl der maximal darstellbaren Produkte auf einer Seite wurde überschritten!"); }
+                //Ab einer Anzahl von >8 Produkten wird eine Fehlermeldung ausgeworfen das nicht mehr Produkte auf die Seite des Pdfs passen
 
                 // Die Grenzen der Tabelle unsichtbar machen
                 CritTable.DefaultCell.Border = 1;

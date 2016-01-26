@@ -150,7 +150,7 @@ namespace NWAT
 
         private void btnCurrProjProdFulfPrint_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Alle projektspezifischen Produkte inklusive der Kriterienstruktur und deren Erfüllungen sind auf dem Pdf abgebildet!");
+            MessageBox.Show("Alle projektspezifischen Produkte inklusive der Kriterienstruktur und deren Erfüllungen werden auf dem Pdf abgebildet!");
             FulfillmentForEveryProduct fulfillmentEveryProdPrint = new FulfillmentForEveryProduct(Project.Project_Id);
             fulfillmentEveryProdPrint.CreateFulfillmentForEveryProductPdf();
         }
