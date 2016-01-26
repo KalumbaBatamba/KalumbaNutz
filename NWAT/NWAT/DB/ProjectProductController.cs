@@ -47,6 +47,29 @@ namespace NWAT.DB
             return allProjectProductsForOneProject;
         }
 
+
+        /// <summary>
+        /// Checks if project product identifier already exists.
+        /// </summary>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 26.01.2016
+        public bool CheckIfProjectProductIdAlreadyExists(int projectId, int productId)
+        {
+            ProjectProduct resultProd = GetProjectProductByIds(projectId, productId);
+            return resultProd != null;
+        }
+
+        /// <summary>
+        /// Imports the project product into database.
+        /// </summary>
+        /// <param name="importProjProd">The import proj product.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 26.01.2016
+        public bool ImportProjectProductIntoDb(ProjectProduct importProjProd)
+        {
+            return InsertProjectProductIntoDb(importProjProd);
+        }
+
         /// <summary>
         /// Changes the allocation of project producst list in database.
         /// </summary>
@@ -79,6 +102,18 @@ namespace NWAT.DB
 
             return deallocationSuccessful && allocationSuccessful;
 
+        }
+
+        /// <summary>
+        /// Exports the project product from database.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="productId">The product identifier.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 26.01.2016
+        public bool ExportProjectProductFromDb(int projectId, int productId)
+        {
+            return DeleteProjectProductFromDb(projectId, productId);
         }
 
         /// <summary>

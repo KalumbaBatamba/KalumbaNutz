@@ -106,7 +106,16 @@ namespace NWAT.DB
             return allocatedProjectCriterions;
         }
 
-
+        /// <summary>
+        /// Imports the criterion into database.
+        /// </summary>
+        /// <param name="importCriterion">The import criterion.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 26.01.2016
+        public bool ImportCriterionIntoDb(Criterion importCriterion)
+        {
+            return InsertCriterionIntoDb(importCriterion);        
+        }
 
         /// <summary>
         /// Inserts the criterion into database.
@@ -228,6 +237,17 @@ namespace NWAT.DB
               
             Criterion alteredCriterionFromDb = GetCriterionById(criterionId);
             return CheckIfEqualCriterions(alteredCriterion, alteredCriterionFromDb);
+        }
+
+        /// <summary>
+        /// Exports the criterion from database.
+        /// </summary>
+        /// <param name="criterionId">The criterion identifier.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 26.01.2016
+        public bool ExportCriterionFromDb(int criterionId)
+        {
+            return DeleteCriterionFromDb(criterionId);
         }
 
         /// <summary>

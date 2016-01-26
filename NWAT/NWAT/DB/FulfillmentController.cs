@@ -239,6 +239,16 @@ namespace NWAT.DB
 
 
         /// <summary>
+        /// Exports all fulfillments for one project.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// Erstellt von Joshua Frey, am 26.01.2016
+        public void ExportAllFulfillmentsForOneProject(int projectId)
+        {
+            DeleteAllFulfillmentsForOneProject(projectId);
+        }
+
+        /// <summary>
         /// Deletes all fulfillments for one project.
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
