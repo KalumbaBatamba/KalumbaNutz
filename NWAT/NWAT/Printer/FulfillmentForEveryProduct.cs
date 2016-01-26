@@ -25,8 +25,8 @@ namespace NWAT.Printer
         //Dokument erstellen und festlegen das es in einem A4 Format erstellt wrid      
         Document FulfillmentPrinter = new Document(iTextSharp.text.PageSize.A4.Rotate());
         //Objekt vom Typ SaveFileDialog
-        SaveFileDialog SfdFulfillment = new SaveFileDialog();   
-    
+        SaveFileDialog SfdFulfillment = new SaveFileDialog();
+
         private Project _projectid;
         private Product _productid;
         private Fulfillment _fulfilled;
@@ -108,7 +108,7 @@ namespace NWAT.Printer
                 FulfillmentPrinter.SetMargins(50, 200, 50, 125);
 
                 //try catch um Fehler abzufangen wenn eine gleichnamige PDF noch geöffnet ist
-                try 
+                try
                 {
                     PdfWriter writer = PdfWriter.GetInstance(FulfillmentPrinter, new FileStream(SfdFulfillment.FileName, FileMode.Create));
                     //Timestamp
@@ -125,7 +125,7 @@ namespace NWAT.Printer
                 FulfillmentPrinter.Open();
 
                 //Legende zur Erklärung der Symbole
-                Paragraph userNeeds = new Paragraph("    *         -     Anforderungen des Kunden",userNeedFont);
+                Paragraph userNeeds = new Paragraph("    *         -     Anforderungen des Kunden", userNeedFont);
                 FulfillmentPrinter.Add(userNeeds);
 
                 //Anzahl der Produkte eines Projektes in einer int Variable speichern
@@ -139,7 +139,7 @@ namespace NWAT.Printer
 
                 //int der die Anzahl der festen Spalten und die variable Anzahl der Produkte enthält
                 int numberOfCells = countProducts + 3;
-               
+
                 // Je nach Anzahl der Produkte in der Datenbank wir die relative Spaltenbreite gesetzt 
                 if (numberOfCells == 3) { float[] widths = { 20f, 2f, 1f, }; CritTable.SetWidths(widths); ;}
                 if (numberOfCells == 4) { float[] widths = { 20f, 2f, 1f, 1f, }; CritTable.SetWidths(widths); ;}
@@ -159,23 +159,23 @@ namespace NWAT.Printer
                 //Anzeigen der ersten Zeilen als Überschrift auf jeder Seite des Dokuments
                 CritTable.HeaderRows = 1;
                 //Platz zwischen Produktlegende und der Tabelle
-                CritTable.SpacingBefore = 20f;      
+                CritTable.SpacingBefore = 20f;
                 CritTable.AddCell(new Paragraph("Tabellarische Übersicht aller Produkte", arialBold));
                 //Leere Zelle sorgt für Abstand zwischen Header und Erfüllungen
-                CritTable.AddCell(new Paragraph(" "));                    
-                CritTable.AddCell(new Paragraph("*"));  
-    
+                CritTable.AddCell(new Paragraph(" "));
+                CritTable.AddCell(new Paragraph("*"));
+
                 //Zählt wieviele Produkte in der Datenbank liegen und schreibt dementsprechend viele Spalten auf das Pdf
                 for (int i = 1; i <= allProductsForThisProject.Count(); i++)
                 {
-                    string prodHeader = "Prd." + i.ToString(); 
-                    CritTable.AddCell(new Paragraph(prodHeader,  products));          
+                    string prodHeader = "Prd." + i.ToString();
+                    CritTable.AddCell(new Paragraph(prodHeader, products));
                 }
 
                 //Anordnung 0=> Linke Ausrichtung
                 CritTable.HorizontalAlignment = 0;
                 //Totale Breite der "Tabelle"
-                CritTable.TotalWidth = 700f; 
+                CritTable.TotalWidth = 700f;
                 CritTable.LockedWidth = true;
 
                 //Methodenaufruf
@@ -210,7 +210,7 @@ namespace NWAT.Printer
         {
             //Paragraph um Namem der Produkte mit den Abkürzungen in der Tabelle verbinden zu können
             Paragraph productName = new Paragraph();
-            
+
             //Zugirff auf Erfüllungen der Kriterien für die Produkte aus der Datenbank
             FulfillmentController fufiCont = new FulfillmentController();
             List<Fulfillment> fufiList = fufiCont.GetAllFulfillmentsForOneProject(this.Project.Project_Id);
@@ -221,20 +221,20 @@ namespace NWAT.Printer
 
             //Übergebene Liste von Methode "GetSortedCriterionStructure()" in Liste sortedProjectCriterionStructure schreiben
             List<ProjectCriterion> sortedProjectCriterionStructure = this.ProjCritContr.GetSortedCriterionStructure(this.Project.Project_Id);
-            
+
             // Generische Liste - Dictionary Wertepaar vom Typ int - Schlüssel und Wert
             Dictionary<int, int> enumerations = new Dictionary<int, int>() { { 1, 0 } };
 
             //Variablen die in den unten folgenden foreach-Schleifen benötigt werden
-            int iCount = 0;  
+            int iCount = 0;
             int countCounter = 1;
             int i = 1;
 
             //Font für die Ausgabe der Produktlegende 
-            Font prodNameFont = FontFactory.GetFont("Arial", 9);    
+            Font prodNameFont = FontFactory.GetFont("Arial", 9);
             productName.Font = prodNameFont;
-                
-                
+
+
             //Foreach-Schleife druckt sortierte Kriterien auf das Pdf Dokument
             foreach (ProjectCriterion projectCriterion in sortedProjectCriterionStructure)
             {
@@ -262,34 +262,34 @@ namespace NWAT.Printer
                 //Der Zelle den Paragraphen übergeben
                 Crits.AddElement(para);
                 //Anzeigen von Linien im Pdf
-                Crits.Border = 1;          
+                Crits.Border = 1;
                 //Die Pdf Zellen an die Pdf Tabelle übergeben
                 CritTable.AddCell(Crits);
                 CritTable.AddCell("");
 
                 //Abfrage der hinterlegten Zahl für die Kardinalzahl und dementsprechende Handlung
                 if (projectCriterion.Weighting_Cardinal <= 0)
-                    {
-                        CritTable.AddCell(new Paragraph("-", CritStructFont));
-                    }
+                {
+                    CritTable.AddCell(new Paragraph("-", CritStructFont));
+                }
                 else
-                    {
-                        CritTable.AddCell(new Paragraph("x", CritStructFont));
-                    }
+                {
+                    CritTable.AddCell(new Paragraph("x", CritStructFont));
+                }
 
                 //if Schleife damit alle Produktnamen korrekt auf dem Pdf ausgegeben werden
                 if (iCount == countCounter)
-                    {
+                {
                     //Produktname der vergliechenen Produkte auf dem Dokument anzeige
-                    FulfillmentPrinter.Add(productName);   
-                    }
+                    FulfillmentPrinter.Add(productName);
+                }
 
 
                 //foreach Schleife um die Erfüllungen für alle in der Datenbank hinterlegten Produkte aus das Pdf zu drucken
                 foreach (ProjectProduct projprod in allProductsForThisProject)
                 {
                     //try catch Anweisung um Fehler abzufangen. Fehler: Für das Produkt sind keine oder nicht alle Erfülungen in der DB hinterlegt
-                    try         
+                    try
                     {
                         //Abfrage der Erfüllungen
                         Fulfillment fulfillForThisProdAndThisCrit = fufiList.Single(
@@ -310,14 +310,14 @@ namespace NWAT.Printer
 
                     catch { throw new ApplicationException("Warnung!\n Nicht für alle Produkte des Projekts sind Erfüllungen hinterlegt! Bitte überprüfen Sie Ihre Eingaben! "); }
 
-                        //Hier wird der Name dem Paragraphen productName hinzugefügt - Um welche Produkte es sich handelt 
-                        productName.Add("Prd. " + i.ToString()+ "     -     "+ projprod.Product.Name + "\n");     
-                        i++;           
+                    //Hier wird der Name dem Paragraphen productName hinzugefügt - Um welche Produkte es sich handelt 
+                    productName.Add("Prd. " + i.ToString() + "     -     " + projprod.Product.Name + "\n");
+                    i++;
                 }
                 //Erhöhe Variable Count - Relevant für if-Schleife zum Printen der Produktnamen auf dem Pdf  
-                iCount++;               
+                iCount++;
             }
-           
+
         }
 
         /// <summary>
@@ -375,7 +375,7 @@ namespace NWAT.Printer
                 {
                     int pages = Filereader.NumberOfPages;
                     for (int i = 1; i <= pages; i++)
-                    {                     
+                    {
                         //Seitenzahl 
                         ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(i.ToString(), BlackFont), pageNumberBottomPosition, 15f, 0);
                         //Projekt Name
