@@ -245,7 +245,7 @@ namespace NWAT.DB
             ImportCriterionData();
             ImportProductData();
             ImportProjectCriterionData();
-
+            ImportProjectProductData();
         }
 
 
@@ -323,7 +323,7 @@ namespace NWAT.DB
                             this.ImportLogWriter.Log(MessageSuffixWasAppendedToDataName(originImportProjName, importProj.Name));
                         }
 
-                        bool importSuccessful = this.ImportProjectController.InsertProjectIntoDb(importProj);
+                        bool importSuccessful = this.ImportProjectController.ImportProjectIntoDb(importProj);
                         if (importSuccessful)
                         {
                             this.ImportLogWriter.Log(MessageImportOfMasterDataSucceeded(importProjId, importProj.Name));
@@ -407,7 +407,7 @@ namespace NWAT.DB
                             this.ImportLogWriter.Log(MessageSuffixWasAppendedToDataName(originImportCritName, importCriterion.Name));
                         }
 
-                        bool importSuccessful = this.ImportCriterionController.InsertCriterionIntoDb(importCriterion);
+                        bool importSuccessful = this.ImportCriterionController.ImportCriterionIntoDb(importCriterion);
                         //bool importSuccessful = true;
                         if (importSuccessful)
                         {
@@ -494,7 +494,7 @@ namespace NWAT.DB
                             this.ImportLogWriter.Log(MessageSuffixWasAppendedToDataName(originImportProdName, importProduct.Name));
                         }
 
-                        bool importSuccessful = this.ImportProductController.InsertProductIntoDb(importProduct);
+                        bool importSuccessful = this.ImportProductController.ImportProductIntoDb(importProduct);
                         //bool importSuccessful = true;
                         if (importSuccessful)
                         {
@@ -745,8 +745,85 @@ namespace NWAT.DB
         }
 
 
+        /// <summary>
+        /// Imports the project product data.
+        /// </summary>
+        /// Erstellt von Joshua Frey, am 26.01.2016
+        /// <exception cref="NWATException"></exception>
+        private void ImportProjectProductData()
+        {
+            this.ImportLogWriter.LogSubHeading(MessageStartImportOfData("ProjectProduct"));
+            using (StreamReader sr = new StreamReader(this.ProjectProductImportFilePath))
+            {
+                string line;
+                ProjectProduct importProjectProduct;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    importProjectProduct = GetProjectProductByLineFromImportFile(line);
+                    int importProjId = importProjectProduct.Project_Id;
+                    int importProdId = importProjectProduct.Product_Id;
+
+                    // if id does not already exist in table --> import; else skip
+                    if (!this.ImportProjectProductController.CheckIfProjectProductIdAlreadyExists(importProjId, importProdId))
+                    {
+                        bool importSuccessful = this.ImportProjectProductController.ImportProjectProductIntoDb(importProjectProduct);
+                        //bool importSuccessful = true;
+                        if (importSuccessful)
+                        {
+                            this.ImportLogWriter.Log(MessageImportOfProjectProductSucceeded(importProjId, importProdId));
+                        }
+                        else
+                        {
+                            string dataSet = String.Format("Project_Id = {0}\n Product_Id = {1}",
+                                                            importProjId,
+                                                            importProdId);
+
+                            throw new NWATException(MessageImportFailed("ProjectProduct", dataSet));
+                        }
+
+                    }
+                    else
+                    {
+                        this.ImportLogWriter.Log(MessageProjectProductAlreadyExists(importProdId, importProjId));
+                    }
+                }
+            }
+            this.ImportLogWriter.Log(MessageEndImportOfData("ProjectProduct"));
+        }
 
 
+        /// <summary>
+        /// Gets the project product by line from import file.
+        /// </summary>
+        /// <param name="line">The line.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 26.01.2016
+        private ProjectProduct GetProjectProductByLineFromImportFile(string projectProductImportLine)
+        {
+            ProjectProduct importProjectProduct;
+            // Project_Id|Product_Id
+            var lineAsArray = projectProductImportLine.Split(this._delimiter);
+
+            int projectId;
+            int productId;
+            try
+            {
+                projectId = Convert.ToInt32(lineAsArray[0]);
+                productId = Convert.ToInt32(lineAsArray[1]);
+            }
+            catch (FormatException formatException)
+            {
+                throw new NWATException(String.Format("{0}\n\n{1}",
+                    formatException, MessageWrongDatatypeInExportedLine("ProjectProduct", projectProductImportLine, "int|int")));
+            }
+
+            importProjectProduct = new ProjectProduct()
+            {
+                Project_Id = projectId,
+                Product_Id = productId
+            };
+            return importProjectProduct;
+        }
         
         
         /*
@@ -773,11 +850,16 @@ namespace NWAT.DB
 
         private string MessageImportOfProjectCiterionSucceeded(int projectId, int criterionId)
         {
-            return String.Format("Das Projektkriterium mit der Id \"{0}\" des Projektes mit der Id {1} "+
+            return String.Format("Das Kriterium mit der Id \"{0}\" des Projektes mit der Id {1} "+
                                  "wurde erfolgreich importiert", criterionId, projectId);
         }
- 
 
+        private string MessageImportOfProjectProductSucceeded(int projectId, int productId)
+        {
+            return String.Format("Das Produkt mit der Id \"{0}\" des Projektes mit der Id {1} " +
+                                 "wurde erfolgreich importiert", productId, projectId);
+        }
+ 
         private string MessageStartImportOfData(string tableName)
         {
             return String.Format("Import \"{0}\" gestartet.", tableName);
@@ -799,6 +881,13 @@ namespace NWAT.DB
             return String.Format("Das Kriterium mit der Id \"{0}\" ist bereits dem Projekt mit der "+
                 "Id \"{1}\" zugeordnet und wird deshalb nicht importiert.",
                 criterionId, projectid);
+        }
+
+        private string MessageProjectProductAlreadyExists(int productId, int projectid)
+        {
+            return String.Format("Das Produkt mit der Id \"{0}\" ist bereits dem Projekt mit der " +
+                "Id \"{1}\" zugeordnet und wird deshalb nicht importiert.",
+                productId, projectid);
         }
 
         private string MessageMasterDatasetAlreadyExists(int dataSetId, string dataSetName)

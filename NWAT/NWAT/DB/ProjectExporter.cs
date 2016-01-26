@@ -1041,7 +1041,7 @@ namespace NWAT.DB
         /// Erstellt von Joshua Frey, am 13.01.2016
         private bool DeleteFulFillmentData()
         {
-            this.ExportFulfillmentController.DeleteAllFulfillmentsForOneProject(this.ProjectId);
+            this.ExportFulfillmentController.ExportAllFulfillmentsForOneProject(this.ProjectId);
 
             // check if deletion was successful
             if (this.ExportFulfillmentController.GetAllFulfillmentsForOneProject(this.ProjectId).Count == 0)
@@ -1059,7 +1059,7 @@ namespace NWAT.DB
             bool projectProducstDeletionSuccessful = true;
             foreach (ProjectProduct projProd in this.ExportProjectProductController.GetAllProjectProductsForOneProject(this.ProjectId))
             {
-                if (!this.ExportProjectProductController.DeleteProjectProductFromDb(projProd.Project_Id, projProd.Product_Id))
+                if (!this.ExportProjectProductController.ExportProjectProductFromDb(projProd.Project_Id, projProd.Product_Id))
                 {
                     projectProducstDeletionSuccessful = false;
                 }
@@ -1081,7 +1081,7 @@ namespace NWAT.DB
             bool projectCriterionDeletionSuccessfull = true;
             foreach (ProjectCriterion projCrit in this.ExportProjectCriterionController.GetAllProjectCriterionsForOneProject(this.ProjectId))
             {
-                if (!this.ExportProjectCriterionController.DeleteProjectCriterionFromDb(projCrit.Project_Id, projCrit.Criterion_Id))
+                if (!this.ExportProjectCriterionController.ExportProjectCriterionFromDb(projCrit.Project_Id, projCrit.Criterion_Id))
                 {
                     projectCriterionDeletionSuccessfull = false;
                 }
@@ -1132,7 +1132,7 @@ namespace NWAT.DB
             bool productDeletionSuccessfull = true;
             foreach (int prodToDeleteId in productsToDeleteIds)
             {
-                if (!this.ExportProductController.DeleteProductFromDb(prodToDeleteId))
+                if (!this.ExportProductController.ExportProductFromDb(prodToDeleteId))
                 {
                     productDeletionSuccessfull = false;
                 }
@@ -1180,7 +1180,7 @@ namespace NWAT.DB
             bool criterionDeletionSuccessfull = true;
             foreach (int critToDeleteId in criterionsToDeleteIds)
             {
-                if (!this.ExportCriterionController.DeleteCriterionFromDb(critToDeleteId))
+                if (!this.ExportCriterionController.ExportCriterionFromDb(critToDeleteId))
                 {
                     criterionDeletionSuccessfull = false;
                 }
@@ -1197,7 +1197,7 @@ namespace NWAT.DB
         /// Erstellt von Joshua Frey, am 13.01.2016
         private bool DeleteProjectData()
         {
-            if (this.ExportProjectController.DeleteProjectFromDb(this.ProjectId))
+            if (this.ExportProjectController.ExportProjectFromDb(this.ProjectId))
                 return true;
             else
                 return false;

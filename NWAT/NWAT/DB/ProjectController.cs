@@ -60,6 +60,16 @@ namespace NWAT.DB
 
 
         /// <summary>
+        /// Imports the project into database.
+        /// </summary>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 26.01.2016
+        public bool ImportProjectIntoDb(Project importProject)
+        {
+            return InsertProjectIntoDb(importProject);
+        }
+
+        /// <summary>
         /// Inserts the project into database.
         /// </summary>
         /// <param name="newProject">The new project.</param>
@@ -73,7 +83,6 @@ namespace NWAT.DB
         /// </exception>
         public bool InsertProjectIntoDb(Project newProject)
         {
-
             if (newProject != null)
             {
                 // if insert Id is != 0 then this project will be imported at the index of insertId
@@ -179,6 +188,17 @@ namespace NWAT.DB
 
             Project alteredCriterionFromDb = GetProjectById(projectId);
             return CheckIfEqualProjects(alteredProject, alteredCriterionFromDb);
+        }
+
+        /// <summary>
+        /// Exports the project from database.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 26.01.2016
+        public bool ExportProjectFromDb(int projectId)
+        {
+            return DeleteProjectFromDb(projectId);
         }
 
         /// <summary>

@@ -140,13 +140,37 @@ namespace NWAT.DB
         }
 
         /// <summary>
+        /// Exports the project criterion from database.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="criterionId">The criterion identifier.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 26.01.2016
+        public bool ExportProjectCriterionFromDb(int projectId, int criterionId)
+        {
+            return DeleteProjectCriterionFromDb(projectId, criterionId, true);
+        }
+
+        /// <summary>
+        /// Deletes the project criterion from database.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="criterionId">The criterion identifier.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 26.01.2016
+        public bool DeleteProjectCriterionFromDb(int projectId, int criterionId)
+        {
+            return DeleteProjectCriterionFromDb(projectId, criterionId, false);
+        }
+
+        /// <summary>
         /// Deletes the project criterion from database. This can also be called when a master criterion should be deleted
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
         /// <param name="criterionId">The criterion identifier.</param>
         /// <returns></returns>
         /// Erstellt von Joshua Frey, am 04.01.2016
-        public bool DeleteProjectCriterionFromDb(int projectId, int criterionId)
+        public bool DeleteProjectCriterionFromDb(int projectId, int criterionId, bool isExported)
         {
             bool success;
             success = DeleteProjectCriterionDataSet(projectId, criterionId);
@@ -154,9 +178,12 @@ namespace NWAT.DB
             {
                 throw new NWATException(MessageDeleteProjectCriterionFailed(criterionId.ToString()));
             }
+            if (!isExported)
+            {
+                UpdateAllPercentageLayerWeightings(projectId);
+                UpdateAllPercentageProjectWeightings(projectId);
+            }
 
-            UpdateAllPercentageLayerWeightings(projectId);
-            UpdateAllPercentageProjectWeightings(projectId);
 
             return success;
         }
@@ -206,7 +233,7 @@ namespace NWAT.DB
         /// Erstellt von Joshua Frey, am 20.01.2016
         public bool ImportProjectCriterion(ProjectCriterion importProjectCriterion)
         {
-            return InsertProjectCriterionIntoDb(importProjectCriterion);
+            return InsertProjectCriterionIntoDb(importProjectCriterion, true);
         }
 
 
@@ -342,6 +369,11 @@ namespace NWAT.DB
             
         }
 
+        private bool InsertProjectCriterionIntoDb(ProjectCriterion newProjectCriterion)
+        {
+            return InsertProjectCriterionIntoDb(newProjectCriterion, false);
+        }
+
         /// <summary>
         /// Inserts the project criterion into database.
         /// </summary>
@@ -352,7 +384,7 @@ namespace NWAT.DB
         /// Erstellt von Joshua Frey, am 22.12.2015
         /// <exception cref="NWATException">
         /// </exception>
-        private bool InsertProjectCriterionIntoDb(ProjectCriterion newProjectCriterion)
+        private bool InsertProjectCriterionIntoDb(ProjectCriterion newProjectCriterion, bool isImported)
         {
             bool success;
             try
@@ -366,9 +398,13 @@ namespace NWAT.DB
             if (success)
             {
                 int projectId = newProjectCriterion.Project_Id;
-                UpdateLayerDepthForProjectCriterion(projectId, newProjectCriterion.Criterion_Id);
-                UpdateAllPercentageLayerWeightings(projectId);
-                UpdateAllPercentageProjectWeightings(projectId);
+
+                if(!isImported)
+                {
+                    UpdateLayerDepthForProjectCriterion(projectId, newProjectCriterion.Criterion_Id);
+                    UpdateAllPercentageLayerWeightings(projectId);
+                    UpdateAllPercentageProjectWeightings(projectId);
+                }
             }
             return success;
         }

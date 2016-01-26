@@ -105,6 +105,11 @@ namespace NWAT.DB
             return allocatedProjectProducts;
         }
 
+        public bool ImportProductIntoDb(Product importProduct)
+        {
+            return InsertProductIntoDb(importProduct);
+        }
+
         /// <summary>
         /// Inserts the product into database.
         /// </summary>
@@ -232,6 +237,16 @@ namespace NWAT.DB
             return CheckIfEqualProducts(alteredProduct, alteredProductFromDb);
         }
 
+        /// <summary>
+        /// Exports the product from database.
+        /// </summary>
+        /// <param name="productId">The product identifier.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 26.01.2016
+        public bool ExportProductFromDb(int productId)
+        {
+            return DeleteProductFromDb(productId);
+        }
 
         /// <summary>
         /// Deletes the product from database.
