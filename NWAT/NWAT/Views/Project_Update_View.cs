@@ -72,6 +72,15 @@ namespace NWAT
             //MessageBox.Show(ProjName + ProjDesc);
             //textBox_ProjNameUpdate.Text = ProjName;
             //textBox_ProjDescUpdate.Text = ProjDesc;
+        
+        //}
+            this.FormClosing += new FormClosingEventHandler(Project_Update_View_FormClosing);
+        }
+        void Project_Update_View_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //your code here
+            Projektverwaltung_View start = new Projektverwaltung_View ();
+            start.Show();
         }
     }
 }

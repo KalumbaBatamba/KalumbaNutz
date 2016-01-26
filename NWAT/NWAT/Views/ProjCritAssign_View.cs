@@ -109,7 +109,16 @@ namespace NWAT
            // col.Name = "test";
            //// col.
            // dataGridView_ProjCrits.Columns.Add(col);
+    //    }
+            this.FormClosing += new FormClosingEventHandler(ProjCritAssign_View_FormClosing);
         }
+        void ProjCritAssign_View_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //your code here
+            aktuellesProjekt_View back = new aktuellesProjekt_View(ProjectId);
+            back.Show();
+        }
+            
         private void AddCritToProject()
         {
 

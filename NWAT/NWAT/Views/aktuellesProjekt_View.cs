@@ -36,11 +36,11 @@ namespace NWAT
 
         public aktuellesProjekt_View(int projectId)
         {
-         //   _projectController = new ProjectController();
+            //   _projectController = new ProjectController();
             this.ProjectCont = new ProjectController();
             this.Project = this.ProjectCont.GetProjectById(projectId);
             InitializeComponent();
-            
+
         }
 
         private void aktuellesProjekt_Load(object sender, EventArgs e)
@@ -77,7 +77,16 @@ namespace NWAT
             toolTip2.ReshowDelay = 500;
             toolTip2.ShowAlways = true;
             toolTip2.SetToolTip(btn_CurrProjCritStruPrint, "Dieser Button erstellt eine Pdf Datei, in der die Kriterienstruktur mit den Anforderungen des Kunden inklusive der kardinalen Gewichtungen abgebildet werden");
+            //}
+            this.FormClosing += new FormClosingEventHandler(aktuellesProject_View_FormClosing);
         }
+        void aktuellesProject_View_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //your code here
+            Projektverwaltung_View back = new Projektverwaltung_View();
+            back.Show();
+        }
+
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -99,10 +108,12 @@ namespace NWAT
 
         private void btn_CurrProjKritAssign_Click(object sender, EventArgs e)
         {
-            
-            
+
+
             ProjCritAssign_View ProjCritAssign = new ProjCritAssign_View(Project.Project_Id);
             ProjCritAssign.Show();
+            Hide
+                ();
         }
 
         private void btn_CurrProjCritStruShow_Click(object sender, EventArgs e)
@@ -115,12 +126,13 @@ namespace NWAT
         {
             ProjCritStruUpdate_View ProjCritStruUpdate = new ProjCritStruUpdate_View(Project.Project_Id);
             ProjCritStruUpdate.Show();
+            Hide();
         }
 
         private void btn_CurrProjCritStruPrint_Click(object sender, EventArgs e)
         {
             CriterionStructurePrinter printobject = new CriterionStructurePrinter(Project.Project_Id);
-            printobject.CreateCriterionStructurePdf(); 
+            printobject.CreateCriterionStructurePdf();
         }
 
         private void btn_CurrProjCritStruBalance_Click(object sender, EventArgs e)
@@ -137,20 +149,21 @@ namespace NWAT
         {
             ProjProdAssign_View ProjProdAssign = new ProjProdAssign_View(Project.Project_Id);
             ProjProdAssign.Show();
-
-       //     ProjectProductAssign_View ProjectProductAssign = new ProjectProductAssign_View(Project.Project_Id);
-       //     ProjectProductAssign.Show();
+            Hide();
+            //     ProjectProductAssign_View ProjectProductAssign = new ProjectProductAssign_View(Project.Project_Id);
+            //     ProjectProductAssign.Show();
         }
 
         private void btn_CurrProjProdFulfCapt_Click(object sender, EventArgs e)
         {
             ProjCritProdFulfilment_View ProjCritProdFulfillment = new ProjCritProdFulfilment_View(Project.Project_Id);
             ProjCritProdFulfillment.Show();
+            Hide();
         }
 
         private void btnCurrProjProdFulfPrint_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Alle projektspezifischen Produkte inklusive der Kriterienstruktur und deren Erfüllungen werden auf dem Pdf abgebildet!");
+            MessageBox.Show("Alle projektspezifischen Produkte inklusive der Kriterienstruktur und deren Erfüllungen sind auf dem Pdf abgebildet!");
             FulfillmentForEveryProduct fulfillmentEveryProdPrint = new FulfillmentForEveryProduct(Project.Project_Id);
             fulfillmentEveryProdPrint.CreateFulfillmentForEveryProductPdf();
         }
@@ -165,6 +178,7 @@ namespace NWAT
         {
             ProjCritBalance_View ProjCritBalance = new ProjCritBalance_View(Project.Project_Id);
             ProjCritBalance.Show();
+            Hide();
         }
 
         private void label_CurrProjNameShow_Click(object sender, EventArgs e)

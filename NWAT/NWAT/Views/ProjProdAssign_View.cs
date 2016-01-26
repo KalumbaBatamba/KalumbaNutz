@@ -61,6 +61,8 @@ namespace NWAT
                 }
 
             }
+                
+
             using (ProductController prodCont = new ProductController())
             {
                 AllProds = prodCont.GetAllProductsFromDb();
@@ -89,7 +91,16 @@ namespace NWAT
             dataGridView_ProjProd.Columns.Remove("Project");
             dataGridView_ProjProd.Columns[1].Width = 200;
          
+        //}
+            this.FormClosing += new FormClosingEventHandler(ProjProdAssign_View_FormClosing);
         }
+        void ProjProdAssign_View_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //your code here
+            aktuellesProjekt_View back = new aktuellesProjekt_View(ProjectId);
+            back.Show();
+        }
+
         private void AddProdToProject()
         {
 

@@ -83,6 +83,7 @@ namespace NWAT
         {
             Product_Create_View ProdCreate = new Product_Create_View();
             ProdCreate.Show();
+            Hide();
         }
 
         private void btn_refresh_Click(object sender, EventArgs e)

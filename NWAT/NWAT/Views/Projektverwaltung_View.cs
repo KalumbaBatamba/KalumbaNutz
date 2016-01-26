@@ -49,7 +49,15 @@ namespace NWAT
             //   comboBox.DataSource = x;
             //comboBox_SelectProject.DisplayMember = "Name";
             //comboBox_SelectProject.ValueMember = "Project_ID";
+            this.FormClosing += new FormClosingEventHandler(Projektverwaltung_View_FormClosing);
         }
+        void Projektverwaltung_View_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //your code here
+            NWAT_Start_View start = new NWAT_Start_View();
+            start.Show();
+        }
+
 
         private void OpenViewCreateNewProject()
         {
@@ -91,6 +99,7 @@ namespace NWAT
         {
             Project_Create_View ProjectCreate = new Project_Create_View();
             ProjectCreate.Show();
+            Hide();
         }
 
         private void btn_ProjectModify_Click(object sender, EventArgs e)
@@ -101,6 +110,7 @@ namespace NWAT
             MessageBox.Show("Selected Item Text: " + selectedItem.Project_Id);
             aktuellesProjekt_View AktProjView = new aktuellesProjekt_View(selectedItem.Project_Id);
             AktProjView.Show();
+            Hide();
             
 
             
@@ -118,6 +128,7 @@ namespace NWAT
             
             Project_Show_View ProjectShow = new Project_Show_View(selectedItem.Project_Id);
             ProjectShow.Show();
+            Hide();
         }
 
         private void btn_ProjectUpdate_Click(object sender, EventArgs e)
@@ -129,6 +140,7 @@ namespace NWAT
 
             Project_Update_View ProjectUpdate = new Project_Update_View(selectedItem.Project_Id);
             ProjectUpdate.Show();
+            Hide();
         }
 
         private void btn_ProjImport_Click(object sender, EventArgs e)

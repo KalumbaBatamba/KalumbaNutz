@@ -32,6 +32,7 @@ namespace NWAT
         {
             Projektverwaltung_View ProjectAdmin = new Projektverwaltung_View();
             ProjectAdmin.Show();
+            Hide();
         }
 
    //     private void btn_CritAdm_Click(object sender, EventArgs e)
@@ -50,6 +51,7 @@ namespace NWAT
         {
             Kriterienverwaltung_View CriterionAdmin = new Kriterienverwaltung_View();
             CriterionAdmin.Show();
+            Hide();
         }
     }
 }

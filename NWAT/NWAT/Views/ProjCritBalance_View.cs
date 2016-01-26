@@ -105,7 +105,16 @@ namespace NWAT
             }
             this.dataGridView_ProjCritBalance.CellValidating += new
          DataGridViewCellValidatingEventHandler(dataGridView_ProjCritBalance_CellValidating);
+     //   }
+            this.FormClosing += new FormClosingEventHandler(ProjCritBalance_View_FormClosing);
         }
+        void ProjCritBalance_View_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //your code here
+            aktuellesProjekt_View back = new aktuellesProjekt_View(ProjectId);
+            back.Show();
+        }
+
 
         private void dataGridView_ProjCritBalance_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         { 

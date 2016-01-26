@@ -49,6 +49,8 @@ namespace NWAT
 
 
         int aktProd;
+        static int formloaded = 1; 
+
 
         private ProjectController _projectController;
 
@@ -61,12 +63,15 @@ namespace NWAT
             PID = projectId;
             this.ProjectCont = new ProjectController();
             this.Project = this.ProjectCont.GetProjectById(projectId);
+            
+           
             InitializeComponent();
+
         }
 
         private void ProjCritProdFulfilment_Form_Load(object sender, EventArgs e)
         {
-
+            formloaded = 1;
             using (ProjectProductController Projverw = new ProjectProductController())
             {
                 ProjectProduct projprod = (ProjectProduct)comboBox_ProjCritProdFulf.SelectedItem;
@@ -76,6 +81,7 @@ namespace NWAT
                 {
                     productsList.Add(projProd.Product); 
                 }
+            //    comboBox_ProjCritProdFulf.SelectedIndex = -1;
                 comboBox_ProjCritProdFulf.DataSource = productsList;
                 
                 comboBox_ProjCritProdFulf.DisplayMember = "Name";
@@ -151,7 +157,16 @@ namespace NWAT
 
             this.dataGridView_ProjCritProdFulf.CellValidating += new
          DataGridViewCellValidatingEventHandler(dataGridView_ProjCritProdFulf_CellValidating);
+  //           comboBox_ProjCritProdFulf.SelectedValueChanged +=  new EventHandler(comboBox_ProjCritProdFulf);
 
+    //    }
+            this.FormClosing += new FormClosingEventHandler(ProjCritProdFulfillment_View_FormClosing);
+        }
+        void ProjCritProdFulfillment_View_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //your code here
+            aktuellesProjekt_View back = new aktuellesProjekt_View(Project.Project_Id);
+            back.Show();
         }
         private void AddProjProdCritFulfilment()
         {
@@ -220,26 +235,40 @@ namespace NWAT
 
         private void comboBox_ProjCritProdFulf_SelectedIndexChanged(object sender, EventArgs e)
         {
-/*
-            Product selectedValue = new Product();
-            ComboBox cmb = (ComboBox)sender;
-            int selectedIndex = cmb.SelectedIndex;
-            if (cmb.SelectedValue != null)
+            if (formloaded > 2)
             {
-                selectedValue = (Product)cmb.SelectedValue;
-
-                if (selectedValue != null)
+                Product selectedValue = new Product();
+                ComboBox cmb = (ComboBox)sender;
+                int selectedIndex = cmb.SelectedIndex;
+                if (cmb.SelectedIndex > -1)
+                //            if (cmb.SelectedValue != null)
                 {
-                    using (FulfillmentController fuFiCont = new FulfillmentController())
+                    selectedValue = (Product)cmb.SelectedValue;
+
+                    if (selectedValue != null)
                     {
+                        using (FulfillmentController fuFiCont = new FulfillmentController())
+                        {
+                            int i = 0;
+                            var projProdFulf = fuFiCont.GetAllFulfillmentsForSingleProduct(PID, selectedValue.Product_Id);
 
-                        var projProdFulf = fuFiCont.GetAllFulfillmentsForSingleProduct(PID, selectedValue.Product_Id);
+                            foreach (Fulfillment singleProjProdFulf in projProdFulf)
+                            {
+                                int row = i;
+                                bool selected = singleProjProdFulf.Fulfilled;
+                                String note = singleProjProdFulf.Comment;
 
+                                //   singleProjProdFulf
+                                dataGridView_ProjCritProdFulf.Rows[row].Cells["Erfüllung"].Value = selected;
+                                dataGridView_ProjCritProdFulf.Rows[row].Cells["Bemerkung"].Value = note;
+                                i++;
+                            }
+                        }
                     }
                 }
             }
-
-            using (ProjectCriterionController proCriCont = new ProjectCriterionController())
+            formloaded++;
+       /*     using (ProjectCriterionController proCriCont = new ProjectCriterionController())
             {
                 ProjCrits = proCriCont.GetSortedCriterionStructure(Project.Project_Id);
                 using (CriterionController critCon = new CriterionController())
@@ -412,7 +441,17 @@ namespace NWAT
             }
             //       refreshGrid();
         }
-  
+   /*     private void comboBox_ProjCritProdFulf_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (comboBox_ProjCritProdFulf.SelectedIndex != -1)
+            {
+                comboBox_ProjCritProdFulf.Text = comboBox_ProjCritProdFulf.SelectedValue.ToString();
+                // If we also wanted to get the displayed text we could use
+                // the SelectedItem item property:
+                // string s = ((USState)ListBox1.SelectedItem).LongName;
+            }
+        }
+     */
 
     }
 }

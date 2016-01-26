@@ -23,6 +23,13 @@ namespace NWAT
         private void Product_Create_Load(object sender, EventArgs e)
         {
 
+            this.FormClosing += new FormClosingEventHandler(Product_Create_View_FormClosing);
+        }
+        void Product_Create_View_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //your code here
+            Produktverwaltung_View back = new Produktverwaltung_View();
+            back.Show();
         }
 
         private void btn_ProdCreate_Click(object sender, EventArgs e)

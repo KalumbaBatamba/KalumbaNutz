@@ -99,8 +99,17 @@ namespace NWAT
 */
             }
             this.dataGridView_CritStruUpd.CellValidating += new
-      DataGridViewCellValidatingEventHandler(dataGridView_CritStruUpd_CellValidating);
+            DataGridViewCellValidatingEventHandler(dataGridView_CritStruUpd_CellValidating);
+
+            this.FormClosing += new FormClosingEventHandler(ProjCritStruUpdate_View_FormClosing);
         }
+        void ProjCritStruUpdate_View_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //your code here
+            aktuellesProjekt_View back = new aktuellesProjekt_View(ProjectId);
+            back.Show();
+        }
+       // }
         private void GetProjectCritStructure()
         {
 

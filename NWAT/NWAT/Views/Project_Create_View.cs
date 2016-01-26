@@ -24,7 +24,16 @@ namespace NWAT
         private void Project_Create_Form_Load(object sender, EventArgs e)
         {
 
+            this.FormClosing += new FormClosingEventHandler(Project_Create_View_FormClosing);
         }
+        void Project_Create_View_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //your code here
+            Projektverwaltung_View back = new Projektverwaltung_View();
+            back.Show();
+        }
+
+
         private void CreateNewProject()
         {
 

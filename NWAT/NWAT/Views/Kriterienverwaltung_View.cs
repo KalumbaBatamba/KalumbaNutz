@@ -58,6 +58,15 @@ namespace NWAT
             //    System.Threading.Thread.Sleep(1000);
        //     }
      
+ //       }
+
+            this.FormClosing += new FormClosingEventHandler(Kriterienverwaltung_View_FormClosing);
+        }
+        void Kriterienverwaltung_View_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //your code here
+            NWAT_Start_View back = new NWAT_Start_View();
+            back.Show();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
