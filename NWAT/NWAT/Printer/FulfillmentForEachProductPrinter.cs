@@ -120,7 +120,7 @@ namespace NWAT.Printer
                     //Timestamp
                     writer.PageEvent = new PdfPageEvents();
                 }
-                catch (Exception) {MessageBox.Show(String.Format(SfdFulfillment.FileName + " noch geöffnet! Bitte Schließen!"));}
+                catch (Exception) { throw new Exception("Bitte schließen Sie das geöffnete Pdf!"); }
                 
                 //Dokument öffnen um es bearbeiten zu können
                 FulfillmentPrinter.Open();

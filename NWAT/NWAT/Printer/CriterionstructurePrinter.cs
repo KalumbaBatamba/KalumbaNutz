@@ -80,11 +80,7 @@ namespace NWAT.Printer
                     //Timestamp
                     writer.PageEvent = new PdfPageEvents();                 
                 }
-                catch (Exception) 
-                {
-                    MessageBox.Show(String.Format("{0}" + " noch geöffnet! Bitte Schließen!", SfdCriterion.FileNames));
-                    return;
-                }
+                catch (Exception) { throw new Exception("Bitte schließen Sie das geöffnete Pdf!"); }
 
                 //Dokument zur Bearbeitung Öffnen
                 CriterionStructureDoc.Open();
@@ -242,25 +238,30 @@ namespace NWAT.Printer
 
         public void GetPageNumber(SaveFileDialog save, int pageNumberBottomPosition)
         {
-            byte[] bytes = File.ReadAllBytes(save.FileName);
-            Font BlackFont = FontFactory.GetFont("Arial", 9, Font.BOLD, BaseColor.BLACK);
-            using (MemoryStream stream = new MemoryStream())
+            try
             {
-                PdfReader reader = new PdfReader(bytes);
-                using (PdfStamper stamper = new PdfStamper(reader, stream))
+                byte[] bytes = File.ReadAllBytes(save.FileName);
+                Font BlackFont = FontFactory.GetFont("Arial", 9, Font.BOLD, BaseColor.BLACK);
+                using (MemoryStream stream = new MemoryStream())
                 {
-                    int pages = reader.NumberOfPages;
-                    for (int i = 1; i <= pages; i++)
+                    PdfReader reader = new PdfReader(bytes);
+                    using (PdfStamper stamper = new PdfStamper(reader, stream))
                     {
-                        //Seitenzahl
-                        ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(i.ToString(), BlackFont), pageNumberBottomPosition, 15f, 0);
-                        //Projekt Name
-                        ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(Project.Name.ToString(), BlackFont), 400, 15f, 0);                  
+                        int pages = reader.NumberOfPages;
+                        //Schleife um zu gewährleisten das jede Seite des Dokuments berücksichtigt wird
+                        for (int i = 1; i <= pages; i++)
+                        {
+                            //Seitenzahl
+                            ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(i.ToString(), BlackFont), pageNumberBottomPosition, 15f, 0);
+                            //Projekt Name
+                            ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(Project.Name.ToString(), BlackFont), 400, 15f, 0);
+                        }
                     }
+                    bytes = stream.ToArray();
                 }
-                bytes = stream.ToArray();
+                File.WriteAllBytes(save.FileName, bytes);
             }
-            File.WriteAllBytes(save.FileName, bytes);         
+            catch (Exception) { throw new Exception("Bitte schließen Sie das geöffnete Pdf!"); }   
         }
     }
 }
