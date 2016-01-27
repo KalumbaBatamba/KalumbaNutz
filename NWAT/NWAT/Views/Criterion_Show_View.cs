@@ -37,8 +37,14 @@ namespace NWAT
 
         private void Criterion_Show_Form_Load(object sender, EventArgs e)
         {
+            try{
             label_CritShowName.Text = this.Criterion.Name; 
             label_CritShowDesc.Text = this.Criterion.Description;
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
         private void GetCritSpecs()
         {

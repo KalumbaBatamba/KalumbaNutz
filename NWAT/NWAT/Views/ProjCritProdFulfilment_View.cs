@@ -52,10 +52,10 @@ namespace NWAT
         static int formloaded = 1; 
 
 
-        private ProjectController _projectController;
+  //      private ProjectController _projectController;
 
 
-        private ProjectCriterionController projCritCont;
+ //       private ProjectCriterionController projCritCont;
 
         public ProjCritProdFulfilment_View(int projectId)
         {
@@ -71,6 +71,7 @@ namespace NWAT
 
         private void ProjCritProdFulfilment_Form_Load(object sender, EventArgs e)
         {
+            try{
             formloaded = 1;
             using (ProjectProductController Projverw = new ProjectProductController())
             {
@@ -139,22 +140,37 @@ namespace NWAT
                              row.Cells["Erfüllung"].Value = false;
                          }
 
-                     }       
-
+                     }
+            }
+            catch (Exception i)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
             this.dataGridView_ProjCritProdFulf.CellValidating += new
             DataGridViewCellValidatingEventHandler(dataGridView_ProjCritProdFulf_CellValidating);
             this.FormClosing += new FormClosingEventHandler(ProjCritProdFulfillment_View_FormClosing);
         }
         void ProjCritProdFulfillment_View_FormClosing(object sender, FormClosingEventArgs e)
         {
+            try{
             aktuellesProjekt_View back = new aktuellesProjekt_View(Project.Project_Id);
             back.Show();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
         private void AddProjProdCritFulfilment()
         {
+            try{
             Product selectedProd = (Product)comboBox_ProjCritProdFulf.SelectedItem;
             aktProd = selectedProd.Product_Id;
-
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
         private void GetProjProdFromDB()
         {
@@ -167,15 +183,23 @@ namespace NWAT
 
         private void btn_ProdFulfPrint_Click(object sender, EventArgs e)
         {
-            Product selectedItem = (Product)comboBox_ProjCritProdFulf.SelectedItem;
-            if (selectedItem == null )
+            try
             {
-                MessageBox.Show("Bitte erst ein Produkt auswählen.");
+                Product selectedItem = (Product)comboBox_ProjCritProdFulf.SelectedItem;
+                if (selectedItem == null)
+                {
+                    MessageBox.Show("Bitte erst ein Produkt auswählen.");
+                }
+                else
+                {
+                    FulfPrint_View print = new FulfPrint_View(Project.Project_Id, selectedItem.Product_Id);
+                    print.Show();
+                }
             }
-            else
+            
+            catch (Exception x)
             {
-                FulfPrint_View print = new FulfPrint_View(Project.Project_Id, selectedItem.Product_Id);
-                print.Show();
+                MessageBox.Show("Ups da lief was schief");
             }
         }
 
@@ -186,6 +210,7 @@ namespace NWAT
 
         private void btn_ProjCritProdFulfSave_Click(object sender, EventArgs e)
         {
+            try{
             if (comboBox_ProjCritProdFulf.SelectedIndex != -1)
             {
                 using (FulfillmentController fulCont = new FulfillmentController())
@@ -220,10 +245,16 @@ namespace NWAT
             {
                 MessageBox.Show("Sie müssen ein Produkt auswählen.");
             }
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
         private void comboBox_ProjCritProdFulf_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try{
             if (formloaded > 2)
             {
                 Product selectedValue = new Product();
@@ -254,6 +285,11 @@ namespace NWAT
                 }
             }
             formloaded++;
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
        
         }
         private void updateGrid()
@@ -262,6 +298,7 @@ namespace NWAT
         }
         private void dataGridView_ProjCritProdFulf_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
+            try{
             if (e.ColumnIndex == 5)
             {
                 dataGridView_ProjCritProdFulf.Rows[e.RowIndex].ErrorText = "";
@@ -271,6 +308,11 @@ namespace NWAT
                 {
                     
                 }
+            }
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
             }
         }
 

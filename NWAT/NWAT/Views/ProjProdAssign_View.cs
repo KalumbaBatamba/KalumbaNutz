@@ -10,6 +10,10 @@ using System.Windows.Forms;
 using NWAT.DB;
 namespace NWAT
 {
+    /// <summary>
+    /// Projekt-Produkt-Zuordnung
+    /// </summary>
+    /// Erstellt von Veit Berg, am 27.01.16
     public partial class ProjProdAssign_View : Form
     {
         private List<Product> _allProds;
@@ -46,58 +50,71 @@ namespace NWAT
 
         private void ProjProdAssign_Form_Load(object sender, EventArgs e)
         {
-            using (ProjectProductController proProCont = new ProjectProductController())
+            try
             {
-                ProjProds = proProCont.GetAllProjectProductsForOneProject(ProjectId);
-                using (ProductController prodCon = new ProductController())
+                using (ProjectProductController proProCont = new ProjectProductController())
                 {
-                    foreach (ProjectProduct projProd in ProjProds)
+                    ProjProds = proProCont.GetAllProjectProductsForOneProject(ProjectId);
+                    using (ProductController prodCon = new ProductController())
                     {
-                        var singleProdId = prodCon.GetProductById(projProd.Product_Id);
-                        projProd.Name = singleProdId.Name.ToString();
+                        foreach (ProjectProduct projProd in ProjProds)
+                        {
+                            var singleProdId = prodCon.GetProductById(projProd.Product_Id);
+                            projProd.Name = singleProdId.Name.ToString();
+                        }
                     }
+
                 }
 
-            }
-                
 
-            using (ProductController prodCont = new ProductController())
-            {
-                AllProds = prodCont.GetAllProductsFromDb();
-
-                if (ProjProds.Count != 0)
+                using (ProductController prodCont = new ProductController())
                 {
-                    foreach (ProjectProduct projProd in ProjProds)
+                    AllProds = prodCont.GetAllProductsFromDb();
+
+                    if (ProjProds.Count != 0)
                     {
-                        Product allocatedProd = AllProds.Single(prod => prod.Product_Id == projProd.Product_Id);
-                        AllProds.Remove(allocatedProd);
+                        foreach (ProjectProduct projProd in ProjProds)
+                        {
+                            Product allocatedProd = AllProds.Single(prod => prod.Product_Id == projProd.Product_Id);
+                            AllProds.Remove(allocatedProd);
+                        }
                     }
                 }
-            }
-            dataGridView_prodAvail.Rows.Clear();
-            var ProdBindingList = new BindingList<Product>(AllProds);
-            var prodSource = new BindingSource(ProdBindingList, null);
-            dataGridView_prodAvail.DataSource = AllProds;
-            dataGridView_prodAvail.Columns["Producer"].HeaderText = "Hersteller";
-            dataGridView_prodAvail.Columns["Product_Id"].HeaderText = "Produkt ID";
-            dataGridView_prodAvail.Columns["Price"].HeaderText = "Preis";
+                dataGridView_prodAvail.Rows.Clear();
+                var ProdBindingList = new BindingList<Product>(AllProds);
+                var prodSource = new BindingSource(ProdBindingList, null);
+                dataGridView_prodAvail.DataSource = AllProds;
+                dataGridView_prodAvail.Columns["Producer"].HeaderText = "Hersteller";
+                dataGridView_prodAvail.Columns["Product_Id"].HeaderText = "Produkt ID";
+                dataGridView_prodAvail.Columns["Price"].HeaderText = "Preis";
 
-            dataGridView_ProjProd.Rows.Clear();
-       
-            var ProjProdBindingList = new BindingList<ProjectProduct>(ProjProds);
-            var projProdSource = new BindingSource(ProjProdBindingList, null);
-            dataGridView_ProjProd.DataSource = ProjProds;
-            dataGridView_ProjProd.Columns.Remove("Project_Id");
-            dataGridView_ProjProd.Columns.Remove("Product");
-            dataGridView_ProjProd.Columns.Remove("Project");
-            dataGridView_ProjProd.Columns["Product_Id"].HeaderText = "Produkt ID"; 
-            dataGridView_ProjProd.Columns[1].Width = 200;
-            this.FormClosing += new FormClosingEventHandler(ProjProdAssign_View_FormClosing);
+                dataGridView_ProjProd.Rows.Clear();
+
+                var ProjProdBindingList = new BindingList<ProjectProduct>(ProjProds);
+                var projProdSource = new BindingSource(ProjProdBindingList, null);
+                dataGridView_ProjProd.DataSource = ProjProds;
+                dataGridView_ProjProd.Columns.Remove("Project_Id");
+                dataGridView_ProjProd.Columns.Remove("Product");
+                dataGridView_ProjProd.Columns.Remove("Project");
+                dataGridView_ProjProd.Columns["Product_Id"].HeaderText = "Produkt ID";
+                dataGridView_ProjProd.Columns[1].Width = 200;
+                this.FormClosing += new FormClosingEventHandler(ProjProdAssign_View_FormClosing);
+            }
+            catch (Exception i)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
         void ProjProdAssign_View_FormClosing(object sender, FormClosingEventArgs e)
         {
-            aktuellesProjekt_View back = new aktuellesProjekt_View(ProjectId);
-            back.Show();
+            try
+            {
+                aktuellesProjekt_View back = new aktuellesProjekt_View(ProjectId);
+                back.Show();
+            }catch (Exception i)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
         private void AddProdToProject()
@@ -115,6 +132,7 @@ namespace NWAT
 
         private void btn_ProdToProj_Click(object sender, EventArgs e)
         {
+            try{
             DataGridViewRow row = dataGridView_prodAvail.SelectedRows[0];
             int ProdId = (int)row.Cells[0].Value;
             string ProdName = (string)row.Cells[1].Value;
@@ -147,17 +165,28 @@ namespace NWAT
             dataGridView_ProjProd.Columns.Remove("Project");
             dataGridView_ProjProd.Columns[1].Width = 200;
             projProdCont.ChangeAllocationOfProjectProducstListInDb(ProjectId, ProjProds);
+            }
+            catch (Exception i)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
         private void btn_ProjProdSave_Click(object sender, EventArgs e)
         {
+            try{
             projProdCont.ChangeAllocationOfProjectProducstListInDb(ProjectId,ProjProds);
             this.Close();
+            }
+            catch (Exception i)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
         private void btn_ProdToPool_Click(object sender, EventArgs e)
         {
-            
+            try{
             DataGridViewRow row = dataGridView_ProjProd.SelectedRows[0];
             int ProdId = (int)row.Cells[0].Value;
             int index = dataGridView_ProjProd.CurrentCell.RowIndex;
@@ -176,6 +205,11 @@ namespace NWAT
             dataGridView_ProjProd.Columns.Remove("Product");
             dataGridView_ProjProd.Columns.Remove("Project");
             dataGridView_ProjProd.Columns[1].Width = 200;
+            }
+            catch (Exception i)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
         private void btn_ProjProdCancle_Click(object sender, EventArgs e)

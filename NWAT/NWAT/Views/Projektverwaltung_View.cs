@@ -28,6 +28,7 @@ namespace NWAT
 
         private void Projektverwaltung_Form_Load(object sender, EventArgs e)
         {
+            try{
             using (ProjectController Projverw = new ProjectController()) 
             {
                 List<Project> ProjList = Projverw.GetAllProjectsFromDB();
@@ -39,6 +40,11 @@ namespace NWAT
             }
             
             this.FormClosing += new FormClosingEventHandler(Projektverwaltung_View_FormClosing);
+            }
+            catch (Exception i)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
         void Projektverwaltung_View_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -85,40 +91,65 @@ namespace NWAT
 
         private void btn_ProjectStartCreate_Click(object sender, EventArgs e)
         {
+            try{
             Project_Create_View ProjectCreate = new Project_Create_View();
             ProjectCreate.Show();
             Hide();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
         private void btn_ProjectModify_Click(object sender, EventArgs e)
         {
+            try{
             int selectedIndex = comboBox_SelectProject.SelectedIndex;
             Project selectedItem = (Project)comboBox_SelectProject.SelectedItem;
             aktuellesProjekt_View AktProjView = new aktuellesProjekt_View(selectedItem.Project_Id);
             AktProjView.Show();
             Hide();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
         private void btn_ProjectShow_Click(object sender, EventArgs e)
         {
+            try{
             int selectedIndex = comboBox_SelectProject.SelectedIndex;
             Project selectedItem = (Project)comboBox_SelectProject.SelectedItem;
             Project_Show_View ProjectShow = new Project_Show_View(selectedItem.Project_Id);
             ProjectShow.Show();
             Hide();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
         private void btn_ProjectUpdate_Click(object sender, EventArgs e)
         {
+            try{
             int selectedIndex = comboBox_SelectProject.SelectedIndex;
             Project selectedItem = (Project)comboBox_SelectProject.SelectedItem;
             Project_Update_View ProjectUpdate = new Project_Update_View(selectedItem.Project_Id);
             ProjectUpdate.Show();
             Hide();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
         private void btn_ProjImport_Click(object sender, EventArgs e)
         {
+            try{
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "Cursor Files|*.cur";
             openFileDialog1.Title = "Select a Cursor File";
@@ -126,10 +157,16 @@ namespace NWAT
             {
                 this.Cursor = new Cursor(openFileDialog1.OpenFile());
             }
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
         private void btn_refresh_Click(object sender, EventArgs e)
         {
+            try{
             using (ProjectController RefList = new ProjectController())
             {
                 List<Project> ProjList = RefList.GetAllProjectsFromDB();
@@ -139,6 +176,11 @@ namespace NWAT
                 comboBox_SelectProject.DisplayMember = "Name";
                 comboBox_SelectProject.ValueMember = "Project_ID";
                 
+            }
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
             }
         }
 

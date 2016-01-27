@@ -39,24 +39,37 @@ namespace NWAT
 
         private void btn_ProdShow_Click(object sender, EventArgs e)
         {
+            try{
             int selectedIndex = comboBox_ProdChoose.SelectedIndex;
             Product selectedItem = (Product)comboBox_ProdChoose.SelectedItem;
             Product_Show_View ProdShow = new Product_Show_View(selectedItem.Product_Id);
             ProdShow.Show();
             Hide();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
         private void btn_ProdUpdate_Click(object sender, EventArgs e)
         {
+            try{
             int selectedIndex = comboBox_ProdChoose.SelectedIndex;
             Product selectedItem = (Product)comboBox_ProdChoose.SelectedItem;
             Product_Update_View ProdUpdate = new Product_Update_View(selectedItem.Product_Id);
             ProdUpdate.Show();
             Hide();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
         private void btn_ProdDelete_Click(object sender, EventArgs e)
         {
+            try{
             int selectedIndex = comboBox_ProdChoose.SelectedIndex;
             Product selectedItem = (Product)comboBox_ProdChoose.SelectedItem;
             using (ProductController prodDelete = new ProductController()) {
@@ -65,6 +78,11 @@ namespace NWAT
             }
             
             MessageBox.Show("Wollen Sie das ausgeählte Produkt wirklich löschen?");
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
         private void DeleteProdFromDB()
         {
@@ -73,13 +91,20 @@ namespace NWAT
 
         private void btn_ProdCreate_Click(object sender, EventArgs e)
         {
+            try{
             Product_Create_View ProdCreate = new Product_Create_View();
             ProdCreate.Show();
             Hide();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
         private void btn_refresh_Click(object sender, EventArgs e)
         {
+           try{
             using (ProductController ProdRefr = new ProductController())
             {
                 List<Product> ProdList = ProdRefr.GetAllProductsFromDb();
@@ -89,6 +114,11 @@ namespace NWAT
                 comboBox_ProdChoose.DisplayMember = "Name";
                 comboBox_ProdChoose.ValueMember = "Product_ID";
             }
+           }
+           catch (Exception x)
+           {
+               MessageBox.Show("Ups da lief was schief");
+           }
         }
     }
     public class aktRowProd

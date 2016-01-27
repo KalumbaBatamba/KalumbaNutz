@@ -73,6 +73,7 @@ namespace NWAT.Views
 
         private void ProjCritParentAllocation_Load(object sender, EventArgs e)
         {
+            try{
             List<Criterion> allocCrits = new List<Criterion>();
 
             using (CriterionController critCont = new CriterionController())
@@ -90,11 +91,16 @@ namespace NWAT.Views
             }
             comboBox_CritName.DataSource = allocCrits;
             comboBox_CritName.DisplayMember = "Name";
+            }
+            catch (Exception i)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
         private void btn_zuordnen_Click(object sender, EventArgs e)
         {
-            
+            try{
             Criterion selectedParentCiterion = (Criterion)comboBox_CritName.SelectedItem;
                 ProjectCriterion projCritToAllocate = new ProjectCriterion()
                 {
@@ -104,10 +110,16 @@ namespace NWAT.Views
                 };
                 ParentView.AllocateNewProjectCriterion(projCritToAllocate, CriterionIdDeleteFromList);
                 this.Close();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
         private void btn_cancle_Click(object sender, EventArgs e)
         {
+            try{
             ProjectCriterion projCritToAllocate = new ProjectCriterion()
             {
                 Project_Id = ProjectId,
@@ -115,6 +127,11 @@ namespace NWAT.Views
             };
             ParentView.AllocateNewProjectCriterion(projCritToAllocate, CriterionIdDeleteFromList);
             this.Close();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
     }
 }

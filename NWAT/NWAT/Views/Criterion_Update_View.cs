@@ -33,6 +33,7 @@ namespace NWAT
 
         private void btn_CritUpdate_Click(object sender, EventArgs e)
         {
+            try{
             using (CriterionController CritUpdClick = new CriterionController())
             {
                 Criterion critUpd = CritUpdClick.GetCriterionById(Criterion.Criterion_Id);
@@ -42,7 +43,11 @@ namespace NWAT
                 CritUpdClick.UpdateCriterionInDb(critUpd);
             }
             this.Close();
-            
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
         private void GetCritsSpecs()
         {
@@ -55,8 +60,14 @@ namespace NWAT
 
         private void Criterion_Update_Form_Load(object sender, EventArgs e)
         {
+            try{
             textBox_CritNameUpdate.Text = this.Criterion.Name; 
-            textBox_CritDescUpdate.Text = this.Criterion.Description; 
+            textBox_CritDescUpdate.Text = this.Criterion.Description;
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
     }
 }

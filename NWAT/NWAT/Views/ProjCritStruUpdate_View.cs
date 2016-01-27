@@ -55,7 +55,8 @@ namespace NWAT
         }
 
         private void ProjCritStruUpdate_Form_Load(object sender, EventArgs e)
-        {
+        { 
+            try{
             using (ProjectCriterionController proCriCont = new ProjectCriterionController())
             {
                 ProjCrits = proCriCont.GetSortedCriterionStructure(ProjectId);
@@ -119,11 +120,22 @@ namespace NWAT
             DataGridViewCellValidatingEventHandler(dataGridView_CritStruUpd_CellValidating);
 
             this.FormClosing += new FormClosingEventHandler(ProjCritStruUpdate_View_FormClosing);
+            }
+            catch (Exception i)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
         void ProjCritStruUpdate_View_FormClosing(object sender, FormClosingEventArgs e)
         {
+            try{
             aktuellesProjekt_View back = new aktuellesProjekt_View(ProjectId);
             back.Show();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
         private void GetProjectCritStructure()
@@ -137,6 +149,7 @@ namespace NWAT
 
         private void btn_ProjCritStruSave_Click(object sender, EventArgs e)
         {
+            try{
             int i = 0;
             foreach (DataGridViewRow row in dataGridView_CritStruUpd.Rows)
             {
@@ -163,7 +176,12 @@ namespace NWAT
                 }
                 
             }
-            refreshGrid();           
+            refreshGrid();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
         private void dataGridView_CritStruUpd_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -173,6 +191,7 @@ namespace NWAT
 
         private void refreshGrid()
         {
+            try{
             dataGridView_CritStruUpd.DataSource = null;
             using (ProjectCriterionController proCriCont = new ProjectCriterionController())
             {
@@ -231,6 +250,11 @@ namespace NWAT
                 dataGridView_CritStruUpd.Columns["Name"].ReadOnly = true;
                 dataGridView_CritStruUpd.Show();
             }
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
         private void btn_refresh_Click(object sender, EventArgs e)
         {
@@ -239,6 +263,7 @@ namespace NWAT
 
         private void dataGridView_CritStruUpd_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
+            try{
             if (e.ColumnIndex == 2|| e.ColumnIndex == 3)
             {
                 dataGridView_CritStruUpd.Rows[e.RowIndex].ErrorText = "";
@@ -254,6 +279,11 @@ namespace NWAT
                     dataGridView_CritStruUpd.Rows[e.RowIndex].ErrorText = "Nur Zahlen erlaubt";
                     MessageBox.Show("Bitte nur Ganzzahlen eintragen");
                 }
+            }
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
             }
         }
 

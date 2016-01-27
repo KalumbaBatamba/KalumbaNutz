@@ -38,6 +38,7 @@ namespace NWAT
 
         private void Project_Show_Form_Load(object sender, EventArgs e)
         {
+            try{
             using (ProjectController ProjShowForm = new ProjectController())
             {
                 Project proj = ProjShowForm.GetProjectById(Project.Project_Id);
@@ -47,11 +48,22 @@ namespace NWAT
                 label_ProjShowDesc.Text = this.Project.Description; 
             }
             this.FormClosing += new FormClosingEventHandler(Project_Show_View_FormClosing);
+            }
+            catch (Exception i)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
         void Project_Show_View_FormClosing(object sender, FormClosingEventArgs e)
         {
+            try{
             Projektverwaltung_View start = new Projektverwaltung_View();
             start.Show();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
         private void ShowProject()
         {

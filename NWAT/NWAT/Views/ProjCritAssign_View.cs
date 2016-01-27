@@ -49,7 +49,7 @@ namespace NWAT
  
         private void ProjCritAssign_Form_Load(object sender, EventArgs e)
         {
-
+            try{
             using (ProjectCriterionController proCriCont = new ProjectCriterionController())
             {
                 ProjCrits = proCriCont.GetAllProjectCriterionsForOneProject(ProjectId);
@@ -113,7 +113,12 @@ namespace NWAT
             dataGridView_ProjCrits.Columns[2].Width = 200;
             dataGridView_ProjCrits.Columns[3].Width = 190;
             this.FormClosing += new FormClosingEventHandler(ProjCritAssign_View_FormClosing);
-        }
+            }
+            catch (Exception i)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
+            }
         void ProjCritAssign_View_FormClosing(object sender, FormClosingEventArgs e)
         {
             aktuellesProjekt_View back = new aktuellesProjekt_View(ProjectId);
@@ -135,6 +140,7 @@ namespace NWAT
 
         private void btn_CritToProj_Click(object sender, EventArgs e)
         {
+            try{
             DataGridViewRow row = dataGridView_CritAvail.SelectedRows[0];
             int CritId = (int)row.Cells[0].Value;
             string CritName = (string)row.Cells[1].Value ;
@@ -146,10 +152,16 @@ namespace NWAT
                     index,
                     this);
                 projCritAllView.Show();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
         public void AllocateNewProjectCriterion(ProjectCriterion projCritToAllocate, int index)
         {            
+            try{
             ProjCrits.Add(projCritToAllocate);
             projCritCont.ChangeAllocationOfProjectCriterionsInDb(ProjectId, ProjCrits);
             using (CriterionController critCont = new CriterionController())
@@ -188,19 +200,30 @@ namespace NWAT
             dataGridView_CritAvail.DataSource = AllCrits;
  
             refreshGridL();
-
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
         private void btn_ProjCritSave_Click(object sender, EventArgs e)
         {
+            try{
             using (ProjectCriterionController projCritCon = new ProjectCriterionController()){
             projCritCon.ChangeAllocationOfProjectCriterionsInDb(ProjectId, ProjCrits);
             }
             this.Close();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
         private void btn_CritToPool_Click(object sender, EventArgs e)
         {
+            try{
             if ((int)dataGridView_ProjCrits.SelectedRows[0].Index >= 0)
             {
                 DataGridViewRow row = dataGridView_ProjCrits.SelectedRows[0];
@@ -234,6 +257,11 @@ namespace NWAT
             {
                 MessageBox.Show("Bitte erst eine Zeile auswählen");
             }
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
         private void dataGridView_ProjCrits_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -241,6 +269,7 @@ namespace NWAT
         }
         private void refreshGridL()
         {
+            try{
             dataGridView_ProjCrits.DataSource = null;
             using (ProjectCriterionController proCriCon = new ProjectCriterionController())
             {
@@ -278,6 +307,11 @@ namespace NWAT
             dataGridView_ProjCrits.Columns[2].HeaderText = "P-ID";
             dataGridView_ProjCrits.Columns[2].Width = 40;
             dataGridView_ProjCrits.Columns[3].Width = 200;
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
         private void btn_ProjCritCancle_Click(object sender, EventArgs e)

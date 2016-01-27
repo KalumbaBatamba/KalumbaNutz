@@ -120,17 +120,30 @@ namespace NWAT
         }
         void ProjCritBalance_View_FormClosing(object sender, FormClosingEventArgs e)
         {
+            try{
             aktuellesProjekt_View back = new aktuellesProjekt_View(ProjectId);
             back.Show();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
         private void dataGridView_ProjCritBalance_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         { 
+            try{
         int zeile = (dataGridView_ProjCritBalance.Rows.Count -1);
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
        private void btn_SameBalance_Click(object sender, EventArgs e)
         {
+           try{
             foreach (DataGridViewRow row in dataGridView_ProjCritBalance.Rows)
             {
                 row.Cells["Weighting_Cardinal"].Value = 1;
@@ -145,12 +158,16 @@ namespace NWAT
                 projCritCont.UpdateProjectCriterionInDb(fromList);
             }
             refreshGrid();
-
+           }
+           catch (Exception x)
+           {
+               MessageBox.Show("Ups da lief was schief");
+           }
        }
 
        private void btn_ProjCritBalaSave_Click(object sender, EventArgs e)
        {
-               //Werte der Gewichtung eintragen und speichern in DB 
+               try{
                int i = 0;
                foreach (DataGridViewRow row in dataGridView_ProjCritBalance.Rows)
                {
@@ -162,7 +179,11 @@ namespace NWAT
                }
 
                refreshGrid();
-           
+               }
+               catch (Exception x)
+               {
+                   MessageBox.Show("Ups da lief was schief");
+               }
        }
 
         private void btn_ProjCritBalaCancle_Click(object sender, EventArgs e)
@@ -173,6 +194,7 @@ namespace NWAT
 
         private void refreshGrid()
         {
+            try{
             dataGridView_ProjCritBalance.DataSource = null;
             using (ProjectCriterionController proCriCont = new ProjectCriterionController())
             {
@@ -236,6 +258,11 @@ namespace NWAT
                 dataGridView_ProjCritBalance.Columns["Parent_Criterion_Id"].ReadOnly = true;
                 dataGridView_ProjCritBalance.Columns["Weighting_Percentage_Project"].ReadOnly = true;
             }
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
         private void dataGridView_ProjCritBalance_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -244,7 +271,8 @@ namespace NWAT
         }
 
         private void dataGridView_ProjCritBalance_CellValidating(object sender,   DataGridViewCellValidatingEventArgs e)
-        {
+        { 
+            try{
             if (e.ColumnIndex == 3 || e.ColumnIndex == 4 )
            {
                 dataGridView_ProjCritBalance.Rows[e.RowIndex].ErrorText = "";
@@ -262,6 +290,11 @@ namespace NWAT
                     MessageBox.Show("Bitte nur Ganzzahlen eintragen");
                 }
            }
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
     }
 }

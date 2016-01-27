@@ -33,6 +33,7 @@ namespace NWAT
 
         private void btn_ProdCreate_Click(object sender, EventArgs e)
         {
+            try{
           Product prodCre = new Product();
           prodCre.Name = textBox_ProdNameCreate.Text;
           prodCre.Producer = textBox_ProdManuCreate.Text;
@@ -53,6 +54,11 @@ namespace NWAT
                 {
                     MessageBox.Show("Der Preis darf nur aus Zahlen bestehen!");
                 }
+            }
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
             }
         }
         private void CreateNewProduct()

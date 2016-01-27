@@ -63,6 +63,7 @@ namespace NWAT
 
         private void btn_ProdUpdate_Click(object sender, EventArgs e)
         {
+            try{
             using (ProductController prodUpdate = new ProductController()) 
             {
                 Product prodNew = prodUpdate.GetProductById(Product.Product_Id);
@@ -88,6 +89,11 @@ namespace NWAT
                     MessageBox.Show("Der Preis darf nur aus Zahlen bestehen!");
                 }
              }
+            }
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
             }
         }
         private void UpdateProduct()

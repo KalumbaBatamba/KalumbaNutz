@@ -38,12 +38,18 @@ namespace NWAT
 
         private void btn_ProjUpdate_Click(object sender, EventArgs e)
         {
+            try{
             Project projUpd = ProjectCont.GetProjectById(Project.Project_Id);
             projUpd.Project_Id = this.Project.Project_Id;
             projUpd.Name = textBox_ProjNameUpdate.Text;
             projUpd.Description = textBox_ProjDescUpdate.Text;
             ProjectCont.UpdateProjectInDb(projUpd);
             this.Close();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
         private void UpdateProject()
         {
@@ -52,6 +58,7 @@ namespace NWAT
 
         private void Project_Update_View_Load(object sender, EventArgs e)
         {
+            try{
 
             using (ProjectController UpdVieLoad = new ProjectController())
             {
@@ -62,11 +69,22 @@ namespace NWAT
                 textBox_ProjDescUpdate.Text = this.Project.Description;
             }
             this.FormClosing += new FormClosingEventHandler(Project_Update_View_FormClosing);
+            }
+            catch (Exception i)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
         void Project_Update_View_FormClosing(object sender, FormClosingEventArgs e)
         {
+            try{
             Projektverwaltung_View start = new Projektverwaltung_View ();
             start.Show();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
     }
 }

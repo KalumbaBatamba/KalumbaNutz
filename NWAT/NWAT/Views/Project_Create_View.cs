@@ -26,8 +26,14 @@ namespace NWAT
         }
         void Project_Create_View_FormClosing(object sender, FormClosingEventArgs e)
         {
+            try{
             Projektverwaltung_View back = new Projektverwaltung_View();
             back.Show();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
 
 
@@ -42,12 +48,18 @@ namespace NWAT
 
         private void btn_ProjCreate_Click(object sender, EventArgs e)
         {
+            try{
             Project projCre = new Project();
             projCre.Name = textBox_ProjNameCreate.Text;
             projCre.Description = textBox_ProjDescCreate.Text;
             projCont.InsertProjectIntoDb(projCre);
 
             this.Close();
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
     }
 }

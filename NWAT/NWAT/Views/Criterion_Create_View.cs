@@ -23,6 +23,7 @@ namespace NWAT
 
         private void btn_CritCreate_Click(object sender, EventArgs e)
         {
+            try{
             String Name = textBox_CritNameCreate.Text;
             String Desc = textBox_CritDescCreate.Text;
             if (Name.Contains("|") || Desc.Contains("|"))
@@ -33,7 +34,11 @@ namespace NWAT
             this.critCont.InsertCriterionIntoDb(Crit);
             this.Close();
             }
-            
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show("Ups da lief was schief");
+            }
         }
         private void CreateNewCrit()
         {
