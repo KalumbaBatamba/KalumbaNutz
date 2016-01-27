@@ -138,7 +138,7 @@ namespace NWAT.Printer
                     PdfWriter writer = PdfWriter.GetInstance(FulfillmentPrinter, new FileStream(SfdFulfillment.FileName, FileMode.Create));
                     writer.PageEvent = new PdfPageEvents();
                 }
-                catch (Exception) { MessageBox.Show(String.Format(SfdFulfillment.FileName + " noch geöffnet! Bitte Schließen!")); }
+                catch (Exception) { throw new Exception("Bitte schließen Sie das geöffnete Pdf!"); }
 
                 //Dokument öffnen um es bearbeiten zu können
                 FulfillmentPrinter.Open();
@@ -162,7 +162,7 @@ namespace NWAT.Printer
                     rankingTable.TotalWidth = 500f;
                     prodCounter++;
                 }
-
+                //Add Ranking Darstellung zum Dokument
                 FulfillmentPrinter.Add(rankingTable);
                 
                 //Bei einer Anzahl von mehr als 5 Produkten innerhalb eines NWA-Projekts werden jeweils weitere Tabellen mit den restlichen Produkten generiert
@@ -228,14 +228,15 @@ namespace NWAT.Printer
             if (numberOfCells == 7) { float[] widths = { 20f, 2f, 2f, 3f, 3f, 3f, 3f }; CritTable.SetWidths(widths); ;}
             if (numberOfCells == 8) { float[] widths = { 20f, 2f, 2f, 3f, 3f, 3f, 3f, 3f }; CritTable.SetWidths(widths); ;}
             if (numberOfCells == 9) { float[] widths = { 20f, 2f, 2f, 3f, 3f, 3f, 3f, 3f, 3f }; CritTable.SetWidths(widths); ;}
-            if (numberOfCells >= 10) { throw new System.ArgumentException("Die Anzahl der maximal darstellbaren Produkte auf einer Seite wurde überschritten!"); }
-            //Ab einer Anzahl von >5 Produkten wird eine Fehlermeldung ausgeworfen das nicht mehr Produkte auf die Seite des Pdfs passen
 
-            CritTable.DefaultCell.Border = 1;               // Die Grenzen der Tabelle unsichtbar machen
-            CritTable.HeaderRows = 1;                     //Anzeigen der ersten Zeilen als Überschrift auf jeder Seite des Dokuments
-
+            // Die Grenzen der Tabelle unsichtbar machen
+            CritTable.DefaultCell.Border = 1;
+            //Anzeigen der ersten Zeilen als Überschrift auf jeder Seite des Dokuments
+            CritTable.HeaderRows = 1;                     
             //Platz zwischen Produktlegende und der Tabelle
-            CritTable.SpacingBefore = 20f;     
+            CritTable.SpacingBefore = 20f;
+
+            //if-Abfrage für die, je nach Anzahl der Produkte, korrekte "Überschrift der Tabelle"
             if (numberOfallProductsForThisProject > 5)
             {
                 CritTable.AddCell(new Paragraph(String.Format("Nutzwert - Analyse   [{0}. Teil]", tableNumber), arialBold));
@@ -414,26 +415,30 @@ namespace NWAT.Printer
 
         public void GetPageNumber(SaveFileDialog save, int pageNumberBottomPosition)
         {
-            byte[] bytes = File.ReadAllBytes(save.FileName);
-            Font BlackFont = FontFactory.GetFont("Arial", 9, Font.BOLD, BaseColor.BLACK);
-            using (MemoryStream stream = new MemoryStream())
+            try
             {
-                PdfReader reader = new PdfReader(bytes);
-                using (PdfStamper stamper = new PdfStamper(reader, stream))
+                byte[] bytes = File.ReadAllBytes(save.FileName);
+                Font BlackFont = FontFactory.GetFont("Arial", 9, Font.BOLD, BaseColor.BLACK);
+                using (MemoryStream stream = new MemoryStream())
                 {
-                    int pages = reader.NumberOfPages;
-                    //Schleife um zu gewährleisten das jede Seite des Dokuments berücksichtigt wird
-                    for (int i = 1; i <= pages; i++)
+                    PdfReader reader = new PdfReader(bytes);
+                    using (PdfStamper stamper = new PdfStamper(reader, stream))
                     {
-                        //Seitenzahl
-                        ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(i.ToString(), BlackFont), pageNumberBottomPosition, 15f, 0);
-                        //Projekt Name
-                        ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(Project.Name.ToString(), BlackFont), 400, 15f, 0);
+                        int pages = reader.NumberOfPages;
+                        //Schleife um zu gewährleisten das jede Seite des Dokuments berücksichtigt wird
+                        for (int i = 1; i <= pages; i++)
+                        {
+                            //Seitenzahl
+                            ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(i.ToString(), BlackFont), pageNumberBottomPosition, 15f, 0);
+                            //Projekt Name
+                            ColumnText.ShowTextAligned(stamper.GetUnderContent(i), Element.ALIGN_RIGHT, new Phrase(Project.Name.ToString(), BlackFont), 400, 15f, 0);
+                        }
                     }
+                    bytes = stream.ToArray();
                 }
-                bytes = stream.ToArray();
+                File.WriteAllBytes(save.FileName, bytes);
             }
-            File.WriteAllBytes(save.FileName, bytes);
+            catch (Exception) { throw new Exception("Bitte schließen Sie das geöffnete Pdf"); }
         }
     }
 }
