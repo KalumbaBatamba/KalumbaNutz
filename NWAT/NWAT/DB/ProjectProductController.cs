@@ -206,7 +206,19 @@ namespace NWAT.DB
                     foreach (ProjectCriterion projCrit in allProjectCriterions)
                     {
                         int criterionId = projCrit.Criterion_Id;
-                        if (!fulfillCont.InsertFullfillmentInDb(projectId, productId, criterionId))
+
+                        // new fulfillment which will be inserted into fulfillment table.
+                        // default values for Fulfilled and Comment (false and null)
+                        Fulfillment newFulfillment = new Fulfillment()
+                        {
+                            Project_Id = projectId,
+                            Product_Id = productId,
+                            Criterion_Id = criterionId,
+                            Fulfilled = false,
+                            Comment = null
+                        };
+
+                        if (!fulfillCont.InsertFullfillmentInDb(newFulfillment))
                         {
                             insertionFulfillmentSuccessful = false;
                             throw (new NWATException(CommonMethods.MessageInsertionToFulFillmentTableFailed(productId, criterionId)));

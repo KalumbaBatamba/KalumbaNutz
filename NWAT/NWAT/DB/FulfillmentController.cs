@@ -60,6 +60,20 @@ namespace NWAT.DB
         }
 
         /// <summary>
+        /// Checks if fulfillment already exists.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="productId">The product identifier.</param>
+        /// <param name="criterionId">The criterion identifier.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 27.01.2016
+        public bool CheckIfFulfillmentAlreadyExists(int projectId, int productId, int criterionId)
+        {
+            Fulfillment existingFulfillment = GetFulfillmentByIds(projectId, productId, criterionId);
+            return existingFulfillment != null;
+        }
+
+        /// <summary>
         /// Fills the fulfillment table initially.
         /// </summary>
         /// <param name="projectId">The project identifier.</param>
@@ -89,7 +103,15 @@ namespace NWAT.DB
                     foreach (ProjectCriterion projCrit in allProjectCriterions)
                     {
                         int criterionId = projCrit.Criterion_Id;
-                        InsertFullfillmentInDb(projectId, productId, criterionId);
+                        Fulfillment insertFulfillment = new Fulfillment() 
+                        {
+                            Project_Id = projectId,
+                            Product_Id = productId,
+                            Criterion_Id = criterionId,
+                            Fulfilled = false,
+                            Comment = null
+                        };
+                        InsertFullfillmentInDb(insertFulfillment);
                     }
                 }
             }
@@ -103,26 +125,24 @@ namespace NWAT.DB
         /// <param name="criterionId">The criterion identifier.</param>
         /// Erstellt von Joshua Frey, am 04.01.2016
         /// <exception cref="NWATException"></exception>
-        public bool InsertFullfillmentInDb(int projectId, int productId, int criterionId)
+        public bool InsertFullfillmentInDb(Fulfillment fulfillmentToInsert)
         {
-            Fulfillment newFulfillmentEntry = new Fulfillment
+            int projId = fulfillmentToInsert.Project_Id;
+            int prodId = fulfillmentToInsert.Product_Id;
+            int critId = fulfillmentToInsert.Criterion_Id;
+
+            if (!CheckIfFulfillmentAlreadyExists(projId, prodId, critId))
             {
-                Project_Id = projectId,
-                Product_Id = productId,
-                Criterion_Id = criterionId
-            };
-            if (!CheckIfFullfilmentCombinationAlreadyExists(projectId, productId, criterionId))
-            {
-                base.DataContext.Fulfillment.InsertOnSubmit(newFulfillmentEntry);
+                base.DataContext.Fulfillment.InsertOnSubmit(fulfillmentToInsert);
                 base.DataContext.SubmitChanges();
-                if (CheckIfFullfilmentCombinationAlreadyExists(projectId, productId, criterionId))
+                if (CheckIfFulfillmentAlreadyExists(projId, prodId, critId))
                     return true;
                 else 
                     return false;
             }
             else
             {
-                throw new NWATException(MessageFulfillmentEntryAlreadyExists(projectId, productId, criterionId));
+                throw new NWATException(MessageFulfillmentEntryAlreadyExists(projId, prodId, critId));
             }
         }
 
@@ -269,26 +289,6 @@ namespace NWAT.DB
          * Private section
          */
 
-        /// <summary>
-        /// Checks if fullfilment combination already exists in db.
-        /// </summary>
-        /// <param name="projectId">The project identifier.</param>
-        /// <param name="productId">The product identifier.</param>
-        /// <param name="criterionId">The criterion identifier.</param>
-        /// <returns>
-        /// bool if fulfillment with given params already exists in db
-        /// </returns>
-        /// Erstellt von Joshua Frey, am 28.12.2015
-        private bool CheckIfFullfilmentCombinationAlreadyExists(int projectId, int productId, int criterionId)
-        {
-            Fulfillment existingFulfillmentEntry = base.DataContext.Fulfillment.SingleOrDefault(fulfillment => fulfillment.Project_Id == projectId
-                                                                                                && fulfillment.Product_Id == productId
-                                                                                                && fulfillment.Criterion_Id == criterionId);
-            if (existingFulfillmentEntry != null)
-                return true;
-            else
-                return false;
-        }
 
         /// <summary>
         /// Checks if fulfillments are equal.

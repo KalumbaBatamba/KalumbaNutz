@@ -246,6 +246,8 @@ namespace NWAT.DB
             ImportProductData();
             ImportProjectCriterionData();
             ImportProjectProductData();
+            ImportFulfillmentData();
+            MessageBox.Show(MessageEndOfImportProcess()); 
         }
 
 
@@ -824,6 +826,107 @@ namespace NWAT.DB
             };
             return importProjectProduct;
         }
+
+
+
+        /// <summary>
+        /// Imports the fulfillment data.
+        /// </summary>
+        /// Erstellt von Joshua Frey, am 27.01.2016
+        /// <exception cref="NWATException"></exception>
+        private void ImportFulfillmentData()
+        {
+            this.ImportLogWriter.LogSubHeading(MessageStartImportOfData("Fulfillment"));
+            using (StreamReader sr = new StreamReader(this.FulfillmenImportFilePath))
+            {
+                string line;
+                Fulfillment importFulfillment;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    importFulfillment = GetFulfillmentByLineFromImportFile(line);
+                    int importProjId = importFulfillment.Project_Id;
+                    int importProdId = importFulfillment.Product_Id;
+                    int importCritId = importFulfillment.Criterion_Id;
+
+                    // if id does not already exist in table --> import; else skip
+                    if (!this.ImportFulfillmentController.CheckIfFulfillmentAlreadyExists(importProjId, importProdId, importCritId))
+                    {
+                        bool importSuccessful = this.ImportFulfillmentController.InsertFullfillmentInDb(importFulfillment);
+                        //bool importSuccessful = true;
+                        if (importSuccessful)
+                        {
+                            this.ImportLogWriter.Log(MessageImportOfFulfillmentSucceeded(importProjId, importProdId, importCritId));
+                        }
+                        else
+                        {
+                            string dataSet = String.Format("Project_Id = {0}\n" +
+                                                           "Product_Id = {1}\n" +
+                                                           "Criterion_Id = {2}\n" +
+                                                           "Fulfilled = {3}\n" +
+                                                           "Comment = {4}\n" +
+                                                            importProjId,importProdId,
+                                                            importCritId, importFulfillment.Fulfilled,
+                                                            importFulfillment.Comment);
+
+                            throw new NWATException(MessageImportFailed("Fulfillment", dataSet));
+                        }
+
+                    }
+                    else
+                    {
+                        this.ImportLogWriter.Log(MessageFulfillmentAlreadyExists(importProjId, importProdId, importCritId));
+                    }
+                }
+            }
+            this.ImportLogWriter.Log(MessageEndImportOfData("Fullfillment"));
+        }
+
+
+
+        /// <summary>
+        /// Gets the fulfillment by line from import file.
+        /// </summary>
+        /// <param name="fulfillmentImportLine">The fulfillment import line.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 27.01.2016
+        /// <exception cref="NWATException"></exception>
+        private Fulfillment GetFulfillmentByLineFromImportFile(string fulfillmentImportLine)
+        {
+            Fulfillment importFulfillment;
+            // Project_Id|Product_Id|Criterion_Id|Fulfilled|Comment
+            var lineAsArray = fulfillmentImportLine.Split(this._delimiter);
+
+            int projectId;
+            int productId;
+            int criterionId;
+            bool fulfilled;
+            string comment =  CommonMethods.GetNullableStringValueFromString(lineAsArray[4]);
+            try
+            {
+                projectId = Convert.ToInt32(lineAsArray[0]);
+                productId = Convert.ToInt32(lineAsArray[1]);
+                criterionId = Convert.ToInt32(lineAsArray[2]);
+                fulfilled = Convert.ToBoolean(lineAsArray[3]);
+            }
+            catch (FormatException formatException)
+            {
+                throw new NWATException(String.Format("{0}\n\n{1}",
+                    formatException, MessageWrongDatatypeInExportedLine("ProjectProduct", fulfillmentImportLine, 
+                                                                        "int|int|int|bool(\"True\" or \"False\")|string")));
+            }
+
+            importFulfillment = new Fulfillment()
+            {
+                Project_Id = projectId,
+                Product_Id = productId,
+                Criterion_Id = criterionId,
+                Fulfilled = fulfilled,
+                Comment = comment
+            };
+            return importFulfillment;
+        }
+
+
         
         
         /*
@@ -859,7 +962,15 @@ namespace NWAT.DB
             return String.Format("Das Produkt mit der Id \"{0}\" des Projektes mit der Id {1} " +
                                  "wurde erfolgreich importiert", productId, projectId);
         }
- 
+
+        private string MessageImportOfFulfillmentSucceeded(int projectId, int productId, int criterionId)
+        {
+            return String.Format("Der Eintrag in der Fulfillment-Tabelle mit der Project_Id \"{0}\" "+ 
+                                 "und der Product_Id {1} " +
+                                 "und der Criterion_Id {2} " +
+                                 "wurde erfolgreich importiert", productId, projectId, criterionId);
+        }
+
         private string MessageStartImportOfData(string tableName)
         {
             return String.Format("Import \"{0}\" gestartet.", tableName);
@@ -890,6 +1001,15 @@ namespace NWAT.DB
                 productId, projectid);
         }
 
+        private string MessageFulfillmentAlreadyExists(int projectId, int productId, int criterionId)
+        {
+            return String.Format("Der Eintrag in der Fulfillment-Tabelle mit der Project_Id \"{0}\" " +
+                                 "und der Product_Id {1} " +
+                                 "und der Criterion_Id {2} " +
+                                 "existiert bereits und wird deshalb nicht importiert", 
+                                 productId, projectId, criterionId);
+        }
+
         private string MessageMasterDatasetAlreadyExists(int dataSetId, string dataSetName)
         {
             return String.Format("Der Datensatz mit der Id \"{0}\" und dem Namen \"{1}\" wurde nicht importiert, "+
@@ -916,6 +1036,11 @@ namespace NWAT.DB
         private string MessageProjectWhichProjCritRefersToDoesNotExist(int projectId)
         {
             return String.Format("Das Projectkriterium mit der Projekt-Id {0} kann nicht importiert werden, da das zugehörige Projekt in der Tabelle Project nicht existiert.", projectId);
+        }
+
+        private string MessageEndOfImportProcess()
+        {
+            return "Der Importvorgang wurde abgeschlossen.\nGenauere Informationen entnehmen Sie bitte der erstellten Import-Log-Datei.";
         }
     }
 }

@@ -532,11 +532,23 @@ namespace NWAT.DB
                 {
                     foreach (ProjectProduct projProd in allProjectProducts)
                     {
-                        int prodId = projProd.Product_Id;
-                        if (!fulfillContr.InsertFullfillmentInDb(projectId, prodId, projCritId))
+                        int productId = projProd.Product_Id;
+
+                        // new fulfillment which will be inserted into fulfillment table.
+                        // default values for Fulfilled and Comment (false and null)
+                        Fulfillment newFulfillment = new Fulfillment()
+                        {
+                            Project_Id = projectId,
+                            Product_Id = productId,
+                            Criterion_Id = projCritId,
+                            Fulfilled = false,
+                            Comment = null
+                        };
+
+                        if (!fulfillContr.InsertFullfillmentInDb(newFulfillment))
                         {
                             insertionFulfillmentSuccessful = false;
-                            throw (new NWATException(CommonMethods.MessageInsertionToFulFillmentTableFailed(prodId, projCritId)));
+                            throw (new NWATException(CommonMethods.MessageInsertionToFulFillmentTableFailed(productId, projCritId)));
                         }
                     }
                 }

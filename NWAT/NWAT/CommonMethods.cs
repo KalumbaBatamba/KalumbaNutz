@@ -138,8 +138,6 @@ namespace NWAT
         }
 
 
-
-
         /*
          * Messages
          */
