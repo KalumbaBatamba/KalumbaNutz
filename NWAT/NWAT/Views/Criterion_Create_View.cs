@@ -23,6 +23,7 @@ namespace NWAT
 
         /// <summary>
         /// Handles the Click event of the btn_CritCreate control.
+        /// Holt die Einträge aus den Textboxen, überprüft diese auf unerlaubte Sonderzeichen und speichert das neue Kriterium ab
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
@@ -43,7 +44,7 @@ namespace NWAT
             }
             catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show("Name oder Beschreibung bereits vorhanden");
             }
         }
         private void CreateNewCrit()

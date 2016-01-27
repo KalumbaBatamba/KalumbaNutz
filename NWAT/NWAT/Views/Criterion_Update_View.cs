@@ -33,6 +33,7 @@ namespace NWAT
 
         /// <summary>
         /// Handles the Click event of the btn_CritUpdate control.
+        /// speichert den neuen Namen und Beschreibung in der DB ab sofern keine unerlaubten Zeichen vorkommen
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
@@ -66,6 +67,7 @@ namespace NWAT
 
         /// <summary>
         /// Handles the Load event of the Criterion_Update_Form control.
+        /// Läd beim Öffnen Name und Beschreibung des ausgewählten Kriteriums, dass diese bearbeitet werden können
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>

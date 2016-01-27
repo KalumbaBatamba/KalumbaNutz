@@ -15,7 +15,13 @@ namespace NWAT
 {
     public partial class aktuellesProjekt_View : Form
     {
-        private Project _project;
+
+/* View mit den Auswahlbuttons für die Funktionen eines ausgewählten Projektes (Kriterien zuordnen, Projektkriterien exportieren,
+ *Kriterienstruktur anlegen/ändern, Kriterienstruktur drucken,Gewichtung engeben/ändern, Gewichtung drucken,
+ * Produkte zuordnen, Produkt/Kriterienerfüllung erfassen, Erfüllung drucken, Analyse durchführen
+ */
+  
+ private Project _project;
 
         public Project Project
         {
@@ -124,6 +130,7 @@ namespace NWAT
 
         /// <summary>
         /// Handles the Click event of the btn_CurrProjKritAssign control.
+        /// Öffnet die Maske der Kriterienzuordnung
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
@@ -147,7 +154,7 @@ namespace NWAT
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         /// Erstellt von Veit Berg, am 27.01.16
-        private void btn_CurrProjCritStruShow_Click(object sender, EventArgs e)
+        /*private void btn_CurrProjCritStruShow_Click(object sender, EventArgs e)
         {
             try{
             ProjCritShow_View ProjCritShow = new ProjCritShow_View();
@@ -157,10 +164,11 @@ namespace NWAT
             { 
                 MessageBox.Show("Ups da lief was schief"); 
             }
-        }
+        }*/
 
         /// <summary>
         /// Handles the Click event of the btn_CurrProjCritStruUpdate control.
+        /// Öffnet die Maske der Kriterienstruktur 
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
@@ -181,6 +189,7 @@ namespace NWAT
 
         /// <summary>
         /// Handles the Click event of the btn_CurrProjCritStruPrint control.
+        /// Butten zum Öffnen der Kriterienstruktur-Printer
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
@@ -209,6 +218,7 @@ namespace NWAT
 
         /// <summary>
         /// Handles the Click event of the btn_CurrProjProdAssign control.
+        /// Öffnet die Maske der Produktzuordnung für ein Projekt
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
@@ -228,6 +238,7 @@ namespace NWAT
 
         /// <summary>
         /// Handles the Click event of the btn_CurrProjProdFulfCapt control.
+        /// Öffnet die Maske in der die Erfüllung der Projektkriterien für die Produkte eingetragen werden kann.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
@@ -247,6 +258,7 @@ namespace NWAT
 
         /// <summary>
         /// Handles the Click event of the btnCurrProjProdFulfPrint control.
+        /// Button zum Öffnen der Projekt-Produkt-Kriterienerfüllungs-Printer
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
@@ -266,6 +278,7 @@ namespace NWAT
 
         /// <summary>
         /// Handles the Click event of the btn_CurrProjProdAnalShow control.
+        /// Button zzum Öffnen des Analyseprinters
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
@@ -284,6 +297,7 @@ namespace NWAT
 
         /// <summary>
         /// Handles the Click event of the btn_Balance control.
+        /// Öffnet die Maske zum Eintragen der Gewichtungsfaktoren
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
@@ -301,6 +315,13 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the label_CurrProjNameShow control.
+        /// 
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void label_CurrProjNameShow_Click(object sender, EventArgs e)
         {
 
@@ -326,6 +347,7 @@ namespace NWAT
 
         /// <summary>
         /// Handles the Click event of the btn_CurrProjCritStruPrintCostumer control.
+        /// Öffnet den Printer für die Kriterienstruktur
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>

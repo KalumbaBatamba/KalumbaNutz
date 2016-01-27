@@ -37,6 +37,7 @@ namespace NWAT
 
         /// <summary>
         /// Handles the Load event of the Criterion_Show_Form control.
+        /// Läd beim Öffnen der Maske Name und Beschreibung des Kriteriums und leigt diese an
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>

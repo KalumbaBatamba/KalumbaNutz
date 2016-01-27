@@ -12,6 +12,9 @@ using NWAT.DB;
 
 namespace NWAT
 {
+    /* Zeigt Nutzerhinweis fürs Drucken an, dass vorher gespeichert werden muss, gibt Möglichkeit für zurück oder drucken
+     
+     */
     public partial class FulfPrint_View : Form
     {
         private Project _project;
@@ -50,6 +53,13 @@ namespace NWAT
            
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_back control.
+        /// schliesst die Form, dass der Nutzer die Änderungen speichern kann
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_back_Click(object sender, EventArgs e)
         {
             this.Close();   
@@ -57,6 +67,7 @@ namespace NWAT
 
         /// <summary>
         /// Handles the Click event of the btn_print control.
+        /// weiter zum Drucken
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>

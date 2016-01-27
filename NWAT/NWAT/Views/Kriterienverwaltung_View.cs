@@ -13,6 +13,8 @@ using NWAT.DB;
 
 namespace NWAT
 {
+    /*Anzeige der Kriterien der DB, Möglichkeiten für bearbeiten, betrachten, löschen,  ändern, neu anlegen 
+     */
     public partial class Kriterienverwaltung_View : Form
    
 
@@ -30,6 +32,7 @@ namespace NWAT
         }
         /// <summary>
         /// Refreshes the list.
+        /// für manuelles Refreshen
         /// </summary>
         /// Erstellt von Veit Berg, am 27.01.16
         public void refreshList() 
@@ -53,6 +56,13 @@ namespace NWAT
             var bindingList = new BindingList<Criterion>(CritList);
             var source = new BindingSource(bindingList, null);
             dataGridView_Crits.DataSource = CritList;
+            dataGridView_Crits.Columns["Description"].Width = 250;
+            dataGridView_Crits.Columns["Description"].HeaderText = "Beschreibung";
+
+            dataGridView_Crits.Columns["Criterion_Id"].Width = 40;
+            dataGridView_Crits.Columns["Criterion_ID"].HeaderText = "ID";
+
+            dataGridView_Crits.Columns["Name"].Width = 200;
             this.FormClosing += new FormClosingEventHandler(Kriterienverwaltung_View_FormClosing);
         }
         /// <summary>
@@ -94,7 +104,7 @@ namespace NWAT
             }
             catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show("Name oder Beschreibung bereits vorhanden");
             }
         }
 
