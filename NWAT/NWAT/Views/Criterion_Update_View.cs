@@ -21,30 +21,13 @@ namespace NWAT
             get { return _criterion; }
             set { _criterion = value; }
         }
-
-        //private CriterionController _criterionCont;
-
-        //public CriterionController CriterionCont
-        //{
-        //    get { return _criterionCont; }
-        //    set { _criterionCont = value; }
-        //}
-
-
-
-       // private CriterionController critCont;
         public Criterion_Update_View(int criterionId)
         {
- //         this.critCont = new CriterionController();
+ 
             using (CriterionController CritUpdView = new CriterionController())
             {
                 this.Criterion = CritUpdView.GetCriterionById(criterionId);
             }
-            
-    //        this.CriterionCont = new CriterionController();
-    //        this.Criterion = this.CriterionCont.GetCriterionById(criterionId);
-
-            
             InitializeComponent();
         }
 
@@ -53,17 +36,11 @@ namespace NWAT
             using (CriterionController CritUpdClick = new CriterionController())
             {
                 Criterion critUpd = CritUpdClick.GetCriterionById(Criterion.Criterion_Id);
-                critUpd.Criterion_Id = this.Criterion.Criterion_Id;   //aktRowCrit.CritID;
+                critUpd.Criterion_Id = this.Criterion.Criterion_Id; 
                 critUpd.Name = textBox_CritNameUpdate.Text;
                 critUpd.Description = textBox_CritDescUpdate.Text;
                 CritUpdClick.UpdateCriterionInDb(critUpd);
             }
-            
-   //         Criterion critUpd = CriterionCont.GetCriterionById(Criterion.Criterion_Id); //new Criterion();
-            //critUpd.Criterion_Id = this.Criterion.Criterion_Id;   //aktRowCrit.CritID;
-            //critUpd.Name = textBox_CritNameUpdate.Text;
-            //critUpd.Description = textBox_CritDescUpdate.Text;
-            //CriterionCont.UpdateCriterionInDb(critUpd);
             this.Close();
             
         }
@@ -78,8 +55,8 @@ namespace NWAT
 
         private void Criterion_Update_Form_Load(object sender, EventArgs e)
         {
-            textBox_CritNameUpdate.Text = this.Criterion.Name;  //aktRowCrit.CritName.ToString();
-            textBox_CritDescUpdate.Text = this.Criterion.Description; //aktRowCrit.CritDescription.ToString();
+            textBox_CritNameUpdate.Text = this.Criterion.Name; 
+            textBox_CritDescUpdate.Text = this.Criterion.Description; 
         }
     }
 }

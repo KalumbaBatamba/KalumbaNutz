@@ -27,22 +27,15 @@ namespace NWAT
         }
         void Product_Create_View_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //your code here
             Produktverwaltung_View back = new Produktverwaltung_View();
             back.Show();
         }
 
         private void btn_ProdCreate_Click(object sender, EventArgs e)
         {
-             Product prodCre = new Product();
-         //   prodCre.Product_Id = aktRowProd.ProdID;
-            prodCre.Name = textBox_ProdNameCreate.Text;
-            prodCre.Producer = textBox_ProdManuCreate.Text;
-        //    var typ = textBox_ProdPrizeCreate.Text.GetType;
-        //    if(textBox_ProdPrizeCreate.Text != int || textBox_ProdPrizeCreate.Text != double)
-            //{
-            //MessageBox.Show("bitte nur Zahlen eingeben!");
-            //}
+          Product prodCre = new Product();
+          prodCre.Name = textBox_ProdNameCreate.Text;
+          prodCre.Producer = textBox_ProdManuCreate.Text;
           double check;
           if (prodCre.Name.Contains("|") || prodCre.Producer.Contains("|"))
             {

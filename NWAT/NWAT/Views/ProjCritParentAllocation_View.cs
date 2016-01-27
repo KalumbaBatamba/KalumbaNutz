@@ -73,9 +73,6 @@ namespace NWAT.Views
 
         private void ProjCritParentAllocation_Load(object sender, EventArgs e)
         {
-            //List<Project> ProjCritList = Projverw.GetAllProjectsFromDB();
-      //      var bindingList = new BindingList<Project>(ProjList);
-      //      var source = new BindingSource(bindingList, null);
             List<Criterion> allocCrits = new List<Criterion>();
 
             using (CriterionController critCont = new CriterionController())
@@ -91,64 +88,22 @@ namespace NWAT.Views
                     allocCrits.Add(addCrit);
                 }
             }
-
-         //   comboBox_CritName.DataSource = null;
-    //        comboBox_CritName.Items.Clear();
-    //        comboBox_CritName.DataSource = null;
             comboBox_CritName.DataSource = allocCrits;
-            
-            
             comboBox_CritName.DisplayMember = "Name";
-           // comboBox_CritName.ValueMember = "Criterion_Id";
         }
 
         private void btn_zuordnen_Click(object sender, EventArgs e)
         {
             
             Criterion selectedParentCiterion = (Criterion)comboBox_CritName.SelectedItem;
-
-            //if (selectedParentCiterion.Criterion_Id == null)
-            //{
-            //    ProjectCriterion projCritToAllocate = new ProjectCriterion()
-            //    {
-            //        Project_Id = ProjectId,
-            //        Criterion_Id = CriterionIdToAllocate
-            //    };
-            //    ParentView.AllocateNewProjectCriterion(projCritToAllocate, CriterionIdDeleteFromList);
-            //    this.Close();
-                
-            //}
-            //else
-            //{
                 ProjectCriterion projCritToAllocate = new ProjectCriterion()
                 {
                     Project_Id = ProjectId,
                     Criterion_Id = CriterionIdToAllocate,
-                    //if(selectedParentCiterion.Criterion_Id == null )
-                    //{
-                    //Parent_Criterion_Id = null;
-                    //}
                     Parent_Criterion_Id = selectedParentCiterion.Criterion_Id
                 };
                 ParentView.AllocateNewProjectCriterion(projCritToAllocate, CriterionIdDeleteFromList);
                 this.Close();
-            //}
-            
-
-            //ProjectCriterion projCritToAllocate = new ProjectCriterion() 
-            //{
-            //    Project_Id = ProjectId,
-            //    Criterion_Id = CriterionIdToAllocate,
-            //    //if(selectedParentCiterion.Criterion_Id == null )
-            //    //{
-            //    //Parent_Criterion_Id = null;
-            //    //}
-            //    Parent_Criterion_Id = selectedParentCiterion.Criterion_Id
-            //};
-
-
-            //ParentView.AllocateNewProjectCriterion(projCritToAllocate, CriterionIdDeleteFromList);
-            //this.Close();
         }
 
         private void btn_cancle_Click(object sender, EventArgs e)

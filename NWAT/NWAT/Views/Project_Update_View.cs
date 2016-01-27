@@ -29,20 +29,16 @@ namespace NWAT
         }
 
 
-
-   //     private ProjectController projCont;
         public Project_Update_View(int projectId)
         {
             this.ProjectCont = new ProjectController();
             this.Project = this.ProjectCont.GetProjectById(projectId);
-
-           // this.ProjectCont = new ProjectController();
             InitializeComponent();
         }
 
         private void btn_ProjUpdate_Click(object sender, EventArgs e)
         {
-            Project projUpd = ProjectCont.GetProjectById(Project.Project_Id);//new Project();
+            Project projUpd = ProjectCont.GetProjectById(Project.Project_Id);
             projUpd.Project_Id = this.Project.Project_Id;
             projUpd.Name = textBox_ProjNameUpdate.Text;
             projUpd.Description = textBox_ProjDescUpdate.Text;
@@ -61,24 +57,14 @@ namespace NWAT
             {
                 Project proj = UpdVieLoad.GetProjectById(Project.Project_Id);
                 String ProjName = this.Project.Name;
-                String ProjDesc = this.Project.Description;//proj.Description;
-       //         MessageBox.Show(ProjName + ProjDesc);
-                textBox_ProjNameUpdate.Text = this.Project.Name;//ProjName;
-                textBox_ProjDescUpdate.Text = this.Project.Description; //ProjDesc;
+                String ProjDesc = this.Project.Description;
+                textBox_ProjNameUpdate.Text = this.Project.Name;
+                textBox_ProjDescUpdate.Text = this.Project.Description;
             }
-            //Project proj = ProjectCont.GetProjectById(aktRowProj.ProjID);
-            //String ProjName = proj.Name;
-            //String ProjDesc = proj.Description;
-            //MessageBox.Show(ProjName + ProjDesc);
-            //textBox_ProjNameUpdate.Text = ProjName;
-            //textBox_ProjDescUpdate.Text = ProjDesc;
-        
-        //}
             this.FormClosing += new FormClosingEventHandler(Project_Update_View_FormClosing);
         }
         void Project_Update_View_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //your code here
             Projektverwaltung_View start = new Projektverwaltung_View ();
             start.Show();
         }

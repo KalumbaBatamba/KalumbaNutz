@@ -28,18 +28,11 @@ namespace NWAT
             set { _productCont = value; }
         }
 
-
-   //     private ProductController prodCont;
-
-    
         public Product_Show_View(int productID)
         {
-            this.ProductCont = new ProductController();
-            this.Product = this.ProductCont.GetProductById(productID);
-
-
-       //     this.prodCont = new ProductController();
-            InitializeComponent();
+           this.ProductCont = new ProductController();
+           this.Product = this.ProductCont.GetProductById(productID);
+           InitializeComponent();
         }
 
         private void btn_Close_Click(object sender, EventArgs e)
@@ -54,11 +47,9 @@ namespace NWAT
         private void Product_Show_View_Load(object sender, EventArgs e)
         {
 
-       //    Product prod = prodCont.GetProductById(Product.Product_Id);
            String ProdName = this.Product.Name;
            String ProdProducer = this.Product.Producer;
            double ProdPrice = this.Product.Price.Value;
-    //       MessageBox.Show(ProdName + ProdProducer);
            label_ProdNameShow.Text = this.Product.Name; 
            label_ProdManuShow.Text = this.Product.Producer;
            label_ProdPrizeShow.Text = String.Format("{0:0.00}", this.Product.Price);
@@ -66,7 +57,6 @@ namespace NWAT
         }
         void Product_Show_View_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //your code here
             Produktverwaltung_View back = new Produktverwaltung_View();
             back.Show();
         }

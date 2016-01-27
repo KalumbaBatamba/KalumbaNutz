@@ -28,23 +28,17 @@ namespace NWAT
             set { _criterionCont = value; }
         }
 
-
-    //    private CriterionController critCont;
-
         public Criterion_Show_View(int criterionId)
         {
             this.CriterionCont = new CriterionController();
             this.Criterion = this.CriterionCont.GetCriterionById(criterionId);
-
-      // this.critCont = new CriterionController();
-
             InitializeComponent();
         }
 
         private void Criterion_Show_Form_Load(object sender, EventArgs e)
         {
-            label_CritShowName.Text = this.Criterion.Name; //aktRowCrit.CritName.ToString();
-            label_CritShowDesc.Text = this.Criterion.Description;//aktRowCrit.CritDescription.ToString();
+            label_CritShowName.Text = this.Criterion.Name; 
+            label_CritShowDesc.Text = this.Criterion.Description;
         }
         private void GetCritSpecs()
         {

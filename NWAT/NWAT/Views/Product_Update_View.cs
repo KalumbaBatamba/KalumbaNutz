@@ -30,18 +30,14 @@ namespace NWAT
             set { _productCont = value; }
         }
         
-        
-  //      private ProductController prodCont;
         public Product_Update_View(int productId)
         {
 
             using (ProductController ProdUpdView = new ProductController()) 
             {
-        //        this.ProdUpdView = new ProductController();
                 this.Product = ProdUpdView.GetProductById(productId);
-            
             }
-      //      this.prodCont = new ProductController();
+
             InitializeComponent();
         }
         
@@ -50,11 +46,9 @@ namespace NWAT
       
         private void Product_Update_Form_Load(object sender, EventArgs e)
         {
-           // MessageBox.Show(prod.Name + prod.Producer);
             String ProdName = this.Product.Name;
             String ProdProducer = this.Product.Producer;
             double ProdPrice = this.Product.Price.Value;
-    //        MessageBox.Show(ProdName + ProdProducer);
             textBox_ProdNameUpdate.Text = this.Product.Name;
             textBox_ProdManuUpdate.Text = this.Product.Producer;
             textBox_ProdPrizeUpdate.Text = String.Format("{0:0.00}", this.Product.Price);
@@ -62,7 +56,6 @@ namespace NWAT
         }
         void Product_Update_View_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //your code here
             Produktverwaltung_View back = new Produktverwaltung_View();
             back.Show();
         }
@@ -70,11 +63,10 @@ namespace NWAT
 
         private void btn_ProdUpdate_Click(object sender, EventArgs e)
         {
-        //    int x = this.Product.Product_Id;
             using (ProductController prodUpdate = new ProductController()) 
             {
                 Product prodNew = prodUpdate.GetProductById(Product.Product_Id);
-                prodNew.Product_Id = this.Product.Product_Id;  // aktRowProd.ProdID;
+                prodNew.Product_Id = this.Product.Product_Id;
                 prodNew.Name = textBox_ProdNameUpdate.Text;
                 prodNew.Producer = textBox_ProdManuUpdate.Text;
 
@@ -96,15 +88,7 @@ namespace NWAT
                     MessageBox.Show("Der Preis darf nur aus Zahlen bestehen!");
                 }
              }
-
-            //_______
-            //    prodNew.Price = Convert.ToDouble(textBox_ProdPrizeUpdate.Text);
-            //    prodUpdate.UpdateProductInDb(prodNew);
             }
-            
-         //   Product prodNew = ProductCont.GetProductById(Product.Product_Id);
-           
-           // this.Close();
         }
         private void UpdateProduct()
         {

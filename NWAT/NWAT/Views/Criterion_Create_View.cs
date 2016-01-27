@@ -29,11 +29,8 @@ namespace NWAT
             { 
             MessageBox.Show("Das Zeichen: | ist nicht erlaubt. Bitte ändern Sie Ihre Eingabe");
             }else{
-
-           // MessageBox.Show(Name + Desc);
             Criterion Crit = new Criterion { Name = Name, Description = Desc };
             this.critCont.InsertCriterionIntoDb(Crit);
-          //  Criterion_Create_View CritCreate = new Criterion_Create_View();
             this.Close();
             }
             

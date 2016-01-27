@@ -36,7 +36,7 @@ namespace NWAT
 
         public aktuellesProjekt_View(int projectId)
         {
-            //   _projectController = new ProjectController();
+   
             this.ProjectCont = new ProjectController();
             this.Project = this.ProjectCont.GetProjectById(projectId);
             InitializeComponent();
@@ -50,9 +50,8 @@ namespace NWAT
                 Project proj = AktProjForm.GetProjectById(Project.Project_Id);
                 String ProjName = proj.Name;
                 String ProjDesc = proj.Description;
-         //       MessageBox.Show(ProjName + ProjDesc);
-                label_CurrProjNameShow.Text = this.Project.Name; //proj.Name;
-                label_CurrProjDescShow.Text = this.Project.Description; //proj.Description;
+                label_CurrProjNameShow.Text = this.Project.Name; 
+                label_CurrProjDescShow.Text = this.Project.Description; 
             }
 
             //Tool Tip für den Button Projektkriterienexport - Info an den User
@@ -150,8 +149,6 @@ namespace NWAT
             ProjProdAssign_View ProjProdAssign = new ProjProdAssign_View(Project.Project_Id);
             ProjProdAssign.Show();
             Hide();
-            //     ProjectProductAssign_View ProjectProductAssign = new ProjectProductAssign_View(Project.Project_Id);
-            //     ProjectProductAssign.Show();
         }
 
         private void btn_CurrProjProdFulfCapt_Click(object sender, EventArgs e)

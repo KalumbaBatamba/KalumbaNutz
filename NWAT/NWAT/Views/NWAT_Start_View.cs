@@ -16,13 +16,6 @@ namespace NWAT
         {
             InitializeComponent();
         }
-
-    /*    private void button1_Click(object sender, EventArgs e)
-        {
-            Kriterienverwaltung_View CriterionAdmin = new Kriterienverwaltung_View();
-            CriterionAdmin.Show();
-        }
-*/
         private void NWA_Start_Form_Load(object sender, EventArgs e)
         {
            
@@ -34,12 +27,6 @@ namespace NWAT
             ProjectAdmin.Show();
             Hide();
         }
-
-   //     private void btn_CritAdm_Click(object sender, EventArgs e)
-   //    {
-   //         Kriterienverwaltung_View CriterionAdmin = new Kriterienverwaltung_View();
-   //         CriterionAdmin.Show();
-   //     }
 
         private void btn_ProdAdm_Click(object sender, EventArgs e)
         {

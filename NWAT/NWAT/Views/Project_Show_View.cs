@@ -28,12 +28,9 @@ namespace NWAT
             set { _projectCont = value; }
         }
 
-
-   //     private ProjectController projCont;
         
       public Project_Show_View(int projectId)
         {
-      //      this.prodCont = new ProductController();
             this.ProjectCont = new ProjectController();
             this.Project = this.ProjectCont.GetProjectById(projectId);
             InitializeComponent();
@@ -46,23 +43,13 @@ namespace NWAT
                 Project proj = ProjShowForm.GetProjectById(Project.Project_Id);
                 String ProjName = proj.Name;
                 String ProjDesc = proj.Description;
-     //           MessageBox.Show(ProjName + ProjDesc);
-                label_ProjShowName.Text = this.Project.Name; //proj.Name;
-                label_ProjShowDesc.Text = this.Project.Description; //proj.Description;
+                label_ProjShowName.Text = this.Project.Name; 
+                label_ProjShowDesc.Text = this.Project.Description; 
             }
-            
-            //Project proj = ProjectCont.GetProjectById(Project.Project_Id);
-            //String ProjName = proj.Name;
-            //String ProjDesc = proj.Description;
-            //MessageBox.Show(ProjName + ProjDesc);
-            //label_ProjShowName.Text = proj.Name;
-            //label_ProjShowDesc.Text = proj.Description;
-       // }
             this.FormClosing += new FormClosingEventHandler(Project_Show_View_FormClosing);
         }
         void Project_Show_View_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //your code here
             Projektverwaltung_View start = new Projektverwaltung_View();
             start.Show();
         }
