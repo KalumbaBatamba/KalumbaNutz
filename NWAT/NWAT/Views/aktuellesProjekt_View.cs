@@ -43,6 +43,12 @@ namespace NWAT
 
         }
 
+        /// <summary>
+        /// Handles the Load event of the aktuellesProjekt control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void aktuellesProjekt_Load(object sender, EventArgs e)
         {
                 using (ProjectController AktProjForm = new ProjectController())
@@ -80,6 +86,12 @@ namespace NWAT
                 this.FormClosing += new FormClosingEventHandler(aktuellesProject_View_FormClosing);
             
         }
+        /// <summary>
+        /// Handles the FormClosing event of the aktuellesProject_View control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="FormClosingEventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         void aktuellesProject_View_FormClosing(object sender, FormClosingEventArgs e)
         {
             try{
@@ -110,6 +122,12 @@ namespace NWAT
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_CurrProjKritAssign control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_CurrProjKritAssign_Click(object sender, EventArgs e)
         {
             try{
@@ -123,6 +141,12 @@ namespace NWAT
             { MessageBox.Show("Ups da lief was schief"); }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_CurrProjCritStruShow control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_CurrProjCritStruShow_Click(object sender, EventArgs e)
         {
             try{
@@ -135,6 +159,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_CurrProjCritStruUpdate control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_CurrProjCritStruUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -149,6 +179,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_CurrProjCritStruPrint control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_CurrProjCritStruPrint_Click(object sender, EventArgs e)
         {
             try{
@@ -171,6 +207,12 @@ namespace NWAT
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_CurrProjProdAssign control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_CurrProjProdAssign_Click(object sender, EventArgs e)
         {
             try{
@@ -184,6 +226,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_CurrProjProdFulfCapt control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_CurrProjProdFulfCapt_Click(object sender, EventArgs e)
         {
             try{
@@ -197,6 +245,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btnCurrProjProdFulfPrint control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btnCurrProjProdFulfPrint_Click(object sender, EventArgs e)
         {
             try{
@@ -210,6 +264,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_CurrProjProdAnalShow control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_CurrProjProdAnalShow_Click(object sender, EventArgs e)
         {
             try{
@@ -222,6 +282,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_Balance control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_Balance_Click(object sender, EventArgs e)
         {
             try{
@@ -240,6 +306,12 @@ namespace NWAT
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the button1 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void button1_Click(object sender, EventArgs e)
         {
             try{
@@ -252,6 +324,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_CurrProjCritStruPrintCostumer control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_CurrProjCritStruPrintCostumer_Click(object sender, EventArgs e)
         {
             try{

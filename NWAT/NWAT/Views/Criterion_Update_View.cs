@@ -31,6 +31,12 @@ namespace NWAT
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_CritUpdate control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_CritUpdate_Click(object sender, EventArgs e)
         {
             try{
@@ -58,6 +64,12 @@ namespace NWAT
 
         }
 
+        /// <summary>
+        /// Handles the Load event of the Criterion_Update_Form control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void Criterion_Update_Form_Load(object sender, EventArgs e)
         {
             try{

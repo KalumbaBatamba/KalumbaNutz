@@ -46,7 +46,13 @@ namespace NWAT
             InitializeComponent();
         }
 
- 
+
+        /// <summary>
+        /// Handles the Load event of the ProjCritAssign_Form control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void ProjCritAssign_Form_Load(object sender, EventArgs e)
         {
             try{
@@ -138,6 +144,12 @@ namespace NWAT
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_CritToProj control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_CritToProj_Click(object sender, EventArgs e)
         {
             try{
@@ -159,6 +171,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Allocates the new project criterion.
+        /// </summary>
+        /// <param name="projCritToAllocate">The proj crit to allocate.</param>
+        /// <param name="index">The index.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         public void AllocateNewProjectCriterion(ProjectCriterion projCritToAllocate, int index)
         {            
             try{
@@ -207,6 +225,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_ProjCritSave control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProjCritSave_Click(object sender, EventArgs e)
         {
             try{
@@ -221,6 +245,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_CritToPool control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_CritToPool_Click(object sender, EventArgs e)
         {
             try{
@@ -267,6 +297,10 @@ namespace NWAT
         {
 
         }
+        /// <summary>
+        /// Refreshes the grid l.
+        /// </summary>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void refreshGridL()
         {
             try{

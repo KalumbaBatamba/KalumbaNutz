@@ -19,6 +19,12 @@ namespace NWAT
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the Load event of the Produktverwaltung control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void Produktverwaltung_Load(object sender, EventArgs e)
         {
             using (ProductController prodCon = new ProductController())
@@ -37,6 +43,12 @@ namespace NWAT
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_ProdShow control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProdShow_Click(object sender, EventArgs e)
         {
             try{
@@ -52,6 +64,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_ProdUpdate control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProdUpdate_Click(object sender, EventArgs e)
         {
             try{
@@ -67,6 +85,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_ProdDelete control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProdDelete_Click(object sender, EventArgs e)
         {
             try{
@@ -89,6 +113,12 @@ namespace NWAT
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_ProdCreate control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProdCreate_Click(object sender, EventArgs e)
         {
             try{
@@ -102,6 +132,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_refresh control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_refresh_Click(object sender, EventArgs e)
         {
            try{

@@ -26,6 +26,12 @@ namespace NWAT
 
         }
 
+        /// <summary>
+        /// Handles the Load event of the Projektverwaltung_Form control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void Projektverwaltung_Form_Load(object sender, EventArgs e)
         {
             try{
@@ -46,6 +52,12 @@ namespace NWAT
                 MessageBox.Show("Ups da lief was schief");
             }
         }
+        /// <summary>
+        /// Handles the FormClosing event of the Projektverwaltung_View control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="FormClosingEventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         void Projektverwaltung_View_FormClosing(object sender, FormClosingEventArgs e)
         {
             NWAT_Start_View start = new NWAT_Start_View();
@@ -89,6 +101,12 @@ namespace NWAT
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_ProjectStartCreate control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProjectStartCreate_Click(object sender, EventArgs e)
         {
             try{
@@ -102,6 +120,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_ProjectModify control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProjectModify_Click(object sender, EventArgs e)
         {
             try{
@@ -117,6 +141,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_ProjectShow control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProjectShow_Click(object sender, EventArgs e)
         {
             try{
@@ -132,6 +162,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_ProjectUpdate control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProjectUpdate_Click(object sender, EventArgs e)
         {
             try{
@@ -147,6 +183,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_ProjImport control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProjImport_Click(object sender, EventArgs e)
         {
             try{
@@ -164,6 +206,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_refresh control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_refresh_Click(object sender, EventArgs e)
         {
             try{

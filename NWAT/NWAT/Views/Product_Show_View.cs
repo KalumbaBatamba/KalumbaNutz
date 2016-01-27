@@ -35,6 +35,12 @@ namespace NWAT
            InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_Close control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_Close_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -44,6 +50,12 @@ namespace NWAT
 
         }
 
+        /// <summary>
+        /// Handles the Load event of the Product_Show_View control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void Product_Show_View_Load(object sender, EventArgs e)
         {
 
@@ -55,6 +67,12 @@ namespace NWAT
            label_ProdPrizeShow.Text = String.Format("{0:0.00}", this.Product.Price);
            this.FormClosing += new FormClosingEventHandler(Product_Show_View_FormClosing);
         }
+        /// <summary>
+        /// Handles the FormClosing event of the Product_Show_View control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="FormClosingEventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         void Product_Show_View_FormClosing(object sender, FormClosingEventArgs e)
         {
             Produktverwaltung_View back = new Produktverwaltung_View();

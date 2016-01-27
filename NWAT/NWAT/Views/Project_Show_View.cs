@@ -36,6 +36,12 @@ namespace NWAT
             InitializeComponent();
         }
 
+      /// <summary>
+      /// Handles the Load event of the Project_Show_Form control.
+      /// </summary>
+      /// <param name="sender">The source of the event.</param>
+      /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+      /// Erstellt von Veit Berg, am 27.01.16
         private void Project_Show_Form_Load(object sender, EventArgs e)
         {
             try{
@@ -54,6 +60,12 @@ namespace NWAT
                 MessageBox.Show("Ups da lief was schief");
             }
         }
+        /// <summary>
+        /// Handles the FormClosing event of the Project_Show_View control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="FormClosingEventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         void Project_Show_View_FormClosing(object sender, FormClosingEventArgs e)
         {
             try{
@@ -70,6 +82,12 @@ namespace NWAT
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_ProjShowClose control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProjShowClose_Click(object sender, EventArgs e)
         {
             this.Close();

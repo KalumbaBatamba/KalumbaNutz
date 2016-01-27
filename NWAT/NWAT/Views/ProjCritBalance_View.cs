@@ -47,6 +47,12 @@ namespace NWAT
             this.projCritCont = new ProjectCriterionController();
             InitializeComponent();
         }
+        /// <summary>
+        /// Handles the Load event of the ProjCritBalance_View control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void ProjCritBalance_View_Load(object sender, EventArgs e)
         {
             try
@@ -118,6 +124,12 @@ namespace NWAT
          DataGridViewCellValidatingEventHandler(dataGridView_ProjCritBalance_CellValidating);
             this.FormClosing += new FormClosingEventHandler(ProjCritBalance_View_FormClosing);
         }
+        /// <summary>
+        /// Handles the FormClosing event of the ProjCritBalance_View control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="FormClosingEventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         void ProjCritBalance_View_FormClosing(object sender, FormClosingEventArgs e)
         {
             try{
@@ -130,6 +142,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the CellValueChanged event of the dataGridView_ProjCritBalance control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void dataGridView_ProjCritBalance_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         { 
             try{
@@ -141,6 +159,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_SameBalance control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
        private void btn_SameBalance_Click(object sender, EventArgs e)
         {
            try{
@@ -165,6 +189,12 @@ namespace NWAT
            }
        }
 
+       /// <summary>
+       /// Handles the Click event of the btn_ProjCritBalaSave control.
+       /// </summary>
+       /// <param name="sender">The source of the event.</param>
+       /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+       /// Erstellt von Veit Berg, am 27.01.16
        private void btn_ProjCritBalaSave_Click(object sender, EventArgs e)
        {
                try{
@@ -186,12 +216,22 @@ namespace NWAT
                }
        }
 
+       /// <summary>
+       /// Handles the Click event of the btn_ProjCritBalaCancle control.
+       /// </summary>
+       /// <param name="sender">The source of the event.</param>
+       /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+       /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProjCritBalaCancle_Click(object sender, EventArgs e)
         {
             this.Close();
 
         }
 
+        /// <summary>
+        /// Refreshes the grid.
+        /// </summary>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void refreshGrid()
         {
             try{
@@ -270,6 +310,12 @@ namespace NWAT
 
         }
 
+        /// <summary>
+        /// Handles the CellValidating event of the dataGridView_ProjCritBalance control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellValidatingEventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void dataGridView_ProjCritBalance_CellValidating(object sender,   DataGridViewCellValidatingEventArgs e)
         { 
             try{

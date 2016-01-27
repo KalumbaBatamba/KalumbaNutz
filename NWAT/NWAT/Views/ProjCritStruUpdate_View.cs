@@ -54,6 +54,12 @@ namespace NWAT
 
         }
 
+        /// <summary>
+        /// Handles the Load event of the ProjCritStruUpdate_Form control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void ProjCritStruUpdate_Form_Load(object sender, EventArgs e)
         { 
             try{
@@ -126,6 +132,12 @@ namespace NWAT
                 MessageBox.Show("Ups da lief was schief");
             }
         }
+        /// <summary>
+        /// Handles the FormClosing event of the ProjCritStruUpdate_View control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="FormClosingEventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         void ProjCritStruUpdate_View_FormClosing(object sender, FormClosingEventArgs e)
         {
             try{
@@ -147,6 +159,12 @@ namespace NWAT
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_ProjCritStruSave control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProjCritStruSave_Click(object sender, EventArgs e)
         {
             try{
@@ -189,6 +207,10 @@ namespace NWAT
          
         }
 
+        /// <summary>
+        /// Refreshes the grid.
+        /// </summary>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void refreshGrid()
         {
             try{
@@ -261,6 +283,12 @@ namespace NWAT
     
         }
 
+        /// <summary>
+        /// Handles the CellValidating event of the dataGridView_CritStruUpd control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DataGridViewCellValidatingEventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void dataGridView_CritStruUpd_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             try{
@@ -287,6 +315,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_ProjCritStruCancle control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProjCritStruCancle_Click(object sender, EventArgs e)
         {
             this.Close();

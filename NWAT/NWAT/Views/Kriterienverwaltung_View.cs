@@ -28,6 +28,10 @@ namespace NWAT
 
 
         }
+        /// <summary>
+        /// Refreshes the list.
+        /// </summary>
+        /// Erstellt von Veit Berg, am 27.01.16
         public void refreshList() 
         {
             List<Criterion> CritList = critCont.GetAllCriterionsFromDb();
@@ -35,6 +39,12 @@ namespace NWAT
             var source = new BindingSource(bindingList, null);
             dataGridView_Crits.DataSource = CritList;
         }
+        /// <summary>
+        /// Handles the Load event of the Kriterienverwaltung control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void Kriterienverwaltung_Load(object sender, EventArgs e)
         {
             dataGridView_Crits.Rows.Clear();
@@ -45,6 +55,12 @@ namespace NWAT
             dataGridView_Crits.DataSource = CritList;
             this.FormClosing += new FormClosingEventHandler(Kriterienverwaltung_View_FormClosing);
         }
+        /// <summary>
+        /// Handles the FormClosing event of the Kriterienverwaltung_View control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="FormClosingEventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         void Kriterienverwaltung_View_FormClosing(object sender, FormClosingEventArgs e)
         {
             NWAT_Start_View back = new NWAT_Start_View();
@@ -56,6 +72,12 @@ namespace NWAT
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_CritShow control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_CritShow_Click(object sender, EventArgs e)
         {
             try{
@@ -76,6 +98,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_CritUpdate control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_CritUpdate_Click(object sender, EventArgs e)
         {
             try{
@@ -95,6 +123,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_CritDelete control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_CritDelete_Click(object sender, EventArgs e)
         {
             try{
@@ -111,6 +145,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_CritCreate control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_CritCreate_Click(object sender, EventArgs e)
         {
             Criterion_Create_View CritCreate = new Criterion_Create_View();
@@ -130,6 +170,12 @@ namespace NWAT
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_refresh control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_refresh_Click(object sender, EventArgs e)
         {
             try{

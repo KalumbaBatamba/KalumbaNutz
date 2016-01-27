@@ -35,6 +35,12 @@ namespace NWAT
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the Load event of the Criterion_Show_Form control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void Criterion_Show_Form_Load(object sender, EventArgs e)
         {
             try{

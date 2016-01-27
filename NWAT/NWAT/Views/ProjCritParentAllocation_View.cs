@@ -71,6 +71,12 @@ namespace NWAT.Views
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the Load event of the ProjCritParentAllocation control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void ProjCritParentAllocation_Load(object sender, EventArgs e)
         {
             try{
@@ -98,6 +104,12 @@ namespace NWAT.Views
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_zuordnen control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_zuordnen_Click(object sender, EventArgs e)
         {
             try{
@@ -117,6 +129,12 @@ namespace NWAT.Views
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_cancle control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_cancle_Click(object sender, EventArgs e)
         {
             try{

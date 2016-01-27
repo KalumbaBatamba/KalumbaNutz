@@ -34,6 +34,12 @@ namespace NWAT
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the Load event of the FulfPrint_View control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void FulfPrint_View_Load(object sender, EventArgs e)
         {
 
@@ -41,25 +47,25 @@ namespace NWAT
         }
         void FulfPrint_View_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //your code here
-      //      ProjCritProdFulfilment_View back = new ProjCritProdFulfilment_View(Project.Project_Id);
-      //      back.Show();
+           
         }
 
         private void btn_back_Click(object sender, EventArgs e)
         {
-        //    ProjCritProdFulfilment_View back = new ProjCritProdFulfilment_View(Project.Project_Id);
-            this.Close();
-            
+            this.Close();   
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_print control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_print_Click(object sender, EventArgs e)
         {
-          //  Product selectedItem = (Product)comboBox_ProjCritProdFulf.SelectedItem;
-
+   
             FulfillmentForEachProductPrinter PrintEachProduct = new FulfillmentForEachProductPrinter(Project.Project_Id, prodID);
             PrintEachProduct.CreateFulfillmentForEachProductPdf();
-     //       ProjCritProdFulfilment_View back = new ProjCritProdFulfilment_View(Project.Project_Id);
             this.Close();
             
 

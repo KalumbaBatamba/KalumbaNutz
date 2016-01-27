@@ -48,6 +48,12 @@ namespace NWAT
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Handles the Load event of the ProjProdAssign_Form control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void ProjProdAssign_Form_Load(object sender, EventArgs e)
         {
             try
@@ -105,6 +111,12 @@ namespace NWAT
                 MessageBox.Show("Ups da lief was schief");
             }
         }
+        /// <summary>
+        /// Handles the FormClosing event of the ProjProdAssign_View control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="FormClosingEventArgs" /> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         void ProjProdAssign_View_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
@@ -130,6 +142,12 @@ namespace NWAT
 
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_ProdToProj control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProdToProj_Click(object sender, EventArgs e)
         {
             try{
@@ -172,6 +190,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_ProjProdSave control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProjProdSave_Click(object sender, EventArgs e)
         {
             try{
@@ -184,6 +208,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_ProdToPool control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProdToPool_Click(object sender, EventArgs e)
         {
             try{
@@ -212,6 +242,12 @@ namespace NWAT
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the btn_ProjProdCancle control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProjProdCancle_Click(object sender, EventArgs e)
         {
             this.Close();
