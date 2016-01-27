@@ -33,6 +33,7 @@
             this.label_CurrProjDesc = new System.Windows.Forms.Label();
             this.label_CurrProjDescShow = new System.Windows.Forms.Label();
             this.groupBox_CurrProjCrits = new System.Windows.Forms.GroupBox();
+            this.btn_CurrProjCritStruPrintCostumer = new System.Windows.Forms.Button();
             this.btn_ProjCritExport = new System.Windows.Forms.Button();
             this.btn_Balance = new System.Windows.Forms.Button();
             this.btn_CurrProjKritAssign = new System.Windows.Forms.Button();
@@ -45,7 +46,6 @@
             this.btnCurrProjProdFulfPrint = new System.Windows.Forms.Button();
             this.groupBox_CurrProjAnalys = new System.Windows.Forms.GroupBox();
             this.btn_CurrProjProdAnalShow = new System.Windows.Forms.Button();
-            this.btn_CurrProjCritStruPrintCostumer = new System.Windows.Forms.Button();
             this.groupBox_CurrProjCrits.SuspendLayout();
             this.groupBox_CurrProjProds.SuspendLayout();
             this.groupBox_CurrProjAnalys.SuspendLayout();
@@ -107,6 +107,17 @@
             this.groupBox_CurrProjCrits.TabIndex = 20;
             this.groupBox_CurrProjCrits.TabStop = false;
             this.groupBox_CurrProjCrits.Text = "Projektkriterien";
+            // 
+            // btn_CurrProjCritStruPrintCostumer
+            // 
+            this.btn_CurrProjCritStruPrintCostumer.Location = new System.Drawing.Point(5, 135);
+            this.btn_CurrProjCritStruPrintCostumer.Name = "btn_CurrProjCritStruPrintCostumer";
+            this.btn_CurrProjCritStruPrintCostumer.Size = new System.Drawing.Size(142, 23);
+            this.btn_CurrProjCritStruPrintCostumer.TabIndex = 13;
+            this.btn_CurrProjCritStruPrintCostumer.Text = "Kriterienstruktur drucken";
+            this.btn_CurrProjCritStruPrintCostumer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_CurrProjCritStruPrintCostumer.UseVisualStyleBackColor = true;
+            this.btn_CurrProjCritStruPrintCostumer.Click += new System.EventHandler(this.btn_CurrProjCritStruPrintCostumer_Click);
             // 
             // btn_ProjCritExport
             // 
@@ -238,21 +249,10 @@
             this.btn_CurrProjProdAnalShow.Name = "btn_CurrProjProdAnalShow";
             this.btn_CurrProjProdAnalShow.Size = new System.Drawing.Size(111, 23);
             this.btn_CurrProjProdAnalShow.TabIndex = 15;
-            this.btn_CurrProjProdAnalShow.Text = "Analyse anzeigen";
+            this.btn_CurrProjProdAnalShow.Text = "Analysieren";
             this.btn_CurrProjProdAnalShow.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_CurrProjProdAnalShow.UseVisualStyleBackColor = true;
             this.btn_CurrProjProdAnalShow.Click += new System.EventHandler(this.btn_CurrProjProdAnalShow_Click);
-            // 
-            // btn_CurrProjCritStruPrintCostumer
-            // 
-            this.btn_CurrProjCritStruPrintCostumer.Location = new System.Drawing.Point(5, 135);
-            this.btn_CurrProjCritStruPrintCostumer.Name = "btn_CurrProjCritStruPrintCostumer";
-            this.btn_CurrProjCritStruPrintCostumer.Size = new System.Drawing.Size(142, 23);
-            this.btn_CurrProjCritStruPrintCostumer.TabIndex = 13;
-            this.btn_CurrProjCritStruPrintCostumer.Text = "Kriterienstruktur drucken";
-            this.btn_CurrProjCritStruPrintCostumer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_CurrProjCritStruPrintCostumer.UseVisualStyleBackColor = true;
-            this.btn_CurrProjCritStruPrintCostumer.Click += new System.EventHandler(this.btn_CurrProjCritStruPrintCostumer_Click);
             // 
             // aktuellesProjekt_View
             // 
