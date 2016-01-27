@@ -95,14 +95,16 @@ namespace NWAT
                 dataGridView_CritStruUpd.Columns[2].HeaderText = "P-ID";
                 dataGridView_CritStruUpd.Columns[2].Width = 40;
                 dataGridView_CritStruUpd.Columns[3].ReadOnly = true;
-                dataGridView_CritStruUpd.Columns[3].HeaderText = "Cardinal";
+                dataGridView_CritStruUpd.Columns[3].HeaderText = "W(C)";
                 dataGridView_CritStruUpd.Columns[4].ReadOnly = true;
-                dataGridView_CritStruUpd.Columns[4].HeaderText = "WPL";
+                dataGridView_CritStruUpd.Columns[4].HeaderText = "W(PL)";
                 dataGridView_CritStruUpd.Columns[5].ReadOnly = true;
-                dataGridView_CritStruUpd.Columns[5].HeaderText = "WPP";
+                dataGridView_CritStruUpd.Columns[5].HeaderText = "W(PP)";
+                dataGridView_CritStruUpd.Columns["Weighting_Percentage_Project"].Width = 40;
                 dataGridView_CritStruUpd.Columns[6].ReadOnly = true;
                 dataGridView_CritStruUpd.Columns[6].HeaderText = "Name";
                 dataGridView_CritStruUpd.Columns.Add("Beschreibung", "Beschreibung");
+                dataGridView_CritStruUpd.Columns["Beschreibung"].ReadOnly = true; 
                 int i = 0;
                 foreach (ProjectCriterion ProCri in ProjCrits)
                 {
@@ -119,6 +121,10 @@ namespace NWAT
                 dataGridView_CritStruUpd.Columns[6].Width = 200;
                 dataGridView_CritStruUpd.Columns[7].DisplayIndex = 4;
                 dataGridView_CritStruUpd.Columns[7].Width = 200;
+                dataGridView_CritStruUpd.Columns["Criterion_Id"].HeaderText = "ID";
+                dataGridView_CritStruUpd.Columns["Name"].ReadOnly = true;
+                dataGridView_CritStruUpd.Columns["Weighting_Percentage_Project"].Width = 100;
+
                 dataGridView_CritStruUpd.Show();
     //        }
  /* laster           using (ProjectCriterionController proCriCont = new ProjectCriterionController())
@@ -368,11 +374,13 @@ laster*/
                 dataGridView_CritStruUpd.Columns[3].ReadOnly = true;
                 dataGridView_CritStruUpd.Columns[3].HeaderText = "P-ID";
                 dataGridView_CritStruUpd.Columns[4].ReadOnly = true;
-                dataGridView_CritStruUpd.Columns[4].HeaderText = "Cardinal";
+                dataGridView_CritStruUpd.Columns[4].HeaderText = "W(C)";
                 dataGridView_CritStruUpd.Columns[5].ReadOnly = true;
-                dataGridView_CritStruUpd.Columns[5].HeaderText = "WPL";
+                dataGridView_CritStruUpd.Columns[5].HeaderText = "W(PL)";
                 dataGridView_CritStruUpd.Columns[6].ReadOnly = true;
-                dataGridView_CritStruUpd.Columns[6].HeaderText = "WPP";
+                dataGridView_CritStruUpd.Columns[6].HeaderText = "W(PP)";
+                dataGridView_CritStruUpd.Columns["Weighting_Percentage_Project"].Width = 40;
+
             //    dataGridView_CritStruUpd.Columns.Add("Beschreibung", "Beschreibung");
                 int i = 0;
                 foreach (ProjectCriterion ProCri in ProjCrits)
@@ -400,6 +408,9 @@ laster*/
                 //dataGridView_CritStruUpd.Columns[7].DisplayIndex = 4;
                 dataGridView_CritStruUpd.Columns["Name"].Width = 200;
                 dataGridView_CritStruUpd.Columns["Beschreibung"].Width = 200;
+                dataGridView_CritStruUpd.Columns["Weighting_Percentage_Project"].Width = 100;
+          //      dataGridView_CritStruUpd.Columns["Criterion_Id"].HeaderText = "ID";
+                dataGridView_CritStruUpd.Columns["Name"].ReadOnly = true;
                 dataGridView_CritStruUpd.Show();
             }
         }
@@ -435,6 +446,11 @@ laster*/
                 
             }
             //       refreshGrid();
+        }
+
+        private void btn_ProjCritStruCancle_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
     }

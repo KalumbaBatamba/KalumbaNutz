@@ -142,7 +142,11 @@ namespace NWAT
                          dataGridView_ProjCritProdFulf.Columns[3].HeaderText = "Name";
                          //         dataGridView_ProjCritProdFulf.Columns[4].HeaderText = "Erfüllung";
                          dataGridView_ProjCritProdFulf.Columns[4].Name = "Erfüllung";
-                         dataGridView_ProjCritProdFulf.Columns[0].Width = 50;
+                         dataGridView_ProjCritProdFulf.Columns["Name"].ReadOnly = true;
+                         dataGridView_ProjCritProdFulf.Columns["Layer_Depth"].ReadOnly = true;
+                         dataGridView_ProjCritProdFulf.Columns["Criterion_ID"].ReadOnly = true;
+                         dataGridView_ProjCritProdFulf.Columns["Parent_Criterion_Id"].ReadOnly = true;
+                        dataGridView_ProjCritProdFulf.Columns[0].Width = 50;
                          dataGridView_ProjCritProdFulf.Columns[1].Width = 50;
                          dataGridView_ProjCritProdFulf.Columns[2].Width = 50;
                          dataGridView_ProjCritProdFulf.Columns[4].Width = 50;
@@ -381,6 +385,11 @@ namespace NWAT
                 }
             }
             //       refreshGrid();
+        }
+
+        private void btn_ProjCritProdFulfCancle_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
    /*     private void comboBox_ProjCritProdFulf_SelectedValueChanged(object sender, EventArgs e)
         {

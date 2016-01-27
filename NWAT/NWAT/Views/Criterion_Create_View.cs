@@ -25,23 +25,27 @@ namespace NWAT
         {
             String Name = textBox_CritNameCreate.Text;
             String Desc = textBox_CritDescCreate.Text;
+            if (Name.Contains("|") || Desc.Contains("|"))
+            { 
+            MessageBox.Show("Das Zeichen: | ist nicht erlaubt. Bitte ändern Sie Ihre Eingabe");
+            }else{
 
            // MessageBox.Show(Name + Desc);
             Criterion Crit = new Criterion { Name = Name, Description = Desc };
             this.critCont.InsertCriterionIntoDb(Crit);
           //  Criterion_Create_View CritCreate = new Criterion_Create_View();
             this.Close();
-          
+            }
             
         }
         private void CreateNewCrit()
         {
 
         }
-
+     
         private void Criterion_Create_Form_Load(object sender, EventArgs e)
         {
-
         }
     }
 }
+

@@ -58,24 +58,19 @@ namespace NWAT
            String ProdName = this.Product.Name;
            String ProdProducer = this.Product.Producer;
            double ProdPrice = this.Product.Price.Value;
-           MessageBox.Show(ProdName + ProdProducer);
+    //       MessageBox.Show(ProdName + ProdProducer);
            label_ProdNameShow.Text = this.Product.Name; 
            label_ProdManuShow.Text = this.Product.Producer;
            label_ProdPrizeShow.Text = String.Format("{0:0.00}", this.Product.Price);
-
-        //    Product prod = new Product();
-        //    prod = prodCont.GetProductById(aktRowProd.ProdID);
-      //      string test = aktRowProd.ProdID;
-         //  MessageBox.Show(prod.Product_Id + prod.Name);
-            //label_ProdNameShow.Text = prod.Product_Id.ToString();
-        //    MessageBox.Show(prod.Name);
-            
-            
-      //            label_ProdNameShow = prodCont.GetProductById(aktRowProd.ProdID);
-        //    label_ProdDescShow.Text = ProdName; 
-        //    label_ProdManuShow.Text = ProdProducer;
-        //    label_ProdPrizeShow.Text = ProdPrice;
+           this.FormClosing += new FormClosingEventHandler(Product_Show_View_FormClosing);
         }
+        void Product_Show_View_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //your code here
+            Produktverwaltung_View back = new Produktverwaltung_View();
+            back.Show();
+        }
+
     }
 }
 

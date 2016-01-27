@@ -80,6 +80,9 @@ namespace NWAT
             var ProdBindingList = new BindingList<Product>(AllProds);
             var prodSource = new BindingSource(ProdBindingList, null);
             dataGridView_prodAvail.DataSource = AllProds;
+            dataGridView_prodAvail.Columns["Producer"].HeaderText = "Hersteller";
+            dataGridView_prodAvail.Columns["Product_Id"].HeaderText = "Produkt ID";
+            dataGridView_prodAvail.Columns["Price"].HeaderText = "Preis";
 
             dataGridView_ProjProd.Rows.Clear();
        
@@ -89,6 +92,7 @@ namespace NWAT
             dataGridView_ProjProd.Columns.Remove("Project_Id");
             dataGridView_ProjProd.Columns.Remove("Product");
             dataGridView_ProjProd.Columns.Remove("Project");
+            dataGridView_ProjProd.Columns["Product_Id"].HeaderText = "Produkt ID"; 
             dataGridView_ProjProd.Columns[1].Width = 200;
          
         //}
@@ -231,6 +235,11 @@ namespace NWAT
             //    CritId, 
             //    this);
             //projCritAllView.Show();
+        }
+
+        private void btn_ProjProdCancle_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
        
     }

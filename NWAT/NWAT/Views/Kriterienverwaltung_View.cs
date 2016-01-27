@@ -85,7 +85,7 @@ namespace NWAT
                 //       aktRowCrit.CritID = zelle1;
                 //       aktRowCrit.CritName = zelle2;
                 //       aktRowCrit.CritDescription = zelle3;
-                MessageBox.Show(zelle1.ToString() + zelle2 + zelle3);
+         //       MessageBox.Show(zelle1.ToString() + zelle2 + zelle3);
 
 
                 Criterion_Show_View CritShowView = new Criterion_Show_View(zelle1);
@@ -116,7 +116,7 @@ namespace NWAT
             aktRowCrit.CritID = zelle1;
             aktRowCrit.CritName = zelle2;
             aktRowCrit.CritDescription = zelle3;
-            MessageBox.Show(zelle1.ToString() + zelle2 + zelle3);
+    //        MessageBox.Show(zelle1.ToString() + zelle2 + zelle3);
             
             Criterion_Update_View CritUpdate = new Criterion_Update_View(zelle1);
             CritUpdate.Show();

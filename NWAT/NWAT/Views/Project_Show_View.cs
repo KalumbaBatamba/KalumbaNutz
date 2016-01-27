@@ -46,7 +46,7 @@ namespace NWAT
                 Project proj = ProjShowForm.GetProjectById(Project.Project_Id);
                 String ProjName = proj.Name;
                 String ProjDesc = proj.Description;
-                MessageBox.Show(ProjName + ProjDesc);
+     //           MessageBox.Show(ProjName + ProjDesc);
                 label_ProjShowName.Text = this.Project.Name; //proj.Name;
                 label_ProjShowDesc.Text = this.Project.Description; //proj.Description;
             }

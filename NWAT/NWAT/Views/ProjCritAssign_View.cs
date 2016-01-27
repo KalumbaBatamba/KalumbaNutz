@@ -81,7 +81,8 @@ namespace NWAT
             dataGridView_CritAvail.Columns[0].HeaderText = "ID";
             dataGridView_CritAvail.Columns[0].Width = 30;
             dataGridView_CritAvail.Columns[1].Width = 200;
-            dataGridView_CritAvail.Columns[2].Width = 200;
+            dataGridView_CritAvail.Columns[2].Width = 240;
+            dataGridView_CritAvail.Columns["Description"].HeaderText = "Beschreibung";
             dataGridView_ProjCrits.Rows.Clear();
       //      refreshGridL();
       
@@ -117,10 +118,11 @@ namespace NWAT
                 i++;
             } 
             dataGridView_ProjCrits.Columns[0].HeaderText = "ID";
-            dataGridView_ProjCrits.Columns[0].Width = 30;
+            dataGridView_ProjCrits.Columns[0].Width = 40;
             dataGridView_ProjCrits.Columns[1].HeaderText = "P-ID";
-            dataGridView_ProjCrits.Columns[1].Width = 30;
+            dataGridView_ProjCrits.Columns[1].Width = 40;
             dataGridView_ProjCrits.Columns[2].Width = 200;
+            dataGridView_ProjCrits.Columns[3].Width = 190;
        
            
             //  dataGridView_ProjCrits.Columns.Add("Name","Name");
@@ -439,6 +441,11 @@ last */
             dataGridView_ProjCrits.Columns[2].HeaderText = "P-ID";
             dataGridView_ProjCrits.Columns[2].Width = 40;
             dataGridView_ProjCrits.Columns[3].Width = 200;
+        }
+
+        private void btn_ProjCritCancle_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

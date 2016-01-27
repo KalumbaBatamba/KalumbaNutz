@@ -46,9 +46,10 @@
             this.dataGridView_ProjCritBalance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_ProjCritBalance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Strukture});
-            this.dataGridView_ProjCritBalance.Location = new System.Drawing.Point(0, 20);
+            this.dataGridView_ProjCritBalance.Location = new System.Drawing.Point(0, 31);
+            this.dataGridView_ProjCritBalance.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView_ProjCritBalance.Name = "dataGridView_ProjCritBalance";
-            this.dataGridView_ProjCritBalance.Size = new System.Drawing.Size(561, 520);
+            this.dataGridView_ProjCritBalance.Size = new System.Drawing.Size(1382, 1081);
             this.dataGridView_ProjCritBalance.TabIndex = 12;
             this.dataGridView_ProjCritBalance.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_ProjCritBalance_CellContentClick);
             // 
@@ -61,9 +62,10 @@
             // btn_ProjCritBalaCancle
             // 
             this.btn_ProjCritBalaCancle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_ProjCritBalaCancle.Location = new System.Drawing.Point(584, 516);
+            this.btn_ProjCritBalaCancle.Location = new System.Drawing.Point(1416, 1075);
+            this.btn_ProjCritBalaCancle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_ProjCritBalaCancle.Name = "btn_ProjCritBalaCancle";
-            this.btn_ProjCritBalaCancle.Size = new System.Drawing.Size(88, 23);
+            this.btn_ProjCritBalaCancle.Size = new System.Drawing.Size(132, 35);
             this.btn_ProjCritBalaCancle.TabIndex = 14;
             this.btn_ProjCritBalaCancle.Text = "abbrechen";
             this.btn_ProjCritBalaCancle.UseVisualStyleBackColor = true;
@@ -72,9 +74,10 @@
             // btn_ProjCritBalaSave
             // 
             this.btn_ProjCritBalaSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_ProjCritBalaSave.Location = new System.Drawing.Point(584, 487);
+            this.btn_ProjCritBalaSave.Location = new System.Drawing.Point(1416, 1030);
+            this.btn_ProjCritBalaSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_ProjCritBalaSave.Name = "btn_ProjCritBalaSave";
-            this.btn_ProjCritBalaSave.Size = new System.Drawing.Size(88, 23);
+            this.btn_ProjCritBalaSave.Size = new System.Drawing.Size(132, 35);
             this.btn_ProjCritBalaSave.TabIndex = 13;
             this.btn_ProjCritBalaSave.Text = "speichern";
             this.btn_ProjCritBalaSave.UseVisualStyleBackColor = true;
@@ -83,9 +86,10 @@
             // btn_SameBalance
             // 
             this.btn_SameBalance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_SameBalance.Location = new System.Drawing.Point(567, 20);
+            this.btn_SameBalance.Location = new System.Drawing.Point(1390, 31);
+            this.btn_SameBalance.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_SameBalance.Name = "btn_SameBalance";
-            this.btn_SameBalance.Size = new System.Drawing.Size(105, 23);
+            this.btn_SameBalance.Size = new System.Drawing.Size(158, 35);
             this.btn_SameBalance.TabIndex = 15;
             this.btn_SameBalance.Text = "gleichgewichten";
             this.btn_SameBalance.UseVisualStyleBackColor = true;
@@ -93,13 +97,14 @@
             // 
             // ProjCritBalance_View
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 561);
+            this.ClientSize = new System.Drawing.Size(1566, 1144);
             this.Controls.Add(this.btn_SameBalance);
             this.Controls.Add(this.dataGridView_ProjCritBalance);
             this.Controls.Add(this.btn_ProjCritBalaCancle);
             this.Controls.Add(this.btn_ProjCritBalaSave);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ProjCritBalance_View";
             this.Text = "Gewichtung";
             this.Load += new System.EventHandler(this.ProjCritBalance_View_Load);

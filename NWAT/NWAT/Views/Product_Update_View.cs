@@ -54,11 +54,19 @@ namespace NWAT
             String ProdName = this.Product.Name;
             String ProdProducer = this.Product.Producer;
             double ProdPrice = this.Product.Price.Value;
-            MessageBox.Show(ProdName + ProdProducer);
+    //        MessageBox.Show(ProdName + ProdProducer);
             textBox_ProdNameUpdate.Text = this.Product.Name;
             textBox_ProdManuUpdate.Text = this.Product.Producer;
             textBox_ProdPrizeUpdate.Text = String.Format("{0:0.00}", this.Product.Price);
+            this.FormClosing += new FormClosingEventHandler(Product_Update_View_FormClosing);
         }
+        void Product_Update_View_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //your code here
+            Produktverwaltung_View back = new Produktverwaltung_View();
+            back.Show();
+        }
+
 
         private void btn_ProdUpdate_Click(object sender, EventArgs e)
         {
@@ -69,13 +77,34 @@ namespace NWAT
                 prodNew.Product_Id = this.Product.Product_Id;  // aktRowProd.ProdID;
                 prodNew.Name = textBox_ProdNameUpdate.Text;
                 prodNew.Producer = textBox_ProdManuUpdate.Text;
-                prodNew.Price = Convert.ToDouble(textBox_ProdPrizeUpdate.Text);
-                prodUpdate.UpdateProductInDb(prodNew);
+
+            double check;
+              if (prodNew.Name.Contains("|") || prodNew.Producer.Contains("|"))
+             {
+                 MessageBox.Show("Das Zeichen: | ist nicht erlaubt. Bitte ändern Sie Ihre Eingabe");
+             }
+            else 
+             {
+                if (Double.TryParse(textBox_ProdPrizeUpdate.Text, out check))
+                {
+                    prodNew.Price = Convert.ToDouble(textBox_ProdPrizeUpdate.Text);
+                    prodUpdate.UpdateProductInDb(prodNew);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Der Preis darf nur aus Zahlen bestehen!");
+                }
+             }
+
+            //_______
+            //    prodNew.Price = Convert.ToDouble(textBox_ProdPrizeUpdate.Text);
+            //    prodUpdate.UpdateProductInDb(prodNew);
             }
             
          //   Product prodNew = ProductCont.GetProductById(Product.Product_Id);
            
-            this.Close();
+           // this.Close();
         }
         private void UpdateProduct()
         {

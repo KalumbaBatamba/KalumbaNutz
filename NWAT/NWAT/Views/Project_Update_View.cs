@@ -62,7 +62,7 @@ namespace NWAT
                 Project proj = UpdVieLoad.GetProjectById(Project.Project_Id);
                 String ProjName = this.Project.Name;
                 String ProjDesc = this.Project.Description;//proj.Description;
-                MessageBox.Show(ProjName + ProjDesc);
+       //         MessageBox.Show(ProjName + ProjDesc);
                 textBox_ProjNameUpdate.Text = this.Project.Name;//ProjName;
                 textBox_ProjDescUpdate.Text = this.Project.Description; //ProjDesc;
             }

@@ -34,13 +34,33 @@ namespace NWAT
 
         private void btn_ProdCreate_Click(object sender, EventArgs e)
         {
-            Product prodCre = new Product();
+             Product prodCre = new Product();
          //   prodCre.Product_Id = aktRowProd.ProdID;
             prodCre.Name = textBox_ProdNameCreate.Text;
             prodCre.Producer = textBox_ProdManuCreate.Text;
-            prodCre.Price = Convert.ToDouble(textBox_ProdPrizeCreate.Text);
-            prodCont.InsertProductIntoDb(prodCre);
-            this.Close();
+        //    var typ = textBox_ProdPrizeCreate.Text.GetType;
+        //    if(textBox_ProdPrizeCreate.Text != int || textBox_ProdPrizeCreate.Text != double)
+            //{
+            //MessageBox.Show("bitte nur Zahlen eingeben!");
+            //}
+          double check;
+          if (prodCre.Name.Contains("|") || prodCre.Producer.Contains("|"))
+            {
+                MessageBox.Show("Das Zeichen: | ist nicht erlaubt. Bitte ändern Sie Ihre Eingabe");
+            }
+            else 
+            {
+                if (Double.TryParse(textBox_ProdPrizeCreate.Text, out check))
+                {
+                    prodCre.Price = Convert.ToDouble(textBox_ProdPrizeCreate.Text);
+                    prodCont.InsertProductIntoDb(prodCre);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Der Preis darf nur aus Zahlen bestehen!");
+                }
+            }
         }
         private void CreateNewProduct()
         {

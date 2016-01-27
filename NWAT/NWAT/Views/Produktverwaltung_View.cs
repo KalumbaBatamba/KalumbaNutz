@@ -21,18 +21,20 @@ namespace NWAT
 
         private void Produktverwaltung_Load(object sender, EventArgs e)
         {
-            List<Product> ProdList = prodCont.GetAllProductsFromDb();
-            var bindingList = new BindingList<Product>(ProdList);
-            var source = new BindingSource(bindingList, null);
-            comboBox_ProdChoose.DataSource = ProdList;
-            comboBox_ProdChoose.DisplayMember = "Name";
-            comboBox_ProdChoose.ValueMember = "Product_ID";
-            //   CritList.Add(new Criterion() {Criterion_Id = 1, Name = "Testname", Description= "Testdescr"});
-            //   CritList.Add(new Criterion() { Criterion_Id = 2, Name = "Testname2", Description = "Testdescr2" });
-            //  dataGridView_Crits.DataSource = source;
-            
-         //   comboBox.DataSource = x;
-            
+            using (ProductController prodCon = new ProductController())
+            {
+                List<Product> ProdList = prodCon.GetAllProductsFromDb();
+                var bindingList = new BindingList<Product>(ProdList);
+                var source = new BindingSource(bindingList, null);
+                comboBox_ProdChoose.DataSource = ProdList;
+                comboBox_ProdChoose.DisplayMember = "Name";
+                comboBox_ProdChoose.ValueMember = "Product_ID";
+                //   CritList.Add(new Criterion() {Criterion_Id = 1, Name = "Testname", Description= "Testdescr"});
+                //   CritList.Add(new Criterion() { Criterion_Id = 2, Name = "Testname2", Description = "Testdescr2" });
+                //  dataGridView_Crits.DataSource = source;
+
+                //   comboBox.DataSource = x;
+            }
             
         }
         private void GetAllProdFromDB()
@@ -45,9 +47,10 @@ namespace NWAT
             int selectedIndex = comboBox_ProdChoose.SelectedIndex;
             Product selectedItem = (Product)comboBox_ProdChoose.SelectedItem;
     //        aktRowProd.ProdID = selectedItem.Product_Id ;
-            MessageBox.Show("Selected Item Text: " + selectedItem.Product_Id );
+    //        MessageBox.Show("Selected Item Text: " + selectedItem.Product_Id );
             Product_Show_View ProdShow = new Product_Show_View(selectedItem.Product_Id);
             ProdShow.Show();
+            Hide();
         }
 
         private void btn_ProdUpdate_Click(object sender, EventArgs e)
@@ -55,9 +58,10 @@ namespace NWAT
             int selectedIndex = comboBox_ProdChoose.SelectedIndex;
             Product selectedItem = (Product)comboBox_ProdChoose.SelectedItem;
     //      aktRowProd.ProdID = selectedItem.Product_Id;
-            MessageBox.Show("Selected Item Text: " + selectedItem.Product_Id);
+    //        MessageBox.Show("Selected Item Text: " + selectedItem.Product_Id);
             Product_Update_View ProdUpdate = new Product_Update_View(selectedItem.Product_Id);
             ProdUpdate.Show();
+            Hide();
         }
 
         private void btn_ProdDelete_Click(object sender, EventArgs e)
