@@ -33,7 +33,6 @@
             this.btn_ProjectShow = new System.Windows.Forms.Button();
             this.btn_ProjectUpdate = new System.Windows.Forms.Button();
             this.btn_ProjectExport = new System.Windows.Forms.Button();
-            this.btn_ProjectPrint = new System.Windows.Forms.Button();
             this.btn_ProjectStartCreate = new System.Windows.Forms.Button();
             this.btn_ProjectModify = new System.Windows.Forms.Button();
             this.btn_ProjImport = new System.Windows.Forms.Button();
@@ -87,22 +86,12 @@
             // btn_ProjectExport
             // 
             this.btn_ProjectExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_ProjectExport.Location = new System.Drawing.Point(337, 253);
+            this.btn_ProjectExport.Location = new System.Drawing.Point(337, 224);
             this.btn_ProjectExport.Name = "btn_ProjectExport";
             this.btn_ProjectExport.Size = new System.Drawing.Size(75, 23);
             this.btn_ProjectExport.TabIndex = 4;
             this.btn_ProjectExport.Text = "archivieren";
             this.btn_ProjectExport.UseVisualStyleBackColor = true;
-            // 
-            // btn_ProjectPrint
-            // 
-            this.btn_ProjectPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_ProjectPrint.Location = new System.Drawing.Point(337, 224);
-            this.btn_ProjectPrint.Name = "btn_ProjectPrint";
-            this.btn_ProjectPrint.Size = new System.Drawing.Size(75, 23);
-            this.btn_ProjectPrint.TabIndex = 6;
-            this.btn_ProjectPrint.Text = "drucken";
-            this.btn_ProjectPrint.UseVisualStyleBackColor = true;
             // 
             // btn_ProjectStartCreate
             // 
@@ -127,7 +116,7 @@
             // btn_ProjImport
             // 
             this.btn_ProjImport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_ProjImport.Location = new System.Drawing.Point(337, 283);
+            this.btn_ProjImport.Location = new System.Drawing.Point(337, 253);
             this.btn_ProjImport.Name = "btn_ProjImport";
             this.btn_ProjImport.Size = new System.Drawing.Size(75, 23);
             this.btn_ProjImport.TabIndex = 11;
@@ -155,7 +144,6 @@
             this.Controls.Add(this.btn_ProjImport);
             this.Controls.Add(this.btn_ProjectModify);
             this.Controls.Add(this.btn_ProjectStartCreate);
-            this.Controls.Add(this.btn_ProjectPrint);
             this.Controls.Add(this.btn_ProjectExport);
             this.Controls.Add(this.btn_ProjectUpdate);
             this.Controls.Add(this.btn_ProjectShow);
@@ -176,7 +164,6 @@
         private System.Windows.Forms.Button btn_ProjectShow;
         private System.Windows.Forms.Button btn_ProjectUpdate;
         private System.Windows.Forms.Button btn_ProjectExport;
-        private System.Windows.Forms.Button btn_ProjectPrint;
         private System.Windows.Forms.Button btn_ProjectStartCreate;
         private System.Windows.Forms.Button btn_ProjectModify;
         private System.Windows.Forms.Button btn_ProjImport;
