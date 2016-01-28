@@ -89,7 +89,7 @@ namespace NWAT
             }
             catch (Exception x)
             {
-                MessageBox.Show("Name oder Beschreibung bereits vorhanden");
+                MessageBox.Show(x.Message);
             }
         }
 
@@ -114,7 +114,7 @@ namespace NWAT
             }
             catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
 
@@ -146,7 +146,7 @@ namespace NWAT
             }
             catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
 
@@ -209,7 +209,7 @@ namespace NWAT
             }
             catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
 

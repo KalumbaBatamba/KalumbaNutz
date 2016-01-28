@@ -107,7 +107,7 @@ namespace NWAT
             }
             catch (Exception i)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(i.Message);
             }
         }
         /// <summary>
@@ -121,9 +121,9 @@ namespace NWAT
             try
             {
                 this.parentView.Show();
-            }catch (Exception i)
+            }catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
 
@@ -183,9 +183,9 @@ namespace NWAT
                 dataGridView_ProjProd.Columns[1].Width = 200;
                 projProdCont.ChangeAllocationOfProjectProducstListInDb(ProjectId, ProjProds);
             }
-            catch (Exception i)
+            catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
 
@@ -203,9 +203,9 @@ namespace NWAT
                 this.parentView.Show();
                 this.Close();
             }
-            catch (Exception i)
+            catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
 
@@ -237,9 +237,9 @@ namespace NWAT
             dataGridView_ProjProd.Columns.Remove("Project");
             dataGridView_ProjProd.Columns[1].Width = 200;
             }
-            catch (Exception i)
+            catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
 

@@ -66,6 +66,9 @@
             // 
             this.dataGridView_ProjCrits.AllowUserToAddRows = false;
             this.dataGridView_ProjCrits.AllowUserToDeleteRows = false;
+            this.dataGridView_ProjCrits.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView_ProjCrits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_ProjCrits.Location = new System.Drawing.Point(22, 46);
             this.dataGridView_ProjCrits.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -78,7 +81,8 @@
             // 
             // dataGridView_CritAvail
             // 
-            this.dataGridView_CritAvail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView_CritAvail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView_CritAvail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_CritAvail.Location = new System.Drawing.Point(975, 46);
             this.dataGridView_CritAvail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -90,7 +94,7 @@
             // 
             // btn_CritToProj
             // 
-            this.btn_CritToProj.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_CritToProj.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_CritToProj.Location = new System.Drawing.Point(841, 317);
             this.btn_CritToProj.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_CritToProj.Name = "btn_CritToProj";
@@ -102,7 +106,7 @@
             // 
             // btn_CritToPool
             // 
-            this.btn_CritToPool.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_CritToPool.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_CritToPool.Location = new System.Drawing.Point(841, 363);
             this.btn_CritToPool.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_CritToPool.Name = "btn_CritToPool";
@@ -138,6 +142,7 @@
             // 
             // lable_Entkoppeln
             // 
+            this.lable_Entkoppeln.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lable_Entkoppeln.AutoSize = true;
             this.lable_Entkoppeln.Location = new System.Drawing.Point(12, 1208);
             this.lable_Entkoppeln.Name = "lable_Entkoppeln";

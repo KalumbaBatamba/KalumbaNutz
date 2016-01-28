@@ -94,7 +94,7 @@ namespace NWAT.Views
             }
             catch (Exception i)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(i.Message);
             }
         }
 
@@ -119,7 +119,7 @@ namespace NWAT.Views
             }
             catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
 
@@ -142,7 +142,7 @@ namespace NWAT.Views
             }
             catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
     }

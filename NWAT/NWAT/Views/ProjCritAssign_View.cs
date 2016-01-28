@@ -121,7 +121,7 @@ namespace NWAT
             }
             catch (Exception i)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(i.Message);
             }
             }
         void ProjCritAssign_View_FormClosing(object sender, FormClosingEventArgs e)
@@ -165,7 +165,7 @@ namespace NWAT
             }
             catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
 
@@ -219,7 +219,7 @@ namespace NWAT
             }
             catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
 
@@ -241,7 +241,7 @@ namespace NWAT
             }
             catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
 
@@ -290,7 +290,7 @@ namespace NWAT
             }
             catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
         private void dataGridView_ProjCrits_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -344,7 +344,7 @@ namespace NWAT
             }
             catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
 

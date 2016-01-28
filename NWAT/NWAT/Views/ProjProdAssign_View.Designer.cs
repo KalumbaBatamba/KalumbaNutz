@@ -100,7 +100,7 @@
             // 
             // btn_ProdToPool
             // 
-            this.btn_ProdToPool.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_ProdToPool.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_ProdToPool.Location = new System.Drawing.Point(588, 381);
             this.btn_ProdToPool.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_ProdToPool.Name = "btn_ProdToPool";
@@ -112,8 +112,8 @@
             // 
             // btn_ProdToProj
             // 
-            this.btn_ProdToProj.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btn_ProdToProj.Location = new System.Drawing.Point(588, 334);
+            this.btn_ProdToProj.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_ProdToProj.Location = new System.Drawing.Point(588, 336);
             this.btn_ProdToProj.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_ProdToProj.Name = "btn_ProdToProj";
             this.btn_ProdToProj.Size = new System.Drawing.Size(90, 35);
@@ -124,8 +124,9 @@
             // 
             // dataGridView_ProjProd
             // 
-            this.dataGridView_ProjProd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridView_ProjProd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView_ProjProd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_ProjProd.Location = new System.Drawing.Point(27, 48);
             this.dataGridView_ProjProd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -137,6 +138,7 @@
             // 
             // label_entkoppeln
             // 
+            this.label_entkoppeln.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label_entkoppeln.AutoSize = true;
             this.label_entkoppeln.Location = new System.Drawing.Point(13, 831);
             this.label_entkoppeln.Name = "label_entkoppeln";

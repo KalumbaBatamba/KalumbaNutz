@@ -124,7 +124,7 @@ namespace NWAT
             }
             catch (Exception i)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(i.Message);
             }
         }
         /// <summary>
@@ -140,7 +140,7 @@ namespace NWAT
             }
             catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
 
@@ -192,7 +192,7 @@ namespace NWAT
             }
             catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
 
@@ -269,7 +269,7 @@ namespace NWAT
             }
             catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
         private void btn_refresh_Click(object sender, EventArgs e)
@@ -305,7 +305,7 @@ namespace NWAT
             }
             catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
 

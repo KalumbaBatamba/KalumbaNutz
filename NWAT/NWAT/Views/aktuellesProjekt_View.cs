@@ -98,7 +98,7 @@ namespace NWAT
                 this.parentView.Show();
             }
             catch (Exception x)
-            { MessageBox.Show("Ups da lief was schief"); }
+            { MessageBox.Show(x.Message); }
         }
 
 
@@ -137,7 +137,7 @@ namespace NWAT
                 ();
             }
             catch (Exception x)
-            { MessageBox.Show("Ups da lief was schief"); }
+            { MessageBox.Show(x.Message); }
         }
 
         /// <summary>
@@ -194,7 +194,7 @@ namespace NWAT
             }
             catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
 
@@ -244,7 +244,7 @@ namespace NWAT
             }
             catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
 
@@ -283,7 +283,7 @@ namespace NWAT
             }
             catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
 
@@ -303,7 +303,7 @@ namespace NWAT
             }
             catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
 
@@ -333,7 +333,7 @@ namespace NWAT
             }
             catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
 
@@ -352,7 +352,7 @@ namespace NWAT
             }
             catch (Exception x)
             {
-                MessageBox.Show("Ups da lief was schief");
+                MessageBox.Show(x.Message);
             }
         }
     }

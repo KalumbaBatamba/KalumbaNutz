@@ -41,18 +41,20 @@
             // lable_CritChoose
             // 
             this.lable_CritChoose.AutoSize = true;
-            this.lable_CritChoose.Location = new System.Drawing.Point(10, 14);
+            this.lable_CritChoose.Location = new System.Drawing.Point(15, 22);
+            this.lable_CritChoose.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lable_CritChoose.Name = "lable_CritChoose";
-            this.lable_CritChoose.Size = new System.Drawing.Size(170, 13);
+            this.lable_CritChoose.Size = new System.Drawing.Size(255, 20);
             this.lable_CritChoose.TabIndex = 1;
             this.lable_CritChoose.Text = "Vorhandenes Kriterium auswählen:";
             // 
             // btn_CritShow
             // 
             this.btn_CritShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_CritShow.Location = new System.Drawing.Point(584, 30);
+            this.btn_CritShow.Location = new System.Drawing.Point(876, 46);
+            this.btn_CritShow.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_CritShow.Name = "btn_CritShow";
-            this.btn_CritShow.Size = new System.Drawing.Size(75, 23);
+            this.btn_CritShow.Size = new System.Drawing.Size(112, 35);
             this.btn_CritShow.TabIndex = 2;
             this.btn_CritShow.Text = "anzeigen";
             this.btn_CritShow.UseVisualStyleBackColor = true;
@@ -61,9 +63,10 @@
             // btn_CritUpdate
             // 
             this.btn_CritUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_CritUpdate.Location = new System.Drawing.Point(584, 60);
+            this.btn_CritUpdate.Location = new System.Drawing.Point(876, 92);
+            this.btn_CritUpdate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_CritUpdate.Name = "btn_CritUpdate";
-            this.btn_CritUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btn_CritUpdate.Size = new System.Drawing.Size(112, 35);
             this.btn_CritUpdate.TabIndex = 3;
             this.btn_CritUpdate.Text = "ändern";
             this.btn_CritUpdate.UseVisualStyleBackColor = true;
@@ -72,9 +75,10 @@
             // btn_CritDelete
             // 
             this.btn_CritDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_CritDelete.Location = new System.Drawing.Point(584, 90);
+            this.btn_CritDelete.Location = new System.Drawing.Point(876, 138);
+            this.btn_CritDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_CritDelete.Name = "btn_CritDelete";
-            this.btn_CritDelete.Size = new System.Drawing.Size(75, 23);
+            this.btn_CritDelete.Size = new System.Drawing.Size(112, 35);
             this.btn_CritDelete.TabIndex = 4;
             this.btn_CritDelete.Text = "löschen";
             this.btn_CritDelete.UseVisualStyleBackColor = true;
@@ -83,9 +87,10 @@
             // btn_CritCreate
             // 
             this.btn_CritCreate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_CritCreate.Location = new System.Drawing.Point(555, 526);
+            this.btn_CritCreate.Location = new System.Drawing.Point(832, 809);
+            this.btn_CritCreate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_CritCreate.Name = "btn_CritCreate";
-            this.btn_CritCreate.Size = new System.Drawing.Size(104, 23);
+            this.btn_CritCreate.Size = new System.Drawing.Size(156, 35);
             this.btn_CritCreate.TabIndex = 7;
             this.btn_CritCreate.Text = "Neu anlegen";
             this.btn_CritCreate.UseVisualStyleBackColor = true;
@@ -97,21 +102,23 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView_Crits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Crits.Location = new System.Drawing.Point(13, 31);
+            this.dataGridView_Crits.Location = new System.Drawing.Point(20, 48);
+            this.dataGridView_Crits.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView_Crits.MultiSelect = false;
             this.dataGridView_Crits.Name = "dataGridView_Crits";
             this.dataGridView_Crits.ReadOnly = true;
             this.dataGridView_Crits.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView_Crits.Size = new System.Drawing.Size(525, 518);
+            this.dataGridView_Crits.Size = new System.Drawing.Size(788, 797);
             this.dataGridView_Crits.TabIndex = 8;
             this.dataGridView_Crits.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_Crits_CellContentClick);
             // 
             // btn_refresh
             // 
             this.btn_refresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_refresh.Location = new System.Drawing.Point(584, 120);
+            this.btn_refresh.Location = new System.Drawing.Point(876, 185);
+            this.btn_refresh.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_refresh.Name = "btn_refresh";
-            this.btn_refresh.Size = new System.Drawing.Size(75, 23);
+            this.btn_refresh.Size = new System.Drawing.Size(112, 35);
             this.btn_refresh.TabIndex = 9;
             this.btn_refresh.Text = "refresh";
             this.btn_refresh.UseVisualStyleBackColor = true;
@@ -119,9 +126,9 @@
             // 
             // Kriterienverwaltung_View
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 561);
+            this.ClientSize = new System.Drawing.Size(1026, 863);
             this.Controls.Add(this.btn_refresh);
             this.Controls.Add(this.dataGridView_Crits);
             this.Controls.Add(this.btn_CritCreate);
@@ -129,6 +136,7 @@
             this.Controls.Add(this.btn_CritUpdate);
             this.Controls.Add(this.btn_CritShow);
             this.Controls.Add(this.lable_CritChoose);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Kriterienverwaltung_View";
             this.Text = "Kriterienverwaltung";
             this.Load += new System.EventHandler(this.Kriterienverwaltung_Load);
