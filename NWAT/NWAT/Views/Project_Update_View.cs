@@ -54,7 +54,7 @@ namespace NWAT
                 else
                 {
                     projUpd.Name = textBox_ProjNameUpdate.Text;
-                    projUpd.Description = textBox_ProjNameUpdate.Text;
+                    projUpd.Description = textBox_ProjDescUpdate.Text;
                     ProjectCont.UpdateProjectInDb(projUpd);
                     this.Close();                    
                 }

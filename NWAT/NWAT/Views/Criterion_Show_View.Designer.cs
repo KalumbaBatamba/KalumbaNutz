@@ -99,7 +99,7 @@
             this.Controls.Add(this.label_CritName);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Criterion_Show_View";
-            this.Text = "Kriteriendeltails";
+            this.Text = "Kriteriendetails";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Criterion_Show_FormClosing);
             this.Load += new System.EventHandler(this.Criterion_Show_Form_Load);
             this.ResumeLayout(false);
