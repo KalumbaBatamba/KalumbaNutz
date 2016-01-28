@@ -106,10 +106,20 @@ namespace NWAT
                 using (ProductController prodDelete = new ProductController())
                 {
 
-
-                    var result = MessageBox.Show("Wollen Sie das ausgeählte Produkt wirklich löschen?",
-                        "Löschbestätigung",
-                        MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    System.Windows.Forms.DialogResult result;
+                    if (prodDelete.CheckIfProductIsAllocatedToAnyProject(selectedItem.Product_Id))
+                    {
+                        result = MessageBox.Show("Das Produkt ist einem oder mehreren Projekten zugeordnet.\n" +
+                            "Wollen Sie das ausgeählte Produkt wirklich löschen?",
+                            "Löschbestätigung",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    }
+                    else
+                    {
+                        result = MessageBox.Show("Wollen Sie das ausgeählte Produkt wirklich löschen?",
+                                "Löschbestätigung",
+                                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    }
 
                     if (result == DialogResult.Yes)
                     {
