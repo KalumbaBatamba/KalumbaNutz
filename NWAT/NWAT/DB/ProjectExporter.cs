@@ -156,11 +156,12 @@ namespace NWAT.DB
         }
 
 
+
         /// <summary>
-        /// Archives the whole project. This is the main method which will be called
+        /// Exports the whole project. This is the main method which will be called
         /// </summary>
-        /// Erstellt von Joshua Frey, am 13.01.2016
-        public void ArchiveWholeProject()
+        /// Erstellt von Joshua Frey, am 28.01.2016
+        public void ExportWholeProject()
         {
            
             bool allExportsSucceeded = true;
@@ -225,7 +226,7 @@ namespace NWAT.DB
             else
             {
                 allExportsSucceeded = false;
-                this.ArchiveLogWriter.Log(MessageExportNotVerified("Product"));
+                this.ArchiveLogWriter.Log(MessageExportNotVerified("Criterion"));
             }
 
 
