@@ -239,6 +239,7 @@ namespace NWAT
                 {
                     using (FulfillmentController fulCont = new FulfillmentController())
                     {
+                        bool saveSucceeded = true;
                         foreach (DataGridViewRow row in dataGridView_ProjCritProdFulf.Rows)
                         {
                             if (CommonMethods.CheckIfForbiddenDelimiterInDb((string)row.Cells["Bemerkung"].Value))
@@ -267,9 +268,21 @@ namespace NWAT
                                     fulFi.Fulfilled = false;
                                 }
 
-                                fulCont.UpdateFulfillmentEntry(fulFi);
+                                if (!fulCont.UpdateFulfillmentEntry(fulFi))
+                                {
+                                    saveSucceeded = false;
+                                }
                             }
                         }
+                        if (saveSucceeded)
+                        {
+                            MessageBox.Show("Die Änderungen wurden erfolgreich gespeichert.");    
+                        }
+                        else
+                        {
+                            MessageBox.Show("Beim Speichern ist ein Fehler unterlaufen.");
+                        }
+                        
 
                     }
                 }

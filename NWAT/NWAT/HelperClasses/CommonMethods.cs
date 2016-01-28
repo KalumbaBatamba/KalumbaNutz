@@ -35,12 +35,15 @@ namespace NWAT.HelperClasses
         public static bool CheckIfForbiddenDelimiterInDb(string text)
         {
             bool foundForbiddenChar = false;
-            List<string> listOfForbiddenChars = new List<string>(){@"|", @"\"};
-            foreach (string forbidChar in listOfForbiddenChars)
+            if (text != null)
             {
-                if (text.Contains(forbidChar))
+                List<string> listOfForbiddenChars = new List<string>() { @"|", @"\" };
+                foreach (string forbidChar in listOfForbiddenChars)
                 {
-                    foundForbiddenChar = true;
+                    if (text.Contains(forbidChar))
+                    {
+                        foundForbiddenChar = true;
+                    }
                 }
             }
             return foundForbiddenChar;
@@ -160,7 +163,7 @@ namespace NWAT.HelperClasses
         public static string MessageForbiddenDelimiterWasFoundInText()
         {
 
-            return String.Format("Die folgende Zeichen ddürfen nicht in Texteingaben verwendet werden: \"|\" und \"\\\"");
+            return String.Format("Die folgende Zeichen dürfen nicht in Texteingaben verwendet werden: \"|\" und \"\\\"");
         }
        
         public static string MessageTextIsEmpty()

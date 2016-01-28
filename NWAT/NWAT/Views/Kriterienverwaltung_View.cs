@@ -129,17 +129,27 @@ namespace NWAT
             try
             {
                 DataGridViewRow row = dataGridView_Crits.SelectedRows[0];
-                int zelle1 = (int)row.Cells[0].Value;
+                int critId = (int)row.Cells[0].Value;
                 using (CriterionController critDelete = new CriterionController())
                 {
-
-                    var result = MessageBox.Show("Wollen Sie das ausgeählte Kriterium wirklich löschen?",
+                    System.Windows.Forms.DialogResult result;
+                    if(critDelete.CheckIfCriterionIsAllocatedToAnyProject(critId))
+                    {
+                        result = MessageBox.Show("Das Kriterium ist einem oder mehreren Projekten zugeordnet.\n"+
+                            "Wollen Sie das ausgeählte Kriterium wirklich löschen?",
                             "Löschbestätigung",
                             MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    }
+                    else
+                    {
+                        result = MessageBox.Show("Wollen Sie das ausgeählte Kriterium wirklich löschen?",
+                           "Löschbestätigung",
+                           MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    }
 
                     if (result == DialogResult.Yes)
                     {
-                        critDelete.DeleteCriterionFromDb(zelle1);
+                        critDelete.DeleteCriterionFromDb(critId);
                         RefreshList();
                     }
                 }
