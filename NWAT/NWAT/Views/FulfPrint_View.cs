@@ -11,7 +11,7 @@ namespace NWAT
     public partial class FulfPrint_View : Form
     {
         private Project _project;
-        private ProductController prodCont;
+ //       private ProductController prodCont;
 
         public Project Project
         {
