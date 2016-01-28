@@ -82,6 +82,9 @@ namespace NWAT
             dataGridView_CritAvail.Columns[1].Width = 200;
             dataGridView_CritAvail.Columns[2].Width = 240;
             dataGridView_CritAvail.Columns["Description"].HeaderText = "Beschreibung";
+            dataGridView_CritAvail.Columns[0].ReadOnly = true;
+            dataGridView_CritAvail.Columns[1].ReadOnly = true;
+            dataGridView_CritAvail.Columns[2].ReadOnly = true;
             dataGridView_ProjCrits.Rows.Clear();   
           using(CriterionController critCon = new CriterionController())
           {
@@ -117,6 +120,10 @@ namespace NWAT
             dataGridView_ProjCrits.Columns[1].Width = 40;
             dataGridView_ProjCrits.Columns[2].Width = 200;
             dataGridView_ProjCrits.Columns[3].Width = 190;
+            dataGridView_ProjCrits.Columns[0].ReadOnly = true;
+            dataGridView_ProjCrits.Columns[1].ReadOnly = true;
+            dataGridView_ProjCrits.Columns[2].ReadOnly = true;
+            dataGridView_ProjCrits.Columns[3].ReadOnly = true;
             this.FormClosing += new FormClosingEventHandler(ProjCritAssign_View_FormClosing);
             }
             catch (Exception i)
@@ -180,6 +187,14 @@ namespace NWAT
             try{
             ProjCrits.Add(projCritToAllocate);
             projCritCont.ChangeAllocationOfProjectCriterionsInDb(ProjectId, ProjCrits);
+ //          AllCrits.Remove((Criterion)projCritToAllocate);
+            //foreach (ProjectCriterion projCrit in ProjCrits)
+            //{
+            //    Criterion allocatedCrit = AllCrits.Single(crit => crit.Criterion_Id == projCrit.Criterion_Id);
+            //    AllCrits.Remove(allocatedCrit);
+            //}
+
+
             using (CriterionController critCont = new CriterionController())
             {
                 AllCrits = critCont.GetAllCriterionsFromDb();
@@ -279,9 +294,10 @@ namespace NWAT
                         }
                     }
                 }
-                refreshGridL();
+            
                 dataGridView_CritAvail.DataSource = null;
                 dataGridView_CritAvail.DataSource = AllCrits;
+                refreshGridL();
             }
             else
             {
@@ -304,6 +320,20 @@ namespace NWAT
         private void refreshGridL()
         {
             try{
+
+                dataGridView_CritAvail.Columns["Criterion_Id"].HeaderText = "ID";
+                dataGridView_CritAvail.Columns["Criterion_Id"].Width = 30;
+                dataGridView_CritAvail.Columns["Criterion_Id"].DisplayIndex = 0;
+                dataGridView_CritAvail.Columns["Criterion_Id"].ReadOnly = true;
+                dataGridView_CritAvail.Columns["Name"].HeaderText = "Name";
+                dataGridView_CritAvail.Columns["Name"].Width = 200;
+                dataGridView_CritAvail.Columns["Name"].DisplayIndex = 1;
+                dataGridView_CritAvail.Columns["Name"].ReadOnly = true;
+                dataGridView_CritAvail.Columns["Description"].HeaderText = "Beschreibung";
+                dataGridView_CritAvail.Columns["Description"].Width = 240;
+                dataGridView_CritAvail.Columns["Description"].DisplayIndex = 2;
+                dataGridView_CritAvail.Columns["Description"].ReadOnly = true;
+
             dataGridView_ProjCrits.DataSource = null;
             using (ProjectCriterionController proCriCon = new ProjectCriterionController())
             {
@@ -335,12 +365,25 @@ namespace NWAT
                 dataGridView_ProjCrits["Beschreibung", i].Value = ProCri.Criterion.Description;
                 i++;
             }
+            //dataGridView_ProjCrits.Columns["Criterion_Id"].HeaderText = "ID";
+            //dataGridView_ProjCrits.Columns["Name"].HeaderText = "Name";
+            //dataGridView_ProjCrits.Columns["Description"].HeaderText = "Beschreibung";
+            //dataGridView_ProjCrits.Columns["Criterion_Id"].DisplayIndex = 0;
+            //dataGridView_ProjCrits.Columns["Name"].DisplayIndex = 1;
+            //dataGridView_ProjCrits.Columns["Description"].DisplayIndex = 2;
             dataGridView_ProjCrits.Columns[0].DisplayIndex = 3;
             dataGridView_ProjCrits.Columns[1].HeaderText = "ID";
             dataGridView_ProjCrits.Columns[1].Width = 40;
             dataGridView_ProjCrits.Columns[2].HeaderText = "P-ID";
             dataGridView_ProjCrits.Columns[2].Width = 40;
             dataGridView_ProjCrits.Columns[3].Width = 200;
+            dataGridView_ProjCrits.Columns[0].ReadOnly = true;
+            dataGridView_ProjCrits.Columns[1].ReadOnly = true;
+            dataGridView_ProjCrits.Columns[2].ReadOnly = true;
+            dataGridView_ProjCrits.Columns[3].ReadOnly = true;
+            //dataGridView_ProjCrits.Columns["Criterion_Id"].Width = 40;
+            //dataGridView_ProjCrits.Columns["Name"].Width = 100;
+            //dataGridView_ProjCrits.Columns["Description"].Width = 200;
             }
             catch (Exception x)
             {

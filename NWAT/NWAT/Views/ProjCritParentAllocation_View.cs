@@ -145,5 +145,10 @@ namespace NWAT.Views
                 MessageBox.Show(x.Message);
             }
         }
+
+        private void label_Crit_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

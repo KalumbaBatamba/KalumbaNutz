@@ -163,7 +163,7 @@
             this.Controls.Add(this.btn_ProdToProj);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ProjProdAssign_View";
-            this.Text = "Produktzuordnung";
+            this.Text = "Projektproduktzuordnung";
             this.Load += new System.EventHandler(this.ProjProdAssign_Form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_prodAvail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ProjProd)).EndInit();

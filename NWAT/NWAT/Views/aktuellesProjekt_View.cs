@@ -57,35 +57,121 @@ namespace NWAT
                     String ProjName = proj.Name;
                     String ProjDesc = proj.Description;
                     label_CurrProjNameShow.Text = this.Project.Name;
-                    label_CurrProjDescShow.Text = this.Project.Description;
+          
                 }
-
-                //Tool Tip für den Button Projektkriterienexport - Info an den User
-                ToolTip toolTip1 = new ToolTip();
-                toolTip1.ToolTipTitle = "Projektkriterienexport";
-                toolTip1.UseFading = true;
-                toolTip1.UseAnimation = true;
-                toolTip1.IsBalloon = true;
-                toolTip1.AutoPopDelay = 5000;
-                toolTip1.InitialDelay = 1000;
-                toolTip1.ReshowDelay = 500;
-                toolTip1.ShowAlways = true;
-                toolTip1.SetToolTip(btn_ProjCritExport, "Dieser Button erzeugt eine Textdatei mit allen Kriterien, die dem aktuellen Projekt zugeordnet sind. \nDiese Textdatei kann genutzt werden, um beispielsweise anschließend eine Rechtschreibprüfung durchführen zu lassen");
-                ToolTip toolTip2 = new ToolTip();
-                //Tool Tip für den Button Gewichtung drucken - Info an den User
-                toolTip2.ToolTipTitle = "Gewichtung drucken";
-                toolTip2.UseFading = true;
-                toolTip2.UseAnimation = true;
-                toolTip2.IsBalloon = true;
-                toolTip2.AutoPopDelay = 5000;
-                toolTip2.InitialDelay = 1000;
-                toolTip2.ReshowDelay = 500;
-                toolTip2.ShowAlways = true;
-                toolTip2.SetToolTip(btn_CurrProjCritStruPrint, "Dieser Button erstellt eine Pdf Datei, in der die Kriterienstruktur mit den Anforderungen des Kunden inklusive der kardinalen Gewichtungen abgebildet werden");
-                //}
+                toolTip();
                 this.FormClosing += new FormClosingEventHandler(aktuellesProject_View_FormClosing);
             
         }
+
+        public void toolTip() 
+        {
+            //Tool Tip für die Buttons die eine Erklärung benötigen
+            ToolTip toolTip1 = new ToolTip();
+            toolTip1.ToolTipTitle = "Projektkriterienexport";
+            toolTip1.UseFading = true;
+            toolTip1.UseAnimation = true;
+            toolTip1.IsBalloon = true;
+            toolTip1.AutoPopDelay = 5000;
+            toolTip1.InitialDelay = 1000;
+            toolTip1.ReshowDelay = 500;
+            toolTip1.ShowAlways = true;
+            toolTip1.SetToolTip(btn_ProjCritExport, "Dieser Button erzeugt eine Textdatei mit allen Kriterien, die dem aktuellen Projekt zugeordnet sind. Diese Textdatei kann genutzt werden, um beispielsweise anschließend eine Rechtschreibprüfung durchführen zu lassen");
+            ToolTip toolTip2 = new ToolTip();
+            toolTip2.ToolTipTitle = "Gewichtung drucken";
+            toolTip2.UseFading = true;
+            toolTip2.UseAnimation = true;
+            toolTip2.IsBalloon = true;
+            toolTip2.AutoPopDelay = 5000;
+            toolTip2.InitialDelay = 1000;
+            toolTip2.ReshowDelay = 500;
+            toolTip2.ShowAlways = true;
+            toolTip2.SetToolTip(btn_CurrProjCritStruPrint, "Dieser Button erstellt eine Pdf Datei, in der die Kriterienstruktur mit den Anforderungen des Kunden inklusive der kardinalen Gewichtungen abgebildet werden");
+            ToolTip toolTip3 = new ToolTip();
+            toolTip3.ToolTipTitle = "Kriterien zuordnen";
+            toolTip3.UseFading = true;
+            toolTip3.UseAnimation = true;
+            toolTip3.IsBalloon = true;
+            toolTip3.AutoPopDelay = 5000;
+            toolTip3.InitialDelay = 1000;
+            toolTip3.ReshowDelay = 500;
+            toolTip3.ShowAlways = true;
+            toolTip3.SetToolTip(btn_CurrProjKritAssign, "Auf der hier folgenen Eingabemaske können Sie dem ausgewählten Projekt Kriterien aus dem Kriterienpool zuordnen oder entkoppeln.");
+            ToolTip toolTip4 = new ToolTip();
+            toolTip4.ToolTipTitle = "Kriterienstruktur";
+            toolTip4.UseFading = true;
+            toolTip4.UseAnimation = true;
+            toolTip4.IsBalloon = true;
+            toolTip4.AutoPopDelay = 5000;
+            toolTip4.InitialDelay = 1000;
+            toolTip4.ReshowDelay = 500;
+            toolTip4.ShowAlways = true;
+            toolTip4.SetToolTip(btn_CurrProjCritStruUpdate, "Auf der folgenden Eingabemaske wird Ihnen die Kriterienstruktur des aktuellen Projektes angezeigt. Sie können diese dort ändern.");
+            ToolTip toolTip5 = new ToolTip();
+            toolTip5.ToolTipTitle = "Gewichtung";
+            toolTip5.UseFading = true;
+            toolTip5.UseAnimation = true;
+            toolTip5.IsBalloon = true;
+            toolTip5.AutoPopDelay = 5000;
+            toolTip5.InitialDelay = 1000;
+            toolTip5.ReshowDelay = 500;
+            toolTip5.ShowAlways = true;
+            toolTip5.SetToolTip(btn_Balance, "Auf der folgenden Eingabemaske können Sie die Gewichtungsfaktoren auf die Werte der Gleichgewichtung setzen oder die der einzelnen Kriterien individuell eintragen.");
+            ToolTip toolTip6 = new ToolTip();
+            toolTip6.ToolTipTitle = "Produkte zuordnen";
+            toolTip6.UseFading = true;
+            toolTip6.UseAnimation = true;
+            toolTip6.IsBalloon = true;
+            toolTip6.AutoPopDelay = 5000;
+            toolTip6.InitialDelay = 1000;
+            toolTip6.ReshowDelay = 500;
+            toolTip6.ShowAlways = true;
+            toolTip6.SetToolTip(btn_CurrProjProdAssign, "Auf der folgenden Eingabemaske können Sie dem ausgewählten Projekt Produkte aus dem Produktpool zuordnen. Nach dem Auswählen eines Produktes können Sie jeweils auch ein Vaterkriterium zuordnen.");
+            ToolTip toolTip7 = new ToolTip();
+            toolTip7.ToolTipTitle = "Erfüllung erfassen";
+            toolTip7.UseFading = true;
+            toolTip7.UseAnimation = true;
+            toolTip7.IsBalloon = true;
+            toolTip7.AutoPopDelay = 5000;
+            toolTip7.InitialDelay = 1000;
+            toolTip7.ReshowDelay = 500;
+            toolTip7.ShowAlways = true;
+            toolTip7.SetToolTip(btn_CurrProjProdFulfCapt, "Auf der folgenden Eingabemaske können Sie die Erfüllungen der Kriterien je Produkt erfassen.");
+            ToolTip toolTip8 = new ToolTip();
+            toolTip8.ToolTipTitle = "Analysieren";
+            toolTip8.UseFading = true;
+            toolTip8.UseAnimation = true;
+            toolTip8.IsBalloon = true;
+            toolTip8.AutoPopDelay = 5000;
+            toolTip8.InitialDelay = 1000;
+            toolTip8.ReshowDelay = 500;
+            toolTip8.ShowAlways = true;
+            toolTip8.SetToolTip(btn_CurrProjProdAnalShow, "Dieser Button berechnet das Ergebnis der Analyse und erstellt daraus die benötigten PDF Dateien.");
+            ToolTip toolTip9 = new ToolTip();
+            toolTip9.ToolTipTitle = "Kriterienstruktur drucken";
+            toolTip9.UseFading = true;
+            toolTip9.UseAnimation = true;
+            toolTip9.IsBalloon = true;
+            toolTip9.AutoPopDelay = 5000;
+            toolTip9.InitialDelay = 1000;
+            toolTip9.ReshowDelay = 500;
+            toolTip9.ShowAlways = true;
+            toolTip9.SetToolTip(btn_CurrProjCritStruPrintCostumer, "Dieser Button erstellt eine Übersicht über die Kriterienstruktur als PDF Dateien.");
+            ToolTip toolTip10 = new ToolTip();
+            toolTip10.ToolTipTitle = "Erfüllungen drucken";
+            toolTip10.UseFading = true;
+            toolTip10.UseAnimation = true;
+            toolTip10.IsBalloon = true;
+            toolTip10.AutoPopDelay = 5000;
+            toolTip10.InitialDelay = 1000;
+            toolTip10.ReshowDelay = 500;
+            toolTip10.ShowAlways = true;
+            toolTip10.SetToolTip(btn_CurrProjProdAnalShow, "Dieser Button erstellt eine Übersicht über die Erfüllungen der Projektprodukte.");
+            
+        
+        }
+        
+        
         /// <summary>
         /// Handles the FormClosing event of the aktuellesProject_View control.
         /// </summary>

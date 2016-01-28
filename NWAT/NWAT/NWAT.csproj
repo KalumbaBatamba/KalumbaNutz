@@ -229,6 +229,7 @@
     <Compile Include="Views\NWAT_Start_View.Designer.cs">
       <DependentUpon>NWAT_Start_View.cs</DependentUpon>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="DB\NWAT.dbml.layout">
       <DependentUpon>NWAT.dbml</DependentUpon>
     </None>

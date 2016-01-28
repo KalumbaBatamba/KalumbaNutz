@@ -30,8 +30,6 @@
         {
             this.label_CurrProjName = new System.Windows.Forms.Label();
             this.label_CurrProjNameShow = new System.Windows.Forms.Label();
-            this.label_CurrProjDesc = new System.Windows.Forms.Label();
-            this.label_CurrProjDescShow = new System.Windows.Forms.Label();
             this.groupBox_CurrProjCrits = new System.Windows.Forms.GroupBox();
             this.btn_CurrProjCritStruPrintCostumer = new System.Windows.Forms.Button();
             this.btn_ProjCritExport = new System.Windows.Forms.Button();
@@ -73,27 +71,6 @@
             this.label_CurrProjNameShow.Text = "Name des aktuellen Projektes";
             this.label_CurrProjNameShow.Click += new System.EventHandler(this.label_CurrProjNameShow_Click);
             // 
-            // label_CurrProjDesc
-            // 
-            this.label_CurrProjDesc.AutoSize = true;
-            this.label_CurrProjDesc.Location = new System.Drawing.Point(18, 45);
-            this.label_CurrProjDesc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label_CurrProjDesc.Name = "label_CurrProjDesc";
-            this.label_CurrProjDesc.Size = new System.Drawing.Size(111, 20);
-            this.label_CurrProjDesc.TabIndex = 2;
-            this.label_CurrProjDesc.Text = "Beschreibung:";
-            this.label_CurrProjDesc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label_CurrProjDescShow
-            // 
-            this.label_CurrProjDescShow.AutoSize = true;
-            this.label_CurrProjDescShow.Location = new System.Drawing.Point(162, 45);
-            this.label_CurrProjDescShow.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label_CurrProjDescShow.Name = "label_CurrProjDescShow";
-            this.label_CurrProjDescShow.Size = new System.Drawing.Size(275, 20);
-            this.label_CurrProjDescShow.TabIndex = 3;
-            this.label_CurrProjDescShow.Text = "Beschreibung des aktuellen Projektes";
-            // 
             // groupBox_CurrProjCrits
             // 
             this.groupBox_CurrProjCrits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -103,7 +80,7 @@
             this.groupBox_CurrProjCrits.Controls.Add(this.btn_CurrProjKritAssign);
             this.groupBox_CurrProjCrits.Controls.Add(this.btn_CurrProjCritStruUpdate);
             this.groupBox_CurrProjCrits.Controls.Add(this.btn_CurrProjCritStruPrint);
-            this.groupBox_CurrProjCrits.Location = new System.Drawing.Point(10, 362);
+            this.groupBox_CurrProjCrits.Location = new System.Drawing.Point(10, 115);
             this.groupBox_CurrProjCrits.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox_CurrProjCrits.Name = "groupBox_CurrProjCrits";
             this.groupBox_CurrProjCrits.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -190,7 +167,7 @@
             this.groupBox_CurrProjProds.Controls.Add(this.btn_CurrProjProdAssign);
             this.groupBox_CurrProjProds.Controls.Add(this.btn_CurrProjProdFulfCapt);
             this.groupBox_CurrProjProds.Controls.Add(this.btnCurrProjProdFulfPrint);
-            this.groupBox_CurrProjProds.Location = new System.Drawing.Point(266, 362);
+            this.groupBox_CurrProjProds.Location = new System.Drawing.Point(266, 115);
             this.groupBox_CurrProjProds.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox_CurrProjProds.Name = "groupBox_CurrProjProds";
             this.groupBox_CurrProjProds.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -240,7 +217,7 @@
             // 
             this.groupBox_CurrProjAnalys.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox_CurrProjAnalys.Controls.Add(this.btn_CurrProjProdAnalShow);
-            this.groupBox_CurrProjAnalys.Location = new System.Drawing.Point(519, 362);
+            this.groupBox_CurrProjAnalys.Location = new System.Drawing.Point(519, 115);
             this.groupBox_CurrProjAnalys.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox_CurrProjAnalys.Name = "groupBox_CurrProjAnalys";
             this.groupBox_CurrProjAnalys.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -265,12 +242,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(796, 729);
+            this.ClientSize = new System.Drawing.Size(796, 482);
             this.Controls.Add(this.groupBox_CurrProjAnalys);
             this.Controls.Add(this.groupBox_CurrProjProds);
             this.Controls.Add(this.groupBox_CurrProjCrits);
-            this.Controls.Add(this.label_CurrProjDescShow);
-            this.Controls.Add(this.label_CurrProjDesc);
             this.Controls.Add(this.label_CurrProjNameShow);
             this.Controls.Add(this.label_CurrProjName);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -289,8 +264,6 @@
 
         private System.Windows.Forms.Label label_CurrProjName;
         private System.Windows.Forms.Label label_CurrProjNameShow;
-        private System.Windows.Forms.Label label_CurrProjDesc;
-        private System.Windows.Forms.Label label_CurrProjDescShow;
         private System.Windows.Forms.GroupBox groupBox_CurrProjCrits;
         private System.Windows.Forms.Button btn_CurrProjKritAssign;
         private System.Windows.Forms.Button btn_CurrProjCritStruUpdate;
