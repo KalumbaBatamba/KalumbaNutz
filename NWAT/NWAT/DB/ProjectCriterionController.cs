@@ -755,8 +755,16 @@ namespace NWAT.DB
 
             foreach (ProjectCriterion projCrit in projectCriterionsInOneLayer)
             {
-                double percentageLayerWeighting = (double)projCrit.Weighting_Cardinal / (double)sumOfCardinalWeightings;
-                projCrit.Weighting_Percentage_Layer = Math.Round(percentageLayerWeighting,6, MidpointRounding.ToEven);
+
+                if (sumOfCardinalWeightings == 0)
+                {
+                    projCrit.Weighting_Percentage_Layer = 0;
+                }
+                else
+                {
+                    double percentageLayerWeighting = (double)projCrit.Weighting_Cardinal / (double)sumOfCardinalWeightings;
+                    projCrit.Weighting_Percentage_Layer = Math.Round(percentageLayerWeighting, 6, MidpointRounding.ToEven);
+                }
             }
         }
 
