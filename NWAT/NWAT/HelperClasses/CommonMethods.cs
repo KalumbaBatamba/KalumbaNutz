@@ -163,7 +163,7 @@ namespace NWAT.HelperClasses
         public static string MessageForbiddenDelimiterWasFoundInText()
         {
 
-            return String.Format("Die folgende Zeichen ddürfen nicht in Texteingaben verwendet werden: \"|\" und \"\\\"");
+            return String.Format("Die folgende Zeichen dürfen nicht in Texteingaben verwendet werden: \"|\" und \"\\\"");
         }
        
         public static string MessageTextIsEmpty()
