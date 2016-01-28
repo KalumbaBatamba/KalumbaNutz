@@ -259,7 +259,7 @@ namespace NWAT
         {
             try{
             MessageBox.Show("Alle projektspezifischen Produkte inklusive der Kriterienstruktur und deren Erfüllungen sind auf dem Pdf abgebildet!");
-            FulfillmentForEveryProduct fulfillmentEveryProdPrint = new FulfillmentForEveryProduct(Project.Project_Id);
+            FulfillmentForEveryProductPrinter fulfillmentEveryProdPrint = new FulfillmentForEveryProductPrinter(Project.Project_Id);
             fulfillmentEveryProdPrint.CreateFulfillmentForEveryProductPdf();
             }
             catch (Exception x)

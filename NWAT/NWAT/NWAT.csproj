@@ -82,7 +82,7 @@
     <Compile Include="Printer\CriterionStructurePrinterCostumer.cs" />
     <Compile Include="Printer\SpellVerification.cs" />
     <Compile Include="Printer\DateTimeStamp_Hilfsklasse.cs" />
-    <Compile Include="Printer\FulfillmentForEveryProduct.cs" />
+    <Compile Include="Printer\FulfillmentForEveryProductPrinter.cs" />
     <Compile Include="Views\aktuellesProjekt_View.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace NWAT.Printer
 {
-    class FulfillmentForEveryProduct
+    class FulfillmentForEveryProductPrinter
     {
          private readonly int maxProductsInTable = 5;
 
@@ -96,7 +96,7 @@ namespace NWAT.Printer
         
 
         //Konstruktor
-        public FulfillmentForEveryProduct(int projectId)
+        public FulfillmentForEveryProductPrinter(int projectId)
         {
             this.ProjCritContr = new ProjectCriterionController();
             ProjectController projCont = new ProjectController();

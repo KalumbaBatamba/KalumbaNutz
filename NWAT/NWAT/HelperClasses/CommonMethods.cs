@@ -3,13 +3,10 @@ using System.Collections.Generic;
 
 namespace NWAT.HelperClasses
 {
-    public class CommonMethods
+    public static class CommonMethods
     {
         // this class holds static methods as members, which can be used by several different classes/objects in this project
 
-
-        //TODO by Veit: Diese Methode bitte immer nutzen, um Benutzereingaben zu überprüfen, bevor die Daten an den jeweiligen Controller weitergereicht werden.
-        
         /// <summary>
         /// Checks if forbitten delimiter in database.
         /// </summary>
@@ -141,7 +138,6 @@ namespace NWAT.HelperClasses
                                     konnte nicht in die Erfüllungstabelle eingefügt werden.", prodId, projCritId);
         }
 
-        //TODO by Veit: Diese Methode bitte immer nutzen, falls verbotenes Trennzeichen in Text entdeckt, um einen Hinweistext an den Benutzer auszugeben.
         public static string MessageForbiddenDelimiterWasFoundInText()
         {
 
