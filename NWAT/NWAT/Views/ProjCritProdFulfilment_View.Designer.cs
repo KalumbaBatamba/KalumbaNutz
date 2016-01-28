@@ -45,14 +45,14 @@
             this.dataGridView_ProjCritProdFulf.Location = new System.Drawing.Point(20, 80);
             this.dataGridView_ProjCritProdFulf.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView_ProjCritProdFulf.Name = "dataGridView_ProjCritProdFulf";
-            this.dataGridView_ProjCritProdFulf.Size = new System.Drawing.Size(892, 751);
+            this.dataGridView_ProjCritProdFulf.Size = new System.Drawing.Size(838, 751);
             this.dataGridView_ProjCritProdFulf.TabIndex = 9;
             this.dataGridView_ProjCritProdFulf.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_ProjCritProdFulf_CellContentClick);
             // 
             // btn_ProjCritProdFulfCancle
             // 
             this.btn_ProjCritProdFulfCancle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_ProjCritProdFulfCancle.Location = new System.Drawing.Point(926, 794);
+            this.btn_ProjCritProdFulfCancle.Location = new System.Drawing.Point(872, 794);
             this.btn_ProjCritProdFulfCancle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_ProjCritProdFulfCancle.Name = "btn_ProjCritProdFulfCancle";
             this.btn_ProjCritProdFulfCancle.Size = new System.Drawing.Size(112, 35);
@@ -64,7 +64,7 @@
             // btn_ProjCritProdFulfSave
             // 
             this.btn_ProjCritProdFulfSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_ProjCritProdFulfSave.Location = new System.Drawing.Point(926, 749);
+            this.btn_ProjCritProdFulfSave.Location = new System.Drawing.Point(872, 749);
             this.btn_ProjCritProdFulfSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_ProjCritProdFulfSave.Name = "btn_ProjCritProdFulfSave";
             this.btn_ProjCritProdFulfSave.Size = new System.Drawing.Size(112, 35);
@@ -87,7 +87,7 @@
             // btn_ProdFulfPrint
             // 
             this.btn_ProdFulfPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_ProdFulfPrint.Location = new System.Drawing.Point(926, 705);
+            this.btn_ProdFulfPrint.Location = new System.Drawing.Point(872, 705);
             this.btn_ProdFulfPrint.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_ProdFulfPrint.Name = "btn_ProdFulfPrint";
             this.btn_ProdFulfPrint.Size = new System.Drawing.Size(112, 35);
@@ -100,7 +100,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1056, 863);
+            this.ClientSize = new System.Drawing.Size(1002, 863);
             this.Controls.Add(this.btn_ProdFulfPrint);
             this.Controls.Add(this.comboBox_ProjCritProdFulf);
             this.Controls.Add(this.dataGridView_ProjCritProdFulf);
