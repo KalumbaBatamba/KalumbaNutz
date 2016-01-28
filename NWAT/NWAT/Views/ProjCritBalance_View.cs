@@ -194,17 +194,17 @@ namespace NWAT
        {
                try{
                int i = 0;
-                   //list <ProjectCriterion>changedcritlist
+               List<ProjectCriterion> changedProjectCriterions = new List<ProjectCriterion>();
                foreach (DataGridViewRow row in dataGridView_ProjCritBalance.Rows)
                {
                    int critID = (int)row.Cells["Weighting_Cardinal"].Value ;
                    ProjectCriterion fromList = ProjCrits[i];
                    i++;
                    fromList.Weighting_Cardinal = (int)row.Cells["Weighting_Cardinal"].Value; //wc vorher 3
-                   //changedCritlist.add(fromlist) 
-                   projCritCont.UpdateProjectCriterionInDb(fromList);
+                   changedProjectCriterions.Add(fromList); 
+                   
                }
-                   //neue Update
+               this.projCritCont.UpdateAllProjectCriterions(ProjectId, changedProjectCriterions);
                refreshGrid();
                }
                catch (Exception x)

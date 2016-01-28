@@ -38,7 +38,7 @@ namespace NWAT.DB
         /// Erstellt von Joshua Frey, am 21.12.2015
         public List<ProjectCriterion> GetAllProjectCriterionsForOneProject(int projectId)
         {
-            List<ProjectCriterion> resultProjectCriterions = base.DataContext.ProjectCriterion.Where(projectCriterion => projectCriterion.Project_Id == projectId).ToList();
+            var resultProjectCriterions = base.DataContext.ProjectCriterion.Where(projectCriterion => projectCriterion.Project_Id == projectId).ToList();
             return resultProjectCriterions;
         }
 
@@ -112,6 +112,44 @@ namespace NWAT.DB
             return projCritWithHighestLayerNum.Layer_Depth;
         }
 
+
+        /// <summary>
+        /// Updates all project criterions. Is used to get a better performance when you update in balance view and structure view
+        /// </summary>
+        /// <param name="allChangedProjectCriterions">All changed project criterions.</param>
+        /// Erstellt von Joshua Frey, am 28.01.2016
+        public void UpdateAllProjectCriterions(int projectId, List<ProjectCriterion>allChangedProjectCriterions)
+        {
+            UpdateAllProjectCriterionDataSets(projectId, allChangedProjectCriterions);
+            UpdateLayerDepthForAllProjectCriterions(projectId);
+            UpdateAllPercentageLayerWeightings(projectId);
+            UpdateAllPercentageProjectWeightings(projectId);
+        }
+
+
+        /// <summary>
+        /// Updates all changed project criterions in der DB data sets.
+        /// </summary>
+        /// <param name="projectId">The project identifier.</param>
+        /// <param name="allChangedProjectCriterions">All changed project criterions.</param>
+        /// Erstellt von Joshua Frey, am 28.01.2016
+        public void UpdateAllProjectCriterionDataSets(int projectId, List<ProjectCriterion> allChangedProjectCriterions)
+        {
+            var projCritsFromDb = base.DataContext.ProjectCriterion.Where(projCrit => projCrit.Project_Id == projectId);
+
+            foreach (var changedProjCrit in allChangedProjectCriterions)
+            {
+                var dbProjCrit = projCritsFromDb.Single(projCrit => projCrit.Criterion_Id == changedProjCrit.Criterion_Id);
+                dbProjCrit.Parent_Criterion_Id = changedProjCrit.Parent_Criterion_Id;
+                dbProjCrit.Layer_Depth = changedProjCrit.Layer_Depth;
+                dbProjCrit.Weighting_Cardinal = changedProjCrit.Weighting_Cardinal;
+                dbProjCrit.Weighting_Percentage_Layer = changedProjCrit.Weighting_Percentage_Layer;
+                dbProjCrit.Weighting_Percentage_Project = changedProjCrit.Weighting_Percentage_Project;
+            }
+
+            base.DataContext.SubmitChanges();
+        }
+
         /// <summary>
         /// Updates the project criterion in database.
         /// </summary>
@@ -129,7 +167,7 @@ namespace NWAT.DB
             }
 
             int projectId = alteredProjectCriterion.Project_Id;
-            UpdateLayerDepthForProjectCriterion(projectId, alteredProjectCriterion.Criterion_Id);
+            UpdateLayerDepthForSingleProjectCriterion(projectId, alteredProjectCriterion.Criterion_Id);
             UpdateAllPercentageLayerWeightings(projectId);
             UpdateAllPercentageProjectWeightings(projectId);
 
@@ -398,7 +436,7 @@ namespace NWAT.DB
 
                 if(!isImported)
                 {
-                    UpdateLayerDepthForProjectCriterion(projectId, newProjectCriterion.Criterion_Id);
+                    UpdateLayerDepthForSingleProjectCriterion(projectId, newProjectCriterion.Criterion_Id);
                     UpdateAllPercentageLayerWeightings(projectId);
                     UpdateAllPercentageProjectWeightings(projectId);
                 }
@@ -565,12 +603,10 @@ namespace NWAT.DB
             CalculatePercentageLayerWeighting(ref baseProjectCriterions);
 
             // write calculated weightings back to db
-            foreach (ProjectCriterion baseProjCrit in baseProjectCriterions)
-            {
-                UpdateProjectCriterionDataSet(baseProjCrit);
-            }
+            UpdateAllProjectCriterionDataSets(projectId, baseProjectCriterions);
 
             // calculate all weightings for all child project criterions
+                       
             List<ProjectCriterion> allProjectCriterions = GetAllProjectCriterionsForOneProject(projectId);
 
             foreach (ProjectCriterion projCrit in allProjectCriterions)
@@ -581,10 +617,13 @@ namespace NWAT.DB
                     CalculatePercentageLayerWeighting(ref eventualChildrenOfCurrentProjCriterion);
                     foreach (ProjectCriterion childProjCrit in eventualChildrenOfCurrentProjCriterion)
                     {
-                        UpdateProjectCriterionDataSet(childProjCrit);
+                        ProjectCriterion projCritToChangeInCompleteList = allProjectCriterions.Single(
+                            projCritToChange => projCritToChange.Criterion_Id == childProjCrit.Criterion_Id);
+                        projCritToChangeInCompleteList.Weighting_Percentage_Layer = childProjCrit.Weighting_Percentage_Layer;
                     }
                 }
             }
+            UpdateAllProjectCriterionDataSets(projectId, allProjectCriterions);
         }
 
         /// <summary>
@@ -597,8 +636,9 @@ namespace NWAT.DB
 
             foreach (ProjectCriterion currentProjCrit in allProjCritsForOneProject)
             {
-                UpdatePercentageProjectWeightingForOneCriterion(currentProjCrit);
+                currentProjCrit.Weighting_Percentage_Project = UpdatePercentageProjectWeightingForOneCriterion(currentProjCrit);
             }
+            UpdateAllProjectCriterionDataSets(projectId, allProjCritsForOneProject);
         }
 
         /// <summary>
@@ -606,7 +646,7 @@ namespace NWAT.DB
         /// </summary>
         /// <param name="projectCrit">The project crit.</param>
         /// Erstellt von Joshua Frey, am 20.01.2016
-        private void UpdatePercentageProjectWeightingForOneCriterion(ProjectCriterion projectCrit)
+        private double UpdatePercentageProjectWeightingForOneCriterion(ProjectCriterion projectCrit)
         {
             int projectId = projectCrit.Project_Id;
             int criterionId = projectCrit.Criterion_Id;
@@ -635,9 +675,7 @@ namespace NWAT.DB
                 }
             } while (hasParent);
 
-            projectCrit.Weighting_Percentage_Project = Math.Round(percentageProjectWeightingValue, 6, MidpointRounding.ToEven);
-
-            UpdateProjectCriterionDataSet(projectCrit);
+            return Math.Round(percentageProjectWeightingValue, 6, MidpointRounding.ToEven);
         }
 
         //// Esrstellt von Weloko Tchokoua
@@ -699,6 +737,20 @@ namespace NWAT.DB
                    samePercentageProjectWeighting;
         }
 
+        /// <summary>
+        /// Updates the lyer depth for all project criterions.
+        /// </summary>
+        /// Erstellt von Joshua Frey, am 28.01.2016
+        private void UpdateLayerDepthForAllProjectCriterions(int projectId)
+        {
+            var allProjectCriterionsInDb = base.DataContext.ProjectCriterion.Where(projCrit => projCrit.Project_Id == projectId);
+            foreach (var projCritFromDb in allProjectCriterionsInDb)
+            {
+                int calculatedLayerDepth = GetLayerDepthForSingleProjectCriterion(projCritFromDb, allProjectCriterionsInDb.ToList());
+                projCritFromDb.Layer_Depth = calculatedLayerDepth;
+            }
+            base.DataContext.SubmitChanges();
+        }
 
         /// <summary>
         /// Calculates the layer depth of the Criterion and updates it in Database;
@@ -706,37 +758,49 @@ namespace NWAT.DB
         /// <param name="projectId">The project identifier.</param>
         /// <param name="projCritId">The proj crit identifier.</param>
         /// Erstellt von Joshua Frey, am 12.01.2016
-        private void UpdateLayerDepthForProjectCriterion(int projectId, int projCritId)
+        private void UpdateLayerDepthForSingleProjectCriterion(int projectId, int projCritId)
         {
             // base criterions are on layer one. So the lowest layer a criterion can exist in, is 1
-            int layerCounter = 1;
 
             List<ProjectCriterion> allProjectCriterions = GetAllProjectCriterionsForOneProject(projectId);
             ProjectCriterion involvedProjCriterion;
             involvedProjCriterion = allProjectCriterions.Single(projCrit => projCrit.Criterion_Id == projCritId);
 
-            bool hasParent = false;
-
-            // traverse all parent criterion and count them in layerCounter
-            do
-            {
-                
-                if (involvedProjCriterion.Parent_Criterion_Id != null && involvedProjCriterion.Parent_Criterion_Id.Value != 0)
-                {
-                    int parentCritId = involvedProjCriterion.Parent_Criterion_Id.Value;
-                    hasParent = true;
-                    layerCounter++;
-                    involvedProjCriterion = allProjectCriterions.Single(projCrit => projCrit.Criterion_Id == parentCritId);
-                }   
-                else
-                {
-                    hasParent = false;
-                }
-            }while(hasParent);
+            int layerCounter = GetLayerDepthForSingleProjectCriterion(involvedProjCriterion, allProjectCriterions);
 
             ProjectCriterion projCritToUpdate = allProjectCriterions.Single(projCrit => projCrit.Criterion_Id == projCritId);
             projCritToUpdate.Layer_Depth = layerCounter;
                 UpdateProjectCriterionDataSet(projCritToUpdate);
+        }
+
+        /// <summary>
+        /// Gets the layer depth for single project criterion.
+        /// </summary>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 28.01.2016
+        private int GetLayerDepthForSingleProjectCriterion(ProjectCriterion involvedProjCriterion, List<ProjectCriterion> allProjectCriterionsForThisProject)
+        {
+            bool hasParent = false;
+            int layerCounter = 1;
+            // traverse all parent criterion and count them in layerCounter
+            do
+            {
+                // check if involvedProjCriterion has a parent
+                if (involvedProjCriterion.Parent_Criterion_Id != null && involvedProjCriterion.Parent_Criterion_Id.Value != 0)
+                {
+                    int parentCritId = involvedProjCriterion.Parent_Criterion_Id.Value;
+                    hasParent = true;
+                    // for each parent inkrement counter
+                    layerCounter++;
+                    // parent is new involvedProjCriterion now
+                    involvedProjCriterion = allProjectCriterionsForThisProject.Single(projCrit => projCrit.Criterion_Id == parentCritId);
+                }
+                else
+                {
+                    hasParent = false;
+                }
+            } while (hasParent);
+            return layerCounter;
         }
 
 
@@ -755,7 +819,7 @@ namespace NWAT.DB
 
             foreach (ProjectCriterion projCrit in projectCriterionsInOneLayer)
             {
-
+                // provide that there is nothing is divided by zero
                 if (sumOfCardinalWeightings == 0)
                 {
                     projCrit.Weighting_Percentage_Layer = 0;

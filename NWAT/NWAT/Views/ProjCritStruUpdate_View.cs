@@ -161,34 +161,42 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProjCritStruSave_Click(object sender, EventArgs e)
         {
-            try{
-            int i = 0;
-            foreach (DataGridViewRow row in dataGridView_CritStruUpd.Rows)
+            try
             {
-                ProjectCriterion fromList = ProjCrits[i];
-                i++;
-                if (row.Cells["Parent_Criterion_Id"].Value == null)
+                int i = 0;
+
+                List<ProjectCriterion> changedProjectCriterions = new List<ProjectCriterion>();
+                foreach (DataGridViewRow row in dataGridView_CritStruUpd.Rows)
                 {
-                    fromList.Parent_Criterion_Id = null;
-                    projCritCont.UpdateProjectCriterionInDb(fromList);
-                }
-                else
-                {
-                    bool projCritExists = projCritCont.CheckIfProjectCriterionAlreadyExists(ProjectId, (int)row.Cells["Parent_Criterion_Id"].Value);
-                    if (projCritExists == false)
+                    ProjectCriterion fromList = ProjCrits[i];
+                    i++;
+                    if (row.Cells["Parent_Criterion_Id"].Value == null)
                     {
-                        MessageBox.Show("Das eingetragene Parentkriterium des Kriteriums mit der ID: " + (int)row.Cells["Criterion_Id"].Value + " existiert nicht");
+                        fromList.Parent_Criterion_Id = null;
+                        //projCritCont.UpdateProjectCriterionInDb(fromList);
                     }
                     else
                     {
-                        fromList.Parent_Criterion_Id = (int)row.Cells["Parent_Criterion_Id"].Value;
-                        projCritCont.UpdateProjectCriterionInDb(fromList);
+                        bool projCritExists = projCritCont.CheckIfProjectCriterionAlreadyExists(ProjectId, (int)row.Cells["Parent_Criterion_Id"].Value);
+                        if (projCritExists == false)
+                        {
+
+                            MessageBox.Show("Das eingetragene Parentkriterium des Kriteriums mit der ID: " + (int)row.Cells["Criterion_Id"].Value + " existiert nicht.\n" +
+                            "Es wurden keine Daten in der Datenbank gespeichert.");
+                            // Ausstiegspunkt, da keine inkonsistenten Daten gespeichert werden sollen.
+                            return;
+                        }
+                        else
+                        {
+                            fromList.Parent_Criterion_Id = (int)row.Cells["Parent_Criterion_Id"].Value;
+                            //  projCritCont.UpdateProjectCriterionInDb(fromList);
+                        }
                     }
-                    
+                    changedProjectCriterions.Add(fromList);
                 }
                 
-            }
-            refreshGrid();
+                projCritCont.UpdateAllProjectCriterions(this.ProjectId, changedProjectCriterions);
+                refreshGrid();
             }
             catch (Exception x)
             {
