@@ -68,7 +68,7 @@ namespace NWAT
         {
             //Tool Tip für die Buttons die eine Erklärung benötigen
             ToolTip toolTip1 = new ToolTip();
-            toolTip1.ToolTipTitle = "Projektkriterienexport";
+            toolTip1.ToolTipTitle = "Rechtschreibexport";
             toolTip1.UseFading = true;
             toolTip1.UseAnimation = true;
             toolTip1.IsBalloon = true;

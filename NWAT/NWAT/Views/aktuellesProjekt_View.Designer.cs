@@ -108,7 +108,7 @@
             this.btn_ProjCritExport.Name = "btn_ProjCritExport";
             this.btn_ProjCritExport.Size = new System.Drawing.Size(213, 35);
             this.btn_ProjCritExport.TabIndex = 12;
-            this.btn_ProjCritExport.Text = "Projektkriterienexport";
+            this.btn_ProjCritExport.Text = "Rechtschreibexport";
             this.btn_ProjCritExport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_ProjCritExport.UseVisualStyleBackColor = true;
             this.btn_ProjCritExport.Click += new System.EventHandler(this.button1_Click);
