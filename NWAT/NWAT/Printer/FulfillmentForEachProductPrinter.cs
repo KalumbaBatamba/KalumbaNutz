@@ -1,17 +1,11 @@
-﻿using NWAT.DB;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using NWAT.DB;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using iTextSharp.text.log;
-using iTextSharp.text.pdf.draw;
+using System.Linq;
+using System.Windows.Forms;
 
 /// <summary>
 /// Klasse um die Erfüllung der Kriterien je Produkt in einer PDF Datei zu zeigen

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NWAT.DB;
+using NWAT.HelperClasses;
+using System;
 using System.Windows.Forms;
-using NWAT.DB;
 
 namespace NWAT
 {
@@ -21,9 +15,12 @@ namespace NWAT
             get { return _criterion; }
             set { _criterion = value; }
         }
-        public Criterion_Update_View(int criterionId)
+
+        private Kriterienverwaltung_View parentView;
+
+        public Criterion_Update_View(Kriterienverwaltung_View parentView, int criterionId)
         {
- 
+            this.parentView = parentView;
             using (CriterionController CritUpdView = new CriterionController())
             {
                 this.Criterion = CritUpdView.GetCriterionById(criterionId);
@@ -40,16 +37,25 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         private void btn_CritUpdate_Click(object sender, EventArgs e)
         {
-            try{
-            using (CriterionController CritUpdClick = new CriterionController())
+            try
             {
-                Criterion critUpd = CritUpdClick.GetCriterionById(Criterion.Criterion_Id);
-                critUpd.Criterion_Id = this.Criterion.Criterion_Id; 
-                critUpd.Name = textBox_CritNameUpdate.Text;
-                critUpd.Description = textBox_CritDescUpdate.Text;
-                CritUpdClick.UpdateCriterionInDb(critUpd);
-            }
-            this.Close();
+                using (CriterionController CritUpdClick = new CriterionController())
+                {
+                    Criterion critUpd = CritUpdClick.GetCriterionById(Criterion.Criterion_Id);
+                    critUpd.Criterion_Id = this.Criterion.Criterion_Id;
+                    if (CommonMethods.CheckIfForbiddenDelimiterInDb(textBox_CritNameUpdate.Text) ||
+                        CommonMethods.CheckIfForbiddenDelimiterInDb(textBox_CritDescUpdate.Text))
+                    {
+                        MessageBox.Show(CommonMethods.MessageForbiddenDelimiterWasFoundInText());
+                    }
+                    else
+                    {
+                        critUpd.Name = textBox_CritNameUpdate.Text;
+                        critUpd.Description = textBox_CritDescUpdate.Text;
+                        CritUpdClick.UpdateCriterionInDb(critUpd);
+                        this.Close();
+                    }
+                }
             }
             catch (Exception x)
             {
@@ -82,6 +88,18 @@ namespace NWAT
             {
                 MessageBox.Show("Ups da lief was schief");
             }
+        }
+
+        /// <summary>
+        /// Handles the FormClosing event of the Criterion_Update_View control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="FormClosingEventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
+        private void Criterion_Update_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.parentView.RefreshList();
+            this.parentView.Show();
         }
     }
 }

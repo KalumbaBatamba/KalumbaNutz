@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NWAT.DB;
+using NWAT.HelperClasses;
+using System;
 using System.Windows.Forms;
-using NWAT.DB;
 
 namespace NWAT
 {
@@ -15,9 +9,11 @@ namespace NWAT
     {
 
         private CriterionController critCont;
-        public Criterion_Create_View()
+        private Kriterienverwaltung_View parentView;
+        public Criterion_Create_View(Kriterienverwaltung_View parentView)
         {
-         this.critCont = new CriterionController();
+            this.parentView = parentView;
+            this.critCont = new CriterionController();
             InitializeComponent();
         }
 
@@ -33,9 +29,10 @@ namespace NWAT
             try{
             String Name = textBox_CritNameCreate.Text;
             String Desc = textBox_CritDescCreate.Text;
-            if (Name.Contains("|") || Desc.Contains("|"))
-            { 
-            MessageBox.Show("Das Zeichen: | ist nicht erlaubt. Bitte ändern Sie Ihre Eingabe");
+            if(CommonMethods.CheckIfForbiddenDelimiterInDb(Name) ||
+               CommonMethods.CheckIfForbiddenDelimiterInDb(Desc))
+            {
+                MessageBox.Show(CommonMethods.MessageForbiddenDelimiterWasFoundInText());
             }else{
             Criterion Crit = new Criterion { Name = Name, Description = Desc };
             this.critCont.InsertCriterionIntoDb(Crit);
@@ -54,6 +51,17 @@ namespace NWAT
      
         private void Criterion_Create_Form_Load(object sender, EventArgs e)
         {
+        }
+        /// <summary>
+        /// Handles the FormClosing event of the Criterion_Create_View control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="FormClosingEventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
+        private void Criterion_Create_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.parentView.RefreshList();
+            this.parentView.Show();
         }
     }
 }

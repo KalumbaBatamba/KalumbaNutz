@@ -1,13 +1,8 @@
-﻿using System;
+﻿using NWAT.DB;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using NWAT.DB;
 
 
 
@@ -23,25 +18,16 @@ namespace NWAT
        
       
         private CriterionController critCont;
-        public Kriterienverwaltung_View()
+        private Form parentView;
+        public Kriterienverwaltung_View(Form parentView)
         {
+            this.parentView = parentView;
             this.critCont = new CriterionController();
             InitializeComponent();
 
 
         }
-        /// <summary>
-        /// Refreshes the list.
-        /// für manuelles Refreshen
-        /// </summary>
-        /// Erstellt von Veit Berg, am 27.01.16
-        public void refreshList() 
-        {
-            List<Criterion> CritList = critCont.GetAllCriterionsFromDb();
-            var bindingList = new BindingList<Criterion>(CritList);
-            var source = new BindingSource(bindingList, null);
-            dataGridView_Crits.DataSource = CritList;
-        }
+        
         /// <summary>
         /// Handles the Load event of the Kriterienverwaltung control.
         /// </summary>
@@ -73,8 +59,7 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         void Kriterienverwaltung_View_FormClosing(object sender, FormClosingEventArgs e)
         {
-            NWAT_Start_View back = new NWAT_Start_View();
-            back.Show();
+            this.parentView.Show();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -97,7 +82,7 @@ namespace NWAT
                 int zelle1 = (int)row.Cells[0].Value;
                 string zelle2 = (string)row.Cells[1].Value;
                 string zelle3 = (string)row.Cells[2].Value;
-                Criterion_Show_View CritShowView = new Criterion_Show_View(zelle1);
+                Criterion_Show_View CritShowView = new Criterion_Show_View(this, zelle1);
                 CritShowView.Show();
             
             }
@@ -124,7 +109,7 @@ namespace NWAT
             aktRowCrit.CritID = zelle1;
             aktRowCrit.CritName = zelle2;
             aktRowCrit.CritDescription = zelle3;
-            Criterion_Update_View CritUpdate = new Criterion_Update_View(zelle1);
+            Criterion_Update_View CritUpdate = new Criterion_Update_View(this, zelle1);
             CritUpdate.Show();
             }
             catch (Exception x)
@@ -141,13 +126,23 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         private void btn_CritDelete_Click(object sender, EventArgs e)
         {
-            try{
-            DataGridViewRow row = dataGridView_Crits.SelectedRows[0];
-            int zelle1 = (int)row.Cells[0].Value;
-            using (CriterionController critDelete = new CriterionController()){     
-             critDelete.DeleteCriterionFromDb(zelle1);       
-         }
-            MessageBox.Show("Das Kriterium wurde gelöscht");
+            try
+            {
+                DataGridViewRow row = dataGridView_Crits.SelectedRows[0];
+                int zelle1 = (int)row.Cells[0].Value;
+                using (CriterionController critDelete = new CriterionController())
+                {
+
+                    var result = MessageBox.Show("Wollen Sie das ausgeählte Kriterium wirklich löschen?",
+                            "Löschbestätigung",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        critDelete.DeleteCriterionFromDb(zelle1);
+                        RefreshList();
+                    }
+                }
             }
             catch (Exception x)
             {
@@ -163,7 +158,7 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         private void btn_CritCreate_Click(object sender, EventArgs e)
         {
-            Criterion_Create_View CritCreate = new Criterion_Create_View();
+            Criterion_Create_View CritCreate = new Criterion_Create_View(this);
             CritCreate.Show();
         }
         private void GetAllCritsFromDB()
@@ -188,20 +183,37 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         private void btn_refresh_Click(object sender, EventArgs e)
         {
-            try{
-            using (CriterionController CritRefr = new CriterionController())
+            RefreshList();
+        }
+
+        /// <summary>
+        /// Refreshes the list.
+        /// für manuelles Refreshen
+        /// </summary>
+        /// Erstellt von Veit Berg, am 27.01.16
+        public void RefreshList()
+        {
+            //List<Criterion> CritList = critCont.GetAllCriterionsFromDb();
+            //var bindingList = new BindingList<Criterion>(CritList);
+            //var source = new BindingSource(bindingList, null);
+            //dataGridView_Crits.DataSource = CritList;
+            try
             {
-                List<Criterion> CritList = CritRefr.GetAllCriterionsFromDb();
-                var bindingList = new BindingList<Criterion>(CritList);
-                var source = new BindingSource(bindingList, null);
-                dataGridView_Crits.DataSource = CritList;
-            }
+                using (CriterionController CritRefr = new CriterionController())
+                {
+                    List<Criterion> CritList = CritRefr.GetAllCriterionsFromDb();
+                    var bindingList = new BindingList<Criterion>(CritList);
+                    var source = new BindingSource(bindingList, null);
+                    dataGridView_Crits.DataSource = CritList;
+                }
             }
             catch (Exception x)
             {
                 MessageBox.Show("Ups da lief was schief");
             }
         }
+
+
     }
 }
 public class aktRowCrit

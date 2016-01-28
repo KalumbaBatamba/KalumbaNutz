@@ -1,15 +1,7 @@
 ﻿using NWAT.DB;
-using NWAT.Views;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using NWAT.Printer;
+using System;
+using System.Windows.Forms;
 
 namespace NWAT
 {
@@ -37,12 +29,14 @@ namespace NWAT
             set { _projectCont = value; }
         }
 
+        private Form parentView;
+
   //      private ProjectController _projectController;
 
 
-        public aktuellesProjekt_View(int projectId)
+        public aktuellesProjekt_View(Form parentView, int projectId)
         {
-   
+            this.parentView = parentView;
             this.ProjectCont = new ProjectController();
             this.Project = this.ProjectCont.GetProjectById(projectId);
             InitializeComponent();
@@ -101,9 +95,7 @@ namespace NWAT
         void aktuellesProject_View_FormClosing(object sender, FormClosingEventArgs e)
         {
             try{
-            //your code here
-            Projektverwaltung_View back = new Projektverwaltung_View();
-            back.Show();
+                this.parentView.Show();
             }
             catch (Exception x)
             { MessageBox.Show("Ups da lief was schief"); }
@@ -139,7 +131,7 @@ namespace NWAT
         {
             try{
 
-            ProjCritAssign_View ProjCritAssign = new ProjCritAssign_View(Project.Project_Id);
+            ProjCritAssign_View ProjCritAssign = new ProjCritAssign_View(this, Project.Project_Id);
             ProjCritAssign.Show();
             Hide
                 ();
@@ -177,7 +169,7 @@ namespace NWAT
         {
             try
             {
-                ProjCritStruUpdate_View ProjCritStruUpdate = new ProjCritStruUpdate_View(Project.Project_Id);
+                ProjCritStruUpdate_View ProjCritStruUpdate = new ProjCritStruUpdate_View(this, Project.Project_Id);
                 ProjCritStruUpdate.Show();
                 Hide();
             }
@@ -226,7 +218,7 @@ namespace NWAT
         private void btn_CurrProjProdAssign_Click(object sender, EventArgs e)
         {
             try{
-            ProjProdAssign_View ProjProdAssign = new ProjProdAssign_View(Project.Project_Id);
+            ProjProdAssign_View ProjProdAssign = new ProjProdAssign_View(this, Project.Project_Id);
             ProjProdAssign.Show();
             Hide();
             }
@@ -246,7 +238,7 @@ namespace NWAT
         private void btn_CurrProjProdFulfCapt_Click(object sender, EventArgs e)
         {
             try{
-            ProjCritProdFulfilment_View ProjCritProdFulfillment = new ProjCritProdFulfilment_View(Project.Project_Id);
+            ProjCritProdFulfilment_View ProjCritProdFulfillment = new ProjCritProdFulfilment_View(this, Project.Project_Id);
             ProjCritProdFulfillment.Show();
             Hide();
             }
@@ -305,7 +297,7 @@ namespace NWAT
         private void btn_Balance_Click(object sender, EventArgs e)
         {
             try{
-            ProjCritBalance_View ProjCritBalance = new ProjCritBalance_View(Project.Project_Id);
+            ProjCritBalance_View ProjCritBalance = new ProjCritBalance_View(this, Project.Project_Id);
             ProjCritBalance.Show();
             Hide();
             }

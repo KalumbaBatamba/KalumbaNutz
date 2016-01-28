@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NWAT.DB;
+using NWAT.HelperClasses;
+using System;
 using System.Windows.Forms;
-using NWAT.DB;
 
 namespace NWAT
 {
@@ -29,10 +23,12 @@ namespace NWAT
             get { return _productCont; }
             set { _productCont = value; }
         }
-        
-        public Product_Update_View(int productId)
-        {
 
+        private Produktverwaltung_View parentView;
+
+        public Product_Update_View(Produktverwaltung_View parentView, int productId)
+        {
+            this.parentView = parentView;
             using (ProductController ProdUpdView = new ProductController()) 
             {
                 this.Product = ProdUpdView.GetProductById(productId);
@@ -68,8 +64,8 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         void Product_Update_View_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Produktverwaltung_View back = new Produktverwaltung_View();
-            back.Show();
+            this.parentView.RefreshDropdown();
+            this.parentView.Show();
         }
 
 
@@ -81,33 +77,35 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProdUpdate_Click(object sender, EventArgs e)
         {
-            try{
-            using (ProductController prodUpdate = new ProductController()) 
+            try
             {
-                Product prodNew = prodUpdate.GetProductById(Product.Product_Id);
-                prodNew.Product_Id = this.Product.Product_Id;
-                prodNew.Name = textBox_ProdNameUpdate.Text;
-                prodNew.Producer = textBox_ProdManuUpdate.Text;
+                using (ProductController prodUpdate = new ProductController())
+                {
+                    Product prodNew = prodUpdate.GetProductById(Product.Product_Id);
+                    prodNew.Product_Id = this.Product.Product_Id;
+                    prodNew.Name = textBox_ProdNameUpdate.Text;
+                    prodNew.Producer = textBox_ProdManuUpdate.Text;
 
-            double check;
-              if (prodNew.Name.Contains("|") || prodNew.Producer.Contains("|"))
-             {
-                 MessageBox.Show("Das Zeichen: | ist nicht erlaubt. Bitte ändern Sie Ihre Eingabe");
-             }
-            else 
-             {
-                if (Double.TryParse(textBox_ProdPrizeUpdate.Text, out check))
-                {
-                    prodNew.Price = Convert.ToDouble(textBox_ProdPrizeUpdate.Text);
-                    prodUpdate.UpdateProductInDb(prodNew);
-                    this.Close();
+                    double check;
+                    if (CommonMethods.CheckIfForbiddenDelimiterInDb(prodNew.Name) ||
+                        CommonMethods.CheckIfForbiddenDelimiterInDb(prodNew.Producer))
+                    {
+                        MessageBox.Show(CommonMethods.MessageForbiddenDelimiterWasFoundInText());
+                    }
+                    else
+                    {
+                        if (Double.TryParse(textBox_ProdPrizeUpdate.Text, out check))
+                        {
+                            prodNew.Price = Convert.ToDouble(textBox_ProdPrizeUpdate.Text);
+                            prodUpdate.UpdateProductInDb(prodNew);
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Der Preis darf nur aus Zahlen bestehen!");
+                        }
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Der Preis darf nur aus Zahlen bestehen!");
-                }
-             }
-            }
             }
             catch (Exception x)
             {

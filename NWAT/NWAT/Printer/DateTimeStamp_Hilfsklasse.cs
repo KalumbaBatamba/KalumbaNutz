@@ -1,17 +1,6 @@
-﻿using NWAT.DB;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.IO;
-using iTextSharp.text;
+﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
-using iTextSharp.text.log;
-using iTextSharp.text.pdf.draw;
+using System;
 
 /// <summary>
 /// Klasse um das Datum auf einem erzeugtem PDF Dokument anzuzeigen

@@ -4,24 +4,29 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
-/* TEST Stephan */
 namespace NWAT
 {
     static class Program
     {
-        /// <summary>
-        /// Der Haupteinstiegspunkt für die Anwendung.commmmmmmmmmefsfskdflksdlfsldfjlksdf
-        /// </summary>
         [STAThread]
         static void Main()
         {
-            // bla blubb
+            // creates mutex that another instance can not be open
+            bool ok;
+            System.Threading.Mutex m = new System.Threading.Mutex(true, "NWAT_Mutex", out ok);
+
+            if (!ok)
+            {
+                MessageBox.Show("Eine andere Instanz läuft bereits");
+                return;
+            }
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new NWAT_Start_View());
-            
-        }/* ADRIAN TEST*/
+            Application.Run(new NWAT_Start_View());   
+
+            GC.KeepAlive(m);                
+          
+        }
     }
 }
-// test von Veit

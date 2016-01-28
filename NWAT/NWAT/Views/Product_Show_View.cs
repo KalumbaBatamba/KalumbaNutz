@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NWAT.DB;
+using System;
 using System.Windows.Forms;
-using NWAT.DB;
 namespace NWAT
 {
     public partial class Product_Show_View : Form
@@ -28,8 +21,11 @@ namespace NWAT
             set { _productCont = value; }
         }
 
-        public Product_Show_View(int productID)
+        private Form parentView;
+
+        public Product_Show_View(Form parentView, int productID)
         {
+            this.parentView = parentView;
            this.ProductCont = new ProductController();
            this.Product = this.ProductCont.GetProductById(productID);
            InitializeComponent();
@@ -43,6 +39,7 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         private void btn_Close_Click(object sender, EventArgs e)
         {
+
             this.Close();
         }
         private void ShowProdSpecs()
@@ -75,8 +72,7 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         void Product_Show_View_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Produktverwaltung_View back = new Produktverwaltung_View();
-            back.Show();
+            this.parentView.Show();
         }
 
     }

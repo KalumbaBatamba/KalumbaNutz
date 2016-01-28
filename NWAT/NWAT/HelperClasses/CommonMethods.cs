@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace NWAT
+namespace NWAT.HelperClasses
 {
     public class CommonMethods
     {
@@ -25,14 +22,12 @@ namespace NWAT
             List<string> listOfForbiddenChars = new List<string>(){@"|", @"\"};
             foreach (string forbidChar in listOfForbiddenChars)
             {
-                int indexOfDelimiter = text.IndexOf(forbidChar);
-                if (indexOfDelimiter == -1 || indexOfDelimiter == 0)
+                if (text.Contains(forbidChar))
                 {
                     foundForbiddenChar = true;
                 }
             }
             return foundForbiddenChar;
-            
         }
 
 
@@ -79,8 +74,6 @@ namespace NWAT
                 throw(e);
             }
         }
-
-
 
         /// <summary>
         /// Gets the nullable double value from string.
@@ -152,7 +145,9 @@ namespace NWAT
         public static string MessageForbiddenDelimiterWasFoundInText()
         {
 
-            return String.Format("Das folgendes Zeichen darf nicht in Texteingaben verwendet werden: \"{0}\"", "|");
+            return String.Format("Die folgende Zeichen ddürfen nicht in Texteingaben verwendet werden: \"|\" und \"\\\"");
         }
+
+
     }
 }

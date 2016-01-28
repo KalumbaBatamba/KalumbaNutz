@@ -1,13 +1,8 @@
-﻿using System;
+﻿using NWAT.DB;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using NWAT.DB;
 namespace NWAT
 {
     public partial class ProjCritStruUpdate_View : Form
@@ -41,17 +36,17 @@ namespace NWAT
             get { return _critSource; }
             set { _critSource = value; }
         }
-        
-        
-        
+
+
+        private Form parentView;
 
         private ProjectCriterionController projCritCont;
-        public ProjCritStruUpdate_View(int projectID)
+        public ProjCritStruUpdate_View(Form parentView, int projectID)
         {
+            this.parentView = parentView;
             ProjectId = projectID;
             this.projCritCont = new ProjectCriterionController();
             InitializeComponent();
-
         }
 
         /// <summary>
@@ -141,8 +136,7 @@ namespace NWAT
         void ProjCritStruUpdate_View_FormClosing(object sender, FormClosingEventArgs e)
         {
             try{
-            aktuellesProjekt_View back = new aktuellesProjekt_View(ProjectId);
-            back.Show();
+                this.parentView.Show();
             }
             catch (Exception x)
             {

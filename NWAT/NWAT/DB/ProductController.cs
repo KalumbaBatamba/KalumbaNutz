@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NWAT.DB
 {
@@ -11,7 +9,6 @@ namespace NWAT.DB
 
         public ProductController() : base() { }
         public ProductController(NWATDataContext dataContext) : base(dataContext) { }
-
 
         /// <summary>
         /// Gets the product by identifier from db.

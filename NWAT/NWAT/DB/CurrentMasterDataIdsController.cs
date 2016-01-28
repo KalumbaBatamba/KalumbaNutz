@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace NWAT.DB
 {
@@ -11,8 +7,6 @@ namespace NWAT.DB
         public CurrentMasterDataIdsController() : base() { }
         public CurrentMasterDataIdsController(NWATDataContext dataContext) : 
             base (dataContext) { }
-
- 
 
         /// <summary>
         /// Gets the current master data ids.

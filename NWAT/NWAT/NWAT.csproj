@@ -61,8 +61,8 @@
   <ItemGroup>
     <Compile Include="Analysis\AnalysedProduct.cs" />
     <Compile Include="Analysis\AnalysisResultCrit.cs" />
-    <Compile Include="ArchiveZipper.cs" />
-    <Compile Include="CommonMethods.cs" />
+    <Compile Include="HelperClasses\ArchiveZipper.cs" />
+    <Compile Include="HelperClasses\CommonMethods.cs" />
     <Compile Include="DB\CurrentMasterDataIdsController.cs" />
     <Compile Include="DB\NWAT.designer.cs">
       <AutoGen>True</AutoGen>
@@ -78,7 +78,7 @@
     <Compile Include="Views\FulfPrint_View.Designer.cs">
       <DependentUpon>FulfPrint_View.cs</DependentUpon>
     </Compile>
-    <Compile Include="LogWriter.cs" />
+    <Compile Include="HelperClasses\LogWriter.cs" />
     <Compile Include="Printer\CriterionStructurePrinterCostumer.cs" />
     <Compile Include="Printer\SpellVerification.cs" />
     <Compile Include="Printer\DateTimeStamp_Hilfsklasse.cs" />
@@ -89,7 +89,7 @@
     <Compile Include="Views\aktuellesProjekt_View.Designer.cs">
       <DependentUpon>aktuellesProjekt_View.cs</DependentUpon>
     </Compile>
-    <Compile Include="Analysis.cs" />
+    <Compile Include="Analysis_Weloko.cs" />
     <Compile Include="Views\Criterion_Show_View.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,7 +108,6 @@
     <Compile Include="Views\Criterion_Create_View.Designer.cs">
       <DependentUpon>Criterion_Create_View.cs</DependentUpon>
     </Compile>
-    <Compile Include="DB\AbsDbController.cs" />
     <Compile Include="DB\DbController.cs" />
     <Compile Include="DB\FulfillmentController.cs" />
     <Compile Include="DB\ProductController.cs" />
@@ -123,7 +122,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="IPrinter.cs" />
     <Compile Include="Views\Kriterienverwaltung_View.cs">
       <SubType>Form</SubType>
     </Compile>

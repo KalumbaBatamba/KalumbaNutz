@@ -1,14 +1,10 @@
-﻿using System;
+﻿using NWAT.DB;
+using NWAT.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using NWAT.DB;
-using NWAT.Views;
 
 namespace NWAT
 {
@@ -36,11 +32,14 @@ namespace NWAT
             get { return _projectId; }
             set { _projectId = value; }
         }
+
+        private Form parentView;
         
 
         private ProjectCriterionController projCritCont;
-        public ProjCritAssign_View(int projectId)
+        public ProjCritAssign_View(Form parentView, int projectId)
         {
+            this.parentView = parentView;
             ProjectId = projectId;
             this.projCritCont = new ProjectCriterionController();
             InitializeComponent();
@@ -127,8 +126,7 @@ namespace NWAT
             }
         void ProjCritAssign_View_FormClosing(object sender, FormClosingEventArgs e)
         {
-            aktuellesProjekt_View back = new aktuellesProjekt_View(ProjectId);
-            back.Show();
+            this.parentView.Show();
         }
             
         private void AddCritToProject()
@@ -233,11 +231,13 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProjCritSave_Click(object sender, EventArgs e)
         {
-            try{
-            using (ProjectCriterionController projCritCon = new ProjectCriterionController()){
-            projCritCon.ChangeAllocationOfProjectCriterionsInDb(ProjectId, ProjCrits);
-            }
-            this.Close();
+            try
+            {
+                using (ProjectCriterionController projCritCon = new ProjectCriterionController())
+                {
+                    projCritCon.ChangeAllocationOfProjectCriterionsInDb(ProjectId, ProjCrits);
+                }
+                this.Close();
             }
             catch (Exception x)
             {

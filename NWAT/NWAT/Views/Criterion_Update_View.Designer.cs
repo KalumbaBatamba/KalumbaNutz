@@ -99,6 +99,7 @@
             this.Controls.Add(this.label_CritName);
             this.Name = "Criterion_Update_View";
             this.Text = "Kriterium ändern";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Criterion_Update_FormClosing);
             this.Load += new System.EventHandler(this.Criterion_Update_Form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NWAT.DB
 {
@@ -21,7 +17,6 @@ namespace NWAT.DB
                 this._dataContext = value;
             }
         }
-
 
         public DbController()
         {

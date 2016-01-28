@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Linq;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NWAT.DB
 {
@@ -13,8 +10,6 @@ namespace NWAT.DB
         public ProjectController() : base() { }
         public ProjectController(NWATDataContext dataContext)
             : base(dataContext) { }
-
-       
 
         /// <summary>
         /// Gets the project by identifier from db.

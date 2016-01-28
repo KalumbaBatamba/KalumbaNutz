@@ -95,6 +95,7 @@
             this.Controls.Add(this.label_CritName);
             this.Name = "Criterion_Show_View";
             this.Text = "Kriteriendeltails";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Criterion_Show_FormClosing);
             this.Load += new System.EventHandler(this.Criterion_Show_Form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

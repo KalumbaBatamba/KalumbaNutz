@@ -1,13 +1,9 @@
-﻿using System;
+﻿using NWAT.DB;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using NWAT.DB;
 namespace NWAT
 {
     /// <summary>
@@ -39,10 +35,13 @@ namespace NWAT
             set { _projectId = value; }
         }
 
+        private Form parentView;
+
         private ProjectProductController projProdCont;
 
-        public ProjProdAssign_View(int projectID)
+        public ProjProdAssign_View(Form parentView, int projectID)
         {
+            this.parentView = parentView;
             ProjectId = projectID;
             this.projProdCont = new ProjectProductController();
             InitializeComponent();
@@ -121,8 +120,7 @@ namespace NWAT
         {
             try
             {
-                aktuellesProjekt_View back = new aktuellesProjekt_View(ProjectId);
-                back.Show();
+                this.parentView.Show();
             }catch (Exception i)
             {
                 MessageBox.Show("Ups da lief was schief");
@@ -150,39 +148,40 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProdToProj_Click(object sender, EventArgs e)
         {
-            try{
-            DataGridViewRow row = dataGridView_prodAvail.SelectedRows[0];
-            int ProdId = (int)row.Cells[0].Value;
-            string ProdName = (string)row.Cells[1].Value;
-            int index = dataGridView_prodAvail.CurrentCell.RowIndex;
-
-            ProjectProduct projProdToAllocate = new ProjectProduct()
+            try
             {
-                Project_Id = ProjectId,
-                Product_Id = ProdId,
-            };
-            AllProds.RemoveAt(index);
-            ProjProds.Add(projProdToAllocate);
+                DataGridViewRow row = dataGridView_prodAvail.SelectedRows[0];
+                int ProdId = (int)row.Cells[0].Value;
+                string ProdName = (string)row.Cells[1].Value;
+                int index = dataGridView_prodAvail.CurrentCell.RowIndex;
 
-            dataGridView_prodAvail.DataSource = null;
-            dataGridView_prodAvail.DataSource = AllProds;
-           dataGridView_ProjProd.DataSource = null;
-            using (ProductController prodCon = new ProductController())
-            {
-                foreach (ProjectProduct projProd in ProjProds)
+                ProjectProduct projProdToAllocate = new ProjectProduct()
                 {
-                    var singleProdId = prodCon.GetProductById(projProd.Product_Id);
-                    projProd.Name = singleProdId.Name.ToString();
+                    Project_Id = ProjectId,
+                    Product_Id = ProdId,
+                };
+                AllProds.RemoveAt(index);
+                ProjProds.Add(projProdToAllocate);
+
+                dataGridView_prodAvail.DataSource = null;
+                dataGridView_prodAvail.DataSource = AllProds;
+                dataGridView_ProjProd.DataSource = null;
+                using (ProductController prodCon = new ProductController())
+                {
+                    foreach (ProjectProduct projProd in ProjProds)
+                    {
+                        var singleProdId = prodCon.GetProductById(projProd.Product_Id);
+                        projProd.Name = singleProdId.Name.ToString();
+                    }
                 }
-            }
 
 
-            dataGridView_ProjProd.DataSource = ProjProds;
-            dataGridView_ProjProd.Columns.Remove("Project_Id");
-            dataGridView_ProjProd.Columns.Remove("Product");
-            dataGridView_ProjProd.Columns.Remove("Project");
-            dataGridView_ProjProd.Columns[1].Width = 200;
-            projProdCont.ChangeAllocationOfProjectProducstListInDb(ProjectId, ProjProds);
+                dataGridView_ProjProd.DataSource = ProjProds;
+                dataGridView_ProjProd.Columns.Remove("Project_Id");
+                dataGridView_ProjProd.Columns.Remove("Product");
+                dataGridView_ProjProd.Columns.Remove("Project");
+                dataGridView_ProjProd.Columns[1].Width = 200;
+                projProdCont.ChangeAllocationOfProjectProducstListInDb(ProjectId, ProjProds);
             }
             catch (Exception i)
             {
@@ -198,9 +197,11 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProjProdSave_Click(object sender, EventArgs e)
         {
-            try{
-            projProdCont.ChangeAllocationOfProjectProducstListInDb(ProjectId,ProjProds);
-            this.Close();
+            try
+            {
+                projProdCont.ChangeAllocationOfProjectProducstListInDb(ProjectId, ProjProds);
+                this.parentView.Show();
+                this.Close();
             }
             catch (Exception i)
             {

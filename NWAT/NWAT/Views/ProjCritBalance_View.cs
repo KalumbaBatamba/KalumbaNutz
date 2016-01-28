@@ -1,13 +1,8 @@
-﻿using System;
+﻿using NWAT.DB;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using NWAT.DB;
 
 namespace NWAT
 {
@@ -39,10 +34,11 @@ namespace NWAT
 
      
         private ProjectCriterionController projCritCont;
-     
+        private Form parentView;
         
-        public ProjCritBalance_View(int projectID)
+        public ProjCritBalance_View(Form parentView, int projectID)
         {
+            this.parentView = parentView;
             ProjectId = projectID;
             this.projCritCont = new ProjectCriterionController();
             InitializeComponent();
@@ -133,8 +129,7 @@ namespace NWAT
         void ProjCritBalance_View_FormClosing(object sender, FormClosingEventArgs e)
         {
             try{
-            aktuellesProjekt_View back = new aktuellesProjekt_View(ProjectId);
-            back.Show();
+                this.parentView.Show();
             }
             catch (Exception x)
             {

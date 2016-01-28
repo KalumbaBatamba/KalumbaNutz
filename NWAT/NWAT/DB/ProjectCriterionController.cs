@@ -1,14 +1,11 @@
-﻿using System;
+﻿using NWAT.HelperClasses;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NWAT.DB
 {
-
-
     public class ProjectCriterionController : DbController
     {
         public ProjectCriterionController() : base() { }

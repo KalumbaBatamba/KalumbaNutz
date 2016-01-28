@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NWAT.DB;
+using System;
 using System.Windows.Forms;
-using NWAT.DB;
 namespace NWAT
 {
     public partial class Project_Show_View : Form
@@ -28,9 +21,11 @@ namespace NWAT
             set { _projectCont = value; }
         }
 
+        private Form parentView;
         
-      public Project_Show_View(int projectId)
+      public Project_Show_View(Form parentView, int projectId)
         {
+            this.parentView = parentView;
             this.ProjectCont = new ProjectController();
             this.Project = this.ProjectCont.GetProjectById(projectId);
             InitializeComponent();
@@ -69,8 +64,7 @@ namespace NWAT
         void Project_Show_View_FormClosing(object sender, FormClosingEventArgs e)
         {
             try{
-            Projektverwaltung_View start = new Projektverwaltung_View();
-            start.Show();
+                this.parentView.Show();
             }
             catch (Exception x)
             {

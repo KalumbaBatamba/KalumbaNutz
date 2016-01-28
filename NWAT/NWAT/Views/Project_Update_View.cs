@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NWAT.DB;
+using NWAT.HelperClasses;
+using System;
 using System.Windows.Forms;
-using NWAT.DB;
 namespace NWAT
 {
     public partial class Project_Update_View : Form
@@ -28,9 +22,12 @@ namespace NWAT
             set { _projectCont = value; }
         }
 
+        private Form parentView;
 
-        public Project_Update_View(int projectId)
+
+        public Project_Update_View(Form parentView, int projectId)
         {
+            this.parentView = parentView;
             this.ProjectCont = new ProjectController();
             this.Project = this.ProjectCont.GetProjectById(projectId);
             InitializeComponent();
@@ -44,13 +41,23 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProjUpdate_Click(object sender, EventArgs e)
         {
-            try{
-            Project projUpd = ProjectCont.GetProjectById(Project.Project_Id);
-            projUpd.Project_Id = this.Project.Project_Id;
-            projUpd.Name = textBox_ProjNameUpdate.Text;
-            projUpd.Description = textBox_ProjDescUpdate.Text;
-            ProjectCont.UpdateProjectInDb(projUpd);
-            this.Close();
+            try
+            {
+                Project projUpd = ProjectCont.GetProjectById(Project.Project_Id);
+                projUpd.Project_Id = this.Project.Project_Id;
+
+                if (CommonMethods.CheckIfForbiddenDelimiterInDb(textBox_ProjNameUpdate.Text) ||
+                    CommonMethods.CheckIfForbiddenDelimiterInDb(textBox_ProjNameUpdate.Text))
+                {
+                    MessageBox.Show(CommonMethods.MessageForbiddenDelimiterWasFoundInText());
+                }
+                else
+                {
+                    projUpd.Name = textBox_ProjNameUpdate.Text;
+                    projUpd.Description = textBox_ProjNameUpdate.Text;
+                    ProjectCont.UpdateProjectInDb(projUpd);
+                    this.Close();                    
+                }
             }
             catch (Exception x)
             {
@@ -96,8 +103,7 @@ namespace NWAT
         void Project_Update_View_FormClosing(object sender, FormClosingEventArgs e)
         {
             try{
-            Projektverwaltung_View start = new Projektverwaltung_View ();
-            start.Show();
+                this.parentView.Show();
             }
             catch (Exception x)
             {

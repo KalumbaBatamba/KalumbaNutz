@@ -1,14 +1,9 @@
-﻿using System;
+﻿using NWAT.DB;
+using NWAT.HelperClasses;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using NWAT.DB;
-using NWAT.Printer;
 
 namespace NWAT
 {
@@ -49,16 +44,17 @@ namespace NWAT
 
 
         int aktProd;
-        static int formloaded = 1; 
+        static int formloaded = 1;
 
-
+        private Form parentView;
   //      private ProjectController _projectController;
 
 
  //       private ProjectCriterionController projCritCont;
 
-        public ProjCritProdFulfilment_View(int projectId)
+        public ProjCritProdFulfilment_View(Form parentView, int projectId)
         {
+            this.parentView = parentView;
             int ProjectID = projectId;
             PID = projectId;
             this.ProjectCont = new ProjectController();
@@ -165,8 +161,7 @@ namespace NWAT
         void ProjCritProdFulfillment_View_FormClosing(object sender, FormClosingEventArgs e)
         {
             try{
-            aktuellesProjekt_View back = new aktuellesProjekt_View(Project.Project_Id);
-            back.Show();
+                this.parentView.Show();
             }
             catch (Exception x)
             {
@@ -238,41 +233,50 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProjCritProdFulfSave_Click(object sender, EventArgs e)
         {
-            try{
-            if (comboBox_ProjCritProdFulf.SelectedIndex != -1)
+            try
             {
-                using (FulfillmentController fulCont = new FulfillmentController())
+                if (comboBox_ProjCritProdFulf.SelectedIndex != -1)
                 {
-                    foreach (DataGridViewRow row in dataGridView_ProjCritProdFulf.Rows)
+                    using (FulfillmentController fulCont = new FulfillmentController())
                     {
-                        Fulfillment fulFi = new Fulfillment();
-                        fulFi.Criterion_Id = (int)row.Cells[0].Value;
-                        fulFi.Project_Id = Project.Project_Id;
-                        int selectedIndex = comboBox_ProjCritProdFulf.SelectedIndex;
-                        Product selectedValue = new Product();
-                        selectedValue = (Product)comboBox_ProjCritProdFulf.SelectedItem;
-
-
-                        fulFi.Product_Id = selectedValue.Product_Id;
-                        fulFi.Comment = (string)row.Cells["Bemerkung"].Value;
-                        if ((bool)row.Cells["Erfüllung"].Value == true)
+                        foreach (DataGridViewRow row in dataGridView_ProjCritProdFulf.Rows)
                         {
-                            fulFi.Fulfilled = true;
-                        }
-                        else if ((bool)row.Cells["Erfüllung"].Value == false)
-                        {
-                            fulFi.Fulfilled = false;
+                            if (CommonMethods.CheckIfForbiddenDelimiterInDb((string)row.Cells["Bemerkung"].Value))
+                            {
+                                CommonMethods.MessageForbiddenDelimiterWasFoundInText();
+                                break;
+                            }
+                            else
+                            {
+                                Fulfillment fulFi = new Fulfillment();
+                                fulFi.Criterion_Id = (int)row.Cells[0].Value;
+                                fulFi.Project_Id = Project.Project_Id;
+                                int selectedIndex = comboBox_ProjCritProdFulf.SelectedIndex;
+                                Product selectedValue = new Product();
+                                selectedValue = (Product)comboBox_ProjCritProdFulf.SelectedItem;
+
+
+                                fulFi.Product_Id = selectedValue.Product_Id;
+                                fulFi.Comment = (string)row.Cells["Bemerkung"].Value;
+                                if ((bool)row.Cells["Erfüllung"].Value == true)
+                                {
+                                    fulFi.Fulfilled = true;
+                                }
+                                else if ((bool)row.Cells["Erfüllung"].Value == false)
+                                {
+                                    fulFi.Fulfilled = false;
+                                }
+
+                                fulCont.UpdateFulfillmentEntry(fulFi);
+                            }
                         }
 
-                        fulCont.UpdateFulfillmentEntry(fulFi);
                     }
-
                 }
-            }
-            else 
-            {
-                MessageBox.Show("Sie müssen ein Produkt auswählen.");
-            }
+                else
+                {
+                    MessageBox.Show("Sie müssen ein Produkt auswählen.");
+                }
             }
             catch (Exception x)
             {
@@ -342,9 +346,11 @@ namespace NWAT
             if (e.ColumnIndex == 5)
             {
                 dataGridView_ProjCritProdFulf.Rows[e.RowIndex].ErrorText = "";
-                if (e.FormattedValue.ToString().Contains("|")){
-                    MessageBox.Show("Das Zeichen: " + "| ist nicht erlaubt. Bitte ändern Sie Ihre Eingabe." );
+                if (CommonMethods.CheckIfForbiddenDelimiterInDb(e.FormattedValue.ToString()))
+                {
+                    MessageBox.Show(CommonMethods.MessageForbiddenDelimiterWasFoundInText());
                 }
+                
                 {
                     
                 }

@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NWAT.DB;
+using NWAT.HelperClasses;
+using System;
 using System.Windows.Forms;
-using NWAT.DB;
 namespace NWAT
 {
     public partial class Project_Create_View : Form
     {
+        private Form parentView;
         private ProjectController projCont;
-        public Project_Create_View()
+        public Project_Create_View(Form parentView)
         {
+            this.parentView = parentView;
             this.projCont = new ProjectController();          
             InitializeComponent();
         }
@@ -39,8 +35,7 @@ namespace NWAT
         void Project_Create_View_FormClosing(object sender, FormClosingEventArgs e)
         {
             try{
-            Projektverwaltung_View back = new Projektverwaltung_View();
-            back.Show();
+                this.parentView.Show();
             }
             catch (Exception x)
             {
@@ -66,13 +61,23 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProjCreate_Click(object sender, EventArgs e)
         {
-            try{
-            Project projCre = new Project();
-            projCre.Name = textBox_ProjNameCreate.Text;
-            projCre.Description = textBox_ProjDescCreate.Text;
-            projCont.InsertProjectIntoDb(projCre);
+            try
+            {
+                Project projCre = new Project();
+                if (CommonMethods.CheckIfForbiddenDelimiterInDb(textBox_ProjNameCreate.Text) ||
+                    CommonMethods.CheckIfForbiddenDelimiterInDb(textBox_ProjDescCreate.Text))
+                {
+                    MessageBox.Show(CommonMethods.MessageForbiddenDelimiterWasFoundInText());
+                }
+                else
+                {
+                    projCre.Name = textBox_ProjNameCreate.Text;
+                    projCre.Description = textBox_ProjDescCreate.Text;
+                    projCont.InsertProjectIntoDb(projCre);
 
-            this.Close();
+                    this.Close();
+                }
+                
             }
             catch (Exception x)
             {

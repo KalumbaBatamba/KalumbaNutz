@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NWAT.DB;
+using System;
 using System.Windows.Forms;
-using NWAT.DB;
 namespace NWAT
 {
     public partial class Criterion_Show_View : Form
@@ -28,8 +21,11 @@ namespace NWAT
             set { _criterionCont = value; }
         }
 
-        public Criterion_Show_View(int criterionId)
+        private Form parentView;
+
+        public Criterion_Show_View(Form parentView, int criterionId)
         {
+            this.parentView = parentView;
             this.CriterionCont = new CriterionController();
             this.Criterion = this.CriterionCont.GetCriterionById(criterionId);
             InitializeComponent();
@@ -66,6 +62,16 @@ namespace NWAT
         private void btn_CritShowClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        /// <summary>
+        /// Handles the FormClosing event of the Criterion_Show_View control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="FormClosingEventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Veit Berg, am 27.01.16
+        private void Criterion_Show_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.parentView.Show();
         }
     }
 }

@@ -97,6 +97,7 @@
             this.Controls.Add(this.label_CritName);
             this.Name = "Criterion_Create_View";
             this.Text = "Kriterium anlegen";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Criterion_Create_FormClosing);
             this.Load += new System.EventHandler(this.Criterion_Create_Form_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

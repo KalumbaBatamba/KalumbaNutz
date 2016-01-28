@@ -126,6 +126,7 @@
             this.Controls.Add(this.comboBox_ProdChoose);
             this.Name = "Produktverwaltung_View";
             this.Text = "Produktverwaltung";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Produktverwaltung_FormClosing);
             this.Load += new System.EventHandler(this.Produktverwaltung_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

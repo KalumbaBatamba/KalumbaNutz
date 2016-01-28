@@ -1,22 +1,18 @@
-﻿using System;
+﻿using NWAT.DB;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using NWAT.DB;
 namespace NWAT
 {
     public partial class Projektverwaltung_View : Form
     {
+        private Form parentView;
         
         private ProjectController projCont;
-        public Projektverwaltung_View()
+        public Projektverwaltung_View(Form parentView)
         {
-            
+            this.parentView = parentView;
             this.projCont = new ProjectController();
             InitializeComponent();
         }
@@ -60,8 +56,7 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         void Projektverwaltung_View_FormClosing(object sender, FormClosingEventArgs e)
         {
-            NWAT_Start_View start = new NWAT_Start_View();
-            start.Show();
+            this.parentView.Show();
         }
 
 
@@ -110,7 +105,7 @@ namespace NWAT
         private void btn_ProjectStartCreate_Click(object sender, EventArgs e)
         {
             try{
-            Project_Create_View ProjectCreate = new Project_Create_View();
+            Project_Create_View ProjectCreate = new Project_Create_View(this);
             ProjectCreate.Show();
             Hide();
             }
@@ -131,7 +126,7 @@ namespace NWAT
             try{
             int selectedIndex = comboBox_SelectProject.SelectedIndex;
             Project selectedItem = (Project)comboBox_SelectProject.SelectedItem;
-            aktuellesProjekt_View AktProjView = new aktuellesProjekt_View(selectedItem.Project_Id);
+            aktuellesProjekt_View AktProjView = new aktuellesProjekt_View(this, selectedItem.Project_Id);
             AktProjView.Show();
             Hide();
             }
@@ -152,7 +147,7 @@ namespace NWAT
             try{
             int selectedIndex = comboBox_SelectProject.SelectedIndex;
             Project selectedItem = (Project)comboBox_SelectProject.SelectedItem;
-            Project_Show_View ProjectShow = new Project_Show_View(selectedItem.Project_Id);
+            Project_Show_View ProjectShow = new Project_Show_View(this, selectedItem.Project_Id);
             ProjectShow.Show();
             Hide();
             }
@@ -173,7 +168,7 @@ namespace NWAT
             try{
             int selectedIndex = comboBox_SelectProject.SelectedIndex;
             Project selectedItem = (Project)comboBox_SelectProject.SelectedItem;
-            Project_Update_View ProjectUpdate = new Project_Update_View(selectedItem.Project_Id);
+            Project_Update_View ProjectUpdate = new Project_Update_View(this, selectedItem.Project_Id);
             ProjectUpdate.Show();
             Hide();
             }
@@ -191,6 +186,8 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProjImport_Click(object sender, EventArgs e)
         {
+
+            // TODO Josh
             try{
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "Cursor Files|*.cur";
@@ -239,7 +236,7 @@ namespace NWAT
 
         private void btn_ProjectExport_Click(object sender, EventArgs e)
         {
-
+            // TODO Josh
         }
 
     }

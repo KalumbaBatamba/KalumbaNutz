@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NWAT
@@ -29,7 +22,7 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProjAdm_Click(object sender, EventArgs e)
         {
-            Projektverwaltung_View ProjectAdmin = new Projektverwaltung_View();
+            Projektverwaltung_View ProjectAdmin = new Projektverwaltung_View(this);
             ProjectAdmin.Show();
             Hide();
         }
@@ -42,8 +35,9 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProdAdm_Click(object sender, EventArgs e)
         {
-            Produktverwaltung_View ProductAdmin = new Produktverwaltung_View();
+            Produktverwaltung_View ProductAdmin = new Produktverwaltung_View(this);
             ProductAdmin.Show();
+            Hide();
         }
 
         /// <summary>
@@ -54,7 +48,7 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         private void btn_CritAdm_Click(object sender, EventArgs e)
         {
-            Kriterienverwaltung_View CriterionAdmin = new Kriterienverwaltung_View();
+            Kriterienverwaltung_View CriterionAdmin = new Kriterienverwaltung_View(this);
             CriterionAdmin.Show();
             Hide();
         }
