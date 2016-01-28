@@ -35,12 +35,15 @@ namespace NWAT.HelperClasses
         public static bool CheckIfForbiddenDelimiterInDb(string text)
         {
             bool foundForbiddenChar = false;
-            List<string> listOfForbiddenChars = new List<string>(){@"|", @"\"};
-            foreach (string forbidChar in listOfForbiddenChars)
+            if (text != null)
             {
-                if (text.Contains(forbidChar))
+                List<string> listOfForbiddenChars = new List<string>() { @"|", @"\" };
+                foreach (string forbidChar in listOfForbiddenChars)
                 {
-                    foundForbiddenChar = true;
+                    if (text.Contains(forbidChar))
+                    {
+                        foundForbiddenChar = true;
+                    }
                 }
             }
             return foundForbiddenChar;
