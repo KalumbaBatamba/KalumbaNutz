@@ -5,7 +5,26 @@ namespace NWAT.HelperClasses
 {
     public static class CommonMethods
     {
+        
         // this class holds static methods as members, which can be used by several different classes/objects in this project
+
+
+
+        /// <summary>
+        /// Chrecks if string is empty.
+        /// </summary>
+        /// <param name="?">The ?.</param>
+        /// <returns></returns>
+        /// Erstellt von Veit Berg, am 28.01.16
+        public static bool ChreckIfStringIsEmpty(String income)
+        {
+            if (income == "")
+            {
+                return true;
+            }else{
+                return false;
+            }  
+        }
 
         /// <summary>
         /// Checks if forbitten delimiter in database.
@@ -142,6 +161,12 @@ namespace NWAT.HelperClasses
         {
 
             return String.Format("Die folgende Zeichen ddürfen nicht in Texteingaben verwendet werden: \"|\" und \"\\\"");
+        }
+       
+        public static string MessageTextIsEmpty()
+        {
+
+            return String.Format("Sie müssen alle Felder ausfüllen.");
         }
 
 

@@ -43,14 +43,14 @@
             this.dataGridView_CritStruUpd.Location = new System.Drawing.Point(20, 45);
             this.dataGridView_CritStruUpd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView_CritStruUpd.Name = "dataGridView_CritStruUpd";
-            this.dataGridView_CritStruUpd.Size = new System.Drawing.Size(1299, 1081);
+            this.dataGridView_CritStruUpd.Size = new System.Drawing.Size(838, 647);
             this.dataGridView_CritStruUpd.TabIndex = 0;
             this.dataGridView_CritStruUpd.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CritStruUpd_CellEndEdit);
             // 
             // btn_ProjCritStruSave
             // 
             this.btn_ProjCritStruSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_ProjCritStruSave.Location = new System.Drawing.Point(1333, 1044);
+            this.btn_ProjCritStruSave.Location = new System.Drawing.Point(872, 610);
             this.btn_ProjCritStruSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_ProjCritStruSave.Name = "btn_ProjCritStruSave";
             this.btn_ProjCritStruSave.Size = new System.Drawing.Size(112, 35);
@@ -62,7 +62,7 @@
             // btn_ProjCritStruCancle
             // 
             this.btn_ProjCritStruCancle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_ProjCritStruCancle.Location = new System.Drawing.Point(1333, 1089);
+            this.btn_ProjCritStruCancle.Location = new System.Drawing.Point(872, 655);
             this.btn_ProjCritStruCancle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_ProjCritStruCancle.Name = "btn_ProjCritStruCancle";
             this.btn_ProjCritStruCancle.Size = new System.Drawing.Size(112, 35);
@@ -75,7 +75,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1463, 1144);
+            this.ClientSize = new System.Drawing.Size(1002, 710);
             this.Controls.Add(this.btn_ProjCritStruCancle);
             this.Controls.Add(this.btn_ProjCritStruSave);
             this.Controls.Add(this.dataGridView_CritStruUpd);

@@ -49,7 +49,7 @@
             this.dataGridView_ProjCritBalance.Location = new System.Drawing.Point(0, 31);
             this.dataGridView_ProjCritBalance.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView_ProjCritBalance.Name = "dataGridView_ProjCritBalance";
-            this.dataGridView_ProjCritBalance.Size = new System.Drawing.Size(1382, 1081);
+            this.dataGridView_ProjCritBalance.Size = new System.Drawing.Size(818, 762);
             this.dataGridView_ProjCritBalance.TabIndex = 12;
             this.dataGridView_ProjCritBalance.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_ProjCritBalance_CellContentClick);
             // 
@@ -62,7 +62,7 @@
             // btn_ProjCritBalaCancle
             // 
             this.btn_ProjCritBalaCancle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_ProjCritBalaCancle.Location = new System.Drawing.Point(1416, 1075);
+            this.btn_ProjCritBalaCancle.Location = new System.Drawing.Point(852, 756);
             this.btn_ProjCritBalaCancle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_ProjCritBalaCancle.Name = "btn_ProjCritBalaCancle";
             this.btn_ProjCritBalaCancle.Size = new System.Drawing.Size(132, 35);
@@ -74,7 +74,7 @@
             // btn_ProjCritBalaSave
             // 
             this.btn_ProjCritBalaSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_ProjCritBalaSave.Location = new System.Drawing.Point(1416, 1030);
+            this.btn_ProjCritBalaSave.Location = new System.Drawing.Point(852, 711);
             this.btn_ProjCritBalaSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_ProjCritBalaSave.Name = "btn_ProjCritBalaSave";
             this.btn_ProjCritBalaSave.Size = new System.Drawing.Size(132, 35);
@@ -86,7 +86,7 @@
             // btn_SameBalance
             // 
             this.btn_SameBalance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_SameBalance.Location = new System.Drawing.Point(1390, 31);
+            this.btn_SameBalance.Location = new System.Drawing.Point(826, 31);
             this.btn_SameBalance.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_SameBalance.Name = "btn_SameBalance";
             this.btn_SameBalance.Size = new System.Drawing.Size(158, 35);
@@ -99,7 +99,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1566, 1144);
+            this.ClientSize = new System.Drawing.Size(1002, 825);
             this.Controls.Add(this.btn_SameBalance);
             this.Controls.Add(this.dataGridView_ProjCritBalance);
             this.Controls.Add(this.btn_ProjCritBalaCancle);

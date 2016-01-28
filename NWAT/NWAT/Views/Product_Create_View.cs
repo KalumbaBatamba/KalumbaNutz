@@ -49,25 +49,34 @@ namespace NWAT
         {
             try{
           Product prodCre = new Product();
+          String Name = textBox_ProdNameCreate.Text;
+          String Producer = textBox_ProdManuCreate.Text;
           prodCre.Name = textBox_ProdNameCreate.Text;
           prodCre.Producer = textBox_ProdManuCreate.Text;
           double check;
-          if (CommonMethods.CheckIfForbiddenDelimiterInDb(prodCre.Name) ||
-              CommonMethods.CheckIfForbiddenDelimiterInDb(prodCre.Producer))
+          if (CommonMethods.ChreckIfStringIsEmpty(Name) || CommonMethods.ChreckIfStringIsEmpty(Producer))
           {
-              MessageBox.Show(CommonMethods.MessageForbiddenDelimiterWasFoundInText());
+              MessageBox.Show(CommonMethods.MessageTextIsEmpty());
           }
           else
           {
-              if (Double.TryParse(textBox_ProdPrizeCreate.Text, out check))
+              if (CommonMethods.CheckIfForbiddenDelimiterInDb(prodCre.Name) ||
+                  CommonMethods.CheckIfForbiddenDelimiterInDb(prodCre.Producer))
               {
-                  prodCre.Price = Convert.ToDouble(textBox_ProdPrizeCreate.Text);
-                  prodCont.InsertProductIntoDb(prodCre);
-                  this.Close();
+                  MessageBox.Show(CommonMethods.MessageForbiddenDelimiterWasFoundInText());
               }
               else
               {
-                  MessageBox.Show("Der Preis darf nur aus Zahlen bestehen!");
+                  if (Double.TryParse(textBox_ProdPrizeCreate.Text, out check))
+                  {
+                      prodCre.Price = Convert.ToDouble(textBox_ProdPrizeCreate.Text);
+                      prodCont.InsertProductIntoDb(prodCre);
+                      this.Close();
+                  }
+                  else
+                  {
+                      MessageBox.Show("Der Preis darf nur aus Zahlen bestehen!");
+                  }
               }
           }
             }

@@ -63,21 +63,32 @@ namespace NWAT
         {
             try
             {
-                Project projCre = new Project();
-                if (CommonMethods.CheckIfForbiddenDelimiterInDb(textBox_ProjNameCreate.Text) ||
-                    CommonMethods.CheckIfForbiddenDelimiterInDb(textBox_ProjDescCreate.Text))
+                String Name = textBox_ProjNameCreate.Text;
+                String Description = textBox_ProjDescCreate.Text;
+                if (CommonMethods.ChreckIfStringIsEmpty(Name) || CommonMethods.ChreckIfStringIsEmpty(Description))
                 {
-                    MessageBox.Show(CommonMethods.MessageForbiddenDelimiterWasFoundInText());
+                    MessageBox.Show(CommonMethods.MessageTextIsEmpty());
                 }
                 else
                 {
-                    projCre.Name = textBox_ProjNameCreate.Text;
-                    projCre.Description = textBox_ProjDescCreate.Text;
-                    projCont.InsertProjectIntoDb(projCre);
 
-                    this.Close();
+
+                    Project projCre = new Project();
+                    if (CommonMethods.CheckIfForbiddenDelimiterInDb(textBox_ProjNameCreate.Text) ||
+                        CommonMethods.CheckIfForbiddenDelimiterInDb(textBox_ProjDescCreate.Text))
+                    {
+                        MessageBox.Show(CommonMethods.MessageForbiddenDelimiterWasFoundInText());
+                    }
+                    else
+                    {
+
+                        projCre.Name = textBox_ProjNameCreate.Text;
+                        projCre.Description = textBox_ProjDescCreate.Text;
+                        projCont.InsertProjectIntoDb(projCre);
+
+                        this.Close();
+                    }
                 }
-                
             }
             catch (Exception x)
             {

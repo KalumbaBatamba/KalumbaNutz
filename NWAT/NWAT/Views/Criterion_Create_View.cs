@@ -26,17 +26,28 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         private void btn_CritCreate_Click(object sender, EventArgs e)
         {
+
             try{
             String Name = textBox_CritNameCreate.Text;
             String Desc = textBox_CritDescCreate.Text;
-            if(CommonMethods.CheckIfForbiddenDelimiterInDb(Name) ||
-               CommonMethods.CheckIfForbiddenDelimiterInDb(Desc))
+            if (CommonMethods.ChreckIfStringIsEmpty(Name) || CommonMethods.ChreckIfStringIsEmpty(Desc))
             {
-                MessageBox.Show(CommonMethods.MessageForbiddenDelimiterWasFoundInText());
-            }else{
-            Criterion Crit = new Criterion { Name = Name, Description = Desc };
-            this.critCont.InsertCriterionIntoDb(Crit);
-            this.Close();
+                MessageBox.Show(CommonMethods.MessageTextIsEmpty());
+            }
+            else
+            {
+
+                if (CommonMethods.CheckIfForbiddenDelimiterInDb(Name) ||
+                CommonMethods.CheckIfForbiddenDelimiterInDb(Desc))
+                {
+                    MessageBox.Show(CommonMethods.MessageForbiddenDelimiterWasFoundInText());
+                }
+                else
+                {
+                    Criterion Crit = new Criterion { Name = Name, Description = Desc };
+                    this.critCont.InsertCriterionIntoDb(Crit);
+                    this.Close();
+                }
             }
             }
             catch (Exception x)
