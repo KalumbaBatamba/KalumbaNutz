@@ -207,9 +207,7 @@ namespace NWAT
                     MessageBox.Show(exception.Message);
                 }
             }
-           
-       
-       
+            RefreshDropDown();
         }
 
         /// <summary>
@@ -220,17 +218,26 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         private void btn_refresh_Click(object sender, EventArgs e)
         {
-            try{
-            using (ProjectController RefList = new ProjectController())
+            RefreshDropDown();
+        }
+
+        /// <summary>
+        /// Refreshes the combobox.
+        /// </summary>
+        /// Erstellt von Joshua Frey, am 29.01.2016
+        public void RefreshDropDown()
+        {
+            try
             {
-                List<Project> ProjList = RefList.GetAllProjectsFromDB();
-                var bindingList = new BindingList<Project>(ProjList);
-                var source = new BindingSource(bindingList, null);
-                comboBox_SelectProject.DataSource = ProjList;
-                comboBox_SelectProject.DisplayMember = "Name";
-                comboBox_SelectProject.ValueMember = "Project_ID";
-                
-            }
+                using (ProjectController RefList = new ProjectController())
+                {
+                    List<Project> ProjList = RefList.GetAllProjectsFromDB();
+                    var bindingList = new BindingList<Project>(ProjList);
+                    var source = new BindingSource(bindingList, null);
+                    comboBox_SelectProject.DataSource = ProjList;
+                    comboBox_SelectProject.DisplayMember = "Name";
+                    comboBox_SelectProject.ValueMember = "Project_ID";
+                }
             }
             catch (Exception x)
             {
@@ -282,6 +289,7 @@ namespace NWAT
                     }
                 }
             }
+            RefreshDropDown();
         }
     }
     public class aktRowProj

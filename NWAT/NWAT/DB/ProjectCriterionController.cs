@@ -424,7 +424,7 @@ namespace NWAT.DB
             bool success;
             try
             {
-                success = InsertProjectCriterionDataSet(newProjectCriterion);
+                success = InsertProjectCriterionDataSet(newProjectCriterion, isImported);
             }
             catch (Exception e)
             {
@@ -452,18 +452,20 @@ namespace NWAT.DB
         /// Erstellt von Joshua Frey, am 12.01.2016
         /// <exception cref="NWATException">
         /// </exception>
-        private bool InsertProjectCriterionDataSet(ProjectCriterion newProjectCriterion)
+        private bool InsertProjectCriterionDataSet(ProjectCriterion newProjectCriterion, bool isImported)
         {
             if (newProjectCriterion != null)
             {
                 int projectId = newProjectCriterion.Project_Id;
                 int criterionId = newProjectCriterion.Criterion_Id;
 
-                // set equal weighting when inserting a new project criterion
-                newProjectCriterion.Weighting_Cardinal = 1;
-                // set default layer depth to 1
-                newProjectCriterion.Layer_Depth = 1;
-
+                if (!isImported)
+                {
+                    // set equal weighting when inserting a new project criterion
+                    newProjectCriterion.Weighting_Cardinal = 1;
+                    // set default layer depth to 1
+                    newProjectCriterion.Layer_Depth = 1;
+                }
                 // if == null then this project criterion does not exist yet and it can be inserted into db
                 if (!CheckIfProjectCriterionAlreadyExists(projectId, criterionId))
                 {

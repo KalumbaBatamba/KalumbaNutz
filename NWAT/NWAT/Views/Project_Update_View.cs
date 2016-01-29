@@ -22,10 +22,10 @@ namespace NWAT
             set { _projectCont = value; }
         }
 
-        private Form parentView;
+        private Projektverwaltung_View parentView;
 
 
-        public Project_Update_View(Form parentView, int projectId)
+        public Project_Update_View(Projektverwaltung_View parentView, int projectId)
         {
             this.parentView = parentView;
             this.ProjectCont = new ProjectController();
@@ -71,6 +71,7 @@ namespace NWAT
                         projUpd.Name = textBox_ProjNameUpdate.Text;
                         projUpd.Description = textBox_ProjDescUpdate.Text;
                         ProjectCont.UpdateProjectInDb(projUpd);
+
                         this.Close();  
                     }
                                      
@@ -120,6 +121,7 @@ namespace NWAT
         void Project_Update_View_FormClosing(object sender, FormClosingEventArgs e)
         {
             try{
+                this.parentView.RefreshDropDown();
                 this.parentView.Show();
             }
             catch (Exception x)

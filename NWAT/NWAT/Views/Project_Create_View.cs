@@ -6,9 +6,9 @@ namespace NWAT
 {
     public partial class Project_Create_View : Form
     {
-        private Form parentView;
+        private Projektverwaltung_View parentView;
         private ProjectController projCont;
-        public Project_Create_View(Form parentView)
+        public Project_Create_View(Projektverwaltung_View parentView)
         {
             this.parentView = parentView;
             this.projCont = new ProjectController();          
@@ -35,6 +35,7 @@ namespace NWAT
         void Project_Create_View_FormClosing(object sender, FormClosingEventArgs e)
         {
             try{
+                this.parentView.RefreshDropDown();
                 this.parentView.Show();
             }
             catch (Exception x)
@@ -90,7 +91,7 @@ namespace NWAT
                         projCre.Name = textBox_ProjNameCreate.Text;
                         projCre.Description = textBox_ProjDescCreate.Text;
                         projCont.InsertProjectIntoDb(projCre);
-
+                        
                         this.Close();
                     }
                 }
