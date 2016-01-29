@@ -42,20 +42,18 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView_ProjCritProdFulf.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_ProjCritProdFulf.Location = new System.Drawing.Point(20, 80);
-            this.dataGridView_ProjCritProdFulf.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dataGridView_ProjCritProdFulf.Location = new System.Drawing.Point(13, 52);
             this.dataGridView_ProjCritProdFulf.Name = "dataGridView_ProjCritProdFulf";
-            this.dataGridView_ProjCritProdFulf.Size = new System.Drawing.Size(838, 751);
+            this.dataGridView_ProjCritProdFulf.Size = new System.Drawing.Size(374, 217);
             this.dataGridView_ProjCritProdFulf.TabIndex = 9;
             this.dataGridView_ProjCritProdFulf.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_ProjCritProdFulf_CellContentClick);
             // 
             // btn_ProjCritProdFulfCancle
             // 
             this.btn_ProjCritProdFulfCancle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_ProjCritProdFulfCancle.Location = new System.Drawing.Point(872, 794);
-            this.btn_ProjCritProdFulfCancle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_ProjCritProdFulfCancle.Location = new System.Drawing.Point(396, 245);
             this.btn_ProjCritProdFulfCancle.Name = "btn_ProjCritProdFulfCancle";
-            this.btn_ProjCritProdFulfCancle.Size = new System.Drawing.Size(112, 35);
+            this.btn_ProjCritProdFulfCancle.Size = new System.Drawing.Size(75, 23);
             this.btn_ProjCritProdFulfCancle.TabIndex = 11;
             this.btn_ProjCritProdFulfCancle.Text = "schliessen";
             this.btn_ProjCritProdFulfCancle.UseVisualStyleBackColor = true;
@@ -64,10 +62,9 @@
             // btn_ProjCritProdFulfSave
             // 
             this.btn_ProjCritProdFulfSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_ProjCritProdFulfSave.Location = new System.Drawing.Point(872, 749);
-            this.btn_ProjCritProdFulfSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_ProjCritProdFulfSave.Location = new System.Drawing.Point(396, 216);
             this.btn_ProjCritProdFulfSave.Name = "btn_ProjCritProdFulfSave";
-            this.btn_ProjCritProdFulfSave.Size = new System.Drawing.Size(112, 35);
+            this.btn_ProjCritProdFulfSave.Size = new System.Drawing.Size(75, 23);
             this.btn_ProjCritProdFulfSave.TabIndex = 10;
             this.btn_ProjCritProdFulfSave.Text = "speichern";
             this.btn_ProjCritProdFulfSave.UseVisualStyleBackColor = true;
@@ -76,10 +73,9 @@
             // comboBox_ProjCritProdFulf
             // 
             this.comboBox_ProjCritProdFulf.FormattingEnabled = true;
-            this.comboBox_ProjCritProdFulf.Location = new System.Drawing.Point(20, 38);
-            this.comboBox_ProjCritProdFulf.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBox_ProjCritProdFulf.Location = new System.Drawing.Point(13, 25);
             this.comboBox_ProjCritProdFulf.Name = "comboBox_ProjCritProdFulf";
-            this.comboBox_ProjCritProdFulf.Size = new System.Drawing.Size(342, 28);
+            this.comboBox_ProjCritProdFulf.Size = new System.Drawing.Size(229, 21);
             this.comboBox_ProjCritProdFulf.TabIndex = 12;
             this.comboBox_ProjCritProdFulf.Text = "Wählen Sie das Produkt aus";
             this.comboBox_ProjCritProdFulf.SelectedIndexChanged += new System.EventHandler(this.comboBox_ProjCritProdFulf_SelectedIndexChanged);
@@ -87,10 +83,9 @@
             // btn_ProdFulfPrint
             // 
             this.btn_ProdFulfPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_ProdFulfPrint.Location = new System.Drawing.Point(872, 705);
-            this.btn_ProdFulfPrint.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btn_ProdFulfPrint.Location = new System.Drawing.Point(396, 187);
             this.btn_ProdFulfPrint.Name = "btn_ProdFulfPrint";
-            this.btn_ProdFulfPrint.Size = new System.Drawing.Size(112, 35);
+            this.btn_ProdFulfPrint.Size = new System.Drawing.Size(75, 23);
             this.btn_ProdFulfPrint.TabIndex = 14;
             this.btn_ProdFulfPrint.Text = "drucken";
             this.btn_ProdFulfPrint.UseVisualStyleBackColor = true;
@@ -98,15 +93,14 @@
             // 
             // ProjCritProdFulfilment_View
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1002, 863);
+            this.ClientSize = new System.Drawing.Size(483, 290);
             this.Controls.Add(this.btn_ProdFulfPrint);
             this.Controls.Add(this.comboBox_ProjCritProdFulf);
             this.Controls.Add(this.dataGridView_ProjCritProdFulf);
             this.Controls.Add(this.btn_ProjCritProdFulfCancle);
             this.Controls.Add(this.btn_ProjCritProdFulfSave);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ProjCritProdFulfilment_View";
             this.Text = "Produkt-Kriterienerfüllung";
             this.Load += new System.EventHandler(this.ProjCritProdFulfilment_Form_Load);
