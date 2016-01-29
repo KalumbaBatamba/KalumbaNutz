@@ -186,21 +186,30 @@ namespace NWAT
         /// Erstellt von Veit Berg, am 27.01.16
         private void btn_ProjImport_Click(object sender, EventArgs e)
         {
+            string exportFilePath = "";
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Zip Files|*.zip";
+            ofd.Title = "Wähle Exportdatei";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                exportFilePath = ofd.FileName;
+            }
+            if (exportFilePath != "")
+            {
+                try
+                {
+                    ProjectImporter projImporter = new ProjectImporter(exportFilePath);
+                    projImporter.ImportWholeProject();
 
-            // TODO Josh
-            try{
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "Cursor Files|*.cur";
-            openFileDialog1.Title = "Select a Cursor File";
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                this.Cursor = new Cursor(openFileDialog1.OpenFile());
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
             }
-            }
-            catch (Exception x)
-            {
-                MessageBox.Show(x.Message);
-            }
+           
+       
+       
         }
 
         /// <summary>
@@ -234,11 +243,46 @@ namespace NWAT
             
         }
 
+
+        /// <summary>
+        /// Handles the Click event of the btn_ProjectExport control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// Erstellt von Joshua Frey, am 28.01.2016
         private void btn_ProjectExport_Click(object sender, EventArgs e)
         {
-            // TODO Josh
-        }
+            Project selectedProject = (Project)comboBox_SelectProject.SelectedItem;
+            if (selectedProject == null)
+            {
+                MessageBox.Show("Bitte wählen Sie erst ein bestehendes Project aus dem Dropdownfeld aus.");
+            }
+            else
+            {
+                int projectId = selectedProject.Project_Id;
+                string folderPathForExport = "";
+                FolderBrowserDialog folderBrowserDialogForExportFolder = new FolderBrowserDialog();
 
+                if (folderBrowserDialogForExportFolder.ShowDialog() == DialogResult.OK)
+                {
+                    folderPathForExport = folderBrowserDialogForExportFolder.SelectedPath;
+                }
+
+                if (folderPathForExport != "" && projectId != 0)
+                {
+                    try
+                    {
+                        ProjectExporter projExporter = new ProjectExporter(projectId, folderPathForExport);
+                        projExporter.ExportWholeProject();
+
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(exception.Message);
+                    }
+                }
+            }
+        }
     }
     public class aktRowProj
     {

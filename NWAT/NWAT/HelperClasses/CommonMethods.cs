@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace NWAT.HelperClasses
 {
@@ -49,6 +50,73 @@ namespace NWAT.HelperClasses
             return foundForbiddenChar;
         }
 
+        /// <summary>
+        /// Compares strings without whitespaces and returns true if they are the same
+        /// </summary>
+        /// <param name="stringOne">The string one.</param>
+        /// <param name="stringTwo">The string two.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 28.01.2016
+        public static bool CompareStringWithoutWhitespaces(string stringOne, string stringTwo)
+        {
+            bool result = false;
+            if (stringOne != null && stringTwo != null)
+            {
+                string stringOneWithoutWS = Regex.Replace(stringOne, @"\s+", "");
+                string stringTwoWithoutWS = Regex.Replace(stringTwo, @"\s+", "");
+
+                if (stringOneWithoutWS == stringTwoWithoutWS)
+                {
+                    result = true;  
+                }
+            }
+            if (stringOne == null && stringTwo == null)
+            {
+                result = true;
+            }
+            return result;
+        }
+
+
+        /// <summary>
+        /// Checks if slash is in string. Will be called to check ProjectName. ProjectName must not contain "/" because
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <returns></returns>
+        /// Erstellt von Joshua Frey, am 28.01.2016
+        public static bool CheckIfSpecialCharsAreInString(string text)
+        {
+
+            bool result = false;
+            if (text != null)
+            {
+                List<string> listOfForbiddenChars = new List<string>() { @"|", @"\", @"/", @":", @"*", @"?", @"<", @">", "\""};
+                foreach (string forbidChar in listOfForbiddenChars)
+                {
+                    if (text.Contains(forbidChar))
+                    {
+                        result = true;
+                    }
+                }
+            }
+            return result;            
+        }
+
+        /// <summary>
+        /// Replaces the new line in string with space if it contains one.
+        /// </summary>
+        /// <param name="inputString">The input string.</param>
+        /// Erstellt von Joshua Frey, am 28.01.2016
+        public static string ReplaceNewLineInStringWithSpaceIfItContainsOne(string inputString)
+        {
+            string resultString = inputString;
+            if (resultString != null)
+            {
+                resultString = resultString.Replace("\r\n", " ");
+                resultString = resultString.Replace("\n", " ");
+            }
+            return resultString;
+        }
 
         /// <summary>
         /// Creates the timestamp for file.
@@ -165,7 +233,13 @@ namespace NWAT.HelperClasses
 
             return String.Format("Die folgende Zeichen dürfen nicht in Texteingaben verwendet werden: \"|\" und \"\\\"");
         }
-       
+
+        public static string MessageForbiddenDelimiterWasFoundInProjectName()
+        {
+
+            return String.Format("Die folgende Zeichen dürfen nicht im Projektnamen verwendet werden: {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}", @"|", @"\", @"/", @":", @"*", @"?", @"<", @">", "\"");
+        }
+
         public static string MessageTextIsEmpty()
         {
 

@@ -381,13 +381,14 @@ namespace NWAT.DB
             {
                 foreach (Fulfillment fulfillment in allFulFillmentEntriesForThisProject)
                 {
+                    string comment = CommonMethods.ReplaceNewLineInStringWithSpaceIfItContainsOne(fulfillment.Comment);
                     // Project_Id|Product_Id|Criterion_Id|Fulfilled|Comment
                     string csvLine = String.Format("{1}{0}{2}{0}{3}{0}{4}{0}{5}", this._delimiter, 
                                                                                   fulfillment.Project_Id, 
                                                                                   fulfillment.Product_Id, 
                                                                                   fulfillment.Criterion_Id,
                                                                                   fulfillment.Fulfilled.ToString(),
-                                                                                  fulfillment.Comment);
+                                                                                  comment);
                     sw.WriteLine(csvLine);
                 }
             }
@@ -428,14 +429,23 @@ namespace NWAT.DB
                     Fulfillment searchedFulfillmentInExportedList = exportedFulfillments.SingleOrDefault(
                         fulfillment => fulfillment.Project_Id == dbPfulfillment.Project_Id &&
                                        fulfillment.Product_Id == dbPfulfillment.Product_Id &&
-                                       fulfillment.Criterion_Id == dbPfulfillment.Criterion_Id &&
-                                       fulfillment.Fulfilled == dbPfulfillment.Fulfilled &&
-                                       fulfillment.Comment == dbPfulfillment.Comment);
+                                       fulfillment.Criterion_Id == dbPfulfillment.Criterion_Id);
 
                     // check if fulfillment from db was not found in exported fulfillments
                     if (searchedFulfillmentInExportedList == null)
                     {
                         verification = false;
+                    }
+                    else
+                    {
+                        // Check if same properties
+                        if (searchedFulfillmentInExportedList.Fulfilled != dbPfulfillment.Fulfilled || 
+                            !CommonMethods.CompareStringWithoutWhitespaces(searchedFulfillmentInExportedList.Comment, dbPfulfillment.Comment))
+                        {
+                            MessageBox.Show(String.Format("Beim Verifizieren stimmten die Eigenschaften der Erfüllungen mit der ProjId {0} " + 
+                                "der ProductId {1} und der KriteriumId {2} nicht überein", dbPfulfillment.Project_Id, dbPfulfillment.Product_Id, dbPfulfillment.Criterion_Id));
+                            verification = false;
+                        }
                     }
                 }
                 return verification;
@@ -735,12 +745,14 @@ namespace NWAT.DB
             {
                 foreach (Product prod in exportProducts)
                 {
+                    string prodName = CommonMethods.ReplaceNewLineInStringWithSpaceIfItContainsOne(prod.Name);
+                    string producer = CommonMethods.ReplaceNewLineInStringWithSpaceIfItContainsOne(prod.Producer);
                     // Product_Id|Name|Producer|Price
                     string csvLine = String.Format("{1}{0}{2}{0}{3}{0}{4}",
                         this._delimiter,
                         prod.Product_Id,
-                        prod.Name,
-                        prod.Producer,
+                        prodName,
+                        producer,
                         prod.Price);
                     sw.WriteLine(csvLine);
                 }
@@ -787,23 +799,30 @@ namespace NWAT.DB
             // if the count of lists doesn't differ 
             if (productsFromDb.Count == exportedProducts.Count)
             {
-                foreach (Product dbProjectCriterion in productsFromDb)
+                foreach (Product dbProduct in productsFromDb)
                 {
                     // if one comparison has any differences, there is no need to check all data
                     if (!verification)
                         break;
 
                     Product searchedProductInExportedList = exportedProducts.SingleOrDefault(
-                        prod => prod.Product_Id == dbProjectCriterion.Product_Id &&
-                                prod.Name == dbProjectCriterion.Name &&
-                                prod.Producer == dbProjectCriterion.Producer &&
-                                prod.Price == dbProjectCriterion.Price
-                        );
+                        prod => prod.Product_Id == dbProduct.Product_Id);
 
                     // check if product from db was not found in exported products
                     if (searchedProductInExportedList == null)
                     {
+                        MessageBox.Show(String.Format("Produkt mit der Id {0} konnte beim Verifizieren nicht in der Exportdatei gefunden werden", dbProduct.Product_Id));
                         verification = false;
+                    }
+                    else
+                    {
+                        if (!CommonMethods.CompareStringWithoutWhitespaces(dbProduct.Name, searchedProductInExportedList.Name) ||
+                            !CommonMethods.CompareStringWithoutWhitespaces(dbProduct.Producer, searchedProductInExportedList.Producer) ||
+                            dbProduct.Price != searchedProductInExportedList.Price)
+                        {
+                            verification = false;
+                            MessageBox.Show(String.Format("Die Produkte mit der Id {0} haben nicht die gleichen Eigenschaften", dbProduct.Product_Id));
+                        }
                     }
                 }
                 return verification;
@@ -867,12 +886,14 @@ namespace NWAT.DB
             {
                 foreach (Criterion crit in exportCriterions)
                 {
+                    string critName = CommonMethods.ReplaceNewLineInStringWithSpaceIfItContainsOne(crit.Name);
+                    string critDesc = CommonMethods.ReplaceNewLineInStringWithSpaceIfItContainsOne(crit.Description);
                     // Criterion_Id|Name|Description
                     string csvLine = String.Format("{1}{0}{2}{0}{3}",
                         this._delimiter,
                         crit.Criterion_Id,
-                        crit.Name,
-                        crit.Description);
+                        critName,
+                        critDesc);
                     sw.WriteLine(csvLine);
                 }
             }
@@ -923,18 +944,29 @@ namespace NWAT.DB
                 {
                     // if one comparison has any differences, there is no need to check all data
                     if (!verification)
+                    {
                         break;
+                    }
 
                     Criterion searchedCriterionInExportedList = exportedCriterions.SingleOrDefault(
-                        crit => crit.Criterion_Id == dbProjectCriterion.Criterion_Id &&
-                                crit.Name == dbProjectCriterion.Name &&
-                                crit.Description == dbProjectCriterion.Description
+                        crit => crit.Criterion_Id == dbProjectCriterion.Criterion_Id
                         );
-
-                    // check if criterion from db was not found in exported criterion
+                    
+                    // check if criterion id from db was not found in exported criterion
                     if (searchedCriterionInExportedList == null)
                     {
+                        MessageBox.Show(String.Format("Kriterium mit der Id {0} konnte beim verifizieren nicht in der Exportdatei gefunden werden.", dbProjectCriterion.Criterion_Id));
                         verification = false;
+                    }
+                    else
+                    {
+                        // check if criterion from db has same props as exported criterion
+                        if (!CommonMethods.CompareStringWithoutWhitespaces(dbProjectCriterion.Name, searchedCriterionInExportedList.Name) ||
+                            !CommonMethods.CompareStringWithoutWhitespaces(dbProjectCriterion.Description, searchedCriterionInExportedList.Description))
+                        {
+                            verification = false;
+                            MessageBox.Show(String.Format("Die Kriterien mit der Id {0} haben nicht die gleichen Eigenschaften.", dbProjectCriterion.Criterion_Id));
+                        }
                     }
                 }
                 return verification;
@@ -985,8 +1017,10 @@ namespace NWAT.DB
         {
             Project proj = ExportProjectController.GetProjectById(this.ProjectId);
 
+            string projectName = CommonMethods.ReplaceNewLineInStringWithSpaceIfItContainsOne(proj.Name);
+            string projectDescription = CommonMethods.ReplaceNewLineInStringWithSpaceIfItContainsOne(proj.Description);
             // Project_ID|Name|Description
-            string csvRow = String.Format(@"{1}{0}{2}{0}{3}", this._delimiter, proj.Project_Id.ToString(), proj.Name, proj.Description);
+            string csvRow = String.Format(@"{1}{0}{2}{0}{3}", this._delimiter, proj.Project_Id.ToString(), projectName, projectDescription);
 
             string fileUri = this.FileBaseName + "_Project.txt";
             this.ExportFilePaths.Add(fileUri);

@@ -27,7 +27,7 @@ namespace NWAT
         private void btn_CritCreate_Click(object sender, EventArgs e)
         {
 
-            try{
+            //try{
             String Name = textBox_CritNameCreate.Text;
             String Desc = textBox_CritDescCreate.Text;
             if (CommonMethods.ChreckIfStringIsEmpty(Name) || CommonMethods.ChreckIfStringIsEmpty(Desc))
@@ -49,11 +49,11 @@ namespace NWAT
                     this.Close();
                 }
             }
-            }
-            catch (Exception x)
-            {
-                MessageBox.Show(x.Message);
-            }
+            //}
+            //catch (Exception x)
+            //{
+            //    MessageBox.Show(x.Message);
+            //}
         }
         private void CreateNewCrit()
         {

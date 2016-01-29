@@ -61,13 +61,6 @@
     <Content Include="ModelDefinition\Package_2220.uml">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="NWAT.classdiagram">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="NWAT.classdiagram.layout">
-      <SubType>Content</SubType>
-      <DependentUpon>NWAT.classdiagram</DependentUpon>
-    </Content>
     <Folder Include="ModelDefinition\" />
     <Content Include="ModelDefinition\NWAT_Modelling.uml">
       <SubType>Content</SubType>

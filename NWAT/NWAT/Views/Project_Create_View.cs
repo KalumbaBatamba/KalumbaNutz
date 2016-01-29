@@ -74,14 +74,19 @@ namespace NWAT
 
 
                     Project projCre = new Project();
-                    if (CommonMethods.CheckIfForbiddenDelimiterInDb(textBox_ProjNameCreate.Text) ||
-                        CommonMethods.CheckIfForbiddenDelimiterInDb(textBox_ProjDescCreate.Text))
+                    bool forbiddenCharInStrings = false;
+                    if (CommonMethods.CheckIfSpecialCharsAreInString(textBox_ProjNameCreate.Text))
                     {
+                        forbiddenCharInStrings = true;
+                        MessageBox.Show(CommonMethods.MessageForbiddenDelimiterWasFoundInProjectName());
+                    }
+                    if(CommonMethods.CheckIfForbiddenDelimiterInDb(textBox_ProjDescCreate.Text))
+                    {
+                        forbiddenCharInStrings = true;
                         MessageBox.Show(CommonMethods.MessageForbiddenDelimiterWasFoundInText());
                     }
-                    else
+                    if(!forbiddenCharInStrings)
                     {
-
                         projCre.Name = textBox_ProjNameCreate.Text;
                         projCre.Description = textBox_ProjDescCreate.Text;
                         projCont.InsertProjectIntoDb(projCre);

@@ -239,7 +239,7 @@ namespace NWAT.DB
                 List<string> extracedFiles = zipper.ExtractArchiveDataToDir(tempExtractDir, this.ZipArchiveFilePath);
                 SetImportFilePaths(extracedFiles);
             }
-
+            MessageBox.Show("Importvorgang wird gestartet. Bitte bestätigen Sie mit \"Ok\"");
             ImportProjectData();
             ImportCriterionData();
             ImportProductData();

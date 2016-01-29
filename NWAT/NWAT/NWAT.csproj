@@ -116,12 +116,6 @@
     <Compile Include="DB\NWATException.cs" />
     <Compile Include="DB\CriterionController.cs" />
     <Compile Include="DB\ProjectProductController.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Kriterienverwaltung_View.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -229,7 +223,6 @@
     <Compile Include="Views\NWAT_Start_View.Designer.cs">
       <DependentUpon>NWAT_Start_View.cs</DependentUpon>
     </Compile>
-    <None Include="ClassDiagram1.cd" />
     <None Include="DB\NWAT.dbml.layout">
       <DependentUpon>NWAT.dbml</DependentUpon>
     </None>
@@ -299,9 +292,6 @@
     <None Include="ClassDiagram_MVC_Seperation.cd" />
     <EmbeddedResource Include="Views\aktuellesProjekt_View.resx">
       <DependentUpon>aktuellesProjekt_View.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

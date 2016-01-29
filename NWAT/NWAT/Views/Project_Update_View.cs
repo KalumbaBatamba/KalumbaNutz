@@ -43,9 +43,11 @@ namespace NWAT
         {
             try
             {
+
                 Project projUpd = ProjectCont.GetProjectById(Project.Project_Id);
                 projUpd.Project_Id = this.Project.Project_Id;
 
+                bool forbiddenCharInStrings = false;
                 if (CommonMethods.CheckIfForbiddenDelimiterInDb(textBox_ProjNameUpdate.Text) ||
                     CommonMethods.CheckIfForbiddenDelimiterInDb(textBox_ProjNameUpdate.Text))
                 {
@@ -53,10 +55,25 @@ namespace NWAT
                 }
                 else
                 {
-                    projUpd.Name = textBox_ProjNameUpdate.Text;
-                    projUpd.Description = textBox_ProjDescUpdate.Text;
-                    ProjectCont.UpdateProjectInDb(projUpd);
-                    this.Close();                    
+
+                    if (CommonMethods.CheckIfSpecialCharsAreInString(textBox_ProjNameUpdate.Text))
+                    {
+                        forbiddenCharInStrings = true;
+                        MessageBox.Show(CommonMethods.MessageForbiddenDelimiterWasFoundInProjectName());
+                    }
+                    if (CommonMethods.CheckIfForbiddenDelimiterInDb(textBox_ProjNameUpdate.Text))
+                    {
+                        forbiddenCharInStrings = true;
+                        MessageBox.Show(CommonMethods.MessageForbiddenDelimiterWasFoundInText());
+                    }
+                    if (!forbiddenCharInStrings)
+                    {
+                        projUpd.Name = textBox_ProjNameUpdate.Text;
+                        projUpd.Description = textBox_ProjDescUpdate.Text;
+                        ProjectCont.UpdateProjectInDb(projUpd);
+                        this.Close();  
+                    }
+                                     
                 }
             }
             catch (Exception x)

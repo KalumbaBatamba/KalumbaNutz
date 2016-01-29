@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NWAT.HelperClasses;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -236,8 +237,9 @@ namespace NWAT.DB
         /// Erstellt von Joshua Frey, am 14.12.2015
         public bool CheckIfEqualProjects(Project projOne, Project projTwo)
         {
-            bool equalName = projOne.Name == projTwo.Name;
-            bool equalDescription = projOne.Description == projTwo.Description;
+
+            bool equalName = CommonMethods.CompareStringWithoutWhitespaces(projOne.Name, projTwo.Name);
+            bool equalDescription = CommonMethods.CompareStringWithoutWhitespaces(projOne.Description, projTwo.Description);
 
             return equalName && equalDescription;
         }
