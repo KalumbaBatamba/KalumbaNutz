@@ -175,7 +175,8 @@ namespace NWAT.Printer
                     //Tabelle zum Dokument Adden
                     FulfillmentPrinter.Add(CritTable);
 
-                    // Füge abstand zwischen den Tabellen ein
+                    // Neue Seite ab jedem neuem "Teil" der tabellarischen Ansicht
+                    FulfillmentPrinter.NewPage(); 
                     
                     firstProdId += this.maxProductsInTable;
                     tableNumber++;
@@ -362,7 +363,7 @@ namespace NWAT.Printer
                     }
                 }         
             }
-            CritTable.SpacingAfter = 100f; //Abstand zur nachfolgenden Tabelle
+           
         }
 
         /// <summary>

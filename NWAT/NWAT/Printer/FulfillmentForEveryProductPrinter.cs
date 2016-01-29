@@ -168,6 +168,9 @@ namespace NWAT.Printer
 
                     //Tabelle zum Dokument Adden
                     FulfillmentPrinter.Add(CritTable);
+
+                    // Neue Seite ab jedem neuem "Teil" der tabellarischen Ansicht
+                    FulfillmentPrinter.NewPage(); 
     
                     firstProdId += this.maxProductsInTable;
                     tableNumber++;
@@ -303,8 +306,8 @@ namespace NWAT.Printer
 
             // Generische Liste - Dictionary Wertepaar vom Typ int - Schlüssel und Wert 
             Dictionary<int, int> enumerations = new Dictionary<int, int>() { { 1, 0 } };
-        
-                             
+
+
             //Foreach-Schleife druckt sortierte Kriterien auf das Pdf Dokument
             foreach (ProjectCriterion projectCriterion in SortedProjectCriterionStructure)
             {
@@ -332,7 +335,7 @@ namespace NWAT.Printer
                 //Der Zelle den Paragraphen übergeben
                 Crits.AddElement(para);
                 //Anzeigen von Linien im Pdf
-                Crits.Border = 1;                   
+                Crits.Border = 1;
 
                 //Die Kriterienstruktur den zellen hinzufügen
                 CritTable.AddCell(Crits);
@@ -350,7 +353,7 @@ namespace NWAT.Printer
 
                 foreach (ProjectProduct projprod in productsInTable)
                 {
-                    
+
                     //try catch Anweisung um Fehler abzufangen. Fehler: Für das Produkt sind keine oder nicht alle Erfülungen in der DB hinterlegt
                     try
                     {
@@ -375,9 +378,9 @@ namespace NWAT.Printer
                     {
                         throw new ApplicationException("Warnung!\n Nicht für alle Produkte des Projekts sind Erfüllungen hinterlegt! Bitte überprüfen Sie Ihre Eingaben! ");
                     }
-                }         
+
+                }
             }
-            CritTable.SpacingAfter = 100f; //Abstand zur nachfolgenden Tabelle
         }
 
         /// <summary>
